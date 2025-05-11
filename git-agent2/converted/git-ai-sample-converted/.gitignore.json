@@ -1,0 +1,6 @@
+{
+  "file_path": "target_repositorys/git-ai-sample/.gitignore",
+  "content": [
+    ".venv"
+  ]
+}

@@ -1,0 +1,4 @@
+{
+  "file_path": "target_repositorys/git-ai-sample/backend/fastAPI/venv/Scripts/fastapi.exe",
+  "error": "'utf-8' codec can't decode byte 0x90 in position 2: invalid start byte"
+}

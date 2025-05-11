@@ -1,0 +1,4 @@
+{
+  "file_path": "target_repositorys/git-ai-sample/frontend/nextjs/src/app/favicon.ico",
+  "error": "'utf-8' codec can't decode byte 0x96 in position 50: invalid start byte"
+}

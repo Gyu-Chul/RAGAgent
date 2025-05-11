@@ -1,0 +1,10 @@
+{
+  "file_path": "target_repositorys/git-ai-sample/backend/fastAPI/venv/pyvenv.cfg",
+  "content": [
+    "home = C:\\Users\\su9ki\\AppData\\Local\\Programs\\Python\\Python311",
+    "include-system-site-packages = false",
+    "version = 3.11.9",
+    "executable = C:\\Users\\su9ki\\AppData\\Local\\Programs\\Python\\Python311\\python.exe",
+    "command = C:\\Users\\su9ki\\AppData\\Local\\Programs\\Python\\Python311\\python.exe -m venv E:\\python-ai-monitor\\backend\\fastAPI\\venv"
+  ]
+}
