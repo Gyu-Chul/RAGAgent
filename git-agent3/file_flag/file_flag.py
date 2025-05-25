@@ -2,7 +2,7 @@
 import time
 import logging
 from typing import Optional, Dict, Any, Protocol
-from reader import read_last_flag
+from .reader import read_last_flag
 
 class FlagHandler(Protocol):
     def handle(self, flag: Dict[str, Any]) -> None:
