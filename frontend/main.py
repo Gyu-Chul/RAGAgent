@@ -1,14 +1,15 @@
 from nicegui import ui
-from pages import home
-from pages import repo_detail
+from src.pages.home import render_home
+from src.pages.project import render_project
 
-# 메인 페이지 라우팅
 @ui.page('/')
 def home_page():
-    home.render()
+    render_home()
 
 @ui.page('/project/{name}')
-def repo_page(name: str):
-    repo_detail.render(name)
+def project_page(name: str):
+    render_project(name)
 
-ui.run(title="GitAI", reload=True)
+
+if __name__ in {"__main__", "__mp_main__"}:
+    ui.run(title='GitAI', reload=True)
