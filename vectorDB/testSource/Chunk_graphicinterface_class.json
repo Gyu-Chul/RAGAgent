@@ -1,0 +1,137 @@
+[
+  {
+    "type": "module",
+    "name": "",
+    "start_line": 1,
+    "end_line": 3,
+    "code": "from window.window_class import Window\nfrom graphic_utility.graphicUtility_class import BasicDiagram\nimport wx",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "__init__",
+    "start_line": 7,
+    "end_line": 8,
+    "code": "    def __init__(self):\n        print(\"GraphicInterface class created in hab.py\\n\")",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 10,
+    "end_line": 12,
+    "code": "    def run(self):\n        print(\"==== GRAPHICINTERFACE.PY ====\")\n        diagram = BasicDiagram()\n\n",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 14,
+    "end_line": 15,
+    "code": "        x_offset = 100\n        y_offset = 100",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 17,
+    "end_line": 24,
+    "code": "        while True:\n            print(\"\\n도형을 추가할 번호를 선택하세요:\")\n            print(\"1. 원 (Circle)\")\n            print(\"2. 사각형 (Rectangle)\")\n            print(\"3. 화살표 (Arrow)\")\n            print(\"4. 텍스트 (Text)\")\n            print(\"5. 표 (Table)\")\n            print(\"0. 종료 (exit)\")",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 26,
+    "end_line": 30,
+    "code": "        try:\n            choice = int(input(\"선택: \").strip())\n        except ValueError:\n            print(\"숫자를 입력해주세요.\")\n            continue",
+    "commit_id": "fix12ab",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 32,
+    "end_line": 33,
+    "code": "        if choice == 0:\n            break",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 35,
+    "end_line": 37,
+    "code": "        elif choice == 1:\n            radius = int(input(\"반지름: \"))\n            diagram.Circle(x_offset, y_offset, radius)",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 39,
+    "end_line": 42,
+    "code": "        elif choice == 2:\n            width = int(input(\"너비: \"))\n            height = int(input(\"높이: \"))\n            diagram.Rectangle(x_offset, y_offset, width, height)",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 44,
+    "end_line": 49,
+    "code": "        elif choice == 3:\n            x1 = int(input(\"시작 x: \"))\n            y1 = int(input(\"시작 y: \"))\n            x2 = int(input(\"끝 x: \"))\n            y2 = int(input(\"끝 y: \"))\n            diagram.Arrow(x1, y1, x2, y2)",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 51,
+    "end_line": 54,
+    "code": "        elif choice == 4:\n            text = input(\"텍스트 내용: \")\n            font_size = int(input(\"폰트 크기 (기본 12): \") or \"12\")\n            diagram.Text(x_offset, y_offset, text, font_size)",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 56,
+    "end_line": 67,
+    "code": "        elif choice == 5:\n            rows = int(input(\"행(row) 수: \"))\n            cols = int(input(\"열(col) 수: \"))\n            contents = []\n            print(\"각 셀에 들어갈 텍스트를 입력하세요:\")\n            for r in range(rows):\n                row_data = []\n                for c in range(cols):\n                    cell = input(f\"({r+1},{c+1}) 셀 내용: \")\n                    row_data.append(cell)\n                contents.append(row_data)\n            diagram.Table(x_offset, y_offset, rows, cols, contents=contents)",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 69,
+    "end_line": 71,
+    "code": "        else:\n            print(\"잘못된 선택입니다. 다시 입력해주세요.\")\n            continue",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 73,
+    "end_line": 75,
+    "code": "        # 도형 겹치지 않도록 위치 조정\n        x_offset += 100\n        y_offset += 100",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  },
+  {
+    "type": "function",
+    "name": "run",
+    "start_line": 77,
+    "end_line": 81,
+    "code": "    app = wx.App(False)\n    frame = Window(diagram)\n    frame.Show()\n    app.MainLoop()\n    print(\"==== GRAPHICINTERFACE.PY OVER ====\")",
+    "commit_id": "e5ddb6a",
+    "file_path": "\\Gyu-Chul\\HAB\\graphicinterface_class.py"
+  }
+]

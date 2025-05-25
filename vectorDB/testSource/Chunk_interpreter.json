@@ -1,0 +1,47 @@
+[
+  {
+    "type": "module",
+    "name": "",
+    "start_line": 1,
+    "end_line": 9,
+    "code": "from lexical_analyzer.lexicalAnalyzer_class import LexicalAnalyzer\nfrom syntax_analyzer.syntaxAnalyzer_class import SyntaxAnalyzer\nfrom semantic_analyzer.semanticAnalyzer_class import SemanticAnalyzer\nimport os\nimport ast\nimport sys\nimport inspect\nimport ctypes\nfrom pympler import asizeof  # 전체 객체 크기 측정",
+    "commit_id": "a1bchul",
+    "file_path": "\\Gyu-Chul\\HAB\\interpreter.py"
+  },
+  {
+    "type": "function",
+    "name": "get_raw_integer_info",
+    "start_line": 11,
+    "end_line": 31,
+    "code": "# ✅ `ctypes`를 사용하여 숫자 객체 내부 정수 데이터의 주소, 크기, 타입을 가져오는 함수\n def get_raw_integer_info(py_int_obj):\n    \"\"\"\n    Python의 int 객체 내부에서 실제 정수 데이터가 저장된 메모리 주소, 크기, 타입을 가져옴.\n    \"\"\"\n    # Python 정수 객체의 메모리 주소 (객체 자체)\n    obj_address = id(py_int_obj)\n\n    # `ctypes`를 사용하여 Python `int` 객체를 C의 long 타입 포인터로 변환\n    c_int_p = ctypes.cast(obj_address, ctypes.POINTER(ctypes.c_long))\n\n    # `PyLongObject`의 헤더 크기 계산 (보통 24바이트, 플랫폼에 따라 다름)\n    header_size = ctypes.sizeof(ctypes.c_void_p) * 3  # CPython의 PyObject_VAR_HEAD 크기\n\n    # 내부 정수 데이터(`ob_digit[0]`)의 실제 메모리 주소\n    raw_integer_address = obj_address + header_size\n\n    # 실제 원본 숫자의 크기 (보통 4~8 바이트)\n    raw_integer_size = ctypes.sizeof(ctypes.c_long)\n\n    return raw_integer_address, raw_integer_size, int  # Python에서 숫자는 항상 int",
+    "commit_id": "a1bchul",
+    "file_path": "\\Gyu-Chul\\HAB\\interpreter.py"
+  },
+  {
+    "type": "function",
+    "name": "log_number",
+    "start_line": 34,
+    "end_line": 47,
+    "code": "# ✅ 실제 데이터 사용 시 실행되는 함수/n  def log_number(value, obj_address, obj_type, obj_size, raw_info, total_size, line):\n    raw_address, raw_size, raw_type = raw_info  # `get_raw_integer_info()`에서 가져온 값\n\n    print(f\"🔹 숫자 {value}\")\n    print(f\"   ├─ 객체 메모리 주소: {hex(obj_address)}\")\n    print(f\"   ├─ 객체 타입: {obj_type.__name__}\")\n    print(f\"   ├─ 객체 크기: {obj_size} bytes\")\n    print(f\"   ├─ 실제 원본 숫자의 메모리 주소: {hex(raw_address)}\")\n    print(f\"   ├─ 실제 원본 숫자의 크기: {raw_size} bytes\")\n    print(f\"   ├─ 실제 원본 숫자의 타입: {raw_type.__name__}\")\n    print(f\"   ├─ 전체 객체 크기 (pympler asizeof): {total_size} bytes\")\n    print(f\"   └─ 코드 줄 번호: {line}\")\n    return value",
+    "commit_id": "a1bchul",
+    "file_path": "\\Gyu-Chul\\HAB\\interpreter.py"
+  },
+  {
+    "type": "function",
+    "name": "log_operator",
+    "start_line": 50,
+    "end_line": 72,
+    "code": "# ✅ 연산 수행 후 모든 과정 출력\n def log_operator(left, right, op, line):\n    if op == \"Add\":\n        result = left + right\n        symbol = \"+\"\n    elif op == \"Sub\":\n        result = left - right\n        symbol = \"-\"\n    elif op == \"Mult\":\n        result = left * right\n        symbol = \"*\"\n    elif op == \"Div\":\n        result = left / right\n        symbol = \"/\"\n    else:\n        result = None\n        symbol = \"?\"\n\n    print(f\"🔸 연산 ({left} {symbol} {right}) = {result} (코드 줄 번호: {line})\")\n\n    # 연산 결과도 로그 출력\n    return log_number(result, id(result), type(result), sys.getsizeof(result),\n                      get_raw_integer_info(result), asizeof.asizeof(result), line)",
+    "commit_id": "a1bchul",
+    "file_path": "\\Gyu-Chul\\HAB\\interpreter.py"
+  },
+  {
+    "type": "class",
+    "name": "Interpreter",
+    "start_line": 74,
+    "end_line": 101,
+    "code": "class Interpreter:\n    \n    def __init__(self):\n        print(\"Interpreter class created in hab.py\\n\")\n\n    def run(self):\n        print(\"==== INTERPRETER.PY ====\")\n        baseDir = os.path.abspath(os.path.join(__file__, \"../\"))\n        filePath = os.path.join(baseDir, \"script.py\")\n\n        if not os.path.isfile(filePath):\n            print(f\"[ERROR] 파일이 존재하지 않습니다: {filePath}\")\n            raise \"FileNotExist\"\n\n        lexicalAnalyzer = LexicalAnalyzer(filePath)\n        syntaxAnalyzer = SyntaxAnalyzer(filePath)\n        semanticAnalyzer = SemanticAnalyzer()\n\n        lexicalAnalyzer.run()\n\n        syntaxAnalyzer.run()\n        print(\"==== Original Parse Tree ====\")\n        syntaxAnalyzer.printOriginalAstTree()\n\n        semanticAnalyzer.run()\n        print(\"==== INTERPRETER.PY OVER ====\")\n\n        exec(compile(syntaxAnalyzer.habAstTree, filename=\"<ast>\", mode=\"exec\"))",
+    "commit_id": "a1bchul",
+    "file_path": "\\Gyu-Chul\\HAB\\interpreter.py"
+  }
+]

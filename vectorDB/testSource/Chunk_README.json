@@ -1,0 +1,72 @@
+[
+  {
+    "type": "readme",
+    "subtype": "section",
+    "section": "HAB",
+    "start_line": 1,
+    "end_line": 8,
+    "code": "# HAB\nA tool for visualizing and GUI debugging program execution in Python\n\nThis is the second technical side project of the OpenSW Open Developer Contest and DDRX team.\n\nThe program is a program that visually exposes the execution process of the source code written by the developer and\nFurthermore, it is a program that allows source code modification with a mouse in a GUI-based area.",
+    "commit_id": "read1ab",
+    "file_path": "\\Gyu-Chul\\HAB\\README.md"
+  },
+  {
+    "type": "readme",
+    "subtype": "section",
+    "section": "How to Run the Program (Windows)",
+    "start_line": 11,
+    "end_line": 11,
+    "code": "# How to Run the Program (Windows)",
+    "commit_id": "read1ab",
+    "file_path": "\\Gyu-Chul\\HAB\\README.md"
+  },
+  {
+    "type": "readme",
+    "subtype": "paragraph",
+    "section": "How to Run the Program (Windows)",
+    "start_line": 13,
+    "end_line": 18,
+    "code": "## 1. Activate the Virtual Environment  \nActivate the virtual environment using the following command:  \n\n    .\\venv\\Scripts\\Activate  \n\nIf you are not using a virtual environment and can run the program with your system-wide Python installation, you may skip this step.",
+    "commit_id": "read1ab",
+    "file_path": "\\Gyu-Chul\\HAB\\README.md"
+  },
+  {
+    "type": "readme",
+    "subtype": "paragraph",
+    "section": "How to Run the Program (Windows)",
+    "start_line": 20,
+    "end_line": 23,
+    "code": "## 2. Install Dependencies  \nEnsure all required dependencies are installed by running:  \n\n    pip install -r requirements.txt",
+    "commit_id": "read1ab",
+    "file_path": "\\Gyu-Chul\\HAB\\README.md"
+  },
+  {
+    "type": "readme",
+    "subtype": "paragraph",
+    "section": "How to Run the Program (Windows)",
+    "start_line": 25,
+    "end_line": 28,
+    "code": "## 3. Set Environment Variables  \nSet the necessary environment variables:  \n\n    $env:DEBUG = \"true\"",
+    "commit_id": "read1ab",
+    "file_path": "\\Gyu-Chul\\HAB\\README.md"
+  },
+  {
+    "type": "readme",
+    "subtype": "paragraph",
+    "section": "How to Run the Program (Windows)",
+    "start_line": 30,
+    "end_line": 35,
+    "code": "## 4. Check Python Version  \nVerify that Python 3.13 is installed by running:  \n\n    python --version  \n\nMake sure you are using Python 3.13 to avoid compatibility issues.",
+    "commit_id": "read1ab",
+    "file_path": "\\Gyu-Chul\\HAB\\README.md"
+  },
+  {
+    "type": "readme",
+    "subtype": "paragraph",
+    "section": "How to Run the Program (Windows)",
+    "start_line": 37,
+    "end_line": 40,
+    "code": "## 5. Run the Program  \nNavigate to the root directory and execute the following command to start the program:  \n\n    python hab.py",
+    "commit_id": "read1ab",
+    "file_path": "\\Gyu-Chul\\HAB\\README.md"
+  }
+]
