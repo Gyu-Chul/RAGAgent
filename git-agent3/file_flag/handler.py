@@ -5,6 +5,8 @@ import json
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any
+from dummy.dummy import dummy
+
 
 # 1) Path 객체로 선언
 #    현재 파일 위치 기준으로 git-ai/git-agent3/task.flag.json 을 가리키도록
@@ -22,6 +24,7 @@ class DefaultFlagHandler:
         status = flag.get("status")
         name   = flag.get("name")
         task_id= flag.get("id")
+        type   = flag.get("type")
 
         if status == "PENDING":
             self.logger.info(f"[PENDING → SUCCESS] Task {task_id} ({name}) 상태 변경 중")
@@ -39,8 +42,10 @@ class DefaultFlagHandler:
             # 3) 상태 업데이트
             updated = False
             for t in tasks:
+                # 현재 상태 업데이트 로직은, handle 함수 호출시 들어온 id 값과 이 스크립트에서 파일을 다시 읽은 뒤 id를 조회하여
+                # 가져오는 방식임.
                 if t.get("id") == task_id:
-                    t["status"] = "SUCCESS"
+                    t["status"] = dummy()
                     t["updated_date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     updated = True
                     break

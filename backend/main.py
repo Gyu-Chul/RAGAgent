@@ -5,6 +5,7 @@ BASE_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(BASE_DIR / "src"))
 
 from fastapi import FastAPI
+from task_queue import task_queue
 from sample import router as sample_router
 from file_flag import router as file_flag_router
 
