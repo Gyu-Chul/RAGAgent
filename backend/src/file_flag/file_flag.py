@@ -14,8 +14,8 @@ class TaskCreate(BaseModel):
     content: str = Field(..., example="payload")
     name:    str = Field("None", example="TASK_NAME")
 
-@router.post("/test1", status_code=201)
-async def add_task(payload: TaskCreate):
+@router.post("/addTask", status_code=201)
+async def __add_task(payload: TaskCreate):
 
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
@@ -32,8 +32,8 @@ async def add_task(payload: TaskCreate):
     print(task_queue)
     return 1
 
-@router.get("/test2")
-def get_last_task():
+@router.get("/getTask")
+def __getTask():
     tasks = _load_tasks()
     if not tasks:
         raise HTTPException(status_code=404, detail="No tasks found.")

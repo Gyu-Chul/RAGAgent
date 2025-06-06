@@ -4,7 +4,7 @@ import logging
 from config import FLAG_PATH, POLL_INTERVAL, LOG_LEVEL
 
 
-from file_flag import FileFlag, DefaultFlagHandler
+from src.file_flag import FileFlag, DefaultFlagHandler
 
 def main():
     logging.basicConfig(
