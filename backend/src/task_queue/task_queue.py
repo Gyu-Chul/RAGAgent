@@ -60,7 +60,6 @@ def task_worker():
     while True:
         if task_queue:
             task = task_queue[0]
-
             # 아직 파일에 기록되지 않은 새 작업
             if task.get("id") is None:
                 # 파일에 있는 작업 목록 로드

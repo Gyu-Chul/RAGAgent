@@ -6,15 +6,17 @@ from datetime import datetime
 from pathlib import Path
 from typing import Dict, Any
 from src.dummy.dummy import dummy
+from src.git_clone.git_clone import git_clone
 
 
 # 1) Path 객체로 선언
 #    현재 파일 위치 기준으로 git-ai/git-agent3/task.flag.json 을 가리키도록
 TASK_FILE = (
     Path(__file__).resolve()
-    .parents[1]          # handlers/ -> git-agent3/
+    .parents[2]          # handlers/ -> git-agent3/
     / "task.flag.json"
 )
+print(TASK_FILE)
 
 class DefaultFlagHandler:
     def __init__(self):
@@ -27,8 +29,7 @@ class DefaultFlagHandler:
         type   = flag.get("type")
 
         if status == "PENDING":
-            self.logger.info(f"[PENDING → SUCCESS] Task {task_id} ({name}) 상태 변경 중")
-
+            self.logger.info(f"[PENDING] Task {task_id} ({name}) 확인중")
             # 2) Path.read_text() 사용
             try:
                 tasks = json.loads(TASK_FILE.read_text(encoding="utf-8"))
@@ -45,7 +46,12 @@ class DefaultFlagHandler:
                 # 현재 상태 업데이트 로직은, handle 함수 호출시 들어온 id 값과 이 스크립트에서 파일을 다시 읽은 뒤 id를 조회하여
                 # 가져오는 방식임.
                 if t.get("id") == task_id:
-                    t["status"] = dummy()
+
+                    if(t["type"] == "DUMMY"):
+                        t["status"] = dummy()
+                    elif(t["type"] == "GITCLONE"):
+                        t["status"] = git_clone()
+
                     t["updated_date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     updated = True
                     break
