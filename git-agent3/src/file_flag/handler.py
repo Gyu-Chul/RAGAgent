@@ -50,7 +50,9 @@ class DefaultFlagHandler:
                     if(t["type"] == "DUMMY"):
                         t["status"] = dummy()
                     elif(t["type"] == "GITCLONE"):
-                        t["status"] = git_clone()
+                        repository = t["content"]
+                        name = t["name"]
+                        t["status"] = git_clone(repository,name)
 
                     t["updated_date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     updated = True
@@ -66,13 +68,12 @@ class DefaultFlagHandler:
                     json.dumps(tasks, ensure_ascii=False, indent=2),
                     encoding="utf-8"
                 )
-                self.logger.info(f"Task {task_id} 상태를 SUCCESS 로 저장했습니다.")
             except Exception as e:
                 self.logger.error(f"플래그 파일 저장 중 오류: {e}")
 
         elif status == "SUCCESS":
             self.logger.info(f"성공 완료: {name}")
-        elif status == "FAIL":
+        elif status == "FAILURE":
             self.logger.error(f"실패 알림: {name}")
         else:
             self.logger.warning(f"알 수 없는 상태({status}): {name}")
