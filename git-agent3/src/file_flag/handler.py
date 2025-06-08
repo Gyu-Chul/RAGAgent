@@ -7,6 +7,7 @@ from pathlib import Path
 from typing import Dict, Any
 from src.dummy.dummy import dummy
 from src.git_clone.git_clone import git_clone
+from src.parse_json.parse_json import parse_json
 
 
 # 1) Path 객체로 선언
@@ -53,6 +54,9 @@ class DefaultFlagHandler:
                         repository = t["content"]
                         name = t["name"]
                         t["status"] = git_clone(repository,name)
+                    elif (t["type"] == "PARSEJSON"):
+                        repository = t["content"]
+                        t["status"] = parse_json(repository)
 
                     t["updated_date"] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
                     updated = True

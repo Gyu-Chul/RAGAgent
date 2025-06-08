@@ -444,5 +444,59 @@
     "name": "git-ai-sample",
     "created_date": "2025-06-07 23:25:08",
     "updated_date": "2025-06-07 23:27:02"
+  },
+  {
+    "id": 51,
+    "status": "FAILURE",
+    "type": "PARSEJSON",
+    "content": "payload",
+    "name": "None",
+    "created_date": "2025-06-08 10:22:56",
+    "updated_date": "2025-06-08 10:24:04"
+  },
+  {
+    "id": 52,
+    "status": "FAILURE",
+    "type": "PARSEJSON",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-06-08 10:22:58",
+    "updated_date": "2025-06-08 10:24:09"
+  },
+  {
+    "id": 53,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-06-08 10:25:16",
+    "updated_date": "2025-06-08 10:25:22"
+  },
+  {
+    "id": 54,
+    "status": "FAILURE",
+    "type": "PARSEJSON",
+    "content": "git-ai-sample",
+    "name": "None",
+    "created_date": "2025-06-08 10:25:53",
+    "updated_date": "2025-06-08 10:25:57"
+  },
+  {
+    "id": 55,
+    "status": "SUCCESS",
+    "type": "PARSEJSON",
+    "content": "git-ai-sample",
+    "name": "None",
+    "created_date": "2025-06-08 10:31:16",
+    "updated_date": "2025-06-08 10:31:28"
+  },
+  {
+    "id": 56,
+    "status": "SUCCESS",
+    "type": "PARSEJSON",
+    "content": "git-ai-sample",
+    "name": "None",
+    "created_date": "2025-06-08 10:34:14",
+    "updated_date": "2025-06-08 10:34:24"
   }
 ]
