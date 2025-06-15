@@ -1,0 +1,18 @@
+[
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 2,
+    "end_line": 2,
+    "code": "const connection = require('../DatabaseLoad');",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\Login.js"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 5,
+    "end_line": 32,
+    "code": "module.exports = {\r\n\r\n    Login: async (userID,userPW) => {\r\n\r\n        return new Promise((resolve, reject) => {\r\n\r\n            //userID,userPW 기반으로 userToken,userImage 탐색\r\n            connection.query('SELECT userToken,userImage FROM users WHERE BINARY userID = ? AND userPW = ?', [userID, userPW],\r\n\r\n                (error, results, fields) => {\r\n\r\n                    //쿼리 실행 오류\r\n                    if (error) {\r\n                        console.error('쿼리 실행 오류:', error);\r\n                        return reject(error);\r\n                    }\r\n                    //결과물이 존재한다면, 어차피 ID가 공통되는 것이 없기때문에 1개만 출력 될 것임.\r\n                    if (results.length > 0) {\r\n                        resolve(results);\r\n                    } else {\r\n                        console.log(\"Fail\");\r\n                        resolve(0);\r\n                    }\r\n                }\r\n            );\r\n        });\r\n    }\r\n};",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\Login.js"
+  }
+]

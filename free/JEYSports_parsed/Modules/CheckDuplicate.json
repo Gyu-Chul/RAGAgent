@@ -1,0 +1,18 @@
+[
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 3,
+    "end_line": 3,
+    "code": "const connection = require('../DatabaseLoad');",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\CheckDuplicate.js"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 5,
+    "end_line": 31,
+    "code": "module.exports = {\r\n    \r\n    CheckDuplicate: async (table,data) => {\r\n        return new Promise((resolve, reject) => {\r\n            const [[key,value]] = Object.entries(data);\r\n            console.log(data,key,value);\r\n    \r\n            //입력받은 데이터가 존재하면 1 출력\r\n            connection.query('SELECT 1 FROM ?? WHERE ?? = ?', [table,key,value],\r\n                (error, results, fields) => {\r\n                    if (error) {\r\n                        console.error('쿼리 실행 오류:', error);\r\n                        return reject(error);\r\n    \r\n                    } //쿼리 결과가 없다면 ID가 존재하지 않다는 뜻\r\n                    if (results.length > 0) {\r\n                        resolve(1);\r\n                    } else {\r\n                        resolve(0);\r\n                    }\r\n                }\r\n            );\r\n        });\r\n        \r\n    }\r\n    \r\n};",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\CheckDuplicate.js"
+  }
+]

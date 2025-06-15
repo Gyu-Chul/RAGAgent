@@ -1,0 +1,18 @@
+[
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 2,
+    "end_line": 2,
+    "code": "const connection = require('../DatabaseLoad');",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\Dues.js"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 5,
+    "end_line": 31,
+    "code": "module.exports = {\r\n    Dues : async(userToken,data) => {\r\n\r\n        const noticeToken = data[\"noticeToken\"];\r\n\r\n        // SQL 구문 그냥 복사 붙여넣기 용\r\n        return new Promise((resolve, reject) => {\r\n            connection.query(`UPDATE DuesUsers SET duesStatus = true\r\n                WHERE userToken = ? and noticeToken = ?`, [userToken,noticeToken], \r\n                (error, results, fields) => {\r\n                    if (error) {\r\n                        console.error('쿼리 실행 오류:', error);\r\n                        return reject(error);\r\n                    }\r\n\r\n                    \r\n                    if (results.affectedRows > 0) {\r\n                        resolve({result : 1,resources : null});  \r\n                    } else {\r\n                        resolve({result : 0 , resources : null});  \r\n                    }\r\n                }\r\n            );\r\n        });\r\n        \r\n    }\r\n};",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\Dues.js"
+  }
+]

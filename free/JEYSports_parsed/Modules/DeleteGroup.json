@@ -1,0 +1,18 @@
+[
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 2,
+    "end_line": 2,
+    "code": "const connection = require('../DatabaseLoad');",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\DeleteGroup.js"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 6,
+    "end_line": 46,
+    "code": "module.exports = {\r\n    DeleteGroup : async(userToken,groupToken) => {\r\n        return new Promise((resolve, reject) => {\r\n            // 유저 데이터 삭제\r\n            connection.query('SELECT userToken FROM UsersOrganizations WHERE groupToken = ?',[groupToken], \r\n                (error, results, fields) => {\r\n                    if (error) {\r\n                        console.error('쿼리 실행 오류:', error);\r\n                        return reject(error);\r\n                    }                   \r\n                    if (results.length < 2 && results[0][\"userToken\"] == userToken ) {\r\n                        // 그룹에 유저 자기자신 밖에 없음.\r\n                        connection.query(`DELETE FROM UsersOrganizations WHERE groupToken = ?;\r\n                                         DELETE FROM Organizations WHERE groupToken = ?;`,[groupToken,groupToken], \r\n                            (error, results) => {\r\n                                if (error) {\r\n                                    console.error('쿼리 실행 오류:', error);\r\n                                    return reject(error);\r\n                                }\r\n                                // 첫 번째 쿼리의 결과를 체크\r\n                                const usersOrganizationsAffectedRows = results[0].affectedRows;\r\n                                // 두 번째 쿼리의 결과를 체크\r\n                                const organizationsAffectedRows = results[1].affectedRows;\r\n                                if (usersOrganizationsAffectedRows > 0 || organizationsAffectedRows > 0) {\r\n                                    resolve({result : 1,resources : null});//삭제가 성공적으로 이루어짐\r\n                                } else {\r\n                                    resolve({result : 0,resources : null}); //삭제 실패\r\n                                }\r\n                                \r\n                            }\r\n                        );\r\n                        \r\n                    } else {\r\n                        resolve({result : 0, resources : null});  // 그룹에 자신이 없고 다른 유저가 존재함.\r\n                    }\r\n                    \r\n                }\r\n            );\r\n        });\r\n}\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\DeleteGroup.js"
+  }
+]

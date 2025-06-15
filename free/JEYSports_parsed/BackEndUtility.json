@@ -1,0 +1,18 @@
+[
+  {
+    "type": "function",
+    "name": "rand",
+    "start_line": 3,
+    "end_line": 5,
+    "code": "function rand(min, max) {\r\n    return Math.floor(Math.random() * (max - min)) + min;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\BackEndUtility.js"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 9,
+    "end_line": 9,
+    "code": "module.exports = { rand };",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\BackEndUtility.js"
+  }
+]

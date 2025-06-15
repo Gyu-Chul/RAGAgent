@@ -1,0 +1,66 @@
+[
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 2,
+    "end_line": 2,
+    "code": "const multer = require('multer');",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\ImageUpload.js"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 3,
+    "end_line": 3,
+    "code": "const path = require('path');",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\ImageUpload.js"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 4,
+    "end_line": 4,
+    "code": "const fs = require('fs');",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\ImageUpload.js"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 5,
+    "end_line": 5,
+    "code": "const connection = require('../DatabaseLoad');",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\ImageUpload.js"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 8,
+    "end_line": 16,
+    "code": "const storage = multer.diskStorage({\r\n    destination: (req, file, cb) => {\r\n        cb(null, 'Images'); // 기본 경로 설정\r\n    },\r\n    filename: (req, file, cb) => {\r\n        const ext = path.extname(file.originalname);\r\n        cb(null, `${Date.now()}${ext}`); // 파일 이름을 현재 시간으로 설정\r\n    }\r\n});",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\ImageUpload.js"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "const upload = multer({ storage: storage });",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\ImageUpload.js"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 21,
+    "end_line": 73,
+    "code": "module.exports = {\r\n    // 이미지 업로드 함수\r\n    ImageUpload: async (userToken,req, res) => {\r\n        try {\r\n            const JSONdata = JSON.parse(req.body.json); // JSON 데이터 파싱\r\n            \r\n            const functionType = JSONdata[\"functionType\"];\r\n            let uploadDir;\r\n            let result;\r\n\r\n            const ext = path.extname(req.file.originalname);\r\n\r\n            // functionType에 따라 디렉토리 설정\r\n            if (functionType == 1) {\r\n                uploadDir = 'Images/UserImages'; // 사용자 이미지 폴더\r\n                var fileName = userToken;\r\n                result = await DBsave(1, fileName, ext);\r\n\r\n            } else if (functionType == 2) {\r\n                uploadDir = 'Images/GroupImages'; // 그룹 이미지 폴더\r\n                var fileName = JSONdata[\"groupToken\"]\r\n                result = await DBsave(2, fileName, ext);\r\n\r\n            } else {\r\n                return {result : 0 , resources : null};\r\n            }\r\n\r\n            // DBsave 결과 확인\r\n            if (result === 0) {\r\n                return {result : 0 , resources : null};\r\n            }\r\n\r\n            // 폴더가 없으면 생성\r\n            if (!fs.existsSync(uploadDir)) {\r\n                fs.mkdirSync(uploadDir, { recursive: true });\r\n            }\r\n\r\n            // 파일 이동\r\n\r\n            const newFilePath = path.join(uploadDir, `${fileName}${ext}`);\r\n\r\n            fs.renameSync(req.file.path, newFilePath); // 파일 이름 변경\r\n            const resources = {userImage : `${fileName}${ext}`};\r\n            return {result : 1, resources : resources }\r\n            \r\n            \r\n        } catch (error) {\r\n            console.error('Error in ImageUpload:', error); // 에러 로그 출력\r\n            return {result : 0 , resources : null};\r\n        }\r\n    },\r\n    upload // multer 미들웨어를 export\r\n};",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\ImageUpload.js"
+  },
+  {
+    "type": "function",
+    "name": "DBsave",
+    "start_line": 77,
+    "end_line": 113,
+    "code": "async function DBsave(functionType, Token , ext) {\r\n    \r\n    const value = `${Token}${ext}`;\r\n    let table, key, imageKey;\r\n\r\n    if (functionType == 1) { // 유저 이미지 저장\r\n        table = 'Users';\r\n        key = 'userToken';\r\n        imageKey = 'userImage';\r\n    } else if (functionType == 2) { // 조직 이미지 저장\r\n\r\n        table = 'Organizations';\r\n        key = 'groupToken';\r\n        imageKey = 'groupImage';\r\n    } else {\r\n        return 0; // 잘못된 functionType 처리\r\n    }\r\n\r\n    return new Promise((resolve, reject) => {\r\n        connection.query(`UPDATE ??\r\n                          SET ?? = ?\r\n                          WHERE ?? = ?`, [table, imageKey, value, key, Token],\r\n            (error, results) => {\r\n                if (error) {\r\n                    console.error('쿼리 실행 오류:', error);\r\n                    return reject(error);\r\n                }\r\n                // 쿼리 결과가 없다면 토큰이 잘못 됨.\r\n                if (results.affectedRows > 0) {\r\n                    resolve(1);\r\n                } else {\r\n                    resolve(0);\r\n                }\r\n            }\r\n        );\r\n    });\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\free\\JEYSports\\Modules\\ImageUpload.js"
+  }
+]
