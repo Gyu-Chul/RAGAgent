@@ -4,3 +4,5 @@ idea
 node_modules
 package-lock.json
 package.json
+
+milvus_docker/volumes/
