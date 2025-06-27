@@ -5,4 +5,5 @@ node_modules
 package-lock.json
 package.json
 
-milvus_docker/volumes/
+## vectorDB 데이터베이스의 실제 데이터
+vectorDB/volumes/
