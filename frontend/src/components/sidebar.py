@@ -1,9 +1,8 @@
 # src/components/sidebar.py
 
 from nicegui import ui
-from src.services.data_service import load_chat_data
 
-data = load_chat_data()
+data = {"test":"Tset"}
 state = {'branch': next(iter(data)), 'room': None}
 
 def sidebar(repo_name: str, on_room_open, on_branch_change):

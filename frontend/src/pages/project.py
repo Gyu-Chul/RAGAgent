@@ -1,10 +1,9 @@
 from nicegui import ui
 from src.components.sidebar import sidebar, state as sidebar_state
 from src.components.chat_area import chat_area
-from src.services.data_service import load_chat_data
 
 # JSON 더미 데이터 로드
-data = load_chat_data()
+data = {"test":"Test"}
 
 def render_project(repo_name: str):
     # 브랜치 변경 콜백
