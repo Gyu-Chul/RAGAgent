@@ -1,5 +1,5 @@
 from nicegui import ui
-from src.pages.home import render_home
+from src.pages.main_page.home import render_home
 from src.pages.project import render_project
 from src.pages.sample.sample import render_sample_page
 
