@@ -498,5 +498,41 @@
     "name": "None",
     "created_date": "2025-06-08 10:34:14",
     "updated_date": "2025-06-08 10:34:24"
+  },
+  {
+    "id": 57,
+    "status": "SUCCESS",
+    "type": "MyType",
+    "content": "payload",
+    "name": "None",
+    "created_date": "2025-07-05 15:08:41",
+    "updated_date": "2025-07-05 15:08:46"
+  },
+  {
+    "id": 58,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/discord_MueTillbot",
+    "name": "discord_MueTillbot",
+    "created_date": "2025-07-05 15:59:01",
+    "updated_date": "2025-07-05 16:01:29"
+  },
+  {
+    "id": 59,
+    "status": "FAILURE",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/discord_MueTillbot",
+    "name": "discord_MueTillbot",
+    "created_date": "2025-07-05 15:59:45",
+    "updated_date": "2025-07-05 16:01:34"
+  },
+  {
+    "id": 60,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/discord_MueTillbot",
+    "name": "discord_MueTillbot",
+    "created_date": "2025-07-05 20:52:19",
+    "updated_date": "2025-07-05 20:52:21"
   }
 ]

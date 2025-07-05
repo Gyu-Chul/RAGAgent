@@ -5,7 +5,8 @@ from pydantic import BaseModel, Field
 from pathlib import Path
 from datetime import datetime
 import json
-from task_queue import task_queue
+
+from task_queue.task_queue import task_queue, create_tasks
 
 router = APIRouter()
 
@@ -28,9 +29,7 @@ async def __add_task(payload: TaskCreate):
         "created_date": now
     }
 
-    task_queue.append(new_task)
-    print(task_queue)
-    return 1
+    return await create_tasks(new_task)
 
 @router.get("/getTask")
 def __getTask():
