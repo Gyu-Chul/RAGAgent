@@ -5,9 +5,12 @@ BASE_DIR = Path(__file__).resolve().parent
 sys.path.insert(0, str(BASE_DIR / "src"))
 
 from fastapi import FastAPI
+from pymilvus import connections
+
 from task_queue import task_queue
 from sample import router as sample_router
 from file_flag import router as file_flag_router
+from vectorDB import router as vectorDB_router
 
 app = FastAPI(
     title="GitAI Backend",
@@ -18,6 +21,8 @@ app = FastAPI(
 
 app.include_router(sample_router, prefix="/api/sample")
 app.include_router(file_flag_router, prefix="/api/file_flag")
+app.include_router(vectorDB_router, prefix="/api/vectorDB")
+
 
 if __name__ == "__main__":
     import uvicorn
