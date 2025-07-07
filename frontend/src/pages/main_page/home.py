@@ -18,6 +18,8 @@ def connect_repo():
         gitcloen_handler = partial(gitclone, repo_input)
 
         ui.button('연결', on_click=gitcloen_handler)
+
+
         ui.button('닫기', on_click=dialog.close)
     dialog.open()
 

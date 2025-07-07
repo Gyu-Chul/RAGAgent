@@ -43,9 +43,12 @@ class DefaultFlagHandler:
 
             # 3) 상태 업데이트
             updated = False
+
+
             for t in tasks:
                 # 현재 상태 업데이트 로직은, handle 함수 호출시 들어온 id 값과 이 스크립트에서 파일을 다시 읽은 뒤 id를 조회하여
                 # 가져오는 방식임.
+                ## 작업 구분
                 if t.get("id") == task_id:
 
                     if(t["type"] == "DUMMY"):
@@ -54,6 +57,7 @@ class DefaultFlagHandler:
                         repository = t["content"]
                         name = t["name"]
                         t["status"] = git_clone(repository,name)
+                        t["status"] = parse_json(name)
                     elif (t["type"] == "PARSEJSON"):
                         repository = t["content"]
                         t["status"] = parse_json(repository)
