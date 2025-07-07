@@ -579,5 +579,14 @@
     "name": "udangtangtang-try-party",
     "created_date": "2025-07-07 16:34:35",
     "updated_date": "2025-07-07 16:34:40"
+  },
+  {
+    "id": 66,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/ckdgns6078/udangtangtang-try-party",
+    "name": "udangtangtang-try-party",
+    "created_date": "2025-07-07 16:45:24",
+    "updated_date": "2025-07-07 16:45:27"
   }
 ]
