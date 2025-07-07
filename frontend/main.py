@@ -1,15 +1,15 @@
 from nicegui import ui
 from src.pages.main_page.home import render_home
-from src.pages.project import render_project
+from src.pages.repository_page.repository_page  import render_repository_page
 from src.pages.sample.sample import render_sample_page
 
 @ui.page('/')
 def home_page():
     render_home()
 
-@ui.page('/project/{name}')
-def project_page(name: str):
-    render_project(name)
+@ui.page('/project/{repo_name}')
+def repository_page(repo_name: str):
+    render_repository_page(repo_name)
 
 @ui.page('/sample')
 def sample_page():

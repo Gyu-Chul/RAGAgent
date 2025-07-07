@@ -8,7 +8,7 @@ import os
 
 current_file_path = os.path.abspath(__file__)
 
-#직관적인 경로체크 코드 수정 필요
+# TODO: 직관적인 경로체크 코드 수정 필요
 project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(current_file_path)))))
 parsed_repo_path = os.path.join(project_root, 'git-agent3', 'parsed_repository')
 
@@ -34,7 +34,7 @@ def connect_repo():
 def render_home():
     with ui.row().style('height:100vh; width:100vw; justify-content:center; align-items:center;'):
         with ui.column().style('align-items:center; padding:30px; border:2px solid #ccc; border-radius:15px; box-shadow:0 0 10px #ccc; min-width:350px;'):
-            # 로고 & 타이틀ㄴ
+            # 로고 & 타이틀
             logo_header()
 
             parsed_repo = []

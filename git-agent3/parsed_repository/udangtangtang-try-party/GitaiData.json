@@ -1,0 +1,88 @@
+{
+  "main": {
+    "general": [
+      {
+        "type": "GitAI",
+        "content": "무엇이 궁금하신가요?",
+        "create_date": "202507071736",
+        "id": 1
+      },
+      {
+        "type": "user",
+        "content": "안녕하세요?",
+        "create_date": "202507071740",
+        "id": 2
+      },
+      {
+        "type": "user",
+        "content": "ㅎㅇㅎㅇ",
+        "create_date": "202507071742",
+        "id": 3
+      },
+      {
+        "type": "user",
+        "content": "ㅎㅇ2",
+        "create_date": "202507071742",
+        "id": 4
+      },
+      {
+        "type": "user",
+        "content": "ㅅㄷㄴㅅ",
+        "create_date": "202507071808",
+        "id": 5
+      },
+      {
+        "type": "user",
+        "content": "ㅅㄷㄴㅅ",
+        "create_date": "202507071809",
+        "id": 6
+      },
+      {
+        "type": "user",
+        "content": "테스트",
+        "create_date": "202507071809",
+        "id": 7
+      }
+    ],
+    "random": [
+      {
+        "type": "GitAI",
+        "content": "무엇이 궁금하신가요?",
+        "create_date": "202507071756",
+        "id": 1
+      },
+      {
+        "type": "user",
+        "content": "ㅎㅇ",
+        "create_date": "202507071802",
+        "id": 2
+      },
+      {
+        "type": "user",
+        "content": "테스트",
+        "create_date": "202507071811",
+        "id": 3
+      },
+      {
+        "type": "user",
+        "content": "테스트2",
+        "create_date": "202507071811",
+        "id": 4
+      }
+    ],
+    "테스트 채팅방": [
+      {
+        "type": "GitAI",
+        "content": "무엇이 궁금하신가요?",
+        "create_date": "202507071745",
+        "id": 1
+      },
+      {
+        "type": "user",
+        "content": "ㅎㅇㅎㅇ",
+        "create_date": "202507071745",
+        "id": 2
+      }
+    ]
+  }
+}
