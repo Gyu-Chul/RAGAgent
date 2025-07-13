@@ -10,7 +10,7 @@ current_file_path = os.path.abspath(__file__)
 
 # TODO: 직관적인 경로체크 코드 수정 필요
 project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(current_file_path)))))
-parsed_repo_path = os.path.join(project_root, 'git-agent3', 'parsed_repository')
+parsed_repo_path = os.path.join(project_root, 'git-agent', 'parsed_repository')
 
 def logo_header():
     with ui.row().style('align-items:center; margin-bottom:40px;'):

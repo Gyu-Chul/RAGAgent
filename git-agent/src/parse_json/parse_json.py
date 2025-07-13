@@ -46,7 +46,7 @@ def parse_json(file_path: str) -> None:
         print(f"[ERROR] JSON 저장 실패: {json_output_path} → {e}", file=sys.stderr)
 
 
----------
+
 
 def parse_python_source_fully(
     file_path: str

@@ -2,11 +2,9 @@
 
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel, Field
-from pathlib import Path
 from datetime import datetime
-import json
 
-from task_queue.task_queue import task_queue, create_tasks
+from ..task_queue import create_tasks, load_tasks, task_queue
 
 router = APIRouter()
 
@@ -14,6 +12,8 @@ class TaskCreate(BaseModel):
     type:    str = Field(..., example="MyType")
     content: str = Field(..., example="payload")
     name:    str = Field("None", example="TASK_NAME")
+
+
 
 @router.post("/addTask", status_code=201)
 async def __add_task(payload: TaskCreate):
@@ -33,7 +33,7 @@ async def __add_task(payload: TaskCreate):
 
 @router.get("/getTask")
 def __getTask():
-    tasks = _load_tasks()
+    tasks = load_tasks()
     if not tasks:
         raise HTTPException(status_code=404, detail="No tasks found.")
     return tasks[-1]

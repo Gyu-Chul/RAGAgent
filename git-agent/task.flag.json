@@ -687,5 +687,14 @@
     "name": "awstest",
     "created_date": "2025-07-13 19:14:28",
     "updated_date": "2025-07-13 19:14:31"
+  },
+  {
+    "id": 78,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-07-13 20:30:47",
+    "updated_date": "2025-07-13 20:30:52"
   }
 ]

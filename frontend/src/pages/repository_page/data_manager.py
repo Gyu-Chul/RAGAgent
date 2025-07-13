@@ -6,7 +6,7 @@ def _get_json_path(repo_name: str) -> str:
     #TODO 리팩토링 필요
     current_file_path = os.path.abspath(__file__)
     project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(current_file_path)))))
-    return os.path.join(project_root, 'git-agent3', 'parsed_repository', repo_name, 'GitaiData.json')
+    return os.path.join(project_root, 'git-agent', 'parsed_repository', repo_name, 'GitaiData.json')
 
 def load_data_from_json(repo_name: str) -> dict:
     file_path = _get_json_path(repo_name)

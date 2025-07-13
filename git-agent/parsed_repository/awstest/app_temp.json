@@ -1,0 +1,122 @@
+[
+  {
+    "type": "module",
+    "name": "",
+    "start_line": 1,
+    "end_line": 4,
+    "code": "from flask import Flask, render_template, request, redirect, url_for, flash\nimport json\nimport os\nfrom dotenv import load_dotenv",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 6,
+    "end_line": 6,
+    "code": "load_dotenv()",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 8,
+    "end_line": 9,
+    "code": "app = Flask(__name__)\napp.secret_key = os.getenv(\"FLASH_SECRET_KEY\")  # 플래시 메시지에 필요",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 12,
+    "end_line": 12,
+    "code": "USERS_FILE_PATH = \"users.json\"",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 80,
+    "end_line": 82,
+    "code": "UPLOAD_FOLDER = 'images'  # 서버에 이미지가 저장될 폴더\nALLOWED_EXTENSIONS = {'jpg', 'jpeg'}\napp.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 85,
+    "end_line": 86,
+    "code": "if not os.path.exists(UPLOAD_FOLDER):\n    os.makedirs(UPLOAD_FOLDER)",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 131,
+    "end_line": 132,
+    "code": "if __name__ == \"__main__\":\n    app.run(debug=True)",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "function",
+    "name": "initialize_json",
+    "start_line": 15,
+    "end_line": 18,
+    "code": "def initialize_json():\n    if not os.path.exists(USERS_FILE_PATH):\n        with open(USERS_FILE_PATH, \"w\") as file:\n            json.dump({}, file)",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "function",
+    "name": "add_user",
+    "start_line": 22,
+    "end_line": 34,
+    "code": "def add_user(user_id, username, password):\n    initialize_json()\n    with open(USERS_FILE_PATH, \"r\") as file:\n        data = json.load(file)\n\n    if user_id in data:\n        return False  # 아이디 중복\n\n    # 새 사용자 추가\n    data[user_id] = {\"username\": username, \"password\": password}\n    with open(USERS_FILE_PATH, \"w\") as file:\n        json.dump(data, file, indent=4)\n    return True",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "function",
+    "name": "validate_user",
+    "start_line": 38,
+    "end_line": 43,
+    "code": "def validate_user(user_id, password):\n    initialize_json()\n    with open(USERS_FILE_PATH, \"r\") as file:\n        data = json.load(file)\n\n    return user_id in data and data[user_id][\"password\"] == password",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "function",
+    "name": "login",
+    "start_line": 47,
+    "end_line": 59,
+    "code": "def login():\n    if request.method == \"POST\":\n        user_id = request.form.get(\"user_id\")\n        password = request.form.get(\"password\")\n\n        if validate_user(user_id, password):\n            flash(\"로그인 성공!\", \"success\")  ## flash message 지정\n            #return redirect(url_for(\"welcome\", username=user_id))   ## url path parameter로 데이터 전달 방법\n            return redirect(\"upload\")\n        else:\n            flash(\"아이디 또는 비밀번호가 올바르지 않습니다.\", \"danger\")\n\n    return render_template(\"login.html\")",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "function",
+    "name": "register",
+    "start_line": 64,
+    "end_line": 76,
+    "code": "def register():\n    if request.method == \"POST\":\n        user_id = request.form.get(\"user_id\")\n        username = request.form.get(\"username\")\n        password = request.form.get(\"password\")\n\n        if add_user(user_id, username, password):\n            flash(\"회원가입 성공! 로그인하세요.\", \"success\")\n            return redirect(url_for(\"login\"))\n        else:\n            flash(\"이미 존재하는 아이디입니다. 다른 아이디를 사용하세요.\", \"danger\")\n\n    return render_template(\"register.html\")",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "function",
+    "name": "allowed_file",
+    "start_line": 90,
+    "end_line": 91,
+    "code": "def allowed_file(filename):\n    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "function",
+    "name": "upload_image",
+    "start_line": 96,
+    "end_line": 123,
+    "code": "def upload_image():\n    if request.method == 'POST':\n        # 파일이 요청에 포함되어 있는지 확인\n        if 'image' not in request.files:\n            flash('이미지 파일이 선택되지 않았습니다.', 'danger')\n            return redirect(request.url)\n\n        file = request.files['image']\n\n        # 파일명이 없는 경우 처리\n        if file.filename == '':\n            flash('파일명이 없습니다. 파일을 다시 선택하세요.', 'danger')\n            return redirect(request.url)\n\n        # 파일 유효성 검사\n        if file and allowed_file(file.filename):\n            # 파일 저장\n            filename = file.filename\n            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)\n            file.save(filepath)\n            flash(f'이미지가 성공적으로 업로드되었습니다: {filename}', 'success')\n            return redirect(request.url)\n        else:\n            flash('JPG 형식의 파일만 업로드 가능합니다.', 'danger')\n            return redirect(request.url)\n\n    # GET 요청일 경우 업로드 페이지 렌더링\n    return render_template('upload.html')",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  },
+  {
+    "type": "function",
+    "name": "home",
+    "start_line": 128,
+    "end_line": 129,
+    "code": "def home():\n    return render_template(\"index.html\")",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\app_temp.py"
+  }
+]

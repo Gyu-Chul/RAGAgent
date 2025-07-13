@@ -1,0 +1,82 @@
+[
+  {
+    "type": "module",
+    "name": "",
+    "start_line": 1,
+    "end_line": 6,
+    "code": "import json\nimport os\nimport time\nimport uuid\n\nfrom flask import make_response, redirect, url_for",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\utils\\auth_utils.py"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 9,
+    "end_line": 9,
+    "code": "USERS_FILE_PATH = \"users.json\"",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\utils\\auth_utils.py"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 11,
+    "end_line": 11,
+    "code": "SESSIONS_FILE_PATH = \"sessions.json\"",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\utils\\auth_utils.py"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 15,
+    "end_line": 15,
+    "code": "SESSION_EXPIRY = 20  # 초 단위",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\utils\\auth_utils.py"
+  },
+  {
+    "type": "function",
+    "name": "initialize_json",
+    "start_line": 18,
+    "end_line": 21,
+    "code": "def initialize_json(file_path, default_data):\n    if not os.path.exists(file_path):\n        with open(file_path, \"w\") as file:\n            json.dump(default_data, file)",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\utils\\auth_utils.py"
+  },
+  {
+    "type": "function",
+    "name": "add_user",
+    "start_line": 25,
+    "end_line": 37,
+    "code": "def add_user(user_id, username, password):\n    initialize_json(USERS_FILE_PATH, {})\n    with open(USERS_FILE_PATH, \"r\") as file:\n        data = json.load(file)\n\n    if user_id in data:\n        return False  # 아이디 중복\n\n    # 새 사용자 추가\n    data[user_id] = {\"username\": username, \"password\": password}\n    with open(USERS_FILE_PATH, \"w\") as file:\n        json.dump(data, file, indent=4)\n    return True",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\utils\\auth_utils.py"
+  },
+  {
+    "type": "function",
+    "name": "validate_user",
+    "start_line": 41,
+    "end_line": 46,
+    "code": "def validate_user(user_id, password):\n    initialize_json(USERS_FILE_PATH, {})\n    with open(USERS_FILE_PATH, \"r\") as file:\n        data = json.load(file)\n\n    return user_id in data and data[user_id][\"password\"] == password",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\utils\\auth_utils.py"
+  },
+  {
+    "type": "function",
+    "name": "create_session",
+    "start_line": 50,
+    "end_line": 63,
+    "code": "def create_session(user_id):\n    initialize_json(SESSIONS_FILE_PATH, {})\n    with open(SESSIONS_FILE_PATH, \"r\") as file:\n        sessions = json.load(file)\n\n    # 고유 세션 ID 생성\n    session_id = str(uuid.uuid4())\n    expiry_time = time.time() + SESSION_EXPIRY\n\n    # 세션 추가\n    sessions[session_id] = {\"user_id\": user_id, \"expiry\": expiry_time}\n    with open(SESSIONS_FILE_PATH, \"w\") as file:\n        json.dump(sessions, file, indent=4)\n    return session_id",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\utils\\auth_utils.py"
+  },
+  {
+    "type": "function",
+    "name": "delete_session",
+    "start_line": 67,
+    "end_line": 77,
+    "code": "def delete_session(session_id):\n    initialize_json(SESSIONS_FILE_PATH, {})\n    with open(SESSIONS_FILE_PATH, \"r\") as file:\n        sessions = json.load(file)\n\n    if session_id in sessions:\n        del sessions[session_id]\n        with open(SESSIONS_FILE_PATH, \"w\") as file:\n            json.dump(sessions, file, indent=4)\n        return True\n    return False",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\utils\\auth_utils.py"
+  },
+  {
+    "type": "function",
+    "name": "validate_session",
+    "start_line": 119,
+    "end_line": 165,
+    "code": "def validate_session(session_id):\n    \"\"\"\n    세션 유효성 검사 및 만료 처리.\n    - session_id가 비어 있으면 False를 반환.\n    - 세션 파일에서 만료된 세션을 삭제.\n    - session_id가 유효하면 True를 반환, 유효하지 않으면 False를 반환.\n    - 만료된 세션은 삭제하고, 쿠키도 삭제하도록 처리.\n    \"\"\"\n    print(\"validate함수 실행\")\n    # 세션 파일 초기화\n    initialize_json(SESSIONS_FILE_PATH, {})\n\n    # 세션 데이터 로드\n    with open(SESSIONS_FILE_PATH, \"r\") as file:\n        sessions = json.load(file)\n\n    # 세션 ID가 없으면 바로 False 반환\n    if not session_id:\n        print(\"no session id 실행\")\n        return False, None\n\n    # 현재 시간\n    current_time = time.time()\n\n    # 만료된 세션 제거 및 업데이트\n    valid_sessions = {}\n    session_valid = False  # 세션 유효성 플래그\n    response = None        # 응답 객체 초기화\n\n    for sid, details in sessions.items():\n        if current_time < details[\"expiry\"]:\n            valid_sessions[sid] = details\n        else:\n            # 만료된 세션 삭제\n            if sid == session_id:\n                response = make_response(redirect(url_for(\"login.login\")))\n                response.delete_cookie(\"session_id\")\n\n    # 유효한 세션만 다시 저장\n    with open(SESSIONS_FILE_PATH, \"w\") as file:\n        json.dump(valid_sessions, file, indent=4)\n\n    # 세션 ID가 여전히 유효한지 확인\n    if session_id in valid_sessions:\n        session_valid = True\n\n    return session_valid, response",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\utils\\auth_utils.py"
+  }
+]

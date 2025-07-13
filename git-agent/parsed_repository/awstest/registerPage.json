@@ -1,0 +1,26 @@
+[
+  {
+    "type": "module",
+    "name": "",
+    "start_line": 1,
+    "end_line": 2,
+    "code": "from flask import Blueprint, render_template, request, redirect, url_for, flash\nfrom utils.auth_utils import add_user",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\registerPage.py"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 5,
+    "end_line": 5,
+    "code": "registerPage_bp = Blueprint(\"register\", __name__)",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\registerPage.py"
+  },
+  {
+    "type": "function",
+    "name": "register",
+    "start_line": 9,
+    "end_line": 22,
+    "code": "def register():\n    if request.method == \"POST\":\n\n        user_id = request.form.get(\"user_id\")\n        username = request.form.get(\"username\")\n        password = request.form.get(\"password\")\n\n        if add_user(user_id, username, password):\n            flash(\"회원가입 성공! 로그인하세요.\", \"success\")\n            return redirect(url_for(\"login.login\"))\n        else:\n            flash(\"이미 존재하는 아이디입니다. 다른 아이디를 사용하세요.\", \"danger\")\n\n    return render_template(\"register.html\")",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\awstest\\registerPage.py"
+  }
+]
