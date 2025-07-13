@@ -2,7 +2,7 @@
 
 from nicegui import ui
 from functools import partial
-from src.components.main_page.api import gitclone
+from src.apis.main_page.api import gitclone
 import os
 
 

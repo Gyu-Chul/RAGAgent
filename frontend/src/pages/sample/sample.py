@@ -1,5 +1,5 @@
 from nicegui import ui
-from src.components.sample.http_call_button import http_call_button
+from src.apis.sample.http_call_button import http_call_button
 
 def render_sample_page():
     with ui.column().classes('w-full items-center'):

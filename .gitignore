@@ -1,6 +1,6 @@
 *.pyc
 __pycache__/
-idea
+.idea
 node_modules
 package-lock.json
 package.json
