@@ -588,5 +588,104 @@
     "name": "udangtangtang-try-party",
     "created_date": "2025-07-07 16:45:24",
     "updated_date": "2025-07-07 16:45:27"
+  },
+  {
+    "id": 67,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-07-13 19:01:21",
+    "updated_date": "2025-07-13 19:01:22"
+  },
+  {
+    "id": 68,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-07-13 19:01:52",
+    "updated_date": "2025-07-13 19:01:52"
+  },
+  {
+    "id": 69,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-07-13 19:02:12",
+    "updated_date": "2025-07-13 19:02:17"
+  },
+  {
+    "id": 70,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-07-13 19:02:36",
+    "updated_date": "2025-07-13 19:02:38"
+  },
+  {
+    "id": 71,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-07-13 19:03:14",
+    "updated_date": "2025-07-13 19:03:17"
+  },
+  {
+    "id": 72,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-07-13 19:03:22",
+    "updated_date": "2025-07-13 19:03:23"
+  },
+  {
+    "id": 73,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-07-13 19:05:49",
+    "updated_date": "2025-07-13 19:05:50"
+  },
+  {
+    "id": 74,
+    "status": "FAILURE: Invalid path",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-07-13 19:07:05",
+    "updated_date": "2025-07-13 19:07:11"
+  },
+  {
+    "id": 75,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-07-13 19:10:00",
+    "updated_date": "2025-07-13 19:11:14"
+  },
+  {
+    "id": 76,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-07-13 19:11:21",
+    "updated_date": "2025-07-13 19:11:25"
+  },
+  {
+    "id": 77,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-07-13 19:14:28",
+    "updated_date": "2025-07-13 19:14:31"
   }
 ]

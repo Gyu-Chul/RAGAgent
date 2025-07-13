@@ -11,7 +11,7 @@ task_queue = []
 FLAG_FILE = (
     Path(__file__).resolve()
     .parents[3]            # git-ai 루트
-    / "git-agent3"         # 형제 디렉토리
+    / "git-agent"         # 형제 디렉토리
     / "task.flag.json"
 )
 
