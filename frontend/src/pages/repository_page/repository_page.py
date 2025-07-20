@@ -4,7 +4,6 @@ from datetime import datetime
 from .data_manager import load_data_from_json, save_data_to_json
 from .sidebar import sidebar
 from .chat_area import chat_area
-from src.components.repository_page.api import call_sample_api
 
 #TODO 전체적인 소스코드 리팩토링 필요
 #TODO 전체적인 소스코드 리팩토링 필요

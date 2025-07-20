@@ -1,11 +1,14 @@
 # git-agent/src/control_files/__init__.py
 
 import os
+import json
+
 from src.parse_json.parse_json import parse_json
 
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
 REPO_BASE_DIR = os.path.join(PROJECT_ROOT, 'repository')
+PARSED_BASE_DIR = os.path.join(PROJECT_ROOT, 'parsed_repository')
 
 def process_python_files_in_repo(repo_name: str):
     """
@@ -32,6 +35,20 @@ def process_python_files_in_repo(repo_name: str):
                     parse_json(file_path)
                 except Exception as e:
                     print(f"'{file_path}' 파일 파싱 중 오류 발생: {e}")
+
+    parsed_repo_name  = repo_name.replace("repository", "parsed_repository")
+    parsed_repo_path = os.path.join(PARSED_BASE_DIR, parsed_repo_name)
+    os.makedirs(parsed_repo_path, exist_ok=True)
+
+    git_ai_data_path = os.path.join(parsed_repo_path, 'GitAiData.json')
+    data = {"main": {}}
+
+    try:
+        with open(git_ai_data_path, 'w', encoding='utf-8') as f:
+            json.dump(data, f, ensure_ascii=False, indent=2)
+        print(f"GitAiData.json 파일 생성: {git_ai_data_path}")
+    except Exception as e:
+        print(f"GitAiData.json 생성 중 오류 발생: {e}")
 
     print("모든 파이썬 파일 처리가 완료되었습니다.")
     return "SUCCESS"
