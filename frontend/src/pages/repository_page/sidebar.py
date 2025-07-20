@@ -16,6 +16,7 @@ def sidebar(repo_name: str, data: dict, current_branch: str, on_room_open, on_br
         ui.separator().style('margin: 15px 0;')
 
         ui.label('채팅방 목록').style('font-weight:bold; margin-top:10px;')
+
         if current_branch and current_branch in data:
             for room in data[current_branch].keys():
                 ui.button(room, on_click=lambda r=room: on_room_open(r)) \
@@ -23,4 +24,9 @@ def sidebar(repo_name: str, data: dict, current_branch: str, on_room_open, on_br
         else:
             ui.label("브랜치를 선택하세요.").style('color: grey;')
 
+        ui.separator().style('margin: 15px 0;')
+
         ui.button('채팅방 생성', on_click=on_create_room_click, icon='add').style('margin-top:20px; width:100%;')
+
+        ui.button('Vector DB 관리', on_click=lambda: ui.navigate.to(f'/project/{repo_name}/vectordb')) \
+            .style('width:100%; margin-top:8px; background-color: #E0E0E0 !important; color: black !important;')
