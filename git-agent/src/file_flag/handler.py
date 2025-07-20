@@ -8,7 +8,7 @@ from typing import Dict, Any
 from src.dummy.dummy import dummy
 from src.git_clone.git_clone import git_clone
 from src.parse_json.parse_json import parse_json
-from src.control_files import process_python_files_in_repo
+from src.control_files import process_repository_files
 
 # 1) Path 객체로 선언
 #    현재 파일 위치 기준으로 git-ai/git-agent3/task.flag.json 을 가리키도록
@@ -57,7 +57,7 @@ class DefaultFlagHandler:
                         repository = t["content"]
                         name = t["name"]
                         t["status"] = git_clone(repository,name)
-                        t["status"] = process_python_files_in_repo(name)
+                        t["status"] = process_repository_files(name)
                     elif (t["type"] == "PARSEJSON"):
                         repository = t["content"]
                         t["status"] = parse_json(repository)
