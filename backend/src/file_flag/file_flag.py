@@ -8,7 +8,7 @@ from ..task_queue import create_tasks, load_tasks, task_queue
 
 router = APIRouter()
 
-class TaskCreate(BaseModel):
+class AgentTaskForm(BaseModel):
     type:    str = Field(..., example="MyType")
     content: str = Field(..., example="payload")
     name:    str = Field("None", example="TASK_NAME")
@@ -16,7 +16,7 @@ class TaskCreate(BaseModel):
 
 
 @router.post("/addTask", status_code=201)
-async def __add_task(payload: TaskCreate):
+async def __add_task(payload: AgentTaskForm):
 
     now = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 
