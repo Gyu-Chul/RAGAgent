@@ -812,5 +812,41 @@
     "name": "JEYSports",
     "created_date": "2025-07-20 20:19:48",
     "updated_date": "2025-07-20 20:20:09"
+  },
+  {
+    "id": 92,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/KU-ARL/For-D",
+    "name": "For-D",
+    "created_date": "2025-07-20 21:13:25",
+    "updated_date": "2025-07-20 21:13:28"
+  },
+  {
+    "id": 93,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/KU-ARL/For-D",
+    "name": "For-D",
+    "created_date": "2025-07-20 21:17:22",
+    "updated_date": "2025-07-20 21:17:24"
+  },
+  {
+    "id": 94,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/KU-ARL/youtube_mp3_downloader",
+    "name": "youtube_mp3_downloader",
+    "created_date": "2025-07-20 21:18:44",
+    "updated_date": "2025-07-20 21:18:50"
+  },
+  {
+    "id": 95,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/KU-ARL/For-D",
+    "name": "For-D",
+    "created_date": "2025-07-27 09:15:59",
+    "updated_date": "2025-07-27 09:16:08"
   }
 ]

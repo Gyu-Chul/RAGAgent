@@ -31,9 +31,13 @@ async def list_collections():
         return f'❌ 오류: {e}'
 
 
-async def create_collection(collection_name: str, description: str):
+async def create_collection(collection_name: str, description: str, version: int):
     try:
-        payload = {"collection_name": collection_name, "description": description}
+        payload = {
+            "collection_name": collection_name,
+            "description": description,
+            "version": version
+        }
         async with httpx.AsyncClient() as client:
             res = await client.post(f'{BASE_URL}/create_collection', json=payload)
             return await _handle_response(res)
@@ -43,21 +47,27 @@ async def create_collection(collection_name: str, description: str):
 
 async def delete_collection(collection_name: str):
     try:
+        payload = {"collection_name": collection_name}
         async with httpx.AsyncClient() as client:
-            res = await client.delete(f'{BASE_URL}/delete_collection', json={"collection_name": collection_name})
+            res = await client.request("DELETE", f"{BASE_URL}/delete_collection", json=payload)
             return await _handle_response(res)
     except Exception as e:
-        return f'❌ 오류: {e}'
+        return f"❌ 오류: {e}"
 
 
-async def count_entities(collection_name: str):
+
+async def delete_entity(collection_name: str, entity_id: str):
     try:
-        params = {'collection_name': collection_name}
+        payload = {
+            "collection_name": collection_name,
+            "entity_id": entity_id
+        }
         async with httpx.AsyncClient() as client:
-            res = await client.get(f'{BASE_URL}/count_entities', params=params)
+            res = await client.request("DELETE", f"{BASE_URL}/delete_entity", json=payload)
             return await _handle_response(res)
     except Exception as e:
-        return f'❌ 오류: {e}'
+        return f"❌ 오류: {e}"
+
 
 
 async def view_entities(collection_name: str):

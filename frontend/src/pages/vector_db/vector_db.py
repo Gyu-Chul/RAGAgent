@@ -36,9 +36,22 @@ def render_vector_db(repo_name: str):
                         ui.label("컬렉션 생성").classes("font-bold")
                         create_name_input = ui.input('Collection Name').style('width: 250px;')
                         create_desc_input = ui.input('Description').style('width: 250px;')
-                        ui.button('Create', on_click=lambda: handle_api_call(apis.create_collection,
-                                                                             create_name_input.value,
-                                                                             create_desc_input.value))
+                        version_select = ui.select(
+                            options=[0, 1, 2, 3],
+                            value=1,
+                            label="Version"
+                        ).style('width: 120px;')
+
+                        ui.button(
+                            'Create',
+                            on_click=lambda: handle_api_call(
+                                apis.create_collection,
+                                create_name_input.value,
+                                create_desc_input.value,
+                                int(version_select.value)   # ✅ 버전 전달
+                            )
+                        )
+
 
                 with ui.card().tight():
                     with ui.card_section():
