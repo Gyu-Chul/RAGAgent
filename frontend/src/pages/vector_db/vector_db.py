@@ -13,6 +13,21 @@ def vector_db_sidebar(repo_name: str):
             'margin-bottom:10px; width:100%;')
 
 
+def format_search_results(results: list[dict]) -> str:
+    if not results:
+        return "⚠️ 검색 결과가 없습니다."
+    logs = []
+    for idx, r in enumerate(results, 1):
+        logs.append(
+            f"[{idx}] ID: {r.get('id','N/A')} | 유사도: {r.get('distance'):.4f}\n"
+            f"📂 Path: {r.get('file_path','')}\n"
+            f"🔖 Type: {r.get('type','')} | Name: {r.get('name','')}\n"
+            f"💻 Text/Code: {(r.get('text') or r.get('code_preview',''))[:120]}...\n"
+            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        )
+    return "\n".join(logs)
+
+
 def render_vector_db(repo_name: str):
     log_panel = ResultLogPanel()
 
@@ -90,6 +105,29 @@ def render_vector_db(repo_name: str):
 
                         ui.upload(label='Upload JSON', auto_upload=True, on_upload=on_upload, max_files=1).props(
                             'accept=".json"')
+
+                # ───── 🔍 검색 기능 카드 추가 ─────
+                with ui.card().tight():
+                    with ui.card_section():
+                        ui.label("벡터 검색").classes("font-bold")
+                        search_coll_input = ui.input('Collection Name').style('width: 250px;')
+                        search_query_input = ui.input('Query Text').style('width: 250px;')
+                        search_filter_input = ui.input('Metadata Filter (옵션)').style('width: 250px;')
+
+                        with ui.row():
+                            async def on_basic_search():
+                                log_panel.add_log("⏳ 기본 검색 중...")
+                                message, results = await apis.search_basic(search_coll_input.value, search_query_input.value)
+                                log_panel.add_log(message + "\n" + format_search_results(results))
+
+                            async def on_metadata_search():
+                                log_panel.add_log("⏳ 메타데이터 필터 검색 중...")
+                                message, results = await apis.search_with_metadata(
+                                    search_coll_input.value, search_query_input.value, search_filter_input.value)
+                                log_panel.add_log(message + "\n" + format_search_results(results))
+
+                            ui.button('🔍 기본 검색', on_click=on_basic_search)
+                            ui.button('🧩 메타데이터 검색', on_click=on_metadata_search)
 
             with ui.column().style('flex:1; min-width:300px;'):
                 ui.label('🪄 Result Log').classes('text-h6 font-bold mb-2')
