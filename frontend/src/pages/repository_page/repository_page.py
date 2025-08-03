@@ -4,6 +4,7 @@ from datetime import datetime
 from .data_manager import load_data_from_json, save_data_to_json
 from .sidebar import sidebar
 from .chat_area import chat_area
+from src.apis.repository_page.api import request
 
 #TODO 전체적인 소스코드 리팩토링 필요
 #TODO 전체적인 소스코드 리팩토링 필요
@@ -41,16 +42,17 @@ def render_repository_page(repo_name: str):
     async def send_message():
         branch, room, text = state['branch'], state['room'], chat_input.value.strip()
         if not (branch and room and text): return
+        id = len(data[branch][room]) + 1
 
         new_message = {"type": "user", "content": text, "create_date": datetime.now().strftime("%Y%m%d%H%M"),
-                       "id": len(data[branch][room]) + 1}
+                       "id": id}
         data[branch][room].append(new_message)
         save_data_to_json(repo_name, data)
 
         render_messages()
         chat_input.value = ''
 
-        api_response = await call_sample_api(user_message=text)
+        api_response = await request(user_message=text,branch=branch,room=room , id = id)
 
     def create_new_room():
         new_room_name, branch = new_room_input.value.strip(), state['branch']

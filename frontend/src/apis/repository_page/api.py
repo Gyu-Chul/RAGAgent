@@ -4,9 +4,9 @@ from nicegui import ui
 
 #TODO 전체적인 소스코드 리팩토링 필요
 
-async def call_sample_api(user_message: str):
-    api_url = "http://127.0.0.1:8000/api/sample/test1"
-
+async def request(user_message: str,branch , room, id ):
+    api_url = "http://127.0.0.1:8000/api/chat/request"
+    print(user_message,branch,room,id)
     # payload = {
     #     "message": user_message
     # }
@@ -17,7 +17,7 @@ async def call_sample_api(user_message: str):
             # response = await client.post(api_url, json=payload, timeout=10.0)
 
 
-            params = {"message": user_message}
+            params = {"message": user_message , "branch" : branch , "room" : room , "id" : id}
             response = await client.get(api_url, params=params, timeout=10.0)
 
 
