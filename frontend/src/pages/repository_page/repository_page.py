@@ -40,6 +40,7 @@ def render_repository_page(repo_name: str):
         send_button.enable()
 
     async def send_message():
+        nonlocal data
         branch, room, text = state['branch'], state['room'], chat_input.value.strip()
         if not (branch and room and text): return
         id = len(data[branch][room]) + 1
@@ -49,10 +50,11 @@ def render_repository_page(repo_name: str):
         data[branch][room].append(new_message)
         save_data_to_json(repo_name, data)
 
+        api_response = await request(user_message=text,branch=branch,room=room , id = id)
+        data = load_data_from_json(repo_name)
         render_messages()
         chat_input.value = ''
 
-        api_response = await request(user_message=text,branch=branch,room=room , id = id)
 
     def create_new_room():
         new_room_name, branch = new_room_input.value.strip(), state['branch']
