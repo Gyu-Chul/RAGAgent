@@ -1,0 +1,210 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.BagOfPrimitives",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.common.TestTypes.BagOfPrimitives;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.Streams",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.internal.Streams;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.CharArrayReader",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.io.CharArrayReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.CharArrayWriter",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.io.CharArrayWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.StringReader",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.io.StringReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonParserTest",
+    "start_line": 36,
+    "end_line": 198,
+    "code": "/**\r\n * Unit test for {@link JsonParser}\r\n *\r\n * @author Inderjeet Singh\r\n */\r\npublic class JsonParserTest {\r\n\r\n    @Test\r\n    public void testParseInvalidJson() {\r\n        assertThrows(JsonSyntaxException.class, () -> JsonParser.parseString(\"[[]\"));\r\n    }\r\n\r\n    @Test\r\n    public void testParseUnquotedStringArrayFails() {\r\n        JsonElement element = JsonParser.parseString(\"[a,b,c]\");\r\n        assertThat(element.getAsJsonArray().get(0).getAsString()).isEqualTo(\"a\");\r\n        assertThat(element.getAsJsonArray().get(1).getAsString()).isEqualTo(\"b\");\r\n        assertThat(element.getAsJsonArray().get(2).getAsString()).isEqualTo(\"c\");\r\n        assertThat(element.getAsJsonArray()).hasSize(3);\r\n    }\r\n\r\n    @Test\r\n    public void testParseString() {\r\n        String json = \"{a:10,b:'c'}\";\r\n        JsonElement e = JsonParser.parseString(json);\r\n        assertThat(e.isJsonObject()).isTrue();\r\n        assertThat(e.getAsJsonObject().get(\"a\").getAsInt()).isEqualTo(10);\r\n        assertThat(e.getAsJsonObject().get(\"b\").getAsString()).isEqualTo(\"c\");\r\n    }\r\n\r\n    @Test\r\n    public void testParseEmptyString() {\r\n        JsonElement e = JsonParser.parseString(\"\\\"   \\\"\");\r\n        assertThat(e.isJsonPrimitive()).isTrue();\r\n        assertThat(e.getAsString()).isEqualTo(\"   \");\r\n    }\r\n\r\n    @Test\r\n    public void testParseEmptyWhitespaceInput() {\r\n        JsonElement e = JsonParser.parseString(\"     \");\r\n        assertThat(e.isJsonNull()).isTrue();\r\n    }\r\n\r\n    @Test\r\n    public void testParseUnquotedSingleWordStringFails() {\r\n        assertThat(JsonParser.parseString(\"Test\").getAsString()).isEqualTo(\"Test\");\r\n    }\r\n\r\n    @Test\r\n    public void testParseUnquotedMultiWordStringFails() {\r\n        assertThrows(JsonSyntaxException.class, () -> JsonParser.parseString(\"Test is a test..blah blah\"));\r\n    }\r\n\r\n    @Test\r\n    public void testParseMixedArray() {\r\n        String json = \"[{},13,\\\"stringValue\\\"]\";\r\n        JsonElement e = JsonParser.parseString(json);\r\n        assertThat(e.isJsonArray()).isTrue();\r\n        JsonArray array = e.getAsJsonArray();\r\n        assertThat(array.get(0).toString()).isEqualTo(\"{}\");\r\n        assertThat(array.get(1).getAsInt()).isEqualTo(13);\r\n        assertThat(array.get(2).getAsString()).isEqualTo(\"stringValue\");\r\n    }\r\n\r\n    /**\r\n     * Deeply nested JSON arrays should not cause {@link StackOverflowError}\r\n     */\r\n    @Test\r\n    public void testParseDeeplyNestedArrays() throws IOException {\r\n        int times = 10000;\r\n        // [[[ ... ]]]\r\n        String json = \"[\".repeat(times) + \"]\".repeat(times);\r\n        JsonReader jsonReader = new JsonReader(new StringReader(json));\r\n        jsonReader.setNestingLimit(Integer.MAX_VALUE);\r\n        int actualTimes = 0;\r\n        JsonArray current = JsonParser.parseReader(jsonReader).getAsJsonArray();\r\n        while (true) {\r\n            actualTimes++;\r\n            if (current.isEmpty()) {\r\n                break;\r\n            }\r\n            assertThat(current.size()).isEqualTo(1);\r\n            current = current.get(0).getAsJsonArray();\r\n        }\r\n        assertThat(actualTimes).isEqualTo(times);\r\n    }\r\n\r\n    /**\r\n     * Deeply nested JSON objects should not cause {@link StackOverflowError}\r\n     */\r\n    @Test\r\n    public void testParseDeeplyNestedObjects() throws IOException {\r\n        int times = 10000;\r\n        // {\"a\":{\"a\": ... {\"a\":null} ... }}\r\n        String json = \"{\\\"a\\\":\".repeat(times) + \"null\" + \"}\".repeat(times);\r\n        JsonReader jsonReader = new JsonReader(new StringReader(json));\r\n        jsonReader.setNestingLimit(Integer.MAX_VALUE);\r\n        int actualTimes = 0;\r\n        JsonObject current = JsonParser.parseReader(jsonReader).getAsJsonObject();\r\n        while (true) {\r\n            assertThat(current.size()).isEqualTo(1);\r\n            actualTimes++;\r\n            JsonElement next = current.get(\"a\");\r\n            if (next.isJsonNull()) {\r\n                break;\r\n            } else {\r\n                current = next.getAsJsonObject();\r\n            }\r\n        }\r\n        assertThat(actualTimes).isEqualTo(times);\r\n    }\r\n\r\n    @Test\r\n    public void testParseReader() {\r\n        StringReader reader = new StringReader(\"{a:10,b:'c'}\");\r\n        JsonElement e = JsonParser.parseReader(reader);\r\n        assertThat(e.isJsonObject()).isTrue();\r\n        assertThat(e.getAsJsonObject().get(\"a\").getAsInt()).isEqualTo(10);\r\n        assertThat(e.getAsJsonObject().get(\"b\").getAsString()).isEqualTo(\"c\");\r\n    }\r\n\r\n    @Test\r\n    public void testReadWriteTwoObjects() throws Exception {\r\n        Gson gson = new Gson();\r\n        CharArrayWriter writer = new CharArrayWriter();\r\n        BagOfPrimitives expectedOne = new BagOfPrimitives(1, 1, true, \"one\");\r\n        writer.write(gson.toJson(expectedOne).toCharArray());\r\n        BagOfPrimitives expectedTwo = new BagOfPrimitives(2, 2, false, \"two\");\r\n        writer.write(gson.toJson(expectedTwo).toCharArray());\r\n        CharArrayReader reader = new CharArrayReader(writer.toCharArray());\r\n        JsonReader parser = new JsonReader(reader);\r\n        parser.setStrictness(Strictness.LENIENT);\r\n        JsonElement element1 = Streams.parse(parser);\r\n        JsonElement element2 = Streams.parse(parser);\r\n        BagOfPrimitives actualOne = gson.fromJson(element1, BagOfPrimitives.class);\r\n        assertThat(actualOne.stringValue).isEqualTo(\"one\");\r\n        BagOfPrimitives actualTwo = gson.fromJson(element2, BagOfPrimitives.class);\r\n        assertThat(actualTwo.stringValue).isEqualTo(\"two\");\r\n    }\r\n\r\n    @Test\r\n    public void testLegacyStrict() {\r\n        JsonReader reader = new JsonReader(new StringReader(\"unquoted\"));\r\n        Strictness strictness = Strictness.LEGACY_STRICT;\r\n        // LEGACY_STRICT is ignored by JsonParser later; parses in lenient mode instead\r\n        reader.setStrictness(strictness);\r\n        assertThat(JsonParser.parseReader(reader)).isEqualTo(new JsonPrimitive(\"unquoted\"));\r\n        // Original strictness was restored\r\n        assertThat(reader.getStrictness()).isEqualTo(strictness);\r\n    }\r\n\r\n    @Test\r\n    public void testStrict() {\r\n        JsonReader reader = new JsonReader(new StringReader(\"faLsE\"));\r\n        Strictness strictness = Strictness.STRICT;\r\n        reader.setStrictness(strictness);\r\n        var e = assertThrows(JsonSyntaxException.class, () -> JsonParser.parseReader(reader));\r\n        assertThat(e).hasCauseThat().hasMessageThat().startsWith(\"Use JsonReader.setStrictness(Strictness.LENIENT) to accept malformed JSON\");\r\n        // Original strictness was kept\r\n        assertThat(reader.getStrictness()).isEqualTo(strictness);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParseInvalidJson",
+    "start_line": 38,
+    "end_line": 41,
+    "code": "@Test\r\npublic void testParseInvalidJson() {\r\n    assertThrows(JsonSyntaxException.class, () -> JsonParser.parseString(\"[[]\"));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParseUnquotedStringArrayFails",
+    "start_line": 43,
+    "end_line": 50,
+    "code": "@Test\r\npublic void testParseUnquotedStringArrayFails() {\r\n    JsonElement element = JsonParser.parseString(\"[a,b,c]\");\r\n    assertThat(element.getAsJsonArray().get(0).getAsString()).isEqualTo(\"a\");\r\n    assertThat(element.getAsJsonArray().get(1).getAsString()).isEqualTo(\"b\");\r\n    assertThat(element.getAsJsonArray().get(2).getAsString()).isEqualTo(\"c\");\r\n    assertThat(element.getAsJsonArray()).hasSize(3);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParseString",
+    "start_line": 52,
+    "end_line": 59,
+    "code": "@Test\r\npublic void testParseString() {\r\n    String json = \"{a:10,b:'c'}\";\r\n    JsonElement e = JsonParser.parseString(json);\r\n    assertThat(e.isJsonObject()).isTrue();\r\n    assertThat(e.getAsJsonObject().get(\"a\").getAsInt()).isEqualTo(10);\r\n    assertThat(e.getAsJsonObject().get(\"b\").getAsString()).isEqualTo(\"c\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParseEmptyString",
+    "start_line": 61,
+    "end_line": 66,
+    "code": "@Test\r\npublic void testParseEmptyString() {\r\n    JsonElement e = JsonParser.parseString(\"\\\"   \\\"\");\r\n    assertThat(e.isJsonPrimitive()).isTrue();\r\n    assertThat(e.getAsString()).isEqualTo(\"   \");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParseEmptyWhitespaceInput",
+    "start_line": 68,
+    "end_line": 72,
+    "code": "@Test\r\npublic void testParseEmptyWhitespaceInput() {\r\n    JsonElement e = JsonParser.parseString(\"     \");\r\n    assertThat(e.isJsonNull()).isTrue();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParseUnquotedSingleWordStringFails",
+    "start_line": 74,
+    "end_line": 77,
+    "code": "@Test\r\npublic void testParseUnquotedSingleWordStringFails() {\r\n    assertThat(JsonParser.parseString(\"Test\").getAsString()).isEqualTo(\"Test\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParseUnquotedMultiWordStringFails",
+    "start_line": 79,
+    "end_line": 83,
+    "code": "@Test\r\npublic void testParseUnquotedMultiWordStringFails() {\r\n    assertThrows(JsonSyntaxException.class, () -> JsonParser.parseString(\"Test is a test..blah blah\"));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParseMixedArray",
+    "start_line": 85,
+    "end_line": 95,
+    "code": "@Test\r\npublic void testParseMixedArray() {\r\n    String json = \"[{},13,\\\"stringValue\\\"]\";\r\n    JsonElement e = JsonParser.parseString(json);\r\n    assertThat(e.isJsonArray()).isTrue();\r\n    JsonArray array = e.getAsJsonArray();\r\n    assertThat(array.get(0).toString()).isEqualTo(\"{}\");\r\n    assertThat(array.get(1).getAsInt()).isEqualTo(13);\r\n    assertThat(array.get(2).getAsString()).isEqualTo(\"stringValue\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParseDeeplyNestedArrays",
+    "start_line": 98,
+    "end_line": 117,
+    "code": "/**\r\n * Deeply nested JSON arrays should not cause {@link StackOverflowError}\r\n */\r\n@Test\r\npublic void testParseDeeplyNestedArrays() throws IOException {\r\n    int times = 10000;\r\n    // [[[ ... ]]]\r\n    String json = \"[\".repeat(times) + \"]\".repeat(times);\r\n    JsonReader jsonReader = new JsonReader(new StringReader(json));\r\n    jsonReader.setNestingLimit(Integer.MAX_VALUE);\r\n    int actualTimes = 0;\r\n    JsonArray current = JsonParser.parseReader(jsonReader).getAsJsonArray();\r\n    while (true) {\r\n        actualTimes++;\r\n        if (current.isEmpty()) {\r\n            break;\r\n        }\r\n        assertThat(current.size()).isEqualTo(1);\r\n        current = current.get(0).getAsJsonArray();\r\n    }\r\n    assertThat(actualTimes).isEqualTo(times);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParseDeeplyNestedObjects",
+    "start_line": 120,
+    "end_line": 141,
+    "code": "/**\r\n * Deeply nested JSON objects should not cause {@link StackOverflowError}\r\n */\r\n@Test\r\npublic void testParseDeeplyNestedObjects() throws IOException {\r\n    int times = 10000;\r\n    // {\"a\":{\"a\": ... {\"a\":null} ... }}\r\n    String json = \"{\\\"a\\\":\".repeat(times) + \"null\" + \"}\".repeat(times);\r\n    JsonReader jsonReader = new JsonReader(new StringReader(json));\r\n    jsonReader.setNestingLimit(Integer.MAX_VALUE);\r\n    int actualTimes = 0;\r\n    JsonObject current = JsonParser.parseReader(jsonReader).getAsJsonObject();\r\n    while (true) {\r\n        assertThat(current.size()).isEqualTo(1);\r\n        actualTimes++;\r\n        JsonElement next = current.get(\"a\");\r\n        if (next.isJsonNull()) {\r\n            break;\r\n        } else {\r\n            current = next.getAsJsonObject();\r\n        }\r\n    }\r\n    assertThat(actualTimes).isEqualTo(times);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParseReader",
+    "start_line": 143,
+    "end_line": 150,
+    "code": "@Test\r\npublic void testParseReader() {\r\n    StringReader reader = new StringReader(\"{a:10,b:'c'}\");\r\n    JsonElement e = JsonParser.parseReader(reader);\r\n    assertThat(e.isJsonObject()).isTrue();\r\n    assertThat(e.getAsJsonObject().get(\"a\").getAsInt()).isEqualTo(10);\r\n    assertThat(e.getAsJsonObject().get(\"b\").getAsString()).isEqualTo(\"c\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testReadWriteTwoObjects",
+    "start_line": 152,
+    "end_line": 170,
+    "code": "@Test\r\npublic void testReadWriteTwoObjects() throws Exception {\r\n    Gson gson = new Gson();\r\n    CharArrayWriter writer = new CharArrayWriter();\r\n    BagOfPrimitives expectedOne = new BagOfPrimitives(1, 1, true, \"one\");\r\n    writer.write(gson.toJson(expectedOne).toCharArray());\r\n    BagOfPrimitives expectedTwo = new BagOfPrimitives(2, 2, false, \"two\");\r\n    writer.write(gson.toJson(expectedTwo).toCharArray());\r\n    CharArrayReader reader = new CharArrayReader(writer.toCharArray());\r\n    JsonReader parser = new JsonReader(reader);\r\n    parser.setStrictness(Strictness.LENIENT);\r\n    JsonElement element1 = Streams.parse(parser);\r\n    JsonElement element2 = Streams.parse(parser);\r\n    BagOfPrimitives actualOne = gson.fromJson(element1, BagOfPrimitives.class);\r\n    assertThat(actualOne.stringValue).isEqualTo(\"one\");\r\n    BagOfPrimitives actualTwo = gson.fromJson(element2, BagOfPrimitives.class);\r\n    assertThat(actualTwo.stringValue).isEqualTo(\"two\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testLegacyStrict",
+    "start_line": 172,
+    "end_line": 182,
+    "code": "@Test\r\npublic void testLegacyStrict() {\r\n    JsonReader reader = new JsonReader(new StringReader(\"unquoted\"));\r\n    Strictness strictness = Strictness.LEGACY_STRICT;\r\n    // LEGACY_STRICT is ignored by JsonParser later; parses in lenient mode instead\r\n    reader.setStrictness(strictness);\r\n    assertThat(JsonParser.parseReader(reader)).isEqualTo(new JsonPrimitive(\"unquoted\"));\r\n    // Original strictness was restored\r\n    assertThat(reader.getStrictness()).isEqualTo(strictness);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStrict",
+    "start_line": 184,
+    "end_line": 197,
+    "code": "@Test\r\npublic void testStrict() {\r\n    JsonReader reader = new JsonReader(new StringReader(\"faLsE\"));\r\n    Strictness strictness = Strictness.STRICT;\r\n    reader.setStrictness(strictness);\r\n    var e = assertThrows(JsonSyntaxException.class, () -> JsonParser.parseReader(reader));\r\n    assertThat(e).hasCauseThat().hasMessageThat().startsWith(\"Use JsonReader.setStrictness(Strictness.LENIENT) to accept malformed JSON\");\r\n    // Original strictness was kept\r\n    assertThat(reader.getStrictness()).isEqualTo(strictness);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonParserTest.java"
+  }
+]

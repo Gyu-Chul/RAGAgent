@@ -1,0 +1,178 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.LongSerializationPolicy",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.LongSerializationPolicy;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.atomic.AtomicBoolean",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.concurrent.atomic.AtomicBoolean;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.atomic.AtomicInteger",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.util.concurrent.atomic.AtomicInteger;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.atomic.AtomicIntegerArray",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.util.concurrent.atomic.AtomicIntegerArray;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.atomic.AtomicLong",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.util.concurrent.atomic.AtomicLong;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.atomic.AtomicLongArray",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.util.concurrent.atomic.AtomicLongArray;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "class",
+    "name": "JavaUtilConcurrentAtomicTest",
+    "start_line": 36,
+    "end_line": 116,
+    "code": "/**\r\n * Functional test for Json serialization and deserialization for classes in\r\n * java.util.concurrent.atomic\r\n */\r\npublic class JavaUtilConcurrentAtomicTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n    }\r\n\r\n    @Test\r\n    public void testAtomicBoolean() {\r\n        AtomicBoolean target = gson.fromJson(\"true\", AtomicBoolean.class);\r\n        assertThat(target.get()).isTrue();\r\n        String json = gson.toJson(target);\r\n        assertThat(json).isEqualTo(\"true\");\r\n    }\r\n\r\n    @Test\r\n    public void testAtomicInteger() {\r\n        AtomicInteger target = gson.fromJson(\"10\", AtomicInteger.class);\r\n        assertThat(target.get()).isEqualTo(10);\r\n        String json = gson.toJson(target);\r\n        assertThat(json).isEqualTo(\"10\");\r\n    }\r\n\r\n    @Test\r\n    public void testAtomicLong() {\r\n        AtomicLong target = gson.fromJson(\"10\", AtomicLong.class);\r\n        assertThat(target.get()).isEqualTo(10);\r\n        String json = gson.toJson(target);\r\n        assertThat(json).isEqualTo(\"10\");\r\n    }\r\n\r\n    @Test\r\n    public void testAtomicLongWithStringSerializationPolicy() {\r\n        Gson gson = new GsonBuilder().setLongSerializationPolicy(LongSerializationPolicy.STRING).create();\r\n        AtomicLongHolder target = gson.fromJson(\"{'value':'10'}\", AtomicLongHolder.class);\r\n        assertThat(target.value.get()).isEqualTo(10);\r\n        String json = gson.toJson(target);\r\n        assertThat(json).isEqualTo(\"{\\\"value\\\":\\\"10\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testAtomicIntegerArray() {\r\n        AtomicIntegerArray target = gson.fromJson(\"[10, 13, 14]\", AtomicIntegerArray.class);\r\n        assertThat(target.length()).isEqualTo(3);\r\n        assertThat(target.get(0)).isEqualTo(10);\r\n        assertThat(target.get(1)).isEqualTo(13);\r\n        assertThat(target.get(2)).isEqualTo(14);\r\n        String json = gson.toJson(target);\r\n        assertThat(json).isEqualTo(\"[10,13,14]\");\r\n    }\r\n\r\n    @Test\r\n    public void testAtomicLongArray() {\r\n        AtomicLongArray target = gson.fromJson(\"[10, 13, 14]\", AtomicLongArray.class);\r\n        assertThat(target.length()).isEqualTo(3);\r\n        assertThat(target.get(0)).isEqualTo(10);\r\n        assertThat(target.get(1)).isEqualTo(13);\r\n        assertThat(target.get(2)).isEqualTo(14);\r\n        String json = gson.toJson(target);\r\n        assertThat(json).isEqualTo(\"[10,13,14]\");\r\n    }\r\n\r\n    @Test\r\n    public void testAtomicLongArrayWithStringSerializationPolicy() {\r\n        Gson gson = new GsonBuilder().setLongSerializationPolicy(LongSerializationPolicy.STRING).create();\r\n        AtomicLongArray target = gson.fromJson(\"['10', '13', '14']\", AtomicLongArray.class);\r\n        assertThat(target.length()).isEqualTo(3);\r\n        assertThat(target.get(0)).isEqualTo(10);\r\n        assertThat(target.get(1)).isEqualTo(13);\r\n        assertThat(target.get(2)).isEqualTo(14);\r\n        String json = gson.toJson(target);\r\n        assertThat(json).isEqualTo(\"[\\\"10\\\",\\\"13\\\",\\\"14\\\"]\");\r\n    }\r\n\r\n    private static class AtomicLongHolder {\r\n\r\n        AtomicLong value;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 39,
+    "end_line": 42,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAtomicBoolean",
+    "start_line": 44,
+    "end_line": 50,
+    "code": "@Test\r\npublic void testAtomicBoolean() {\r\n    AtomicBoolean target = gson.fromJson(\"true\", AtomicBoolean.class);\r\n    assertThat(target.get()).isTrue();\r\n    String json = gson.toJson(target);\r\n    assertThat(json).isEqualTo(\"true\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAtomicInteger",
+    "start_line": 52,
+    "end_line": 58,
+    "code": "@Test\r\npublic void testAtomicInteger() {\r\n    AtomicInteger target = gson.fromJson(\"10\", AtomicInteger.class);\r\n    assertThat(target.get()).isEqualTo(10);\r\n    String json = gson.toJson(target);\r\n    assertThat(json).isEqualTo(\"10\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAtomicLong",
+    "start_line": 60,
+    "end_line": 66,
+    "code": "@Test\r\npublic void testAtomicLong() {\r\n    AtomicLong target = gson.fromJson(\"10\", AtomicLong.class);\r\n    assertThat(target.get()).isEqualTo(10);\r\n    String json = gson.toJson(target);\r\n    assertThat(json).isEqualTo(\"10\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAtomicLongWithStringSerializationPolicy",
+    "start_line": 68,
+    "end_line": 76,
+    "code": "@Test\r\npublic void testAtomicLongWithStringSerializationPolicy() {\r\n    Gson gson = new GsonBuilder().setLongSerializationPolicy(LongSerializationPolicy.STRING).create();\r\n    AtomicLongHolder target = gson.fromJson(\"{'value':'10'}\", AtomicLongHolder.class);\r\n    assertThat(target.value.get()).isEqualTo(10);\r\n    String json = gson.toJson(target);\r\n    assertThat(json).isEqualTo(\"{\\\"value\\\":\\\"10\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAtomicIntegerArray",
+    "start_line": 78,
+    "end_line": 87,
+    "code": "@Test\r\npublic void testAtomicIntegerArray() {\r\n    AtomicIntegerArray target = gson.fromJson(\"[10, 13, 14]\", AtomicIntegerArray.class);\r\n    assertThat(target.length()).isEqualTo(3);\r\n    assertThat(target.get(0)).isEqualTo(10);\r\n    assertThat(target.get(1)).isEqualTo(13);\r\n    assertThat(target.get(2)).isEqualTo(14);\r\n    String json = gson.toJson(target);\r\n    assertThat(json).isEqualTo(\"[10,13,14]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAtomicLongArray",
+    "start_line": 89,
+    "end_line": 98,
+    "code": "@Test\r\npublic void testAtomicLongArray() {\r\n    AtomicLongArray target = gson.fromJson(\"[10, 13, 14]\", AtomicLongArray.class);\r\n    assertThat(target.length()).isEqualTo(3);\r\n    assertThat(target.get(0)).isEqualTo(10);\r\n    assertThat(target.get(1)).isEqualTo(13);\r\n    assertThat(target.get(2)).isEqualTo(14);\r\n    String json = gson.toJson(target);\r\n    assertThat(json).isEqualTo(\"[10,13,14]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAtomicLongArrayWithStringSerializationPolicy",
+    "start_line": 100,
+    "end_line": 111,
+    "code": "@Test\r\npublic void testAtomicLongArrayWithStringSerializationPolicy() {\r\n    Gson gson = new GsonBuilder().setLongSerializationPolicy(LongSerializationPolicy.STRING).create();\r\n    AtomicLongArray target = gson.fromJson(\"['10', '13', '14']\", AtomicLongArray.class);\r\n    assertThat(target.length()).isEqualTo(3);\r\n    assertThat(target.get(0)).isEqualTo(10);\r\n    assertThat(target.get(1)).isEqualTo(13);\r\n    assertThat(target.get(2)).isEqualTo(14);\r\n    String json = gson.toJson(target);\r\n    assertThat(json).isEqualTo(\"[\\\"10\\\",\\\"13\\\",\\\"14\\\"]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilConcurrentAtomicTest.java"
+  }
+]

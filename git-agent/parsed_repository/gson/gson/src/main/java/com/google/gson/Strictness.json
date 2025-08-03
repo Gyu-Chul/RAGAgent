@@ -1,0 +1,34 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 1,
+    "end_line": 1,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\Strictness.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 3,
+    "end_line": 3,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\Strictness.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 4,
+    "end_line": 4,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\Strictness.java"
+  },
+  {
+    "type": "enum",
+    "name": "Strictness",
+    "start_line": 20,
+    "end_line": 29,
+    "code": "/**\r\n * Modes that indicate how strictly a JSON {@linkplain JsonReader reader} or {@linkplain JsonWriter\r\n * writer} follows the syntax laid out in the <a href=\"https://www.ietf.org/rfc/rfc8259.txt\">RFC\r\n * 8259 JSON specification</a>.\r\n *\r\n * <p>You can look at {@link JsonReader#setStrictness(Strictness)} to see how the strictness affects\r\n * the {@link JsonReader} and you can look at {@link JsonWriter#setStrictness(Strictness)} to see\r\n * how the strictness affects the {@link JsonWriter}.\r\n *\r\n * @see GsonBuilder#setStrictness(Strictness)\r\n * @see JsonReader#setStrictness(Strictness)\r\n * @see JsonWriter#setStrictness(Strictness)\r\n * @since 2.11.0\r\n */\r\npublic enum Strictness {\r\n\r\n    /**\r\n     * Allow large deviations from the JSON specification.\r\n     */\r\n    LENIENT,\r\n    /**\r\n     * Allow certain small deviations from the JSON specification for legacy reasons.\r\n     */\r\n    LEGACY_STRICT,\r\n    /**\r\n     * Strict compliance with the JSON specification.\r\n     */\r\n    STRICT\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\Strictness.java"
+  }
+]

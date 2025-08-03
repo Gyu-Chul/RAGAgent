@@ -1,0 +1,162 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.graph",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.graph;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "class",
+    "name": "GraphAdapterBuilderTest",
+    "start_line": 29,
+    "end_line": 265,
+    "code": "public final class GraphAdapterBuilderTest {\r\n\r\n    @Test\r\n    public void testSerialization() {\r\n        Roshambo rock = new Roshambo(\"ROCK\");\r\n        Roshambo scissors = new Roshambo(\"SCISSORS\");\r\n        Roshambo paper = new Roshambo(\"PAPER\");\r\n        rock.beats = scissors;\r\n        scissors.beats = paper;\r\n        paper.beats = rock;\r\n        GsonBuilder gsonBuilder = new GsonBuilder();\r\n        new GraphAdapterBuilder().addType(Roshambo.class).registerOn(gsonBuilder);\r\n        Gson gson = gsonBuilder.create();\r\n        assertThat(gson.toJson(rock).replace('\"', '\\'')).isEqualTo(\"{'0x1':{'name':'ROCK','beats':'0x2'},\" + \"'0x2':{'name':'SCISSORS','beats':'0x3'},\" + \"'0x3':{'name':'PAPER','beats':'0x1'}}\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeserialization() {\r\n        String json = \"{'0x1':{'name':'ROCK','beats':'0x2'},\" + \"'0x2':{'name':'SCISSORS','beats':'0x3'},\" + \"'0x3':{'name':'PAPER','beats':'0x1'}}\";\r\n        GsonBuilder gsonBuilder = new GsonBuilder();\r\n        new GraphAdapterBuilder().addType(Roshambo.class).registerOn(gsonBuilder);\r\n        Gson gson = gsonBuilder.create();\r\n        Roshambo rock = gson.fromJson(json, Roshambo.class);\r\n        assertThat(rock.name).isEqualTo(\"ROCK\");\r\n        Roshambo scissors = rock.beats;\r\n        assertThat(scissors.name).isEqualTo(\"SCISSORS\");\r\n        Roshambo paper = scissors.beats;\r\n        assertThat(paper.name).isEqualTo(\"PAPER\");\r\n        assertThat(paper.beats).isSameInstanceAs(rock);\r\n    }\r\n\r\n    @Test\r\n    public void testDeserializationDirectSelfReference() {\r\n        String json = \"{'0x1':{'name':'SUICIDE','beats':'0x1'}}\";\r\n        GsonBuilder gsonBuilder = new GsonBuilder();\r\n        new GraphAdapterBuilder().addType(Roshambo.class).registerOn(gsonBuilder);\r\n        Gson gson = gsonBuilder.create();\r\n        Roshambo suicide = gson.fromJson(json, Roshambo.class);\r\n        assertThat(suicide.name).isEqualTo(\"SUICIDE\");\r\n        assertThat(suicide.beats).isSameInstanceAs(suicide);\r\n    }\r\n\r\n    @Test\r\n    public void testAddTypeCustomInstanceCreator() {\r\n        GsonBuilder gsonBuilder = new GsonBuilder();\r\n        new GraphAdapterBuilder().addType(Company.class, type -> new Company(\"custom\")).addType(Employee.class).registerOn(gsonBuilder);\r\n        Gson gson = gsonBuilder.create();\r\n        Company company = gson.fromJson(\"{'0x1':{'employees':['0x2']},'0x2':{'name':'Jesse','company':'0x1'}}\", Company.class);\r\n        assertThat(company.name).isEqualTo(\"custom\");\r\n        Employee employee = company.employees.get(0);\r\n        assertThat(employee.name).isEqualTo(\"Jesse\");\r\n        assertThat(employee.company).isSameInstanceAs(company);\r\n    }\r\n\r\n    @Test\r\n    public void testAddTypeOverwrite() {\r\n        GsonBuilder gsonBuilder = new GsonBuilder();\r\n        new GraphAdapterBuilder().addType(Company.class, type -> new Company(\"custom\")).// Overwrite Company creator with different custom one\r\n        addType(Company.class, type -> new Company(\"custom-2\")).addType(Employee.class).registerOn(gsonBuilder);\r\n        Gson gson = gsonBuilder.create();\r\n        Company company = gson.fromJson(\"{'0x1':{}}\", Company.class);\r\n        assertThat(company.name).isEqualTo(\"custom-2\");\r\n        gsonBuilder = new GsonBuilder();\r\n        new GraphAdapterBuilder().addType(Company.class, type -> new Company(\"custom\")).// Overwrite Company creator with default one\r\n        addType(Company.class).addType(Employee.class).registerOn(gsonBuilder);\r\n        gson = gsonBuilder.create();\r\n        company = gson.fromJson(\"{'0x1':{}}\", Company.class);\r\n        assertThat(company.name).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeListOfLists() {\r\n        Type listOfListsType = new TypeToken<List<List<?>>>() {\r\n        }.getType();\r\n        Type listOfAnyType = new TypeToken<List<?>>() {\r\n        }.getType();\r\n        List<List<?>> listOfLists = new ArrayList<>();\r\n        listOfLists.add(listOfLists);\r\n        listOfLists.add(new ArrayList<>());\r\n        GsonBuilder gsonBuilder = new GsonBuilder();\r\n        new GraphAdapterBuilder().addType(listOfListsType).addType(listOfAnyType).registerOn(gsonBuilder);\r\n        Gson gson = gsonBuilder.create();\r\n        String json = gson.toJson(listOfLists, listOfListsType);\r\n        assertThat(json.replace('\"', '\\'')).isEqualTo(\"{'0x1':['0x1','0x2'],'0x2':[]}\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeserializeListOfLists() {\r\n        Type listOfAnyType = new TypeToken<List<?>>() {\r\n        }.getType();\r\n        Type listOfListsType = new TypeToken<List<List<?>>>() {\r\n        }.getType();\r\n        GsonBuilder gsonBuilder = new GsonBuilder();\r\n        new GraphAdapterBuilder().addType(listOfListsType).addType(listOfAnyType).registerOn(gsonBuilder);\r\n        Gson gson = gsonBuilder.create();\r\n        List<List<?>> listOfLists = gson.fromJson(\"{'0x1':['0x1','0x2'],'0x2':[]}\", listOfListsType);\r\n        assertThat(listOfLists).hasSize(2);\r\n        assertThat(listOfLists.get(0)).isSameInstanceAs(listOfLists);\r\n        assertThat(listOfLists.get(1)).isEmpty();\r\n    }\r\n\r\n    @Test\r\n    public void testSerializationWithMultipleTypes() {\r\n        Company google = new Company(\"Google\");\r\n        // Employee constructor adds `this` to the given Company object\r\n        Employee unused1 = new Employee(\"Jesse\", google);\r\n        Employee unused2 = new Employee(\"Joel\", google);\r\n        GsonBuilder gsonBuilder = new GsonBuilder();\r\n        new GraphAdapterBuilder().addType(Company.class).addType(Employee.class).registerOn(gsonBuilder);\r\n        Gson gson = gsonBuilder.create();\r\n        assertThat(gson.toJson(google).replace('\"', '\\'')).isEqualTo(\"{'0x1':{'name':'Google','employees':['0x2','0x3']},\" + \"'0x2':{'name':'Jesse','company':'0x1'},\" + \"'0x3':{'name':'Joel','company':'0x1'}}\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeserializationWithMultipleTypes() {\r\n        GsonBuilder gsonBuilder = new GsonBuilder();\r\n        new GraphAdapterBuilder().addType(Company.class).addType(Employee.class).registerOn(gsonBuilder);\r\n        Gson gson = gsonBuilder.create();\r\n        String json = \"{'0x1':{'name':'Google','employees':['0x2','0x3']},\" + \"'0x2':{'name':'Jesse','company':'0x1'},\" + \"'0x3':{'name':'Joel','company':'0x1'}}\";\r\n        Company company = gson.fromJson(json, Company.class);\r\n        assertThat(company.name).isEqualTo(\"Google\");\r\n        Employee jesse = company.employees.get(0);\r\n        assertThat(jesse.name).isEqualTo(\"Jesse\");\r\n        assertThat(jesse.company).isSameInstanceAs(company);\r\n        Employee joel = company.employees.get(1);\r\n        assertThat(joel.name).isEqualTo(\"Joel\");\r\n        assertThat(joel.company).isSameInstanceAs(company);\r\n    }\r\n\r\n    @Test\r\n    public void testBuilderReuse() {\r\n        GsonBuilder gsonBuilder = new GsonBuilder();\r\n        GraphAdapterBuilder graphAdapterBuilder = new GraphAdapterBuilder().addType(Company.class, type -> new Company(\"custom\")).addType(Employee.class);\r\n        graphAdapterBuilder.registerOn(gsonBuilder);\r\n        Gson gson = gsonBuilder.create();\r\n        Company company = gson.fromJson(\"{'0x1':{}}\", Company.class);\r\n        assertThat(company.name).isEqualTo(\"custom\");\r\n        GsonBuilder gsonBuilder2 = new GsonBuilder();\r\n        // Reuse builder and overwrite creator\r\n        graphAdapterBuilder.addType(Company.class, type -> new Company(\"custom-2\"));\r\n        graphAdapterBuilder.registerOn(gsonBuilder2);\r\n        Gson gson2 = gsonBuilder2.create();\r\n        company = gson2.fromJson(\"{'0x1':{}}\", Company.class);\r\n        assertThat(company.name).isEqualTo(\"custom-2\");\r\n        // But first adapter should not have been affected\r\n        company = gson.fromJson(\"{'0x1':{}}\", Company.class);\r\n        assertThat(company.name).isEqualTo(\"custom\");\r\n    }\r\n\r\n    static class Roshambo {\r\n\r\n        String name;\r\n\r\n        Roshambo beats;\r\n\r\n        Roshambo(String name) {\r\n            this.name = name;\r\n        }\r\n    }\r\n\r\n    static class Employee {\r\n\r\n        final String name;\r\n\r\n        final Company company;\r\n\r\n        Employee(String name, Company company) {\r\n            this.name = name;\r\n            this.company = company;\r\n            this.company.employees.add(this);\r\n        }\r\n    }\r\n\r\n    static class Company {\r\n\r\n        final String name;\r\n\r\n        final List<Employee> employees = new ArrayList<>();\r\n\r\n        Company(String name) {\r\n            this.name = name;\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerialization",
+    "start_line": 30,
+    "end_line": 48,
+    "code": "@Test\r\npublic void testSerialization() {\r\n    Roshambo rock = new Roshambo(\"ROCK\");\r\n    Roshambo scissors = new Roshambo(\"SCISSORS\");\r\n    Roshambo paper = new Roshambo(\"PAPER\");\r\n    rock.beats = scissors;\r\n    scissors.beats = paper;\r\n    paper.beats = rock;\r\n    GsonBuilder gsonBuilder = new GsonBuilder();\r\n    new GraphAdapterBuilder().addType(Roshambo.class).registerOn(gsonBuilder);\r\n    Gson gson = gsonBuilder.create();\r\n    assertThat(gson.toJson(rock).replace('\"', '\\'')).isEqualTo(\"{'0x1':{'name':'ROCK','beats':'0x2'},\" + \"'0x2':{'name':'SCISSORS','beats':'0x3'},\" + \"'0x3':{'name':'PAPER','beats':'0x1'}}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserialization",
+    "start_line": 50,
+    "end_line": 68,
+    "code": "@Test\r\npublic void testDeserialization() {\r\n    String json = \"{'0x1':{'name':'ROCK','beats':'0x2'},\" + \"'0x2':{'name':'SCISSORS','beats':'0x3'},\" + \"'0x3':{'name':'PAPER','beats':'0x1'}}\";\r\n    GsonBuilder gsonBuilder = new GsonBuilder();\r\n    new GraphAdapterBuilder().addType(Roshambo.class).registerOn(gsonBuilder);\r\n    Gson gson = gsonBuilder.create();\r\n    Roshambo rock = gson.fromJson(json, Roshambo.class);\r\n    assertThat(rock.name).isEqualTo(\"ROCK\");\r\n    Roshambo scissors = rock.beats;\r\n    assertThat(scissors.name).isEqualTo(\"SCISSORS\");\r\n    Roshambo paper = scissors.beats;\r\n    assertThat(paper.name).isEqualTo(\"PAPER\");\r\n    assertThat(paper.beats).isSameInstanceAs(rock);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserializationDirectSelfReference",
+    "start_line": 70,
+    "end_line": 81,
+    "code": "@Test\r\npublic void testDeserializationDirectSelfReference() {\r\n    String json = \"{'0x1':{'name':'SUICIDE','beats':'0x1'}}\";\r\n    GsonBuilder gsonBuilder = new GsonBuilder();\r\n    new GraphAdapterBuilder().addType(Roshambo.class).registerOn(gsonBuilder);\r\n    Gson gson = gsonBuilder.create();\r\n    Roshambo suicide = gson.fromJson(json, Roshambo.class);\r\n    assertThat(suicide.name).isEqualTo(\"SUICIDE\");\r\n    assertThat(suicide.beats).isSameInstanceAs(suicide);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAddTypeCustomInstanceCreator",
+    "start_line": 83,
+    "end_line": 99,
+    "code": "@Test\r\npublic void testAddTypeCustomInstanceCreator() {\r\n    GsonBuilder gsonBuilder = new GsonBuilder();\r\n    new GraphAdapterBuilder().addType(Company.class, type -> new Company(\"custom\")).addType(Employee.class).registerOn(gsonBuilder);\r\n    Gson gson = gsonBuilder.create();\r\n    Company company = gson.fromJson(\"{'0x1':{'employees':['0x2']},'0x2':{'name':'Jesse','company':'0x1'}}\", Company.class);\r\n    assertThat(company.name).isEqualTo(\"custom\");\r\n    Employee employee = company.employees.get(0);\r\n    assertThat(employee.name).isEqualTo(\"Jesse\");\r\n    assertThat(employee.company).isSameInstanceAs(company);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAddTypeOverwrite",
+    "start_line": 101,
+    "end_line": 126,
+    "code": "@Test\r\npublic void testAddTypeOverwrite() {\r\n    GsonBuilder gsonBuilder = new GsonBuilder();\r\n    new GraphAdapterBuilder().addType(Company.class, type -> new Company(\"custom\")).// Overwrite Company creator with different custom one\r\n    addType(Company.class, type -> new Company(\"custom-2\")).addType(Employee.class).registerOn(gsonBuilder);\r\n    Gson gson = gsonBuilder.create();\r\n    Company company = gson.fromJson(\"{'0x1':{}}\", Company.class);\r\n    assertThat(company.name).isEqualTo(\"custom-2\");\r\n    gsonBuilder = new GsonBuilder();\r\n    new GraphAdapterBuilder().addType(Company.class, type -> new Company(\"custom\")).// Overwrite Company creator with default one\r\n    addType(Company.class).addType(Employee.class).registerOn(gsonBuilder);\r\n    gson = gsonBuilder.create();\r\n    company = gson.fromJson(\"{'0x1':{}}\", Company.class);\r\n    assertThat(company.name).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeListOfLists",
+    "start_line": 128,
+    "end_line": 146,
+    "code": "@Test\r\npublic void testSerializeListOfLists() {\r\n    Type listOfListsType = new TypeToken<List<List<?>>>() {\r\n    }.getType();\r\n    Type listOfAnyType = new TypeToken<List<?>>() {\r\n    }.getType();\r\n    List<List<?>> listOfLists = new ArrayList<>();\r\n    listOfLists.add(listOfLists);\r\n    listOfLists.add(new ArrayList<>());\r\n    GsonBuilder gsonBuilder = new GsonBuilder();\r\n    new GraphAdapterBuilder().addType(listOfListsType).addType(listOfAnyType).registerOn(gsonBuilder);\r\n    Gson gson = gsonBuilder.create();\r\n    String json = gson.toJson(listOfLists, listOfListsType);\r\n    assertThat(json.replace('\"', '\\'')).isEqualTo(\"{'0x1':['0x1','0x2'],'0x2':[]}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserializeListOfLists",
+    "start_line": 148,
+    "end_line": 164,
+    "code": "@Test\r\npublic void testDeserializeListOfLists() {\r\n    Type listOfAnyType = new TypeToken<List<?>>() {\r\n    }.getType();\r\n    Type listOfListsType = new TypeToken<List<List<?>>>() {\r\n    }.getType();\r\n    GsonBuilder gsonBuilder = new GsonBuilder();\r\n    new GraphAdapterBuilder().addType(listOfListsType).addType(listOfAnyType).registerOn(gsonBuilder);\r\n    Gson gson = gsonBuilder.create();\r\n    List<List<?>> listOfLists = gson.fromJson(\"{'0x1':['0x1','0x2'],'0x2':[]}\", listOfListsType);\r\n    assertThat(listOfLists).hasSize(2);\r\n    assertThat(listOfLists.get(0)).isSameInstanceAs(listOfLists);\r\n    assertThat(listOfLists.get(1)).isEmpty();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializationWithMultipleTypes",
+    "start_line": 166,
+    "end_line": 185,
+    "code": "@Test\r\npublic void testSerializationWithMultipleTypes() {\r\n    Company google = new Company(\"Google\");\r\n    // Employee constructor adds `this` to the given Company object\r\n    Employee unused1 = new Employee(\"Jesse\", google);\r\n    Employee unused2 = new Employee(\"Joel\", google);\r\n    GsonBuilder gsonBuilder = new GsonBuilder();\r\n    new GraphAdapterBuilder().addType(Company.class).addType(Employee.class).registerOn(gsonBuilder);\r\n    Gson gson = gsonBuilder.create();\r\n    assertThat(gson.toJson(google).replace('\"', '\\'')).isEqualTo(\"{'0x1':{'name':'Google','employees':['0x2','0x3']},\" + \"'0x2':{'name':'Jesse','company':'0x1'},\" + \"'0x3':{'name':'Joel','company':'0x1'}}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserializationWithMultipleTypes",
+    "start_line": 187,
+    "end_line": 208,
+    "code": "@Test\r\npublic void testDeserializationWithMultipleTypes() {\r\n    GsonBuilder gsonBuilder = new GsonBuilder();\r\n    new GraphAdapterBuilder().addType(Company.class).addType(Employee.class).registerOn(gsonBuilder);\r\n    Gson gson = gsonBuilder.create();\r\n    String json = \"{'0x1':{'name':'Google','employees':['0x2','0x3']},\" + \"'0x2':{'name':'Jesse','company':'0x1'},\" + \"'0x3':{'name':'Joel','company':'0x1'}}\";\r\n    Company company = gson.fromJson(json, Company.class);\r\n    assertThat(company.name).isEqualTo(\"Google\");\r\n    Employee jesse = company.employees.get(0);\r\n    assertThat(jesse.name).isEqualTo(\"Jesse\");\r\n    assertThat(jesse.company).isSameInstanceAs(company);\r\n    Employee joel = company.employees.get(1);\r\n    assertThat(joel.name).isEqualTo(\"Joel\");\r\n    assertThat(joel.company).isSameInstanceAs(company);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBuilderReuse",
+    "start_line": 210,
+    "end_line": 235,
+    "code": "@Test\r\npublic void testBuilderReuse() {\r\n    GsonBuilder gsonBuilder = new GsonBuilder();\r\n    GraphAdapterBuilder graphAdapterBuilder = new GraphAdapterBuilder().addType(Company.class, type -> new Company(\"custom\")).addType(Employee.class);\r\n    graphAdapterBuilder.registerOn(gsonBuilder);\r\n    Gson gson = gsonBuilder.create();\r\n    Company company = gson.fromJson(\"{'0x1':{}}\", Company.class);\r\n    assertThat(company.name).isEqualTo(\"custom\");\r\n    GsonBuilder gsonBuilder2 = new GsonBuilder();\r\n    // Reuse builder and overwrite creator\r\n    graphAdapterBuilder.addType(Company.class, type -> new Company(\"custom-2\"));\r\n    graphAdapterBuilder.registerOn(gsonBuilder2);\r\n    Gson gson2 = gsonBuilder2.create();\r\n    company = gson2.fromJson(\"{'0x1':{}}\", Company.class);\r\n    assertThat(company.name).isEqualTo(\"custom-2\");\r\n    // But first adapter should not have been affected\r\n    company = gson.fromJson(\"{'0x1':{}}\", Company.class);\r\n    assertThat(company.name).isEqualTo(\"custom\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\graph\\GraphAdapterBuilderTest.java"
+  }
+]

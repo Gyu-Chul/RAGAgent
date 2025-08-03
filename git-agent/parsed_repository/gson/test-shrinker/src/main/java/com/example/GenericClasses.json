@@ -1,0 +1,74 @@
+[
+  {
+    "type": "package",
+    "name": "com.example",
+    "start_line": 1,
+    "end_line": 1,
+    "code": "package com.example;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\GenericClasses.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 3,
+    "end_line": 3,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\GenericClasses.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.JsonAdapter",
+    "start_line": 4,
+    "end_line": 4,
+    "code": "import com.google.gson.annotations.JsonAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\GenericClasses.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.SerializedName",
+    "start_line": 5,
+    "end_line": 5,
+    "code": "import com.google.gson.annotations.SerializedName;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\GenericClasses.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 6,
+    "end_line": 6,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\GenericClasses.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 7,
+    "end_line": 7,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\GenericClasses.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 8,
+    "end_line": 8,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\GenericClasses.java"
+  },
+  {
+    "type": "class",
+    "name": "GenericClasses",
+    "start_line": 10,
+    "end_line": 68,
+    "code": "public class GenericClasses {\r\n\r\n    private GenericClasses() {\r\n    }\r\n\r\n    static class GenericClass<T> {\r\n\r\n        @SerializedName(\"t\")\r\n        T t;\r\n\r\n        @Override\r\n        public String toString() {\r\n            return \"{t=\" + t + \"}\";\r\n        }\r\n    }\r\n\r\n    static class UsingGenericClass {\r\n\r\n        @SerializedName(\"g\")\r\n        GenericClass<DummyClass> g;\r\n\r\n        @Override\r\n        public String toString() {\r\n            return \"{g=\" + g + \"}\";\r\n        }\r\n    }\r\n\r\n    static class GenericUsingGenericClass<T> {\r\n\r\n        @SerializedName(\"g\")\r\n        GenericClass<T> g;\r\n\r\n        @Override\r\n        public String toString() {\r\n            return \"{g=\" + g + \"}\";\r\n        }\r\n    }\r\n\r\n    @JsonAdapter(DummyClass.Adapter.class)\r\n    static class DummyClass {\r\n\r\n        String s;\r\n\r\n        DummyClass(String s) {\r\n            this.s = s;\r\n        }\r\n\r\n        @Override\r\n        public String toString() {\r\n            return s;\r\n        }\r\n\r\n        static class Adapter extends TypeAdapter<DummyClass> {\r\n\r\n            @Override\r\n            public DummyClass read(JsonReader in) throws IOException {\r\n                return new DummyClass(\"read-\" + in.nextInt());\r\n            }\r\n\r\n            @Override\r\n            public void write(JsonWriter out, DummyClass value) throws IOException {\r\n                throw new UnsupportedOperationException();\r\n            }\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\GenericClasses.java"
+  },
+  {
+    "type": "constructor",
+    "name": "GenericClasses",
+    "start_line": 11,
+    "end_line": 11,
+    "code": "private GenericClasses() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\GenericClasses.java"
+  }
+]

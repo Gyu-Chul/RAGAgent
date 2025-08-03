@@ -1,0 +1,138 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.BagOfPrimitives",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.common.TestTypes.BagOfPrimitives;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "class",
+    "name": "EscapingTest",
+    "start_line": 35,
+    "end_line": 100,
+    "code": "/**\r\n * Performs some functional test involving JSON output escaping.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class EscapingTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n    }\r\n\r\n    @Test\r\n    public void testEscapingQuotesInStringArray() {\r\n        String[] valueWithQuotes = { \"beforeQuote\\\"afterQuote\" };\r\n        String jsonRepresentation = gson.toJson(valueWithQuotes);\r\n        String[] target = gson.fromJson(jsonRepresentation, String[].class);\r\n        assertThat(target.length).isEqualTo(1);\r\n        assertThat(target[0]).isEqualTo(valueWithQuotes[0]);\r\n    }\r\n\r\n    @Test\r\n    public void testEscapeAllHtmlCharacters() {\r\n        List<String> strings = new ArrayList<>();\r\n        strings.add(\"<\");\r\n        strings.add(\">\");\r\n        strings.add(\"=\");\r\n        strings.add(\"&\");\r\n        strings.add(\"'\");\r\n        strings.add(\"\\\"\");\r\n        assertThat(gson.toJson(strings)).isEqualTo(\"[\\\"\\\\u003c\\\",\\\"\\\\u003e\\\",\\\"\\\\u003d\\\",\\\"\\\\u0026\\\",\\\"\\\\u0027\\\",\\\"\\\\\\\"\\\"]\");\r\n    }\r\n\r\n    @Test\r\n    public void testEscapingObjectFields() {\r\n        BagOfPrimitives objWithPrimitives = new BagOfPrimitives(1L, 1, true, \"test with\\\" <script>\");\r\n        String jsonRepresentation = gson.toJson(objWithPrimitives);\r\n        assertThat(jsonRepresentation).doesNotContain(\"<\");\r\n        assertThat(jsonRepresentation).doesNotContain(\">\");\r\n        assertThat(jsonRepresentation).contains(\"\\\\\\\"\");\r\n        BagOfPrimitives deserialized = gson.fromJson(jsonRepresentation, BagOfPrimitives.class);\r\n        assertThat(deserialized.getExpectedJson()).isEqualTo(objWithPrimitives.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testGsonAcceptsEscapedAndNonEscapedJsonDeserialization() {\r\n        Gson escapeHtmlGson = new GsonBuilder().create();\r\n        Gson noEscapeHtmlGson = new GsonBuilder().disableHtmlEscaping().create();\r\n        BagOfPrimitives target = new BagOfPrimitives(1L, 1, true, \"test' / w'ith\\\" / \\\\ <script>\");\r\n        String escapedJsonForm = escapeHtmlGson.toJson(target);\r\n        String nonEscapedJsonForm = noEscapeHtmlGson.toJson(target);\r\n        assertThat(escapedJsonForm).isNotEqualTo(nonEscapedJsonForm);\r\n        assertThat(noEscapeHtmlGson.fromJson(escapedJsonForm, BagOfPrimitives.class)).isEqualTo(target);\r\n        assertThat(escapeHtmlGson.fromJson(nonEscapedJsonForm, BagOfPrimitives.class)).isEqualTo(target);\r\n    }\r\n\r\n    @Test\r\n    public void testGsonDoubleDeserialization() {\r\n        BagOfPrimitives expected = new BagOfPrimitives(3L, 4, true, \"value1\");\r\n        String json = gson.toJson(gson.toJson(expected));\r\n        String value = gson.fromJson(json, String.class);\r\n        BagOfPrimitives actual = gson.fromJson(value, BagOfPrimitives.class);\r\n        assertThat(actual).isEqualTo(expected);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 38,
+    "end_line": 41,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEscapingQuotesInStringArray",
+    "start_line": 43,
+    "end_line": 50,
+    "code": "@Test\r\npublic void testEscapingQuotesInStringArray() {\r\n    String[] valueWithQuotes = { \"beforeQuote\\\"afterQuote\" };\r\n    String jsonRepresentation = gson.toJson(valueWithQuotes);\r\n    String[] target = gson.fromJson(jsonRepresentation, String[].class);\r\n    assertThat(target.length).isEqualTo(1);\r\n    assertThat(target[0]).isEqualTo(valueWithQuotes[0]);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEscapeAllHtmlCharacters",
+    "start_line": 52,
+    "end_line": 63,
+    "code": "@Test\r\npublic void testEscapeAllHtmlCharacters() {\r\n    List<String> strings = new ArrayList<>();\r\n    strings.add(\"<\");\r\n    strings.add(\">\");\r\n    strings.add(\"=\");\r\n    strings.add(\"&\");\r\n    strings.add(\"'\");\r\n    strings.add(\"\\\"\");\r\n    assertThat(gson.toJson(strings)).isEqualTo(\"[\\\"\\\\u003c\\\",\\\"\\\\u003e\\\",\\\"\\\\u003d\\\",\\\"\\\\u0026\\\",\\\"\\\\u0027\\\",\\\"\\\\\\\"\\\"]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEscapingObjectFields",
+    "start_line": 65,
+    "end_line": 75,
+    "code": "@Test\r\npublic void testEscapingObjectFields() {\r\n    BagOfPrimitives objWithPrimitives = new BagOfPrimitives(1L, 1, true, \"test with\\\" <script>\");\r\n    String jsonRepresentation = gson.toJson(objWithPrimitives);\r\n    assertThat(jsonRepresentation).doesNotContain(\"<\");\r\n    assertThat(jsonRepresentation).doesNotContain(\">\");\r\n    assertThat(jsonRepresentation).contains(\"\\\\\\\"\");\r\n    BagOfPrimitives deserialized = gson.fromJson(jsonRepresentation, BagOfPrimitives.class);\r\n    assertThat(deserialized.getExpectedJson()).isEqualTo(objWithPrimitives.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonAcceptsEscapedAndNonEscapedJsonDeserialization",
+    "start_line": 77,
+    "end_line": 90,
+    "code": "@Test\r\npublic void testGsonAcceptsEscapedAndNonEscapedJsonDeserialization() {\r\n    Gson escapeHtmlGson = new GsonBuilder().create();\r\n    Gson noEscapeHtmlGson = new GsonBuilder().disableHtmlEscaping().create();\r\n    BagOfPrimitives target = new BagOfPrimitives(1L, 1, true, \"test' / w'ith\\\" / \\\\ <script>\");\r\n    String escapedJsonForm = escapeHtmlGson.toJson(target);\r\n    String nonEscapedJsonForm = noEscapeHtmlGson.toJson(target);\r\n    assertThat(escapedJsonForm).isNotEqualTo(nonEscapedJsonForm);\r\n    assertThat(noEscapeHtmlGson.fromJson(escapedJsonForm, BagOfPrimitives.class)).isEqualTo(target);\r\n    assertThat(escapeHtmlGson.fromJson(nonEscapedJsonForm, BagOfPrimitives.class)).isEqualTo(target);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonDoubleDeserialization",
+    "start_line": 92,
+    "end_line": 99,
+    "code": "@Test\r\npublic void testGsonDoubleDeserialization() {\r\n    BagOfPrimitives expected = new BagOfPrimitives(3L, 4, true, \"value1\");\r\n    String json = gson.toJson(gson.toJson(expected));\r\n    String value = gson.fromJson(json, String.class);\r\n    BagOfPrimitives actual = gson.fromJson(value, BagOfPrimitives.class);\r\n    assertThat(actual).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\EscapingTest.java"
+  }
+]

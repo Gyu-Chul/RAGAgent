@@ -1,0 +1,122 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 1,
+    "end_line": 1,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.testing.MapTestSuiteBuilder",
+    "start_line": 3,
+    "end_line": 3,
+    "code": "import com.google.common.collect.testing.MapTestSuiteBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.testing.SampleElements",
+    "start_line": 4,
+    "end_line": 4,
+    "code": "import com.google.common.collect.testing.SampleElements;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.testing.TestMapGenerator",
+    "start_line": 5,
+    "end_line": 5,
+    "code": "import com.google.common.collect.testing.TestMapGenerator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.testing.features.CollectionFeature",
+    "start_line": 6,
+    "end_line": 6,
+    "code": "import com.google.common.collect.testing.features.CollectionFeature;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.testing.features.CollectionSize",
+    "start_line": 7,
+    "end_line": 7,
+    "code": "import com.google.common.collect.testing.features.CollectionSize;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.testing.features.MapFeature",
+    "start_line": 8,
+    "end_line": 8,
+    "code": "import com.google.common.collect.testing.features.MapFeature;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 9,
+    "end_line": 9,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 10,
+    "end_line": 10,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map.Entry",
+    "start_line": 11,
+    "end_line": 11,
+    "code": "import java.util.Map.Entry;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "junit.framework.Test",
+    "start_line": 12,
+    "end_line": 12,
+    "code": "import junit.framework.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.runner.RunWith",
+    "start_line": 13,
+    "end_line": 13,
+    "code": "import org.junit.runner.RunWith;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.runners.AllTests",
+    "start_line": 14,
+    "end_line": 14,
+    "code": "import org.junit.runners.AllTests;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonObjectAsMapSuiteTest",
+    "start_line": 21,
+    "end_line": 88,
+    "code": "/**\r\n * Dynamic {@link MapTestSuiteBuilder Map test suite} for {@link JsonObject#asMap()}. This\r\n * complements {@link JsonObjectAsMapTest}, which can cover some cases which are not covered here,\r\n * e.g. making sure changes in the {@code Map} view are visible in the {@code JsonObject}.\r\n */\r\n@RunWith(AllTests.class)\r\npublic class JsonObjectAsMapSuiteTest {\r\n\r\n    private static class MapGenerator implements TestMapGenerator<String, JsonElement> {\r\n\r\n        @Override\r\n        public SampleElements<Entry<String, JsonElement>> samples() {\r\n            return new SampleElements<>(Map.entry(\"one\", JsonNull.INSTANCE), Map.entry(\"two\", new JsonPrimitive(true)), Map.entry(\"three\", new JsonPrimitive(\"test\")), Map.entry(\"four\", new JsonArray()), Map.entry(\"five\", new JsonObject()));\r\n        }\r\n\r\n        @Override\r\n        public Map<String, JsonElement> create(Object... elements) {\r\n            JsonObject object = new JsonObject();\r\n            // This is not completely accurate: Because there is no way to directly construct JsonObject\r\n            // or its Map view with existing entries, this has to add the entries individually with\r\n            // `Map#put`\r\n            var map = object.asMap();\r\n            for (Object element : elements) {\r\n                var entry = (Entry<?, ?>) element;\r\n                map.put((String) entry.getKey(), (JsonElement) entry.getValue());\r\n            }\r\n            return map;\r\n        }\r\n\r\n        @SuppressWarnings(\"unchecked\")\r\n        @Override\r\n        public Entry<String, JsonElement>[] createArray(int length) {\r\n            return (Entry<String, JsonElement>[]) new Entry<?, ?>[length];\r\n        }\r\n\r\n        @Override\r\n        public Iterable<Entry<String, JsonElement>> order(List<Entry<String, JsonElement>> insertionOrder) {\r\n            // Preserves insertion order\r\n            return insertionOrder;\r\n        }\r\n\r\n        @Override\r\n        public String[] createKeyArray(int length) {\r\n            return new String[length];\r\n        }\r\n\r\n        @Override\r\n        public JsonElement[] createValueArray(int length) {\r\n            return new JsonElement[length];\r\n        }\r\n    }\r\n\r\n    // Special method recognized by JUnit's `AllTests` runner\r\n    public static Test suite() {\r\n        return MapTestSuiteBuilder.using(new MapGenerator()).withFeatures(CollectionSize.ANY, MapFeature.ALLOWS_ANY_NULL_QUERIES, // Map only allows String keys\r\n        MapFeature.RESTRICTS_KEYS, // Map only allows JsonElement values\r\n        MapFeature.RESTRICTS_VALUES, MapFeature.SUPPORTS_PUT, MapFeature.SUPPORTS_REMOVE, // Affects keySet, values and entrySet (?)\r\n        // Map preserves insertion order\r\n        CollectionFeature.KNOWN_ORDER, CollectionFeature.SUPPORTS_ITERATOR_REMOVE).named(\"JsonObject#asMap\").createTestSuite();\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  },
+  {
+    "type": "method",
+    "name": "suite",
+    "start_line": 73,
+    "end_line": 87,
+    "code": "// Special method recognized by JUnit's `AllTests` runner\r\npublic static Test suite() {\r\n    return MapTestSuiteBuilder.using(new MapGenerator()).withFeatures(CollectionSize.ANY, MapFeature.ALLOWS_ANY_NULL_QUERIES, // Map only allows String keys\r\n    MapFeature.RESTRICTS_KEYS, // Map only allows JsonElement values\r\n    MapFeature.RESTRICTS_VALUES, MapFeature.SUPPORTS_PUT, MapFeature.SUPPORTS_REMOVE, // Affects keySet, values and entrySet (?)\r\n    // Map preserves insertion order\r\n    CollectionFeature.KNOWN_ORDER, CollectionFeature.SUPPORTS_ITERATOR_REMOVE).named(\"JsonObject#asMap\").createTestSuite();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapSuiteTest.java"
+  }
+]

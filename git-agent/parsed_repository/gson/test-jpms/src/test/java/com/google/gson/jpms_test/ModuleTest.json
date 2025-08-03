@@ -1,0 +1,146 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.jpms_test",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.jpms_test;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.module.ModuleDescriptor",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.lang.module.ModuleDescriptor;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.module.ModuleDescriptor.Exports",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.lang.module.ModuleDescriptor.Exports;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.module.ModuleDescriptor.Requires",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.lang.module.ModuleDescriptor.Requires;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.net.URL",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.net.URL;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Set",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.util.Set;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.stream.Collectors",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.util.stream.Collectors;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.stream.Stream",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.util.stream.Stream;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "class",
+    "name": "ModuleTest",
+    "start_line": 35,
+    "end_line": 114,
+    "code": "/**\r\n * Verifies that this test project is properly set up and has a module descriptor, and checks Gson's\r\n * module descriptor.\r\n */\r\npublic class ModuleTest {\r\n\r\n    @Test\r\n    public void testOwnModule() {\r\n        Module module = getClass().getModule();\r\n        assertThat(module.getName()).isEqualTo(\"com.google.gson.jpms_test\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonModule() {\r\n        // Verify that this test actually loads the final Gson JAR, and not only compiled classes\r\n        // Note: This might fail when run from the IDE, but should succeed when run with Maven from\r\n        // command line\r\n        URL gsonLocation = Gson.class.getProtectionDomain().getCodeSource().getLocation();\r\n        assertThat(gsonLocation.getPath()).containsMatch(\"gson/target/gson-[^/]+\\\\.jar\");\r\n        Module module = Gson.class.getModule();\r\n        ModuleDescriptor moduleDescriptor = module.getDescriptor();\r\n        assertThat(moduleDescriptor.name()).isEqualTo(\"com.google.gson\");\r\n        // Permit `Modifier.SYNTHETIC`; current versions of Moditect seem to set that\r\n        assertThat(moduleDescriptor.modifiers()).containsNoneOf(ModuleDescriptor.Modifier.AUTOMATIC, ModuleDescriptor.Modifier.MANDATED, ModuleDescriptor.Modifier.OPEN);\r\n        // Should have implicitly included the Maven project version\r\n        assertThat(moduleDescriptor.rawVersion()).isPresent();\r\n        Set<Requires> moduleRequires = moduleDescriptor.requires();\r\n        assertThat(getModuleDependencies(moduleRequires)).containsExactly(\"com.google.errorprone.annotations\", \"java.sql\", \"jdk.unsupported\");\r\n        assertThat(getTransitiveModuleDependencies(moduleRequires)).isEmpty();\r\n        assertThat(getOptionalModuleDependencies(moduleRequires)).containsExactly(\"com.google.errorprone.annotations\", \"java.sql\", \"jdk.unsupported\");\r\n        Set<Exports> packageExports = moduleDescriptor.exports();\r\n        assertThat(packageExports.stream().map(Exports::source)).containsExactly(\"com.google.gson\", \"com.google.gson.annotations\", \"com.google.gson.reflect\", \"com.google.gson.stream\");\r\n        // Gson currently does not export packages to specific modules only\r\n        assertThat(packageExports.stream().filter(Exports::isQualified)).isEmpty();\r\n        // Gson does not allow access to its implementation details using reflection\r\n        assertThat(moduleDescriptor.opens()).isEmpty();\r\n        // Gson currently does not use or provide any services\r\n        assertThat(moduleDescriptor.uses()).isEmpty();\r\n        assertThat(moduleDescriptor.provides()).isEmpty();\r\n        // Gson has no main class\r\n        assertThat(moduleDescriptor.mainClass()).isEmpty();\r\n    }\r\n\r\n    private static Stream<Requires> filterImplicitRequires(Set<Requires> requires) {\r\n        return requires.stream().filter(r -> !r.modifiers().contains(Requires.Modifier.MANDATED) && !r.modifiers().contains(Requires.Modifier.SYNTHETIC));\r\n    }\r\n\r\n    private static Set<String> getModuleDependencies(Set<Requires> requires) {\r\n        return filterImplicitRequires(requires).map(Requires::name).collect(Collectors.toSet());\r\n    }\r\n\r\n    private static Set<String> getTransitiveModuleDependencies(Set<Requires> requires) {\r\n        return filterImplicitRequires(requires).filter(r -> r.modifiers().contains(Requires.Modifier.TRANSITIVE)).map(Requires::name).collect(Collectors.toSet());\r\n    }\r\n\r\n    private static Set<String> getOptionalModuleDependencies(Set<Requires> requires) {\r\n        return filterImplicitRequires(requires).filter(r -> r.modifiers().contains(Requires.Modifier.STATIC)).map(Requires::name).collect(Collectors.toSet());\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testOwnModule",
+    "start_line": 36,
+    "end_line": 40,
+    "code": "@Test\r\npublic void testOwnModule() {\r\n    Module module = getClass().getModule();\r\n    assertThat(module.getName()).isEqualTo(\"com.google.gson.jpms_test\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonModule",
+    "start_line": 42,
+    "end_line": 87,
+    "code": "@Test\r\npublic void testGsonModule() {\r\n    // Verify that this test actually loads the final Gson JAR, and not only compiled classes\r\n    // Note: This might fail when run from the IDE, but should succeed when run with Maven from\r\n    // command line\r\n    URL gsonLocation = Gson.class.getProtectionDomain().getCodeSource().getLocation();\r\n    assertThat(gsonLocation.getPath()).containsMatch(\"gson/target/gson-[^/]+\\\\.jar\");\r\n    Module module = Gson.class.getModule();\r\n    ModuleDescriptor moduleDescriptor = module.getDescriptor();\r\n    assertThat(moduleDescriptor.name()).isEqualTo(\"com.google.gson\");\r\n    // Permit `Modifier.SYNTHETIC`; current versions of Moditect seem to set that\r\n    assertThat(moduleDescriptor.modifiers()).containsNoneOf(ModuleDescriptor.Modifier.AUTOMATIC, ModuleDescriptor.Modifier.MANDATED, ModuleDescriptor.Modifier.OPEN);\r\n    // Should have implicitly included the Maven project version\r\n    assertThat(moduleDescriptor.rawVersion()).isPresent();\r\n    Set<Requires> moduleRequires = moduleDescriptor.requires();\r\n    assertThat(getModuleDependencies(moduleRequires)).containsExactly(\"com.google.errorprone.annotations\", \"java.sql\", \"jdk.unsupported\");\r\n    assertThat(getTransitiveModuleDependencies(moduleRequires)).isEmpty();\r\n    assertThat(getOptionalModuleDependencies(moduleRequires)).containsExactly(\"com.google.errorprone.annotations\", \"java.sql\", \"jdk.unsupported\");\r\n    Set<Exports> packageExports = moduleDescriptor.exports();\r\n    assertThat(packageExports.stream().map(Exports::source)).containsExactly(\"com.google.gson\", \"com.google.gson.annotations\", \"com.google.gson.reflect\", \"com.google.gson.stream\");\r\n    // Gson currently does not export packages to specific modules only\r\n    assertThat(packageExports.stream().filter(Exports::isQualified)).isEmpty();\r\n    // Gson does not allow access to its implementation details using reflection\r\n    assertThat(moduleDescriptor.opens()).isEmpty();\r\n    // Gson currently does not use or provide any services\r\n    assertThat(moduleDescriptor.uses()).isEmpty();\r\n    assertThat(moduleDescriptor.provides()).isEmpty();\r\n    // Gson has no main class\r\n    assertThat(moduleDescriptor.mainClass()).isEmpty();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "method",
+    "name": "filterImplicitRequires",
+    "start_line": 89,
+    "end_line": 95,
+    "code": "private static Stream<Requires> filterImplicitRequires(Set<Requires> requires) {\r\n    return requires.stream().filter(r -> !r.modifiers().contains(Requires.Modifier.MANDATED) && !r.modifiers().contains(Requires.Modifier.SYNTHETIC));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "method",
+    "name": "getModuleDependencies",
+    "start_line": 97,
+    "end_line": 99,
+    "code": "private static Set<String> getModuleDependencies(Set<Requires> requires) {\r\n    return filterImplicitRequires(requires).map(Requires::name).collect(Collectors.toSet());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "method",
+    "name": "getTransitiveModuleDependencies",
+    "start_line": 101,
+    "end_line": 106,
+    "code": "private static Set<String> getTransitiveModuleDependencies(Set<Requires> requires) {\r\n    return filterImplicitRequires(requires).filter(r -> r.modifiers().contains(Requires.Modifier.TRANSITIVE)).map(Requires::name).collect(Collectors.toSet());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  },
+  {
+    "type": "method",
+    "name": "getOptionalModuleDependencies",
+    "start_line": 108,
+    "end_line": 113,
+    "code": "private static Set<String> getOptionalModuleDependencies(Set<Requires> requires) {\r\n    return filterImplicitRequires(requires).filter(r -> r.modifiers().contains(Requires.Modifier.STATIC)).map(Requires::name).collect(Collectors.toSet());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-jpms\\src\\test\\java\\com\\google\\gson\\jpms_test\\ModuleTest.java"
+  }
+]

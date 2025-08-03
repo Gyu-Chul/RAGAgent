@@ -1,0 +1,18 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.stream",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.stream;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\stream\\JsonToken.java"
+  },
+  {
+    "type": "enum",
+    "name": "JsonToken",
+    "start_line": 25,
+    "end_line": 76,
+    "code": "/**\r\n * A structure, name or value type in a JSON-encoded string.\r\n *\r\n * @author Jesse Wilson\r\n * @since 1.6\r\n */\r\npublic enum JsonToken {\r\n\r\n    /**\r\n     * The opening of a JSON array. Written using {@link JsonWriter#beginArray} and read using {@link\r\n     * JsonReader#beginArray}.\r\n     */\r\n    BEGIN_ARRAY,\r\n    /**\r\n     * The closing of a JSON array. Written using {@link JsonWriter#endArray} and read using {@link\r\n     * JsonReader#endArray}.\r\n     */\r\n    END_ARRAY,\r\n    /**\r\n     * The opening of a JSON object. Written using {@link JsonWriter#beginObject} and read using\r\n     * {@link JsonReader#beginObject}.\r\n     */\r\n    BEGIN_OBJECT,\r\n    /**\r\n     * The closing of a JSON object. Written using {@link JsonWriter#endObject} and read using {@link\r\n     * JsonReader#endObject}.\r\n     */\r\n    END_OBJECT,\r\n    /**\r\n     * A JSON property name. Within objects, tokens alternate between names and their values. Written\r\n     * using {@link JsonWriter#name} and read using {@link JsonReader#nextName}\r\n     */\r\n    NAME,\r\n    /**\r\n     * A JSON string.\r\n     */\r\n    STRING,\r\n    /**\r\n     * A JSON number represented in this API by a Java {@code double}, {@code long}, or {@code int}.\r\n     */\r\n    NUMBER,\r\n    /**\r\n     * A JSON {@code true} or {@code false}.\r\n     */\r\n    BOOLEAN,\r\n    /**\r\n     * A JSON {@code null}.\r\n     */\r\n    NULL,\r\n    /**\r\n     * The end of the JSON stream. This sentinel value is returned by {@link JsonReader#peek()} to\r\n     * signal that the JSON-encoded value has no more tokens.\r\n     */\r\n    END_DOCUMENT\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\stream\\JsonToken.java"
+  }
+]

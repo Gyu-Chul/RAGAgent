@@ -1,0 +1,330 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.ExclusionStrategy",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.ExclusionStrategy;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.FieldAttributes",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.FieldAttributes;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapterFactory",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.TypeAdapterFactory;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.Expose",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.annotations.Expose;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.Since",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.annotations.Since;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.Until",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.annotations.Until;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.reflect.ReflectionHelper",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.internal.reflect.ReflectionHelper;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Field",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.lang.reflect.Field;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Modifier",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import java.lang.reflect.Modifier;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collections",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "import java.util.Collections;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "class",
+    "name": "Excluder",
+    "start_line": 49,
+    "end_line": 257,
+    "code": "/**\r\n * This class selects which fields and types to omit. It is configurable, supporting version\r\n * attributes {@link Since} and {@link Until}, modifiers, synthetic fields, anonymous and local\r\n * classes, inner classes, and fields with the {@link Expose} annotation.\r\n *\r\n * <p>This class is a type adapter factory; types that are excluded will be adapted to null. It may\r\n * delegate to another type adapter if only one direction is excluded.\r\n *\r\n * @author Joel Leitch\r\n * @author Jesse Wilson\r\n */\r\npublic final class Excluder implements TypeAdapterFactory, Cloneable {\r\n\r\n    private static final double IGNORE_VERSIONS = -1.0d;\r\n\r\n    public static final Excluder DEFAULT = new Excluder();\r\n\r\n    private double version = IGNORE_VERSIONS;\r\n\r\n    private int modifiers = Modifier.TRANSIENT | Modifier.STATIC;\r\n\r\n    private boolean serializeInnerClasses = true;\r\n\r\n    private boolean requireExpose;\r\n\r\n    private List<ExclusionStrategy> serializationStrategies = Collections.emptyList();\r\n\r\n    private List<ExclusionStrategy> deserializationStrategies = Collections.emptyList();\r\n\r\n    @Override\r\n    protected Excluder clone() {\r\n        try {\r\n            return (Excluder) super.clone();\r\n        } catch (CloneNotSupportedException e) {\r\n            throw new AssertionError(e);\r\n        }\r\n    }\r\n\r\n    public Excluder withVersion(double ignoreVersionsAfter) {\r\n        Excluder result = clone();\r\n        result.version = ignoreVersionsAfter;\r\n        return result;\r\n    }\r\n\r\n    public Excluder withModifiers(int... modifiers) {\r\n        Excluder result = clone();\r\n        result.modifiers = 0;\r\n        for (int modifier : modifiers) {\r\n            result.modifiers |= modifier;\r\n        }\r\n        return result;\r\n    }\r\n\r\n    public Excluder disableInnerClassSerialization() {\r\n        Excluder result = clone();\r\n        result.serializeInnerClasses = false;\r\n        return result;\r\n    }\r\n\r\n    public Excluder excludeFieldsWithoutExposeAnnotation() {\r\n        Excluder result = clone();\r\n        result.requireExpose = true;\r\n        return result;\r\n    }\r\n\r\n    public Excluder withExclusionStrategy(ExclusionStrategy exclusionStrategy, boolean serialization, boolean deserialization) {\r\n        Excluder result = clone();\r\n        if (serialization) {\r\n            result.serializationStrategies = new ArrayList<>(serializationStrategies);\r\n            result.serializationStrategies.add(exclusionStrategy);\r\n        }\r\n        if (deserialization) {\r\n            result.deserializationStrategies = new ArrayList<>(deserializationStrategies);\r\n            result.deserializationStrategies.add(exclusionStrategy);\r\n        }\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {\r\n        Class<?> rawType = type.getRawType();\r\n        boolean skipSerialize = excludeClass(rawType, true);\r\n        boolean skipDeserialize = excludeClass(rawType, false);\r\n        if (!skipSerialize && !skipDeserialize) {\r\n            return null;\r\n        }\r\n        return new TypeAdapter<T>() {\r\n\r\n            /**\r\n             * The delegate is lazily created because it may not be needed, and creating it may fail.\r\n             * Field has to be {@code volatile} because {@link Gson} guarantees to be thread-safe.\r\n             */\r\n            private volatile TypeAdapter<T> delegate;\r\n\r\n            @Override\r\n            public T read(JsonReader in) throws IOException {\r\n                if (skipDeserialize) {\r\n                    in.skipValue();\r\n                    return null;\r\n                }\r\n                return delegate().read(in);\r\n            }\r\n\r\n            @Override\r\n            public void write(JsonWriter out, T value) throws IOException {\r\n                if (skipSerialize) {\r\n                    out.nullValue();\r\n                    return;\r\n                }\r\n                delegate().write(out, value);\r\n            }\r\n\r\n            private TypeAdapter<T> delegate() {\r\n                // A race might lead to `delegate` being assigned by multiple threads but the last\r\n                // assignment will stick\r\n                TypeAdapter<T> d = delegate;\r\n                if (d == null) {\r\n                    d = delegate = gson.getDelegateAdapter(Excluder.this, type);\r\n                }\r\n                return d;\r\n            }\r\n        };\r\n    }\r\n\r\n    public boolean excludeField(Field field, boolean serialize) {\r\n        if ((modifiers & field.getModifiers()) != 0) {\r\n            return true;\r\n        }\r\n        if (version != Excluder.IGNORE_VERSIONS && !isValidVersion(field.getAnnotation(Since.class), field.getAnnotation(Until.class))) {\r\n            return true;\r\n        }\r\n        if (field.isSynthetic()) {\r\n            return true;\r\n        }\r\n        if (requireExpose) {\r\n            Expose annotation = field.getAnnotation(Expose.class);\r\n            if (annotation == null || (serialize ? !annotation.serialize() : !annotation.deserialize())) {\r\n                return true;\r\n            }\r\n        }\r\n        if (excludeClass(field.getType(), serialize)) {\r\n            return true;\r\n        }\r\n        List<ExclusionStrategy> list = serialize ? serializationStrategies : deserializationStrategies;\r\n        if (!list.isEmpty()) {\r\n            FieldAttributes fieldAttributes = new FieldAttributes(field);\r\n            for (ExclusionStrategy exclusionStrategy : list) {\r\n                if (exclusionStrategy.shouldSkipField(fieldAttributes)) {\r\n                    return true;\r\n                }\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n\r\n    // public for unit tests; can otherwise be private\r\n    public boolean excludeClass(Class<?> clazz, boolean serialize) {\r\n        if (version != Excluder.IGNORE_VERSIONS && !isValidVersion(clazz.getAnnotation(Since.class), clazz.getAnnotation(Until.class))) {\r\n            return true;\r\n        }\r\n        if (!serializeInnerClasses && isInnerClass(clazz)) {\r\n            return true;\r\n        }\r\n        /*\r\n     * Exclude anonymous and local classes because they can have synthetic fields capturing enclosing\r\n     * values which makes serialization and deserialization unreliable.\r\n     * Don't exclude anonymous enum subclasses because enum types have a built-in adapter.\r\n     *\r\n     * Exclude only for deserialization; for serialization allow because custom adapter might be\r\n     * used; if no custom adapter exists reflection-based adapter otherwise excludes value.\r\n     *\r\n     * Cannot allow deserialization reliably here because some custom adapters like Collection adapter\r\n     * fall back to creating instances using Unsafe, which would likely lead to runtime exceptions\r\n     * for anonymous and local classes if they capture values.\r\n     */\r\n        if (!serialize && !Enum.class.isAssignableFrom(clazz) && ReflectionHelper.isAnonymousOrNonStaticLocal(clazz)) {\r\n            return true;\r\n        }\r\n        List<ExclusionStrategy> list = serialize ? serializationStrategies : deserializationStrategies;\r\n        for (ExclusionStrategy exclusionStrategy : list) {\r\n            if (exclusionStrategy.shouldSkipClass(clazz)) {\r\n                return true;\r\n            }\r\n        }\r\n        return false;\r\n    }\r\n\r\n    private static boolean isInnerClass(Class<?> clazz) {\r\n        return clazz.isMemberClass() && !ReflectionHelper.isStatic(clazz);\r\n    }\r\n\r\n    private boolean isValidVersion(Since since, Until until) {\r\n        return isValidSince(since) && isValidUntil(until);\r\n    }\r\n\r\n    private boolean isValidSince(Since annotation) {\r\n        if (annotation != null) {\r\n            double annotationVersion = annotation.value();\r\n            return version >= annotationVersion;\r\n        }\r\n        return true;\r\n    }\r\n\r\n    private boolean isValidUntil(Until annotation) {\r\n        if (annotation != null) {\r\n            double annotationVersion = annotation.value();\r\n            return version < annotationVersion;\r\n        }\r\n        return true;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "field",
+    "name": "IGNORE_VERSIONS",
+    "start_line": 50,
+    "end_line": 50,
+    "code": "private static final double IGNORE_VERSIONS = -1.0d;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "field",
+    "name": "DEFAULT",
+    "start_line": 51,
+    "end_line": 51,
+    "code": "public static final Excluder DEFAULT = new Excluder();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "field",
+    "name": "version",
+    "start_line": 53,
+    "end_line": 53,
+    "code": "private double version = IGNORE_VERSIONS;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "field",
+    "name": "modifiers",
+    "start_line": 54,
+    "end_line": 54,
+    "code": "private int modifiers = Modifier.TRANSIENT | Modifier.STATIC;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "field",
+    "name": "serializeInnerClasses",
+    "start_line": 55,
+    "end_line": 55,
+    "code": "private boolean serializeInnerClasses = true;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "field",
+    "name": "requireExpose",
+    "start_line": 56,
+    "end_line": 56,
+    "code": "private boolean requireExpose;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "field",
+    "name": "serializationStrategies",
+    "start_line": 57,
+    "end_line": 57,
+    "code": "private List<ExclusionStrategy> serializationStrategies = Collections.emptyList();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "field",
+    "name": "deserializationStrategies",
+    "start_line": 58,
+    "end_line": 58,
+    "code": "private List<ExclusionStrategy> deserializationStrategies = Collections.emptyList();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "clone",
+    "start_line": 60,
+    "end_line": 67,
+    "code": "@Override\r\nprotected Excluder clone() {\r\n    try {\r\n        return (Excluder) super.clone();\r\n    } catch (CloneNotSupportedException e) {\r\n        throw new AssertionError(e);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "withVersion",
+    "start_line": 69,
+    "end_line": 73,
+    "code": "public Excluder withVersion(double ignoreVersionsAfter) {\r\n    Excluder result = clone();\r\n    result.version = ignoreVersionsAfter;\r\n    return result;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "withModifiers",
+    "start_line": 75,
+    "end_line": 82,
+    "code": "public Excluder withModifiers(int... modifiers) {\r\n    Excluder result = clone();\r\n    result.modifiers = 0;\r\n    for (int modifier : modifiers) {\r\n        result.modifiers |= modifier;\r\n    }\r\n    return result;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "disableInnerClassSerialization",
+    "start_line": 84,
+    "end_line": 88,
+    "code": "public Excluder disableInnerClassSerialization() {\r\n    Excluder result = clone();\r\n    result.serializeInnerClasses = false;\r\n    return result;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "excludeFieldsWithoutExposeAnnotation",
+    "start_line": 90,
+    "end_line": 94,
+    "code": "public Excluder excludeFieldsWithoutExposeAnnotation() {\r\n    Excluder result = clone();\r\n    result.requireExpose = true;\r\n    return result;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "withExclusionStrategy",
+    "start_line": 96,
+    "end_line": 108,
+    "code": "public Excluder withExclusionStrategy(ExclusionStrategy exclusionStrategy, boolean serialization, boolean deserialization) {\r\n    Excluder result = clone();\r\n    if (serialization) {\r\n        result.serializationStrategies = new ArrayList<>(serializationStrategies);\r\n        result.serializationStrategies.add(exclusionStrategy);\r\n    }\r\n    if (deserialization) {\r\n        result.deserializationStrategies = new ArrayList<>(deserializationStrategies);\r\n        result.deserializationStrategies.add(exclusionStrategy);\r\n    }\r\n    return result;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "create",
+    "start_line": 110,
+    "end_line": 156,
+    "code": "@Override\r\npublic <T> TypeAdapter<T> create(Gson gson, TypeToken<T> type) {\r\n    Class<?> rawType = type.getRawType();\r\n    boolean skipSerialize = excludeClass(rawType, true);\r\n    boolean skipDeserialize = excludeClass(rawType, false);\r\n    if (!skipSerialize && !skipDeserialize) {\r\n        return null;\r\n    }\r\n    return new TypeAdapter<T>() {\r\n\r\n        /**\r\n         * The delegate is lazily created because it may not be needed, and creating it may fail.\r\n         * Field has to be {@code volatile} because {@link Gson} guarantees to be thread-safe.\r\n         */\r\n        private volatile TypeAdapter<T> delegate;\r\n\r\n        @Override\r\n        public T read(JsonReader in) throws IOException {\r\n            if (skipDeserialize) {\r\n                in.skipValue();\r\n                return null;\r\n            }\r\n            return delegate().read(in);\r\n        }\r\n\r\n        @Override\r\n        public void write(JsonWriter out, T value) throws IOException {\r\n            if (skipSerialize) {\r\n                out.nullValue();\r\n                return;\r\n            }\r\n            delegate().write(out, value);\r\n        }\r\n\r\n        private TypeAdapter<T> delegate() {\r\n            // A race might lead to `delegate` being assigned by multiple threads but the last\r\n            // assignment will stick\r\n            TypeAdapter<T> d = delegate;\r\n            if (d == null) {\r\n                d = delegate = gson.getDelegateAdapter(Excluder.this, type);\r\n            }\r\n            return d;\r\n        }\r\n    };\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "excludeField",
+    "start_line": 158,
+    "end_line": 194,
+    "code": "public boolean excludeField(Field field, boolean serialize) {\r\n    if ((modifiers & field.getModifiers()) != 0) {\r\n        return true;\r\n    }\r\n    if (version != Excluder.IGNORE_VERSIONS && !isValidVersion(field.getAnnotation(Since.class), field.getAnnotation(Until.class))) {\r\n        return true;\r\n    }\r\n    if (field.isSynthetic()) {\r\n        return true;\r\n    }\r\n    if (requireExpose) {\r\n        Expose annotation = field.getAnnotation(Expose.class);\r\n        if (annotation == null || (serialize ? !annotation.serialize() : !annotation.deserialize())) {\r\n            return true;\r\n        }\r\n    }\r\n    if (excludeClass(field.getType(), serialize)) {\r\n        return true;\r\n    }\r\n    List<ExclusionStrategy> list = serialize ? serializationStrategies : deserializationStrategies;\r\n    if (!list.isEmpty()) {\r\n        FieldAttributes fieldAttributes = new FieldAttributes(field);\r\n        for (ExclusionStrategy exclusionStrategy : list) {\r\n            if (exclusionStrategy.shouldSkipField(fieldAttributes)) {\r\n                return true;\r\n            }\r\n        }\r\n    }\r\n    return false;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "excludeClass",
+    "start_line": 197,
+    "end_line": 232,
+    "code": "// public for unit tests; can otherwise be private\r\npublic boolean excludeClass(Class<?> clazz, boolean serialize) {\r\n    if (version != Excluder.IGNORE_VERSIONS && !isValidVersion(clazz.getAnnotation(Since.class), clazz.getAnnotation(Until.class))) {\r\n        return true;\r\n    }\r\n    if (!serializeInnerClasses && isInnerClass(clazz)) {\r\n        return true;\r\n    }\r\n    /*\r\n     * Exclude anonymous and local classes because they can have synthetic fields capturing enclosing\r\n     * values which makes serialization and deserialization unreliable.\r\n     * Don't exclude anonymous enum subclasses because enum types have a built-in adapter.\r\n     *\r\n     * Exclude only for deserialization; for serialization allow because custom adapter might be\r\n     * used; if no custom adapter exists reflection-based adapter otherwise excludes value.\r\n     *\r\n     * Cannot allow deserialization reliably here because some custom adapters like Collection adapter\r\n     * fall back to creating instances using Unsafe, which would likely lead to runtime exceptions\r\n     * for anonymous and local classes if they capture values.\r\n     */\r\n    if (!serialize && !Enum.class.isAssignableFrom(clazz) && ReflectionHelper.isAnonymousOrNonStaticLocal(clazz)) {\r\n        return true;\r\n    }\r\n    List<ExclusionStrategy> list = serialize ? serializationStrategies : deserializationStrategies;\r\n    for (ExclusionStrategy exclusionStrategy : list) {\r\n        if (exclusionStrategy.shouldSkipClass(clazz)) {\r\n            return true;\r\n        }\r\n    }\r\n    return false;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "isInnerClass",
+    "start_line": 234,
+    "end_line": 236,
+    "code": "private static boolean isInnerClass(Class<?> clazz) {\r\n    return clazz.isMemberClass() && !ReflectionHelper.isStatic(clazz);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "isValidVersion",
+    "start_line": 238,
+    "end_line": 240,
+    "code": "private boolean isValidVersion(Since since, Until until) {\r\n    return isValidSince(since) && isValidUntil(until);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "isValidSince",
+    "start_line": 242,
+    "end_line": 248,
+    "code": "private boolean isValidSince(Since annotation) {\r\n    if (annotation != null) {\r\n        double annotationVersion = annotation.value();\r\n        return version >= annotationVersion;\r\n    }\r\n    return true;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  },
+  {
+    "type": "method",
+    "name": "isValidUntil",
+    "start_line": 250,
+    "end_line": 256,
+    "code": "private boolean isValidUntil(Until annotation) {\r\n    if (annotation != null) {\r\n        double annotationVersion = annotation.value();\r\n        return version < annotationVersion;\r\n    }\r\n    return true;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Excluder.java"
+  }
+]

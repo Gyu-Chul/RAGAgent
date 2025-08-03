@@ -1,0 +1,10 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.stream",
+    "start_line": 18,
+    "end_line": 19,
+    "code": "/**\r\n * This package provides classes for processing JSON in an efficient streaming way.\r\n */\r\n@com.google.errorprone.annotations.CheckReturnValue\r\npackage com.google.gson.stream;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\stream\\package-info.java"
+  }
+]

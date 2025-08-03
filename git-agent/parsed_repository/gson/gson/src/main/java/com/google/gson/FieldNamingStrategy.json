@@ -1,0 +1,66 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FieldNamingStrategy.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.SerializedName",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.annotations.SerializedName;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FieldNamingStrategy.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Field",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import java.lang.reflect.Field;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FieldNamingStrategy.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collections",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.util.Collections;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FieldNamingStrategy.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FieldNamingStrategy.java"
+  },
+  {
+    "type": "interface",
+    "name": "FieldNamingStrategy",
+    "start_line": 33,
+    "end_line": 55,
+    "code": "/**\r\n * A mechanism for providing custom field naming in Gson. This allows the client code to translate\r\n * field names into a particular convention that is not supported as a normal Java field declaration\r\n * rules. For example, Java does not support \"-\" characters in a field name.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n * @since 1.3\r\n */\r\npublic interface FieldNamingStrategy {\r\n\r\n    /**\r\n     * Translates the field name into its JSON field name representation.\r\n     *\r\n     * @param f the field object that we are translating\r\n     * @return the translated field name.\r\n     * @since 1.3\r\n     */\r\n    public String translateName(Field f);\r\n\r\n    /**\r\n     * Returns alternative names for this field when it is being deserialized. This is similar to\r\n     * {@link SerializedName#alternate()}.\r\n     *\r\n     * @param f the field object\r\n     * @return the list of alternative field names.\r\n     * @since 2.13.1\r\n     */\r\n    default List<String> alternateNames(Field f) {\r\n        return Collections.emptyList();\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FieldNamingStrategy.java"
+  },
+  {
+    "type": "method",
+    "name": "translateName",
+    "start_line": 42,
+    "end_line": 42,
+    "code": "/**\r\n * Translates the field name into its JSON field name representation.\r\n *\r\n * @param f the field object that we are translating\r\n * @return the translated field name.\r\n * @since 1.3\r\n */\r\npublic String translateName(Field f);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FieldNamingStrategy.java"
+  },
+  {
+    "type": "method",
+    "name": "alternateNames",
+    "start_line": 52,
+    "end_line": 54,
+    "code": "/**\r\n * Returns alternative names for this field when it is being deserialized. This is similar to\r\n * {@link SerializedName#alternate()}.\r\n *\r\n * @param f the field object\r\n * @return the list of alternative field names.\r\n * @since 2.13.1\r\n */\r\ndefault List<String> alternateNames(Field f) {\r\n    return Collections.emptyList();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FieldNamingStrategy.java"
+  }
+]

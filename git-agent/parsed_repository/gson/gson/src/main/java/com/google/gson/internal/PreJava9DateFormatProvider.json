@@ -1,0 +1,74 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.internal;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\PreJava9DateFormatProvider.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.DateFormat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import java.text.DateFormat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\PreJava9DateFormatProvider.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.SimpleDateFormat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import java.text.SimpleDateFormat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\PreJava9DateFormatProvider.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Locale",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import java.util.Locale;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\PreJava9DateFormatProvider.java"
+  },
+  {
+    "type": "class",
+    "name": "PreJava9DateFormatProvider",
+    "start_line": 23,
+    "end_line": 64,
+    "code": "/**\r\n * Provides DateFormats for US locale with patterns which were the default ones before Java 9.\r\n */\r\npublic class PreJava9DateFormatProvider {\r\n\r\n    private PreJava9DateFormatProvider() {\r\n    }\r\n\r\n    /**\r\n     * Returns the same DateFormat as {@code DateFormat.getDateTimeInstance(dateStyle, timeStyle,\r\n     * Locale.US)} in Java 8 or below.\r\n     */\r\n    public static DateFormat getUsDateTimeFormat(int dateStyle, int timeStyle) {\r\n        String pattern = getDatePartOfDateTimePattern(dateStyle) + \" \" + getTimePartOfDateTimePattern(timeStyle);\r\n        return new SimpleDateFormat(pattern, Locale.US);\r\n    }\r\n\r\n    private static String getDatePartOfDateTimePattern(int dateStyle) {\r\n        switch(dateStyle) {\r\n            case DateFormat.SHORT:\r\n                return \"M/d/yy\";\r\n            case DateFormat.MEDIUM:\r\n                return \"MMM d, yyyy\";\r\n            case DateFormat.LONG:\r\n                return \"MMMM d, yyyy\";\r\n            case DateFormat.FULL:\r\n                return \"EEEE, MMMM d, yyyy\";\r\n            default:\r\n                throw new IllegalArgumentException(\"Unknown DateFormat style: \" + dateStyle);\r\n        }\r\n    }\r\n\r\n    private static String getTimePartOfDateTimePattern(int timeStyle) {\r\n        switch(timeStyle) {\r\n            case DateFormat.SHORT:\r\n                return \"h:mm a\";\r\n            case DateFormat.MEDIUM:\r\n                return \"h:mm:ss a\";\r\n            case DateFormat.FULL:\r\n            case DateFormat.LONG:\r\n                return \"h:mm:ss a z\";\r\n            default:\r\n                throw new IllegalArgumentException(\"Unknown DateFormat style: \" + timeStyle);\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\PreJava9DateFormatProvider.java"
+  },
+  {
+    "type": "constructor",
+    "name": "PreJava9DateFormatProvider",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "private PreJava9DateFormatProvider() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\PreJava9DateFormatProvider.java"
+  },
+  {
+    "type": "method",
+    "name": "getUsDateTimeFormat",
+    "start_line": 30,
+    "end_line": 34,
+    "code": "/**\r\n * Returns the same DateFormat as {@code DateFormat.getDateTimeInstance(dateStyle, timeStyle,\r\n * Locale.US)} in Java 8 or below.\r\n */\r\npublic static DateFormat getUsDateTimeFormat(int dateStyle, int timeStyle) {\r\n    String pattern = getDatePartOfDateTimePattern(dateStyle) + \" \" + getTimePartOfDateTimePattern(timeStyle);\r\n    return new SimpleDateFormat(pattern, Locale.US);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\PreJava9DateFormatProvider.java"
+  },
+  {
+    "type": "method",
+    "name": "getDatePartOfDateTimePattern",
+    "start_line": 36,
+    "end_line": 49,
+    "code": "private static String getDatePartOfDateTimePattern(int dateStyle) {\r\n    switch(dateStyle) {\r\n        case DateFormat.SHORT:\r\n            return \"M/d/yy\";\r\n        case DateFormat.MEDIUM:\r\n            return \"MMM d, yyyy\";\r\n        case DateFormat.LONG:\r\n            return \"MMMM d, yyyy\";\r\n        case DateFormat.FULL:\r\n            return \"EEEE, MMMM d, yyyy\";\r\n        default:\r\n            throw new IllegalArgumentException(\"Unknown DateFormat style: \" + dateStyle);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\PreJava9DateFormatProvider.java"
+  },
+  {
+    "type": "method",
+    "name": "getTimePartOfDateTimePattern",
+    "start_line": 51,
+    "end_line": 63,
+    "code": "private static String getTimePartOfDateTimePattern(int timeStyle) {\r\n    switch(timeStyle) {\r\n        case DateFormat.SHORT:\r\n            return \"h:mm a\";\r\n        case DateFormat.MEDIUM:\r\n            return \"h:mm:ss a\";\r\n        case DateFormat.FULL:\r\n        case DateFormat.LONG:\r\n            return \"h:mm:ss a z\";\r\n        default:\r\n            throw new IllegalArgumentException(\"Unknown DateFormat style: \" + timeStyle);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\PreJava9DateFormatProvider.java"
+  }
+]

@@ -1,0 +1,26 @@
+[
+  {
+    "type": "package",
+    "name": "com.example",
+    "start_line": 1,
+    "end_line": 1,
+    "code": "package com.example;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\EnumClassWithSerializedName.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.SerializedName",
+    "start_line": 3,
+    "end_line": 3,
+    "code": "import com.google.gson.annotations.SerializedName;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\EnumClassWithSerializedName.java"
+  },
+  {
+    "type": "enum",
+    "name": "EnumClassWithSerializedName",
+    "start_line": 5,
+    "end_line": 10,
+    "code": "public enum EnumClassWithSerializedName {\r\n\r\n    @SerializedName(\"one\")\r\n    FIRST, @SerializedName(\"two\")\r\n    SECOND\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\EnumClassWithSerializedName.java"
+  }
+]

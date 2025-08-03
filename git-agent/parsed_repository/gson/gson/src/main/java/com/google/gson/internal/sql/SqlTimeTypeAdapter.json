@@ -1,0 +1,178 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.sql",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.sql;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSyntaxException",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.JsonSyntaxException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapterFactory",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.TypeAdapterFactory;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonToken",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.stream.JsonToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.sql.Time",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.sql.Time;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.DateFormat",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.text.DateFormat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.ParseException",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.text.ParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.SimpleDateFormat",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.text.SimpleDateFormat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Date",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.util.Date;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.TimeZone",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import java.util.TimeZone;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "class",
+    "name": "SqlTimeTypeAdapter",
+    "start_line": 40,
+    "end_line": 90,
+    "code": "/**\r\n * Adapter for java.sql.Time. Although this class appears stateless, it is not. DateFormat captures\r\n * its time zone and locale when it is created, which gives this class state. DateFormat isn't\r\n * thread safe either, so this class has to synchronize its read and write methods.\r\n */\r\n@SuppressWarnings(\"JavaUtilDate\")\r\nfinal class SqlTimeTypeAdapter extends TypeAdapter<Time> {\r\n\r\n    static final TypeAdapterFactory FACTORY = new TypeAdapterFactory() {\r\n\r\n        // we use a runtime check to make sure the 'T's equal\r\n        @SuppressWarnings(\"unchecked\")\r\n        @Override\r\n        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {\r\n            return typeToken.getRawType() == Time.class ? (TypeAdapter<T>) new SqlTimeTypeAdapter() : null;\r\n        }\r\n    };\r\n\r\n    private final DateFormat format = new SimpleDateFormat(\"hh:mm:ss a\");\r\n\r\n    private SqlTimeTypeAdapter() {\r\n    }\r\n\r\n    @Override\r\n    public Time read(JsonReader in) throws IOException {\r\n        if (in.peek() == JsonToken.NULL) {\r\n            in.nextNull();\r\n            return null;\r\n        }\r\n        String s = in.nextString();\r\n        synchronized (this) {\r\n            // Save the original time zone\r\n            TimeZone originalTimeZone = format.getTimeZone();\r\n            try {\r\n                Date date = format.parse(s);\r\n                return new Time(date.getTime());\r\n            } catch (ParseException e) {\r\n                throw new JsonSyntaxException(\"Failed parsing '\" + s + \"' as SQL Time; at path \" + in.getPreviousPath(), e);\r\n            } finally {\r\n                // Restore the original time zone\r\n                format.setTimeZone(originalTimeZone);\r\n            }\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void write(JsonWriter out, Time value) throws IOException {\r\n        if (value == null) {\r\n            out.nullValue();\r\n            return;\r\n        }\r\n        String timeString;\r\n        synchronized (this) {\r\n            timeString = format.format(value);\r\n        }\r\n        out.value(timeString);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "FACTORY",
+    "start_line": 42,
+    "end_line": 51,
+    "code": "static final TypeAdapterFactory FACTORY = new TypeAdapterFactory() {\r\n\r\n    // we use a runtime check to make sure the 'T's equal\r\n    @SuppressWarnings(\"unchecked\")\r\n    @Override\r\n    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {\r\n        return typeToken.getRawType() == Time.class ? (TypeAdapter<T>) new SqlTimeTypeAdapter() : null;\r\n    }\r\n};",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "format",
+    "start_line": 53,
+    "end_line": 53,
+    "code": "private final DateFormat format = new SimpleDateFormat(\"hh:mm:ss a\");",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "constructor",
+    "name": "SqlTimeTypeAdapter",
+    "start_line": 55,
+    "end_line": 55,
+    "code": "private SqlTimeTypeAdapter() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "read",
+    "start_line": 57,
+    "end_line": 76,
+    "code": "@Override\r\npublic Time read(JsonReader in) throws IOException {\r\n    if (in.peek() == JsonToken.NULL) {\r\n        in.nextNull();\r\n        return null;\r\n    }\r\n    String s = in.nextString();\r\n    synchronized (this) {\r\n        // Save the original time zone\r\n        TimeZone originalTimeZone = format.getTimeZone();\r\n        try {\r\n            Date date = format.parse(s);\r\n            return new Time(date.getTime());\r\n        } catch (ParseException e) {\r\n            throw new JsonSyntaxException(\"Failed parsing '\" + s + \"' as SQL Time; at path \" + in.getPreviousPath(), e);\r\n        } finally {\r\n            // Restore the original time zone\r\n            format.setTimeZone(originalTimeZone);\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "write",
+    "start_line": 78,
+    "end_line": 89,
+    "code": "@Override\r\npublic void write(JsonWriter out, Time value) throws IOException {\r\n    if (value == null) {\r\n        out.nullValue();\r\n        return;\r\n    }\r\n    String timeString;\r\n    synchronized (this) {\r\n        timeString = format.format(value);\r\n    }\r\n    out.value(timeString);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimeTypeAdapter.java"
+  }
+]

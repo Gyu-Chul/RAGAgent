@@ -1,0 +1,34 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ExclusionStrategy.java"
+  },
+  {
+    "type": "interface",
+    "name": "ExclusionStrategy",
+    "start_line": 94,
+    "end_line": 111,
+    "code": "/**\r\n * A strategy (or policy) definition that is used to decide whether or not a field or class should\r\n * be serialized or deserialized as part of the JSON output/input.\r\n *\r\n * <p>The following are a few examples that shows how you can use this exclusion mechanism.\r\n *\r\n * <p><strong>Exclude fields and objects based on a particular class type:</strong>\r\n *\r\n * <pre class=\"code\">\r\n * private static class SpecificClassExclusionStrategy implements ExclusionStrategy {\r\n *   private final Class&lt;?&gt; excludedThisClass;\r\n *\r\n *   public SpecificClassExclusionStrategy(Class&lt;?&gt; excludedThisClass) {\r\n *     this.excludedThisClass = excludedThisClass;\r\n *   }\r\n *\r\n *   public boolean shouldSkipClass(Class&lt;?&gt; clazz) {\r\n *     return excludedThisClass.equals(clazz);\r\n *   }\r\n *\r\n *   public boolean shouldSkipField(FieldAttributes f) {\r\n *     return excludedThisClass.equals(f.getDeclaredClass());\r\n *   }\r\n * }\r\n * </pre>\r\n *\r\n * <p><strong>Excludes fields and objects based on a particular annotation:</strong>\r\n *\r\n * <pre class=\"code\">\r\n * public &#64;interface FooAnnotation {\r\n *   // some implementation here\r\n * }\r\n *\r\n * // Excludes any field (or class) that is tagged with an \"&#64;FooAnnotation\"\r\n * private static class FooAnnotationExclusionStrategy implements ExclusionStrategy {\r\n *   public boolean shouldSkipClass(Class&lt;?&gt; clazz) {\r\n *     return clazz.getAnnotation(FooAnnotation.class) != null;\r\n *   }\r\n *\r\n *   public boolean shouldSkipField(FieldAttributes f) {\r\n *     return f.getAnnotation(FooAnnotation.class) != null;\r\n *   }\r\n * }\r\n * </pre>\r\n *\r\n * <p>Now if you want to configure {@code Gson} to use a user defined exclusion strategy, then the\r\n * {@code GsonBuilder} is required. The following is an example of how you can use the {@code\r\n * GsonBuilder} to configure Gson to use one of the above samples:\r\n *\r\n * <pre class=\"code\">\r\n * ExclusionStrategy excludeStrings = new UserDefinedExclusionStrategy(String.class);\r\n * Gson gson = new GsonBuilder()\r\n *     .setExclusionStrategies(excludeStrings)\r\n *     .create();\r\n * </pre>\r\n *\r\n * <p>For certain model classes, you may only want to serialize a field, but exclude it for\r\n * deserialization. To do that, you can write an {@code ExclusionStrategy} as per normal; however,\r\n * you would register it with the {@link\r\n * GsonBuilder#addDeserializationExclusionStrategy(ExclusionStrategy)} method. For example:\r\n *\r\n * <pre class=\"code\">\r\n * ExclusionStrategy excludeStrings = new UserDefinedExclusionStrategy(String.class);\r\n * Gson gson = new GsonBuilder()\r\n *     .addDeserializationExclusionStrategy(excludeStrings)\r\n *     .create();\r\n * </pre>\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n * @see GsonBuilder#setExclusionStrategies(ExclusionStrategy...)\r\n * @see GsonBuilder#addDeserializationExclusionStrategy(ExclusionStrategy)\r\n * @see GsonBuilder#addSerializationExclusionStrategy(ExclusionStrategy)\r\n * @since 1.4\r\n */\r\npublic interface ExclusionStrategy {\r\n\r\n    /**\r\n     * Decides if a field should be skipped during serialization or deserialization.\r\n     *\r\n     * @param f the field object that is under test\r\n     * @return true if the field should be ignored; otherwise false\r\n     */\r\n    public boolean shouldSkipField(FieldAttributes f);\r\n\r\n    /**\r\n     * Decides if a class should be serialized or deserialized\r\n     *\r\n     * @param clazz the class object that is under test\r\n     * @return true if the class should be ignored; otherwise false\r\n     */\r\n    public boolean shouldSkipClass(Class<?> clazz);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ExclusionStrategy.java"
+  },
+  {
+    "type": "method",
+    "name": "shouldSkipField",
+    "start_line": 102,
+    "end_line": 102,
+    "code": "/**\r\n * Decides if a field should be skipped during serialization or deserialization.\r\n *\r\n * @param f the field object that is under test\r\n * @return true if the field should be ignored; otherwise false\r\n */\r\npublic boolean shouldSkipField(FieldAttributes f);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ExclusionStrategy.java"
+  },
+  {
+    "type": "method",
+    "name": "shouldSkipClass",
+    "start_line": 110,
+    "end_line": 110,
+    "code": "/**\r\n * Decides if a class should be serialized or deserialized\r\n *\r\n * @param clazz the class object that is under test\r\n * @return true if the class should be ignored; otherwise false\r\n */\r\npublic boolean shouldSkipClass(Class<?> clazz);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ExclusionStrategy.java"
+  }
+]

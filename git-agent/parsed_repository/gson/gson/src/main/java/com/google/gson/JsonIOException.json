@@ -1,0 +1,50 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonIOException.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonIOException",
+    "start_line": 24,
+    "end_line": 45,
+    "code": "/**\r\n * This exception is raised when Gson was unable to read an input stream or write to one.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\n// class name is part of the public API\r\n@SuppressWarnings(\"MemberName\")\r\npublic final class JsonIOException extends JsonParseException {\r\n\r\n    private static final long serialVersionUID = 1L;\r\n\r\n    public JsonIOException(String msg) {\r\n        super(msg);\r\n    }\r\n\r\n    public JsonIOException(String msg, Throwable cause) {\r\n        super(msg, cause);\r\n    }\r\n\r\n    /**\r\n     * Creates exception with the specified cause. Consider using {@link #JsonIOException(String,\r\n     * Throwable)} instead if you can describe what happened.\r\n     *\r\n     * @param cause root exception that caused this exception to be thrown.\r\n     */\r\n    public JsonIOException(Throwable cause) {\r\n        super(cause);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonIOException.java"
+  },
+  {
+    "type": "field",
+    "name": "serialVersionUID",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "private static final long serialVersionUID = 1L;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonIOException.java"
+  },
+  {
+    "type": "constructor",
+    "name": "JsonIOException",
+    "start_line": 28,
+    "end_line": 30,
+    "code": "public JsonIOException(String msg) {\r\n    super(msg);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonIOException.java"
+  },
+  {
+    "type": "constructor",
+    "name": "JsonIOException",
+    "start_line": 32,
+    "end_line": 34,
+    "code": "public JsonIOException(String msg, Throwable cause) {\r\n    super(msg, cause);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonIOException.java"
+  },
+  {
+    "type": "constructor",
+    "name": "JsonIOException",
+    "start_line": 42,
+    "end_line": 44,
+    "code": "/**\r\n * Creates exception with the specified cause. Consider using {@link #JsonIOException(String,\r\n * Throwable)} instead if you can describe what happened.\r\n *\r\n * @param cause root exception that caused this exception to be thrown.\r\n */\r\npublic JsonIOException(Throwable cause) {\r\n    super(cause);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonIOException.java"
+  }
+]

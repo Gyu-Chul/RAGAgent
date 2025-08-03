@@ -1,0 +1,114 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.runner.RunWith",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import org.junit.runner.RunWith;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.runners.Parameterized",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import org.junit.runners.Parameterized;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.runners.Parameterized.Parameter",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import org.junit.runners.Parameterized.Parameter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.runners.Parameterized.Parameters",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import org.junit.runners.Parameterized.Parameters;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "class",
+    "name": "ObjectTypeAdapterParameterizedTest",
+    "start_line": 29,
+    "end_line": 55,
+    "code": "@RunWith(Parameterized.class)\r\npublic class ObjectTypeAdapterParameterizedTest {\r\n\r\n    @Parameters\r\n    public static Iterable<String> data() {\r\n        return Arrays.asList(\"[]\", \"{}\", \"null\", \"1.0\", \"true\", \"\\\"string\\\"\", \"[true,1.0,null,{},2.0,{\\\"a\\\":[false]},[3.0,\\\"test\\\"],4.0]\", \"{\\\"\\\":1.0,\\\"a\\\":true,\\\"b\\\":null,\\\"c\\\":[],\\\"d\\\":{\\\"a1\\\":2.0,\\\"b2\\\":[true,{\\\"a3\\\":3.0}]},\\\"e\\\":[{\\\"f\\\":4.0},\\\"test\\\"]}\");\r\n    }\r\n\r\n    private final TypeAdapter<Object> adapter = new Gson().getAdapter(Object.class);\r\n\r\n    @Parameter\r\n    public String json;\r\n\r\n    @Test\r\n    public void testReadWrite() throws IOException {\r\n        Object deserialized = adapter.fromJson(json);\r\n        String actualSerialized = adapter.toJson(deserialized);\r\n        // Serialized Object should be the same as original JSON\r\n        assertThat(actualSerialized).isEqualTo(json);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "field",
+    "name": "adapter",
+    "start_line": 44,
+    "end_line": 44,
+    "code": "private final TypeAdapter<Object> adapter = new Gson().getAdapter(Object.class);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "field",
+    "name": "json",
+    "start_line": 45,
+    "end_line": 45,
+    "code": "@Parameter\r\npublic String json;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "method",
+    "name": "data",
+    "start_line": 31,
+    "end_line": 42,
+    "code": "@Parameters\r\npublic static Iterable<String> data() {\r\n    return Arrays.asList(\"[]\", \"{}\", \"null\", \"1.0\", \"true\", \"\\\"string\\\"\", \"[true,1.0,null,{},2.0,{\\\"a\\\":[false]},[3.0,\\\"test\\\"],4.0]\", \"{\\\"\\\":1.0,\\\"a\\\":true,\\\"b\\\":null,\\\"c\\\":[],\\\"d\\\":{\\\"a1\\\":2.0,\\\"b2\\\":[true,{\\\"a3\\\":3.0}]},\\\"e\\\":[{\\\"f\\\":4.0},\\\"test\\\"]}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testReadWrite",
+    "start_line": 47,
+    "end_line": 54,
+    "code": "@Test\r\npublic void testReadWrite() throws IOException {\r\n    Object deserialized = adapter.fromJson(json);\r\n    String actualSerialized = adapter.toJson(deserialized);\r\n    // Serialized Object should be the same as original JSON\r\n    assertThat(actualSerialized).isEqualTo(json);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterParameterizedTest.java"
+  }
+]

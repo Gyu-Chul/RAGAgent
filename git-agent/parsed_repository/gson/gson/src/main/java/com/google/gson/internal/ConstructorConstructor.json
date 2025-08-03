@@ -1,0 +1,330 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.InstanceCreator",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.InstanceCreator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonIOException",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.JsonIOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.ReflectionAccessFilter",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.ReflectionAccessFilter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.ReflectionAccessFilter.FilterResult",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.ReflectionAccessFilter.FilterResult;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.reflect.ReflectionHelper",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.internal.reflect.ReflectionHelper;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Constructor",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.lang.reflect.Constructor;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.InvocationTargetException",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.lang.reflect.InvocationTargetException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Modifier",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.lang.reflect.Modifier;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.ParameterizedType",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.lang.reflect.ParameterizedType;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayDeque",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.ArrayDeque;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collection",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.util.Collection;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.EnumMap",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import java.util.EnumMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.EnumSet",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import java.util.EnumSet;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.LinkedHashMap",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "import java.util.LinkedHashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.LinkedHashSet",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "import java.util.LinkedHashSet;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 38,
+    "end_line": 38,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.TreeMap",
+    "start_line": 39,
+    "end_line": 39,
+    "code": "import java.util.TreeMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.TreeSet",
+    "start_line": 40,
+    "end_line": 40,
+    "code": "import java.util.TreeSet;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.ConcurrentHashMap",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "import java.util.concurrent.ConcurrentHashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.ConcurrentSkipListMap",
+    "start_line": 42,
+    "end_line": 42,
+    "code": "import java.util.concurrent.ConcurrentSkipListMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "class",
+    "name": "ConstructorConstructor",
+    "start_line": 45,
+    "end_line": 447,
+    "code": "/**\r\n * Returns a function that can construct an instance of a requested type.\r\n */\r\npublic final class ConstructorConstructor {\r\n\r\n    private final Map<Type, InstanceCreator<?>> instanceCreators;\r\n\r\n    private final boolean useJdkUnsafe;\r\n\r\n    private final List<ReflectionAccessFilter> reflectionFilters;\r\n\r\n    public ConstructorConstructor(Map<Type, InstanceCreator<?>> instanceCreators, boolean useJdkUnsafe, List<ReflectionAccessFilter> reflectionFilters) {\r\n        this.instanceCreators = instanceCreators;\r\n        this.useJdkUnsafe = useJdkUnsafe;\r\n        this.reflectionFilters = reflectionFilters;\r\n    }\r\n\r\n    /**\r\n     * Check if the class can be instantiated by Unsafe allocator. If the instance has interface or\r\n     * abstract modifiers return an exception message.\r\n     *\r\n     * @param c instance of the class to be checked\r\n     * @return if instantiable {@code null}, else a non-{@code null} exception message\r\n     */\r\n    static String checkInstantiable(Class<?> c) {\r\n        int modifiers = c.getModifiers();\r\n        if (Modifier.isInterface(modifiers)) {\r\n            return \"Interfaces can't be instantiated! Register an InstanceCreator\" + \" or a TypeAdapter for this type. Interface name: \" + c.getName();\r\n        }\r\n        if (Modifier.isAbstract(modifiers)) {\r\n            // R8 performs aggressive optimizations where it removes the default constructor of a class\r\n            // and makes the class `abstract`; check for that here explicitly\r\n            /*\r\n       * Note: Ideally should only show this R8-specific message when it is clear that R8 was\r\n       * used (e.g. when `c.getDeclaredConstructors().length == 0`), but on Android where this\r\n       * issue with R8 occurs most, R8 seems to keep some constructors for some reason while\r\n       * still making the class abstract\r\n       */\r\n            return \"Abstract classes can't be instantiated! Adjust the R8 configuration or register\" + \" an InstanceCreator or a TypeAdapter for this type. Class name: \" + c.getName() + \"\\nSee \" + TroubleshootingGuide.createUrl(\"r8-abstract-class\");\r\n        }\r\n        return null;\r\n    }\r\n\r\n    /**\r\n     * Calls {@link #get(TypeToken, boolean)}, and allows usage of JDK Unsafe.\r\n     */\r\n    public <T> ObjectConstructor<T> get(TypeToken<T> typeToken) {\r\n        return get(typeToken, true);\r\n    }\r\n\r\n    /**\r\n     * Retrieves an object constructor for the given type.\r\n     *\r\n     * @param typeToken type for which a constructor should be retrieved\r\n     * @param allowUnsafe whether to allow usage of JDK Unsafe; has no effect if {@link #useJdkUnsafe}\r\n     *     is false\r\n     */\r\n    public <T> ObjectConstructor<T> get(TypeToken<T> typeToken, boolean allowUnsafe) {\r\n        Type type = typeToken.getType();\r\n        Class<? super T> rawType = typeToken.getRawType();\r\n        // first try an instance creator\r\n        // types must agree\r\n        @SuppressWarnings(\"unchecked\")\r\n        InstanceCreator<T> typeCreator = (InstanceCreator<T>) instanceCreators.get(type);\r\n        if (typeCreator != null) {\r\n            return () -> typeCreator.createInstance(type);\r\n        }\r\n        // Next try raw type match for instance creators\r\n        // types must agree\r\n        @SuppressWarnings(\"unchecked\")\r\n        InstanceCreator<T> rawTypeCreator = (InstanceCreator<T>) instanceCreators.get(rawType);\r\n        if (rawTypeCreator != null) {\r\n            return () -> rawTypeCreator.createInstance(type);\r\n        }\r\n        // First consider special constructors before checking for no-args constructors\r\n        // below to avoid matching internal no-args constructors which might be added in\r\n        // future JDK versions\r\n        ObjectConstructor<T> specialConstructor = newSpecialCollectionConstructor(type, rawType);\r\n        if (specialConstructor != null) {\r\n            return specialConstructor;\r\n        }\r\n        FilterResult filterResult = ReflectionAccessFilterHelper.getFilterResult(reflectionFilters, rawType);\r\n        ObjectConstructor<T> defaultConstructor = newDefaultConstructor(rawType, filterResult);\r\n        if (defaultConstructor != null) {\r\n            return defaultConstructor;\r\n        }\r\n        ObjectConstructor<T> defaultImplementation = newDefaultImplementationConstructor(type, rawType);\r\n        if (defaultImplementation != null) {\r\n            return defaultImplementation;\r\n        }\r\n        // Check whether type is instantiable; otherwise ReflectionAccessFilter recommendation\r\n        // of adjusting filter suggested below is irrelevant since it would not solve the problem\r\n        String exceptionMessage = checkInstantiable(rawType);\r\n        if (exceptionMessage != null) {\r\n            return () -> {\r\n                throw new JsonIOException(exceptionMessage);\r\n            };\r\n        }\r\n        if (!allowUnsafe) {\r\n            String message = \"Unable to create instance of \" + rawType + \"; Register an InstanceCreator or a TypeAdapter for this type.\";\r\n            return () -> {\r\n                throw new JsonIOException(message);\r\n            };\r\n        }\r\n        // Consider usage of Unsafe as reflection, so don't use if BLOCK_ALL\r\n        // Additionally, since it is not calling any constructor at all, don't use if BLOCK_INACCESSIBLE\r\n        if (filterResult != FilterResult.ALLOW) {\r\n            String message = \"Unable to create instance of \" + rawType + \"; ReflectionAccessFilter does not permit using reflection or Unsafe. Register an\" + \" InstanceCreator or a TypeAdapter for this type or adjust the access filter to\" + \" allow using reflection.\";\r\n            return () -> {\r\n                throw new JsonIOException(message);\r\n            };\r\n        }\r\n        // finally try unsafe\r\n        return newUnsafeAllocator(rawType);\r\n    }\r\n\r\n    /**\r\n     * Creates constructors for special JDK collection types which do not have a public no-args\r\n     * constructor.\r\n     */\r\n    private static <T> ObjectConstructor<T> newSpecialCollectionConstructor(Type type, Class<? super T> rawType) {\r\n        if (EnumSet.class.isAssignableFrom(rawType)) {\r\n            return () -> {\r\n                if (type instanceof ParameterizedType) {\r\n                    Type elementType = ((ParameterizedType) type).getActualTypeArguments()[0];\r\n                    if (elementType instanceof Class) {\r\n                        @SuppressWarnings({ \"unchecked\", \"rawtypes\" })\r\n                        T set = (T) EnumSet.noneOf((Class) elementType);\r\n                        return set;\r\n                    } else {\r\n                        throw new JsonIOException(\"Invalid EnumSet type: \" + type.toString());\r\n                    }\r\n                } else {\r\n                    throw new JsonIOException(\"Invalid EnumSet type: \" + type.toString());\r\n                }\r\n            };\r\n        } else // Only support creation of EnumMap, but not of custom subtypes; for them type parameters\r\n        // and constructor parameter might have completely different meaning\r\n        if (rawType == EnumMap.class) {\r\n            return () -> {\r\n                if (type instanceof ParameterizedType) {\r\n                    Type elementType = ((ParameterizedType) type).getActualTypeArguments()[0];\r\n                    if (elementType instanceof Class) {\r\n                        @SuppressWarnings({ \"unchecked\", \"rawtypes\" })\r\n                        T map = (T) new EnumMap((Class) elementType);\r\n                        return map;\r\n                    } else {\r\n                        throw new JsonIOException(\"Invalid EnumMap type: \" + type.toString());\r\n                    }\r\n                } else {\r\n                    throw new JsonIOException(\"Invalid EnumMap type: \" + type.toString());\r\n                }\r\n            };\r\n        }\r\n        return null;\r\n    }\r\n\r\n    private static <T> ObjectConstructor<T> newDefaultConstructor(Class<? super T> rawType, FilterResult filterResult) {\r\n        // Cannot invoke constructor of abstract class\r\n        if (Modifier.isAbstract(rawType.getModifiers())) {\r\n            return null;\r\n        }\r\n        Constructor<? super T> constructor;\r\n        try {\r\n            constructor = rawType.getDeclaredConstructor();\r\n        } catch (NoSuchMethodException e) {\r\n            return null;\r\n        }\r\n        boolean canAccess = filterResult == FilterResult.ALLOW || (ReflectionAccessFilterHelper.canAccess(constructor, null) && // Be a bit more lenient here for BLOCK_ALL; if constructor is accessible and public\r\n        // then allow calling it\r\n        (filterResult != FilterResult.BLOCK_ALL || Modifier.isPublic(constructor.getModifiers())));\r\n        if (!canAccess) {\r\n            String message = \"Unable to invoke no-args constructor of \" + rawType + \";\" + \" constructor is not accessible and ReflectionAccessFilter does not permit making\" + \" it accessible. Register an InstanceCreator or a TypeAdapter for this type, change\" + \" the visibility of the constructor or adjust the access filter.\";\r\n            return () -> {\r\n                throw new JsonIOException(message);\r\n            };\r\n        }\r\n        // Only try to make accessible if allowed; in all other cases checks above should\r\n        // have verified that constructor is accessible\r\n        if (filterResult == FilterResult.ALLOW) {\r\n            String exceptionMessage = ReflectionHelper.tryMakeAccessible(constructor);\r\n            if (exceptionMessage != null) {\r\n                /*\r\n         * Create ObjectConstructor which throws exception.\r\n         * This keeps backward compatibility (compared to returning `null` which\r\n         * would then choose another way of creating object).\r\n         * And it supports types which are only serialized but not deserialized\r\n         * (compared to directly throwing exception here), e.g. when runtime type\r\n         * of object is inaccessible, but compile-time type is accessible.\r\n         */\r\n                return () -> {\r\n                    // New exception is created every time to avoid keeping reference\r\n                    // to exception with potentially long stack trace, causing a\r\n                    // memory leak\r\n                    throw new JsonIOException(exceptionMessage);\r\n                };\r\n            }\r\n        }\r\n        return () -> {\r\n            try {\r\n                // T is the same raw type as is requested\r\n                @SuppressWarnings(\"unchecked\")\r\n                T newInstance = (T) constructor.newInstance();\r\n                return newInstance;\r\n            }// Note: InstantiationException should be impossible because check at start of method made\r\n            // sure that class is not abstract\r\n             catch (InstantiationException e) {\r\n                throw new RuntimeException(\"Failed to invoke constructor '\" + ReflectionHelper.constructorToString(constructor) + \"' with no args\", e);\r\n            } catch (InvocationTargetException e) {\r\n                // TODO: don't wrap if cause is unchecked?\r\n                // TODO: JsonParseException ?\r\n                throw new RuntimeException(\"Failed to invoke constructor '\" + ReflectionHelper.constructorToString(constructor) + \"' with no args\", e.getCause());\r\n            } catch (IllegalAccessException e) {\r\n                throw ReflectionHelper.createExceptionForUnexpectedIllegalAccess(e);\r\n            }\r\n        };\r\n    }\r\n\r\n    /**\r\n     * Constructors for common interface types like Map and List and their subtypes.\r\n     */\r\n    private static <T> ObjectConstructor<T> newDefaultImplementationConstructor(Type type, Class<? super T> rawType) {\r\n        /*\r\n     * IMPORTANT: Must only create instances for classes with public no-args constructor.\r\n     * For classes with special constructors / factory methods (e.g. EnumSet)\r\n     * `newSpecialCollectionConstructor` defined above must be used, to avoid no-args\r\n     * constructor check (which is called before this method) detecting internal no-args\r\n     * constructors which might be added in a future JDK version\r\n     */\r\n        if (Collection.class.isAssignableFrom(rawType)) {\r\n            @SuppressWarnings(\"unchecked\")\r\n            ObjectConstructor<T> constructor = (ObjectConstructor<T>) newCollectionConstructor(rawType);\r\n            return constructor;\r\n        }\r\n        if (Map.class.isAssignableFrom(rawType)) {\r\n            @SuppressWarnings(\"unchecked\")\r\n            ObjectConstructor<T> constructor = (ObjectConstructor<T>) newMapConstructor(type, rawType);\r\n            return constructor;\r\n        }\r\n        // Unsupported type; try other means of creating constructor\r\n        return null;\r\n    }\r\n\r\n    private static ObjectConstructor<? extends Collection<? extends Object>> newCollectionConstructor(Class<?> rawType) {\r\n        // First try List implementation\r\n        if (rawType.isAssignableFrom(ArrayList.class)) {\r\n            return () -> new ArrayList<>();\r\n        } else // Then try Set implementation\r\n        if (rawType.isAssignableFrom(LinkedHashSet.class)) {\r\n            return () -> new LinkedHashSet<>();\r\n        } else // Then try SortedSet / NavigableSet implementation\r\n        if (rawType.isAssignableFrom(TreeSet.class)) {\r\n            return () -> new TreeSet<>();\r\n        } else // Then try Queue implementation\r\n        if (rawType.isAssignableFrom(ArrayDeque.class)) {\r\n            return () -> new ArrayDeque<>();\r\n        }\r\n        // Was unable to create matching Collection constructor\r\n        return null;\r\n    }\r\n\r\n    private static boolean hasStringKeyType(Type mapType) {\r\n        // If mapType is not parameterized, assume it might have String as key type\r\n        if (!(mapType instanceof ParameterizedType)) {\r\n            return true;\r\n        }\r\n        Type[] typeArguments = ((ParameterizedType) mapType).getActualTypeArguments();\r\n        if (typeArguments.length == 0) {\r\n            return false;\r\n        }\r\n        return GsonTypes.getRawType(typeArguments[0]) == String.class;\r\n    }\r\n\r\n    private static ObjectConstructor<? extends Map<? extends Object, Object>> newMapConstructor(Type type, Class<?> rawType) {\r\n        // First try Map implementation\r\n        /*\r\n     * Legacy special casing for Map<String, ...> to avoid DoS from colliding String hashCode\r\n     * values for older JDKs; use own LinkedTreeMap<String, Object> instead\r\n     */\r\n        if (rawType.isAssignableFrom(LinkedTreeMap.class) && hasStringKeyType(type)) {\r\n            return () -> new LinkedTreeMap<>();\r\n        } else if (rawType.isAssignableFrom(LinkedHashMap.class)) {\r\n            return () -> new LinkedHashMap<>();\r\n        } else // Then try SortedMap / NavigableMap implementation\r\n        if (rawType.isAssignableFrom(TreeMap.class)) {\r\n            return () -> new TreeMap<>();\r\n        } else // Then try ConcurrentMap implementation\r\n        if (rawType.isAssignableFrom(ConcurrentHashMap.class)) {\r\n            return () -> new ConcurrentHashMap<>();\r\n        } else // Then try ConcurrentNavigableMap implementation\r\n        if (rawType.isAssignableFrom(ConcurrentSkipListMap.class)) {\r\n            return () -> new ConcurrentSkipListMap<>();\r\n        }\r\n        // Was unable to create matching Map constructor\r\n        return null;\r\n    }\r\n\r\n    private <T> ObjectConstructor<T> newUnsafeAllocator(Class<? super T> rawType) {\r\n        if (useJdkUnsafe) {\r\n            return () -> {\r\n                try {\r\n                    @SuppressWarnings(\"unchecked\")\r\n                    T newInstance = (T) UnsafeAllocator.INSTANCE.newInstance(rawType);\r\n                    return newInstance;\r\n                } catch (Exception e) {\r\n                    throw new RuntimeException((\"Unable to create instance of \" + rawType + \". Registering an InstanceCreator or a TypeAdapter for this type, or adding a\" + \" no-args constructor may fix this problem.\"), e);\r\n                }\r\n            };\r\n        } else {\r\n            String exceptionMessage = \"Unable to create instance of \" + rawType + \"; usage of JDK Unsafe is disabled. Registering an InstanceCreator or a TypeAdapter\" + \" for this type, adding a no-args constructor, or enabling usage of JDK Unsafe may\" + \" fix this problem.\";\r\n            // Check if R8 removed all constructors\r\n            if (rawType.getDeclaredConstructors().length == 0) {\r\n                // R8 with Unsafe disabled might not be common enough to warrant a separate Troubleshooting\r\n                // Guide entry\r\n                exceptionMessage += \" Or adjust your R8 configuration to keep the no-args constructor of the class.\";\r\n            }\r\n            // Separate effectively final variable to allow usage in the lambda below\r\n            String exceptionMessageF = exceptionMessage;\r\n            return () -> {\r\n                throw new JsonIOException(exceptionMessageF);\r\n            };\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return instanceCreators.toString();\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "field",
+    "name": "instanceCreators",
+    "start_line": 46,
+    "end_line": 46,
+    "code": "private final Map<Type, InstanceCreator<?>> instanceCreators;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "field",
+    "name": "useJdkUnsafe",
+    "start_line": 47,
+    "end_line": 47,
+    "code": "private final boolean useJdkUnsafe;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "field",
+    "name": "reflectionFilters",
+    "start_line": 48,
+    "end_line": 48,
+    "code": "private final List<ReflectionAccessFilter> reflectionFilters;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "constructor",
+    "name": "ConstructorConstructor",
+    "start_line": 50,
+    "end_line": 57,
+    "code": "public ConstructorConstructor(Map<Type, InstanceCreator<?>> instanceCreators, boolean useJdkUnsafe, List<ReflectionAccessFilter> reflectionFilters) {\r\n    this.instanceCreators = instanceCreators;\r\n    this.useJdkUnsafe = useJdkUnsafe;\r\n    this.reflectionFilters = reflectionFilters;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "method",
+    "name": "checkInstantiable",
+    "start_line": 66,
+    "end_line": 89,
+    "code": "/**\r\n * Check if the class can be instantiated by Unsafe allocator. If the instance has interface or\r\n * abstract modifiers return an exception message.\r\n *\r\n * @param c instance of the class to be checked\r\n * @return if instantiable {@code null}, else a non-{@code null} exception message\r\n */\r\nstatic String checkInstantiable(Class<?> c) {\r\n    int modifiers = c.getModifiers();\r\n    if (Modifier.isInterface(modifiers)) {\r\n        return \"Interfaces can't be instantiated! Register an InstanceCreator\" + \" or a TypeAdapter for this type. Interface name: \" + c.getName();\r\n    }\r\n    if (Modifier.isAbstract(modifiers)) {\r\n        // R8 performs aggressive optimizations where it removes the default constructor of a class\r\n        // and makes the class `abstract`; check for that here explicitly\r\n        /*\r\n       * Note: Ideally should only show this R8-specific message when it is clear that R8 was\r\n       * used (e.g. when `c.getDeclaredConstructors().length == 0`), but on Android where this\r\n       * issue with R8 occurs most, R8 seems to keep some constructors for some reason while\r\n       * still making the class abstract\r\n       */\r\n        return \"Abstract classes can't be instantiated! Adjust the R8 configuration or register\" + \" an InstanceCreator or a TypeAdapter for this type. Class name: \" + c.getName() + \"\\nSee \" + TroubleshootingGuide.createUrl(\"r8-abstract-class\");\r\n    }\r\n    return null;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "method",
+    "name": "get",
+    "start_line": 92,
+    "end_line": 94,
+    "code": "/**\r\n * Calls {@link #get(TypeToken, boolean)}, and allows usage of JDK Unsafe.\r\n */\r\npublic <T> ObjectConstructor<T> get(TypeToken<T> typeToken) {\r\n    return get(typeToken, true);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "method",
+    "name": "get",
+    "start_line": 103,
+    "end_line": 177,
+    "code": "/**\r\n * Retrieves an object constructor for the given type.\r\n *\r\n * @param typeToken type for which a constructor should be retrieved\r\n * @param allowUnsafe whether to allow usage of JDK Unsafe; has no effect if {@link #useJdkUnsafe}\r\n *     is false\r\n */\r\npublic <T> ObjectConstructor<T> get(TypeToken<T> typeToken, boolean allowUnsafe) {\r\n    Type type = typeToken.getType();\r\n    Class<? super T> rawType = typeToken.getRawType();\r\n    // first try an instance creator\r\n    // types must agree\r\n    @SuppressWarnings(\"unchecked\")\r\n    InstanceCreator<T> typeCreator = (InstanceCreator<T>) instanceCreators.get(type);\r\n    if (typeCreator != null) {\r\n        return () -> typeCreator.createInstance(type);\r\n    }\r\n    // Next try raw type match for instance creators\r\n    // types must agree\r\n    @SuppressWarnings(\"unchecked\")\r\n    InstanceCreator<T> rawTypeCreator = (InstanceCreator<T>) instanceCreators.get(rawType);\r\n    if (rawTypeCreator != null) {\r\n        return () -> rawTypeCreator.createInstance(type);\r\n    }\r\n    // First consider special constructors before checking for no-args constructors\r\n    // below to avoid matching internal no-args constructors which might be added in\r\n    // future JDK versions\r\n    ObjectConstructor<T> specialConstructor = newSpecialCollectionConstructor(type, rawType);\r\n    if (specialConstructor != null) {\r\n        return specialConstructor;\r\n    }\r\n    FilterResult filterResult = ReflectionAccessFilterHelper.getFilterResult(reflectionFilters, rawType);\r\n    ObjectConstructor<T> defaultConstructor = newDefaultConstructor(rawType, filterResult);\r\n    if (defaultConstructor != null) {\r\n        return defaultConstructor;\r\n    }\r\n    ObjectConstructor<T> defaultImplementation = newDefaultImplementationConstructor(type, rawType);\r\n    if (defaultImplementation != null) {\r\n        return defaultImplementation;\r\n    }\r\n    // Check whether type is instantiable; otherwise ReflectionAccessFilter recommendation\r\n    // of adjusting filter suggested below is irrelevant since it would not solve the problem\r\n    String exceptionMessage = checkInstantiable(rawType);\r\n    if (exceptionMessage != null) {\r\n        return () -> {\r\n            throw new JsonIOException(exceptionMessage);\r\n        };\r\n    }\r\n    if (!allowUnsafe) {\r\n        String message = \"Unable to create instance of \" + rawType + \"; Register an InstanceCreator or a TypeAdapter for this type.\";\r\n        return () -> {\r\n            throw new JsonIOException(message);\r\n        };\r\n    }\r\n    // Consider usage of Unsafe as reflection, so don't use if BLOCK_ALL\r\n    // Additionally, since it is not calling any constructor at all, don't use if BLOCK_INACCESSIBLE\r\n    if (filterResult != FilterResult.ALLOW) {\r\n        String message = \"Unable to create instance of \" + rawType + \"; ReflectionAccessFilter does not permit using reflection or Unsafe. Register an\" + \" InstanceCreator or a TypeAdapter for this type or adjust the access filter to\" + \" allow using reflection.\";\r\n        return () -> {\r\n            throw new JsonIOException(message);\r\n        };\r\n    }\r\n    // finally try unsafe\r\n    return newUnsafeAllocator(rawType);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "method",
+    "name": "newSpecialCollectionConstructor",
+    "start_line": 183,
+    "end_line": 221,
+    "code": "/**\r\n * Creates constructors for special JDK collection types which do not have a public no-args\r\n * constructor.\r\n */\r\nprivate static <T> ObjectConstructor<T> newSpecialCollectionConstructor(Type type, Class<? super T> rawType) {\r\n    if (EnumSet.class.isAssignableFrom(rawType)) {\r\n        return () -> {\r\n            if (type instanceof ParameterizedType) {\r\n                Type elementType = ((ParameterizedType) type).getActualTypeArguments()[0];\r\n                if (elementType instanceof Class) {\r\n                    @SuppressWarnings({ \"unchecked\", \"rawtypes\" })\r\n                    T set = (T) EnumSet.noneOf((Class) elementType);\r\n                    return set;\r\n                } else {\r\n                    throw new JsonIOException(\"Invalid EnumSet type: \" + type.toString());\r\n                }\r\n            } else {\r\n                throw new JsonIOException(\"Invalid EnumSet type: \" + type.toString());\r\n            }\r\n        };\r\n    } else // Only support creation of EnumMap, but not of custom subtypes; for them type parameters\r\n    // and constructor parameter might have completely different meaning\r\n    if (rawType == EnumMap.class) {\r\n        return () -> {\r\n            if (type instanceof ParameterizedType) {\r\n                Type elementType = ((ParameterizedType) type).getActualTypeArguments()[0];\r\n                if (elementType instanceof Class) {\r\n                    @SuppressWarnings({ \"unchecked\", \"rawtypes\" })\r\n                    T map = (T) new EnumMap((Class) elementType);\r\n                    return map;\r\n                } else {\r\n                    throw new JsonIOException(\"Invalid EnumMap type: \" + type.toString());\r\n                }\r\n            } else {\r\n                throw new JsonIOException(\"Invalid EnumMap type: \" + type.toString());\r\n            }\r\n        };\r\n    }\r\n    return null;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "method",
+    "name": "newDefaultConstructor",
+    "start_line": 223,
+    "end_line": 306,
+    "code": "private static <T> ObjectConstructor<T> newDefaultConstructor(Class<? super T> rawType, FilterResult filterResult) {\r\n    // Cannot invoke constructor of abstract class\r\n    if (Modifier.isAbstract(rawType.getModifiers())) {\r\n        return null;\r\n    }\r\n    Constructor<? super T> constructor;\r\n    try {\r\n        constructor = rawType.getDeclaredConstructor();\r\n    } catch (NoSuchMethodException e) {\r\n        return null;\r\n    }\r\n    boolean canAccess = filterResult == FilterResult.ALLOW || (ReflectionAccessFilterHelper.canAccess(constructor, null) && // Be a bit more lenient here for BLOCK_ALL; if constructor is accessible and public\r\n    // then allow calling it\r\n    (filterResult != FilterResult.BLOCK_ALL || Modifier.isPublic(constructor.getModifiers())));\r\n    if (!canAccess) {\r\n        String message = \"Unable to invoke no-args constructor of \" + rawType + \";\" + \" constructor is not accessible and ReflectionAccessFilter does not permit making\" + \" it accessible. Register an InstanceCreator or a TypeAdapter for this type, change\" + \" the visibility of the constructor or adjust the access filter.\";\r\n        return () -> {\r\n            throw new JsonIOException(message);\r\n        };\r\n    }\r\n    // Only try to make accessible if allowed; in all other cases checks above should\r\n    // have verified that constructor is accessible\r\n    if (filterResult == FilterResult.ALLOW) {\r\n        String exceptionMessage = ReflectionHelper.tryMakeAccessible(constructor);\r\n        if (exceptionMessage != null) {\r\n            /*\r\n         * Create ObjectConstructor which throws exception.\r\n         * This keeps backward compatibility (compared to returning `null` which\r\n         * would then choose another way of creating object).\r\n         * And it supports types which are only serialized but not deserialized\r\n         * (compared to directly throwing exception here), e.g. when runtime type\r\n         * of object is inaccessible, but compile-time type is accessible.\r\n         */\r\n            return () -> {\r\n                // New exception is created every time to avoid keeping reference\r\n                // to exception with potentially long stack trace, causing a\r\n                // memory leak\r\n                throw new JsonIOException(exceptionMessage);\r\n            };\r\n        }\r\n    }\r\n    return () -> {\r\n        try {\r\n            // T is the same raw type as is requested\r\n            @SuppressWarnings(\"unchecked\")\r\n            T newInstance = (T) constructor.newInstance();\r\n            return newInstance;\r\n        }// Note: InstantiationException should be impossible because check at start of method made\r\n        // sure that class is not abstract\r\n         catch (InstantiationException e) {\r\n            throw new RuntimeException(\"Failed to invoke constructor '\" + ReflectionHelper.constructorToString(constructor) + \"' with no args\", e);\r\n        } catch (InvocationTargetException e) {\r\n            // TODO: don't wrap if cause is unchecked?\r\n            // TODO: JsonParseException ?\r\n            throw new RuntimeException(\"Failed to invoke constructor '\" + ReflectionHelper.constructorToString(constructor) + \"' with no args\", e.getCause());\r\n        } catch (IllegalAccessException e) {\r\n            throw ReflectionHelper.createExceptionForUnexpectedIllegalAccess(e);\r\n        }\r\n    };\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "method",
+    "name": "newDefaultImplementationConstructor",
+    "start_line": 309,
+    "end_line": 334,
+    "code": "/**\r\n * Constructors for common interface types like Map and List and their subtypes.\r\n */\r\nprivate static <T> ObjectConstructor<T> newDefaultImplementationConstructor(Type type, Class<? super T> rawType) {\r\n    /*\r\n     * IMPORTANT: Must only create instances for classes with public no-args constructor.\r\n     * For classes with special constructors / factory methods (e.g. EnumSet)\r\n     * `newSpecialCollectionConstructor` defined above must be used, to avoid no-args\r\n     * constructor check (which is called before this method) detecting internal no-args\r\n     * constructors which might be added in a future JDK version\r\n     */\r\n    if (Collection.class.isAssignableFrom(rawType)) {\r\n        @SuppressWarnings(\"unchecked\")\r\n        ObjectConstructor<T> constructor = (ObjectConstructor<T>) newCollectionConstructor(rawType);\r\n        return constructor;\r\n    }\r\n    if (Map.class.isAssignableFrom(rawType)) {\r\n        @SuppressWarnings(\"unchecked\")\r\n        ObjectConstructor<T> constructor = (ObjectConstructor<T>) newMapConstructor(type, rawType);\r\n        return constructor;\r\n    }\r\n    // Unsupported type; try other means of creating constructor\r\n    return null;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "method",
+    "name": "newCollectionConstructor",
+    "start_line": 336,
+    "end_line": 358,
+    "code": "private static ObjectConstructor<? extends Collection<? extends Object>> newCollectionConstructor(Class<?> rawType) {\r\n    // First try List implementation\r\n    if (rawType.isAssignableFrom(ArrayList.class)) {\r\n        return () -> new ArrayList<>();\r\n    } else // Then try Set implementation\r\n    if (rawType.isAssignableFrom(LinkedHashSet.class)) {\r\n        return () -> new LinkedHashSet<>();\r\n    } else // Then try SortedSet / NavigableSet implementation\r\n    if (rawType.isAssignableFrom(TreeSet.class)) {\r\n        return () -> new TreeSet<>();\r\n    } else // Then try Queue implementation\r\n    if (rawType.isAssignableFrom(ArrayDeque.class)) {\r\n        return () -> new ArrayDeque<>();\r\n    }\r\n    // Was unable to create matching Collection constructor\r\n    return null;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "method",
+    "name": "hasStringKeyType",
+    "start_line": 360,
+    "end_line": 371,
+    "code": "private static boolean hasStringKeyType(Type mapType) {\r\n    // If mapType is not parameterized, assume it might have String as key type\r\n    if (!(mapType instanceof ParameterizedType)) {\r\n        return true;\r\n    }\r\n    Type[] typeArguments = ((ParameterizedType) mapType).getActualTypeArguments();\r\n    if (typeArguments.length == 0) {\r\n        return false;\r\n    }\r\n    return GsonTypes.getRawType(typeArguments[0]) == String.class;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "method",
+    "name": "newMapConstructor",
+    "start_line": 373,
+    "end_line": 400,
+    "code": "private static ObjectConstructor<? extends Map<? extends Object, Object>> newMapConstructor(Type type, Class<?> rawType) {\r\n    // First try Map implementation\r\n    /*\r\n     * Legacy special casing for Map<String, ...> to avoid DoS from colliding String hashCode\r\n     * values for older JDKs; use own LinkedTreeMap<String, Object> instead\r\n     */\r\n    if (rawType.isAssignableFrom(LinkedTreeMap.class) && hasStringKeyType(type)) {\r\n        return () -> new LinkedTreeMap<>();\r\n    } else if (rawType.isAssignableFrom(LinkedHashMap.class)) {\r\n        return () -> new LinkedHashMap<>();\r\n    } else // Then try SortedMap / NavigableMap implementation\r\n    if (rawType.isAssignableFrom(TreeMap.class)) {\r\n        return () -> new TreeMap<>();\r\n    } else // Then try ConcurrentMap implementation\r\n    if (rawType.isAssignableFrom(ConcurrentHashMap.class)) {\r\n        return () -> new ConcurrentHashMap<>();\r\n    } else // Then try ConcurrentNavigableMap implementation\r\n    if (rawType.isAssignableFrom(ConcurrentSkipListMap.class)) {\r\n        return () -> new ConcurrentSkipListMap<>();\r\n    }\r\n    // Was unable to create matching Map constructor\r\n    return null;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "method",
+    "name": "newUnsafeAllocator",
+    "start_line": 402,
+    "end_line": 441,
+    "code": "private <T> ObjectConstructor<T> newUnsafeAllocator(Class<? super T> rawType) {\r\n    if (useJdkUnsafe) {\r\n        return () -> {\r\n            try {\r\n                @SuppressWarnings(\"unchecked\")\r\n                T newInstance = (T) UnsafeAllocator.INSTANCE.newInstance(rawType);\r\n                return newInstance;\r\n            } catch (Exception e) {\r\n                throw new RuntimeException((\"Unable to create instance of \" + rawType + \". Registering an InstanceCreator or a TypeAdapter for this type, or adding a\" + \" no-args constructor may fix this problem.\"), e);\r\n            }\r\n        };\r\n    } else {\r\n        String exceptionMessage = \"Unable to create instance of \" + rawType + \"; usage of JDK Unsafe is disabled. Registering an InstanceCreator or a TypeAdapter\" + \" for this type, adding a no-args constructor, or enabling usage of JDK Unsafe may\" + \" fix this problem.\";\r\n        // Check if R8 removed all constructors\r\n        if (rawType.getDeclaredConstructors().length == 0) {\r\n            // R8 with Unsafe disabled might not be common enough to warrant a separate Troubleshooting\r\n            // Guide entry\r\n            exceptionMessage += \" Or adjust your R8 configuration to keep the no-args constructor of the class.\";\r\n        }\r\n        // Separate effectively final variable to allow usage in the lambda below\r\n        String exceptionMessageF = exceptionMessage;\r\n        return () -> {\r\n            throw new JsonIOException(exceptionMessageF);\r\n        };\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  },
+  {
+    "type": "method",
+    "name": "toString",
+    "start_line": 443,
+    "end_line": 446,
+    "code": "@Override\r\npublic String toString() {\r\n    return instanceCreators.toString();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ConstructorConstructor.java"
+  }
+]

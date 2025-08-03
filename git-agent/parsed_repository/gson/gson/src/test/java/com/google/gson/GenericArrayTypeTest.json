@@ -1,0 +1,114 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.GsonTypes",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.internal.GsonTypes;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.GenericArrayType",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.lang.reflect.GenericArrayType;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "class",
+    "name": "GenericArrayTypeTest",
+    "start_line": 35,
+    "end_line": 60,
+    "code": "/**\r\n * Unit tests for the {@code GenericArrayType}s created by the {@link GsonTypes} class.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class GenericArrayTypeTest {\r\n\r\n    private GenericArrayType ourType;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        ourType = GsonTypes.arrayOf(GsonTypes.newParameterizedTypeWithOwner(null, List.class, String.class));\r\n    }\r\n\r\n    @Test\r\n    public void testOurTypeFunctionality() throws Exception {\r\n        Type parameterizedType = new TypeToken<List<String>>() {\r\n        }.getType();\r\n        Type genericArrayType = new TypeToken<List<String>[]>() {\r\n        }.getType();\r\n        assertThat(ourType.getGenericComponentType()).isEqualTo(parameterizedType);\r\n        assertThat(ourType).isEqualTo(genericArrayType);\r\n        assertThat(ourType.hashCode()).isEqualTo(genericArrayType.hashCode());\r\n    }\r\n\r\n    @Test\r\n    public void testNotEquals() throws Exception {\r\n        Type differentGenericArrayType = new TypeToken<List<String>[][]>() {\r\n        }.getType();\r\n        assertThat(differentGenericArrayType.equals(ourType)).isFalse();\r\n        assertThat(ourType.equals(differentGenericArrayType)).isFalse();\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "field",
+    "name": "ourType",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "private GenericArrayType ourType;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 38,
+    "end_line": 42,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    ourType = GsonTypes.arrayOf(GsonTypes.newParameterizedTypeWithOwner(null, List.class, String.class));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testOurTypeFunctionality",
+    "start_line": 44,
+    "end_line": 52,
+    "code": "@Test\r\npublic void testOurTypeFunctionality() throws Exception {\r\n    Type parameterizedType = new TypeToken<List<String>>() {\r\n    }.getType();\r\n    Type genericArrayType = new TypeToken<List<String>[]>() {\r\n    }.getType();\r\n    assertThat(ourType.getGenericComponentType()).isEqualTo(parameterizedType);\r\n    assertThat(ourType).isEqualTo(genericArrayType);\r\n    assertThat(ourType.hashCode()).isEqualTo(genericArrayType.hashCode());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNotEquals",
+    "start_line": 54,
+    "end_line": 59,
+    "code": "@Test\r\npublic void testNotEquals() throws Exception {\r\n    Type differentGenericArrayType = new TypeToken<List<String>[][]>() {\r\n    }.getType();\r\n    assertThat(differentGenericArrayType.equals(ourType)).isFalse();\r\n    assertThat(ourType.equals(differentGenericArrayType)).isFalse();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GenericArrayTypeTest.java"
+  }
+]

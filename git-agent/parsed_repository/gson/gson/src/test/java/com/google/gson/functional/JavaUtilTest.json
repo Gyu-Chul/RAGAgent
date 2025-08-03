@@ -1,0 +1,98 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Currency",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.util.Currency;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Properties",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.util.Properties;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilTest.java"
+  },
+  {
+    "type": "class",
+    "name": "JavaUtilTest",
+    "start_line": 28,
+    "end_line": 62,
+    "code": "/**\r\n * Functional test for Json serialization and deserialization for classes in java.util\r\n */\r\npublic class JavaUtilTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n    }\r\n\r\n    @Test\r\n    public void testCurrency() {\r\n        CurrencyHolder target = gson.fromJson(\"{'value':'USD'}\", CurrencyHolder.class);\r\n        assertThat(target.value.getCurrencyCode()).isEqualTo(\"USD\");\r\n        String json = gson.toJson(target);\r\n        assertThat(json).isEqualTo(\"{\\\"value\\\":\\\"USD\\\"}\");\r\n        // null handling\r\n        target = gson.fromJson(\"{'value':null}\", CurrencyHolder.class);\r\n        assertThat(target.value).isNull();\r\n        assertThat(gson.toJson(target)).isEqualTo(\"{}\");\r\n    }\r\n\r\n    private static class CurrencyHolder {\r\n\r\n        Currency value;\r\n    }\r\n\r\n    @Test\r\n    public void testProperties() {\r\n        Properties props = gson.fromJson(\"{'a':'v1','b':'v2'}\", Properties.class);\r\n        assertThat(props.getProperty(\"a\")).isEqualTo(\"v1\");\r\n        assertThat(props.getProperty(\"b\")).isEqualTo(\"v2\");\r\n        String json = gson.toJson(props);\r\n        assertThat(json).contains(\"\\\"a\\\":\\\"v1\\\"\");\r\n        assertThat(json).contains(\"\\\"b\\\":\\\"v2\\\"\");\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 31,
+    "end_line": 34,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCurrency",
+    "start_line": 36,
+    "end_line": 47,
+    "code": "@Test\r\npublic void testCurrency() {\r\n    CurrencyHolder target = gson.fromJson(\"{'value':'USD'}\", CurrencyHolder.class);\r\n    assertThat(target.value.getCurrencyCode()).isEqualTo(\"USD\");\r\n    String json = gson.toJson(target);\r\n    assertThat(json).isEqualTo(\"{\\\"value\\\":\\\"USD\\\"}\");\r\n    // null handling\r\n    target = gson.fromJson(\"{'value':null}\", CurrencyHolder.class);\r\n    assertThat(target.value).isNull();\r\n    assertThat(gson.toJson(target)).isEqualTo(\"{}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testProperties",
+    "start_line": 53,
+    "end_line": 61,
+    "code": "@Test\r\npublic void testProperties() {\r\n    Properties props = gson.fromJson(\"{'a':'v1','b':'v2'}\", Properties.class);\r\n    assertThat(props.getProperty(\"a\")).isEqualTo(\"v1\");\r\n    assertThat(props.getProperty(\"b\")).isEqualTo(\"v2\");\r\n    String json = gson.toJson(props);\r\n    assertThat(json).contains(\"\\\"a\\\":\\\"v1\\\"\");\r\n    assertThat(json).contains(\"\\\"b\\\":\\\"v2\\\"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JavaUtilTest.java"
+  }
+]

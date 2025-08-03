@@ -1,0 +1,194 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.typeadapters",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.typeadapters;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonParseException",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.JsonParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonToken",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.stream.JsonToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.ParseException",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.text.ParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.ParsePosition",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.text.ParsePosition;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Calendar",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.util.Calendar;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Date",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.util.Date;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.GregorianCalendar",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.util.GregorianCalendar;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Locale",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.Locale;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.TimeZone",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.util.TimeZone;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "class",
+    "name": "UtcDateTypeAdapter",
+    "start_line": 33,
+    "end_line": 281,
+    "code": "public final class UtcDateTypeAdapter extends TypeAdapter<Date> {\r\n\r\n    private static final TimeZone UTC_TIME_ZONE = TimeZone.getTimeZone(\"UTC\");\r\n\r\n    @Override\r\n    public void write(JsonWriter out, Date date) throws IOException {\r\n        if (date == null) {\r\n            out.nullValue();\r\n        } else {\r\n            String value = format(date, true, UTC_TIME_ZONE);\r\n            out.value(value);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public Date read(JsonReader in) throws IOException {\r\n        try {\r\n            if (in.peek().equals(JsonToken.NULL)) {\r\n                in.nextNull();\r\n                return null;\r\n            } else {\r\n                String date = in.nextString();\r\n                // Instead of using iso8601Format.parse(value), we use Jackson's date parsing\r\n                // This is because Android doesn't support XXX because it is JDK 1.6\r\n                return parse(date, new ParsePosition(0));\r\n            }\r\n        } catch (ParseException e) {\r\n            throw new JsonParseException(e);\r\n        }\r\n    }\r\n\r\n    // Date parsing code from Jackson databind ISO8601Utils.java\r\n    // https://github.com/FasterXML/jackson-databind/blob/2.8/src/main/java/com/fasterxml/jackson/databind/util/ISO8601Utils.java\r\n    private static final String GMT_ID = \"GMT\";\r\n\r\n    /**\r\n     * Format date into yyyy-MM-ddThh:mm:ss[.sss][Z|[+-]hh:mm]\r\n     *\r\n     * @param date the date to format\r\n     * @param millis true to include millis precision otherwise false\r\n     * @param tz timezone to use for the formatting (GMT will produce 'Z')\r\n     * @return the date formatted as yyyy-MM-ddThh:mm:ss[.sss][Z|[+-]hh:mm]\r\n     */\r\n    private static String format(Date date, boolean millis, TimeZone tz) {\r\n        Calendar calendar = new GregorianCalendar(tz, Locale.US);\r\n        calendar.setTime(date);\r\n        // estimate capacity of buffer as close as we can (yeah, that's pedantic ;)\r\n        int capacity = \"yyyy-MM-ddThh:mm:ss\".length();\r\n        capacity += millis ? \".sss\".length() : 0;\r\n        capacity += tz.getRawOffset() == 0 ? \"Z\".length() : \"+hh:mm\".length();\r\n        StringBuilder formatted = new StringBuilder(capacity);\r\n        padInt(formatted, calendar.get(Calendar.YEAR), \"yyyy\".length());\r\n        formatted.append('-');\r\n        padInt(formatted, calendar.get(Calendar.MONTH) + 1, \"MM\".length());\r\n        formatted.append('-');\r\n        padInt(formatted, calendar.get(Calendar.DAY_OF_MONTH), \"dd\".length());\r\n        formatted.append('T');\r\n        padInt(formatted, calendar.get(Calendar.HOUR_OF_DAY), \"hh\".length());\r\n        formatted.append(':');\r\n        padInt(formatted, calendar.get(Calendar.MINUTE), \"mm\".length());\r\n        formatted.append(':');\r\n        padInt(formatted, calendar.get(Calendar.SECOND), \"ss\".length());\r\n        if (millis) {\r\n            formatted.append('.');\r\n            padInt(formatted, calendar.get(Calendar.MILLISECOND), \"sss\".length());\r\n        }\r\n        int offset = tz.getOffset(calendar.getTimeInMillis());\r\n        if (offset != 0) {\r\n            int hours = Math.abs((offset / (60 * 1000)) / 60);\r\n            int minutes = Math.abs((offset / (60 * 1000)) % 60);\r\n            formatted.append(offset < 0 ? '-' : '+');\r\n            padInt(formatted, hours, \"hh\".length());\r\n            formatted.append(':');\r\n            padInt(formatted, minutes, \"mm\".length());\r\n        } else {\r\n            formatted.append('Z');\r\n        }\r\n        return formatted.toString();\r\n    }\r\n\r\n    /**\r\n     * Zero pad a number to a specified length\r\n     *\r\n     * @param buffer buffer to use for padding\r\n     * @param value the integer value to pad if necessary.\r\n     * @param length the length of the string we should zero pad\r\n     */\r\n    private static void padInt(StringBuilder buffer, int value, int length) {\r\n        String strValue = Integer.toString(value);\r\n        for (int i = length - strValue.length(); i > 0; i--) {\r\n            buffer.append('0');\r\n        }\r\n        buffer.append(strValue);\r\n    }\r\n\r\n    /**\r\n     * Parse a date from ISO-8601 formatted string. It expects a format\r\n     * [yyyy-MM-dd|yyyyMMdd][T(hh:mm[:ss[.sss]]|hhmm[ss[.sss]])]?[Z|[+-]hh:mm]]\r\n     *\r\n     * @param date ISO string to parse in the appropriate format.\r\n     * @param pos The position to start parsing from, updated to where parsing stopped.\r\n     * @return the parsed date\r\n     * @throws ParseException if the date is not in the appropriate format\r\n     */\r\n    private static Date parse(String date, ParsePosition pos) throws ParseException {\r\n        Exception fail = null;\r\n        try {\r\n            int offset = pos.getIndex();\r\n            // extract year\r\n            int year = parseInt(date, offset, offset += 4);\r\n            if (checkOffset(date, offset, '-')) {\r\n                offset += 1;\r\n            }\r\n            // extract month\r\n            int month = parseInt(date, offset, offset += 2);\r\n            if (checkOffset(date, offset, '-')) {\r\n                offset += 1;\r\n            }\r\n            // extract day\r\n            int day = parseInt(date, offset, offset += 2);\r\n            // default time value\r\n            int hour = 0;\r\n            int minutes = 0;\r\n            int seconds = 0;\r\n            // always use 0 otherwise returned date will include millis of current time\r\n            int milliseconds = 0;\r\n            if (checkOffset(date, offset, 'T')) {\r\n                // extract hours, minutes, seconds and milliseconds\r\n                hour = parseInt(date, offset += 1, offset += 2);\r\n                if (checkOffset(date, offset, ':')) {\r\n                    offset += 1;\r\n                }\r\n                minutes = parseInt(date, offset, offset += 2);\r\n                if (checkOffset(date, offset, ':')) {\r\n                    offset += 1;\r\n                }\r\n                // second and milliseconds can be optional\r\n                if (date.length() > offset) {\r\n                    char c = date.charAt(offset);\r\n                    if (c != 'Z' && c != '+' && c != '-') {\r\n                        seconds = parseInt(date, offset, offset += 2);\r\n                        // milliseconds can be optional in the format\r\n                        if (checkOffset(date, offset, '.')) {\r\n                            milliseconds = parseInt(date, offset += 1, offset += 3);\r\n                        }\r\n                    }\r\n                }\r\n            }\r\n            // extract timezone\r\n            String timezoneId;\r\n            if (date.length() <= offset) {\r\n                throw new IllegalArgumentException(\"No time zone indicator\");\r\n            }\r\n            char timezoneIndicator = date.charAt(offset);\r\n            if (timezoneIndicator == '+' || timezoneIndicator == '-') {\r\n                String timezoneOffset = date.substring(offset);\r\n                timezoneId = GMT_ID + timezoneOffset;\r\n                offset += timezoneOffset.length();\r\n            } else if (timezoneIndicator == 'Z') {\r\n                timezoneId = GMT_ID;\r\n                offset += 1;\r\n            } else {\r\n                throw new IndexOutOfBoundsException(\"Invalid time zone indicator \" + timezoneIndicator);\r\n            }\r\n            TimeZone timezone = TimeZone.getTimeZone(timezoneId);\r\n            if (!timezone.getID().equals(timezoneId)) {\r\n                throw new IndexOutOfBoundsException();\r\n            }\r\n            Calendar calendar = new GregorianCalendar(timezone);\r\n            calendar.setLenient(false);\r\n            calendar.set(Calendar.YEAR, year);\r\n            calendar.set(Calendar.MONTH, month - 1);\r\n            calendar.set(Calendar.DAY_OF_MONTH, day);\r\n            calendar.set(Calendar.HOUR_OF_DAY, hour);\r\n            calendar.set(Calendar.MINUTE, minutes);\r\n            calendar.set(Calendar.SECOND, seconds);\r\n            calendar.set(Calendar.MILLISECOND, milliseconds);\r\n            pos.setIndex(offset);\r\n            return calendar.getTime();\r\n            // If we get a ParseException it'll already have the right message/offset.\r\n            // Other exception types can convert here.\r\n        } catch (IndexOutOfBoundsException | IllegalArgumentException e) {\r\n            fail = e;\r\n        }\r\n        String input = (date == null) ? null : (\"'\" + date + \"'\");\r\n        throw new ParseException(\"Failed to parse date [\" + input + \"]: \" + fail.getMessage(), pos.getIndex());\r\n    }\r\n\r\n    /**\r\n     * Check if the expected character exist at the given offset in the value.\r\n     *\r\n     * @param value the string to check at the specified offset\r\n     * @param offset the offset to look for the expected character\r\n     * @param expected the expected character\r\n     * @return true if the expected character exist at the given offset\r\n     */\r\n    private static boolean checkOffset(String value, int offset, char expected) {\r\n        return (offset < value.length()) && (value.charAt(offset) == expected);\r\n    }\r\n\r\n    /**\r\n     * Parse an integer located between 2 given offsets in a string\r\n     *\r\n     * @param value the string to parse\r\n     * @param beginIndex the start index for the integer in the string\r\n     * @param endIndex the end index for the integer in the string\r\n     * @return the int\r\n     * @throws NumberFormatException if the value is not a number\r\n     */\r\n    private static int parseInt(String value, int beginIndex, int endIndex) throws NumberFormatException {\r\n        if (beginIndex < 0 || endIndex > value.length() || beginIndex > endIndex) {\r\n            throw new NumberFormatException(value);\r\n        }\r\n        // use same logic as in Integer.parseInt() but less generic we're not supporting negative values\r\n        int i = beginIndex;\r\n        int result = 0;\r\n        int digit;\r\n        if (i < endIndex) {\r\n            digit = Character.digit(value.charAt(i++), 10);\r\n            if (digit < 0) {\r\n                throw new NumberFormatException(\"Invalid number: \" + value);\r\n            }\r\n            result = -digit;\r\n        }\r\n        while (i < endIndex) {\r\n            digit = Character.digit(value.charAt(i++), 10);\r\n            if (digit < 0) {\r\n                throw new NumberFormatException(\"Invalid number: \" + value);\r\n            }\r\n            result *= 10;\r\n            result -= digit;\r\n        }\r\n        return -result;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "UTC_TIME_ZONE",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "private static final TimeZone UTC_TIME_ZONE = TimeZone.getTimeZone(\"UTC\");",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "GMT_ID",
+    "start_line": 65,
+    "end_line": 65,
+    "code": "// Date parsing code from Jackson databind ISO8601Utils.java\r\n// https://github.com/FasterXML/jackson-databind/blob/2.8/src/main/java/com/fasterxml/jackson/databind/util/ISO8601Utils.java\r\nprivate static final String GMT_ID = \"GMT\";",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "write",
+    "start_line": 36,
+    "end_line": 44,
+    "code": "@Override\r\npublic void write(JsonWriter out, Date date) throws IOException {\r\n    if (date == null) {\r\n        out.nullValue();\r\n    } else {\r\n        String value = format(date, true, UTC_TIME_ZONE);\r\n        out.value(value);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "read",
+    "start_line": 46,
+    "end_line": 61,
+    "code": "@Override\r\npublic Date read(JsonReader in) throws IOException {\r\n    try {\r\n        if (in.peek().equals(JsonToken.NULL)) {\r\n            in.nextNull();\r\n            return null;\r\n        } else {\r\n            String date = in.nextString();\r\n            // Instead of using iso8601Format.parse(value), we use Jackson's date parsing\r\n            // This is because Android doesn't support XXX because it is JDK 1.6\r\n            return parse(date, new ParsePosition(0));\r\n        }\r\n    } catch (ParseException e) {\r\n        throw new JsonParseException(e);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "format",
+    "start_line": 75,
+    "end_line": 114,
+    "code": "/**\r\n * Format date into yyyy-MM-ddThh:mm:ss[.sss][Z|[+-]hh:mm]\r\n *\r\n * @param date the date to format\r\n * @param millis true to include millis precision otherwise false\r\n * @param tz timezone to use for the formatting (GMT will produce 'Z')\r\n * @return the date formatted as yyyy-MM-ddThh:mm:ss[.sss][Z|[+-]hh:mm]\r\n */\r\nprivate static String format(Date date, boolean millis, TimeZone tz) {\r\n    Calendar calendar = new GregorianCalendar(tz, Locale.US);\r\n    calendar.setTime(date);\r\n    // estimate capacity of buffer as close as we can (yeah, that's pedantic ;)\r\n    int capacity = \"yyyy-MM-ddThh:mm:ss\".length();\r\n    capacity += millis ? \".sss\".length() : 0;\r\n    capacity += tz.getRawOffset() == 0 ? \"Z\".length() : \"+hh:mm\".length();\r\n    StringBuilder formatted = new StringBuilder(capacity);\r\n    padInt(formatted, calendar.get(Calendar.YEAR), \"yyyy\".length());\r\n    formatted.append('-');\r\n    padInt(formatted, calendar.get(Calendar.MONTH) + 1, \"MM\".length());\r\n    formatted.append('-');\r\n    padInt(formatted, calendar.get(Calendar.DAY_OF_MONTH), \"dd\".length());\r\n    formatted.append('T');\r\n    padInt(formatted, calendar.get(Calendar.HOUR_OF_DAY), \"hh\".length());\r\n    formatted.append(':');\r\n    padInt(formatted, calendar.get(Calendar.MINUTE), \"mm\".length());\r\n    formatted.append(':');\r\n    padInt(formatted, calendar.get(Calendar.SECOND), \"ss\".length());\r\n    if (millis) {\r\n        formatted.append('.');\r\n        padInt(formatted, calendar.get(Calendar.MILLISECOND), \"sss\".length());\r\n    }\r\n    int offset = tz.getOffset(calendar.getTimeInMillis());\r\n    if (offset != 0) {\r\n        int hours = Math.abs((offset / (60 * 1000)) / 60);\r\n        int minutes = Math.abs((offset / (60 * 1000)) % 60);\r\n        formatted.append(offset < 0 ? '-' : '+');\r\n        padInt(formatted, hours, \"hh\".length());\r\n        formatted.append(':');\r\n        padInt(formatted, minutes, \"mm\".length());\r\n    } else {\r\n        formatted.append('Z');\r\n    }\r\n    return formatted.toString();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "padInt",
+    "start_line": 123,
+    "end_line": 129,
+    "code": "/**\r\n * Zero pad a number to a specified length\r\n *\r\n * @param buffer buffer to use for padding\r\n * @param value the integer value to pad if necessary.\r\n * @param length the length of the string we should zero pad\r\n */\r\nprivate static void padInt(StringBuilder buffer, int value, int length) {\r\n    String strValue = Integer.toString(value);\r\n    for (int i = length - strValue.length(); i > 0; i--) {\r\n        buffer.append('0');\r\n    }\r\n    buffer.append(strValue);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "parse",
+    "start_line": 140,
+    "end_line": 232,
+    "code": "/**\r\n * Parse a date from ISO-8601 formatted string. It expects a format\r\n * [yyyy-MM-dd|yyyyMMdd][T(hh:mm[:ss[.sss]]|hhmm[ss[.sss]])]?[Z|[+-]hh:mm]]\r\n *\r\n * @param date ISO string to parse in the appropriate format.\r\n * @param pos The position to start parsing from, updated to where parsing stopped.\r\n * @return the parsed date\r\n * @throws ParseException if the date is not in the appropriate format\r\n */\r\nprivate static Date parse(String date, ParsePosition pos) throws ParseException {\r\n    Exception fail = null;\r\n    try {\r\n        int offset = pos.getIndex();\r\n        // extract year\r\n        int year = parseInt(date, offset, offset += 4);\r\n        if (checkOffset(date, offset, '-')) {\r\n            offset += 1;\r\n        }\r\n        // extract month\r\n        int month = parseInt(date, offset, offset += 2);\r\n        if (checkOffset(date, offset, '-')) {\r\n            offset += 1;\r\n        }\r\n        // extract day\r\n        int day = parseInt(date, offset, offset += 2);\r\n        // default time value\r\n        int hour = 0;\r\n        int minutes = 0;\r\n        int seconds = 0;\r\n        // always use 0 otherwise returned date will include millis of current time\r\n        int milliseconds = 0;\r\n        if (checkOffset(date, offset, 'T')) {\r\n            // extract hours, minutes, seconds and milliseconds\r\n            hour = parseInt(date, offset += 1, offset += 2);\r\n            if (checkOffset(date, offset, ':')) {\r\n                offset += 1;\r\n            }\r\n            minutes = parseInt(date, offset, offset += 2);\r\n            if (checkOffset(date, offset, ':')) {\r\n                offset += 1;\r\n            }\r\n            // second and milliseconds can be optional\r\n            if (date.length() > offset) {\r\n                char c = date.charAt(offset);\r\n                if (c != 'Z' && c != '+' && c != '-') {\r\n                    seconds = parseInt(date, offset, offset += 2);\r\n                    // milliseconds can be optional in the format\r\n                    if (checkOffset(date, offset, '.')) {\r\n                        milliseconds = parseInt(date, offset += 1, offset += 3);\r\n                    }\r\n                }\r\n            }\r\n        }\r\n        // extract timezone\r\n        String timezoneId;\r\n        if (date.length() <= offset) {\r\n            throw new IllegalArgumentException(\"No time zone indicator\");\r\n        }\r\n        char timezoneIndicator = date.charAt(offset);\r\n        if (timezoneIndicator == '+' || timezoneIndicator == '-') {\r\n            String timezoneOffset = date.substring(offset);\r\n            timezoneId = GMT_ID + timezoneOffset;\r\n            offset += timezoneOffset.length();\r\n        } else if (timezoneIndicator == 'Z') {\r\n            timezoneId = GMT_ID;\r\n            offset += 1;\r\n        } else {\r\n            throw new IndexOutOfBoundsException(\"Invalid time zone indicator \" + timezoneIndicator);\r\n        }\r\n        TimeZone timezone = TimeZone.getTimeZone(timezoneId);\r\n        if (!timezone.getID().equals(timezoneId)) {\r\n            throw new IndexOutOfBoundsException();\r\n        }\r\n        Calendar calendar = new GregorianCalendar(timezone);\r\n        calendar.setLenient(false);\r\n        calendar.set(Calendar.YEAR, year);\r\n        calendar.set(Calendar.MONTH, month - 1);\r\n        calendar.set(Calendar.DAY_OF_MONTH, day);\r\n        calendar.set(Calendar.HOUR_OF_DAY, hour);\r\n        calendar.set(Calendar.MINUTE, minutes);\r\n        calendar.set(Calendar.SECOND, seconds);\r\n        calendar.set(Calendar.MILLISECOND, milliseconds);\r\n        pos.setIndex(offset);\r\n        return calendar.getTime();\r\n        // If we get a ParseException it'll already have the right message/offset.\r\n        // Other exception types can convert here.\r\n    } catch (IndexOutOfBoundsException | IllegalArgumentException e) {\r\n        fail = e;\r\n    }\r\n    String input = (date == null) ? null : (\"'\" + date + \"'\");\r\n    throw new ParseException(\"Failed to parse date [\" + input + \"]: \" + fail.getMessage(), pos.getIndex());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "checkOffset",
+    "start_line": 242,
+    "end_line": 244,
+    "code": "/**\r\n * Check if the expected character exist at the given offset in the value.\r\n *\r\n * @param value the string to check at the specified offset\r\n * @param offset the offset to look for the expected character\r\n * @param expected the expected character\r\n * @return true if the expected character exist at the given offset\r\n */\r\nprivate static boolean checkOffset(String value, int offset, char expected) {\r\n    return (offset < value.length()) && (value.charAt(offset) == expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "parseInt",
+    "start_line": 255,
+    "end_line": 280,
+    "code": "/**\r\n * Parse an integer located between 2 given offsets in a string\r\n *\r\n * @param value the string to parse\r\n * @param beginIndex the start index for the integer in the string\r\n * @param endIndex the end index for the integer in the string\r\n * @return the int\r\n * @throws NumberFormatException if the value is not a number\r\n */\r\nprivate static int parseInt(String value, int beginIndex, int endIndex) throws NumberFormatException {\r\n    if (beginIndex < 0 || endIndex > value.length() || beginIndex > endIndex) {\r\n        throw new NumberFormatException(value);\r\n    }\r\n    // use same logic as in Integer.parseInt() but less generic we're not supporting negative values\r\n    int i = beginIndex;\r\n    int result = 0;\r\n    int digit;\r\n    if (i < endIndex) {\r\n        digit = Character.digit(value.charAt(i++), 10);\r\n        if (digit < 0) {\r\n            throw new NumberFormatException(\"Invalid number: \" + value);\r\n        }\r\n        result = -digit;\r\n    }\r\n    while (i < endIndex) {\r\n        digit = Character.digit(value.charAt(i++), 10);\r\n        if (digit < 0) {\r\n            throw new NumberFormatException(\"Invalid number: \" + value);\r\n        }\r\n        result *= 10;\r\n        result -= digit;\r\n    }\r\n    return -result;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\typeadapters\\UtcDateTypeAdapter.java"
+  }
+]

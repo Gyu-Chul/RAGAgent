@@ -1,0 +1,146 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonDeserializationContext",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.JsonDeserializationContext;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonDeserializer",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonDeserializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonObject",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.JsonObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonParseException",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.JsonParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializationContext",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.JsonSerializationContext;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializer",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.JsonSerializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "class",
+    "name": "TypeHierarchyAdapterTest",
+    "start_line": 35,
+    "end_line": 233,
+    "code": "/**\r\n * Test that the hierarchy adapter works when subtypes are used.\r\n */\r\npublic final class TypeHierarchyAdapterTest {\r\n\r\n    @Test\r\n    public void testTypeHierarchy() {\r\n        Manager andy = new Manager();\r\n        andy.userid = \"andy\";\r\n        andy.startDate = 2005;\r\n        andy.minions = new Employee[] { new Employee(\"inder\", 2007), new Employee(\"joel\", 2006), new Employee(\"jesse\", 2006) };\r\n        CEO eric = new CEO();\r\n        eric.userid = \"eric\";\r\n        eric.startDate = 2001;\r\n        eric.assistant = new Employee(\"jerome\", 2006);\r\n        eric.minions = new Employee[] { new Employee(\"larry\", 1998), new Employee(\"sergey\", 1998), andy };\r\n        Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(Employee.class, new EmployeeAdapter()).setPrettyPrinting().create();\r\n        Company company = new Company();\r\n        company.ceo = eric;\r\n        String json = gson.toJson(company, Company.class);\r\n        assertThat(json).isEqualTo(\"{\\n\" + \"  \\\"ceo\\\": {\\n\" + \"    \\\"userid\\\": \\\"eric\\\",\\n\" + \"    \\\"startDate\\\": 2001,\\n\" + \"    \\\"minions\\\": [\\n\" + \"      {\\n\" + \"        \\\"userid\\\": \\\"larry\\\",\\n\" + \"        \\\"startDate\\\": 1998\\n\" + \"      },\\n\" + \"      {\\n\" + \"        \\\"userid\\\": \\\"sergey\\\",\\n\" + \"        \\\"startDate\\\": 1998\\n\" + \"      },\\n\" + \"      {\\n\" + \"        \\\"userid\\\": \\\"andy\\\",\\n\" + \"        \\\"startDate\\\": 2005,\\n\" + \"        \\\"minions\\\": [\\n\" + \"          {\\n\" + \"            \\\"userid\\\": \\\"inder\\\",\\n\" + \"            \\\"startDate\\\": 2007\\n\" + \"          },\\n\" + \"          {\\n\" + \"            \\\"userid\\\": \\\"joel\\\",\\n\" + \"            \\\"startDate\\\": 2006\\n\" + \"          },\\n\" + \"          {\\n\" + \"            \\\"userid\\\": \\\"jesse\\\",\\n\" + \"            \\\"startDate\\\": 2006\\n\" + \"          }\\n\" + \"        ]\\n\" + \"      }\\n\" + \"    ],\\n\" + \"    \\\"assistant\\\": {\\n\" + \"      \\\"userid\\\": \\\"jerome\\\",\\n\" + \"      \\\"startDate\\\": 2006\\n\" + \"    }\\n\" + \"  }\\n\" + \"}\");\r\n        Company copied = gson.fromJson(json, Company.class);\r\n        assertThat(gson.toJson(copied, Company.class)).isEqualTo(json);\r\n        assertThat(company.ceo.userid).isEqualTo(copied.ceo.userid);\r\n        assertThat(company.ceo.assistant.userid).isEqualTo(copied.ceo.assistant.userid);\r\n        assertThat(company.ceo.minions[0].userid).isEqualTo(copied.ceo.minions[0].userid);\r\n        assertThat(company.ceo.minions[1].userid).isEqualTo(copied.ceo.minions[1].userid);\r\n        assertThat(company.ceo.minions[2].userid).isEqualTo(copied.ceo.minions[2].userid);\r\n        assertThat(((Manager) company.ceo.minions[2]).minions[0].userid).isEqualTo(((Manager) copied.ceo.minions[2]).minions[0].userid);\r\n        assertThat(((Manager) company.ceo.minions[2]).minions[1].userid).isEqualTo(((Manager) copied.ceo.minions[2]).minions[1].userid);\r\n    }\r\n\r\n    @Test\r\n    public void testRegisterSuperTypeFirst() {\r\n        Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(Employee.class, new EmployeeAdapter()).registerTypeHierarchyAdapter(Manager.class, new ManagerAdapter()).create();\r\n        Manager manager = new Manager();\r\n        manager.userid = \"inder\";\r\n        String json = gson.toJson(manager, Manager.class);\r\n        assertThat(json).isEqualTo(\"\\\"inder\\\"\");\r\n        Manager copied = gson.fromJson(json, Manager.class);\r\n        assertThat(copied.userid).isEqualTo(manager.userid);\r\n    }\r\n\r\n    /**\r\n     * This behaviour changed in Gson 2.1; it used to throw.\r\n     */\r\n    @Test\r\n    public void testRegisterSubTypeFirstAllowed() {\r\n        Gson unused = new GsonBuilder().registerTypeHierarchyAdapter(Manager.class, new ManagerAdapter()).registerTypeHierarchyAdapter(Employee.class, new EmployeeAdapter()).create();\r\n    }\r\n\r\n    static class ManagerAdapter implements JsonSerializer<Manager>, JsonDeserializer<Manager> {\r\n\r\n        @Override\r\n        public Manager deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {\r\n            Manager result = new Manager();\r\n            result.userid = json.getAsString();\r\n            return result;\r\n        }\r\n\r\n        @Override\r\n        public JsonElement serialize(Manager src, Type typeOfSrc, JsonSerializationContext context) {\r\n            return new JsonPrimitive(src.userid);\r\n        }\r\n    }\r\n\r\n    static class EmployeeAdapter implements JsonSerializer<Employee>, JsonDeserializer<Employee> {\r\n\r\n        @Override\r\n        public JsonElement serialize(Employee employee, Type typeOfSrc, JsonSerializationContext context) {\r\n            JsonObject result = new JsonObject();\r\n            result.add(\"userid\", context.serialize(employee.userid, String.class));\r\n            result.add(\"startDate\", context.serialize(employee.startDate, long.class));\r\n            if (employee instanceof Manager) {\r\n                result.add(\"minions\", context.serialize(((Manager) employee).minions, Employee[].class));\r\n                if (employee instanceof CEO) {\r\n                    result.add(\"assistant\", context.serialize(((CEO) employee).assistant, Employee.class));\r\n                }\r\n            }\r\n            return result;\r\n        }\r\n\r\n        @Override\r\n        public Employee deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {\r\n            JsonObject object = json.getAsJsonObject();\r\n            Employee result = null;\r\n            // if the employee has an assistant, she must be the CEO\r\n            JsonElement assistant = object.get(\"assistant\");\r\n            if (assistant != null) {\r\n                result = new CEO();\r\n                ((CEO) result).assistant = context.deserialize(assistant, Employee.class);\r\n            }\r\n            // only managers have minions\r\n            JsonElement minons = object.get(\"minions\");\r\n            if (minons != null) {\r\n                if (result == null) {\r\n                    result = new Manager();\r\n                }\r\n                ((Manager) result).minions = context.deserialize(minons, Employee[].class);\r\n            }\r\n            if (result == null) {\r\n                result = new Employee();\r\n            }\r\n            result.userid = context.deserialize(object.get(\"userid\"), String.class);\r\n            result.startDate = context.deserialize(object.get(\"startDate\"), long.class);\r\n            return result;\r\n        }\r\n    }\r\n\r\n    static class Employee {\r\n\r\n        String userid;\r\n\r\n        long startDate;\r\n\r\n        Employee(String userid, long startDate) {\r\n            this.userid = userid;\r\n            this.startDate = startDate;\r\n        }\r\n\r\n        Employee() {\r\n        }\r\n    }\r\n\r\n    static class Manager extends Employee {\r\n\r\n        Employee[] minions;\r\n    }\r\n\r\n    @SuppressWarnings(\"MemberName\")\r\n    static class CEO extends Manager {\r\n\r\n        Employee assistant;\r\n    }\r\n\r\n    static class Company {\r\n\r\n        CEO ceo;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTypeHierarchy",
+    "start_line": 37,
+    "end_line": 119,
+    "code": "@Test\r\npublic void testTypeHierarchy() {\r\n    Manager andy = new Manager();\r\n    andy.userid = \"andy\";\r\n    andy.startDate = 2005;\r\n    andy.minions = new Employee[] { new Employee(\"inder\", 2007), new Employee(\"joel\", 2006), new Employee(\"jesse\", 2006) };\r\n    CEO eric = new CEO();\r\n    eric.userid = \"eric\";\r\n    eric.startDate = 2001;\r\n    eric.assistant = new Employee(\"jerome\", 2006);\r\n    eric.minions = new Employee[] { new Employee(\"larry\", 1998), new Employee(\"sergey\", 1998), andy };\r\n    Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(Employee.class, new EmployeeAdapter()).setPrettyPrinting().create();\r\n    Company company = new Company();\r\n    company.ceo = eric;\r\n    String json = gson.toJson(company, Company.class);\r\n    assertThat(json).isEqualTo(\"{\\n\" + \"  \\\"ceo\\\": {\\n\" + \"    \\\"userid\\\": \\\"eric\\\",\\n\" + \"    \\\"startDate\\\": 2001,\\n\" + \"    \\\"minions\\\": [\\n\" + \"      {\\n\" + \"        \\\"userid\\\": \\\"larry\\\",\\n\" + \"        \\\"startDate\\\": 1998\\n\" + \"      },\\n\" + \"      {\\n\" + \"        \\\"userid\\\": \\\"sergey\\\",\\n\" + \"        \\\"startDate\\\": 1998\\n\" + \"      },\\n\" + \"      {\\n\" + \"        \\\"userid\\\": \\\"andy\\\",\\n\" + \"        \\\"startDate\\\": 2005,\\n\" + \"        \\\"minions\\\": [\\n\" + \"          {\\n\" + \"            \\\"userid\\\": \\\"inder\\\",\\n\" + \"            \\\"startDate\\\": 2007\\n\" + \"          },\\n\" + \"          {\\n\" + \"            \\\"userid\\\": \\\"joel\\\",\\n\" + \"            \\\"startDate\\\": 2006\\n\" + \"          },\\n\" + \"          {\\n\" + \"            \\\"userid\\\": \\\"jesse\\\",\\n\" + \"            \\\"startDate\\\": 2006\\n\" + \"          }\\n\" + \"        ]\\n\" + \"      }\\n\" + \"    ],\\n\" + \"    \\\"assistant\\\": {\\n\" + \"      \\\"userid\\\": \\\"jerome\\\",\\n\" + \"      \\\"startDate\\\": 2006\\n\" + \"    }\\n\" + \"  }\\n\" + \"}\");\r\n    Company copied = gson.fromJson(json, Company.class);\r\n    assertThat(gson.toJson(copied, Company.class)).isEqualTo(json);\r\n    assertThat(company.ceo.userid).isEqualTo(copied.ceo.userid);\r\n    assertThat(company.ceo.assistant.userid).isEqualTo(copied.ceo.assistant.userid);\r\n    assertThat(company.ceo.minions[0].userid).isEqualTo(copied.ceo.minions[0].userid);\r\n    assertThat(company.ceo.minions[1].userid).isEqualTo(copied.ceo.minions[1].userid);\r\n    assertThat(company.ceo.minions[2].userid).isEqualTo(copied.ceo.minions[2].userid);\r\n    assertThat(((Manager) company.ceo.minions[2]).minions[0].userid).isEqualTo(((Manager) copied.ceo.minions[2]).minions[0].userid);\r\n    assertThat(((Manager) company.ceo.minions[2]).minions[1].userid).isEqualTo(((Manager) copied.ceo.minions[2]).minions[1].userid);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testRegisterSuperTypeFirst",
+    "start_line": 121,
+    "end_line": 136,
+    "code": "@Test\r\npublic void testRegisterSuperTypeFirst() {\r\n    Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(Employee.class, new EmployeeAdapter()).registerTypeHierarchyAdapter(Manager.class, new ManagerAdapter()).create();\r\n    Manager manager = new Manager();\r\n    manager.userid = \"inder\";\r\n    String json = gson.toJson(manager, Manager.class);\r\n    assertThat(json).isEqualTo(\"\\\"inder\\\"\");\r\n    Manager copied = gson.fromJson(json, Manager.class);\r\n    assertThat(copied.userid).isEqualTo(manager.userid);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testRegisterSubTypeFirstAllowed",
+    "start_line": 139,
+    "end_line": 146,
+    "code": "/**\r\n * This behaviour changed in Gson 2.1; it used to throw.\r\n */\r\n@Test\r\npublic void testRegisterSubTypeFirstAllowed() {\r\n    Gson unused = new GsonBuilder().registerTypeHierarchyAdapter(Manager.class, new ManagerAdapter()).registerTypeHierarchyAdapter(Employee.class, new EmployeeAdapter()).create();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeHierarchyAdapterTest.java"
+  }
+]

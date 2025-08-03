@@ -1,0 +1,122 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.common",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.common;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Method",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import java.lang.reflect.Method;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Modifier",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import java.lang.reflect.Modifier;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collection",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.util.Collection;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.LinkedHashSet",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.util.LinkedHashSet;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Set",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.Set;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import org.junit.Assert;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "class",
+    "name": "MoreAsserts",
+    "start_line": 32,
+    "end_line": 109,
+    "code": "/**\r\n * Handy asserts that we wish were present in {@link Assert} so that we didn't have to write them.\r\n *\r\n * @author Inderjeet Singh\r\n */\r\npublic class MoreAsserts {\r\n\r\n    private MoreAsserts() {\r\n    }\r\n\r\n    /**\r\n     * Asserts that the specified {@code value} is not present in {@code collection}\r\n     *\r\n     * @param collection the collection to look into\r\n     * @param value the value that needs to be checked for presence\r\n     */\r\n    public static <T> void assertContains(Collection<T> collection, T value) {\r\n        for (T entry : collection) {\r\n            if (entry.equals(value)) {\r\n                return;\r\n            }\r\n        }\r\n        Assert.fail(value + \" not present in \" + collection);\r\n    }\r\n\r\n    public static void assertEqualsAndHashCode(Object a, Object b) {\r\n        Assert.assertTrue(a.equals(b));\r\n        Assert.assertTrue(b.equals(a));\r\n        Assert.assertEquals(a.hashCode(), b.hashCode());\r\n        Assert.assertFalse(a.equals(null));\r\n        Assert.assertFalse(a.equals(new Object()));\r\n    }\r\n\r\n    private static boolean isProtectedOrPublic(Method method) {\r\n        int modifiers = method.getModifiers();\r\n        return Modifier.isProtected(modifiers) || Modifier.isPublic(modifiers);\r\n    }\r\n\r\n    private static String getMethodSignature(Method method) {\r\n        StringBuilder builder = new StringBuilder(method.getName());\r\n        builder.append('(');\r\n        String sep = \"\";\r\n        for (Class<?> paramType : method.getParameterTypes()) {\r\n            builder.append(sep).append(paramType.getName());\r\n            sep = \",\";\r\n        }\r\n        builder.append(')');\r\n        return builder.toString();\r\n    }\r\n\r\n    /**\r\n     * Asserts that {@code subClass} overrides all protected and public methods declared by {@code\r\n     * baseClass} except for the ones whose signatures are in {@code ignoredMethods}.\r\n     */\r\n    public static void assertOverridesMethods(Class<?> baseClass, Class<?> subClass, List<String> ignoredMethods) {\r\n        Set<String> requiredOverriddenMethods = new LinkedHashSet<>();\r\n        for (Method method : baseClass.getDeclaredMethods()) {\r\n            // Note: Do not filter out `final` methods; maybe they should not be `final` and subclass\r\n            // needs to override them\r\n            if (isProtectedOrPublic(method)) {\r\n                requiredOverriddenMethods.add(getMethodSignature(method));\r\n            }\r\n        }\r\n        for (Method method : subClass.getDeclaredMethods()) {\r\n            requiredOverriddenMethods.remove(getMethodSignature(method));\r\n        }\r\n        for (String ignoredMethod : ignoredMethods) {\r\n            boolean foundIgnored = requiredOverriddenMethods.remove(ignoredMethod);\r\n            if (!foundIgnored) {\r\n                throw new IllegalArgumentException(\"Method '\" + ignoredMethod + \"' does not exist or is already overridden\");\r\n            }\r\n        }\r\n        if (!requiredOverriddenMethods.isEmpty()) {\r\n            Assert.fail(subClass.getSimpleName() + \" must override these methods: \" + requiredOverriddenMethods);\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "constructor",
+    "name": "MoreAsserts",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "private MoreAsserts() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "method",
+    "name": "assertContains",
+    "start_line": 41,
+    "end_line": 48,
+    "code": "/**\r\n * Asserts that the specified {@code value} is not present in {@code collection}\r\n *\r\n * @param collection the collection to look into\r\n * @param value the value that needs to be checked for presence\r\n */\r\npublic static <T> void assertContains(Collection<T> collection, T value) {\r\n    for (T entry : collection) {\r\n        if (entry.equals(value)) {\r\n            return;\r\n        }\r\n    }\r\n    Assert.fail(value + \" not present in \" + collection);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "method",
+    "name": "assertEqualsAndHashCode",
+    "start_line": 50,
+    "end_line": 56,
+    "code": "public static void assertEqualsAndHashCode(Object a, Object b) {\r\n    Assert.assertTrue(a.equals(b));\r\n    Assert.assertTrue(b.equals(a));\r\n    Assert.assertEquals(a.hashCode(), b.hashCode());\r\n    Assert.assertFalse(a.equals(null));\r\n    Assert.assertFalse(a.equals(new Object()));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "method",
+    "name": "isProtectedOrPublic",
+    "start_line": 58,
+    "end_line": 61,
+    "code": "private static boolean isProtectedOrPublic(Method method) {\r\n    int modifiers = method.getModifiers();\r\n    return Modifier.isProtected(modifiers) || Modifier.isPublic(modifiers);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "method",
+    "name": "getMethodSignature",
+    "start_line": 63,
+    "end_line": 75,
+    "code": "private static String getMethodSignature(Method method) {\r\n    StringBuilder builder = new StringBuilder(method.getName());\r\n    builder.append('(');\r\n    String sep = \"\";\r\n    for (Class<?> paramType : method.getParameterTypes()) {\r\n        builder.append(sep).append(paramType.getName());\r\n        sep = \",\";\r\n    }\r\n    builder.append(')');\r\n    return builder.toString();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  },
+  {
+    "type": "method",
+    "name": "assertOverridesMethods",
+    "start_line": 81,
+    "end_line": 108,
+    "code": "/**\r\n * Asserts that {@code subClass} overrides all protected and public methods declared by {@code\r\n * baseClass} except for the ones whose signatures are in {@code ignoredMethods}.\r\n */\r\npublic static void assertOverridesMethods(Class<?> baseClass, Class<?> subClass, List<String> ignoredMethods) {\r\n    Set<String> requiredOverriddenMethods = new LinkedHashSet<>();\r\n    for (Method method : baseClass.getDeclaredMethods()) {\r\n        // Note: Do not filter out `final` methods; maybe they should not be `final` and subclass\r\n        // needs to override them\r\n        if (isProtectedOrPublic(method)) {\r\n            requiredOverriddenMethods.add(getMethodSignature(method));\r\n        }\r\n    }\r\n    for (Method method : subClass.getDeclaredMethods()) {\r\n        requiredOverriddenMethods.remove(getMethodSignature(method));\r\n    }\r\n    for (String ignoredMethod : ignoredMethods) {\r\n        boolean foundIgnored = requiredOverriddenMethods.remove(ignoredMethod);\r\n        if (!foundIgnored) {\r\n            throw new IllegalArgumentException(\"Method '\" + ignoredMethod + \"' does not exist or is already overridden\");\r\n        }\r\n    }\r\n    if (!requiredOverriddenMethods.isEmpty()) {\r\n        Assert.fail(subClass.getSimpleName() + \" must override these methods: \" + requiredOverriddenMethods);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\common\\MoreAsserts.java"
+  }
+]

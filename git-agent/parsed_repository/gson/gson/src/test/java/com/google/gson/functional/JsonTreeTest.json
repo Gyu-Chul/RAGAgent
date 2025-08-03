@@ -1,0 +1,162 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonObject",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.JsonObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.BagOfPrimitives",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.common.TestTypes.BagOfPrimitives;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map.Entry",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.util.Map.Entry;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Set",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.util.Set;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonTreeTest",
+    "start_line": 39,
+    "end_line": 112,
+    "code": "/**\r\n * Functional tests for {@link Gson#toJsonTree(Object)} and {@link Gson#toJsonTree(Object,\r\n * java.lang.reflect.Type)}\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class JsonTreeTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n    }\r\n\r\n    @Test\r\n    public void testToJsonTree() {\r\n        BagOfPrimitives bag = new BagOfPrimitives(10L, 5, false, \"foo\");\r\n        JsonElement json = gson.toJsonTree(bag);\r\n        assertThat(json.isJsonObject()).isTrue();\r\n        JsonObject obj = json.getAsJsonObject();\r\n        Set<Entry<String, JsonElement>> children = obj.entrySet();\r\n        assertThat(children).hasSize(4);\r\n        assertContains(obj, new JsonPrimitive(10L));\r\n        assertContains(obj, new JsonPrimitive(5));\r\n        assertContains(obj, new JsonPrimitive(false));\r\n        assertContains(obj, new JsonPrimitive(\"foo\"));\r\n    }\r\n\r\n    @Test\r\n    public void testToJsonTreeObjectType() {\r\n        SubTypeOfBagOfPrimitives bag = new SubTypeOfBagOfPrimitives(10L, 5, false, \"foo\", 1.4F);\r\n        JsonElement json = gson.toJsonTree(bag, BagOfPrimitives.class);\r\n        assertThat(json.isJsonObject()).isTrue();\r\n        JsonObject obj = json.getAsJsonObject();\r\n        Set<Entry<String, JsonElement>> children = obj.entrySet();\r\n        assertThat(children).hasSize(4);\r\n        assertContains(obj, new JsonPrimitive(10L));\r\n        assertContains(obj, new JsonPrimitive(5));\r\n        assertContains(obj, new JsonPrimitive(false));\r\n        assertContains(obj, new JsonPrimitive(\"foo\"));\r\n    }\r\n\r\n    @Test\r\n    public void testJsonTreeToString() {\r\n        SubTypeOfBagOfPrimitives bag = new SubTypeOfBagOfPrimitives(10L, 5, false, \"foo\", 1.4F);\r\n        String json1 = gson.toJson(bag);\r\n        JsonElement jsonElement = gson.toJsonTree(bag, SubTypeOfBagOfPrimitives.class);\r\n        String json2 = gson.toJson(jsonElement);\r\n        assertThat(json2).isEqualTo(json1);\r\n    }\r\n\r\n    @Test\r\n    public void testJsonTreeNull() {\r\n        BagOfPrimitives bag = new BagOfPrimitives(10L, 5, false, null);\r\n        JsonObject jsonElement = (JsonObject) gson.toJsonTree(bag, BagOfPrimitives.class);\r\n        assertThat(jsonElement.has(\"stringValue\")).isFalse();\r\n    }\r\n\r\n    private static void assertContains(JsonObject json, JsonPrimitive child) {\r\n        for (Map.Entry<String, JsonElement> entry : json.entrySet()) {\r\n            JsonElement node = entry.getValue();\r\n            if (node.isJsonPrimitive()) {\r\n                if (node.getAsJsonPrimitive().equals(child)) {\r\n                    return;\r\n                }\r\n            }\r\n        }\r\n        throw new AssertionError(\"Does not contain \" + child);\r\n    }\r\n\r\n    private static class SubTypeOfBagOfPrimitives extends BagOfPrimitives {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        float f = 1.2F;\r\n\r\n        public SubTypeOfBagOfPrimitives(long l, int i, boolean b, String string, float f) {\r\n            super(l, i, b, string);\r\n            this.f = f;\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 40,
+    "end_line": 40,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 42,
+    "end_line": 45,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testToJsonTree",
+    "start_line": 47,
+    "end_line": 59,
+    "code": "@Test\r\npublic void testToJsonTree() {\r\n    BagOfPrimitives bag = new BagOfPrimitives(10L, 5, false, \"foo\");\r\n    JsonElement json = gson.toJsonTree(bag);\r\n    assertThat(json.isJsonObject()).isTrue();\r\n    JsonObject obj = json.getAsJsonObject();\r\n    Set<Entry<String, JsonElement>> children = obj.entrySet();\r\n    assertThat(children).hasSize(4);\r\n    assertContains(obj, new JsonPrimitive(10L));\r\n    assertContains(obj, new JsonPrimitive(5));\r\n    assertContains(obj, new JsonPrimitive(false));\r\n    assertContains(obj, new JsonPrimitive(\"foo\"));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testToJsonTreeObjectType",
+    "start_line": 61,
+    "end_line": 73,
+    "code": "@Test\r\npublic void testToJsonTreeObjectType() {\r\n    SubTypeOfBagOfPrimitives bag = new SubTypeOfBagOfPrimitives(10L, 5, false, \"foo\", 1.4F);\r\n    JsonElement json = gson.toJsonTree(bag, BagOfPrimitives.class);\r\n    assertThat(json.isJsonObject()).isTrue();\r\n    JsonObject obj = json.getAsJsonObject();\r\n    Set<Entry<String, JsonElement>> children = obj.entrySet();\r\n    assertThat(children).hasSize(4);\r\n    assertContains(obj, new JsonPrimitive(10L));\r\n    assertContains(obj, new JsonPrimitive(5));\r\n    assertContains(obj, new JsonPrimitive(false));\r\n    assertContains(obj, new JsonPrimitive(\"foo\"));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonTreeToString",
+    "start_line": 75,
+    "end_line": 82,
+    "code": "@Test\r\npublic void testJsonTreeToString() {\r\n    SubTypeOfBagOfPrimitives bag = new SubTypeOfBagOfPrimitives(10L, 5, false, \"foo\", 1.4F);\r\n    String json1 = gson.toJson(bag);\r\n    JsonElement jsonElement = gson.toJsonTree(bag, SubTypeOfBagOfPrimitives.class);\r\n    String json2 = gson.toJson(jsonElement);\r\n    assertThat(json2).isEqualTo(json1);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonTreeNull",
+    "start_line": 84,
+    "end_line": 89,
+    "code": "@Test\r\npublic void testJsonTreeNull() {\r\n    BagOfPrimitives bag = new BagOfPrimitives(10L, 5, false, null);\r\n    JsonObject jsonElement = (JsonObject) gson.toJsonTree(bag, BagOfPrimitives.class);\r\n    assertThat(jsonElement.has(\"stringValue\")).isFalse();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  },
+  {
+    "type": "method",
+    "name": "assertContains",
+    "start_line": 91,
+    "end_line": 101,
+    "code": "private static void assertContains(JsonObject json, JsonPrimitive child) {\r\n    for (Map.Entry<String, JsonElement> entry : json.entrySet()) {\r\n        JsonElement node = entry.getValue();\r\n        if (node.isJsonPrimitive()) {\r\n            if (node.getAsJsonPrimitive().equals(child)) {\r\n                return;\r\n            }\r\n        }\r\n    }\r\n    throw new AssertionError(\"Does not contain \" + child);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\JsonTreeTest.java"
+  }
+]

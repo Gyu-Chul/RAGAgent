@@ -1,0 +1,106 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  },
+  {
+    "type": "class",
+    "name": "FieldExclusionTest",
+    "start_line": 33,
+    "end_line": 98,
+    "code": "/**\r\n * Performs some functional testing to ensure GSON infrastructure properly serializes/deserializes\r\n * fields that either should or should not be included in the output based on the GSON\r\n * configuration.\r\n *\r\n * @author Joel Leitch\r\n */\r\npublic class FieldExclusionTest {\r\n\r\n    private static final String VALUE = \"blah_1234\";\r\n\r\n    private Outer outer;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        outer = new Outer();\r\n    }\r\n\r\n    @Test\r\n    public void testDefaultInnerClassExclusion() {\r\n        Gson gson = new Gson();\r\n        Outer.Inner target = outer.new Inner(VALUE);\r\n        String result = gson.toJson(target);\r\n        assertThat(result).isEqualTo(target.toJson());\r\n        gson = new GsonBuilder().create();\r\n        target = outer.new Inner(VALUE);\r\n        result = gson.toJson(target);\r\n        assertThat(result).isEqualTo(target.toJson());\r\n    }\r\n\r\n    @Test\r\n    public void testInnerClassExclusion() {\r\n        Gson gson = new GsonBuilder().disableInnerClassSerialization().create();\r\n        Outer.Inner target = outer.new Inner(VALUE);\r\n        String result = gson.toJson(target);\r\n        assertThat(result).isEqualTo(\"null\");\r\n    }\r\n\r\n    @Test\r\n    public void testDefaultNestedStaticClassIncluded() {\r\n        Gson gson = new Gson();\r\n        Outer.Inner target = outer.new Inner(VALUE);\r\n        String result = gson.toJson(target);\r\n        assertThat(result).isEqualTo(target.toJson());\r\n        gson = new GsonBuilder().create();\r\n        target = outer.new Inner(VALUE);\r\n        result = gson.toJson(target);\r\n        assertThat(result).isEqualTo(target.toJson());\r\n    }\r\n\r\n    private static class Outer {\r\n\r\n        @SuppressWarnings(\"ClassCanBeStatic\")\r\n        private class Inner extends NestedClass {\r\n\r\n            public Inner(String value) {\r\n                super(value);\r\n            }\r\n        }\r\n    }\r\n\r\n    private static class NestedClass {\r\n\r\n        private final String value;\r\n\r\n        public NestedClass(String value) {\r\n            this.value = value;\r\n        }\r\n\r\n        public String toJson() {\r\n            return \"{\\\"value\\\":\\\"\" + value + \"\\\"}\";\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  },
+  {
+    "type": "field",
+    "name": "VALUE",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "private static final String VALUE = \"blah_1234\";",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  },
+  {
+    "type": "field",
+    "name": "outer",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "private Outer outer;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 38,
+    "end_line": 41,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    outer = new Outer();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDefaultInnerClassExclusion",
+    "start_line": 43,
+    "end_line": 54,
+    "code": "@Test\r\npublic void testDefaultInnerClassExclusion() {\r\n    Gson gson = new Gson();\r\n    Outer.Inner target = outer.new Inner(VALUE);\r\n    String result = gson.toJson(target);\r\n    assertThat(result).isEqualTo(target.toJson());\r\n    gson = new GsonBuilder().create();\r\n    target = outer.new Inner(VALUE);\r\n    result = gson.toJson(target);\r\n    assertThat(result).isEqualTo(target.toJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInnerClassExclusion",
+    "start_line": 56,
+    "end_line": 62,
+    "code": "@Test\r\npublic void testInnerClassExclusion() {\r\n    Gson gson = new GsonBuilder().disableInnerClassSerialization().create();\r\n    Outer.Inner target = outer.new Inner(VALUE);\r\n    String result = gson.toJson(target);\r\n    assertThat(result).isEqualTo(\"null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDefaultNestedStaticClassIncluded",
+    "start_line": 64,
+    "end_line": 75,
+    "code": "@Test\r\npublic void testDefaultNestedStaticClassIncluded() {\r\n    Gson gson = new Gson();\r\n    Outer.Inner target = outer.new Inner(VALUE);\r\n    String result = gson.toJson(target);\r\n    assertThat(result).isEqualTo(target.toJson());\r\n    gson = new GsonBuilder().create();\r\n    target = outer.new Inner(VALUE);\r\n    result = gson.toJson(target);\r\n    assertThat(result).isEqualTo(target.toJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\FieldExclusionTest.java"
+  }
+]

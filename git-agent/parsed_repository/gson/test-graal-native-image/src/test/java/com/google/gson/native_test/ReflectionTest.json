@@ -1,0 +1,210 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.native_test",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.native_test;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.InstanceCreator",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.InstanceCreator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.JsonAdapter",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.annotations.JsonAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.SerializedName",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.annotations.SerializedName;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.jupiter.api.Test",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import org.junit.jupiter.api.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "class",
+    "name": "ReflectionTest",
+    "start_line": 34,
+    "end_line": 273,
+    "code": "class ReflectionTest {\r\n\r\n    private static class ClassWithDefaultConstructor {\r\n\r\n        private int i;\r\n    }\r\n\r\n    @Test\r\n    void testDefaultConstructor() {\r\n        Gson gson = new Gson();\r\n        ClassWithDefaultConstructor c = gson.fromJson(\"{\\\"i\\\":1}\", ClassWithDefaultConstructor.class);\r\n        assertThat(c.i).isEqualTo(1);\r\n    }\r\n\r\n    private static class ClassWithCustomDefaultConstructor {\r\n\r\n        private int i;\r\n\r\n        private ClassWithCustomDefaultConstructor() {\r\n            i = 1;\r\n        }\r\n    }\r\n\r\n    @Test\r\n    void testCustomDefaultConstructor() {\r\n        Gson gson = new Gson();\r\n        ClassWithCustomDefaultConstructor c = gson.fromJson(\"{\\\"i\\\":2}\", ClassWithCustomDefaultConstructor.class);\r\n        assertThat(c.i).isEqualTo(2);\r\n        c = gson.fromJson(\"{}\", ClassWithCustomDefaultConstructor.class);\r\n        assertThat(c.i).isEqualTo(1);\r\n    }\r\n\r\n    private static class ClassWithoutDefaultConstructor {\r\n\r\n        private int i = -1;\r\n\r\n        // Explicit constructor with args to remove implicit no-args default constructor\r\n        private ClassWithoutDefaultConstructor(int i) {\r\n            this.i = i;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Tests deserializing a class without default constructor.\r\n     *\r\n     * <p>This should use JDK Unsafe, and would normally require specifying {@code \"unsafeAllocated\":\r\n     * true} in the reflection metadata for GraalVM, though for some reason it also seems to work\r\n     * without it? Possibly because GraalVM seems to have special support for Gson, see its class\r\n     * {@code com.oracle.svm.thirdparty.gson.GsonFeature}.\r\n     */\r\n    @Test\r\n    void testClassWithoutDefaultConstructor() {\r\n        Gson gson = new Gson();\r\n        ClassWithoutDefaultConstructor c = gson.fromJson(\"{\\\"i\\\":1}\", ClassWithoutDefaultConstructor.class);\r\n        assertThat(c.i).isEqualTo(1);\r\n        c = gson.fromJson(\"{}\", ClassWithoutDefaultConstructor.class);\r\n        // Class is instantiated with JDK Unsafe, therefore field keeps its default value instead of\r\n        // assigned -1\r\n        assertThat(c.i).isEqualTo(0);\r\n    }\r\n\r\n    @Test\r\n    void testInstanceCreator() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(ClassWithoutDefaultConstructor.class, new InstanceCreator<ClassWithoutDefaultConstructor>() {\r\n\r\n            @Override\r\n            public ClassWithoutDefaultConstructor createInstance(Type type) {\r\n                return new ClassWithoutDefaultConstructor(-2);\r\n            }\r\n        }).create();\r\n        ClassWithoutDefaultConstructor c = gson.fromJson(\"{\\\"i\\\":1}\", ClassWithoutDefaultConstructor.class);\r\n        assertThat(c.i).isEqualTo(1);\r\n        c = gson.fromJson(\"{}\", ClassWithoutDefaultConstructor.class);\r\n        // Uses default value specified by InstanceCreator\r\n        assertThat(c.i).isEqualTo(-2);\r\n    }\r\n\r\n    private static class ClassWithFinalField {\r\n\r\n        // Initialize with value which is not inlined by compiler\r\n        private final int i = nonConstant();\r\n\r\n        private static int nonConstant() {\r\n            // = 1\r\n            return \"a\".length();\r\n        }\r\n    }\r\n\r\n    @Test\r\n    void testFinalField() {\r\n        Gson gson = new Gson();\r\n        ClassWithFinalField c = gson.fromJson(\"{\\\"i\\\":2}\", ClassWithFinalField.class);\r\n        assertThat(c.i).isEqualTo(2);\r\n        c = gson.fromJson(\"{}\", ClassWithFinalField.class);\r\n        assertThat(c.i).isEqualTo(1);\r\n    }\r\n\r\n    private static class ClassWithSerializedName {\r\n\r\n        @SerializedName(\"custom-name\")\r\n        private int i;\r\n    }\r\n\r\n    @Test\r\n    void testSerializedName() {\r\n        Gson gson = new Gson();\r\n        ClassWithSerializedName c = gson.fromJson(\"{\\\"custom-name\\\":1}\", ClassWithSerializedName.class);\r\n        assertThat(c.i).isEqualTo(1);\r\n        c = new ClassWithSerializedName();\r\n        c.i = 2;\r\n        assertThat(gson.toJson(c)).isEqualTo(\"{\\\"custom-name\\\":2}\");\r\n    }\r\n\r\n    @JsonAdapter(ClassWithCustomClassAdapter.CustomAdapter.class)\r\n    private static class ClassWithCustomClassAdapter {\r\n\r\n        private static class CustomAdapter extends TypeAdapter<ClassWithCustomClassAdapter> {\r\n\r\n            @Override\r\n            public ClassWithCustomClassAdapter read(JsonReader in) throws IOException {\r\n                return new ClassWithCustomClassAdapter(in.nextInt() + 5);\r\n            }\r\n\r\n            @Override\r\n            public void write(JsonWriter out, ClassWithCustomClassAdapter value) throws IOException {\r\n                out.value(value.i + 6);\r\n            }\r\n        }\r\n\r\n        private int i;\r\n\r\n        private ClassWithCustomClassAdapter(int i) {\r\n            this.i = i;\r\n        }\r\n    }\r\n\r\n    @Test\r\n    void testCustomClassAdapter() {\r\n        Gson gson = new Gson();\r\n        ClassWithCustomClassAdapter c = gson.fromJson(\"1\", ClassWithCustomClassAdapter.class);\r\n        assertThat(c.i).isEqualTo(6);\r\n        assertThat(gson.toJson(new ClassWithCustomClassAdapter(1))).isEqualTo(\"7\");\r\n    }\r\n\r\n    private static class ClassWithCustomFieldAdapter {\r\n\r\n        private static class CustomAdapter extends TypeAdapter<Integer> {\r\n\r\n            @Override\r\n            public Integer read(JsonReader in) throws IOException {\r\n                return in.nextInt() + 5;\r\n            }\r\n\r\n            @Override\r\n            public void write(JsonWriter out, Integer value) throws IOException {\r\n                out.value(value + 6);\r\n            }\r\n        }\r\n\r\n        @JsonAdapter(ClassWithCustomFieldAdapter.CustomAdapter.class)\r\n        private int i;\r\n\r\n        private ClassWithCustomFieldAdapter(int i) {\r\n            this.i = i;\r\n        }\r\n\r\n        private ClassWithCustomFieldAdapter() {\r\n            this(-1);\r\n        }\r\n    }\r\n\r\n    @Test\r\n    void testCustomFieldAdapter() {\r\n        Gson gson = new Gson();\r\n        ClassWithCustomFieldAdapter c = gson.fromJson(\"{\\\"i\\\":1}\", ClassWithCustomFieldAdapter.class);\r\n        assertThat(c.i).isEqualTo(6);\r\n        assertThat(gson.toJson(new ClassWithCustomFieldAdapter(1))).isEqualTo(\"{\\\"i\\\":7}\");\r\n    }\r\n\r\n    private static class ClassWithRegisteredAdapter {\r\n\r\n        private int i;\r\n\r\n        private ClassWithRegisteredAdapter(int i) {\r\n            this.i = i;\r\n        }\r\n    }\r\n\r\n    @Test\r\n    void testCustomAdapter() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(ClassWithRegisteredAdapter.class, new TypeAdapter<ClassWithRegisteredAdapter>() {\r\n\r\n            @Override\r\n            public ClassWithRegisteredAdapter read(JsonReader in) throws IOException {\r\n                return new ClassWithRegisteredAdapter(in.nextInt() + 5);\r\n            }\r\n\r\n            @Override\r\n            public void write(JsonWriter out, ClassWithRegisteredAdapter value) throws IOException {\r\n                out.value(value.i + 6);\r\n            }\r\n        }).create();\r\n        ClassWithRegisteredAdapter c = gson.fromJson(\"1\", ClassWithRegisteredAdapter.class);\r\n        assertThat(c.i).isEqualTo(6);\r\n        assertThat(gson.toJson(new ClassWithRegisteredAdapter(1))).isEqualTo(\"7\");\r\n    }\r\n\r\n    @Test\r\n    void testGenerics() {\r\n        Gson gson = new Gson();\r\n        List<ClassWithDefaultConstructor> list = gson.fromJson(\"[{\\\"i\\\":1}]\", new TypeToken<List<ClassWithDefaultConstructor>>() {\r\n        });\r\n        assertThat(list).hasSize(1);\r\n        assertThat(list.get(0).i).isEqualTo(1);\r\n        @SuppressWarnings(\"unchecked\")\r\n        List<ClassWithDefaultConstructor> list2 = (List<ClassWithDefaultConstructor>) gson.fromJson(\"[{\\\"i\\\":1}]\", TypeToken.getParameterized(List.class, ClassWithDefaultConstructor.class));\r\n        assertThat(list2).hasSize(1);\r\n        assertThat(list2.get(0).i).isEqualTo(1);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDefaultConstructor",
+    "start_line": 39,
+    "end_line": 45,
+    "code": "@Test\r\nvoid testDefaultConstructor() {\r\n    Gson gson = new Gson();\r\n    ClassWithDefaultConstructor c = gson.fromJson(\"{\\\"i\\\":1}\", ClassWithDefaultConstructor.class);\r\n    assertThat(c.i).isEqualTo(1);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomDefaultConstructor",
+    "start_line": 55,
+    "end_line": 65,
+    "code": "@Test\r\nvoid testCustomDefaultConstructor() {\r\n    Gson gson = new Gson();\r\n    ClassWithCustomDefaultConstructor c = gson.fromJson(\"{\\\"i\\\":2}\", ClassWithCustomDefaultConstructor.class);\r\n    assertThat(c.i).isEqualTo(2);\r\n    c = gson.fromJson(\"{}\", ClassWithCustomDefaultConstructor.class);\r\n    assertThat(c.i).isEqualTo(1);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testClassWithoutDefaultConstructor",
+    "start_line": 84,
+    "end_line": 96,
+    "code": "/**\r\n * Tests deserializing a class without default constructor.\r\n *\r\n * <p>This should use JDK Unsafe, and would normally require specifying {@code \"unsafeAllocated\":\r\n * true} in the reflection metadata for GraalVM, though for some reason it also seems to work\r\n * without it? Possibly because GraalVM seems to have special support for Gson, see its class\r\n * {@code com.oracle.svm.thirdparty.gson.GsonFeature}.\r\n */\r\n@Test\r\nvoid testClassWithoutDefaultConstructor() {\r\n    Gson gson = new Gson();\r\n    ClassWithoutDefaultConstructor c = gson.fromJson(\"{\\\"i\\\":1}\", ClassWithoutDefaultConstructor.class);\r\n    assertThat(c.i).isEqualTo(1);\r\n    c = gson.fromJson(\"{}\", ClassWithoutDefaultConstructor.class);\r\n    // Class is instantiated with JDK Unsafe, therefore field keeps its default value instead of\r\n    // assigned -1\r\n    assertThat(c.i).isEqualTo(0);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInstanceCreator",
+    "start_line": 98,
+    "end_line": 119,
+    "code": "@Test\r\nvoid testInstanceCreator() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(ClassWithoutDefaultConstructor.class, new InstanceCreator<ClassWithoutDefaultConstructor>() {\r\n\r\n        @Override\r\n        public ClassWithoutDefaultConstructor createInstance(Type type) {\r\n            return new ClassWithoutDefaultConstructor(-2);\r\n        }\r\n    }).create();\r\n    ClassWithoutDefaultConstructor c = gson.fromJson(\"{\\\"i\\\":1}\", ClassWithoutDefaultConstructor.class);\r\n    assertThat(c.i).isEqualTo(1);\r\n    c = gson.fromJson(\"{}\", ClassWithoutDefaultConstructor.class);\r\n    // Uses default value specified by InstanceCreator\r\n    assertThat(c.i).isEqualTo(-2);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testFinalField",
+    "start_line": 130,
+    "end_line": 139,
+    "code": "@Test\r\nvoid testFinalField() {\r\n    Gson gson = new Gson();\r\n    ClassWithFinalField c = gson.fromJson(\"{\\\"i\\\":2}\", ClassWithFinalField.class);\r\n    assertThat(c.i).isEqualTo(2);\r\n    c = gson.fromJson(\"{}\", ClassWithFinalField.class);\r\n    assertThat(c.i).isEqualTo(1);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializedName",
+    "start_line": 146,
+    "end_line": 155,
+    "code": "@Test\r\nvoid testSerializedName() {\r\n    Gson gson = new Gson();\r\n    ClassWithSerializedName c = gson.fromJson(\"{\\\"custom-name\\\":1}\", ClassWithSerializedName.class);\r\n    assertThat(c.i).isEqualTo(1);\r\n    c = new ClassWithSerializedName();\r\n    c.i = 2;\r\n    assertThat(gson.toJson(c)).isEqualTo(\"{\\\"custom-name\\\":2}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomClassAdapter",
+    "start_line": 178,
+    "end_line": 185,
+    "code": "@Test\r\nvoid testCustomClassAdapter() {\r\n    Gson gson = new Gson();\r\n    ClassWithCustomClassAdapter c = gson.fromJson(\"1\", ClassWithCustomClassAdapter.class);\r\n    assertThat(c.i).isEqualTo(6);\r\n    assertThat(gson.toJson(new ClassWithCustomClassAdapter(1))).isEqualTo(\"7\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomFieldAdapter",
+    "start_line": 212,
+    "end_line": 219,
+    "code": "@Test\r\nvoid testCustomFieldAdapter() {\r\n    Gson gson = new Gson();\r\n    ClassWithCustomFieldAdapter c = gson.fromJson(\"{\\\"i\\\":1}\", ClassWithCustomFieldAdapter.class);\r\n    assertThat(c.i).isEqualTo(6);\r\n    assertThat(gson.toJson(new ClassWithCustomFieldAdapter(1))).isEqualTo(\"{\\\"i\\\":7}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomAdapter",
+    "start_line": 229,
+    "end_line": 253,
+    "code": "@Test\r\nvoid testCustomAdapter() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(ClassWithRegisteredAdapter.class, new TypeAdapter<ClassWithRegisteredAdapter>() {\r\n\r\n        @Override\r\n        public ClassWithRegisteredAdapter read(JsonReader in) throws IOException {\r\n            return new ClassWithRegisteredAdapter(in.nextInt() + 5);\r\n        }\r\n\r\n        @Override\r\n        public void write(JsonWriter out, ClassWithRegisteredAdapter value) throws IOException {\r\n            out.value(value.i + 6);\r\n        }\r\n    }).create();\r\n    ClassWithRegisteredAdapter c = gson.fromJson(\"1\", ClassWithRegisteredAdapter.class);\r\n    assertThat(c.i).isEqualTo(6);\r\n    assertThat(gson.toJson(new ClassWithRegisteredAdapter(1))).isEqualTo(\"7\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGenerics",
+    "start_line": 255,
+    "end_line": 272,
+    "code": "@Test\r\nvoid testGenerics() {\r\n    Gson gson = new Gson();\r\n    List<ClassWithDefaultConstructor> list = gson.fromJson(\"[{\\\"i\\\":1}]\", new TypeToken<List<ClassWithDefaultConstructor>>() {\r\n    });\r\n    assertThat(list).hasSize(1);\r\n    assertThat(list.get(0).i).isEqualTo(1);\r\n    @SuppressWarnings(\"unchecked\")\r\n    List<ClassWithDefaultConstructor> list2 = (List<ClassWithDefaultConstructor>) gson.fromJson(\"[{\\\"i\\\":1}]\", TypeToken.getParameterized(List.class, ClassWithDefaultConstructor.class));\r\n    assertThat(list2).hasSize(1);\r\n    assertThat(list2.get(0).i).isEqualTo(1);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-graal-native-image\\src\\test\\java\\com\\google\\gson\\native_test\\ReflectionTest.java"
+  }
+]

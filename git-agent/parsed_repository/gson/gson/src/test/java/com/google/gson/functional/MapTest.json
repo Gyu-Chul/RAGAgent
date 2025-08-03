@@ -1,0 +1,730 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertWithMessage",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static com.google.common.truth.Truth.assertWithMessage;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.InstanceCreator",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.InstanceCreator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonArray",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.JsonArray;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonIOException",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.JsonIOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonParseException",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.JsonParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonParser",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.JsonParser;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializer",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import com.google.gson.JsonSerializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSyntaxException",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import com.google.gson.JsonSyntaxException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import com.google.gson.common.TestTypes;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.GsonTypes",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "import com.google.gson.internal.GsonTypes;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.LinkedTreeMap",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "import com.google.gson.internal.LinkedTreeMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 38,
+    "end_line": 38,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.AbstractMap",
+    "start_line": 39,
+    "end_line": 39,
+    "code": "import java.util.AbstractMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collection",
+    "start_line": 40,
+    "end_line": 40,
+    "code": "import java.util.Collection;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collections",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "import java.util.Collections;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.HashMap",
+    "start_line": 42,
+    "end_line": 42,
+    "code": "import java.util.HashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.LinkedHashMap",
+    "start_line": 43,
+    "end_line": 43,
+    "code": "import java.util.LinkedHashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 44,
+    "end_line": 44,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Set",
+    "start_line": 45,
+    "end_line": 45,
+    "code": "import java.util.Set;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.SortedMap",
+    "start_line": 46,
+    "end_line": 46,
+    "code": "import java.util.SortedMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.TreeMap",
+    "start_line": 47,
+    "end_line": 47,
+    "code": "import java.util.TreeMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.ConcurrentHashMap",
+    "start_line": 48,
+    "end_line": 48,
+    "code": "import java.util.concurrent.ConcurrentHashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.ConcurrentMap",
+    "start_line": 49,
+    "end_line": 49,
+    "code": "import java.util.concurrent.ConcurrentMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.ConcurrentNavigableMap",
+    "start_line": 50,
+    "end_line": 50,
+    "code": "import java.util.concurrent.ConcurrentNavigableMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.ConcurrentSkipListMap",
+    "start_line": 51,
+    "end_line": 51,
+    "code": "import java.util.concurrent.ConcurrentSkipListMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 52,
+    "end_line": 52,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 53,
+    "end_line": 53,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "class",
+    "name": "MapTest",
+    "start_line": 61,
+    "end_line": 775,
+    "code": "/**\r\n * Functional test for Json serialization and deserialization for Maps\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class MapTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n    }\r\n\r\n    @Test\r\n    public void testMapSerialization() {\r\n        Map<String, Integer> map = new LinkedHashMap<>();\r\n        map.put(\"a\", 1);\r\n        map.put(\"b\", 2);\r\n        Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n        }.getType();\r\n        String json = gson.toJson(map, typeOfMap);\r\n        assertThat(json).contains(\"\\\"a\\\":1\");\r\n        assertThat(json).contains(\"\\\"b\\\":2\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapDeserialization() {\r\n        String json = \"{\\\"a\\\":1,\\\"b\\\":2}\";\r\n        Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n        }.getType();\r\n        Map<String, Integer> target = gson.fromJson(json, typeOfMap);\r\n        assertThat(target.get(\"a\")).isEqualTo(1);\r\n        assertThat(target.get(\"b\")).isEqualTo(2);\r\n    }\r\n\r\n    @Test\r\n    public void testObjectMapSerialization() {\r\n        Map<String, Object> map = new LinkedHashMap<>();\r\n        map.put(\"a\", 1);\r\n        map.put(\"b\", \"string\");\r\n        String json = gson.toJson(map);\r\n        assertThat(json).contains(\"\\\"a\\\":1\");\r\n        assertThat(json).contains(\"\\\"b\\\":\\\"string\\\"\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapSerializationEmpty() {\r\n        Map<String, Integer> map = new LinkedHashMap<>();\r\n        Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n        }.getType();\r\n        String json = gson.toJson(map, typeOfMap);\r\n        assertThat(json).isEqualTo(\"{}\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapDeserializationEmpty() {\r\n        Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n        }.getType();\r\n        Map<String, Integer> map = gson.fromJson(\"{}\", typeOfMap);\r\n        assertThat(map).isEmpty();\r\n    }\r\n\r\n    @Test\r\n    public void testMapSerializationWithNullValue() {\r\n        Map<String, Integer> map = new LinkedHashMap<>();\r\n        map.put(\"abc\", null);\r\n        Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n        }.getType();\r\n        String json = gson.toJson(map, typeOfMap);\r\n        // Maps are represented as JSON objects, so ignoring null field\r\n        assertThat(json).isEqualTo(\"{}\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapDeserializationWithNullValue() {\r\n        Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n        }.getType();\r\n        Map<String, Integer> map = gson.fromJson(\"{\\\"abc\\\":null}\", typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map.get(\"abc\")).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testMapSerializationWithNullValueButSerializeNulls() {\r\n        gson = new GsonBuilder().serializeNulls().create();\r\n        Map<String, Integer> map = new LinkedHashMap<>();\r\n        map.put(\"abc\", null);\r\n        Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n        }.getType();\r\n        String json = gson.toJson(map, typeOfMap);\r\n        assertThat(json).isEqualTo(\"{\\\"abc\\\":null}\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapSerializationWithNullKey() {\r\n        Map<String, Integer> map = new LinkedHashMap<>();\r\n        map.put(null, 123);\r\n        Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n        }.getType();\r\n        String json = gson.toJson(map, typeOfMap);\r\n        assertThat(json).isEqualTo(\"{\\\"null\\\":123}\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapDeserializationWithNullKey() {\r\n        Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n        }.getType();\r\n        Map<String, Integer> map = gson.fromJson(\"{\\\"null\\\":123}\", typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map.get(\"null\")).isEqualTo(123);\r\n        assertThat(map.get(null)).isNull();\r\n        map = gson.fromJson(\"{null:123}\", typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map.get(\"null\")).isEqualTo(123);\r\n        assertThat(map.get(null)).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testMapSerializationWithIntegerKeys() {\r\n        Map<Integer, String> map = new LinkedHashMap<>();\r\n        map.put(123, \"456\");\r\n        Type typeOfMap = new TypeToken<Map<Integer, String>>() {\r\n        }.getType();\r\n        String json = gson.toJson(map, typeOfMap);\r\n        assertThat(json).isEqualTo(\"{\\\"123\\\":\\\"456\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapDeserializationWithIntegerKeys() {\r\n        Type typeOfMap = new TypeToken<Map<Integer, String>>() {\r\n        }.getType();\r\n        Map<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map).containsKey(123);\r\n        assertThat(map.get(123)).isEqualTo(\"456\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapDeserializationWithUnquotedIntegerKeys() {\r\n        Type typeOfMap = new TypeToken<Map<Integer, String>>() {\r\n        }.getType();\r\n        Map<Integer, String> map = gson.fromJson(\"{123:\\\"456\\\"}\", typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map).containsKey(123);\r\n        assertThat(map.get(123)).isEqualTo(\"456\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapDeserializationWithLongKeys() {\r\n        long longValue = 9876543210L;\r\n        String json = String.format(\"{\\\"%d\\\":\\\"456\\\"}\", longValue);\r\n        Type typeOfMap = new TypeToken<Map<Long, String>>() {\r\n        }.getType();\r\n        Map<Long, String> map = gson.fromJson(json, typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map).containsKey(longValue);\r\n        assertThat(map.get(longValue)).isEqualTo(\"456\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapDeserializationWithUnquotedLongKeys() {\r\n        long longKey = 9876543210L;\r\n        String json = String.format(\"{%d:\\\"456\\\"}\", longKey);\r\n        Type typeOfMap = new TypeToken<Map<Long, String>>() {\r\n        }.getType();\r\n        Map<Long, String> map = gson.fromJson(json, typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map).containsKey(longKey);\r\n        assertThat(map.get(longKey)).isEqualTo(\"456\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapStringKeyDeserialization() {\r\n        Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n        }.getType();\r\n        Map<?, ?> map = gson.fromJson(\"{\\\"a\\\":1}\", typeOfMap);\r\n        assertWithMessage(\"Map<String, ...> should use LinkedTreeMap to protect against DoS in older JDK\" + \" versions\").that(map).isInstanceOf(LinkedTreeMap.class);\r\n        Map<?, ?> expectedMap = Collections.singletonMap(\"a\", 1);\r\n        assertThat(map).isEqualTo(expectedMap);\r\n    }\r\n\r\n    @Test\r\n    public void testMapStringSupertypeKeyDeserialization() {\r\n        // Should only use Gson's LinkedTreeMap for String as key, but not for supertypes (e.g. Object)\r\n        Type typeOfMap = new TypeToken<Map<Object, Integer>>() {\r\n        }.getType();\r\n        Map<?, ?> map = gson.fromJson(\"{\\\"a\\\":1}\", typeOfMap);\r\n        assertWithMessage(\"Map<Object, ...> should not use Gson Map implementation\").that(map).isNotInstanceOf(LinkedTreeMap.class);\r\n        Map<?, ?> expectedMap = Collections.singletonMap(\"a\", 1);\r\n        assertThat(map).isEqualTo(expectedMap);\r\n    }\r\n\r\n    @Test\r\n    public void testMapNonStringKeyDeserialization() {\r\n        Type typeOfMap = new TypeToken<Map<Integer, Integer>>() {\r\n        }.getType();\r\n        Map<?, ?> map = gson.fromJson(\"{\\\"1\\\":1}\", typeOfMap);\r\n        assertWithMessage(\"Map<Integer, ...> should not use Gson Map implementation\").that(map).isNotInstanceOf(LinkedTreeMap.class);\r\n        Map<?, ?> expectedMap = Collections.singletonMap(1, 1);\r\n        assertThat(map).isEqualTo(expectedMap);\r\n    }\r\n\r\n    @Test\r\n    public void testHashMapDeserialization() {\r\n        Type typeOfMap = new TypeToken<HashMap<Integer, String>>() {\r\n        }.getType();\r\n        HashMap<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map).containsKey(123);\r\n        assertThat(map.get(123)).isEqualTo(\"456\");\r\n    }\r\n\r\n    @Test\r\n    public void testSortedMap() {\r\n        Type typeOfMap = new TypeToken<SortedMap<Integer, String>>() {\r\n        }.getType();\r\n        SortedMap<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map).containsKey(123);\r\n        assertThat(map.get(123)).isEqualTo(\"456\");\r\n    }\r\n\r\n    @Test\r\n    public void testConcurrentMap() {\r\n        Type typeOfMap = new TypeToken<ConcurrentMap<Integer, String>>() {\r\n        }.getType();\r\n        ConcurrentMap<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map).containsKey(123);\r\n        assertThat(map.get(123)).isEqualTo(\"456\");\r\n        String json = gson.toJson(map);\r\n        assertThat(json).isEqualTo(\"{\\\"123\\\":\\\"456\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testConcurrentHashMap() {\r\n        Type typeOfMap = new TypeToken<ConcurrentHashMap<Integer, String>>() {\r\n        }.getType();\r\n        ConcurrentHashMap<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map).containsKey(123);\r\n        assertThat(map.get(123)).isEqualTo(\"456\");\r\n        String json = gson.toJson(map);\r\n        assertThat(json).isEqualTo(\"{\\\"123\\\":\\\"456\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testConcurrentNavigableMap() {\r\n        Type typeOfMap = new TypeToken<ConcurrentNavigableMap<Integer, String>>() {\r\n        }.getType();\r\n        ConcurrentNavigableMap<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map).containsKey(123);\r\n        assertThat(map.get(123)).isEqualTo(\"456\");\r\n        String json = gson.toJson(map);\r\n        assertThat(json).isEqualTo(\"{\\\"123\\\":\\\"456\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testConcurrentSkipListMap() {\r\n        Type typeOfMap = new TypeToken<ConcurrentSkipListMap<Integer, String>>() {\r\n        }.getType();\r\n        ConcurrentSkipListMap<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map).containsKey(123);\r\n        assertThat(map.get(123)).isEqualTo(\"456\");\r\n        String json = gson.toJson(map);\r\n        assertThat(json).isEqualTo(\"{\\\"123\\\":\\\"456\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testParameterizedMapSubclassSerialization() {\r\n        MyParameterizedMap<String, String> map = new MyParameterizedMap<>(10);\r\n        map.put(\"a\", \"b\");\r\n        Type type = new TypeToken<MyParameterizedMap<String, String>>() {\r\n        }.getType();\r\n        String json = gson.toJson(map, type);\r\n        assertThat(json).contains(\"\\\"a\\\":\\\"b\\\"\");\r\n    }\r\n\r\n    @SuppressWarnings({ \"unused\", \"serial\" })\r\n    private static class MyParameterizedMap<K, V> extends LinkedHashMap<K, V> {\r\n\r\n        final int foo;\r\n\r\n        MyParameterizedMap(int foo) {\r\n            this.foo = foo;\r\n        }\r\n    }\r\n\r\n    @Test\r\n    public void testMapSubclassSerialization() {\r\n        MyMap map = new MyMap();\r\n        map.put(\"a\", \"b\");\r\n        String json = gson.toJson(map, MyMap.class);\r\n        assertThat(json).contains(\"\\\"a\\\":\\\"b\\\"\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapStandardSubclassDeserialization() {\r\n        String json = \"{a:'1',b:'2'}\";\r\n        Type type = new TypeToken<LinkedHashMap<String, String>>() {\r\n        }.getType();\r\n        LinkedHashMap<String, String> map = gson.fromJson(json, type);\r\n        assertThat(map).containsEntry(\"a\", \"1\");\r\n        assertThat(map).containsEntry(\"b\", \"2\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapSubclassDeserialization() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(MyMap.class, (InstanceCreator<MyMap>) type -> new MyMap()).create();\r\n        String json = \"{\\\"a\\\":1,\\\"b\\\":2}\";\r\n        MyMap map = gson.fromJson(json, MyMap.class);\r\n        assertThat(map.get(\"a\")).isEqualTo(\"1\");\r\n        assertThat(map.get(\"b\")).isEqualTo(\"2\");\r\n    }\r\n\r\n    @Test\r\n    public void testCustomSerializerForSpecificMapType() {\r\n        Type type = GsonTypes.newParameterizedTypeWithOwner(null, Map.class, String.class, Long.class);\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(type, (JsonSerializer<Map<String, Long>>) (src, typeOfSrc, context) -> {\r\n            JsonArray array = new JsonArray();\r\n            for (long value : src.values()) {\r\n                array.add(new JsonPrimitive(value));\r\n            }\r\n            return array;\r\n        }).create();\r\n        Map<String, Long> src = new LinkedHashMap<>();\r\n        src.put(\"one\", 1L);\r\n        src.put(\"two\", 2L);\r\n        src.put(\"three\", 3L);\r\n        assertThat(gson.toJson(src, type)).isEqualTo(\"[1,2,3]\");\r\n    }\r\n\r\n    private static class MapWithoutNoArgsConstructor<K, V> extends AbstractMap<K, V> {\r\n\r\n        // Remove implicit no-args constructor\r\n        public MapWithoutNoArgsConstructor(int unused) {\r\n        }\r\n\r\n        @Override\r\n        public V put(K key, V value) {\r\n            throw new AssertionError(\"not used by test\");\r\n        }\r\n\r\n        @Override\r\n        public Set<Entry<K, V>> entrySet() {\r\n            return Collections.emptySet();\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Tests that when a custom Map class without no-args constructor is deserialized, Gson does not\r\n     * use JDK Unsafe to create an instance, since that likely leads to a broken Map instance.\r\n     */\r\n    @Test\r\n    public void testMapWithoutNoArgsConstructor() {\r\n        var mapType = new TypeToken<MapWithoutNoArgsConstructor<String, String>>() {\r\n        };\r\n        JsonIOException e = assertThrows(JsonIOException.class, () -> gson.fromJson(\"{}\", mapType));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Unable to create instance of \" + MapWithoutNoArgsConstructor.class + \"; Register an InstanceCreator or a TypeAdapter for this type.\");\r\n        // But serialization should work fine\r\n        assertThat(gson.toJson(new MapWithoutNoArgsConstructor<>(0))).isEqualTo(\"{}\");\r\n        // Deserialization should work when registering custom creator\r\n        gson = new GsonBuilder().registerTypeAdapter(MapWithoutNoArgsConstructor.class, (InstanceCreator<MapWithoutNoArgsConstructor<?, ?>>) type -> new MapWithoutNoArgsConstructor<>(0)).create();\r\n        var map = gson.fromJson(\"{}\", mapType);\r\n        assertThat(map).isInstanceOf(MapWithoutNoArgsConstructor.class);\r\n    }\r\n\r\n    /**\r\n     * Created in response to http://code.google.com/p/google-gson/issues/detail?id=99\r\n     */\r\n    private static class ClassWithAMap {\r\n\r\n        Map<String, String> map = new TreeMap<>();\r\n    }\r\n\r\n    /**\r\n     * Created in response to http://code.google.com/p/google-gson/issues/detail?id=99\r\n     */\r\n    @Test\r\n    public void testMapSerializationWithNullValues() {\r\n        ClassWithAMap target = new ClassWithAMap();\r\n        target.map.put(\"name1\", null);\r\n        target.map.put(\"name2\", \"value2\");\r\n        String json = gson.toJson(target);\r\n        assertThat(json).doesNotContain(\"name1\");\r\n        assertThat(json).contains(\"name2\");\r\n    }\r\n\r\n    /**\r\n     * Created in response to http://code.google.com/p/google-gson/issues/detail?id=99\r\n     */\r\n    @Test\r\n    public void testMapSerializationWithNullValuesSerialized() {\r\n        Gson gson = new GsonBuilder().serializeNulls().create();\r\n        ClassWithAMap target = new ClassWithAMap();\r\n        target.map.put(\"name1\", null);\r\n        target.map.put(\"name2\", \"value2\");\r\n        String json = gson.toJson(target);\r\n        assertThat(json).contains(\"name1\");\r\n        assertThat(json).contains(\"name2\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapSerializationWithWildcardValues() {\r\n        Map<String, ? extends Collection<? extends Integer>> map = new LinkedHashMap<>();\r\n        map.put(\"test\", null);\r\n        Type typeOfMap = new TypeToken<Map<String, ? extends Collection<? extends Integer>>>() {\r\n        }.getType();\r\n        String json = gson.toJson(map, typeOfMap);\r\n        assertThat(json).isEqualTo(\"{}\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapDeserializationWithWildcardValues() {\r\n        Type typeOfMap = new TypeToken<Map<String, ? extends Long>>() {\r\n        }.getType();\r\n        Map<String, ? extends Long> map = gson.fromJson(\"{\\\"test\\\":123}\", typeOfMap);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map.get(\"test\")).isEqualTo(123L);\r\n    }\r\n\r\n    private static class MyMap extends LinkedHashMap<String, String> {\r\n\r\n        private static final long serialVersionUID = 1L;\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        int foo = 10;\r\n    }\r\n\r\n    /**\r\n     * From bug report http://code.google.com/p/google-gson/issues/detail?id=95\r\n     */\r\n    @Test\r\n    public void testMapOfMapSerialization() {\r\n        Map<String, Map<String, String>> map = new HashMap<>();\r\n        Map<String, String> nestedMap = new HashMap<>();\r\n        nestedMap.put(\"1\", \"1\");\r\n        nestedMap.put(\"2\", \"2\");\r\n        map.put(\"nestedMap\", nestedMap);\r\n        String json = gson.toJson(map);\r\n        assertThat(json).contains(\"nestedMap\");\r\n        assertThat(json).contains(\"\\\"1\\\":\\\"1\\\"\");\r\n        assertThat(json).contains(\"\\\"2\\\":\\\"2\\\"\");\r\n    }\r\n\r\n    /**\r\n     * From bug report http://code.google.com/p/google-gson/issues/detail?id=95\r\n     */\r\n    @Test\r\n    public void testMapOfMapDeserialization() {\r\n        String json = \"{nestedMap:{'2':'2','1':'1'}}\";\r\n        Type type = new TypeToken<Map<String, Map<String, String>>>() {\r\n        }.getType();\r\n        Map<String, Map<String, String>> map = gson.fromJson(json, type);\r\n        Map<String, String> nested = map.get(\"nestedMap\");\r\n        assertThat(nested.get(\"1\")).isEqualTo(\"1\");\r\n        assertThat(nested.get(\"2\")).isEqualTo(\"2\");\r\n    }\r\n\r\n    /**\r\n     * From bug report http://code.google.com/p/google-gson/issues/detail?id=178\r\n     */\r\n    @Test\r\n    public void testMapWithQuotes() {\r\n        Map<String, String> map = new HashMap<>();\r\n        map.put(\"a\\\"b\", \"c\\\"d\");\r\n        String json = gson.toJson(map);\r\n        assertThat(json).isEqualTo(\"{\\\"a\\\\\\\"b\\\":\\\"c\\\\\\\"d\\\"}\");\r\n    }\r\n\r\n    /**\r\n     * From issue 227.\r\n     */\r\n    @Test\r\n    public void testWriteMapsWithEmptyStringKey() {\r\n        Map<String, Boolean> map = new HashMap<>();\r\n        map.put(\"\", true);\r\n        assertThat(gson.toJson(map)).isEqualTo(\"{\\\"\\\":true}\");\r\n    }\r\n\r\n    @Test\r\n    public void testReadMapsWithEmptyStringKey() {\r\n        Map<String, Boolean> map = gson.fromJson(\"{\\\"\\\":true}\", new TypeToken<Map<String, Boolean>>() {\r\n        }.getType());\r\n        assertThat(map.get(\"\")).isEqualTo(true);\r\n    }\r\n\r\n    /**\r\n     * From bug report http://code.google.com/p/google-gson/issues/detail?id=204\r\n     */\r\n    @Test\r\n    public void testSerializeMaps() {\r\n        Map<String, Object> map = new LinkedHashMap<>();\r\n        map.put(\"a\", 12);\r\n        map.put(\"b\", null);\r\n        LinkedHashMap<String, Object> innerMap = new LinkedHashMap<>();\r\n        innerMap.put(\"test\", 1);\r\n        innerMap.put(\"TestStringArray\", new String[] { \"one\", \"two\" });\r\n        map.put(\"c\", innerMap);\r\n        assertThat(new GsonBuilder().serializeNulls().create().toJson(map)).isEqualTo(\"{\\\"a\\\":12,\\\"b\\\":null,\\\"c\\\":{\\\"test\\\":1,\\\"TestStringArray\\\":[\\\"one\\\",\\\"two\\\"]}}\");\r\n        assertThat(new GsonBuilder().setPrettyPrinting().serializeNulls().create().toJson(map)).isEqualTo(\"{\\n  \\\"a\\\": 12,\\n  \\\"b\\\": null,\\n  \\\"c\\\": \" + \"{\\n    \\\"test\\\": 1,\\n    \\\"TestStringArray\\\": \" + \"[\\n      \\\"one\\\",\\n      \\\"two\\\"\\n    ]\\n  }\\n}\");\r\n        assertThat(new GsonBuilder().create().toJson(map)).isEqualTo(\"{\\\"a\\\":12,\\\"c\\\":{\\\"test\\\":1,\\\"TestStringArray\\\":[\\\"one\\\",\\\"two\\\"]}}\");\r\n        assertThat(new GsonBuilder().setPrettyPrinting().create().toJson(map)).isEqualTo(\"{\\n  \\\"a\\\": 12,\\n  \\\"c\\\": \" + \"{\\n    \\\"test\\\": 1,\\n    \\\"TestStringArray\\\": \" + \"[\\n      \\\"one\\\",\\n      \\\"two\\\"\\n    ]\\n  }\\n}\");\r\n        innerMap.put(\"d\", \"e\");\r\n        assertThat(new Gson().toJson(map)).isEqualTo(\"{\\\"a\\\":12,\\\"c\\\":{\\\"test\\\":1,\\\"TestStringArray\\\":[\\\"one\\\",\\\"two\\\"],\\\"d\\\":\\\"e\\\"}}\");\r\n    }\r\n\r\n    @Test\r\n    public final void testInterfaceTypeMap() {\r\n        MapClass element = new MapClass();\r\n        TestTypes.Sub subType = new TestTypes.Sub();\r\n        element.addBase(\"Test\", subType);\r\n        element.addSub(\"Test\", subType);\r\n        String subTypeJson = new Gson().toJson(subType);\r\n        String expected = \"{\\\"bases\\\":{\\\"Test\\\":\" + subTypeJson + \"},\\\"subs\\\":{\\\"Test\\\":\" + subTypeJson + \"}}\";\r\n        Gson gsonWithComplexKeys = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n        String json = gsonWithComplexKeys.toJson(element);\r\n        assertThat(json).isEqualTo(expected);\r\n        Gson gson = new Gson();\r\n        json = gson.toJson(element);\r\n        assertThat(json).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public final void testInterfaceTypeMapWithSerializer() {\r\n        MapClass element = new MapClass();\r\n        TestTypes.Sub subType = new TestTypes.Sub();\r\n        element.addBase(\"Test\", subType);\r\n        element.addSub(\"Test\", subType);\r\n        Gson tempGson = new Gson();\r\n        String subTypeJson = tempGson.toJson(subType);\r\n        JsonElement baseTypeJsonElement = tempGson.toJsonTree(subType, TestTypes.Base.class);\r\n        String baseTypeJson = tempGson.toJson(baseTypeJsonElement);\r\n        String expected = \"{\\\"bases\\\":{\\\"Test\\\":\" + baseTypeJson + \"},\\\"subs\\\":{\\\"Test\\\":\" + subTypeJson + \"}}\";\r\n        JsonSerializer<TestTypes.Base> baseTypeAdapter = (src, typeOfSrc, context) -> baseTypeJsonElement;\r\n        Gson gson = new GsonBuilder().enableComplexMapKeySerialization().registerTypeAdapter(TestTypes.Base.class, baseTypeAdapter).create();\r\n        String json = gson.toJson(element);\r\n        assertThat(json).isEqualTo(expected);\r\n        gson = new GsonBuilder().registerTypeAdapter(TestTypes.Base.class, baseTypeAdapter).create();\r\n        json = gson.toJson(element);\r\n        assertThat(json).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testGeneralMapField() {\r\n        MapWithGeneralMapParameters map = new MapWithGeneralMapParameters();\r\n        map.map.put(\"string\", \"testString\");\r\n        map.map.put(\"stringArray\", new String[] { \"one\", \"two\" });\r\n        map.map.put(\"objectArray\", new Object[] { 1, 2L, \"three\" });\r\n        String expected = \"{\\\"map\\\":{\\\"string\\\":\\\"testString\\\",\\\"stringArray\\\":\" + \"[\\\"one\\\",\\\"two\\\"],\\\"objectArray\\\":[1,2,\\\"three\\\"]}}\";\r\n        assertThat(gson.toJson(map)).isEqualTo(expected);\r\n        gson = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n        assertThat(gson.toJson(map)).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testComplexKeysSerialization() {\r\n        Map<Point, String> map = new LinkedHashMap<>();\r\n        map.put(new Point(2, 3), \"a\");\r\n        map.put(new Point(5, 7), \"b\");\r\n        String json = \"{\\\"2,3\\\":\\\"a\\\",\\\"5,7\\\":\\\"b\\\"}\";\r\n        assertThat(gson.toJson(map, new TypeToken<Map<Point, String>>() {\r\n        }.getType())).isEqualTo(json);\r\n        assertThat(gson.toJson(map, Map.class)).isEqualTo(json);\r\n    }\r\n\r\n    @Test\r\n    public void testComplexKeysDeserialization() {\r\n        String json = \"{'2,3':'a','5,7':'b'}\";\r\n        Type type = new TypeToken<Map<Point, String>>() {\r\n        }.getType();\r\n        var e = assertThrows(JsonParseException.class, () -> gson.fromJson(json, type));\r\n        assertThat(e).hasCauseThat().hasMessageThat().startsWith(\"Expected BEGIN_OBJECT but was STRING at line 1 column 3 path $.\\n\");\r\n    }\r\n\r\n    @Test\r\n    public void testStringKeyDeserialization() {\r\n        String json = \"{'2,3':'a','5,7':'b'}\";\r\n        Map<String, String> map = new LinkedHashMap<>();\r\n        map.put(\"2,3\", \"a\");\r\n        map.put(\"5,7\", \"b\");\r\n        assertThat(gson.fromJson(json, new TypeToken<Map<String, String>>() {\r\n        })).isEqualTo(map);\r\n    }\r\n\r\n    @Test\r\n    public void testNumberKeyDeserialization() {\r\n        String json = \"{'2.3':'a','5.7':'b'}\";\r\n        Map<Double, String> map = new LinkedHashMap<>();\r\n        map.put(2.3, \"a\");\r\n        map.put(5.7, \"b\");\r\n        assertThat(gson.fromJson(json, new TypeToken<Map<Double, String>>() {\r\n        })).isEqualTo(map);\r\n    }\r\n\r\n    @Test\r\n    public void testBooleanKeyDeserialization() {\r\n        String json = \"{'true':'a','false':'b'}\";\r\n        Map<Boolean, String> map = new LinkedHashMap<>();\r\n        map.put(true, \"a\");\r\n        map.put(false, \"b\");\r\n        assertThat(gson.fromJson(json, new TypeToken<Map<Boolean, String>>() {\r\n        })).isEqualTo(map);\r\n    }\r\n\r\n    @Test\r\n    public void testMapDeserializationWithDuplicateKeys() {\r\n        Type type = new TypeToken<Map<String, Integer>>() {\r\n        }.getType();\r\n        var e = assertThrows(JsonSyntaxException.class, () -> gson.fromJson(\"{'a':1,'a':2}\", type));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"duplicate key: a\");\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeMapOfMaps() {\r\n        Type type = new TypeToken<Map<String, Map<String, String>>>() {\r\n        }.getType();\r\n        Map<String, Map<String, String>> map = newMap(\"a\", newMap(\"ka1\", \"va1\", \"ka2\", \"va2\"), \"b\", newMap(\"kb1\", \"vb1\", \"kb2\", \"vb2\"));\r\n        assertThat(gson.toJson(map, type).replace('\"', '\\'')).isEqualTo(\"{'a':{'ka1':'va1','ka2':'va2'},'b':{'kb1':'vb1','kb2':'vb2'}}\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeserializeMapOfMaps() {\r\n        TypeToken<Map<String, Map<String, String>>> type = new TypeToken<>() {\r\n        };\r\n        Map<String, Map<String, String>> map = newMap(\"a\", newMap(\"ka1\", \"va1\", \"ka2\", \"va2\"), \"b\", newMap(\"kb1\", \"vb1\", \"kb2\", \"vb2\"));\r\n        String json = \"{'a':{'ka1':'va1','ka2':'va2'},'b':{'kb1':'vb1','kb2':'vb2'}}\";\r\n        assertThat(gson.fromJson(json, type)).isEqualTo(map);\r\n    }\r\n\r\n    private static <K, V> Map<K, V> newMap(K key1, V value1, K key2, V value2) {\r\n        Map<K, V> result = new LinkedHashMap<>();\r\n        result.put(key1, value1);\r\n        result.put(key2, value2);\r\n        return result;\r\n    }\r\n\r\n    @Test\r\n    public void testMapNamePromotionWithJsonElementReader() {\r\n        String json = \"{'2.3':'a'}\";\r\n        Map<Double, String> map = new LinkedHashMap<>();\r\n        map.put(2.3, \"a\");\r\n        JsonElement tree = JsonParser.parseString(json);\r\n        assertThat(gson.fromJson(tree, new TypeToken<Map<Double, String>>() {\r\n        })).isEqualTo(map);\r\n    }\r\n\r\n    static class Point {\r\n\r\n        private final int x;\r\n\r\n        private final int y;\r\n\r\n        Point(int x, int y) {\r\n            this.x = x;\r\n            this.y = y;\r\n        }\r\n\r\n        @Override\r\n        public boolean equals(Object o) {\r\n            return o instanceof Point && x == ((Point) o).x && y == ((Point) o).y;\r\n        }\r\n\r\n        @Override\r\n        public int hashCode() {\r\n            return x * 37 + y;\r\n        }\r\n\r\n        @Override\r\n        public String toString() {\r\n            return x + \",\" + y;\r\n        }\r\n    }\r\n\r\n    static final class MapClass {\r\n\r\n        private final Map<String, TestTypes.Base> bases = new HashMap<>();\r\n\r\n        private final Map<String, TestTypes.Sub> subs = new HashMap<>();\r\n\r\n        public final void addBase(String name, TestTypes.Base value) {\r\n            bases.put(name, value);\r\n        }\r\n\r\n        public final void addSub(String name, TestTypes.Sub value) {\r\n            subs.put(name, value);\r\n        }\r\n    }\r\n\r\n    static final class MapWithGeneralMapParameters {\r\n\r\n        final Map<String, Object> map = new LinkedHashMap<>();\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 62,
+    "end_line": 62,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 64,
+    "end_line": 67,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapSerialization",
+    "start_line": 69,
+    "end_line": 78,
+    "code": "@Test\r\npublic void testMapSerialization() {\r\n    Map<String, Integer> map = new LinkedHashMap<>();\r\n    map.put(\"a\", 1);\r\n    map.put(\"b\", 2);\r\n    Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n    }.getType();\r\n    String json = gson.toJson(map, typeOfMap);\r\n    assertThat(json).contains(\"\\\"a\\\":1\");\r\n    assertThat(json).contains(\"\\\"b\\\":2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapDeserialization",
+    "start_line": 80,
+    "end_line": 87,
+    "code": "@Test\r\npublic void testMapDeserialization() {\r\n    String json = \"{\\\"a\\\":1,\\\"b\\\":2}\";\r\n    Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n    }.getType();\r\n    Map<String, Integer> target = gson.fromJson(json, typeOfMap);\r\n    assertThat(target.get(\"a\")).isEqualTo(1);\r\n    assertThat(target.get(\"b\")).isEqualTo(2);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testObjectMapSerialization",
+    "start_line": 89,
+    "end_line": 97,
+    "code": "@Test\r\npublic void testObjectMapSerialization() {\r\n    Map<String, Object> map = new LinkedHashMap<>();\r\n    map.put(\"a\", 1);\r\n    map.put(\"b\", \"string\");\r\n    String json = gson.toJson(map);\r\n    assertThat(json).contains(\"\\\"a\\\":1\");\r\n    assertThat(json).contains(\"\\\"b\\\":\\\"string\\\"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapSerializationEmpty",
+    "start_line": 99,
+    "end_line": 105,
+    "code": "@Test\r\npublic void testMapSerializationEmpty() {\r\n    Map<String, Integer> map = new LinkedHashMap<>();\r\n    Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n    }.getType();\r\n    String json = gson.toJson(map, typeOfMap);\r\n    assertThat(json).isEqualTo(\"{}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapDeserializationEmpty",
+    "start_line": 107,
+    "end_line": 112,
+    "code": "@Test\r\npublic void testMapDeserializationEmpty() {\r\n    Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n    }.getType();\r\n    Map<String, Integer> map = gson.fromJson(\"{}\", typeOfMap);\r\n    assertThat(map).isEmpty();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapSerializationWithNullValue",
+    "start_line": 114,
+    "end_line": 123,
+    "code": "@Test\r\npublic void testMapSerializationWithNullValue() {\r\n    Map<String, Integer> map = new LinkedHashMap<>();\r\n    map.put(\"abc\", null);\r\n    Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n    }.getType();\r\n    String json = gson.toJson(map, typeOfMap);\r\n    // Maps are represented as JSON objects, so ignoring null field\r\n    assertThat(json).isEqualTo(\"{}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapDeserializationWithNullValue",
+    "start_line": 125,
+    "end_line": 131,
+    "code": "@Test\r\npublic void testMapDeserializationWithNullValue() {\r\n    Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n    }.getType();\r\n    Map<String, Integer> map = gson.fromJson(\"{\\\"abc\\\":null}\", typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map.get(\"abc\")).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapSerializationWithNullValueButSerializeNulls",
+    "start_line": 133,
+    "end_line": 142,
+    "code": "@Test\r\npublic void testMapSerializationWithNullValueButSerializeNulls() {\r\n    gson = new GsonBuilder().serializeNulls().create();\r\n    Map<String, Integer> map = new LinkedHashMap<>();\r\n    map.put(\"abc\", null);\r\n    Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n    }.getType();\r\n    String json = gson.toJson(map, typeOfMap);\r\n    assertThat(json).isEqualTo(\"{\\\"abc\\\":null}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapSerializationWithNullKey",
+    "start_line": 144,
+    "end_line": 152,
+    "code": "@Test\r\npublic void testMapSerializationWithNullKey() {\r\n    Map<String, Integer> map = new LinkedHashMap<>();\r\n    map.put(null, 123);\r\n    Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n    }.getType();\r\n    String json = gson.toJson(map, typeOfMap);\r\n    assertThat(json).isEqualTo(\"{\\\"null\\\":123}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapDeserializationWithNullKey",
+    "start_line": 154,
+    "end_line": 166,
+    "code": "@Test\r\npublic void testMapDeserializationWithNullKey() {\r\n    Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n    }.getType();\r\n    Map<String, Integer> map = gson.fromJson(\"{\\\"null\\\":123}\", typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map.get(\"null\")).isEqualTo(123);\r\n    assertThat(map.get(null)).isNull();\r\n    map = gson.fromJson(\"{null:123}\", typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map.get(\"null\")).isEqualTo(123);\r\n    assertThat(map.get(null)).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapSerializationWithIntegerKeys",
+    "start_line": 168,
+    "end_line": 176,
+    "code": "@Test\r\npublic void testMapSerializationWithIntegerKeys() {\r\n    Map<Integer, String> map = new LinkedHashMap<>();\r\n    map.put(123, \"456\");\r\n    Type typeOfMap = new TypeToken<Map<Integer, String>>() {\r\n    }.getType();\r\n    String json = gson.toJson(map, typeOfMap);\r\n    assertThat(json).isEqualTo(\"{\\\"123\\\":\\\"456\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapDeserializationWithIntegerKeys",
+    "start_line": 178,
+    "end_line": 185,
+    "code": "@Test\r\npublic void testMapDeserializationWithIntegerKeys() {\r\n    Type typeOfMap = new TypeToken<Map<Integer, String>>() {\r\n    }.getType();\r\n    Map<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map).containsKey(123);\r\n    assertThat(map.get(123)).isEqualTo(\"456\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapDeserializationWithUnquotedIntegerKeys",
+    "start_line": 187,
+    "end_line": 194,
+    "code": "@Test\r\npublic void testMapDeserializationWithUnquotedIntegerKeys() {\r\n    Type typeOfMap = new TypeToken<Map<Integer, String>>() {\r\n    }.getType();\r\n    Map<Integer, String> map = gson.fromJson(\"{123:\\\"456\\\"}\", typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map).containsKey(123);\r\n    assertThat(map.get(123)).isEqualTo(\"456\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapDeserializationWithLongKeys",
+    "start_line": 196,
+    "end_line": 205,
+    "code": "@Test\r\npublic void testMapDeserializationWithLongKeys() {\r\n    long longValue = 9876543210L;\r\n    String json = String.format(\"{\\\"%d\\\":\\\"456\\\"}\", longValue);\r\n    Type typeOfMap = new TypeToken<Map<Long, String>>() {\r\n    }.getType();\r\n    Map<Long, String> map = gson.fromJson(json, typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map).containsKey(longValue);\r\n    assertThat(map.get(longValue)).isEqualTo(\"456\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapDeserializationWithUnquotedLongKeys",
+    "start_line": 207,
+    "end_line": 216,
+    "code": "@Test\r\npublic void testMapDeserializationWithUnquotedLongKeys() {\r\n    long longKey = 9876543210L;\r\n    String json = String.format(\"{%d:\\\"456\\\"}\", longKey);\r\n    Type typeOfMap = new TypeToken<Map<Long, String>>() {\r\n    }.getType();\r\n    Map<Long, String> map = gson.fromJson(json, typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map).containsKey(longKey);\r\n    assertThat(map.get(longKey)).isEqualTo(\"456\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapStringKeyDeserialization",
+    "start_line": 218,
+    "end_line": 231,
+    "code": "@Test\r\npublic void testMapStringKeyDeserialization() {\r\n    Type typeOfMap = new TypeToken<Map<String, Integer>>() {\r\n    }.getType();\r\n    Map<?, ?> map = gson.fromJson(\"{\\\"a\\\":1}\", typeOfMap);\r\n    assertWithMessage(\"Map<String, ...> should use LinkedTreeMap to protect against DoS in older JDK\" + \" versions\").that(map).isInstanceOf(LinkedTreeMap.class);\r\n    Map<?, ?> expectedMap = Collections.singletonMap(\"a\", 1);\r\n    assertThat(map).isEqualTo(expectedMap);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapStringSupertypeKeyDeserialization",
+    "start_line": 233,
+    "end_line": 245,
+    "code": "@Test\r\npublic void testMapStringSupertypeKeyDeserialization() {\r\n    // Should only use Gson's LinkedTreeMap for String as key, but not for supertypes (e.g. Object)\r\n    Type typeOfMap = new TypeToken<Map<Object, Integer>>() {\r\n    }.getType();\r\n    Map<?, ?> map = gson.fromJson(\"{\\\"a\\\":1}\", typeOfMap);\r\n    assertWithMessage(\"Map<Object, ...> should not use Gson Map implementation\").that(map).isNotInstanceOf(LinkedTreeMap.class);\r\n    Map<?, ?> expectedMap = Collections.singletonMap(\"a\", 1);\r\n    assertThat(map).isEqualTo(expectedMap);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapNonStringKeyDeserialization",
+    "start_line": 247,
+    "end_line": 258,
+    "code": "@Test\r\npublic void testMapNonStringKeyDeserialization() {\r\n    Type typeOfMap = new TypeToken<Map<Integer, Integer>>() {\r\n    }.getType();\r\n    Map<?, ?> map = gson.fromJson(\"{\\\"1\\\":1}\", typeOfMap);\r\n    assertWithMessage(\"Map<Integer, ...> should not use Gson Map implementation\").that(map).isNotInstanceOf(LinkedTreeMap.class);\r\n    Map<?, ?> expectedMap = Collections.singletonMap(1, 1);\r\n    assertThat(map).isEqualTo(expectedMap);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testHashMapDeserialization",
+    "start_line": 260,
+    "end_line": 267,
+    "code": "@Test\r\npublic void testHashMapDeserialization() {\r\n    Type typeOfMap = new TypeToken<HashMap<Integer, String>>() {\r\n    }.getType();\r\n    HashMap<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map).containsKey(123);\r\n    assertThat(map.get(123)).isEqualTo(\"456\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSortedMap",
+    "start_line": 269,
+    "end_line": 276,
+    "code": "@Test\r\npublic void testSortedMap() {\r\n    Type typeOfMap = new TypeToken<SortedMap<Integer, String>>() {\r\n    }.getType();\r\n    SortedMap<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map).containsKey(123);\r\n    assertThat(map.get(123)).isEqualTo(\"456\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testConcurrentMap",
+    "start_line": 278,
+    "end_line": 287,
+    "code": "@Test\r\npublic void testConcurrentMap() {\r\n    Type typeOfMap = new TypeToken<ConcurrentMap<Integer, String>>() {\r\n    }.getType();\r\n    ConcurrentMap<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map).containsKey(123);\r\n    assertThat(map.get(123)).isEqualTo(\"456\");\r\n    String json = gson.toJson(map);\r\n    assertThat(json).isEqualTo(\"{\\\"123\\\":\\\"456\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testConcurrentHashMap",
+    "start_line": 289,
+    "end_line": 298,
+    "code": "@Test\r\npublic void testConcurrentHashMap() {\r\n    Type typeOfMap = new TypeToken<ConcurrentHashMap<Integer, String>>() {\r\n    }.getType();\r\n    ConcurrentHashMap<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map).containsKey(123);\r\n    assertThat(map.get(123)).isEqualTo(\"456\");\r\n    String json = gson.toJson(map);\r\n    assertThat(json).isEqualTo(\"{\\\"123\\\":\\\"456\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testConcurrentNavigableMap",
+    "start_line": 300,
+    "end_line": 309,
+    "code": "@Test\r\npublic void testConcurrentNavigableMap() {\r\n    Type typeOfMap = new TypeToken<ConcurrentNavigableMap<Integer, String>>() {\r\n    }.getType();\r\n    ConcurrentNavigableMap<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map).containsKey(123);\r\n    assertThat(map.get(123)).isEqualTo(\"456\");\r\n    String json = gson.toJson(map);\r\n    assertThat(json).isEqualTo(\"{\\\"123\\\":\\\"456\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testConcurrentSkipListMap",
+    "start_line": 311,
+    "end_line": 320,
+    "code": "@Test\r\npublic void testConcurrentSkipListMap() {\r\n    Type typeOfMap = new TypeToken<ConcurrentSkipListMap<Integer, String>>() {\r\n    }.getType();\r\n    ConcurrentSkipListMap<Integer, String> map = gson.fromJson(\"{\\\"123\\\":\\\"456\\\"}\", typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map).containsKey(123);\r\n    assertThat(map.get(123)).isEqualTo(\"456\");\r\n    String json = gson.toJson(map);\r\n    assertThat(json).isEqualTo(\"{\\\"123\\\":\\\"456\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParameterizedMapSubclassSerialization",
+    "start_line": 322,
+    "end_line": 329,
+    "code": "@Test\r\npublic void testParameterizedMapSubclassSerialization() {\r\n    MyParameterizedMap<String, String> map = new MyParameterizedMap<>(10);\r\n    map.put(\"a\", \"b\");\r\n    Type type = new TypeToken<MyParameterizedMap<String, String>>() {\r\n    }.getType();\r\n    String json = gson.toJson(map, type);\r\n    assertThat(json).contains(\"\\\"a\\\":\\\"b\\\"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapSubclassSerialization",
+    "start_line": 340,
+    "end_line": 346,
+    "code": "@Test\r\npublic void testMapSubclassSerialization() {\r\n    MyMap map = new MyMap();\r\n    map.put(\"a\", \"b\");\r\n    String json = gson.toJson(map, MyMap.class);\r\n    assertThat(json).contains(\"\\\"a\\\":\\\"b\\\"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapStandardSubclassDeserialization",
+    "start_line": 348,
+    "end_line": 355,
+    "code": "@Test\r\npublic void testMapStandardSubclassDeserialization() {\r\n    String json = \"{a:'1',b:'2'}\";\r\n    Type type = new TypeToken<LinkedHashMap<String, String>>() {\r\n    }.getType();\r\n    LinkedHashMap<String, String> map = gson.fromJson(json, type);\r\n    assertThat(map).containsEntry(\"a\", \"1\");\r\n    assertThat(map).containsEntry(\"b\", \"2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapSubclassDeserialization",
+    "start_line": 357,
+    "end_line": 367,
+    "code": "@Test\r\npublic void testMapSubclassDeserialization() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(MyMap.class, (InstanceCreator<MyMap>) type -> new MyMap()).create();\r\n    String json = \"{\\\"a\\\":1,\\\"b\\\":2}\";\r\n    MyMap map = gson.fromJson(json, MyMap.class);\r\n    assertThat(map.get(\"a\")).isEqualTo(\"1\");\r\n    assertThat(map.get(\"b\")).isEqualTo(\"2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomSerializerForSpecificMapType",
+    "start_line": 369,
+    "end_line": 392,
+    "code": "@Test\r\npublic void testCustomSerializerForSpecificMapType() {\r\n    Type type = GsonTypes.newParameterizedTypeWithOwner(null, Map.class, String.class, Long.class);\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(type, (JsonSerializer<Map<String, Long>>) (src, typeOfSrc, context) -> {\r\n        JsonArray array = new JsonArray();\r\n        for (long value : src.values()) {\r\n            array.add(new JsonPrimitive(value));\r\n        }\r\n        return array;\r\n    }).create();\r\n    Map<String, Long> src = new LinkedHashMap<>();\r\n    src.put(\"one\", 1L);\r\n    src.put(\"two\", 2L);\r\n    src.put(\"three\", 3L);\r\n    assertThat(gson.toJson(src, type)).isEqualTo(\"[1,2,3]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapWithoutNoArgsConstructor",
+    "start_line": 413,
+    "end_line": 437,
+    "code": "/**\r\n * Tests that when a custom Map class without no-args constructor is deserialized, Gson does not\r\n * use JDK Unsafe to create an instance, since that likely leads to a broken Map instance.\r\n */\r\n@Test\r\npublic void testMapWithoutNoArgsConstructor() {\r\n    var mapType = new TypeToken<MapWithoutNoArgsConstructor<String, String>>() {\r\n    };\r\n    JsonIOException e = assertThrows(JsonIOException.class, () -> gson.fromJson(\"{}\", mapType));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Unable to create instance of \" + MapWithoutNoArgsConstructor.class + \"; Register an InstanceCreator or a TypeAdapter for this type.\");\r\n    // But serialization should work fine\r\n    assertThat(gson.toJson(new MapWithoutNoArgsConstructor<>(0))).isEqualTo(\"{}\");\r\n    // Deserialization should work when registering custom creator\r\n    gson = new GsonBuilder().registerTypeAdapter(MapWithoutNoArgsConstructor.class, (InstanceCreator<MapWithoutNoArgsConstructor<?, ?>>) type -> new MapWithoutNoArgsConstructor<>(0)).create();\r\n    var map = gson.fromJson(\"{}\", mapType);\r\n    assertThat(map).isInstanceOf(MapWithoutNoArgsConstructor.class);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapSerializationWithNullValues",
+    "start_line": 445,
+    "end_line": 453,
+    "code": "/**\r\n * Created in response to http://code.google.com/p/google-gson/issues/detail?id=99\r\n */\r\n@Test\r\npublic void testMapSerializationWithNullValues() {\r\n    ClassWithAMap target = new ClassWithAMap();\r\n    target.map.put(\"name1\", null);\r\n    target.map.put(\"name2\", \"value2\");\r\n    String json = gson.toJson(target);\r\n    assertThat(json).doesNotContain(\"name1\");\r\n    assertThat(json).contains(\"name2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapSerializationWithNullValuesSerialized",
+    "start_line": 456,
+    "end_line": 465,
+    "code": "/**\r\n * Created in response to http://code.google.com/p/google-gson/issues/detail?id=99\r\n */\r\n@Test\r\npublic void testMapSerializationWithNullValuesSerialized() {\r\n    Gson gson = new GsonBuilder().serializeNulls().create();\r\n    ClassWithAMap target = new ClassWithAMap();\r\n    target.map.put(\"name1\", null);\r\n    target.map.put(\"name2\", \"value2\");\r\n    String json = gson.toJson(target);\r\n    assertThat(json).contains(\"name1\");\r\n    assertThat(json).contains(\"name2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapSerializationWithWildcardValues",
+    "start_line": 467,
+    "end_line": 476,
+    "code": "@Test\r\npublic void testMapSerializationWithWildcardValues() {\r\n    Map<String, ? extends Collection<? extends Integer>> map = new LinkedHashMap<>();\r\n    map.put(\"test\", null);\r\n    Type typeOfMap = new TypeToken<Map<String, ? extends Collection<? extends Integer>>>() {\r\n    }.getType();\r\n    String json = gson.toJson(map, typeOfMap);\r\n    assertThat(json).isEqualTo(\"{}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapDeserializationWithWildcardValues",
+    "start_line": 478,
+    "end_line": 484,
+    "code": "@Test\r\npublic void testMapDeserializationWithWildcardValues() {\r\n    Type typeOfMap = new TypeToken<Map<String, ? extends Long>>() {\r\n    }.getType();\r\n    Map<String, ? extends Long> map = gson.fromJson(\"{\\\"test\\\":123}\", typeOfMap);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map.get(\"test\")).isEqualTo(123L);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapOfMapSerialization",
+    "start_line": 494,
+    "end_line": 505,
+    "code": "/**\r\n * From bug report http://code.google.com/p/google-gson/issues/detail?id=95\r\n */\r\n@Test\r\npublic void testMapOfMapSerialization() {\r\n    Map<String, Map<String, String>> map = new HashMap<>();\r\n    Map<String, String> nestedMap = new HashMap<>();\r\n    nestedMap.put(\"1\", \"1\");\r\n    nestedMap.put(\"2\", \"2\");\r\n    map.put(\"nestedMap\", nestedMap);\r\n    String json = gson.toJson(map);\r\n    assertThat(json).contains(\"nestedMap\");\r\n    assertThat(json).contains(\"\\\"1\\\":\\\"1\\\"\");\r\n    assertThat(json).contains(\"\\\"2\\\":\\\"2\\\"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapOfMapDeserialization",
+    "start_line": 508,
+    "end_line": 516,
+    "code": "/**\r\n * From bug report http://code.google.com/p/google-gson/issues/detail?id=95\r\n */\r\n@Test\r\npublic void testMapOfMapDeserialization() {\r\n    String json = \"{nestedMap:{'2':'2','1':'1'}}\";\r\n    Type type = new TypeToken<Map<String, Map<String, String>>>() {\r\n    }.getType();\r\n    Map<String, Map<String, String>> map = gson.fromJson(json, type);\r\n    Map<String, String> nested = map.get(\"nestedMap\");\r\n    assertThat(nested.get(\"1\")).isEqualTo(\"1\");\r\n    assertThat(nested.get(\"2\")).isEqualTo(\"2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapWithQuotes",
+    "start_line": 519,
+    "end_line": 525,
+    "code": "/**\r\n * From bug report http://code.google.com/p/google-gson/issues/detail?id=178\r\n */\r\n@Test\r\npublic void testMapWithQuotes() {\r\n    Map<String, String> map = new HashMap<>();\r\n    map.put(\"a\\\"b\", \"c\\\"d\");\r\n    String json = gson.toJson(map);\r\n    assertThat(json).isEqualTo(\"{\\\"a\\\\\\\"b\\\":\\\"c\\\\\\\"d\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWriteMapsWithEmptyStringKey",
+    "start_line": 528,
+    "end_line": 533,
+    "code": "/**\r\n * From issue 227.\r\n */\r\n@Test\r\npublic void testWriteMapsWithEmptyStringKey() {\r\n    Map<String, Boolean> map = new HashMap<>();\r\n    map.put(\"\", true);\r\n    assertThat(gson.toJson(map)).isEqualTo(\"{\\\"\\\":true}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testReadMapsWithEmptyStringKey",
+    "start_line": 535,
+    "end_line": 540,
+    "code": "@Test\r\npublic void testReadMapsWithEmptyStringKey() {\r\n    Map<String, Boolean> map = gson.fromJson(\"{\\\"\\\":true}\", new TypeToken<Map<String, Boolean>>() {\r\n    }.getType());\r\n    assertThat(map.get(\"\")).isEqualTo(true);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeMaps",
+    "start_line": 543,
+    "end_line": 573,
+    "code": "/**\r\n * From bug report http://code.google.com/p/google-gson/issues/detail?id=204\r\n */\r\n@Test\r\npublic void testSerializeMaps() {\r\n    Map<String, Object> map = new LinkedHashMap<>();\r\n    map.put(\"a\", 12);\r\n    map.put(\"b\", null);\r\n    LinkedHashMap<String, Object> innerMap = new LinkedHashMap<>();\r\n    innerMap.put(\"test\", 1);\r\n    innerMap.put(\"TestStringArray\", new String[] { \"one\", \"two\" });\r\n    map.put(\"c\", innerMap);\r\n    assertThat(new GsonBuilder().serializeNulls().create().toJson(map)).isEqualTo(\"{\\\"a\\\":12,\\\"b\\\":null,\\\"c\\\":{\\\"test\\\":1,\\\"TestStringArray\\\":[\\\"one\\\",\\\"two\\\"]}}\");\r\n    assertThat(new GsonBuilder().setPrettyPrinting().serializeNulls().create().toJson(map)).isEqualTo(\"{\\n  \\\"a\\\": 12,\\n  \\\"b\\\": null,\\n  \\\"c\\\": \" + \"{\\n    \\\"test\\\": 1,\\n    \\\"TestStringArray\\\": \" + \"[\\n      \\\"one\\\",\\n      \\\"two\\\"\\n    ]\\n  }\\n}\");\r\n    assertThat(new GsonBuilder().create().toJson(map)).isEqualTo(\"{\\\"a\\\":12,\\\"c\\\":{\\\"test\\\":1,\\\"TestStringArray\\\":[\\\"one\\\",\\\"two\\\"]}}\");\r\n    assertThat(new GsonBuilder().setPrettyPrinting().create().toJson(map)).isEqualTo(\"{\\n  \\\"a\\\": 12,\\n  \\\"c\\\": \" + \"{\\n    \\\"test\\\": 1,\\n    \\\"TestStringArray\\\": \" + \"[\\n      \\\"one\\\",\\n      \\\"two\\\"\\n    ]\\n  }\\n}\");\r\n    innerMap.put(\"d\", \"e\");\r\n    assertThat(new Gson().toJson(map)).isEqualTo(\"{\\\"a\\\":12,\\\"c\\\":{\\\"test\\\":1,\\\"TestStringArray\\\":[\\\"one\\\",\\\"two\\\"],\\\"d\\\":\\\"e\\\"}}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInterfaceTypeMap",
+    "start_line": 575,
+    "end_line": 593,
+    "code": "@Test\r\npublic final void testInterfaceTypeMap() {\r\n    MapClass element = new MapClass();\r\n    TestTypes.Sub subType = new TestTypes.Sub();\r\n    element.addBase(\"Test\", subType);\r\n    element.addSub(\"Test\", subType);\r\n    String subTypeJson = new Gson().toJson(subType);\r\n    String expected = \"{\\\"bases\\\":{\\\"Test\\\":\" + subTypeJson + \"},\\\"subs\\\":{\\\"Test\\\":\" + subTypeJson + \"}}\";\r\n    Gson gsonWithComplexKeys = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n    String json = gsonWithComplexKeys.toJson(element);\r\n    assertThat(json).isEqualTo(expected);\r\n    Gson gson = new Gson();\r\n    json = gson.toJson(element);\r\n    assertThat(json).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInterfaceTypeMapWithSerializer",
+    "start_line": 595,
+    "end_line": 623,
+    "code": "@Test\r\npublic final void testInterfaceTypeMapWithSerializer() {\r\n    MapClass element = new MapClass();\r\n    TestTypes.Sub subType = new TestTypes.Sub();\r\n    element.addBase(\"Test\", subType);\r\n    element.addSub(\"Test\", subType);\r\n    Gson tempGson = new Gson();\r\n    String subTypeJson = tempGson.toJson(subType);\r\n    JsonElement baseTypeJsonElement = tempGson.toJsonTree(subType, TestTypes.Base.class);\r\n    String baseTypeJson = tempGson.toJson(baseTypeJsonElement);\r\n    String expected = \"{\\\"bases\\\":{\\\"Test\\\":\" + baseTypeJson + \"},\\\"subs\\\":{\\\"Test\\\":\" + subTypeJson + \"}}\";\r\n    JsonSerializer<TestTypes.Base> baseTypeAdapter = (src, typeOfSrc, context) -> baseTypeJsonElement;\r\n    Gson gson = new GsonBuilder().enableComplexMapKeySerialization().registerTypeAdapter(TestTypes.Base.class, baseTypeAdapter).create();\r\n    String json = gson.toJson(element);\r\n    assertThat(json).isEqualTo(expected);\r\n    gson = new GsonBuilder().registerTypeAdapter(TestTypes.Base.class, baseTypeAdapter).create();\r\n    json = gson.toJson(element);\r\n    assertThat(json).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGeneralMapField",
+    "start_line": 625,
+    "end_line": 639,
+    "code": "@Test\r\npublic void testGeneralMapField() {\r\n    MapWithGeneralMapParameters map = new MapWithGeneralMapParameters();\r\n    map.map.put(\"string\", \"testString\");\r\n    map.map.put(\"stringArray\", new String[] { \"one\", \"two\" });\r\n    map.map.put(\"objectArray\", new Object[] { 1, 2L, \"three\" });\r\n    String expected = \"{\\\"map\\\":{\\\"string\\\":\\\"testString\\\",\\\"stringArray\\\":\" + \"[\\\"one\\\",\\\"two\\\"],\\\"objectArray\\\":[1,2,\\\"three\\\"]}}\";\r\n    assertThat(gson.toJson(map)).isEqualTo(expected);\r\n    gson = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n    assertThat(gson.toJson(map)).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testComplexKeysSerialization",
+    "start_line": 641,
+    "end_line": 649,
+    "code": "@Test\r\npublic void testComplexKeysSerialization() {\r\n    Map<Point, String> map = new LinkedHashMap<>();\r\n    map.put(new Point(2, 3), \"a\");\r\n    map.put(new Point(5, 7), \"b\");\r\n    String json = \"{\\\"2,3\\\":\\\"a\\\",\\\"5,7\\\":\\\"b\\\"}\";\r\n    assertThat(gson.toJson(map, new TypeToken<Map<Point, String>>() {\r\n    }.getType())).isEqualTo(json);\r\n    assertThat(gson.toJson(map, Map.class)).isEqualTo(json);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testComplexKeysDeserialization",
+    "start_line": 651,
+    "end_line": 660,
+    "code": "@Test\r\npublic void testComplexKeysDeserialization() {\r\n    String json = \"{'2,3':'a','5,7':'b'}\";\r\n    Type type = new TypeToken<Map<Point, String>>() {\r\n    }.getType();\r\n    var e = assertThrows(JsonParseException.class, () -> gson.fromJson(json, type));\r\n    assertThat(e).hasCauseThat().hasMessageThat().startsWith(\"Expected BEGIN_OBJECT but was STRING at line 1 column 3 path $.\\n\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStringKeyDeserialization",
+    "start_line": 662,
+    "end_line": 669,
+    "code": "@Test\r\npublic void testStringKeyDeserialization() {\r\n    String json = \"{'2,3':'a','5,7':'b'}\";\r\n    Map<String, String> map = new LinkedHashMap<>();\r\n    map.put(\"2,3\", \"a\");\r\n    map.put(\"5,7\", \"b\");\r\n    assertThat(gson.fromJson(json, new TypeToken<Map<String, String>>() {\r\n    })).isEqualTo(map);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNumberKeyDeserialization",
+    "start_line": 671,
+    "end_line": 678,
+    "code": "@Test\r\npublic void testNumberKeyDeserialization() {\r\n    String json = \"{'2.3':'a','5.7':'b'}\";\r\n    Map<Double, String> map = new LinkedHashMap<>();\r\n    map.put(2.3, \"a\");\r\n    map.put(5.7, \"b\");\r\n    assertThat(gson.fromJson(json, new TypeToken<Map<Double, String>>() {\r\n    })).isEqualTo(map);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBooleanKeyDeserialization",
+    "start_line": 680,
+    "end_line": 687,
+    "code": "@Test\r\npublic void testBooleanKeyDeserialization() {\r\n    String json = \"{'true':'a','false':'b'}\";\r\n    Map<Boolean, String> map = new LinkedHashMap<>();\r\n    map.put(true, \"a\");\r\n    map.put(false, \"b\");\r\n    assertThat(gson.fromJson(json, new TypeToken<Map<Boolean, String>>() {\r\n    })).isEqualTo(map);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapDeserializationWithDuplicateKeys",
+    "start_line": 689,
+    "end_line": 694,
+    "code": "@Test\r\npublic void testMapDeserializationWithDuplicateKeys() {\r\n    Type type = new TypeToken<Map<String, Integer>>() {\r\n    }.getType();\r\n    var e = assertThrows(JsonSyntaxException.class, () -> gson.fromJson(\"{'a':1,'a':2}\", type));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"duplicate key: a\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeMapOfMaps",
+    "start_line": 696,
+    "end_line": 705,
+    "code": "@Test\r\npublic void testSerializeMapOfMaps() {\r\n    Type type = new TypeToken<Map<String, Map<String, String>>>() {\r\n    }.getType();\r\n    Map<String, Map<String, String>> map = newMap(\"a\", newMap(\"ka1\", \"va1\", \"ka2\", \"va2\"), \"b\", newMap(\"kb1\", \"vb1\", \"kb2\", \"vb2\"));\r\n    assertThat(gson.toJson(map, type).replace('\"', '\\'')).isEqualTo(\"{'a':{'ka1':'va1','ka2':'va2'},'b':{'kb1':'vb1','kb2':'vb2'}}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserializeMapOfMaps",
+    "start_line": 707,
+    "end_line": 716,
+    "code": "@Test\r\npublic void testDeserializeMapOfMaps() {\r\n    TypeToken<Map<String, Map<String, String>>> type = new TypeToken<>() {\r\n    };\r\n    Map<String, Map<String, String>> map = newMap(\"a\", newMap(\"ka1\", \"va1\", \"ka2\", \"va2\"), \"b\", newMap(\"kb1\", \"vb1\", \"kb2\", \"vb2\"));\r\n    String json = \"{'a':{'ka1':'va1','ka2':'va2'},'b':{'kb1':'vb1','kb2':'vb2'}}\";\r\n    assertThat(gson.fromJson(json, type)).isEqualTo(map);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "newMap",
+    "start_line": 718,
+    "end_line": 723,
+    "code": "private static <K, V> Map<K, V> newMap(K key1, V value1, K key2, V value2) {\r\n    Map<K, V> result = new LinkedHashMap<>();\r\n    result.put(key1, value1);\r\n    result.put(key2, value2);\r\n    return result;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapNamePromotionWithJsonElementReader",
+    "start_line": 725,
+    "end_line": 732,
+    "code": "@Test\r\npublic void testMapNamePromotionWithJsonElementReader() {\r\n    String json = \"{'2.3':'a'}\";\r\n    Map<Double, String> map = new LinkedHashMap<>();\r\n    map.put(2.3, \"a\");\r\n    JsonElement tree = JsonParser.parseString(json);\r\n    assertThat(gson.fromJson(tree, new TypeToken<Map<Double, String>>() {\r\n    })).isEqualTo(map);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapTest.java"
+  }
+]

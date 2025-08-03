@@ -1,0 +1,154 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal",
+    "start_line": 1,
+    "end_line": 1,
+    "code": "package com.google.gson.internal;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.testing.MapTestSuiteBuilder",
+    "start_line": 3,
+    "end_line": 3,
+    "code": "import com.google.common.collect.testing.MapTestSuiteBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.testing.TestStringMapGenerator",
+    "start_line": 4,
+    "end_line": 4,
+    "code": "import com.google.common.collect.testing.TestStringMapGenerator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.testing.features.CollectionFeature",
+    "start_line": 5,
+    "end_line": 5,
+    "code": "import com.google.common.collect.testing.features.CollectionFeature;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.testing.features.CollectionSize",
+    "start_line": 6,
+    "end_line": 6,
+    "code": "import com.google.common.collect.testing.features.CollectionSize;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.testing.features.Feature",
+    "start_line": 7,
+    "end_line": 7,
+    "code": "import com.google.common.collect.testing.features.Feature;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.testing.features.MapFeature",
+    "start_line": 8,
+    "end_line": 8,
+    "code": "import com.google.common.collect.testing.features.MapFeature;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 9,
+    "end_line": 9,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 10,
+    "end_line": 10,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 11,
+    "end_line": 11,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 12,
+    "end_line": 12,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map.Entry",
+    "start_line": 13,
+    "end_line": 13,
+    "code": "import java.util.Map.Entry;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "junit.framework.Test",
+    "start_line": 14,
+    "end_line": 14,
+    "code": "import junit.framework.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "junit.framework.TestSuite",
+    "start_line": 15,
+    "end_line": 15,
+    "code": "import junit.framework.TestSuite;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.runner.RunWith",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "import org.junit.runner.RunWith;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.runners.AllTests",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "import org.junit.runners.AllTests;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "class",
+    "name": "LinkedTreeMapSuiteTest",
+    "start_line": 23,
+    "end_line": 84,
+    "code": "/**\r\n * Dynamic {@link MapTestSuiteBuilder Map test suite} for {@link LinkedTreeMap}. This complements\r\n * {@link LinkedTreeMapTest}.\r\n */\r\n@RunWith(AllTests.class)\r\npublic class LinkedTreeMapSuiteTest {\r\n\r\n    private static class MapGenerator extends TestStringMapGenerator {\r\n\r\n        private final boolean allowNullValues;\r\n\r\n        public MapGenerator(boolean allowNullValues) {\r\n            this.allowNullValues = allowNullValues;\r\n        }\r\n\r\n        @Override\r\n        protected Map<String, String> create(Entry<String, String>[] entries) {\r\n            // This is not completely accurate: Because LinkedTreeMap has no constructor which accepts\r\n            // existing entries, this has to add the entries individually with `Map#put`\r\n            var map = new LinkedTreeMap<String, String>(allowNullValues);\r\n            for (var entry : entries) {\r\n                map.put(entry.getKey(), entry.getValue());\r\n            }\r\n            return map;\r\n        }\r\n    }\r\n\r\n    private static Feature<?>[] createFeatures(Feature<?>... additionalFeatures) {\r\n        // Don't specify CollectionFeature.SERIALIZABLE because Guava testlib seems to assume\r\n        // deserialized Map has same properties as original map (e.g. disallowing null keys), but this\r\n        // is not the case for LinkedTreeMap which is serialized as JDK LinkedHashMap\r\n        var features = new ArrayList<Feature<?>>(List.of(CollectionSize.ANY, MapFeature.ALLOWS_ANY_NULL_QUERIES, // Map only allows comparable keys\r\n        MapFeature.RESTRICTS_KEYS, MapFeature.SUPPORTS_PUT, MapFeature.SUPPORTS_REMOVE, // Affects keySet, values and entrySet (?)\r\n        // Map preserves insertion order\r\n        CollectionFeature.KNOWN_ORDER, CollectionFeature.SUPPORTS_ITERATOR_REMOVE));\r\n        features.addAll(Arrays.asList(additionalFeatures));\r\n        return features.toArray(Feature[]::new);\r\n    }\r\n\r\n    // Special method recognized by JUnit's `AllTests` runner\r\n    public static Test suite() {\r\n        var nullValuesSuite = MapTestSuiteBuilder.using(new MapGenerator(true)).withFeatures(createFeatures(MapFeature.ALLOWS_NULL_VALUES)).named(\"nullValues=true\").createTestSuite();\r\n        var nonNullValuesSuite = MapTestSuiteBuilder.using(new MapGenerator(false)).withFeatures(createFeatures()).named(\"nullValues=false\").createTestSuite();\r\n        // Use qualified class name to make it easier to find this test class in the IDE\r\n        TestSuite testSuite = new TestSuite(LinkedTreeMapSuiteTest.class.getName());\r\n        testSuite.addTest(nullValuesSuite);\r\n        testSuite.addTest(nonNullValuesSuite);\r\n        return testSuite;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "method",
+    "name": "createFeatures",
+    "start_line": 44,
+    "end_line": 61,
+    "code": "private static Feature<?>[] createFeatures(Feature<?>... additionalFeatures) {\r\n    // Don't specify CollectionFeature.SERIALIZABLE because Guava testlib seems to assume\r\n    // deserialized Map has same properties as original map (e.g. disallowing null keys), but this\r\n    // is not the case for LinkedTreeMap which is serialized as JDK LinkedHashMap\r\n    var features = new ArrayList<Feature<?>>(List.of(CollectionSize.ANY, MapFeature.ALLOWS_ANY_NULL_QUERIES, // Map only allows comparable keys\r\n    MapFeature.RESTRICTS_KEYS, MapFeature.SUPPORTS_PUT, MapFeature.SUPPORTS_REMOVE, // Affects keySet, values and entrySet (?)\r\n    // Map preserves insertion order\r\n    CollectionFeature.KNOWN_ORDER, CollectionFeature.SUPPORTS_ITERATOR_REMOVE));\r\n    features.addAll(Arrays.asList(additionalFeatures));\r\n    return features.toArray(Feature[]::new);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  },
+  {
+    "type": "method",
+    "name": "suite",
+    "start_line": 64,
+    "end_line": 83,
+    "code": "// Special method recognized by JUnit's `AllTests` runner\r\npublic static Test suite() {\r\n    var nullValuesSuite = MapTestSuiteBuilder.using(new MapGenerator(true)).withFeatures(createFeatures(MapFeature.ALLOWS_NULL_VALUES)).named(\"nullValues=true\").createTestSuite();\r\n    var nonNullValuesSuite = MapTestSuiteBuilder.using(new MapGenerator(false)).withFeatures(createFeatures()).named(\"nullValues=false\").createTestSuite();\r\n    // Use qualified class name to make it easier to find this test class in the IDE\r\n    TestSuite testSuite = new TestSuite(LinkedTreeMapSuiteTest.class.getName());\r\n    testSuite.addTest(nullValuesSuite);\r\n    testSuite.addTest(nonNullValuesSuite);\r\n    return testSuite;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\LinkedTreeMapSuiteTest.java"
+  }
+]

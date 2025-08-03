@@ -1,0 +1,114 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "class",
+    "name": "InternationalizationTest",
+    "start_line": 30,
+    "end_line": 83,
+    "code": "/**\r\n * Functional tests for internationalized strings.\r\n *\r\n * @author Inderjeet Singh\r\n */\r\npublic class InternationalizationTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n    }\r\n\r\n    @Test\r\n    public void testStringsWithUnicodeChineseCharactersSerialization() {\r\n        String target = \"\\u597d\\u597d\\u597d\";\r\n        String json = gson.toJson(target);\r\n        String expected = '\"' + target + '\"';\r\n        assertThat(json).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testStringsWithUnicodeChineseCharactersDeserialization() {\r\n        String expected = \"\\u597d\\u597d\\u597d\";\r\n        String json = '\"' + expected + '\"';\r\n        String actual = gson.fromJson(json, String.class);\r\n        assertThat(actual).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testStringsWithUnicodeChineseCharactersEscapedDeserialization() {\r\n        String actual = gson.fromJson(\"'\\\\u597d\\\\u597d\\\\u597d'\", String.class);\r\n        assertThat(actual).isEqualTo(\"\\u597d\\u597d\\u597d\");\r\n    }\r\n\r\n    @Test\r\n    public void testSupplementaryUnicodeSerialization() {\r\n        // Supplementary code point U+1F60A\r\n        String supplementaryCodePoint = new String(new int[] { 0x1F60A }, 0, 1);\r\n        String json = gson.toJson(supplementaryCodePoint);\r\n        assertThat(json).isEqualTo('\"' + supplementaryCodePoint + '\"');\r\n    }\r\n\r\n    @Test\r\n    public void testSupplementaryUnicodeDeserialization() {\r\n        // Supplementary code point U+1F60A\r\n        String supplementaryCodePoint = new String(new int[] { 0x1F60A }, 0, 1);\r\n        String actual = gson.fromJson('\"' + supplementaryCodePoint + '\"', String.class);\r\n        assertThat(actual).isEqualTo(supplementaryCodePoint);\r\n    }\r\n\r\n    @Test\r\n    public void testSupplementaryUnicodeEscapedDeserialization() {\r\n        // Supplementary code point U+1F60A\r\n        String supplementaryCodePoint = new String(new int[] { 0x1F60A }, 0, 1);\r\n        String actual = gson.fromJson(\"\\\"\\\\uD83D\\\\uDE0A\\\"\", String.class);\r\n        assertThat(actual).isEqualTo(supplementaryCodePoint);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 33,
+    "end_line": 36,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStringsWithUnicodeChineseCharactersSerialization",
+    "start_line": 38,
+    "end_line": 44,
+    "code": "@Test\r\npublic void testStringsWithUnicodeChineseCharactersSerialization() {\r\n    String target = \"\\u597d\\u597d\\u597d\";\r\n    String json = gson.toJson(target);\r\n    String expected = '\"' + target + '\"';\r\n    assertThat(json).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStringsWithUnicodeChineseCharactersDeserialization",
+    "start_line": 46,
+    "end_line": 52,
+    "code": "@Test\r\npublic void testStringsWithUnicodeChineseCharactersDeserialization() {\r\n    String expected = \"\\u597d\\u597d\\u597d\";\r\n    String json = '\"' + expected + '\"';\r\n    String actual = gson.fromJson(json, String.class);\r\n    assertThat(actual).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStringsWithUnicodeChineseCharactersEscapedDeserialization",
+    "start_line": 54,
+    "end_line": 58,
+    "code": "@Test\r\npublic void testStringsWithUnicodeChineseCharactersEscapedDeserialization() {\r\n    String actual = gson.fromJson(\"'\\\\u597d\\\\u597d\\\\u597d'\", String.class);\r\n    assertThat(actual).isEqualTo(\"\\u597d\\u597d\\u597d\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSupplementaryUnicodeSerialization",
+    "start_line": 60,
+    "end_line": 66,
+    "code": "@Test\r\npublic void testSupplementaryUnicodeSerialization() {\r\n    // Supplementary code point U+1F60A\r\n    String supplementaryCodePoint = new String(new int[] { 0x1F60A }, 0, 1);\r\n    String json = gson.toJson(supplementaryCodePoint);\r\n    assertThat(json).isEqualTo('\"' + supplementaryCodePoint + '\"');\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSupplementaryUnicodeDeserialization",
+    "start_line": 68,
+    "end_line": 74,
+    "code": "@Test\r\npublic void testSupplementaryUnicodeDeserialization() {\r\n    // Supplementary code point U+1F60A\r\n    String supplementaryCodePoint = new String(new int[] { 0x1F60A }, 0, 1);\r\n    String actual = gson.fromJson('\"' + supplementaryCodePoint + '\"', String.class);\r\n    assertThat(actual).isEqualTo(supplementaryCodePoint);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSupplementaryUnicodeEscapedDeserialization",
+    "start_line": 76,
+    "end_line": 82,
+    "code": "@Test\r\npublic void testSupplementaryUnicodeEscapedDeserialization() {\r\n    // Supplementary code point U+1F60A\r\n    String supplementaryCodePoint = new String(new int[] { 0x1F60A }, 0, 1);\r\n    String actual = gson.fromJson(\"\\\"\\\\uD83D\\\\uDE0A\\\"\", String.class);\r\n    assertThat(actual).isEqualTo(supplementaryCodePoint);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InternationalizationTest.java"
+  }
+]

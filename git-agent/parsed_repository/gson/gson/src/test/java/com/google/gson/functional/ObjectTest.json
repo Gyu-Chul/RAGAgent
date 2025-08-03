@@ -1,0 +1,762 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.ExclusionStrategy",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.ExclusionStrategy;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.FieldAttributes",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.FieldAttributes;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.InstanceCreator",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.InstanceCreator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonDeserializer",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.JsonDeserializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonIOException",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.JsonIOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonObject",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.JsonObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonParseException",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.JsonParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializer",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import com.google.gson.JsonSerializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSyntaxException",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import com.google.gson.JsonSyntaxException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.ArrayOfObjects",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import com.google.gson.common.TestTypes.ArrayOfObjects;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.BagOfPrimitiveWrappers",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "import com.google.gson.common.TestTypes.BagOfPrimitiveWrappers;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.BagOfPrimitives",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "import com.google.gson.common.TestTypes.BagOfPrimitives;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.ClassWithArray",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "import com.google.gson.common.TestTypes.ClassWithArray;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.ClassWithNoFields",
+    "start_line": 38,
+    "end_line": 38,
+    "code": "import com.google.gson.common.TestTypes.ClassWithNoFields;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.ClassWithObjects",
+    "start_line": 39,
+    "end_line": 39,
+    "code": "import com.google.gson.common.TestTypes.ClassWithObjects;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.ClassWithTransientFields",
+    "start_line": 40,
+    "end_line": 40,
+    "code": "import com.google.gson.common.TestTypes.ClassWithTransientFields;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.Nested",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "import com.google.gson.common.TestTypes.Nested;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.PrimitiveArray",
+    "start_line": 42,
+    "end_line": 42,
+    "code": "import com.google.gson.common.TestTypes.PrimitiveArray;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 43,
+    "end_line": 43,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.MalformedJsonException",
+    "start_line": 44,
+    "end_line": 44,
+    "code": "import com.google.gson.stream.MalformedJsonException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.EOFException",
+    "start_line": 45,
+    "end_line": 45,
+    "code": "import java.io.EOFException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 46,
+    "end_line": 46,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 47,
+    "end_line": 47,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collection",
+    "start_line": 48,
+    "end_line": 48,
+    "code": "import java.util.Collection;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Date",
+    "start_line": 49,
+    "end_line": 49,
+    "code": "import java.util.Date;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.HashMap",
+    "start_line": 50,
+    "end_line": 50,
+    "code": "import java.util.HashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 51,
+    "end_line": 51,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Locale",
+    "start_line": 52,
+    "end_line": 52,
+    "code": "import java.util.Locale;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 53,
+    "end_line": 53,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.TimeZone",
+    "start_line": 54,
+    "end_line": 54,
+    "code": "import java.util.TimeZone;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.After",
+    "start_line": 55,
+    "end_line": 55,
+    "code": "import org.junit.After;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 56,
+    "end_line": 56,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 57,
+    "end_line": 57,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "class",
+    "name": "ObjectTest",
+    "start_line": 65,
+    "end_line": 776,
+    "code": "/**\r\n * Functional tests for Json serialization and deserialization of regular classes.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class ObjectTest {\r\n\r\n    private Gson gson;\r\n\r\n    private TimeZone oldTimeZone;\r\n\r\n    private Locale oldLocale;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n        oldTimeZone = TimeZone.getDefault();\r\n        TimeZone.setDefault(TimeZone.getTimeZone(\"America/Los_Angeles\"));\r\n        oldLocale = Locale.getDefault();\r\n        Locale.setDefault(Locale.US);\r\n    }\r\n\r\n    @After\r\n    public void tearDown() {\r\n        TimeZone.setDefault(oldTimeZone);\r\n        Locale.setDefault(oldLocale);\r\n    }\r\n\r\n    @Test\r\n    public void testJsonInSingleQuotesDeserialization() {\r\n        String json = \"{'stringValue':'no message','intValue':10,'longValue':20}\";\r\n        BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n        assertThat(target.stringValue).isEqualTo(\"no message\");\r\n        assertThat(target.intValue).isEqualTo(10);\r\n        assertThat(target.longValue).isEqualTo(20);\r\n    }\r\n\r\n    @Test\r\n    public void testJsonInMixedQuotesDeserialization() {\r\n        String json = \"{\\\"stringValue\\\":'no message','intValue':10,'longValue':20}\";\r\n        BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n        assertThat(target.stringValue).isEqualTo(\"no message\");\r\n        assertThat(target.intValue).isEqualTo(10);\r\n        assertThat(target.longValue).isEqualTo(20);\r\n    }\r\n\r\n    @Test\r\n    public void testBagOfPrimitivesSerialization() {\r\n        BagOfPrimitives target = new BagOfPrimitives(10, 20, false, \"stringValue\");\r\n        assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testBagOfPrimitivesDeserialization() {\r\n        BagOfPrimitives src = new BagOfPrimitives(10, 20, false, \"stringValue\");\r\n        String json = src.getExpectedJson();\r\n        BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n        assertThat(target.getExpectedJson()).isEqualTo(json);\r\n    }\r\n\r\n    @Test\r\n    public void testBagOfPrimitiveWrappersSerialization() {\r\n        BagOfPrimitiveWrappers target = new BagOfPrimitiveWrappers(10L, 20, false);\r\n        assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testBagOfPrimitiveWrappersDeserialization() {\r\n        BagOfPrimitiveWrappers target = new BagOfPrimitiveWrappers(10L, 20, false);\r\n        String jsonString = target.getExpectedJson();\r\n        target = gson.fromJson(jsonString, BagOfPrimitiveWrappers.class);\r\n        assertThat(target.getExpectedJson()).isEqualTo(jsonString);\r\n    }\r\n\r\n    @Test\r\n    public void testClassWithTransientFieldsSerialization() {\r\n        ClassWithTransientFields<Long> target = new ClassWithTransientFields<>(1L);\r\n        assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testClassWithTransientFieldsDeserialization() {\r\n        String json = \"{\\\"longValue\\\":[1]}\";\r\n        ClassWithTransientFields<?> target = gson.fromJson(json, ClassWithTransientFields.class);\r\n        assertThat(target.getExpectedJson()).isEqualTo(json);\r\n    }\r\n\r\n    @Test\r\n    public void testClassWithTransientFieldsDeserializationTransientFieldsPassedInJsonAreIgnored() {\r\n        String json = \"{\\\"transientLongValue\\\":5,\\\"longValue\\\":[1]}\";\r\n        ClassWithTransientFields<?> target = gson.fromJson(json, ClassWithTransientFields.class);\r\n        assertThat(target.transientLongValue).isEqualTo(1);\r\n    }\r\n\r\n    @Test\r\n    public void testClassWithNoFieldsSerialization() {\r\n        assertThat(gson.toJson(new ClassWithNoFields())).isEqualTo(\"{}\");\r\n    }\r\n\r\n    @Test\r\n    public void testClassWithNoFieldsDeserialization() {\r\n        String json = \"{}\";\r\n        ClassWithNoFields target = gson.fromJson(json, ClassWithNoFields.class);\r\n        ClassWithNoFields expected = new ClassWithNoFields();\r\n        assertThat(target).isEqualTo(expected);\r\n    }\r\n\r\n    private static class Subclass extends Superclass1 {\r\n    }\r\n\r\n    private static class Superclass1 extends Superclass2 {\r\n\r\n        @SuppressWarnings({ \"unused\", \"HidingField\" })\r\n        String s;\r\n    }\r\n\r\n    private static class Superclass2 {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        String s;\r\n    }\r\n\r\n    @Test\r\n    public void testClassWithDuplicateFields() {\r\n        String expectedMessage = \"Class com.google.gson.functional.ObjectTest$Subclass declares multiple JSON fields named\" + \" 's'; conflict is caused by fields\" + \" com.google.gson.functional.ObjectTest$Superclass1#s and\" + \" com.google.gson.functional.ObjectTest$Superclass2#s\\n\" + \"See https://github.com/google/gson/blob/main/Troubleshooting.md#duplicate-fields\";\r\n        var e = assertThrows(IllegalArgumentException.class, () -> gson.getAdapter(Subclass.class));\r\n        assertThat(e).hasMessageThat().isEqualTo(expectedMessage);\r\n        // Detection should also work properly when duplicate fields exist only for serialization\r\n        Gson gson = new GsonBuilder().addDeserializationExclusionStrategy(new ExclusionStrategy() {\r\n\r\n            @Override\r\n            public boolean shouldSkipField(FieldAttributes f) {\r\n                // Skip all fields for deserialization\r\n                return true;\r\n            }\r\n\r\n            @Override\r\n            public boolean shouldSkipClass(Class<?> clazz) {\r\n                return false;\r\n            }\r\n        }).create();\r\n        e = assertThrows(IllegalArgumentException.class, () -> gson.getAdapter(Subclass.class));\r\n        assertThat(e).hasMessageThat().isEqualTo(expectedMessage);\r\n    }\r\n\r\n    @Test\r\n    public void testNestedSerialization() {\r\n        Nested target = new Nested(new BagOfPrimitives(10, 20, false, \"stringValue\"), new BagOfPrimitives(30, 40, true, \"stringValue\"));\r\n        assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testNestedDeserialization() {\r\n        String json = \"{\\\"primitive1\\\":{\\\"longValue\\\":10,\\\"intValue\\\":20,\\\"booleanValue\\\":false,\" + \"\\\"stringValue\\\":\\\"stringValue\\\"},\\\"primitive2\\\":{\\\"longValue\\\":30,\\\"intValue\\\":40,\" + \"\\\"booleanValue\\\":true,\\\"stringValue\\\":\\\"stringValue\\\"}}\";\r\n        Nested target = gson.fromJson(json, Nested.class);\r\n        assertThat(target.getExpectedJson()).isEqualTo(json);\r\n    }\r\n\r\n    @Test\r\n    public void testNullSerialization() {\r\n        assertThat(gson.toJson(null)).isEqualTo(\"null\");\r\n    }\r\n\r\n    @Test\r\n    public void testEmptyStringDeserialization() {\r\n        Object object = gson.fromJson(\"\", Object.class);\r\n        assertThat(object).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testTruncatedDeserialization() {\r\n        Type type = new TypeToken<List<String>>() {\r\n        }.getType();\r\n        var e = assertThrows(JsonParseException.class, () -> gson.fromJson(\"[\\\"a\\\", \\\"b\\\",\", type));\r\n        assertThat(e).hasCauseThat().isInstanceOf(EOFException.class);\r\n    }\r\n\r\n    @Test\r\n    public void testNullDeserialization() {\r\n        String myNullObject = null;\r\n        Object object = gson.fromJson(myNullObject, Object.class);\r\n        assertThat(object).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testNullFieldsSerialization() {\r\n        Nested target = new Nested(new BagOfPrimitives(10, 20, false, \"stringValue\"), null);\r\n        assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testNullFieldsDeserialization() {\r\n        String json = \"{\\\"primitive1\\\":{\\\"longValue\\\":10,\\\"intValue\\\":20,\\\"booleanValue\\\":false\" + \",\\\"stringValue\\\":\\\"stringValue\\\"}}\";\r\n        Nested target = gson.fromJson(json, Nested.class);\r\n        assertThat(target.getExpectedJson()).isEqualTo(json);\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfObjectsSerialization() {\r\n        ArrayOfObjects target = new ArrayOfObjects();\r\n        assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfObjectsDeserialization() {\r\n        String json = new ArrayOfObjects().getExpectedJson();\r\n        ArrayOfObjects target = gson.fromJson(json, ArrayOfObjects.class);\r\n        assertThat(target.getExpectedJson()).isEqualTo(json);\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfArraysSerialization() {\r\n        ArrayOfArrays target = new ArrayOfArrays();\r\n        assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfArraysDeserialization() {\r\n        String json = new ArrayOfArrays().getExpectedJson();\r\n        ArrayOfArrays target = gson.fromJson(json, ArrayOfArrays.class);\r\n        assertThat(target.getExpectedJson()).isEqualTo(json);\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfObjectsAsFields() {\r\n        ClassWithObjects classWithObjects = new ClassWithObjects();\r\n        BagOfPrimitives bagOfPrimitives = new BagOfPrimitives();\r\n        String stringValue = \"someStringValueInArray\";\r\n        String classWithObjectsJson = gson.toJson(classWithObjects);\r\n        String bagOfPrimitivesJson = gson.toJson(bagOfPrimitives);\r\n        ClassWithArray classWithArray = new ClassWithArray(new Object[] { stringValue, classWithObjects, bagOfPrimitives });\r\n        String json = gson.toJson(classWithArray);\r\n        assertThat(json).contains(classWithObjectsJson);\r\n        assertThat(json).contains(bagOfPrimitivesJson);\r\n        assertThat(json).contains(\"\\\"\" + stringValue + \"\\\"\");\r\n    }\r\n\r\n    /**\r\n     * Created in response to Issue 14: http://code.google.com/p/google-gson/issues/detail?id=14\r\n     */\r\n    @Test\r\n    public void testNullArraysDeserialization() {\r\n        String json = \"{\\\"array\\\": null}\";\r\n        ClassWithArray target = gson.fromJson(json, ClassWithArray.class);\r\n        assertThat(target.array).isNull();\r\n    }\r\n\r\n    /**\r\n     * Created in response to Issue 14: http://code.google.com/p/google-gson/issues/detail?id=14\r\n     */\r\n    @Test\r\n    public void testNullObjectFieldsDeserialization() {\r\n        String json = \"{\\\"bag\\\": null}\";\r\n        ClassWithObjects target = gson.fromJson(json, ClassWithObjects.class);\r\n        assertThat(target.bag).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testEmptyCollectionInAnObjectDeserialization() {\r\n        String json = \"{\\\"children\\\":[]}\";\r\n        ClassWithCollectionField target = gson.fromJson(json, ClassWithCollectionField.class);\r\n        assertThat(target).isNotNull();\r\n        assertThat(target.children).isEmpty();\r\n    }\r\n\r\n    private static class ClassWithCollectionField {\r\n\r\n        Collection<String> children = new ArrayList<>();\r\n    }\r\n\r\n    @Test\r\n    public void testPrimitiveArrayInAnObjectDeserialization() {\r\n        String json = \"{\\\"longArray\\\":[0,1,2,3,4,5,6,7,8,9]}\";\r\n        PrimitiveArray target = gson.fromJson(json, PrimitiveArray.class);\r\n        assertThat(target.getExpectedJson()).isEqualTo(json);\r\n    }\r\n\r\n    /**\r\n     * Created in response to Issue 14: http://code.google.com/p/google-gson/issues/detail?id=14\r\n     */\r\n    @Test\r\n    public void testNullPrimitiveFieldsDeserialization() {\r\n        String json = \"{\\\"longValue\\\":null}\";\r\n        BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n        assertThat(target.longValue).isEqualTo(BagOfPrimitives.DEFAULT_VALUE);\r\n    }\r\n\r\n    @Test\r\n    public void testEmptyCollectionInAnObjectSerialization() {\r\n        ClassWithCollectionField target = new ClassWithCollectionField();\r\n        assertThat(gson.toJson(target)).isEqualTo(\"{\\\"children\\\":[]}\");\r\n    }\r\n\r\n    @Test\r\n    public void testPrivateNoArgConstructorDeserialization() {\r\n        ClassWithPrivateNoArgsConstructor target = gson.fromJson(\"{\\\"a\\\":20}\", ClassWithPrivateNoArgsConstructor.class);\r\n        assertThat(target.a).isEqualTo(20);\r\n    }\r\n\r\n    @Test\r\n    public void testAnonymousLocalClassesSerialization() {\r\n        assertThat(gson.toJson(new ClassWithNoFields() {\r\n        })).isEqualTo(\"null\");\r\n        class Local {\r\n        }\r\n        assertThat(gson.toJson(new Local())).isEqualTo(\"null\");\r\n    }\r\n\r\n    @Test\r\n    public void testAnonymousLocalClassesCustomSerialization() {\r\n        Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(ClassWithNoFields.class, (JsonSerializer<ClassWithNoFields>) (src, typeOfSrc, context) -> new JsonPrimitive(\"custom-value\")).create();\r\n        assertThat(gson.toJson(new ClassWithNoFields() {\r\n        })).isEqualTo(\"\\\"custom-value\\\"\");\r\n        class Local {\r\n        }\r\n        gson = new GsonBuilder().registerTypeAdapter(Local.class, (JsonSerializer<Local>) (src, typeOfSrc, context) -> new JsonPrimitive(\"custom-value\")).create();\r\n        assertThat(gson.toJson(new Local())).isEqualTo(\"\\\"custom-value\\\"\");\r\n    }\r\n\r\n    @Test\r\n    public void testAnonymousLocalClassesCustomDeserialization() {\r\n        Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(ClassWithNoFields.class, (JsonDeserializer<ClassWithNoFields>) (json, typeOfT, context) -> new ClassWithNoFields()).create();\r\n        assertThat(gson.fromJson(\"{}\", ClassWithNoFields.class)).isNotNull();\r\n        Class<?> anonymousClass = new ClassWithNoFields() {\r\n        }.getClass();\r\n        // Custom deserializer is ignored\r\n        assertThat(gson.fromJson(\"{}\", anonymousClass)).isNull();\r\n        class Local {\r\n        }\r\n        gson = new GsonBuilder().registerTypeAdapter(Local.class, (JsonDeserializer<Local>) (json, typeOfT, context) -> {\r\n            throw new AssertionError(\"should not be called\");\r\n        }).create();\r\n        // Custom deserializer is ignored\r\n        assertThat(gson.fromJson(\"{}\", Local.class)).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testPrimitiveArrayFieldSerialization() {\r\n        PrimitiveArray target = new PrimitiveArray(new long[] { 1L, 2L, 3L });\r\n        assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n    }\r\n\r\n    /**\r\n     * Tests that a class field with type Object can be serialized properly. See issue 54\r\n     */\r\n    @Test\r\n    public void testClassWithObjectFieldSerialization() {\r\n        ClassWithObjectField obj = new ClassWithObjectField();\r\n        obj.member = \"abc\";\r\n        String json = gson.toJson(obj);\r\n        assertThat(json).contains(\"abc\");\r\n    }\r\n\r\n    private static class ClassWithObjectField {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        Object member;\r\n    }\r\n\r\n    @Test\r\n    public void testInnerClassSerialization() {\r\n        Parent p = new Parent();\r\n        Parent.Child c = p.new Child();\r\n        String json = gson.toJson(c);\r\n        assertThat(json).contains(\"value2\");\r\n        assertThat(json).doesNotContain(\"value1\");\r\n    }\r\n\r\n    @Test\r\n    public void testInnerClassDeserialization() {\r\n        Parent p = new Parent();\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Parent.Child.class, new InstanceCreator<Parent.Child>() {\r\n\r\n            @Override\r\n            public Parent.Child createInstance(Type type) {\r\n                return p.new Child();\r\n            }\r\n        }).create();\r\n        String json = \"{'value2':3}\";\r\n        Parent.Child c = gson.fromJson(json, Parent.Child.class);\r\n        assertThat(c.value2).isEqualTo(3);\r\n    }\r\n\r\n    private static class Parent {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        int value1 = 1;\r\n\r\n        @SuppressWarnings(\"ClassCanBeStatic\")\r\n        private class Child {\r\n\r\n            int value2 = 2;\r\n        }\r\n    }\r\n\r\n    private static class ArrayOfArrays {\r\n\r\n        private final BagOfPrimitives[][] elements;\r\n\r\n        public ArrayOfArrays() {\r\n            elements = new BagOfPrimitives[3][2];\r\n            for (int i = 0; i < elements.length; ++i) {\r\n                BagOfPrimitives[] row = elements[i];\r\n                for (int j = 0; j < row.length; ++j) {\r\n                    row[j] = new BagOfPrimitives(i + j, i * j, false, i + \"_\" + j);\r\n                }\r\n            }\r\n        }\r\n\r\n        public String getExpectedJson() {\r\n            StringBuilder sb = new StringBuilder(\"{\\\"elements\\\":[\");\r\n            boolean first = true;\r\n            for (BagOfPrimitives[] row : elements) {\r\n                if (first) {\r\n                    first = false;\r\n                } else {\r\n                    sb.append(\",\");\r\n                }\r\n                boolean firstOfRow = true;\r\n                sb.append(\"[\");\r\n                for (BagOfPrimitives element : row) {\r\n                    if (firstOfRow) {\r\n                        firstOfRow = false;\r\n                    } else {\r\n                        sb.append(\",\");\r\n                    }\r\n                    sb.append(element.getExpectedJson());\r\n                }\r\n                sb.append(\"]\");\r\n            }\r\n            sb.append(\"]}\");\r\n            return sb.toString();\r\n        }\r\n    }\r\n\r\n    private static class ClassWithPrivateNoArgsConstructor {\r\n\r\n        public int a;\r\n\r\n        private ClassWithPrivateNoArgsConstructor() {\r\n            a = 10;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * In response to Issue 41 http://code.google.com/p/google-gson/issues/detail?id=41\r\n     */\r\n    @Test\r\n    public void testObjectFieldNamesWithoutQuotesDeserialization() {\r\n        String json = \"{longValue:1,'booleanValue':true,\\\"stringValue\\\":'bar'}\";\r\n        BagOfPrimitives bag = gson.fromJson(json, BagOfPrimitives.class);\r\n        assertThat(bag.longValue).isEqualTo(1);\r\n        assertThat(bag.booleanValue).isTrue();\r\n        assertThat(bag.stringValue).isEqualTo(\"bar\");\r\n    }\r\n\r\n    @Test\r\n    public void testStringFieldWithNumberValueDeserialization() {\r\n        String json = \"{\\\"stringValue\\\":1}\";\r\n        BagOfPrimitives bag = gson.fromJson(json, BagOfPrimitives.class);\r\n        assertThat(bag.stringValue).isEqualTo(\"1\");\r\n        json = \"{\\\"stringValue\\\":1.5E+6}\";\r\n        bag = gson.fromJson(json, BagOfPrimitives.class);\r\n        assertThat(bag.stringValue).isEqualTo(\"1.5E+6\");\r\n        json = \"{\\\"stringValue\\\":true}\";\r\n        bag = gson.fromJson(json, BagOfPrimitives.class);\r\n        assertThat(bag.stringValue).isEqualTo(\"true\");\r\n    }\r\n\r\n    /**\r\n     * Created to reproduce issue 140\r\n     */\r\n    @Test\r\n    public void testStringFieldWithEmptyValueSerialization() {\r\n        ClassWithEmptyStringFields target = new ClassWithEmptyStringFields();\r\n        target.a = \"5794749\";\r\n        String json = gson.toJson(target);\r\n        assertThat(json).contains(\"\\\"a\\\":\\\"5794749\\\"\");\r\n        assertThat(json).contains(\"\\\"b\\\":\\\"\\\"\");\r\n        assertThat(json).contains(\"\\\"c\\\":\\\"\\\"\");\r\n    }\r\n\r\n    /**\r\n     * Created to reproduce issue 140\r\n     */\r\n    @Test\r\n    public void testStringFieldWithEmptyValueDeserialization() {\r\n        String json = \"{a:\\\"5794749\\\",b:\\\"\\\",c:\\\"\\\"}\";\r\n        ClassWithEmptyStringFields target = gson.fromJson(json, ClassWithEmptyStringFields.class);\r\n        assertThat(target.a).isEqualTo(\"5794749\");\r\n        assertThat(target.b).isEqualTo(\"\");\r\n        assertThat(target.c).isEqualTo(\"\");\r\n    }\r\n\r\n    private static class ClassWithEmptyStringFields {\r\n\r\n        String a = \"\";\r\n\r\n        String b = \"\";\r\n\r\n        String c = \"\";\r\n    }\r\n\r\n    @Test\r\n    public void testJsonObjectSerialization() {\r\n        Gson gson = new GsonBuilder().serializeNulls().create();\r\n        JsonObject obj = new JsonObject();\r\n        String json = gson.toJson(obj);\r\n        assertThat(json).isEqualTo(\"{}\");\r\n    }\r\n\r\n    /**\r\n     * Test for issue 215.\r\n     */\r\n    @Test\r\n    public void testSingletonLists() {\r\n        Gson gson = new Gson();\r\n        Product product = new Product();\r\n        assertThat(gson.toJson(product)).isEqualTo(\"{\\\"attributes\\\":[],\\\"departments\\\":[]}\");\r\n        Product deserialized = gson.fromJson(gson.toJson(product), Product.class);\r\n        assertThat(deserialized.attributes).isEmpty();\r\n        assertThat(deserialized.departments).isEmpty();\r\n        product.departments.add(new Department());\r\n        assertThat(gson.toJson(product)).isEqualTo(\"{\\\"attributes\\\":[],\\\"departments\\\":[{\\\"name\\\":\\\"abc\\\",\\\"code\\\":\\\"123\\\"}]}\");\r\n        deserialized = gson.fromJson(gson.toJson(product), Product.class);\r\n        assertThat(deserialized.attributes).isEmpty();\r\n        assertThat(deserialized.departments).hasSize(1);\r\n        product.attributes.add(\"456\");\r\n        assertThat(gson.toJson(product)).isEqualTo(\"{\\\"attributes\\\":[\\\"456\\\"],\\\"departments\\\":[{\\\"name\\\":\\\"abc\\\",\\\"code\\\":\\\"123\\\"}]}\");\r\n        deserialized = gson.fromJson(gson.toJson(product), Product.class);\r\n        assertThat(deserialized.attributes).containsExactly(\"456\");\r\n        assertThat(deserialized.departments).hasSize(1);\r\n    }\r\n\r\n    static final class Department {\r\n\r\n        public String name = \"abc\";\r\n\r\n        public String code = \"123\";\r\n    }\r\n\r\n    static final class Product {\r\n\r\n        private List<String> attributes = new ArrayList<>();\r\n\r\n        private List<Department> departments = new ArrayList<>();\r\n    }\r\n\r\n    // http://code.google.com/p/google-gson/issues/detail?id=270\r\n    @Test\r\n    @SuppressWarnings(\"JavaUtilDate\")\r\n    public void testDateAsMapObjectField() {\r\n        HasObjectMap a = new HasObjectMap();\r\n        a.map.put(\"date\", new Date(0));\r\n        assertThat(gson.toJson(a)).matches(\"\\\\{\\\"map\\\":\\\\{\\\"date\\\":\\\"Dec 31, 1969,? 4:00:00\\\\hPM\\\"\\\\}\\\\}\");\r\n    }\r\n\r\n    static class HasObjectMap {\r\n\r\n        Map<String, Object> map = new HashMap<>();\r\n    }\r\n\r\n    /**\r\n     * Tests serialization of a class with {@code static} field.\r\n     *\r\n     * <p>Important: It is not documented that this is officially supported; this test just checks the\r\n     * current behavior.\r\n     */\r\n    @Test\r\n    public void testStaticFieldSerialization() {\r\n        // By default Gson should ignore static fields\r\n        assertThat(gson.toJson(new ClassWithStaticField())).isEqualTo(\"{}\");\r\n        Gson gson = new GsonBuilder().// Include static fields\r\n        excludeFieldsWithModifiers(0).create();\r\n        String json = gson.toJson(new ClassWithStaticField());\r\n        assertThat(json).isEqualTo(\"{\\\"s\\\":\\\"initial\\\"}\");\r\n        json = gson.toJson(new ClassWithStaticFinalField());\r\n        assertThat(json).isEqualTo(\"{\\\"s\\\":\\\"initial\\\"}\");\r\n    }\r\n\r\n    /**\r\n     * Tests deserialization of a class with {@code static} field.\r\n     *\r\n     * <p>Important: It is not documented that this is officially supported; this test just checks the\r\n     * current behavior.\r\n     */\r\n    @Test\r\n    public void testStaticFieldDeserialization() {\r\n        // By default Gson should ignore static fields\r\n        ClassWithStaticField deserialized = gson.fromJson(\"{\\\"s\\\":\\\"custom\\\"}\", ClassWithStaticField.class);\r\n        assertThat(deserialized).isNotNull();\r\n        assertThat(ClassWithStaticField.s).isEqualTo(\"initial\");\r\n        Gson gson = new GsonBuilder().// Include static fields\r\n        excludeFieldsWithModifiers(0).create();\r\n        String oldValue = ClassWithStaticField.s;\r\n        try {\r\n            ClassWithStaticField obj = gson.fromJson(\"{\\\"s\\\":\\\"custom\\\"}\", ClassWithStaticField.class);\r\n            assertThat(obj).isNotNull();\r\n            assertThat(ClassWithStaticField.s).isEqualTo(\"custom\");\r\n        } finally {\r\n            ClassWithStaticField.s = oldValue;\r\n        }\r\n        var e = assertThrows(JsonIOException.class, () -> gson.fromJson(\"{\\\"s\\\":\\\"custom\\\"}\", ClassWithStaticFinalField.class));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Cannot set value of 'static final' field\" + \" 'com.google.gson.functional.ObjectTest$ClassWithStaticFinalField#s'\");\r\n    }\r\n\r\n    @SuppressWarnings({ \"PrivateConstructorForUtilityClass\", \"NonFinalStaticField\" })\r\n    static class ClassWithStaticField {\r\n\r\n        static String s = \"initial\";\r\n    }\r\n\r\n    @SuppressWarnings(\"PrivateConstructorForUtilityClass\")\r\n    static class ClassWithStaticFinalField {\r\n\r\n        static final String s = \"initial\";\r\n    }\r\n\r\n    @Test\r\n    public void testThrowingDefaultConstructor() {\r\n        // TODO: Adjust this once Gson throws more specific exception type\r\n        var e = assertThrows(RuntimeException.class, () -> gson.fromJson(\"{}\", ClassWithThrowingConstructor.class));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Failed to invoke constructor\" + \" 'com.google.gson.functional.ObjectTest$ClassWithThrowingConstructor()' with\" + \" no args\");\r\n        assertThat(e).hasCauseThat().isSameInstanceAs(ClassWithThrowingConstructor.thrownException);\r\n    }\r\n\r\n    static class ClassWithThrowingConstructor {\r\n\r\n        @SuppressWarnings(\"StaticAssignmentOfThrowable\")\r\n        static final RuntimeException thrownException = new RuntimeException(\"Custom exception\");\r\n\r\n        public ClassWithThrowingConstructor() {\r\n            throw thrownException;\r\n        }\r\n    }\r\n\r\n    @Test\r\n    public void testDeeplyNested() {\r\n        int defaultLimit = 255;\r\n        // json = {\"r\":{\"r\": ... {\"r\":null} ... }}\r\n        String json = \"{\\\"r\\\":\".repeat(defaultLimit) + \"null\" + \"}\".repeat(defaultLimit);\r\n        RecursiveClass deserialized = gson.fromJson(json, RecursiveClass.class);\r\n        assertThat(deserialized).isNotNull();\r\n        assertThat(deserialized.r).isNotNull();\r\n        // json = {\"r\":{\"r\": ... {\"r\":null} ... }}\r\n        String json2 = \"{\\\"r\\\":\".repeat(defaultLimit + 1) + \"null\" + \"}\".repeat(defaultLimit + 1);\r\n        JsonSyntaxException e = assertThrows(JsonSyntaxException.class, () -> gson.fromJson(json2, RecursiveClass.class));\r\n        assertThat(e).hasCauseThat().isInstanceOf(MalformedJsonException.class);\r\n        assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Nesting limit 255 reached at line 1 column 1277 path $\" + \".r\".repeat(defaultLimit));\r\n    }\r\n\r\n    private static class RecursiveClass {\r\n\r\n        RecursiveClass r;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 66,
+    "end_line": 66,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "field",
+    "name": "oldTimeZone",
+    "start_line": 67,
+    "end_line": 67,
+    "code": "private TimeZone oldTimeZone;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "field",
+    "name": "oldLocale",
+    "start_line": 68,
+    "end_line": 68,
+    "code": "private Locale oldLocale;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 70,
+    "end_line": 78,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n    oldTimeZone = TimeZone.getDefault();\r\n    TimeZone.setDefault(TimeZone.getTimeZone(\"America/Los_Angeles\"));\r\n    oldLocale = Locale.getDefault();\r\n    Locale.setDefault(Locale.US);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "tearDown",
+    "start_line": 80,
+    "end_line": 84,
+    "code": "@After\r\npublic void tearDown() {\r\n    TimeZone.setDefault(oldTimeZone);\r\n    Locale.setDefault(oldLocale);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonInSingleQuotesDeserialization",
+    "start_line": 86,
+    "end_line": 93,
+    "code": "@Test\r\npublic void testJsonInSingleQuotesDeserialization() {\r\n    String json = \"{'stringValue':'no message','intValue':10,'longValue':20}\";\r\n    BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n    assertThat(target.stringValue).isEqualTo(\"no message\");\r\n    assertThat(target.intValue).isEqualTo(10);\r\n    assertThat(target.longValue).isEqualTo(20);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonInMixedQuotesDeserialization",
+    "start_line": 95,
+    "end_line": 102,
+    "code": "@Test\r\npublic void testJsonInMixedQuotesDeserialization() {\r\n    String json = \"{\\\"stringValue\\\":'no message','intValue':10,'longValue':20}\";\r\n    BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n    assertThat(target.stringValue).isEqualTo(\"no message\");\r\n    assertThat(target.intValue).isEqualTo(10);\r\n    assertThat(target.longValue).isEqualTo(20);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBagOfPrimitivesSerialization",
+    "start_line": 104,
+    "end_line": 108,
+    "code": "@Test\r\npublic void testBagOfPrimitivesSerialization() {\r\n    BagOfPrimitives target = new BagOfPrimitives(10, 20, false, \"stringValue\");\r\n    assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBagOfPrimitivesDeserialization",
+    "start_line": 110,
+    "end_line": 116,
+    "code": "@Test\r\npublic void testBagOfPrimitivesDeserialization() {\r\n    BagOfPrimitives src = new BagOfPrimitives(10, 20, false, \"stringValue\");\r\n    String json = src.getExpectedJson();\r\n    BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n    assertThat(target.getExpectedJson()).isEqualTo(json);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBagOfPrimitiveWrappersSerialization",
+    "start_line": 118,
+    "end_line": 122,
+    "code": "@Test\r\npublic void testBagOfPrimitiveWrappersSerialization() {\r\n    BagOfPrimitiveWrappers target = new BagOfPrimitiveWrappers(10L, 20, false);\r\n    assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBagOfPrimitiveWrappersDeserialization",
+    "start_line": 124,
+    "end_line": 130,
+    "code": "@Test\r\npublic void testBagOfPrimitiveWrappersDeserialization() {\r\n    BagOfPrimitiveWrappers target = new BagOfPrimitiveWrappers(10L, 20, false);\r\n    String jsonString = target.getExpectedJson();\r\n    target = gson.fromJson(jsonString, BagOfPrimitiveWrappers.class);\r\n    assertThat(target.getExpectedJson()).isEqualTo(jsonString);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testClassWithTransientFieldsSerialization",
+    "start_line": 132,
+    "end_line": 136,
+    "code": "@Test\r\npublic void testClassWithTransientFieldsSerialization() {\r\n    ClassWithTransientFields<Long> target = new ClassWithTransientFields<>(1L);\r\n    assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testClassWithTransientFieldsDeserialization",
+    "start_line": 138,
+    "end_line": 143,
+    "code": "@Test\r\npublic void testClassWithTransientFieldsDeserialization() {\r\n    String json = \"{\\\"longValue\\\":[1]}\";\r\n    ClassWithTransientFields<?> target = gson.fromJson(json, ClassWithTransientFields.class);\r\n    assertThat(target.getExpectedJson()).isEqualTo(json);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testClassWithTransientFieldsDeserializationTransientFieldsPassedInJsonAreIgnored",
+    "start_line": 145,
+    "end_line": 150,
+    "code": "@Test\r\npublic void testClassWithTransientFieldsDeserializationTransientFieldsPassedInJsonAreIgnored() {\r\n    String json = \"{\\\"transientLongValue\\\":5,\\\"longValue\\\":[1]}\";\r\n    ClassWithTransientFields<?> target = gson.fromJson(json, ClassWithTransientFields.class);\r\n    assertThat(target.transientLongValue).isEqualTo(1);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testClassWithNoFieldsSerialization",
+    "start_line": 152,
+    "end_line": 155,
+    "code": "@Test\r\npublic void testClassWithNoFieldsSerialization() {\r\n    assertThat(gson.toJson(new ClassWithNoFields())).isEqualTo(\"{}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testClassWithNoFieldsDeserialization",
+    "start_line": 157,
+    "end_line": 163,
+    "code": "@Test\r\npublic void testClassWithNoFieldsDeserialization() {\r\n    String json = \"{}\";\r\n    ClassWithNoFields target = gson.fromJson(json, ClassWithNoFields.class);\r\n    ClassWithNoFields expected = new ClassWithNoFields();\r\n    assertThat(target).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testClassWithDuplicateFields",
+    "start_line": 177,
+    "end_line": 209,
+    "code": "@Test\r\npublic void testClassWithDuplicateFields() {\r\n    String expectedMessage = \"Class com.google.gson.functional.ObjectTest$Subclass declares multiple JSON fields named\" + \" 's'; conflict is caused by fields\" + \" com.google.gson.functional.ObjectTest$Superclass1#s and\" + \" com.google.gson.functional.ObjectTest$Superclass2#s\\n\" + \"See https://github.com/google/gson/blob/main/Troubleshooting.md#duplicate-fields\";\r\n    var e = assertThrows(IllegalArgumentException.class, () -> gson.getAdapter(Subclass.class));\r\n    assertThat(e).hasMessageThat().isEqualTo(expectedMessage);\r\n    // Detection should also work properly when duplicate fields exist only for serialization\r\n    Gson gson = new GsonBuilder().addDeserializationExclusionStrategy(new ExclusionStrategy() {\r\n\r\n        @Override\r\n        public boolean shouldSkipField(FieldAttributes f) {\r\n            // Skip all fields for deserialization\r\n            return true;\r\n        }\r\n\r\n        @Override\r\n        public boolean shouldSkipClass(Class<?> clazz) {\r\n            return false;\r\n        }\r\n    }).create();\r\n    e = assertThrows(IllegalArgumentException.class, () -> gson.getAdapter(Subclass.class));\r\n    assertThat(e).hasMessageThat().isEqualTo(expectedMessage);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNestedSerialization",
+    "start_line": 211,
+    "end_line": 218,
+    "code": "@Test\r\npublic void testNestedSerialization() {\r\n    Nested target = new Nested(new BagOfPrimitives(10, 20, false, \"stringValue\"), new BagOfPrimitives(30, 40, true, \"stringValue\"));\r\n    assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNestedDeserialization",
+    "start_line": 220,
+    "end_line": 228,
+    "code": "@Test\r\npublic void testNestedDeserialization() {\r\n    String json = \"{\\\"primitive1\\\":{\\\"longValue\\\":10,\\\"intValue\\\":20,\\\"booleanValue\\\":false,\" + \"\\\"stringValue\\\":\\\"stringValue\\\"},\\\"primitive2\\\":{\\\"longValue\\\":30,\\\"intValue\\\":40,\" + \"\\\"booleanValue\\\":true,\\\"stringValue\\\":\\\"stringValue\\\"}}\";\r\n    Nested target = gson.fromJson(json, Nested.class);\r\n    assertThat(target.getExpectedJson()).isEqualTo(json);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullSerialization",
+    "start_line": 230,
+    "end_line": 233,
+    "code": "@Test\r\npublic void testNullSerialization() {\r\n    assertThat(gson.toJson(null)).isEqualTo(\"null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEmptyStringDeserialization",
+    "start_line": 235,
+    "end_line": 239,
+    "code": "@Test\r\npublic void testEmptyStringDeserialization() {\r\n    Object object = gson.fromJson(\"\", Object.class);\r\n    assertThat(object).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTruncatedDeserialization",
+    "start_line": 241,
+    "end_line": 246,
+    "code": "@Test\r\npublic void testTruncatedDeserialization() {\r\n    Type type = new TypeToken<List<String>>() {\r\n    }.getType();\r\n    var e = assertThrows(JsonParseException.class, () -> gson.fromJson(\"[\\\"a\\\", \\\"b\\\",\", type));\r\n    assertThat(e).hasCauseThat().isInstanceOf(EOFException.class);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullDeserialization",
+    "start_line": 248,
+    "end_line": 253,
+    "code": "@Test\r\npublic void testNullDeserialization() {\r\n    String myNullObject = null;\r\n    Object object = gson.fromJson(myNullObject, Object.class);\r\n    assertThat(object).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullFieldsSerialization",
+    "start_line": 255,
+    "end_line": 259,
+    "code": "@Test\r\npublic void testNullFieldsSerialization() {\r\n    Nested target = new Nested(new BagOfPrimitives(10, 20, false, \"stringValue\"), null);\r\n    assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullFieldsDeserialization",
+    "start_line": 261,
+    "end_line": 268,
+    "code": "@Test\r\npublic void testNullFieldsDeserialization() {\r\n    String json = \"{\\\"primitive1\\\":{\\\"longValue\\\":10,\\\"intValue\\\":20,\\\"booleanValue\\\":false\" + \",\\\"stringValue\\\":\\\"stringValue\\\"}}\";\r\n    Nested target = gson.fromJson(json, Nested.class);\r\n    assertThat(target.getExpectedJson()).isEqualTo(json);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfObjectsSerialization",
+    "start_line": 270,
+    "end_line": 274,
+    "code": "@Test\r\npublic void testArrayOfObjectsSerialization() {\r\n    ArrayOfObjects target = new ArrayOfObjects();\r\n    assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfObjectsDeserialization",
+    "start_line": 276,
+    "end_line": 281,
+    "code": "@Test\r\npublic void testArrayOfObjectsDeserialization() {\r\n    String json = new ArrayOfObjects().getExpectedJson();\r\n    ArrayOfObjects target = gson.fromJson(json, ArrayOfObjects.class);\r\n    assertThat(target.getExpectedJson()).isEqualTo(json);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfArraysSerialization",
+    "start_line": 283,
+    "end_line": 287,
+    "code": "@Test\r\npublic void testArrayOfArraysSerialization() {\r\n    ArrayOfArrays target = new ArrayOfArrays();\r\n    assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfArraysDeserialization",
+    "start_line": 289,
+    "end_line": 294,
+    "code": "@Test\r\npublic void testArrayOfArraysDeserialization() {\r\n    String json = new ArrayOfArrays().getExpectedJson();\r\n    ArrayOfArrays target = gson.fromJson(json, ArrayOfArrays.class);\r\n    assertThat(target.getExpectedJson()).isEqualTo(json);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfObjectsAsFields",
+    "start_line": 296,
+    "end_line": 311,
+    "code": "@Test\r\npublic void testArrayOfObjectsAsFields() {\r\n    ClassWithObjects classWithObjects = new ClassWithObjects();\r\n    BagOfPrimitives bagOfPrimitives = new BagOfPrimitives();\r\n    String stringValue = \"someStringValueInArray\";\r\n    String classWithObjectsJson = gson.toJson(classWithObjects);\r\n    String bagOfPrimitivesJson = gson.toJson(bagOfPrimitives);\r\n    ClassWithArray classWithArray = new ClassWithArray(new Object[] { stringValue, classWithObjects, bagOfPrimitives });\r\n    String json = gson.toJson(classWithArray);\r\n    assertThat(json).contains(classWithObjectsJson);\r\n    assertThat(json).contains(bagOfPrimitivesJson);\r\n    assertThat(json).contains(\"\\\"\" + stringValue + \"\\\"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullArraysDeserialization",
+    "start_line": 314,
+    "end_line": 319,
+    "code": "/**\r\n * Created in response to Issue 14: http://code.google.com/p/google-gson/issues/detail?id=14\r\n */\r\n@Test\r\npublic void testNullArraysDeserialization() {\r\n    String json = \"{\\\"array\\\": null}\";\r\n    ClassWithArray target = gson.fromJson(json, ClassWithArray.class);\r\n    assertThat(target.array).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullObjectFieldsDeserialization",
+    "start_line": 322,
+    "end_line": 327,
+    "code": "/**\r\n * Created in response to Issue 14: http://code.google.com/p/google-gson/issues/detail?id=14\r\n */\r\n@Test\r\npublic void testNullObjectFieldsDeserialization() {\r\n    String json = \"{\\\"bag\\\": null}\";\r\n    ClassWithObjects target = gson.fromJson(json, ClassWithObjects.class);\r\n    assertThat(target.bag).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEmptyCollectionInAnObjectDeserialization",
+    "start_line": 329,
+    "end_line": 335,
+    "code": "@Test\r\npublic void testEmptyCollectionInAnObjectDeserialization() {\r\n    String json = \"{\\\"children\\\":[]}\";\r\n    ClassWithCollectionField target = gson.fromJson(json, ClassWithCollectionField.class);\r\n    assertThat(target).isNotNull();\r\n    assertThat(target.children).isEmpty();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testPrimitiveArrayInAnObjectDeserialization",
+    "start_line": 341,
+    "end_line": 346,
+    "code": "@Test\r\npublic void testPrimitiveArrayInAnObjectDeserialization() {\r\n    String json = \"{\\\"longArray\\\":[0,1,2,3,4,5,6,7,8,9]}\";\r\n    PrimitiveArray target = gson.fromJson(json, PrimitiveArray.class);\r\n    assertThat(target.getExpectedJson()).isEqualTo(json);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullPrimitiveFieldsDeserialization",
+    "start_line": 349,
+    "end_line": 354,
+    "code": "/**\r\n * Created in response to Issue 14: http://code.google.com/p/google-gson/issues/detail?id=14\r\n */\r\n@Test\r\npublic void testNullPrimitiveFieldsDeserialization() {\r\n    String json = \"{\\\"longValue\\\":null}\";\r\n    BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n    assertThat(target.longValue).isEqualTo(BagOfPrimitives.DEFAULT_VALUE);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEmptyCollectionInAnObjectSerialization",
+    "start_line": 356,
+    "end_line": 360,
+    "code": "@Test\r\npublic void testEmptyCollectionInAnObjectSerialization() {\r\n    ClassWithCollectionField target = new ClassWithCollectionField();\r\n    assertThat(gson.toJson(target)).isEqualTo(\"{\\\"children\\\":[]}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testPrivateNoArgConstructorDeserialization",
+    "start_line": 362,
+    "end_line": 367,
+    "code": "@Test\r\npublic void testPrivateNoArgConstructorDeserialization() {\r\n    ClassWithPrivateNoArgsConstructor target = gson.fromJson(\"{\\\"a\\\":20}\", ClassWithPrivateNoArgsConstructor.class);\r\n    assertThat(target.a).isEqualTo(20);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAnonymousLocalClassesSerialization",
+    "start_line": 369,
+    "end_line": 380,
+    "code": "@Test\r\npublic void testAnonymousLocalClassesSerialization() {\r\n    assertThat(gson.toJson(new ClassWithNoFields() {\r\n    })).isEqualTo(\"null\");\r\n    class Local {\r\n    }\r\n    assertThat(gson.toJson(new Local())).isEqualTo(\"null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAnonymousLocalClassesCustomSerialization",
+    "start_line": 382,
+    "end_line": 408,
+    "code": "@Test\r\npublic void testAnonymousLocalClassesCustomSerialization() {\r\n    Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(ClassWithNoFields.class, (JsonSerializer<ClassWithNoFields>) (src, typeOfSrc, context) -> new JsonPrimitive(\"custom-value\")).create();\r\n    assertThat(gson.toJson(new ClassWithNoFields() {\r\n    })).isEqualTo(\"\\\"custom-value\\\"\");\r\n    class Local {\r\n    }\r\n    gson = new GsonBuilder().registerTypeAdapter(Local.class, (JsonSerializer<Local>) (src, typeOfSrc, context) -> new JsonPrimitive(\"custom-value\")).create();\r\n    assertThat(gson.toJson(new Local())).isEqualTo(\"\\\"custom-value\\\"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAnonymousLocalClassesCustomDeserialization",
+    "start_line": 410,
+    "end_line": 437,
+    "code": "@Test\r\npublic void testAnonymousLocalClassesCustomDeserialization() {\r\n    Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(ClassWithNoFields.class, (JsonDeserializer<ClassWithNoFields>) (json, typeOfT, context) -> new ClassWithNoFields()).create();\r\n    assertThat(gson.fromJson(\"{}\", ClassWithNoFields.class)).isNotNull();\r\n    Class<?> anonymousClass = new ClassWithNoFields() {\r\n    }.getClass();\r\n    // Custom deserializer is ignored\r\n    assertThat(gson.fromJson(\"{}\", anonymousClass)).isNull();\r\n    class Local {\r\n    }\r\n    gson = new GsonBuilder().registerTypeAdapter(Local.class, (JsonDeserializer<Local>) (json, typeOfT, context) -> {\r\n        throw new AssertionError(\"should not be called\");\r\n    }).create();\r\n    // Custom deserializer is ignored\r\n    assertThat(gson.fromJson(\"{}\", Local.class)).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testPrimitiveArrayFieldSerialization",
+    "start_line": 439,
+    "end_line": 443,
+    "code": "@Test\r\npublic void testPrimitiveArrayFieldSerialization() {\r\n    PrimitiveArray target = new PrimitiveArray(new long[] { 1L, 2L, 3L });\r\n    assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testClassWithObjectFieldSerialization",
+    "start_line": 446,
+    "end_line": 452,
+    "code": "/**\r\n * Tests that a class field with type Object can be serialized properly. See issue 54\r\n */\r\n@Test\r\npublic void testClassWithObjectFieldSerialization() {\r\n    ClassWithObjectField obj = new ClassWithObjectField();\r\n    obj.member = \"abc\";\r\n    String json = gson.toJson(obj);\r\n    assertThat(json).contains(\"abc\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInnerClassSerialization",
+    "start_line": 459,
+    "end_line": 466,
+    "code": "@Test\r\npublic void testInnerClassSerialization() {\r\n    Parent p = new Parent();\r\n    Parent.Child c = p.new Child();\r\n    String json = gson.toJson(c);\r\n    assertThat(json).contains(\"value2\");\r\n    assertThat(json).doesNotContain(\"value1\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInnerClassDeserialization",
+    "start_line": 468,
+    "end_line": 485,
+    "code": "@Test\r\npublic void testInnerClassDeserialization() {\r\n    Parent p = new Parent();\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Parent.Child.class, new InstanceCreator<Parent.Child>() {\r\n\r\n        @Override\r\n        public Parent.Child createInstance(Type type) {\r\n            return p.new Child();\r\n        }\r\n    }).create();\r\n    String json = \"{'value2':3}\";\r\n    Parent.Child c = gson.fromJson(json, Parent.Child.class);\r\n    assertThat(c.value2).isEqualTo(3);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testObjectFieldNamesWithoutQuotesDeserialization",
+    "start_line": 545,
+    "end_line": 552,
+    "code": "/**\r\n * In response to Issue 41 http://code.google.com/p/google-gson/issues/detail?id=41\r\n */\r\n@Test\r\npublic void testObjectFieldNamesWithoutQuotesDeserialization() {\r\n    String json = \"{longValue:1,'booleanValue':true,\\\"stringValue\\\":'bar'}\";\r\n    BagOfPrimitives bag = gson.fromJson(json, BagOfPrimitives.class);\r\n    assertThat(bag.longValue).isEqualTo(1);\r\n    assertThat(bag.booleanValue).isTrue();\r\n    assertThat(bag.stringValue).isEqualTo(\"bar\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStringFieldWithNumberValueDeserialization",
+    "start_line": 554,
+    "end_line": 567,
+    "code": "@Test\r\npublic void testStringFieldWithNumberValueDeserialization() {\r\n    String json = \"{\\\"stringValue\\\":1}\";\r\n    BagOfPrimitives bag = gson.fromJson(json, BagOfPrimitives.class);\r\n    assertThat(bag.stringValue).isEqualTo(\"1\");\r\n    json = \"{\\\"stringValue\\\":1.5E+6}\";\r\n    bag = gson.fromJson(json, BagOfPrimitives.class);\r\n    assertThat(bag.stringValue).isEqualTo(\"1.5E+6\");\r\n    json = \"{\\\"stringValue\\\":true}\";\r\n    bag = gson.fromJson(json, BagOfPrimitives.class);\r\n    assertThat(bag.stringValue).isEqualTo(\"true\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStringFieldWithEmptyValueSerialization",
+    "start_line": 570,
+    "end_line": 578,
+    "code": "/**\r\n * Created to reproduce issue 140\r\n */\r\n@Test\r\npublic void testStringFieldWithEmptyValueSerialization() {\r\n    ClassWithEmptyStringFields target = new ClassWithEmptyStringFields();\r\n    target.a = \"5794749\";\r\n    String json = gson.toJson(target);\r\n    assertThat(json).contains(\"\\\"a\\\":\\\"5794749\\\"\");\r\n    assertThat(json).contains(\"\\\"b\\\":\\\"\\\"\");\r\n    assertThat(json).contains(\"\\\"c\\\":\\\"\\\"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStringFieldWithEmptyValueDeserialization",
+    "start_line": 581,
+    "end_line": 588,
+    "code": "/**\r\n * Created to reproduce issue 140\r\n */\r\n@Test\r\npublic void testStringFieldWithEmptyValueDeserialization() {\r\n    String json = \"{a:\\\"5794749\\\",b:\\\"\\\",c:\\\"\\\"}\";\r\n    ClassWithEmptyStringFields target = gson.fromJson(json, ClassWithEmptyStringFields.class);\r\n    assertThat(target.a).isEqualTo(\"5794749\");\r\n    assertThat(target.b).isEqualTo(\"\");\r\n    assertThat(target.c).isEqualTo(\"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonObjectSerialization",
+    "start_line": 596,
+    "end_line": 602,
+    "code": "@Test\r\npublic void testJsonObjectSerialization() {\r\n    Gson gson = new GsonBuilder().serializeNulls().create();\r\n    JsonObject obj = new JsonObject();\r\n    String json = gson.toJson(obj);\r\n    assertThat(json).isEqualTo(\"{}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSingletonLists",
+    "start_line": 605,
+    "end_line": 628,
+    "code": "/**\r\n * Test for issue 215.\r\n */\r\n@Test\r\npublic void testSingletonLists() {\r\n    Gson gson = new Gson();\r\n    Product product = new Product();\r\n    assertThat(gson.toJson(product)).isEqualTo(\"{\\\"attributes\\\":[],\\\"departments\\\":[]}\");\r\n    Product deserialized = gson.fromJson(gson.toJson(product), Product.class);\r\n    assertThat(deserialized.attributes).isEmpty();\r\n    assertThat(deserialized.departments).isEmpty();\r\n    product.departments.add(new Department());\r\n    assertThat(gson.toJson(product)).isEqualTo(\"{\\\"attributes\\\":[],\\\"departments\\\":[{\\\"name\\\":\\\"abc\\\",\\\"code\\\":\\\"123\\\"}]}\");\r\n    deserialized = gson.fromJson(gson.toJson(product), Product.class);\r\n    assertThat(deserialized.attributes).isEmpty();\r\n    assertThat(deserialized.departments).hasSize(1);\r\n    product.attributes.add(\"456\");\r\n    assertThat(gson.toJson(product)).isEqualTo(\"{\\\"attributes\\\":[\\\"456\\\"],\\\"departments\\\":[{\\\"name\\\":\\\"abc\\\",\\\"code\\\":\\\"123\\\"}]}\");\r\n    deserialized = gson.fromJson(gson.toJson(product), Product.class);\r\n    assertThat(deserialized.attributes).containsExactly(\"456\");\r\n    assertThat(deserialized.departments).hasSize(1);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDateAsMapObjectField",
+    "start_line": 641,
+    "end_line": 648,
+    "code": "// http://code.google.com/p/google-gson/issues/detail?id=270\r\n@Test\r\n@SuppressWarnings(\"JavaUtilDate\")\r\npublic void testDateAsMapObjectField() {\r\n    HasObjectMap a = new HasObjectMap();\r\n    a.map.put(\"date\", new Date(0));\r\n    assertThat(gson.toJson(a)).matches(\"\\\\{\\\"map\\\":\\\\{\\\"date\\\":\\\"Dec 31, 1969,? 4:00:00\\\\hPM\\\"\\\\}\\\\}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStaticFieldSerialization",
+    "start_line": 660,
+    "end_line": 676,
+    "code": "/**\r\n * Tests serialization of a class with {@code static} field.\r\n *\r\n * <p>Important: It is not documented that this is officially supported; this test just checks the\r\n * current behavior.\r\n */\r\n@Test\r\npublic void testStaticFieldSerialization() {\r\n    // By default Gson should ignore static fields\r\n    assertThat(gson.toJson(new ClassWithStaticField())).isEqualTo(\"{}\");\r\n    Gson gson = new GsonBuilder().// Include static fields\r\n    excludeFieldsWithModifiers(0).create();\r\n    String json = gson.toJson(new ClassWithStaticField());\r\n    assertThat(json).isEqualTo(\"{\\\"s\\\":\\\"initial\\\"}\");\r\n    json = gson.toJson(new ClassWithStaticFinalField());\r\n    assertThat(json).isEqualTo(\"{\\\"s\\\":\\\"initial\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStaticFieldDeserialization",
+    "start_line": 684,
+    "end_line": 716,
+    "code": "/**\r\n * Tests deserialization of a class with {@code static} field.\r\n *\r\n * <p>Important: It is not documented that this is officially supported; this test just checks the\r\n * current behavior.\r\n */\r\n@Test\r\npublic void testStaticFieldDeserialization() {\r\n    // By default Gson should ignore static fields\r\n    ClassWithStaticField deserialized = gson.fromJson(\"{\\\"s\\\":\\\"custom\\\"}\", ClassWithStaticField.class);\r\n    assertThat(deserialized).isNotNull();\r\n    assertThat(ClassWithStaticField.s).isEqualTo(\"initial\");\r\n    Gson gson = new GsonBuilder().// Include static fields\r\n    excludeFieldsWithModifiers(0).create();\r\n    String oldValue = ClassWithStaticField.s;\r\n    try {\r\n        ClassWithStaticField obj = gson.fromJson(\"{\\\"s\\\":\\\"custom\\\"}\", ClassWithStaticField.class);\r\n        assertThat(obj).isNotNull();\r\n        assertThat(ClassWithStaticField.s).isEqualTo(\"custom\");\r\n    } finally {\r\n        ClassWithStaticField.s = oldValue;\r\n    }\r\n    var e = assertThrows(JsonIOException.class, () -> gson.fromJson(\"{\\\"s\\\":\\\"custom\\\"}\", ClassWithStaticFinalField.class));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Cannot set value of 'static final' field\" + \" 'com.google.gson.functional.ObjectTest$ClassWithStaticFinalField#s'\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testThrowingDefaultConstructor",
+    "start_line": 728,
+    "end_line": 741,
+    "code": "@Test\r\npublic void testThrowingDefaultConstructor() {\r\n    // TODO: Adjust this once Gson throws more specific exception type\r\n    var e = assertThrows(RuntimeException.class, () -> gson.fromJson(\"{}\", ClassWithThrowingConstructor.class));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Failed to invoke constructor\" + \" 'com.google.gson.functional.ObjectTest$ClassWithThrowingConstructor()' with\" + \" no args\");\r\n    assertThat(e).hasCauseThat().isSameInstanceAs(ClassWithThrowingConstructor.thrownException);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeeplyNested",
+    "start_line": 752,
+    "end_line": 771,
+    "code": "@Test\r\npublic void testDeeplyNested() {\r\n    int defaultLimit = 255;\r\n    // json = {\"r\":{\"r\": ... {\"r\":null} ... }}\r\n    String json = \"{\\\"r\\\":\".repeat(defaultLimit) + \"null\" + \"}\".repeat(defaultLimit);\r\n    RecursiveClass deserialized = gson.fromJson(json, RecursiveClass.class);\r\n    assertThat(deserialized).isNotNull();\r\n    assertThat(deserialized.r).isNotNull();\r\n    // json = {\"r\":{\"r\": ... {\"r\":null} ... }}\r\n    String json2 = \"{\\\"r\\\":\".repeat(defaultLimit + 1) + \"null\" + \"}\".repeat(defaultLimit + 1);\r\n    JsonSyntaxException e = assertThrows(JsonSyntaxException.class, () -> gson.fromJson(json2, RecursiveClass.class));\r\n    assertThat(e).hasCauseThat().isInstanceOf(MalformedJsonException.class);\r\n    assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Nesting limit 255 reached at line 1 column 1277 path $\" + \".r\".repeat(defaultLimit));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ObjectTest.java"
+  }
+]

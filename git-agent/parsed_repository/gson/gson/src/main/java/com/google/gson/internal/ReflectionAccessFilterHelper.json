@@ -1,0 +1,122 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.ReflectionAccessFilter",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.ReflectionAccessFilter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.ReflectionAccessFilter.FilterResult",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.ReflectionAccessFilter.FilterResult;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.AccessibleObject",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.lang.reflect.AccessibleObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Method",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.lang.reflect.Method;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "class",
+    "name": "ReflectionAccessFilterHelper",
+    "start_line": 26,
+    "end_line": 121,
+    "code": "/**\r\n * Internal helper class for {@link ReflectionAccessFilter}.\r\n */\r\npublic class ReflectionAccessFilterHelper {\r\n\r\n    private ReflectionAccessFilterHelper() {\r\n    }\r\n\r\n    // Platform type detection is based on Moshi's Util.isPlatformType(Class)\r\n    // See\r\n    // https://github.com/square/moshi/blob/3c108919ee1cce88a433ffda04eeeddc0341eae7/moshi/src/main/java/com/squareup/moshi/internal/Util.java#L141\r\n    public static boolean isJavaType(Class<?> c) {\r\n        return isJavaType(c.getName());\r\n    }\r\n\r\n    private static boolean isJavaType(String className) {\r\n        return className.startsWith(\"java.\") || className.startsWith(\"javax.\");\r\n    }\r\n\r\n    public static boolean isAndroidType(Class<?> c) {\r\n        return isAndroidType(c.getName());\r\n    }\r\n\r\n    private static boolean isAndroidType(String className) {\r\n        return className.startsWith(\"android.\") || className.startsWith(\"androidx.\") || isJavaType(className);\r\n    }\r\n\r\n    public static boolean isAnyPlatformType(Class<?> c) {\r\n        String className = c.getName();\r\n        return // Covers Android and Java\r\n        isAndroidType(className) || className.startsWith(\"kotlin.\") || className.startsWith(\"kotlinx.\") || className.startsWith(\"scala.\");\r\n    }\r\n\r\n    /**\r\n     * Gets the result of applying all filters until the first one returns a result other than {@link\r\n     * FilterResult#INDECISIVE}, or {@link FilterResult#ALLOW} if the list of filters is empty or all\r\n     * returned {@code INDECISIVE}.\r\n     */\r\n    public static FilterResult getFilterResult(List<ReflectionAccessFilter> reflectionFilters, Class<?> c) {\r\n        for (ReflectionAccessFilter filter : reflectionFilters) {\r\n            FilterResult result = filter.check(c);\r\n            if (result != FilterResult.INDECISIVE) {\r\n                return result;\r\n            }\r\n        }\r\n        return FilterResult.ALLOW;\r\n    }\r\n\r\n    /**\r\n     * See {@link AccessibleObject#canAccess(Object)} (Java >= 9)\r\n     */\r\n    public static boolean canAccess(AccessibleObject accessibleObject, Object object) {\r\n        return AccessChecker.INSTANCE.canAccess(accessibleObject, object);\r\n    }\r\n\r\n    private abstract static class AccessChecker {\r\n\r\n        public static final AccessChecker INSTANCE;\r\n\r\n        static {\r\n            AccessChecker accessChecker = null;\r\n            // TODO: Ideally should use Multi-Release JAR for this version specific code\r\n            if (JavaVersion.isJava9OrLater()) {\r\n                try {\r\n                    Method canAccessMethod = AccessibleObject.class.getDeclaredMethod(\"canAccess\", Object.class);\r\n                    accessChecker = new AccessChecker() {\r\n\r\n                        @Override\r\n                        public boolean canAccess(AccessibleObject accessibleObject, Object object) {\r\n                            try {\r\n                                return (Boolean) canAccessMethod.invoke(accessibleObject, object);\r\n                            } catch (Exception e) {\r\n                                throw new RuntimeException(\"Failed invoking canAccess\", e);\r\n                            }\r\n                        }\r\n                    };\r\n                } catch (NoSuchMethodException ignored) {\r\n                    // OK: will assume everything is accessible\r\n                }\r\n            }\r\n            if (accessChecker == null) {\r\n                accessChecker = new AccessChecker() {\r\n\r\n                    @Override\r\n                    public boolean canAccess(AccessibleObject accessibleObject, Object object) {\r\n                        // Cannot determine whether object can be accessed, so assume it can be accessed\r\n                        return true;\r\n                    }\r\n                };\r\n            }\r\n            INSTANCE = accessChecker;\r\n        }\r\n\r\n        public abstract boolean canAccess(AccessibleObject accessibleObject, Object object);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "constructor",
+    "name": "ReflectionAccessFilterHelper",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "private ReflectionAccessFilterHelper() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "isJavaType",
+    "start_line": 33,
+    "end_line": 35,
+    "code": "// Platform type detection is based on Moshi's Util.isPlatformType(Class)\r\n// See\r\n// https://github.com/square/moshi/blob/3c108919ee1cce88a433ffda04eeeddc0341eae7/moshi/src/main/java/com/squareup/moshi/internal/Util.java#L141\r\npublic static boolean isJavaType(Class<?> c) {\r\n    return isJavaType(c.getName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "isJavaType",
+    "start_line": 37,
+    "end_line": 39,
+    "code": "private static boolean isJavaType(String className) {\r\n    return className.startsWith(\"java.\") || className.startsWith(\"javax.\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "isAndroidType",
+    "start_line": 41,
+    "end_line": 43,
+    "code": "public static boolean isAndroidType(Class<?> c) {\r\n    return isAndroidType(c.getName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "isAndroidType",
+    "start_line": 45,
+    "end_line": 49,
+    "code": "private static boolean isAndroidType(String className) {\r\n    return className.startsWith(\"android.\") || className.startsWith(\"androidx.\") || isJavaType(className);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "isAnyPlatformType",
+    "start_line": 51,
+    "end_line": 57,
+    "code": "public static boolean isAnyPlatformType(Class<?> c) {\r\n    String className = c.getName();\r\n    return // Covers Android and Java\r\n    isAndroidType(className) || className.startsWith(\"kotlin.\") || className.startsWith(\"kotlinx.\") || className.startsWith(\"scala.\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "getFilterResult",
+    "start_line": 64,
+    "end_line": 73,
+    "code": "/**\r\n * Gets the result of applying all filters until the first one returns a result other than {@link\r\n * FilterResult#INDECISIVE}, or {@link FilterResult#ALLOW} if the list of filters is empty or all\r\n * returned {@code INDECISIVE}.\r\n */\r\npublic static FilterResult getFilterResult(List<ReflectionAccessFilter> reflectionFilters, Class<?> c) {\r\n    for (ReflectionAccessFilter filter : reflectionFilters) {\r\n        FilterResult result = filter.check(c);\r\n        if (result != FilterResult.INDECISIVE) {\r\n            return result;\r\n        }\r\n    }\r\n    return FilterResult.ALLOW;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "canAccess",
+    "start_line": 76,
+    "end_line": 78,
+    "code": "/**\r\n * See {@link AccessibleObject#canAccess(Object)} (Java >= 9)\r\n */\r\npublic static boolean canAccess(AccessibleObject accessibleObject, Object object) {\r\n    return AccessChecker.INSTANCE.canAccess(accessibleObject, object);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\ReflectionAccessFilterHelper.java"
+  }
+]

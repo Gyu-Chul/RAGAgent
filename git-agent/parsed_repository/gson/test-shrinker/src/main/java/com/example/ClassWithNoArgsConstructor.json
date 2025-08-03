@@ -1,0 +1,42 @@
+[
+  {
+    "type": "package",
+    "name": "com.example",
+    "start_line": 1,
+    "end_line": 1,
+    "code": "package com.example;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\ClassWithNoArgsConstructor.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.SerializedName",
+    "start_line": 3,
+    "end_line": 3,
+    "code": "import com.google.gson.annotations.SerializedName;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\ClassWithNoArgsConstructor.java"
+  },
+  {
+    "type": "class",
+    "name": "ClassWithNoArgsConstructor",
+    "start_line": 6,
+    "end_line": 13,
+    "code": "/**\r\n * Class with no-args constructor and with field annotated with {@link SerializedName}.\r\n */\r\npublic class ClassWithNoArgsConstructor {\r\n\r\n    @SerializedName(\"myField\")\r\n    public int i;\r\n\r\n    public ClassWithNoArgsConstructor() {\r\n        i = -3;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\ClassWithNoArgsConstructor.java"
+  },
+  {
+    "type": "field",
+    "name": "i",
+    "start_line": 7,
+    "end_line": 8,
+    "code": "@SerializedName(\"myField\")\r\npublic int i;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\ClassWithNoArgsConstructor.java"
+  },
+  {
+    "type": "constructor",
+    "name": "ClassWithNoArgsConstructor",
+    "start_line": 10,
+    "end_line": 12,
+    "code": "public ClassWithNoArgsConstructor() {\r\n    i = -3;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\ClassWithNoArgsConstructor.java"
+  }
+]

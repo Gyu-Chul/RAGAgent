@@ -1,0 +1,42 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberStrategy.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberStrategy.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberStrategy.java"
+  },
+  {
+    "type": "interface",
+    "name": "ToNumberStrategy",
+    "start_line": 60,
+    "end_line": 70,
+    "code": "/**\r\n * A strategy that is used to control how numbers should be deserialized for {@link Object} and\r\n * {@link Number} when a concrete type of the deserialized number is unknown in advance. By default,\r\n * Gson uses the following deserialization strategies:\r\n *\r\n * <ul>\r\n *   <li>{@link Double} values are returned for JSON numbers if the deserialization type is declared\r\n *       as {@code Object}, see {@link ToNumberPolicy#DOUBLE};\r\n *   <li>Lazily parsed number values are returned if the deserialization type is declared as {@code\r\n *       Number}, see {@link ToNumberPolicy#LAZILY_PARSED_NUMBER}.\r\n * </ul>\r\n *\r\n * <p>For historical reasons, Gson does not support deserialization of arbitrary-length numbers for\r\n * {@code Object} and {@code Number} by default, potentially causing precision loss. However, <a\r\n * href=\"https://tools.ietf.org/html/rfc8259#section-6\">RFC 8259</a> permits this:\r\n *\r\n * <pre>\r\n *   This specification allows implementations to set limits on the range\r\n *   and precision of numbers accepted.  Since software that implements\r\n *   IEEE 754 binary64 (double precision) numbers [IEEE754] is generally\r\n *   available and widely used, good interoperability can be achieved by\r\n *   implementations that expect no more precision or range than these\r\n *   provide, in the sense that implementations will approximate JSON\r\n *   numbers within the expected precision.  A JSON number such as 1E400\r\n *   or 3.141592653589793238462643383279 may indicate potential\r\n *   interoperability problems, since it suggests that the software that\r\n *   created it expects receiving software to have greater capabilities\r\n *   for numeric magnitude and precision than is widely available.\r\n * </pre>\r\n *\r\n * <p>To overcome the precision loss, use for example {@link ToNumberPolicy#LONG_OR_DOUBLE} or\r\n * {@link ToNumberPolicy#BIG_DECIMAL}.\r\n *\r\n * @see ToNumberPolicy\r\n * @see GsonBuilder#setObjectToNumberStrategy(ToNumberStrategy)\r\n * @see GsonBuilder#setNumberToNumberStrategy(ToNumberStrategy)\r\n * @since 2.8.9\r\n */\r\npublic interface ToNumberStrategy {\r\n\r\n    /**\r\n     * Reads a number from the given JSON reader. A strategy is supposed to read a single value from\r\n     * the reader, and the read value is guaranteed never to be {@code null}.\r\n     *\r\n     * @param in JSON reader to read a number from\r\n     * @return number read from the JSON reader.\r\n     */\r\n    public Number readNumber(JsonReader in) throws IOException;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberStrategy.java"
+  },
+  {
+    "type": "method",
+    "name": "readNumber",
+    "start_line": 69,
+    "end_line": 69,
+    "code": "/**\r\n * Reads a number from the given JSON reader. A strategy is supposed to read a single value from\r\n * the reader, and the read value is guaranteed never to be {@code null}.\r\n *\r\n * @param in JSON reader to read a number from\r\n * @return number read from the JSON reader.\r\n */\r\npublic Number readNumber(JsonReader in) throws IOException;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberStrategy.java"
+  }
+]

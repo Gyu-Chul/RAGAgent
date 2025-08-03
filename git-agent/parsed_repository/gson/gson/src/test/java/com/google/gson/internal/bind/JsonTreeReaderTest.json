@@ -1,0 +1,218 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.bind",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.internal.bind;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonArray",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.JsonArray;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonNull",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.JsonNull;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonObject",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.MoreAsserts",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.common.MoreAsserts;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonToken",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.stream.JsonToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.MalformedJsonException",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.stream.MalformedJsonException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.Reader",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.io.Reader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonTreeReaderTest",
+    "start_line": 35,
+    "end_line": 202,
+    "code": "@SuppressWarnings(\"resource\")\r\npublic class JsonTreeReaderTest {\r\n\r\n    @Test\r\n    public void testSkipValue_emptyJsonObject() throws IOException {\r\n        JsonTreeReader in = new JsonTreeReader(new JsonObject());\r\n        in.skipValue();\r\n        assertThat(in.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n        assertThat(in.getPath()).isEqualTo(\"$\");\r\n    }\r\n\r\n    @Test\r\n    public void testSkipValue_filledJsonObject() throws IOException {\r\n        JsonObject jsonObject = new JsonObject();\r\n        JsonArray jsonArray = new JsonArray();\r\n        jsonArray.add('c');\r\n        jsonArray.add(\"text\");\r\n        jsonObject.add(\"a\", jsonArray);\r\n        jsonObject.addProperty(\"b\", true);\r\n        jsonObject.addProperty(\"i\", 1);\r\n        jsonObject.add(\"n\", JsonNull.INSTANCE);\r\n        JsonObject jsonObject2 = new JsonObject();\r\n        jsonObject2.addProperty(\"n\", 2L);\r\n        jsonObject.add(\"o\", jsonObject2);\r\n        jsonObject.addProperty(\"s\", \"text\");\r\n        JsonTreeReader in = new JsonTreeReader(jsonObject);\r\n        in.skipValue();\r\n        assertThat(in.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n        assertThat(in.getPath()).isEqualTo(\"$\");\r\n    }\r\n\r\n    @Test\r\n    public void testSkipValue_name() throws IOException {\r\n        JsonObject jsonObject = new JsonObject();\r\n        jsonObject.addProperty(\"a\", \"value\");\r\n        JsonTreeReader in = new JsonTreeReader(jsonObject);\r\n        in.beginObject();\r\n        in.skipValue();\r\n        assertThat(in.peek()).isEqualTo(JsonToken.STRING);\r\n        assertThat(in.getPath()).isEqualTo(\"$.<skipped>\");\r\n        assertThat(in.nextString()).isEqualTo(\"value\");\r\n    }\r\n\r\n    @Test\r\n    public void testSkipValue_afterEndOfDocument() throws IOException {\r\n        JsonTreeReader reader = new JsonTreeReader(new JsonObject());\r\n        reader.beginObject();\r\n        reader.endObject();\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n        assertThat(reader.getPath()).isEqualTo(\"$\");\r\n        reader.skipValue();\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n        assertThat(reader.getPath()).isEqualTo(\"$\");\r\n    }\r\n\r\n    @Test\r\n    public void testSkipValue_atArrayEnd() throws IOException {\r\n        JsonTreeReader reader = new JsonTreeReader(new JsonArray());\r\n        reader.beginArray();\r\n        reader.skipValue();\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n        assertThat(reader.getPath()).isEqualTo(\"$\");\r\n    }\r\n\r\n    @Test\r\n    public void testSkipValue_atObjectEnd() throws IOException {\r\n        JsonTreeReader reader = new JsonTreeReader(new JsonObject());\r\n        reader.beginObject();\r\n        reader.skipValue();\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n        assertThat(reader.getPath()).isEqualTo(\"$\");\r\n    }\r\n\r\n    @Test\r\n    public void testHasNext_endOfDocument() throws IOException {\r\n        JsonTreeReader reader = new JsonTreeReader(new JsonObject());\r\n        reader.beginObject();\r\n        reader.endObject();\r\n        assertThat(reader.hasNext()).isFalse();\r\n    }\r\n\r\n    @Test\r\n    public void testCustomJsonElementSubclass() throws IOException {\r\n        // superclass constructor\r\n        @SuppressWarnings(\"deprecation\")\r\n        class CustomSubclass extends JsonElement {\r\n\r\n            @Override\r\n            public JsonElement deepCopy() {\r\n                return this;\r\n            }\r\n        }\r\n        JsonArray array = new JsonArray();\r\n        array.add(new CustomSubclass());\r\n        JsonTreeReader reader = new JsonTreeReader(array);\r\n        reader.beginArray();\r\n        // Should fail due to custom JsonElement subclass\r\n        var e = assertThrows(MalformedJsonException.class, () -> reader.peek());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Custom JsonElement subclass \" + CustomSubclass.class.getName() + \" is not supported\");\r\n    }\r\n\r\n    /**\r\n     * {@link JsonTreeReader} ignores nesting limit because:\r\n     *\r\n     * <ul>\r\n     *   <li>It is an internal class and often created implicitly without the user having access to it\r\n     *       (as {@link JsonReader}), so they cannot easily adjust the limit\r\n     *   <li>{@link JsonTreeReader} may be created based on an existing {@link JsonReader}; in that\r\n     *       case it would be necessary to propagate settings to account for a custom nesting limit,\r\n     *       see also related https://github.com/google/gson/pull/2151\r\n     *   <li>Nesting limit as protection against {@link StackOverflowError} is not that relevant for\r\n     *       {@link JsonTreeReader} because a deeply nested {@link JsonElement} tree would first have\r\n     *       to be constructed; and if it is constructed from a regular {@link JsonReader}, then its\r\n     *       nesting limit would already apply\r\n     * </ul>\r\n     */\r\n    @Test\r\n    public void testNestingLimitIgnored() throws IOException {\r\n        int limit = 10;\r\n        JsonArray json = new JsonArray();\r\n        JsonArray current = json;\r\n        // This adds additional `limit` nested arrays, so in total there are `limit + 1` arrays\r\n        for (int i = 0; i < limit; i++) {\r\n            JsonArray nested = new JsonArray();\r\n            current.add(nested);\r\n            current = nested;\r\n        }\r\n        JsonTreeReader reader = new JsonTreeReader(json);\r\n        reader.setNestingLimit(limit);\r\n        assertThat(reader.getNestingLimit()).isEqualTo(limit);\r\n        for (int i = 0; i < limit; i++) {\r\n            reader.beginArray();\r\n        }\r\n        // Does not throw exception; limit is ignored\r\n        reader.beginArray();\r\n        reader.endArray();\r\n        for (int i = 0; i < limit; i++) {\r\n            reader.endArray();\r\n        }\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n        reader.close();\r\n    }\r\n\r\n    /**\r\n     * {@link JsonTreeReader} effectively replaces the complete reading logic of {@link JsonReader} to\r\n     * read from a {@link JsonElement} instead of a {@link Reader}. Therefore all relevant methods of\r\n     * {@code JsonReader} must be overridden.\r\n     */\r\n    @Test\r\n    public void testOverrides() {\r\n        List<String> ignoredMethods = Arrays.asList(\"setLenient(boolean)\", \"isLenient()\", \"setStrictness(com.google.gson.Strictness)\", \"getStrictness()\", \"setNestingLimit(int)\", \"getNestingLimit()\");\r\n        MoreAsserts.assertOverridesMethods(JsonReader.class, JsonTreeReader.class, ignoredMethods);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSkipValue_emptyJsonObject",
+    "start_line": 37,
+    "end_line": 43,
+    "code": "@Test\r\npublic void testSkipValue_emptyJsonObject() throws IOException {\r\n    JsonTreeReader in = new JsonTreeReader(new JsonObject());\r\n    in.skipValue();\r\n    assertThat(in.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n    assertThat(in.getPath()).isEqualTo(\"$\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSkipValue_filledJsonObject",
+    "start_line": 45,
+    "end_line": 63,
+    "code": "@Test\r\npublic void testSkipValue_filledJsonObject() throws IOException {\r\n    JsonObject jsonObject = new JsonObject();\r\n    JsonArray jsonArray = new JsonArray();\r\n    jsonArray.add('c');\r\n    jsonArray.add(\"text\");\r\n    jsonObject.add(\"a\", jsonArray);\r\n    jsonObject.addProperty(\"b\", true);\r\n    jsonObject.addProperty(\"i\", 1);\r\n    jsonObject.add(\"n\", JsonNull.INSTANCE);\r\n    JsonObject jsonObject2 = new JsonObject();\r\n    jsonObject2.addProperty(\"n\", 2L);\r\n    jsonObject.add(\"o\", jsonObject2);\r\n    jsonObject.addProperty(\"s\", \"text\");\r\n    JsonTreeReader in = new JsonTreeReader(jsonObject);\r\n    in.skipValue();\r\n    assertThat(in.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n    assertThat(in.getPath()).isEqualTo(\"$\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSkipValue_name",
+    "start_line": 65,
+    "end_line": 75,
+    "code": "@Test\r\npublic void testSkipValue_name() throws IOException {\r\n    JsonObject jsonObject = new JsonObject();\r\n    jsonObject.addProperty(\"a\", \"value\");\r\n    JsonTreeReader in = new JsonTreeReader(jsonObject);\r\n    in.beginObject();\r\n    in.skipValue();\r\n    assertThat(in.peek()).isEqualTo(JsonToken.STRING);\r\n    assertThat(in.getPath()).isEqualTo(\"$.<skipped>\");\r\n    assertThat(in.nextString()).isEqualTo(\"value\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSkipValue_afterEndOfDocument",
+    "start_line": 77,
+    "end_line": 88,
+    "code": "@Test\r\npublic void testSkipValue_afterEndOfDocument() throws IOException {\r\n    JsonTreeReader reader = new JsonTreeReader(new JsonObject());\r\n    reader.beginObject();\r\n    reader.endObject();\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n    assertThat(reader.getPath()).isEqualTo(\"$\");\r\n    reader.skipValue();\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n    assertThat(reader.getPath()).isEqualTo(\"$\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSkipValue_atArrayEnd",
+    "start_line": 90,
+    "end_line": 97,
+    "code": "@Test\r\npublic void testSkipValue_atArrayEnd() throws IOException {\r\n    JsonTreeReader reader = new JsonTreeReader(new JsonArray());\r\n    reader.beginArray();\r\n    reader.skipValue();\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n    assertThat(reader.getPath()).isEqualTo(\"$\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSkipValue_atObjectEnd",
+    "start_line": 99,
+    "end_line": 106,
+    "code": "@Test\r\npublic void testSkipValue_atObjectEnd() throws IOException {\r\n    JsonTreeReader reader = new JsonTreeReader(new JsonObject());\r\n    reader.beginObject();\r\n    reader.skipValue();\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n    assertThat(reader.getPath()).isEqualTo(\"$\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testHasNext_endOfDocument",
+    "start_line": 108,
+    "end_line": 114,
+    "code": "@Test\r\npublic void testHasNext_endOfDocument() throws IOException {\r\n    JsonTreeReader reader = new JsonTreeReader(new JsonObject());\r\n    reader.beginObject();\r\n    reader.endObject();\r\n    assertThat(reader.hasNext()).isFalse();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomJsonElementSubclass",
+    "start_line": 116,
+    "end_line": 138,
+    "code": "@Test\r\npublic void testCustomJsonElementSubclass() throws IOException {\r\n    // superclass constructor\r\n    @SuppressWarnings(\"deprecation\")\r\n    class CustomSubclass extends JsonElement {\r\n\r\n        @Override\r\n        public JsonElement deepCopy() {\r\n            return this;\r\n        }\r\n    }\r\n    JsonArray array = new JsonArray();\r\n    array.add(new CustomSubclass());\r\n    JsonTreeReader reader = new JsonTreeReader(array);\r\n    reader.beginArray();\r\n    // Should fail due to custom JsonElement subclass\r\n    var e = assertThrows(MalformedJsonException.class, () -> reader.peek());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Custom JsonElement subclass \" + CustomSubclass.class.getName() + \" is not supported\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNestingLimitIgnored",
+    "start_line": 155,
+    "end_line": 183,
+    "code": "/**\r\n * {@link JsonTreeReader} ignores nesting limit because:\r\n *\r\n * <ul>\r\n *   <li>It is an internal class and often created implicitly without the user having access to it\r\n *       (as {@link JsonReader}), so they cannot easily adjust the limit\r\n *   <li>{@link JsonTreeReader} may be created based on an existing {@link JsonReader}; in that\r\n *       case it would be necessary to propagate settings to account for a custom nesting limit,\r\n *       see also related https://github.com/google/gson/pull/2151\r\n *   <li>Nesting limit as protection against {@link StackOverflowError} is not that relevant for\r\n *       {@link JsonTreeReader} because a deeply nested {@link JsonElement} tree would first have\r\n *       to be constructed; and if it is constructed from a regular {@link JsonReader}, then its\r\n *       nesting limit would already apply\r\n * </ul>\r\n */\r\n@Test\r\npublic void testNestingLimitIgnored() throws IOException {\r\n    int limit = 10;\r\n    JsonArray json = new JsonArray();\r\n    JsonArray current = json;\r\n    // This adds additional `limit` nested arrays, so in total there are `limit + 1` arrays\r\n    for (int i = 0; i < limit; i++) {\r\n        JsonArray nested = new JsonArray();\r\n        current.add(nested);\r\n        current = nested;\r\n    }\r\n    JsonTreeReader reader = new JsonTreeReader(json);\r\n    reader.setNestingLimit(limit);\r\n    assertThat(reader.getNestingLimit()).isEqualTo(limit);\r\n    for (int i = 0; i < limit; i++) {\r\n        reader.beginArray();\r\n    }\r\n    // Does not throw exception; limit is ignored\r\n    reader.beginArray();\r\n    reader.endArray();\r\n    for (int i = 0; i < limit; i++) {\r\n        reader.endArray();\r\n    }\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n    reader.close();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testOverrides",
+    "start_line": 190,
+    "end_line": 201,
+    "code": "/**\r\n * {@link JsonTreeReader} effectively replaces the complete reading logic of {@link JsonReader} to\r\n * read from a {@link JsonElement} instead of a {@link Reader}. Therefore all relevant methods of\r\n * {@code JsonReader} must be overridden.\r\n */\r\n@Test\r\npublic void testOverrides() {\r\n    List<String> ignoredMethods = Arrays.asList(\"setLenient(boolean)\", \"isLenient()\", \"setStrictness(com.google.gson.Strictness)\", \"getStrictness()\", \"setNestingLimit(int)\", \"getNestingLimit()\");\r\n    MoreAsserts.assertOverridesMethods(JsonReader.class, JsonTreeReader.class, ignoredMethods);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeReaderTest.java"
+  }
+]

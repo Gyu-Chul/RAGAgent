@@ -1,0 +1,322 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.FieldNamingPolicy",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.FieldNamingPolicy;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.FieldNamingStrategy",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.FieldNamingStrategy;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.SerializedName",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.annotations.SerializedName;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.ClassWithSerializedNameFields",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.common.TestTypes.ClassWithSerializedNameFields;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.StringWrapper",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.common.TestTypes.StringWrapper;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Field",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.lang.reflect.Field;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Locale",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.Locale;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "class",
+    "name": "NamingPolicyTest",
+    "start_line": 40,
+    "end_line": 362,
+    "code": "/**\r\n * Functional tests for naming policies.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class NamingPolicyTest {\r\n\r\n    private GsonBuilder builder;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        builder = new GsonBuilder();\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithNonDefaultFieldNamingPolicySerialization() {\r\n        Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();\r\n        StringWrapper target = new StringWrapper(\"blah\");\r\n        assertThat(gson.toJson(target)).isEqualTo(\"{\\\"SomeConstantStringInstanceField\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithNonDefaultFieldNamingPolicyDeserialiation() {\r\n        Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();\r\n        String target = \"{\\\"SomeConstantStringInstanceField\\\":\\\"someValue\\\"}\";\r\n        StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n        assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithLowerCaseDashPolicySerialization() {\r\n        Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES).create();\r\n        StringWrapper target = new StringWrapper(\"blah\");\r\n        assertThat(gson.toJson(target)).isEqualTo(\"{\\\"some-constant-string-instance-field\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithLowerCaseDotPolicySerialization() {\r\n        Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DOTS).create();\r\n        StringWrapper target = new StringWrapper(\"blah\");\r\n        assertThat(gson.toJson(target)).isEqualTo(\"{\\\"some.constant.string.instance.field\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithLowerCaseDotPolicyDeserialiation() {\r\n        Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DOTS).create();\r\n        String target = \"{\\\"some.constant.string.instance.field\\\":\\\"someValue\\\"}\";\r\n        StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n        assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithLowerCaseDashPolicyDeserialiation() {\r\n        Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES).create();\r\n        String target = \"{\\\"some-constant-string-instance-field\\\":\\\"someValue\\\"}\";\r\n        StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n        assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithLowerCaseUnderscorePolicySerialization() {\r\n        Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();\r\n        StringWrapper target = new StringWrapper(\"blah\");\r\n        assertThat(gson.toJson(target)).isEqualTo(\"{\\\"some_constant_string_instance_field\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithLowerCaseUnderscorePolicyDeserialiation() {\r\n        Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();\r\n        String target = \"{\\\"some_constant_string_instance_field\\\":\\\"someValue\\\"}\";\r\n        StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n        assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithSerializedNameFieldNamingPolicySerialization() {\r\n        Gson gson = builder.create();\r\n        ClassWithSerializedNameFields expected = new ClassWithSerializedNameFields(5, 6);\r\n        String actual = gson.toJson(expected);\r\n        assertThat(actual).isEqualTo(expected.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithSerializedNameFieldNamingPolicyDeserialization() {\r\n        Gson gson = builder.create();\r\n        ClassWithSerializedNameFields expected = new ClassWithSerializedNameFields(5, 7);\r\n        ClassWithSerializedNameFields actual = gson.fromJson(expected.getExpectedJson(), ClassWithSerializedNameFields.class);\r\n        assertThat(actual.f).isEqualTo(expected.f);\r\n    }\r\n\r\n    @Test\r\n    public void testGsonDuplicateNameUsingSerializedNameFieldNamingPolicySerialization() {\r\n        Gson gson = builder.create();\r\n        ClassWithDuplicateFields target = new ClassWithDuplicateFields(10);\r\n        var e = assertThrows(IllegalArgumentException.class, () -> gson.toJson(target));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Class com.google.gson.functional.NamingPolicyTest$ClassWithDuplicateFields declares\" + \" multiple JSON fields named 'a'; conflict is caused by fields\" + \" com.google.gson.functional.NamingPolicyTest$ClassWithDuplicateFields#a and\" + \" com.google.gson.functional.NamingPolicyTest$ClassWithDuplicateFields#b\\n\" + \"See https://github.com/google/gson/blob/main/Troubleshooting.md#duplicate-fields\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonDuplicateNameDueToBadNamingPolicy() {\r\n        Gson gson = builder.setFieldNamingStrategy(f -> \"x\").create();\r\n        var e = assertThrows(IllegalArgumentException.class, () -> gson.toJson(new ClassWithTwoFields()));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Class com.google.gson.functional.NamingPolicyTest$ClassWithTwoFields declares multiple\" + \" JSON fields named 'x'; conflict is caused by fields\" + \" com.google.gson.functional.NamingPolicyTest$ClassWithTwoFields#a and\" + \" com.google.gson.functional.NamingPolicyTest$ClassWithTwoFields#b\\n\" + \"See https://github.com/google/gson/blob/main/Troubleshooting.md#duplicate-fields\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithUpperCamelCaseSpacesPolicySerialiation() {\r\n        Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE_WITH_SPACES).create();\r\n        StringWrapper target = new StringWrapper(\"blah\");\r\n        assertThat(gson.toJson(target)).isEqualTo(\"{\\\"Some Constant String Instance Field\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithUpperCamelCaseSpacesPolicyDeserialiation() {\r\n        Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE_WITH_SPACES).create();\r\n        String target = \"{\\\"Some Constant String Instance Field\\\":\\\"someValue\\\"}\";\r\n        StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n        assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithUpperCaseUnderscorePolicySerialization() {\r\n        Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CASE_WITH_UNDERSCORES).create();\r\n        StringWrapper target = new StringWrapper(\"blah\");\r\n        assertThat(gson.toJson(target)).isEqualTo(\"{\\\"SOME_CONSTANT_STRING_INSTANCE_FIELD\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithUpperCaseUnderscorePolicyDeserialiation() {\r\n        Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CASE_WITH_UNDERSCORES).create();\r\n        String target = \"{\\\"SOME_CONSTANT_STRING_INSTANCE_FIELD\\\":\\\"someValue\\\"}\";\r\n        StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n        assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeprecatedNamingStrategy() {\r\n        Gson gson = builder.setFieldNamingStrategy(new UpperCaseNamingStrategy()).create();\r\n        ClassWithDuplicateFields target = new ClassWithDuplicateFields(10);\r\n        String actual = gson.toJson(target);\r\n        assertThat(actual).isEqualTo(\"{\\\"A\\\":10}\");\r\n    }\r\n\r\n    @Test\r\n    public void testComplexFieldNameStrategy() {\r\n        Gson gson = new Gson();\r\n        String json = gson.toJson(new ClassWithComplexFieldName(10));\r\n        String escapedFieldName = \"@value\\\\\\\"_s$\\\\\\\\\";\r\n        assertThat(json).isEqualTo(\"{\\\"\" + escapedFieldName + \"\\\":10}\");\r\n        ClassWithComplexFieldName obj = gson.fromJson(json, ClassWithComplexFieldName.class);\r\n        assertThat(obj.value).isEqualTo(10);\r\n    }\r\n\r\n    /**\r\n     * http://code.google.com/p/google-gson/issues/detail?id=349\r\n     */\r\n    @Test\r\n    public void testAtSignInSerializedName() {\r\n        assertThat(new Gson().toJson(new AtName())).isEqualTo(\"{\\\"@foo\\\":\\\"bar\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithNameDeserialiation() {\r\n        Gson gson = builder.setFieldNamingStrategy(new FieldNamingStrategy() {\r\n\r\n            @Override\r\n            public String translateName(Field f) {\r\n                return \"primary-name\";\r\n            }\r\n\r\n            @Override\r\n            public List<String> alternateNames(Field f) {\r\n                return List.of(\"alternate-name\");\r\n            }\r\n        }).create();\r\n        String target = \"{\\\"primary-name\\\":\\\"someValue\\\"}\";\r\n        StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n        assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithAlternateNamesDeserialiation() {\r\n        Gson gson = builder.setFieldNamingStrategy(new FieldNamingStrategy() {\r\n\r\n            @Override\r\n            public String translateName(Field f) {\r\n                return \"primary-name\";\r\n            }\r\n\r\n            @Override\r\n            public List<String> alternateNames(Field f) {\r\n                return List.of(\"alternate-name\");\r\n            }\r\n        }).create();\r\n        String target = \"{\\\"alternate-name\\\":\\\"someValue\\\"}\";\r\n        StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n        assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n    }\r\n\r\n    @Test\r\n    public void testGsonWithAlternateNamesSerialization() {\r\n        Gson gson = builder.setFieldNamingStrategy(new FieldNamingStrategy() {\r\n\r\n            @Override\r\n            public String translateName(Field f) {\r\n                return \"some-constant-string-instance-field\";\r\n            }\r\n\r\n            @Override\r\n            public List<String> alternateNames(Field f) {\r\n                return List.of(\"alternate-name\");\r\n            }\r\n        }).create();\r\n        StringWrapper target = new StringWrapper(\"blah\");\r\n        assertThat(gson.toJson(target)).isEqualTo(\"{\\\"some-constant-string-instance-field\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n    }\r\n\r\n    static final class AtName {\r\n\r\n        @SerializedName(\"@foo\")\r\n        String f = \"bar\";\r\n    }\r\n\r\n    private static final class UpperCaseNamingStrategy implements FieldNamingStrategy {\r\n\r\n        @Override\r\n        public String translateName(Field f) {\r\n            return f.getName().toUpperCase(Locale.ROOT);\r\n        }\r\n    }\r\n\r\n    @SuppressWarnings(\"unused\")\r\n    private static class ClassWithDuplicateFields {\r\n\r\n        public Integer a;\r\n\r\n        @SerializedName(\"a\")\r\n        public Double b;\r\n\r\n        public ClassWithDuplicateFields(Integer a) {\r\n            this(a, null);\r\n        }\r\n\r\n        public ClassWithDuplicateFields(Double b) {\r\n            this(null, b);\r\n        }\r\n\r\n        public ClassWithDuplicateFields(Integer a, Double b) {\r\n            this.a = a;\r\n            this.b = b;\r\n        }\r\n    }\r\n\r\n    private static class ClassWithComplexFieldName {\r\n\r\n        @SerializedName(\"@value\\\"_s$\\\\\")\r\n        public final long value;\r\n\r\n        ClassWithComplexFieldName(long value) {\r\n            this.value = value;\r\n        }\r\n    }\r\n\r\n    @SuppressWarnings(\"unused\")\r\n    private static class ClassWithTwoFields {\r\n\r\n        public int a;\r\n\r\n        public int b;\r\n\r\n        public ClassWithTwoFields() {\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "field",
+    "name": "builder",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "private GsonBuilder builder;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 43,
+    "end_line": 46,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    builder = new GsonBuilder();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithNonDefaultFieldNamingPolicySerialization",
+    "start_line": 48,
+    "end_line": 57,
+    "code": "@Test\r\npublic void testGsonWithNonDefaultFieldNamingPolicySerialization() {\r\n    Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();\r\n    StringWrapper target = new StringWrapper(\"blah\");\r\n    assertThat(gson.toJson(target)).isEqualTo(\"{\\\"SomeConstantStringInstanceField\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithNonDefaultFieldNamingPolicyDeserialiation",
+    "start_line": 59,
+    "end_line": 65,
+    "code": "@Test\r\npublic void testGsonWithNonDefaultFieldNamingPolicyDeserialiation() {\r\n    Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();\r\n    String target = \"{\\\"SomeConstantStringInstanceField\\\":\\\"someValue\\\"}\";\r\n    StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n    assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithLowerCaseDashPolicySerialization",
+    "start_line": 67,
+    "end_line": 76,
+    "code": "@Test\r\npublic void testGsonWithLowerCaseDashPolicySerialization() {\r\n    Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES).create();\r\n    StringWrapper target = new StringWrapper(\"blah\");\r\n    assertThat(gson.toJson(target)).isEqualTo(\"{\\\"some-constant-string-instance-field\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithLowerCaseDotPolicySerialization",
+    "start_line": 78,
+    "end_line": 87,
+    "code": "@Test\r\npublic void testGsonWithLowerCaseDotPolicySerialization() {\r\n    Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DOTS).create();\r\n    StringWrapper target = new StringWrapper(\"blah\");\r\n    assertThat(gson.toJson(target)).isEqualTo(\"{\\\"some.constant.string.instance.field\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithLowerCaseDotPolicyDeserialiation",
+    "start_line": 89,
+    "end_line": 95,
+    "code": "@Test\r\npublic void testGsonWithLowerCaseDotPolicyDeserialiation() {\r\n    Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DOTS).create();\r\n    String target = \"{\\\"some.constant.string.instance.field\\\":\\\"someValue\\\"}\";\r\n    StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n    assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithLowerCaseDashPolicyDeserialiation",
+    "start_line": 97,
+    "end_line": 103,
+    "code": "@Test\r\npublic void testGsonWithLowerCaseDashPolicyDeserialiation() {\r\n    Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_DASHES).create();\r\n    String target = \"{\\\"some-constant-string-instance-field\\\":\\\"someValue\\\"}\";\r\n    StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n    assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithLowerCaseUnderscorePolicySerialization",
+    "start_line": 105,
+    "end_line": 115,
+    "code": "@Test\r\npublic void testGsonWithLowerCaseUnderscorePolicySerialization() {\r\n    Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();\r\n    StringWrapper target = new StringWrapper(\"blah\");\r\n    assertThat(gson.toJson(target)).isEqualTo(\"{\\\"some_constant_string_instance_field\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithLowerCaseUnderscorePolicyDeserialiation",
+    "start_line": 117,
+    "end_line": 124,
+    "code": "@Test\r\npublic void testGsonWithLowerCaseUnderscorePolicyDeserialiation() {\r\n    Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();\r\n    String target = \"{\\\"some_constant_string_instance_field\\\":\\\"someValue\\\"}\";\r\n    StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n    assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithSerializedNameFieldNamingPolicySerialization",
+    "start_line": 126,
+    "end_line": 132,
+    "code": "@Test\r\npublic void testGsonWithSerializedNameFieldNamingPolicySerialization() {\r\n    Gson gson = builder.create();\r\n    ClassWithSerializedNameFields expected = new ClassWithSerializedNameFields(5, 6);\r\n    String actual = gson.toJson(expected);\r\n    assertThat(actual).isEqualTo(expected.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithSerializedNameFieldNamingPolicyDeserialization",
+    "start_line": 134,
+    "end_line": 141,
+    "code": "@Test\r\npublic void testGsonWithSerializedNameFieldNamingPolicyDeserialization() {\r\n    Gson gson = builder.create();\r\n    ClassWithSerializedNameFields expected = new ClassWithSerializedNameFields(5, 7);\r\n    ClassWithSerializedNameFields actual = gson.fromJson(expected.getExpectedJson(), ClassWithSerializedNameFields.class);\r\n    assertThat(actual.f).isEqualTo(expected.f);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonDuplicateNameUsingSerializedNameFieldNamingPolicySerialization",
+    "start_line": 143,
+    "end_line": 156,
+    "code": "@Test\r\npublic void testGsonDuplicateNameUsingSerializedNameFieldNamingPolicySerialization() {\r\n    Gson gson = builder.create();\r\n    ClassWithDuplicateFields target = new ClassWithDuplicateFields(10);\r\n    var e = assertThrows(IllegalArgumentException.class, () -> gson.toJson(target));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Class com.google.gson.functional.NamingPolicyTest$ClassWithDuplicateFields declares\" + \" multiple JSON fields named 'a'; conflict is caused by fields\" + \" com.google.gson.functional.NamingPolicyTest$ClassWithDuplicateFields#a and\" + \" com.google.gson.functional.NamingPolicyTest$ClassWithDuplicateFields#b\\n\" + \"See https://github.com/google/gson/blob/main/Troubleshooting.md#duplicate-fields\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonDuplicateNameDueToBadNamingPolicy",
+    "start_line": 158,
+    "end_line": 172,
+    "code": "@Test\r\npublic void testGsonDuplicateNameDueToBadNamingPolicy() {\r\n    Gson gson = builder.setFieldNamingStrategy(f -> \"x\").create();\r\n    var e = assertThrows(IllegalArgumentException.class, () -> gson.toJson(new ClassWithTwoFields()));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Class com.google.gson.functional.NamingPolicyTest$ClassWithTwoFields declares multiple\" + \" JSON fields named 'x'; conflict is caused by fields\" + \" com.google.gson.functional.NamingPolicyTest$ClassWithTwoFields#a and\" + \" com.google.gson.functional.NamingPolicyTest$ClassWithTwoFields#b\\n\" + \"See https://github.com/google/gson/blob/main/Troubleshooting.md#duplicate-fields\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithUpperCamelCaseSpacesPolicySerialiation",
+    "start_line": 174,
+    "end_line": 184,
+    "code": "@Test\r\npublic void testGsonWithUpperCamelCaseSpacesPolicySerialiation() {\r\n    Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE_WITH_SPACES).create();\r\n    StringWrapper target = new StringWrapper(\"blah\");\r\n    assertThat(gson.toJson(target)).isEqualTo(\"{\\\"Some Constant String Instance Field\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithUpperCamelCaseSpacesPolicyDeserialiation",
+    "start_line": 186,
+    "end_line": 193,
+    "code": "@Test\r\npublic void testGsonWithUpperCamelCaseSpacesPolicyDeserialiation() {\r\n    Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE_WITH_SPACES).create();\r\n    String target = \"{\\\"Some Constant String Instance Field\\\":\\\"someValue\\\"}\";\r\n    StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n    assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithUpperCaseUnderscorePolicySerialization",
+    "start_line": 195,
+    "end_line": 205,
+    "code": "@Test\r\npublic void testGsonWithUpperCaseUnderscorePolicySerialization() {\r\n    Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CASE_WITH_UNDERSCORES).create();\r\n    StringWrapper target = new StringWrapper(\"blah\");\r\n    assertThat(gson.toJson(target)).isEqualTo(\"{\\\"SOME_CONSTANT_STRING_INSTANCE_FIELD\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithUpperCaseUnderscorePolicyDeserialiation",
+    "start_line": 207,
+    "end_line": 214,
+    "code": "@Test\r\npublic void testGsonWithUpperCaseUnderscorePolicyDeserialiation() {\r\n    Gson gson = builder.setFieldNamingPolicy(FieldNamingPolicy.UPPER_CASE_WITH_UNDERSCORES).create();\r\n    String target = \"{\\\"SOME_CONSTANT_STRING_INSTANCE_FIELD\\\":\\\"someValue\\\"}\";\r\n    StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n    assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeprecatedNamingStrategy",
+    "start_line": 216,
+    "end_line": 222,
+    "code": "@Test\r\npublic void testDeprecatedNamingStrategy() {\r\n    Gson gson = builder.setFieldNamingStrategy(new UpperCaseNamingStrategy()).create();\r\n    ClassWithDuplicateFields target = new ClassWithDuplicateFields(10);\r\n    String actual = gson.toJson(target);\r\n    assertThat(actual).isEqualTo(\"{\\\"A\\\":10}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testComplexFieldNameStrategy",
+    "start_line": 224,
+    "end_line": 233,
+    "code": "@Test\r\npublic void testComplexFieldNameStrategy() {\r\n    Gson gson = new Gson();\r\n    String json = gson.toJson(new ClassWithComplexFieldName(10));\r\n    String escapedFieldName = \"@value\\\\\\\"_s$\\\\\\\\\";\r\n    assertThat(json).isEqualTo(\"{\\\"\" + escapedFieldName + \"\\\":10}\");\r\n    ClassWithComplexFieldName obj = gson.fromJson(json, ClassWithComplexFieldName.class);\r\n    assertThat(obj.value).isEqualTo(10);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAtSignInSerializedName",
+    "start_line": 236,
+    "end_line": 239,
+    "code": "/**\r\n * http://code.google.com/p/google-gson/issues/detail?id=349\r\n */\r\n@Test\r\npublic void testAtSignInSerializedName() {\r\n    assertThat(new Gson().toJson(new AtName())).isEqualTo(\"{\\\"@foo\\\":\\\"bar\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithNameDeserialiation",
+    "start_line": 241,
+    "end_line": 262,
+    "code": "@Test\r\npublic void testGsonWithNameDeserialiation() {\r\n    Gson gson = builder.setFieldNamingStrategy(new FieldNamingStrategy() {\r\n\r\n        @Override\r\n        public String translateName(Field f) {\r\n            return \"primary-name\";\r\n        }\r\n\r\n        @Override\r\n        public List<String> alternateNames(Field f) {\r\n            return List.of(\"alternate-name\");\r\n        }\r\n    }).create();\r\n    String target = \"{\\\"primary-name\\\":\\\"someValue\\\"}\";\r\n    StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n    assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithAlternateNamesDeserialiation",
+    "start_line": 264,
+    "end_line": 285,
+    "code": "@Test\r\npublic void testGsonWithAlternateNamesDeserialiation() {\r\n    Gson gson = builder.setFieldNamingStrategy(new FieldNamingStrategy() {\r\n\r\n        @Override\r\n        public String translateName(Field f) {\r\n            return \"primary-name\";\r\n        }\r\n\r\n        @Override\r\n        public List<String> alternateNames(Field f) {\r\n            return List.of(\"alternate-name\");\r\n        }\r\n    }).create();\r\n    String target = \"{\\\"alternate-name\\\":\\\"someValue\\\"}\";\r\n    StringWrapper deserializedObject = gson.fromJson(target, StringWrapper.class);\r\n    assertThat(deserializedObject.someConstantStringInstanceField).isEqualTo(\"someValue\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonWithAlternateNamesSerialization",
+    "start_line": 287,
+    "end_line": 311,
+    "code": "@Test\r\npublic void testGsonWithAlternateNamesSerialization() {\r\n    Gson gson = builder.setFieldNamingStrategy(new FieldNamingStrategy() {\r\n\r\n        @Override\r\n        public String translateName(Field f) {\r\n            return \"some-constant-string-instance-field\";\r\n        }\r\n\r\n        @Override\r\n        public List<String> alternateNames(Field f) {\r\n            return List.of(\"alternate-name\");\r\n        }\r\n    }).create();\r\n    StringWrapper target = new StringWrapper(\"blah\");\r\n    assertThat(gson.toJson(target)).isEqualTo(\"{\\\"some-constant-string-instance-field\\\":\\\"\" + target.someConstantStringInstanceField + \"\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NamingPolicyTest.java"
+  }
+]

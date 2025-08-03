@@ -1,0 +1,82 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\LongSerializationPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\LongSerializationPolicyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\LongSerializationPolicyTest.java"
+  },
+  {
+    "type": "class",
+    "name": "LongSerializationPolicyTest",
+    "start_line": 29,
+    "end_line": 86,
+    "code": "/**\r\n * Unit test for the {@link LongSerializationPolicy} class.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class LongSerializationPolicyTest {\r\n\r\n    @Test\r\n    public void testDefaultLongSerialization() throws Exception {\r\n        JsonElement element = LongSerializationPolicy.DEFAULT.serialize(1556L);\r\n        assertThat(element.isJsonPrimitive()).isTrue();\r\n        JsonPrimitive jsonPrimitive = element.getAsJsonPrimitive();\r\n        assertThat(jsonPrimitive.isString()).isFalse();\r\n        assertThat(jsonPrimitive.isNumber()).isTrue();\r\n        assertThat(element.getAsLong()).isEqualTo(1556L);\r\n    }\r\n\r\n    @Test\r\n    public void testDefaultLongSerializationIntegration() {\r\n        Gson gson = new GsonBuilder().setLongSerializationPolicy(LongSerializationPolicy.DEFAULT).create();\r\n        assertThat(gson.toJson(new long[] { 1L }, long[].class)).isEqualTo(\"[1]\");\r\n        assertThat(gson.toJson(new Long[] { 1L }, Long[].class)).isEqualTo(\"[1]\");\r\n    }\r\n\r\n    @Test\r\n    public void testDefaultLongSerializationNull() {\r\n        LongSerializationPolicy policy = LongSerializationPolicy.DEFAULT;\r\n        assertThat(policy.serialize(null).isJsonNull()).isTrue();\r\n        Gson gson = new GsonBuilder().setLongSerializationPolicy(policy).create();\r\n        assertThat(gson.toJson(null, Long.class)).isEqualTo(\"null\");\r\n    }\r\n\r\n    @Test\r\n    public void testStringLongSerialization() throws Exception {\r\n        JsonElement element = LongSerializationPolicy.STRING.serialize(1556L);\r\n        assertThat(element.isJsonPrimitive()).isTrue();\r\n        JsonPrimitive jsonPrimitive = element.getAsJsonPrimitive();\r\n        assertThat(jsonPrimitive.isNumber()).isFalse();\r\n        assertThat(jsonPrimitive.isString()).isTrue();\r\n        assertThat(element.getAsString()).isEqualTo(\"1556\");\r\n    }\r\n\r\n    @Test\r\n    public void testStringLongSerializationIntegration() {\r\n        Gson gson = new GsonBuilder().setLongSerializationPolicy(LongSerializationPolicy.STRING).create();\r\n        assertThat(gson.toJson(new long[] { 1L }, long[].class)).isEqualTo(\"[\\\"1\\\"]\");\r\n        assertThat(gson.toJson(new Long[] { 1L }, long[].class)).isEqualTo(\"[\\\"1\\\"]\");\r\n    }\r\n\r\n    @Test\r\n    public void testStringLongSerializationNull() {\r\n        LongSerializationPolicy policy = LongSerializationPolicy.STRING;\r\n        assertThat(policy.serialize(null).isJsonNull()).isTrue();\r\n        Gson gson = new GsonBuilder().setLongSerializationPolicy(policy).create();\r\n        assertThat(gson.toJson(null, Long.class)).isEqualTo(\"null\");\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\LongSerializationPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDefaultLongSerialization",
+    "start_line": 31,
+    "end_line": 40,
+    "code": "@Test\r\npublic void testDefaultLongSerialization() throws Exception {\r\n    JsonElement element = LongSerializationPolicy.DEFAULT.serialize(1556L);\r\n    assertThat(element.isJsonPrimitive()).isTrue();\r\n    JsonPrimitive jsonPrimitive = element.getAsJsonPrimitive();\r\n    assertThat(jsonPrimitive.isString()).isFalse();\r\n    assertThat(jsonPrimitive.isNumber()).isTrue();\r\n    assertThat(element.getAsLong()).isEqualTo(1556L);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\LongSerializationPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDefaultLongSerializationIntegration",
+    "start_line": 42,
+    "end_line": 48,
+    "code": "@Test\r\npublic void testDefaultLongSerializationIntegration() {\r\n    Gson gson = new GsonBuilder().setLongSerializationPolicy(LongSerializationPolicy.DEFAULT).create();\r\n    assertThat(gson.toJson(new long[] { 1L }, long[].class)).isEqualTo(\"[1]\");\r\n    assertThat(gson.toJson(new Long[] { 1L }, Long[].class)).isEqualTo(\"[1]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\LongSerializationPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDefaultLongSerializationNull",
+    "start_line": 50,
+    "end_line": 57,
+    "code": "@Test\r\npublic void testDefaultLongSerializationNull() {\r\n    LongSerializationPolicy policy = LongSerializationPolicy.DEFAULT;\r\n    assertThat(policy.serialize(null).isJsonNull()).isTrue();\r\n    Gson gson = new GsonBuilder().setLongSerializationPolicy(policy).create();\r\n    assertThat(gson.toJson(null, Long.class)).isEqualTo(\"null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\LongSerializationPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStringLongSerialization",
+    "start_line": 59,
+    "end_line": 68,
+    "code": "@Test\r\npublic void testStringLongSerialization() throws Exception {\r\n    JsonElement element = LongSerializationPolicy.STRING.serialize(1556L);\r\n    assertThat(element.isJsonPrimitive()).isTrue();\r\n    JsonPrimitive jsonPrimitive = element.getAsJsonPrimitive();\r\n    assertThat(jsonPrimitive.isNumber()).isFalse();\r\n    assertThat(jsonPrimitive.isString()).isTrue();\r\n    assertThat(element.getAsString()).isEqualTo(\"1556\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\LongSerializationPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStringLongSerializationIntegration",
+    "start_line": 70,
+    "end_line": 76,
+    "code": "@Test\r\npublic void testStringLongSerializationIntegration() {\r\n    Gson gson = new GsonBuilder().setLongSerializationPolicy(LongSerializationPolicy.STRING).create();\r\n    assertThat(gson.toJson(new long[] { 1L }, long[].class)).isEqualTo(\"[\\\"1\\\"]\");\r\n    assertThat(gson.toJson(new Long[] { 1L }, long[].class)).isEqualTo(\"[\\\"1\\\"]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\LongSerializationPolicyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStringLongSerializationNull",
+    "start_line": 78,
+    "end_line": 85,
+    "code": "@Test\r\npublic void testStringLongSerializationNull() {\r\n    LongSerializationPolicy policy = LongSerializationPolicy.STRING;\r\n    assertThat(policy.serialize(null).isJsonNull()).isTrue();\r\n    Gson gson = new GsonBuilder().setLongSerializationPolicy(policy).create();\r\n    assertThat(gson.toJson(null, Long.class)).isEqualTo(\"null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\LongSerializationPolicyTest.java"
+  }
+]

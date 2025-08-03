@@ -1,0 +1,10 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.reflect",
+    "start_line": 22,
+    "end_line": 23,
+    "code": "/**\r\n * This package provides utility classes for finding type information for generic types.\r\n *\r\n * @author Inderjeet Singh, Joel Leitch\r\n */\r\n@com.google.errorprone.annotations.CheckReturnValue\r\npackage com.google.gson.reflect;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\reflect\\package-info.java"
+  }
+]

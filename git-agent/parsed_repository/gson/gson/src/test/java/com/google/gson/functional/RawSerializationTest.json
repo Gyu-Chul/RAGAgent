@@ -1,0 +1,130 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collection",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.util.Collection;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "class",
+    "name": "RawSerializationTest",
+    "start_line": 32,
+    "end_line": 108,
+    "code": "/**\r\n * Unit tests to validate serialization of parameterized types without explicit types\r\n *\r\n * @author Inderjeet Singh\r\n */\r\npublic class RawSerializationTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n    }\r\n\r\n    @Test\r\n    public void testCollectionOfPrimitives() {\r\n        Collection<Integer> ints = Arrays.asList(1, 2, 3, 4, 5);\r\n        String json = gson.toJson(ints);\r\n        assertThat(json).isEqualTo(\"[1,2,3,4,5]\");\r\n    }\r\n\r\n    @Test\r\n    public void testCollectionOfObjects() {\r\n        Collection<Foo> foos = Arrays.asList(new Foo(1), new Foo(2));\r\n        String json = gson.toJson(foos);\r\n        assertThat(json).isEqualTo(\"[{\\\"b\\\":1},{\\\"b\\\":2}]\");\r\n    }\r\n\r\n    @Test\r\n    public void testParameterizedObject() {\r\n        Bar<Foo> bar = new Bar<>(new Foo(1));\r\n        String expectedJson = \"{\\\"t\\\":{\\\"b\\\":1}}\";\r\n        // Ensure that serialization works without specifying the type explicitly\r\n        String json = gson.toJson(bar);\r\n        assertThat(json).isEqualTo(expectedJson);\r\n        // Ensure that serialization also works when the type is specified explicitly\r\n        json = gson.toJson(bar, new TypeToken<Bar<Foo>>() {\r\n        }.getType());\r\n        assertThat(json).isEqualTo(expectedJson);\r\n    }\r\n\r\n    @Test\r\n    public void testTwoLevelParameterizedObject() {\r\n        Bar<Bar<Foo>> bar = new Bar<>(new Bar<>(new Foo(1)));\r\n        String expectedJson = \"{\\\"t\\\":{\\\"t\\\":{\\\"b\\\":1}}}\";\r\n        // Ensure that serialization works without specifying the type explicitly\r\n        String json = gson.toJson(bar);\r\n        assertThat(json).isEqualTo(expectedJson);\r\n        // Ensure that serialization also works when the type is specified explicitly\r\n        json = gson.toJson(bar, new TypeToken<Bar<Bar<Foo>>>() {\r\n        }.getType());\r\n        assertThat(json).isEqualTo(expectedJson);\r\n    }\r\n\r\n    @Test\r\n    public void testThreeLevelParameterizedObject() {\r\n        Bar<Bar<Bar<Foo>>> bar = new Bar<>(new Bar<>(new Bar<>(new Foo(1))));\r\n        String expectedJson = \"{\\\"t\\\":{\\\"t\\\":{\\\"t\\\":{\\\"b\\\":1}}}}\";\r\n        // Ensure that serialization works without specifying the type explicitly\r\n        String json = gson.toJson(bar);\r\n        assertThat(json).isEqualTo(expectedJson);\r\n        // Ensure that serialization also works when the type is specified explicitly\r\n        json = gson.toJson(bar, new TypeToken<Bar<Bar<Bar<Foo>>>>() {\r\n        }.getType());\r\n        assertThat(json).isEqualTo(expectedJson);\r\n    }\r\n\r\n    private static class Foo {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        int b;\r\n\r\n        Foo(int b) {\r\n            this.b = b;\r\n        }\r\n    }\r\n\r\n    private static class Bar<T> {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        T t;\r\n\r\n        Bar(T t) {\r\n            this.t = t;\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 36,
+    "end_line": 39,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCollectionOfPrimitives",
+    "start_line": 41,
+    "end_line": 46,
+    "code": "@Test\r\npublic void testCollectionOfPrimitives() {\r\n    Collection<Integer> ints = Arrays.asList(1, 2, 3, 4, 5);\r\n    String json = gson.toJson(ints);\r\n    assertThat(json).isEqualTo(\"[1,2,3,4,5]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCollectionOfObjects",
+    "start_line": 48,
+    "end_line": 53,
+    "code": "@Test\r\npublic void testCollectionOfObjects() {\r\n    Collection<Foo> foos = Arrays.asList(new Foo(1), new Foo(2));\r\n    String json = gson.toJson(foos);\r\n    assertThat(json).isEqualTo(\"[{\\\"b\\\":1},{\\\"b\\\":2}]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParameterizedObject",
+    "start_line": 55,
+    "end_line": 65,
+    "code": "@Test\r\npublic void testParameterizedObject() {\r\n    Bar<Foo> bar = new Bar<>(new Foo(1));\r\n    String expectedJson = \"{\\\"t\\\":{\\\"b\\\":1}}\";\r\n    // Ensure that serialization works without specifying the type explicitly\r\n    String json = gson.toJson(bar);\r\n    assertThat(json).isEqualTo(expectedJson);\r\n    // Ensure that serialization also works when the type is specified explicitly\r\n    json = gson.toJson(bar, new TypeToken<Bar<Foo>>() {\r\n    }.getType());\r\n    assertThat(json).isEqualTo(expectedJson);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTwoLevelParameterizedObject",
+    "start_line": 67,
+    "end_line": 77,
+    "code": "@Test\r\npublic void testTwoLevelParameterizedObject() {\r\n    Bar<Bar<Foo>> bar = new Bar<>(new Bar<>(new Foo(1)));\r\n    String expectedJson = \"{\\\"t\\\":{\\\"t\\\":{\\\"b\\\":1}}}\";\r\n    // Ensure that serialization works without specifying the type explicitly\r\n    String json = gson.toJson(bar);\r\n    assertThat(json).isEqualTo(expectedJson);\r\n    // Ensure that serialization also works when the type is specified explicitly\r\n    json = gson.toJson(bar, new TypeToken<Bar<Bar<Foo>>>() {\r\n    }.getType());\r\n    assertThat(json).isEqualTo(expectedJson);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testThreeLevelParameterizedObject",
+    "start_line": 79,
+    "end_line": 89,
+    "code": "@Test\r\npublic void testThreeLevelParameterizedObject() {\r\n    Bar<Bar<Bar<Foo>>> bar = new Bar<>(new Bar<>(new Bar<>(new Foo(1))));\r\n    String expectedJson = \"{\\\"t\\\":{\\\"t\\\":{\\\"t\\\":{\\\"b\\\":1}}}}\";\r\n    // Ensure that serialization works without specifying the type explicitly\r\n    String json = gson.toJson(bar);\r\n    assertThat(json).isEqualTo(expectedJson);\r\n    // Ensure that serialization also works when the type is specified explicitly\r\n    json = gson.toJson(bar, new TypeToken<Bar<Bar<Bar<Foo>>>>() {\r\n    }.getType());\r\n    assertThat(json).isEqualTo(expectedJson);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RawSerializationTest.java"
+  }
+]

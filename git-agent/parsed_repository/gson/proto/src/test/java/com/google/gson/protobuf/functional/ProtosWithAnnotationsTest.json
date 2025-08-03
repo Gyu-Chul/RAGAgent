@@ -1,0 +1,218 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.protobuf.functional",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.protobuf.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.base.CaseFormat",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.common.base.CaseFormat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonParseException",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.protobuf.ProtoTypeAdapter",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.protobuf.ProtoTypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.protobuf.ProtoTypeAdapter.EnumSerialization",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.protobuf.ProtoTypeAdapter.EnumSerialization;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.protobuf.generated.Annotations",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.protobuf.generated.Annotations;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.protobuf.generated.Bag.OuterMessage",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.protobuf.generated.Bag.OuterMessage;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.protobuf.generated.Bag.ProtoWithAnnotations",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.protobuf.generated.Bag.ProtoWithAnnotations;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.protobuf.generated.Bag.ProtoWithAnnotations.InnerMessage",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.protobuf.generated.Bag.ProtoWithAnnotations.InnerMessage;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.protobuf.GeneratedMessage",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import com.google.protobuf.GeneratedMessage;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "class",
+    "name": "ProtosWithAnnotationsTest",
+    "start_line": 40,
+    "end_line": 243,
+    "code": "/**\r\n * Functional tests for protocol buffers using annotations for field names and enum values.\r\n *\r\n * @author Emmanuel Cron\r\n */\r\npublic class ProtosWithAnnotationsTest {\r\n\r\n    private Gson gson;\r\n\r\n    private Gson gsonWithEnumNumbers;\r\n\r\n    private Gson gsonWithLowerHyphen;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        ProtoTypeAdapter.Builder protoTypeAdapter = ProtoTypeAdapter.newBuilder().setEnumSerialization(EnumSerialization.NAME).addSerializedNameExtension(Annotations.serializedName).addSerializedEnumValueExtension(Annotations.serializedValue);\r\n        gson = new GsonBuilder().registerTypeHierarchyAdapter(GeneratedMessage.class, protoTypeAdapter.build()).create();\r\n        gsonWithEnumNumbers = new GsonBuilder().registerTypeHierarchyAdapter(GeneratedMessage.class, protoTypeAdapter.setEnumSerialization(EnumSerialization.NUMBER).build()).create();\r\n        gsonWithLowerHyphen = new GsonBuilder().registerTypeHierarchyAdapter(GeneratedMessage.class, protoTypeAdapter.setFieldNameSerializationFormat(CaseFormat.LOWER_UNDERSCORE, CaseFormat.LOWER_HYPHEN).build()).create();\r\n    }\r\n\r\n    @Test\r\n    public void testProtoWithAnnotations_deserialize() {\r\n        String json = String.format(\"{  %n\" + \"   \\\"id\\\":\\\"41e5e7fd6065d101b97018a465ffff01\\\",%n\" + \"   \\\"expiration_date\\\":{  %n\" + \"      \\\"month\\\":\\\"12\\\",%n\" + \"      \\\"year\\\":\\\"2017\\\",%n\" + \"      \\\"timeStamp\\\":\\\"9864653135687\\\",%n\" + \"      \\\"countryCode5f55\\\":\\\"en_US\\\"%n\" + \"   },%n\" + // Don't define innerMessage1\r\n        \"   \\\"innerMessage2\\\":{  %n\" + // Set a number as a string; it should work\r\n        \"      \\\"nIdCt\\\":\\\"98798465\\\",%n\" + \"      \\\"content\\\":\\\"text/plain\\\",%n\" + \"      \\\"$binary_data$\\\":[  %n\" + \"         {  %n\" + \"            \\\"data\\\":\\\"OFIN8e9fhwoeh8((⁹8efywoih\\\",%n\" + // Don't define width\r\n        \"            \\\"height\\\":665%n\" + \"         },%n\" + \"         {  %n\" + // Define as an int; it should work\r\n        \"            \\\"data\\\":65,%n\" + \"            \\\"width\\\":-56684%n\" + // Don't define height\r\n        \"         }%n\" + \"      ]%n\" + \"   },%n\" + // Define a bunch of non recognizable data\r\n        \"   \\\"non_existing\\\":\\\"foobar\\\",%n\" + \"   \\\"stillNot\\\":{  %n\" + \"      \\\"bunch\\\":\\\"of_useless data\\\"%n\" + \"   }%n\" + \"}\");\r\n        ProtoWithAnnotations proto = gson.fromJson(json, ProtoWithAnnotations.class);\r\n        assertThat(proto.getId()).isEqualTo(\"41e5e7fd6065d101b97018a465ffff01\");\r\n        assertThat(proto.getOuterMessage()).isEqualTo(OuterMessage.newBuilder().setMonth(12).setYear(2017).setLongTimestamp(9864653135687L).setCountryCode5F55(\"en_US\").build());\r\n        assertThat(proto.hasInnerMessage1()).isFalse();\r\n        assertThat(proto.getInnerMessage2()).isEqualTo(InnerMessage.newBuilder().setNIdCt(98798465).setContent(InnerMessage.Type.TEXT).addData(InnerMessage.Data.newBuilder().setData(\"OFIN8e9fhwoeh8((⁹8efywoih\").setHeight(665)).addData(InnerMessage.Data.newBuilder().setData(\"65\").setWidth(-56684)).build());\r\n        String rebuilt = gson.toJson(proto);\r\n        assertThat(rebuilt).isEqualTo(\"{\" + \"\\\"id\\\":\\\"41e5e7fd6065d101b97018a465ffff01\\\",\" + \"\\\"expiration_date\\\":{\" + \"\\\"month\\\":12,\" + \"\\\"year\\\":2017,\" + \"\\\"timeStamp\\\":9864653135687,\" + \"\\\"countryCode5f55\\\":\\\"en_US\\\"\" + \"},\" + \"\\\"innerMessage2\\\":{\" + \"\\\"nIdCt\\\":98798465,\" + \"\\\"content\\\":\\\"text/plain\\\",\" + \"\\\"$binary_data$\\\":[\" + \"{\" + \"\\\"data\\\":\\\"OFIN8e9fhwoeh8((⁹8efywoih\\\",\" + \"\\\"height\\\":665\" + \"},\" + \"{\" + \"\\\"data\\\":\\\"65\\\",\" + \"\\\"width\\\":-56684\" + \"}]}}\");\r\n    }\r\n\r\n    @Test\r\n    public void testProtoWithAnnotations_deserializeUnknownEnumValue() {\r\n        String json = String.format(\"{  %n\" + \"   \\\"content\\\":\\\"UNKNOWN\\\"%n\" + \"}\");\r\n        InnerMessage proto = gson.fromJson(json, InnerMessage.class);\r\n        assertThat(proto.getContent()).isEqualTo(InnerMessage.Type.UNKNOWN);\r\n    }\r\n\r\n    @Test\r\n    public void testProtoWithAnnotations_deserializeUnrecognizedEnumValue() {\r\n        String json = String.format(\"{  %n\" + \"   \\\"content\\\":\\\"UNRECOGNIZED\\\"%n\" + \"}\");\r\n        var e = assertThrows(JsonParseException.class, () -> gson.fromJson(json, InnerMessage.class));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Error while parsing proto\");\r\n        assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Unrecognized enum name: UNRECOGNIZED\");\r\n    }\r\n\r\n    @Test\r\n    public void testProtoWithAnnotations_deserializeWithEnumNumbers() {\r\n        String json = String.format(\"{  %n\" + \"   \\\"content\\\":\\\"0\\\"%n\" + \"}\");\r\n        InnerMessage proto = gsonWithEnumNumbers.fromJson(json, InnerMessage.class);\r\n        assertThat(proto.getContent()).isEqualTo(InnerMessage.Type.UNKNOWN);\r\n        String rebuilt = gsonWithEnumNumbers.toJson(proto);\r\n        assertThat(rebuilt).isEqualTo(\"{\\\"content\\\":0}\");\r\n        json = String.format(\"{  %n\" + \"   \\\"content\\\":\\\"2\\\"%n\" + \"}\");\r\n        proto = gsonWithEnumNumbers.fromJson(json, InnerMessage.class);\r\n        assertThat(proto.getContent()).isEqualTo(InnerMessage.Type.IMAGE);\r\n        rebuilt = gsonWithEnumNumbers.toJson(proto);\r\n        assertThat(rebuilt).isEqualTo(\"{\\\"content\\\":2}\");\r\n    }\r\n\r\n    @Test\r\n    public void testProtoWithAnnotations_deserializeUnrecognizedEnumNumber() {\r\n        String json = String.format(\"{  %n\" + \"   \\\"content\\\":\\\"99\\\"%n\" + \"}\");\r\n        var e = assertThrows(JsonParseException.class, () -> gsonWithEnumNumbers.fromJson(json, InnerMessage.class));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Error while parsing proto\");\r\n        assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Unrecognized enum value: 99\");\r\n    }\r\n\r\n    @Test\r\n    public void testProtoWithAnnotations_serialize() {\r\n        ProtoWithAnnotations proto = ProtoWithAnnotations.newBuilder().setId(\"09f3j20839h032y0329hf30932h0nffn\").setOuterMessage(OuterMessage.newBuilder().setMonth(14).setYear(6650).setLongTimestamp(468406876880768L)).setInnerMessage1(InnerMessage.newBuilder().setNIdCt(12).setContent(InnerMessage.Type.IMAGE).addData(InnerMessage.Data.newBuilder().setData(\"data$$\").setWidth(200)).addData(InnerMessage.Data.newBuilder().setHeight(56))).build();\r\n        String json = gsonWithLowerHyphen.toJson(proto);\r\n        assertThat(json).isEqualTo(\"{\\\"id\\\":\\\"09f3j20839h032y0329hf30932h0nffn\\\",\" + \"\\\"expiration_date\\\":{\" + \"\\\"month\\\":14,\" + \"\\\"year\\\":6650,\" + \"\\\"timeStamp\\\":468406876880768\" + \"},\" + // This field should be using hyphens\r\n        \"\\\"inner-message-1\\\":{\" + \"\\\"n--id-ct\\\":12,\" + \"\\\"content\\\":2,\" + \"\\\"$binary_data$\\\":[\" + \"{\" + \"\\\"data\\\":\\\"data$$\\\",\" + \"\\\"width\\\":200\" + \"},\" + \"{\" + \"\\\"height\\\":56\" + \"}]\" + \"}\" + \"}\");\r\n        ProtoWithAnnotations rebuilt = gsonWithLowerHyphen.fromJson(json, ProtoWithAnnotations.class);\r\n        assertThat(rebuilt).isEqualTo(proto);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gsonWithEnumNumbers",
+    "start_line": 42,
+    "end_line": 42,
+    "code": "private Gson gsonWithEnumNumbers;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gsonWithLowerHyphen",
+    "start_line": 43,
+    "end_line": 43,
+    "code": "private Gson gsonWithLowerHyphen;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 45,
+    "end_line": 71,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    ProtoTypeAdapter.Builder protoTypeAdapter = ProtoTypeAdapter.newBuilder().setEnumSerialization(EnumSerialization.NAME).addSerializedNameExtension(Annotations.serializedName).addSerializedEnumValueExtension(Annotations.serializedValue);\r\n    gson = new GsonBuilder().registerTypeHierarchyAdapter(GeneratedMessage.class, protoTypeAdapter.build()).create();\r\n    gsonWithEnumNumbers = new GsonBuilder().registerTypeHierarchyAdapter(GeneratedMessage.class, protoTypeAdapter.setEnumSerialization(EnumSerialization.NUMBER).build()).create();\r\n    gsonWithLowerHyphen = new GsonBuilder().registerTypeHierarchyAdapter(GeneratedMessage.class, protoTypeAdapter.setFieldNameSerializationFormat(CaseFormat.LOWER_UNDERSCORE, CaseFormat.LOWER_HYPHEN).build()).create();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testProtoWithAnnotations_deserialize",
+    "start_line": 73,
+    "end_line": 156,
+    "code": "@Test\r\npublic void testProtoWithAnnotations_deserialize() {\r\n    String json = String.format(\"{  %n\" + \"   \\\"id\\\":\\\"41e5e7fd6065d101b97018a465ffff01\\\",%n\" + \"   \\\"expiration_date\\\":{  %n\" + \"      \\\"month\\\":\\\"12\\\",%n\" + \"      \\\"year\\\":\\\"2017\\\",%n\" + \"      \\\"timeStamp\\\":\\\"9864653135687\\\",%n\" + \"      \\\"countryCode5f55\\\":\\\"en_US\\\"%n\" + \"   },%n\" + // Don't define innerMessage1\r\n    \"   \\\"innerMessage2\\\":{  %n\" + // Set a number as a string; it should work\r\n    \"      \\\"nIdCt\\\":\\\"98798465\\\",%n\" + \"      \\\"content\\\":\\\"text/plain\\\",%n\" + \"      \\\"$binary_data$\\\":[  %n\" + \"         {  %n\" + \"            \\\"data\\\":\\\"OFIN8e9fhwoeh8((⁹8efywoih\\\",%n\" + // Don't define width\r\n    \"            \\\"height\\\":665%n\" + \"         },%n\" + \"         {  %n\" + // Define as an int; it should work\r\n    \"            \\\"data\\\":65,%n\" + \"            \\\"width\\\":-56684%n\" + // Don't define height\r\n    \"         }%n\" + \"      ]%n\" + \"   },%n\" + // Define a bunch of non recognizable data\r\n    \"   \\\"non_existing\\\":\\\"foobar\\\",%n\" + \"   \\\"stillNot\\\":{  %n\" + \"      \\\"bunch\\\":\\\"of_useless data\\\"%n\" + \"   }%n\" + \"}\");\r\n    ProtoWithAnnotations proto = gson.fromJson(json, ProtoWithAnnotations.class);\r\n    assertThat(proto.getId()).isEqualTo(\"41e5e7fd6065d101b97018a465ffff01\");\r\n    assertThat(proto.getOuterMessage()).isEqualTo(OuterMessage.newBuilder().setMonth(12).setYear(2017).setLongTimestamp(9864653135687L).setCountryCode5F55(\"en_US\").build());\r\n    assertThat(proto.hasInnerMessage1()).isFalse();\r\n    assertThat(proto.getInnerMessage2()).isEqualTo(InnerMessage.newBuilder().setNIdCt(98798465).setContent(InnerMessage.Type.TEXT).addData(InnerMessage.Data.newBuilder().setData(\"OFIN8e9fhwoeh8((⁹8efywoih\").setHeight(665)).addData(InnerMessage.Data.newBuilder().setData(\"65\").setWidth(-56684)).build());\r\n    String rebuilt = gson.toJson(proto);\r\n    assertThat(rebuilt).isEqualTo(\"{\" + \"\\\"id\\\":\\\"41e5e7fd6065d101b97018a465ffff01\\\",\" + \"\\\"expiration_date\\\":{\" + \"\\\"month\\\":12,\" + \"\\\"year\\\":2017,\" + \"\\\"timeStamp\\\":9864653135687,\" + \"\\\"countryCode5f55\\\":\\\"en_US\\\"\" + \"},\" + \"\\\"innerMessage2\\\":{\" + \"\\\"nIdCt\\\":98798465,\" + \"\\\"content\\\":\\\"text/plain\\\",\" + \"\\\"$binary_data$\\\":[\" + \"{\" + \"\\\"data\\\":\\\"OFIN8e9fhwoeh8((⁹8efywoih\\\",\" + \"\\\"height\\\":665\" + \"},\" + \"{\" + \"\\\"data\\\":\\\"65\\\",\" + \"\\\"width\\\":-56684\" + \"}]}}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testProtoWithAnnotations_deserializeUnknownEnumValue",
+    "start_line": 158,
+    "end_line": 163,
+    "code": "@Test\r\npublic void testProtoWithAnnotations_deserializeUnknownEnumValue() {\r\n    String json = String.format(\"{  %n\" + \"   \\\"content\\\":\\\"UNKNOWN\\\"%n\" + \"}\");\r\n    InnerMessage proto = gson.fromJson(json, InnerMessage.class);\r\n    assertThat(proto.getContent()).isEqualTo(InnerMessage.Type.UNKNOWN);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testProtoWithAnnotations_deserializeUnrecognizedEnumValue",
+    "start_line": 165,
+    "end_line": 171,
+    "code": "@Test\r\npublic void testProtoWithAnnotations_deserializeUnrecognizedEnumValue() {\r\n    String json = String.format(\"{  %n\" + \"   \\\"content\\\":\\\"UNRECOGNIZED\\\"%n\" + \"}\");\r\n    var e = assertThrows(JsonParseException.class, () -> gson.fromJson(json, InnerMessage.class));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Error while parsing proto\");\r\n    assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Unrecognized enum name: UNRECOGNIZED\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testProtoWithAnnotations_deserializeWithEnumNumbers",
+    "start_line": 173,
+    "end_line": 186,
+    "code": "@Test\r\npublic void testProtoWithAnnotations_deserializeWithEnumNumbers() {\r\n    String json = String.format(\"{  %n\" + \"   \\\"content\\\":\\\"0\\\"%n\" + \"}\");\r\n    InnerMessage proto = gsonWithEnumNumbers.fromJson(json, InnerMessage.class);\r\n    assertThat(proto.getContent()).isEqualTo(InnerMessage.Type.UNKNOWN);\r\n    String rebuilt = gsonWithEnumNumbers.toJson(proto);\r\n    assertThat(rebuilt).isEqualTo(\"{\\\"content\\\":0}\");\r\n    json = String.format(\"{  %n\" + \"   \\\"content\\\":\\\"2\\\"%n\" + \"}\");\r\n    proto = gsonWithEnumNumbers.fromJson(json, InnerMessage.class);\r\n    assertThat(proto.getContent()).isEqualTo(InnerMessage.Type.IMAGE);\r\n    rebuilt = gsonWithEnumNumbers.toJson(proto);\r\n    assertThat(rebuilt).isEqualTo(\"{\\\"content\\\":2}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testProtoWithAnnotations_deserializeUnrecognizedEnumNumber",
+    "start_line": 188,
+    "end_line": 196,
+    "code": "@Test\r\npublic void testProtoWithAnnotations_deserializeUnrecognizedEnumNumber() {\r\n    String json = String.format(\"{  %n\" + \"   \\\"content\\\":\\\"99\\\"%n\" + \"}\");\r\n    var e = assertThrows(JsonParseException.class, () -> gsonWithEnumNumbers.fromJson(json, InnerMessage.class));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Error while parsing proto\");\r\n    assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Unrecognized enum value: 99\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testProtoWithAnnotations_serialize",
+    "start_line": 198,
+    "end_line": 242,
+    "code": "@Test\r\npublic void testProtoWithAnnotations_serialize() {\r\n    ProtoWithAnnotations proto = ProtoWithAnnotations.newBuilder().setId(\"09f3j20839h032y0329hf30932h0nffn\").setOuterMessage(OuterMessage.newBuilder().setMonth(14).setYear(6650).setLongTimestamp(468406876880768L)).setInnerMessage1(InnerMessage.newBuilder().setNIdCt(12).setContent(InnerMessage.Type.IMAGE).addData(InnerMessage.Data.newBuilder().setData(\"data$$\").setWidth(200)).addData(InnerMessage.Data.newBuilder().setHeight(56))).build();\r\n    String json = gsonWithLowerHyphen.toJson(proto);\r\n    assertThat(json).isEqualTo(\"{\\\"id\\\":\\\"09f3j20839h032y0329hf30932h0nffn\\\",\" + \"\\\"expiration_date\\\":{\" + \"\\\"month\\\":14,\" + \"\\\"year\\\":6650,\" + \"\\\"timeStamp\\\":468406876880768\" + \"},\" + // This field should be using hyphens\r\n    \"\\\"inner-message-1\\\":{\" + \"\\\"n--id-ct\\\":12,\" + \"\\\"content\\\":2,\" + \"\\\"$binary_data$\\\":[\" + \"{\" + \"\\\"data\\\":\\\"data$$\\\",\" + \"\\\"width\\\":200\" + \"},\" + \"{\" + \"\\\"height\\\":56\" + \"}]\" + \"}\" + \"}\");\r\n    ProtoWithAnnotations rebuilt = gsonWithLowerHyphen.fromJson(json, ProtoWithAnnotations.class);\r\n    assertThat(rebuilt).isEqualTo(proto);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\test\\java\\com\\google\\gson\\protobuf\\functional\\ProtosWithAnnotationsTest.java"
+  }
+]

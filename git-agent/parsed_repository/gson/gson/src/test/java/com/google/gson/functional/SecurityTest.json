@@ -1,0 +1,130 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.BagOfPrimitives",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.common.TestTypes.BagOfPrimitives;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "class",
+    "name": "SecurityTest",
+    "start_line": 32,
+    "end_line": 102,
+    "code": "/**\r\n * Tests for security-related aspects of Gson\r\n *\r\n * @author Inderjeet Singh\r\n */\r\npublic class SecurityTest {\r\n\r\n    /**\r\n     * Keep this in sync with Gson.JSON_NON_EXECUTABLE_PREFIX\r\n     */\r\n    private static final String JSON_NON_EXECUTABLE_PREFIX = \")]}'\\n\";\r\n\r\n    private GsonBuilder gsonBuilder;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gsonBuilder = new GsonBuilder();\r\n    }\r\n\r\n    @Test\r\n    public void testNonExecutableJsonSerialization() {\r\n        Gson gson = gsonBuilder.generateNonExecutableJson().create();\r\n        String json = gson.toJson(new BagOfPrimitives());\r\n        assertThat(json).isEqualTo(JSON_NON_EXECUTABLE_PREFIX + \"{\\\"longValue\\\":0,\\\"intValue\\\":0,\\\"booleanValue\\\":false,\\\"stringValue\\\":\\\"\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testNonExecutableJsonDeserialization() {\r\n        String json = JSON_NON_EXECUTABLE_PREFIX + \"{longValue:1}\";\r\n        Gson gson = gsonBuilder.create();\r\n        BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n        assertThat(target.longValue).isEqualTo(1);\r\n    }\r\n\r\n    @Test\r\n    public void testJsonWithNonExectuableTokenSerialization() {\r\n        Gson gson = gsonBuilder.generateNonExecutableJson().create();\r\n        String json = gson.toJson(JSON_NON_EXECUTABLE_PREFIX);\r\n        assertThat(json).isEqualTo(JSON_NON_EXECUTABLE_PREFIX + \"\\\")]}\\\\u0027\\\\n\\\"\");\r\n    }\r\n\r\n    /**\r\n     * Gson should be able to deserialize a stream with non-exectuable token even if it is created\r\n     * without {@link GsonBuilder#generateNonExecutableJson()}.\r\n     */\r\n    @Test\r\n    public void testJsonWithNonExectuableTokenWithRegularGsonDeserialization() {\r\n        Gson gson = gsonBuilder.create();\r\n        // Note: Embedding non-executable prefix literally is only possible because Gson is lenient by\r\n        // default\r\n        String json = JSON_NON_EXECUTABLE_PREFIX + \"{stringValue:\\\"\" + JSON_NON_EXECUTABLE_PREFIX + \"\\\"}\";\r\n        BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n        assertThat(target.stringValue).isEqualTo(JSON_NON_EXECUTABLE_PREFIX);\r\n    }\r\n\r\n    /**\r\n     * Gson should be able to deserialize a stream with non-exectuable token if it is created with\r\n     * {@link GsonBuilder#generateNonExecutableJson()}.\r\n     */\r\n    @Test\r\n    public void testJsonWithNonExectuableTokenWithConfiguredGsonDeserialization() {\r\n        // Gson should be able to deserialize a stream with non-exectuable token even if it is created\r\n        Gson gson = gsonBuilder.generateNonExecutableJson().create();\r\n        // Note: Embedding non-executable prefix literally is only possible because Gson is lenient by\r\n        // default\r\n        String json = JSON_NON_EXECUTABLE_PREFIX + \"{intValue:2,stringValue:\\\"\" + JSON_NON_EXECUTABLE_PREFIX + \"\\\"}\";\r\n        BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n        assertThat(target.stringValue).isEqualTo(JSON_NON_EXECUTABLE_PREFIX);\r\n        assertThat(target.intValue).isEqualTo(2);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "field",
+    "name": "JSON_NON_EXECUTABLE_PREFIX",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "/**\r\n * Keep this in sync with Gson.JSON_NON_EXECUTABLE_PREFIX\r\n */\r\nprivate static final String JSON_NON_EXECUTABLE_PREFIX = \")]}'\\n\";",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gsonBuilder",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "private GsonBuilder gsonBuilder;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 38,
+    "end_line": 41,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gsonBuilder = new GsonBuilder();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNonExecutableJsonSerialization",
+    "start_line": 43,
+    "end_line": 51,
+    "code": "@Test\r\npublic void testNonExecutableJsonSerialization() {\r\n    Gson gson = gsonBuilder.generateNonExecutableJson().create();\r\n    String json = gson.toJson(new BagOfPrimitives());\r\n    assertThat(json).isEqualTo(JSON_NON_EXECUTABLE_PREFIX + \"{\\\"longValue\\\":0,\\\"intValue\\\":0,\\\"booleanValue\\\":false,\\\"stringValue\\\":\\\"\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNonExecutableJsonDeserialization",
+    "start_line": 53,
+    "end_line": 59,
+    "code": "@Test\r\npublic void testNonExecutableJsonDeserialization() {\r\n    String json = JSON_NON_EXECUTABLE_PREFIX + \"{longValue:1}\";\r\n    Gson gson = gsonBuilder.create();\r\n    BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n    assertThat(target.longValue).isEqualTo(1);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonWithNonExectuableTokenSerialization",
+    "start_line": 61,
+    "end_line": 66,
+    "code": "@Test\r\npublic void testJsonWithNonExectuableTokenSerialization() {\r\n    Gson gson = gsonBuilder.generateNonExecutableJson().create();\r\n    String json = gson.toJson(JSON_NON_EXECUTABLE_PREFIX);\r\n    assertThat(json).isEqualTo(JSON_NON_EXECUTABLE_PREFIX + \"\\\")]}\\\\u0027\\\\n\\\"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonWithNonExectuableTokenWithRegularGsonDeserialization",
+    "start_line": 72,
+    "end_line": 81,
+    "code": "/**\r\n * Gson should be able to deserialize a stream with non-exectuable token even if it is created\r\n * without {@link GsonBuilder#generateNonExecutableJson()}.\r\n */\r\n@Test\r\npublic void testJsonWithNonExectuableTokenWithRegularGsonDeserialization() {\r\n    Gson gson = gsonBuilder.create();\r\n    // Note: Embedding non-executable prefix literally is only possible because Gson is lenient by\r\n    // default\r\n    String json = JSON_NON_EXECUTABLE_PREFIX + \"{stringValue:\\\"\" + JSON_NON_EXECUTABLE_PREFIX + \"\\\"}\";\r\n    BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n    assertThat(target.stringValue).isEqualTo(JSON_NON_EXECUTABLE_PREFIX);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonWithNonExectuableTokenWithConfiguredGsonDeserialization",
+    "start_line": 87,
+    "end_line": 101,
+    "code": "/**\r\n * Gson should be able to deserialize a stream with non-exectuable token if it is created with\r\n * {@link GsonBuilder#generateNonExecutableJson()}.\r\n */\r\n@Test\r\npublic void testJsonWithNonExectuableTokenWithConfiguredGsonDeserialization() {\r\n    // Gson should be able to deserialize a stream with non-exectuable token even if it is created\r\n    Gson gson = gsonBuilder.generateNonExecutableJson().create();\r\n    // Note: Embedding non-executable prefix literally is only possible because Gson is lenient by\r\n    // default\r\n    String json = JSON_NON_EXECUTABLE_PREFIX + \"{intValue:2,stringValue:\\\"\" + JSON_NON_EXECUTABLE_PREFIX + \"\\\"}\";\r\n    BagOfPrimitives target = gson.fromJson(json, BagOfPrimitives.class);\r\n    assertThat(target.stringValue).isEqualTo(JSON_NON_EXECUTABLE_PREFIX);\r\n    assertThat(target.intValue).isEqualTo(2);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SecurityTest.java"
+  }
+]

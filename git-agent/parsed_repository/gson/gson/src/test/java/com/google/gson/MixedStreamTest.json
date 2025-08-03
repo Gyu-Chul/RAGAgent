@@ -1,0 +1,250 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.StringReader",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.io.StringReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.StringWriter",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.io.StringWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "class",
+    "name": "MixedStreamTest",
+    "start_line": 33,
+    "end_line": 256,
+    "code": "public final class MixedStreamTest {\r\n\r\n    private static final Car BLUE_MUSTANG = new Car(\"mustang\", 0x0000FF);\r\n\r\n    private static final Car BLACK_BMW = new Car(\"bmw\", 0x000000);\r\n\r\n    private static final Car RED_MIATA = new Car(\"miata\", 0xFF0000);\r\n\r\n    private static final String CARS_JSON = \"[\\n\" + \"  {\\n\" + \"    \\\"name\\\": \\\"mustang\\\",\\n\" + \"    \\\"color\\\": 255\\n\" + \"  },\\n\" + \"  {\\n\" + \"    \\\"name\\\": \\\"bmw\\\",\\n\" + \"    \\\"color\\\": 0\\n\" + \"  },\\n\" + \"  {\\n\" + \"    \\\"name\\\": \\\"miata\\\",\\n\" + \"    \\\"color\\\": 16711680\\n\" + \"  }\\n\" + \"]\";\r\n\r\n    @Test\r\n    public void testWriteMixedStreamed() throws IOException {\r\n        Gson gson = new Gson();\r\n        StringWriter stringWriter = new StringWriter();\r\n        JsonWriter jsonWriter = new JsonWriter(stringWriter);\r\n        jsonWriter.beginArray();\r\n        jsonWriter.setIndent(\"  \");\r\n        gson.toJson(BLUE_MUSTANG, Car.class, jsonWriter);\r\n        gson.toJson(BLACK_BMW, Car.class, jsonWriter);\r\n        gson.toJson(RED_MIATA, Car.class, jsonWriter);\r\n        jsonWriter.endArray();\r\n        assertThat(stringWriter.toString()).isEqualTo(CARS_JSON);\r\n    }\r\n\r\n    @Test\r\n    public void testReadMixedStreamed() throws IOException {\r\n        Gson gson = new Gson();\r\n        StringReader stringReader = new StringReader(CARS_JSON);\r\n        JsonReader jsonReader = new JsonReader(stringReader);\r\n        jsonReader.beginArray();\r\n        assertThat(gson.<Car>fromJson(jsonReader, Car.class)).isEqualTo(BLUE_MUSTANG);\r\n        assertThat(gson.<Car>fromJson(jsonReader, Car.class)).isEqualTo(BLACK_BMW);\r\n        assertThat(gson.<Car>fromJson(jsonReader, Car.class)).isEqualTo(RED_MIATA);\r\n        jsonReader.endArray();\r\n    }\r\n\r\n    // for JsonReader.setLenient\r\n    @SuppressWarnings(\"deprecation\")\r\n    @Test\r\n    public void testReadDoesNotMutateState() throws IOException {\r\n        Gson gson = new Gson();\r\n        JsonReader jsonReader = new JsonReader(new StringReader(CARS_JSON));\r\n        jsonReader.beginArray();\r\n        jsonReader.setLenient(false);\r\n        Car deserialized = gson.fromJson(jsonReader, Car.class);\r\n        assertThat(deserialized).isNotNull();\r\n        assertThat(jsonReader.isLenient()).isFalse();\r\n        jsonReader.setLenient(true);\r\n        deserialized = gson.fromJson(jsonReader, Car.class);\r\n        assertThat(deserialized).isNotNull();\r\n        assertThat(jsonReader.isLenient()).isTrue();\r\n    }\r\n\r\n    // for JsonWriter.setLenient\r\n    @SuppressWarnings(\"deprecation\")\r\n    @Test\r\n    public void testWriteDoesNotMutateState() throws IOException {\r\n        Gson gson = new Gson();\r\n        JsonWriter jsonWriter = new JsonWriter(new StringWriter());\r\n        jsonWriter.beginArray();\r\n        jsonWriter.setHtmlSafe(true);\r\n        jsonWriter.setLenient(true);\r\n        gson.toJson(BLUE_MUSTANG, Car.class, jsonWriter);\r\n        assertThat(jsonWriter.isHtmlSafe()).isTrue();\r\n        assertThat(jsonWriter.isLenient()).isTrue();\r\n        jsonWriter.setHtmlSafe(false);\r\n        jsonWriter.setLenient(false);\r\n        gson.toJson(BLUE_MUSTANG, Car.class, jsonWriter);\r\n        assertThat(jsonWriter.isHtmlSafe()).isFalse();\r\n        assertThat(jsonWriter.isLenient()).isFalse();\r\n    }\r\n\r\n    @Test\r\n    public void testReadInvalidState() throws IOException {\r\n        Gson gson = new Gson();\r\n        JsonReader jsonReader = new JsonReader(new StringReader(CARS_JSON));\r\n        jsonReader.beginArray();\r\n        jsonReader.beginObject();\r\n        assertThrows(JsonParseException.class, () -> gson.fromJson(jsonReader, String.class));\r\n    }\r\n\r\n    @Test\r\n    public void testReadClosed() throws IOException {\r\n        Gson gson = new Gson();\r\n        JsonReader jsonReader = new JsonReader(new StringReader(CARS_JSON));\r\n        jsonReader.close();\r\n        var e = assertThrows(JsonParseException.class, () -> gson.fromJson(jsonReader, new TypeToken<List<Car>>() {\r\n        }.getType()));\r\n        assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"JsonReader is closed\");\r\n    }\r\n\r\n    @Test\r\n    public void testWriteInvalidState() throws IOException {\r\n        Gson gson = new Gson();\r\n        JsonWriter jsonWriter = new JsonWriter(new StringWriter());\r\n        jsonWriter.beginObject();\r\n        var e = assertThrows(IllegalStateException.class, () -> gson.toJson(BLUE_MUSTANG, Car.class, jsonWriter));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Nesting problem.\");\r\n    }\r\n\r\n    @Test\r\n    public void testWriteClosed() throws IOException {\r\n        Gson gson = new Gson();\r\n        JsonWriter jsonWriter = new JsonWriter(new StringWriter());\r\n        jsonWriter.beginArray();\r\n        jsonWriter.endArray();\r\n        jsonWriter.close();\r\n        var e = assertThrows(IllegalStateException.class, () -> gson.toJson(BLUE_MUSTANG, Car.class, jsonWriter));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"JsonWriter is closed.\");\r\n    }\r\n\r\n    @Test\r\n    public void testWriteNulls() {\r\n        Gson gson = new Gson();\r\n        assertThrows(NullPointerException.class, () -> gson.toJson(new JsonPrimitive(\"hello\"), (JsonWriter) null));\r\n        StringWriter stringWriter = new StringWriter();\r\n        gson.toJson(null, new JsonWriter(stringWriter));\r\n        assertThat(stringWriter.toString()).isEqualTo(\"null\");\r\n    }\r\n\r\n    @Test\r\n    public void testReadNulls() {\r\n        Gson gson = new Gson();\r\n        assertThrows(NullPointerException.class, () -> gson.fromJson((JsonReader) null, Integer.class));\r\n        assertThrows(NullPointerException.class, () -> gson.fromJson(new JsonReader(new StringReader(\"true\")), (Type) null));\r\n    }\r\n\r\n    @Test\r\n    public void testWriteHtmlSafeWithEscaping() {\r\n        List<String> contents = Arrays.asList(\"<\", \">\", \"&\", \"=\", \"'\");\r\n        Type type = new TypeToken<List<String>>() {\r\n        }.getType();\r\n        StringWriter writer = new StringWriter();\r\n        new Gson().toJson(contents, type, new JsonWriter(writer));\r\n        assertThat(writer.toString()).isEqualTo(\"[\\\"\\\\u003c\\\",\\\"\\\\u003e\\\",\\\"\\\\u0026\\\",\\\"\\\\u003d\\\",\\\"\\\\u0027\\\"]\");\r\n    }\r\n\r\n    @Test\r\n    public void testWriteHtmlSafeWithoutEscaping() {\r\n        List<String> contents = Arrays.asList(\"<\", \">\", \"&\", \"=\", \"'\");\r\n        Type type = new TypeToken<List<String>>() {\r\n        }.getType();\r\n        StringWriter writer = new StringWriter();\r\n        new GsonBuilder().disableHtmlEscaping().create().toJson(contents, type, new JsonWriter(writer));\r\n        assertThat(writer.toString()).isEqualTo(\"[\\\"<\\\",\\\">\\\",\\\"&\\\",\\\"=\\\",\\\"'\\\"]\");\r\n    }\r\n\r\n    @Test\r\n    public void testWriteLenient() {\r\n        List<Double> doubles = Arrays.asList(Double.NaN, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, -0.0d, 0.5d, 0.0d);\r\n        Type type = new TypeToken<List<Double>>() {\r\n        }.getType();\r\n        StringWriter writer = new StringWriter();\r\n        JsonWriter jsonWriter = new JsonWriter(writer);\r\n        new GsonBuilder().serializeSpecialFloatingPointValues().create().toJson(doubles, type, jsonWriter);\r\n        assertThat(writer.toString()).isEqualTo(\"[NaN,-Infinity,Infinity,-0.0,0.5,0.0]\");\r\n        var e = assertThrows(IllegalArgumentException.class, () -> new Gson().toJson(doubles, type, new JsonWriter(new StringWriter())));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"NaN is not a valid double value as per JSON specification. To override this behavior,\" + \" use GsonBuilder.serializeSpecialFloatingPointValues() method.\");\r\n    }\r\n\r\n    static final class Car {\r\n\r\n        String name;\r\n\r\n        int color;\r\n\r\n        Car(String name, int color) {\r\n            this.name = name;\r\n            this.color = color;\r\n        }\r\n\r\n        // used by Gson\r\n        Car() {\r\n        }\r\n\r\n        @Override\r\n        public int hashCode() {\r\n            return name.hashCode() ^ color;\r\n        }\r\n\r\n        @Override\r\n        public boolean equals(Object o) {\r\n            return o instanceof Car && ((Car) o).name.equals(name) && ((Car) o).color == color;\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "field",
+    "name": "BLUE_MUSTANG",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "private static final Car BLUE_MUSTANG = new Car(\"mustang\", 0x0000FF);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "field",
+    "name": "BLACK_BMW",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "private static final Car BLACK_BMW = new Car(\"bmw\", 0x000000);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "field",
+    "name": "RED_MIATA",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "private static final Car RED_MIATA = new Car(\"miata\", 0xFF0000);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "field",
+    "name": "CARS_JSON",
+    "start_line": 38,
+    "end_line": 52,
+    "code": "private static final String CARS_JSON = \"[\\n\" + \"  {\\n\" + \"    \\\"name\\\": \\\"mustang\\\",\\n\" + \"    \\\"color\\\": 255\\n\" + \"  },\\n\" + \"  {\\n\" + \"    \\\"name\\\": \\\"bmw\\\",\\n\" + \"    \\\"color\\\": 0\\n\" + \"  },\\n\" + \"  {\\n\" + \"    \\\"name\\\": \\\"miata\\\",\\n\" + \"    \\\"color\\\": 16711680\\n\" + \"  }\\n\" + \"]\";",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWriteMixedStreamed",
+    "start_line": 54,
+    "end_line": 68,
+    "code": "@Test\r\npublic void testWriteMixedStreamed() throws IOException {\r\n    Gson gson = new Gson();\r\n    StringWriter stringWriter = new StringWriter();\r\n    JsonWriter jsonWriter = new JsonWriter(stringWriter);\r\n    jsonWriter.beginArray();\r\n    jsonWriter.setIndent(\"  \");\r\n    gson.toJson(BLUE_MUSTANG, Car.class, jsonWriter);\r\n    gson.toJson(BLACK_BMW, Car.class, jsonWriter);\r\n    gson.toJson(RED_MIATA, Car.class, jsonWriter);\r\n    jsonWriter.endArray();\r\n    assertThat(stringWriter.toString()).isEqualTo(CARS_JSON);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testReadMixedStreamed",
+    "start_line": 70,
+    "end_line": 81,
+    "code": "@Test\r\npublic void testReadMixedStreamed() throws IOException {\r\n    Gson gson = new Gson();\r\n    StringReader stringReader = new StringReader(CARS_JSON);\r\n    JsonReader jsonReader = new JsonReader(stringReader);\r\n    jsonReader.beginArray();\r\n    assertThat(gson.<Car>fromJson(jsonReader, Car.class)).isEqualTo(BLUE_MUSTANG);\r\n    assertThat(gson.<Car>fromJson(jsonReader, Car.class)).isEqualTo(BLACK_BMW);\r\n    assertThat(gson.<Car>fromJson(jsonReader, Car.class)).isEqualTo(RED_MIATA);\r\n    jsonReader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testReadDoesNotMutateState",
+    "start_line": 83,
+    "end_line": 99,
+    "code": "// for JsonReader.setLenient\r\n@SuppressWarnings(\"deprecation\")\r\n@Test\r\npublic void testReadDoesNotMutateState() throws IOException {\r\n    Gson gson = new Gson();\r\n    JsonReader jsonReader = new JsonReader(new StringReader(CARS_JSON));\r\n    jsonReader.beginArray();\r\n    jsonReader.setLenient(false);\r\n    Car deserialized = gson.fromJson(jsonReader, Car.class);\r\n    assertThat(deserialized).isNotNull();\r\n    assertThat(jsonReader.isLenient()).isFalse();\r\n    jsonReader.setLenient(true);\r\n    deserialized = gson.fromJson(jsonReader, Car.class);\r\n    assertThat(deserialized).isNotNull();\r\n    assertThat(jsonReader.isLenient()).isTrue();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWriteDoesNotMutateState",
+    "start_line": 101,
+    "end_line": 119,
+    "code": "// for JsonWriter.setLenient\r\n@SuppressWarnings(\"deprecation\")\r\n@Test\r\npublic void testWriteDoesNotMutateState() throws IOException {\r\n    Gson gson = new Gson();\r\n    JsonWriter jsonWriter = new JsonWriter(new StringWriter());\r\n    jsonWriter.beginArray();\r\n    jsonWriter.setHtmlSafe(true);\r\n    jsonWriter.setLenient(true);\r\n    gson.toJson(BLUE_MUSTANG, Car.class, jsonWriter);\r\n    assertThat(jsonWriter.isHtmlSafe()).isTrue();\r\n    assertThat(jsonWriter.isLenient()).isTrue();\r\n    jsonWriter.setHtmlSafe(false);\r\n    jsonWriter.setLenient(false);\r\n    gson.toJson(BLUE_MUSTANG, Car.class, jsonWriter);\r\n    assertThat(jsonWriter.isHtmlSafe()).isFalse();\r\n    assertThat(jsonWriter.isLenient()).isFalse();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testReadInvalidState",
+    "start_line": 121,
+    "end_line": 128,
+    "code": "@Test\r\npublic void testReadInvalidState() throws IOException {\r\n    Gson gson = new Gson();\r\n    JsonReader jsonReader = new JsonReader(new StringReader(CARS_JSON));\r\n    jsonReader.beginArray();\r\n    jsonReader.beginObject();\r\n    assertThrows(JsonParseException.class, () -> gson.fromJson(jsonReader, String.class));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testReadClosed",
+    "start_line": 130,
+    "end_line": 140,
+    "code": "@Test\r\npublic void testReadClosed() throws IOException {\r\n    Gson gson = new Gson();\r\n    JsonReader jsonReader = new JsonReader(new StringReader(CARS_JSON));\r\n    jsonReader.close();\r\n    var e = assertThrows(JsonParseException.class, () -> gson.fromJson(jsonReader, new TypeToken<List<Car>>() {\r\n    }.getType()));\r\n    assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"JsonReader is closed\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWriteInvalidState",
+    "start_line": 142,
+    "end_line": 151,
+    "code": "@Test\r\npublic void testWriteInvalidState() throws IOException {\r\n    Gson gson = new Gson();\r\n    JsonWriter jsonWriter = new JsonWriter(new StringWriter());\r\n    jsonWriter.beginObject();\r\n    var e = assertThrows(IllegalStateException.class, () -> gson.toJson(BLUE_MUSTANG, Car.class, jsonWriter));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Nesting problem.\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWriteClosed",
+    "start_line": 153,
+    "end_line": 164,
+    "code": "@Test\r\npublic void testWriteClosed() throws IOException {\r\n    Gson gson = new Gson();\r\n    JsonWriter jsonWriter = new JsonWriter(new StringWriter());\r\n    jsonWriter.beginArray();\r\n    jsonWriter.endArray();\r\n    jsonWriter.close();\r\n    var e = assertThrows(IllegalStateException.class, () -> gson.toJson(BLUE_MUSTANG, Car.class, jsonWriter));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"JsonWriter is closed.\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWriteNulls",
+    "start_line": 166,
+    "end_line": 176,
+    "code": "@Test\r\npublic void testWriteNulls() {\r\n    Gson gson = new Gson();\r\n    assertThrows(NullPointerException.class, () -> gson.toJson(new JsonPrimitive(\"hello\"), (JsonWriter) null));\r\n    StringWriter stringWriter = new StringWriter();\r\n    gson.toJson(null, new JsonWriter(stringWriter));\r\n    assertThat(stringWriter.toString()).isEqualTo(\"null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testReadNulls",
+    "start_line": 178,
+    "end_line": 185,
+    "code": "@Test\r\npublic void testReadNulls() {\r\n    Gson gson = new Gson();\r\n    assertThrows(NullPointerException.class, () -> gson.fromJson((JsonReader) null, Integer.class));\r\n    assertThrows(NullPointerException.class, () -> gson.fromJson(new JsonReader(new StringReader(\"true\")), (Type) null));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWriteHtmlSafeWithEscaping",
+    "start_line": 187,
+    "end_line": 196,
+    "code": "@Test\r\npublic void testWriteHtmlSafeWithEscaping() {\r\n    List<String> contents = Arrays.asList(\"<\", \">\", \"&\", \"=\", \"'\");\r\n    Type type = new TypeToken<List<String>>() {\r\n    }.getType();\r\n    StringWriter writer = new StringWriter();\r\n    new Gson().toJson(contents, type, new JsonWriter(writer));\r\n    assertThat(writer.toString()).isEqualTo(\"[\\\"\\\\u003c\\\",\\\"\\\\u003e\\\",\\\"\\\\u0026\\\",\\\"\\\\u003d\\\",\\\"\\\\u0027\\\"]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWriteHtmlSafeWithoutEscaping",
+    "start_line": 198,
+    "end_line": 206,
+    "code": "@Test\r\npublic void testWriteHtmlSafeWithoutEscaping() {\r\n    List<String> contents = Arrays.asList(\"<\", \">\", \"&\", \"=\", \"'\");\r\n    Type type = new TypeToken<List<String>>() {\r\n    }.getType();\r\n    StringWriter writer = new StringWriter();\r\n    new GsonBuilder().disableHtmlEscaping().create().toJson(contents, type, new JsonWriter(writer));\r\n    assertThat(writer.toString()).isEqualTo(\"[\\\"<\\\",\\\">\\\",\\\"&\\\",\\\"=\\\",\\\"'\\\"]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWriteLenient",
+    "start_line": 208,
+    "end_line": 232,
+    "code": "@Test\r\npublic void testWriteLenient() {\r\n    List<Double> doubles = Arrays.asList(Double.NaN, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY, -0.0d, 0.5d, 0.0d);\r\n    Type type = new TypeToken<List<Double>>() {\r\n    }.getType();\r\n    StringWriter writer = new StringWriter();\r\n    JsonWriter jsonWriter = new JsonWriter(writer);\r\n    new GsonBuilder().serializeSpecialFloatingPointValues().create().toJson(doubles, type, jsonWriter);\r\n    assertThat(writer.toString()).isEqualTo(\"[NaN,-Infinity,Infinity,-0.0,0.5,0.0]\");\r\n    var e = assertThrows(IllegalArgumentException.class, () -> new Gson().toJson(doubles, type, new JsonWriter(new StringWriter())));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"NaN is not a valid double value as per JSON specification. To override this behavior,\" + \" use GsonBuilder.serializeSpecialFloatingPointValues() method.\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\MixedStreamTest.java"
+  }
+]

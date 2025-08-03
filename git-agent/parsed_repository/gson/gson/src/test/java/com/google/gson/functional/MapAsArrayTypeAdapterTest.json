@@ -1,0 +1,162 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSyntaxException",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonSyntaxException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.HashMap",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.util.HashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.LinkedHashMap",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.util.LinkedHashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Ignore",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import org.junit.Ignore;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "class",
+    "name": "MapAsArrayTypeAdapterTest",
+    "start_line": 33,
+    "end_line": 152,
+    "code": "public class MapAsArrayTypeAdapterTest {\r\n\r\n    @Test\r\n    public void testSerializeComplexMapWithTypeAdapter() {\r\n        Type type = new TypeToken<Map<Point, String>>() {\r\n        }.getType();\r\n        Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n        Map<Point, String> original = new LinkedHashMap<>();\r\n        original.put(new Point(5, 5), \"a\");\r\n        original.put(new Point(8, 8), \"b\");\r\n        String json = gson.toJson(original, type);\r\n        assertThat(json).isEqualTo(\"[[{\\\"x\\\":5,\\\"y\\\":5},\\\"a\\\"],[{\\\"x\\\":8,\\\"y\\\":8},\\\"b\\\"]]\");\r\n        assertThat(gson.<Map<Point, String>>fromJson(json, type)).isEqualTo(original);\r\n        // test that registering a type adapter for one map doesn't interfere with others\r\n        Map<String, Boolean> otherMap = new LinkedHashMap<>();\r\n        otherMap.put(\"t\", true);\r\n        otherMap.put(\"f\", false);\r\n        assertThat(gson.toJson(otherMap, Map.class)).isEqualTo(\"{\\\"t\\\":true,\\\"f\\\":false}\");\r\n        assertThat(gson.toJson(otherMap, new TypeToken<Map<String, Boolean>>() {\r\n        }.getType())).isEqualTo(\"{\\\"t\\\":true,\\\"f\\\":false}\");\r\n        assertThat(gson.<Object>fromJson(\"{\\\"t\\\":true,\\\"f\\\":false}\", new TypeToken<Map<String, Boolean>>() {\r\n        }.getType())).isEqualTo(otherMap);\r\n    }\r\n\r\n    @Test\r\n    @Ignore(\"we no longer hash keys at serialization time\")\r\n    public void testTwoTypesCollapseToOneSerialize() {\r\n        Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n        Map<Number, String> original = new LinkedHashMap<>();\r\n        original.put(1.0D, \"a\");\r\n        original.put(1.0F, \"b\");\r\n        Type type = new TypeToken<Map<Number, String>>() {\r\n        }.getType();\r\n        var e = assertThrows(JsonSyntaxException.class, () -> gson.toJson(original, type));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"TODO\");\r\n    }\r\n\r\n    @Test\r\n    public void testTwoTypesCollapseToOneDeserialize() {\r\n        Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n        String s = \"[[\\\"1.00\\\",\\\"a\\\"],[\\\"1.0\\\",\\\"b\\\"]]\";\r\n        Type type = new TypeToken<Map<Double, String>>() {\r\n        }.getType();\r\n        var e = assertThrows(JsonSyntaxException.class, () -> gson.fromJson(s, type));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"duplicate key: 1.0\");\r\n    }\r\n\r\n    @Test\r\n    public void testMultipleEnableComplexKeyRegistrationHasNoEffect() {\r\n        Type type = new TypeToken<Map<Point, String>>() {\r\n        }.getType();\r\n        Gson gson = new GsonBuilder().enableComplexMapKeySerialization().enableComplexMapKeySerialization().create();\r\n        Map<Point, String> original = new LinkedHashMap<>();\r\n        original.put(new Point(6, 5), \"abc\");\r\n        original.put(new Point(1, 8), \"def\");\r\n        String json = gson.toJson(original, type);\r\n        assertThat(json).isEqualTo(\"[[{\\\"x\\\":6,\\\"y\\\":5},\\\"abc\\\"],[{\\\"x\\\":1,\\\"y\\\":8},\\\"def\\\"]]\");\r\n        assertThat(gson.<Map<Point, String>>fromJson(json, type)).isEqualTo(original);\r\n    }\r\n\r\n    @Test\r\n    public void testMapWithTypeVariableSerialization() {\r\n        Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n        PointWithProperty<Point> map = new PointWithProperty<>();\r\n        map.map.put(new Point(2, 3), new Point(4, 5));\r\n        Type type = new TypeToken<PointWithProperty<Point>>() {\r\n        }.getType();\r\n        String json = gson.toJson(map, type);\r\n        assertThat(json).isEqualTo(\"{\\\"map\\\":[[{\\\"x\\\":2,\\\"y\\\":3},{\\\"x\\\":4,\\\"y\\\":5}]]}\");\r\n    }\r\n\r\n    @Test\r\n    public void testMapWithTypeVariableDeserialization() {\r\n        Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n        String json = \"{map:[[{x:2,y:3},{x:4,y:5}]]}\";\r\n        Type type = new TypeToken<PointWithProperty<Point>>() {\r\n        }.getType();\r\n        PointWithProperty<Point> map = gson.fromJson(json, type);\r\n        Point key = map.map.keySet().iterator().next();\r\n        Point value = map.map.values().iterator().next();\r\n        assertThat(key).isEqualTo(new Point(2, 3));\r\n        assertThat(value).isEqualTo(new Point(4, 5));\r\n    }\r\n\r\n    static class Point {\r\n\r\n        int x;\r\n\r\n        int y;\r\n\r\n        Point(int x, int y) {\r\n            this.x = x;\r\n            this.y = y;\r\n        }\r\n\r\n        Point() {\r\n        }\r\n\r\n        @Override\r\n        public boolean equals(Object o) {\r\n            return o instanceof Point && ((Point) o).x == x && ((Point) o).y == y;\r\n        }\r\n\r\n        @Override\r\n        public int hashCode() {\r\n            return x * 37 + y;\r\n        }\r\n\r\n        @Override\r\n        public String toString() {\r\n            return \"(\" + x + \",\" + y + \")\";\r\n        }\r\n    }\r\n\r\n    static class PointWithProperty<T> {\r\n\r\n        Map<Point, T> map = new HashMap<>();\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeComplexMapWithTypeAdapter",
+    "start_line": 35,
+    "end_line": 58,
+    "code": "@Test\r\npublic void testSerializeComplexMapWithTypeAdapter() {\r\n    Type type = new TypeToken<Map<Point, String>>() {\r\n    }.getType();\r\n    Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n    Map<Point, String> original = new LinkedHashMap<>();\r\n    original.put(new Point(5, 5), \"a\");\r\n    original.put(new Point(8, 8), \"b\");\r\n    String json = gson.toJson(original, type);\r\n    assertThat(json).isEqualTo(\"[[{\\\"x\\\":5,\\\"y\\\":5},\\\"a\\\"],[{\\\"x\\\":8,\\\"y\\\":8},\\\"b\\\"]]\");\r\n    assertThat(gson.<Map<Point, String>>fromJson(json, type)).isEqualTo(original);\r\n    // test that registering a type adapter for one map doesn't interfere with others\r\n    Map<String, Boolean> otherMap = new LinkedHashMap<>();\r\n    otherMap.put(\"t\", true);\r\n    otherMap.put(\"f\", false);\r\n    assertThat(gson.toJson(otherMap, Map.class)).isEqualTo(\"{\\\"t\\\":true,\\\"f\\\":false}\");\r\n    assertThat(gson.toJson(otherMap, new TypeToken<Map<String, Boolean>>() {\r\n    }.getType())).isEqualTo(\"{\\\"t\\\":true,\\\"f\\\":false}\");\r\n    assertThat(gson.<Object>fromJson(\"{\\\"t\\\":true,\\\"f\\\":false}\", new TypeToken<Map<String, Boolean>>() {\r\n    }.getType())).isEqualTo(otherMap);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTwoTypesCollapseToOneSerialize",
+    "start_line": 60,
+    "end_line": 71,
+    "code": "@Test\r\n@Ignore(\"we no longer hash keys at serialization time\")\r\npublic void testTwoTypesCollapseToOneSerialize() {\r\n    Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n    Map<Number, String> original = new LinkedHashMap<>();\r\n    original.put(1.0D, \"a\");\r\n    original.put(1.0F, \"b\");\r\n    Type type = new TypeToken<Map<Number, String>>() {\r\n    }.getType();\r\n    var e = assertThrows(JsonSyntaxException.class, () -> gson.toJson(original, type));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"TODO\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTwoTypesCollapseToOneDeserialize",
+    "start_line": 73,
+    "end_line": 81,
+    "code": "@Test\r\npublic void testTwoTypesCollapseToOneDeserialize() {\r\n    Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n    String s = \"[[\\\"1.00\\\",\\\"a\\\"],[\\\"1.0\\\",\\\"b\\\"]]\";\r\n    Type type = new TypeToken<Map<Double, String>>() {\r\n    }.getType();\r\n    var e = assertThrows(JsonSyntaxException.class, () -> gson.fromJson(s, type));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"duplicate key: 1.0\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMultipleEnableComplexKeyRegistrationHasNoEffect",
+    "start_line": 83,
+    "end_line": 98,
+    "code": "@Test\r\npublic void testMultipleEnableComplexKeyRegistrationHasNoEffect() {\r\n    Type type = new TypeToken<Map<Point, String>>() {\r\n    }.getType();\r\n    Gson gson = new GsonBuilder().enableComplexMapKeySerialization().enableComplexMapKeySerialization().create();\r\n    Map<Point, String> original = new LinkedHashMap<>();\r\n    original.put(new Point(6, 5), \"abc\");\r\n    original.put(new Point(1, 8), \"def\");\r\n    String json = gson.toJson(original, type);\r\n    assertThat(json).isEqualTo(\"[[{\\\"x\\\":6,\\\"y\\\":5},\\\"abc\\\"],[{\\\"x\\\":1,\\\"y\\\":8},\\\"def\\\"]]\");\r\n    assertThat(gson.<Map<Point, String>>fromJson(json, type)).isEqualTo(original);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapWithTypeVariableSerialization",
+    "start_line": 100,
+    "end_line": 108,
+    "code": "@Test\r\npublic void testMapWithTypeVariableSerialization() {\r\n    Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n    PointWithProperty<Point> map = new PointWithProperty<>();\r\n    map.map.put(new Point(2, 3), new Point(4, 5));\r\n    Type type = new TypeToken<PointWithProperty<Point>>() {\r\n    }.getType();\r\n    String json = gson.toJson(map, type);\r\n    assertThat(json).isEqualTo(\"{\\\"map\\\":[[{\\\"x\\\":2,\\\"y\\\":3},{\\\"x\\\":4,\\\"y\\\":5}]]}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMapWithTypeVariableDeserialization",
+    "start_line": 110,
+    "end_line": 120,
+    "code": "@Test\r\npublic void testMapWithTypeVariableDeserialization() {\r\n    Gson gson = new GsonBuilder().enableComplexMapKeySerialization().create();\r\n    String json = \"{map:[[{x:2,y:3},{x:4,y:5}]]}\";\r\n    Type type = new TypeToken<PointWithProperty<Point>>() {\r\n    }.getType();\r\n    PointWithProperty<Point> map = gson.fromJson(json, type);\r\n    Point key = map.map.keySet().iterator().next();\r\n    Point value = map.map.values().iterator().next();\r\n    assertThat(key).isEqualTo(new Point(2, 3));\r\n    assertThat(value).isEqualTo(new Point(4, 5));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\MapAsArrayTypeAdapterTest.java"
+  }
+]

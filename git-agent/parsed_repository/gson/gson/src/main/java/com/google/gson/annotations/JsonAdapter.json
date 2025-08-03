@@ -1,0 +1,106 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.annotations",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.annotations;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.InstanceCreator",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.InstanceCreator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonDeserializer",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.JsonDeserializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializer",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.JsonSerializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapterFactory",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.TypeAdapterFactory;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.annotation.ElementType",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.lang.annotation.ElementType;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.annotation.Retention",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.lang.annotation.Retention;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.annotation.RetentionPolicy",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.lang.annotation.RetentionPolicy;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.annotation.Target",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.lang.annotation.Target;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  },
+  {
+    "type": "annotation",
+    "name": "JsonAdapter",
+    "start_line": 116,
+    "end_line": 135,
+    "code": "/**\r\n * An annotation that indicates the Gson {@link TypeAdapter} to use with a class or field.\r\n *\r\n * <p>Here is an example of how this annotation is used:\r\n *\r\n * <pre>\r\n * &#64;JsonAdapter(UserJsonAdapter.class)\r\n * public class User {\r\n *   public final String firstName, lastName;\r\n *\r\n *   private User(String firstName, String lastName) {\r\n *     this.firstName = firstName;\r\n *     this.lastName = lastName;\r\n *   }\r\n * }\r\n *\r\n * public class UserJsonAdapter extends TypeAdapter&lt;User&gt; {\r\n *   &#64;Override public void write(JsonWriter out, User user) throws IOException {\r\n *     // implement write: combine firstName and lastName into name\r\n *     out.beginObject();\r\n *     out.name(\"name\");\r\n *     out.value(user.firstName + \" \" + user.lastName);\r\n *     out.endObject();\r\n *   }\r\n *\r\n *   &#64;Override public User read(JsonReader in) throws IOException {\r\n *     // implement read: split name into firstName and lastName\r\n *     in.beginObject();\r\n *     in.nextName();\r\n *     String[] nameParts = in.nextString().split(\" \");\r\n *     in.endObject();\r\n *     return new User(nameParts[0], nameParts[1]);\r\n *   }\r\n * }\r\n * </pre>\r\n *\r\n * Since {@code User} class specified {@code UserJsonAdapter.class} in {@code @JsonAdapter}\r\n * annotation, it will automatically be invoked to serialize/deserialize {@code User} instances.\r\n *\r\n * <p>Here is an example of how to apply this annotation to a field.\r\n *\r\n * <pre>\r\n * private static final class Gadget {\r\n *   &#64;JsonAdapter(UserJsonAdapter.class)\r\n *   final User user;\r\n *\r\n *   Gadget(User user) {\r\n *     this.user = user;\r\n *   }\r\n * }\r\n * </pre>\r\n *\r\n * It's possible to specify different type adapters on a field, that field's type, and in the {@link\r\n * GsonBuilder}. Field annotations take precedence over {@code GsonBuilder}-registered type\r\n * adapters, which in turn take precedence over annotated types.\r\n *\r\n * <p>The class referenced by this annotation must be either a {@link TypeAdapter} or a {@link\r\n * TypeAdapterFactory}, or must implement one or both of {@link JsonDeserializer} or {@link\r\n * JsonSerializer}. Using {@link TypeAdapterFactory} makes it possible to delegate to the enclosing\r\n * {@link Gson} instance. By default the specified adapter will not be called for {@code null}\r\n * values; set {@link #nullSafe()} to {@code false} to let the adapter handle {@code null} values\r\n * itself.\r\n *\r\n * <p>The type adapter is created in the same way Gson creates instances of custom classes during\r\n * deserialization, that means:\r\n *\r\n * <ol>\r\n *   <li>If a custom {@link InstanceCreator} has been registered for the adapter class, it will be\r\n *       used to create the instance\r\n *   <li>Otherwise, if the adapter class has a no-args constructor (regardless of which visibility),\r\n *       it will be invoked to create the instance\r\n *   <li>Otherwise, JDK {@code Unsafe} will be used to create the instance; see {@link\r\n *       GsonBuilder#disableJdkUnsafe()} for the unexpected side-effects this might have\r\n * </ol>\r\n *\r\n * <p>{@code Gson} instances might cache the adapter they create for a {@code @JsonAdapter}\r\n * annotation. It is not guaranteed that a new adapter is created every time the annotated class or\r\n * field is serialized or deserialized.\r\n *\r\n * @since 2.3\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n * @author Jesse Wilson\r\n */\r\n// Note that the above example is taken from AdaptAnnotationTest.\r\n@Retention(RetentionPolicy.RUNTIME)\r\n@Target({ ElementType.TYPE, ElementType.FIELD })\r\npublic @interface JsonAdapter {\r\n\r\n    /**\r\n     * Either a {@link TypeAdapter} or {@link TypeAdapterFactory}, or one or both of {@link\r\n     * JsonDeserializer} or {@link JsonSerializer}.\r\n     */\r\n    Class<?> value();\r\n\r\n    /**\r\n     * Whether the adapter referenced by {@link #value()} should be made {@linkplain\r\n     * TypeAdapter#nullSafe() null-safe}.\r\n     *\r\n     * <p>If {@code true} (the default), it will be made null-safe and Gson will handle {@code null}\r\n     * Java objects on serialization and JSON {@code null} on deserialization without calling the\r\n     * adapter. If {@code false}, the adapter will have to handle the {@code null} values.\r\n     */\r\n    boolean nullSafe() default true;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\JsonAdapter.java"
+  }
+]

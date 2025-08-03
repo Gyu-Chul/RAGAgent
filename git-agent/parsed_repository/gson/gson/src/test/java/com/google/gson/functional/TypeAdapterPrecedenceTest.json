@@ -1,0 +1,226 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonDeserializationContext",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.JsonDeserializationContext;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonDeserializer",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonDeserializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializationContext",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.JsonSerializationContext;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializer",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.JsonSerializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "class",
+    "name": "TypeAdapterPrecedenceTest",
+    "start_line": 36,
+    "end_line": 173,
+    "code": "public final class TypeAdapterPrecedenceTest {\r\n\r\n    @Test\r\n    public void testNonstreamingFollowedByNonstreaming() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class, newSerializer(\"serializer 1\")).registerTypeAdapter(Foo.class, newSerializer(\"serializer 2\")).registerTypeAdapter(Foo.class, newDeserializer(\"deserializer 1\")).registerTypeAdapter(Foo.class, newDeserializer(\"deserializer 2\")).create();\r\n        assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via serializer 2\\\"\");\r\n        assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via deserializer 2\");\r\n    }\r\n\r\n    @Test\r\n    public void testStreamingFollowedByStreaming() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class, newTypeAdapter(\"type adapter 1\")).registerTypeAdapter(Foo.class, newTypeAdapter(\"type adapter 2\")).create();\r\n        assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via type adapter 2\\\"\");\r\n        assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via type adapter 2\");\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeNonstreamingTypeAdapterFollowedByStreamingTypeAdapter() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class, newSerializer(\"serializer\")).registerTypeAdapter(Foo.class, newDeserializer(\"deserializer\")).registerTypeAdapter(Foo.class, newTypeAdapter(\"type adapter\")).create();\r\n        assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via type adapter\\\"\");\r\n        assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via type adapter\");\r\n    }\r\n\r\n    @Test\r\n    public void testStreamingFollowedByNonstreaming() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class, newTypeAdapter(\"type adapter\")).registerTypeAdapter(Foo.class, newSerializer(\"serializer\")).registerTypeAdapter(Foo.class, newDeserializer(\"deserializer\")).create();\r\n        assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via serializer\\\"\");\r\n        assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via deserializer\");\r\n    }\r\n\r\n    @Test\r\n    public void testStreamingHierarchicalFollowedByNonstreaming() {\r\n        Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(Foo.class, newTypeAdapter(\"type adapter\")).registerTypeAdapter(Foo.class, newSerializer(\"serializer\")).registerTypeAdapter(Foo.class, newDeserializer(\"deserializer\")).create();\r\n        assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via serializer\\\"\");\r\n        assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via deserializer\");\r\n    }\r\n\r\n    @Test\r\n    public void testStreamingFollowedByNonstreamingHierarchical() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class, newTypeAdapter(\"type adapter\")).registerTypeHierarchyAdapter(Foo.class, newSerializer(\"serializer\")).registerTypeHierarchyAdapter(Foo.class, newDeserializer(\"deserializer\")).create();\r\n        assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via type adapter\\\"\");\r\n        assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via type adapter\");\r\n    }\r\n\r\n    @Test\r\n    public void testStreamingHierarchicalFollowedByNonstreamingHierarchical() {\r\n        Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(Foo.class, newSerializer(\"serializer\")).registerTypeHierarchyAdapter(Foo.class, newDeserializer(\"deserializer\")).registerTypeHierarchyAdapter(Foo.class, newTypeAdapter(\"type adapter\")).create();\r\n        assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via type adapter\\\"\");\r\n        assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via type adapter\");\r\n    }\r\n\r\n    @Test\r\n    public void testNonstreamingHierarchicalFollowedByNonstreaming() {\r\n        Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(Foo.class, newSerializer(\"hierarchical\")).registerTypeHierarchyAdapter(Foo.class, newDeserializer(\"hierarchical\")).registerTypeAdapter(Foo.class, newSerializer(\"non hierarchical\")).registerTypeAdapter(Foo.class, newDeserializer(\"non hierarchical\")).create();\r\n        assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via non hierarchical\\\"\");\r\n        assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via non hierarchical\");\r\n    }\r\n\r\n    private static class Foo {\r\n\r\n        final String name;\r\n\r\n        private Foo(String name) {\r\n            this.name = name;\r\n        }\r\n    }\r\n\r\n    private static JsonSerializer<Foo> newSerializer(String name) {\r\n        return new JsonSerializer<>() {\r\n\r\n            @Override\r\n            public JsonElement serialize(Foo src, Type typeOfSrc, JsonSerializationContext context) {\r\n                return new JsonPrimitive(src.name + \" via \" + name);\r\n            }\r\n        };\r\n    }\r\n\r\n    private static JsonDeserializer<Foo> newDeserializer(String name) {\r\n        return new JsonDeserializer<>() {\r\n\r\n            @Override\r\n            public Foo deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {\r\n                return new Foo(json.getAsString() + \" via \" + name);\r\n            }\r\n        };\r\n    }\r\n\r\n    private static TypeAdapter<Foo> newTypeAdapter(String name) {\r\n        return new TypeAdapter<>() {\r\n\r\n            @Override\r\n            public Foo read(JsonReader in) throws IOException {\r\n                return new Foo(in.nextString() + \" via \" + name);\r\n            }\r\n\r\n            @Override\r\n            public void write(JsonWriter out, Foo value) throws IOException {\r\n                out.value(value.name + \" via \" + name);\r\n            }\r\n        };\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNonstreamingFollowedByNonstreaming",
+    "start_line": 37,
+    "end_line": 48,
+    "code": "@Test\r\npublic void testNonstreamingFollowedByNonstreaming() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class, newSerializer(\"serializer 1\")).registerTypeAdapter(Foo.class, newSerializer(\"serializer 2\")).registerTypeAdapter(Foo.class, newDeserializer(\"deserializer 1\")).registerTypeAdapter(Foo.class, newDeserializer(\"deserializer 2\")).create();\r\n    assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via serializer 2\\\"\");\r\n    assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via deserializer 2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStreamingFollowedByStreaming",
+    "start_line": 50,
+    "end_line": 59,
+    "code": "@Test\r\npublic void testStreamingFollowedByStreaming() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class, newTypeAdapter(\"type adapter 1\")).registerTypeAdapter(Foo.class, newTypeAdapter(\"type adapter 2\")).create();\r\n    assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via type adapter 2\\\"\");\r\n    assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via type adapter 2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeNonstreamingTypeAdapterFollowedByStreamingTypeAdapter",
+    "start_line": 61,
+    "end_line": 71,
+    "code": "@Test\r\npublic void testSerializeNonstreamingTypeAdapterFollowedByStreamingTypeAdapter() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class, newSerializer(\"serializer\")).registerTypeAdapter(Foo.class, newDeserializer(\"deserializer\")).registerTypeAdapter(Foo.class, newTypeAdapter(\"type adapter\")).create();\r\n    assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via type adapter\\\"\");\r\n    assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via type adapter\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStreamingFollowedByNonstreaming",
+    "start_line": 73,
+    "end_line": 83,
+    "code": "@Test\r\npublic void testStreamingFollowedByNonstreaming() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class, newTypeAdapter(\"type adapter\")).registerTypeAdapter(Foo.class, newSerializer(\"serializer\")).registerTypeAdapter(Foo.class, newDeserializer(\"deserializer\")).create();\r\n    assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via serializer\\\"\");\r\n    assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via deserializer\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStreamingHierarchicalFollowedByNonstreaming",
+    "start_line": 85,
+    "end_line": 95,
+    "code": "@Test\r\npublic void testStreamingHierarchicalFollowedByNonstreaming() {\r\n    Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(Foo.class, newTypeAdapter(\"type adapter\")).registerTypeAdapter(Foo.class, newSerializer(\"serializer\")).registerTypeAdapter(Foo.class, newDeserializer(\"deserializer\")).create();\r\n    assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via serializer\\\"\");\r\n    assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via deserializer\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStreamingFollowedByNonstreamingHierarchical",
+    "start_line": 97,
+    "end_line": 107,
+    "code": "@Test\r\npublic void testStreamingFollowedByNonstreamingHierarchical() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class, newTypeAdapter(\"type adapter\")).registerTypeHierarchyAdapter(Foo.class, newSerializer(\"serializer\")).registerTypeHierarchyAdapter(Foo.class, newDeserializer(\"deserializer\")).create();\r\n    assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via type adapter\\\"\");\r\n    assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via type adapter\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStreamingHierarchicalFollowedByNonstreamingHierarchical",
+    "start_line": 109,
+    "end_line": 119,
+    "code": "@Test\r\npublic void testStreamingHierarchicalFollowedByNonstreamingHierarchical() {\r\n    Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(Foo.class, newSerializer(\"serializer\")).registerTypeHierarchyAdapter(Foo.class, newDeserializer(\"deserializer\")).registerTypeHierarchyAdapter(Foo.class, newTypeAdapter(\"type adapter\")).create();\r\n    assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via type adapter\\\"\");\r\n    assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via type adapter\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNonstreamingHierarchicalFollowedByNonstreaming",
+    "start_line": 121,
+    "end_line": 132,
+    "code": "@Test\r\npublic void testNonstreamingHierarchicalFollowedByNonstreaming() {\r\n    Gson gson = new GsonBuilder().registerTypeHierarchyAdapter(Foo.class, newSerializer(\"hierarchical\")).registerTypeHierarchyAdapter(Foo.class, newDeserializer(\"hierarchical\")).registerTypeAdapter(Foo.class, newSerializer(\"non hierarchical\")).registerTypeAdapter(Foo.class, newDeserializer(\"non hierarchical\")).create();\r\n    assertThat(gson.toJson(new Foo(\"foo\"))).isEqualTo(\"\\\"foo via non hierarchical\\\"\");\r\n    assertThat(gson.fromJson(\"foo\", Foo.class).name).isEqualTo(\"foo via non hierarchical\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "newSerializer",
+    "start_line": 142,
+    "end_line": 149,
+    "code": "private static JsonSerializer<Foo> newSerializer(String name) {\r\n    return new JsonSerializer<>() {\r\n\r\n        @Override\r\n        public JsonElement serialize(Foo src, Type typeOfSrc, JsonSerializationContext context) {\r\n            return new JsonPrimitive(src.name + \" via \" + name);\r\n        }\r\n    };\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "newDeserializer",
+    "start_line": 151,
+    "end_line": 158,
+    "code": "private static JsonDeserializer<Foo> newDeserializer(String name) {\r\n    return new JsonDeserializer<>() {\r\n\r\n        @Override\r\n        public Foo deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {\r\n            return new Foo(json.getAsString() + \" via \" + name);\r\n        }\r\n    };\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "newTypeAdapter",
+    "start_line": 160,
+    "end_line": 172,
+    "code": "private static TypeAdapter<Foo> newTypeAdapter(String name) {\r\n    return new TypeAdapter<>() {\r\n\r\n        @Override\r\n        public Foo read(JsonReader in) throws IOException {\r\n            return new Foo(in.nextString() + \" via \" + name);\r\n        }\r\n\r\n        @Override\r\n        public void write(JsonWriter out, Foo value) throws IOException {\r\n            out.value(value.name + \" via \" + name);\r\n        }\r\n    };\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterPrecedenceTest.java"
+  }
+]

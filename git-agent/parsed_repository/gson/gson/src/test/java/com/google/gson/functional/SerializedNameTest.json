@@ -1,0 +1,82 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SerializedNameTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SerializedNameTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SerializedNameTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.SerializedName",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.annotations.SerializedName;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SerializedNameTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SerializedNameTest.java"
+  },
+  {
+    "type": "class",
+    "name": "SerializedNameTest",
+    "start_line": 24,
+    "end_line": 65,
+    "code": "public final class SerializedNameTest {\r\n\r\n    private final Gson gson = new Gson();\r\n\r\n    @Test\r\n    public void testFirstNameIsChosenForSerialization() {\r\n        MyClass target = new MyClass(\"v1\", \"v2\");\r\n        // Ensure name1 occurs exactly once, and name2 and name3 don't appear\r\n        assertThat(gson.toJson(target)).isEqualTo(\"{\\\"name\\\":\\\"v1\\\",\\\"name1\\\":\\\"v2\\\"}\");\r\n    }\r\n\r\n    @Test\r\n    public void testMultipleNamesDeserializedCorrectly() {\r\n        assertThat(gson.fromJson(\"{'name':'v1'}\", MyClass.class).a).isEqualTo(\"v1\");\r\n        // Both name1 and name2 gets deserialized to b\r\n        assertThat(gson.fromJson(\"{'name1':'v11'}\", MyClass.class).b).isEqualTo(\"v11\");\r\n        assertThat(gson.fromJson(\"{'name2':'v2'}\", MyClass.class).b).isEqualTo(\"v2\");\r\n        assertThat(gson.fromJson(\"{'name3':'v3'}\", MyClass.class).b).isEqualTo(\"v3\");\r\n    }\r\n\r\n    @Test\r\n    public void testMultipleNamesInTheSameString() {\r\n        // The last value takes precedence\r\n        assertThat(gson.fromJson(\"{'name1':'v1','name2':'v2','name3':'v3'}\", MyClass.class).b).isEqualTo(\"v3\");\r\n    }\r\n\r\n    private static final class MyClass {\r\n\r\n        @SerializedName(\"name\")\r\n        String a;\r\n\r\n        @SerializedName(value = \"name1\", alternate = { \"name2\", \"name3\" })\r\n        String b;\r\n\r\n        MyClass(String a, String b) {\r\n            this.a = a;\r\n            this.b = b;\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SerializedNameTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "private final Gson gson = new Gson();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SerializedNameTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testFirstNameIsChosenForSerialization",
+    "start_line": 27,
+    "end_line": 32,
+    "code": "@Test\r\npublic void testFirstNameIsChosenForSerialization() {\r\n    MyClass target = new MyClass(\"v1\", \"v2\");\r\n    // Ensure name1 occurs exactly once, and name2 and name3 don't appear\r\n    assertThat(gson.toJson(target)).isEqualTo(\"{\\\"name\\\":\\\"v1\\\",\\\"name1\\\":\\\"v2\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SerializedNameTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMultipleNamesDeserializedCorrectly",
+    "start_line": 34,
+    "end_line": 42,
+    "code": "@Test\r\npublic void testMultipleNamesDeserializedCorrectly() {\r\n    assertThat(gson.fromJson(\"{'name':'v1'}\", MyClass.class).a).isEqualTo(\"v1\");\r\n    // Both name1 and name2 gets deserialized to b\r\n    assertThat(gson.fromJson(\"{'name1':'v11'}\", MyClass.class).b).isEqualTo(\"v11\");\r\n    assertThat(gson.fromJson(\"{'name2':'v2'}\", MyClass.class).b).isEqualTo(\"v2\");\r\n    assertThat(gson.fromJson(\"{'name3':'v3'}\", MyClass.class).b).isEqualTo(\"v3\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SerializedNameTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMultipleNamesInTheSameString",
+    "start_line": 44,
+    "end_line": 49,
+    "code": "@Test\r\npublic void testMultipleNamesInTheSameString() {\r\n    // The last value takes precedence\r\n    assertThat(gson.fromJson(\"{'name1':'v1','name2':'v2','name3':'v3'}\", MyClass.class).b).isEqualTo(\"v3\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\SerializedNameTest.java"
+  }
+]

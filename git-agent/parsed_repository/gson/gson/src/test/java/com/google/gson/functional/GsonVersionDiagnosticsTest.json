@@ -1,0 +1,154 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.regex.Pattern",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.util.regex.Pattern;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "class",
+    "name": "GsonVersionDiagnosticsTest",
+    "start_line": 35,
+    "end_line": 98,
+    "code": "/**\r\n * Functional tests to validate printing of Gson version on AssertionErrors\r\n *\r\n * @author Inderjeet Singh\r\n */\r\npublic class GsonVersionDiagnosticsTest {\r\n\r\n    // We require a patch number, even if it is .0, consistent with https://semver.org/#spec-item-2.\r\n    private static final Pattern GSON_VERSION_PATTERN = Pattern.compile(\"(\\\\(GSON \\\\d\\\\.\\\\d+\\\\.\\\\d)(?:[-.][A-Z]+)?\\\\)$\");\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() {\r\n        gson = new GsonBuilder().registerTypeAdapter(TestType.class, new TypeAdapter<TestType>() {\r\n\r\n            @Override\r\n            public void write(JsonWriter out, TestType value) {\r\n                throw new AssertionError(\"Expected during serialization\");\r\n            }\r\n\r\n            @Override\r\n            public TestType read(JsonReader in) {\r\n                throw new AssertionError(\"Expected during deserialization\");\r\n            }\r\n        }).create();\r\n    }\r\n\r\n    @Test\r\n    public void testVersionPattern() {\r\n        assertThat(\"(GSON 2.8.5)\").matches(GSON_VERSION_PATTERN);\r\n        assertThat(\"(GSON 2.8.5-SNAPSHOT)\").matches(GSON_VERSION_PATTERN);\r\n    }\r\n\r\n    @Test\r\n    public void testAssertionErrorInSerializationPrintsVersion() {\r\n        AssertionError e = assertThrows(AssertionError.class, () -> gson.toJson(new TestType()));\r\n        ensureAssertionErrorPrintsGsonVersion(e);\r\n    }\r\n\r\n    @Test\r\n    public void testAssertionErrorInDeserializationPrintsVersion() {\r\n        AssertionError e = assertThrows(AssertionError.class, () -> gson.fromJson(\"{'a':'abc'}\", TestType.class));\r\n        ensureAssertionErrorPrintsGsonVersion(e);\r\n    }\r\n\r\n    private static void ensureAssertionErrorPrintsGsonVersion(AssertionError expected) {\r\n        String msg = expected.getMessage();\r\n        // System.err.println(msg);\r\n        int start = msg.indexOf(\"(GSON\");\r\n        assertThat(start > 0).isTrue();\r\n        int end = msg.indexOf(\"):\") + 1;\r\n        assertThat(end > 0 && end > start + 6).isTrue();\r\n        String version = msg.substring(start, end);\r\n        // System.err.println(version);\r\n        assertThat(version).matches(GSON_VERSION_PATTERN);\r\n    }\r\n\r\n    private static final class TestType {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        String a;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "field",
+    "name": "GSON_VERSION_PATTERN",
+    "start_line": 37,
+    "end_line": 38,
+    "code": "// We require a patch number, even if it is .0, consistent with https://semver.org/#spec-item-2.\r\nprivate static final Pattern GSON_VERSION_PATTERN = Pattern.compile(\"(\\\\(GSON \\\\d\\\\.\\\\d+\\\\.\\\\d)(?:[-.][A-Z]+)?\\\\)$\");",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 40,
+    "end_line": 40,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 42,
+    "end_line": 60,
+    "code": "@Before\r\npublic void setUp() {\r\n    gson = new GsonBuilder().registerTypeAdapter(TestType.class, new TypeAdapter<TestType>() {\r\n\r\n        @Override\r\n        public void write(JsonWriter out, TestType value) {\r\n            throw new AssertionError(\"Expected during serialization\");\r\n        }\r\n\r\n        @Override\r\n        public TestType read(JsonReader in) {\r\n            throw new AssertionError(\"Expected during deserialization\");\r\n        }\r\n    }).create();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testVersionPattern",
+    "start_line": 62,
+    "end_line": 66,
+    "code": "@Test\r\npublic void testVersionPattern() {\r\n    assertThat(\"(GSON 2.8.5)\").matches(GSON_VERSION_PATTERN);\r\n    assertThat(\"(GSON 2.8.5-SNAPSHOT)\").matches(GSON_VERSION_PATTERN);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAssertionErrorInSerializationPrintsVersion",
+    "start_line": 68,
+    "end_line": 72,
+    "code": "@Test\r\npublic void testAssertionErrorInSerializationPrintsVersion() {\r\n    AssertionError e = assertThrows(AssertionError.class, () -> gson.toJson(new TestType()));\r\n    ensureAssertionErrorPrintsGsonVersion(e);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAssertionErrorInDeserializationPrintsVersion",
+    "start_line": 74,
+    "end_line": 80,
+    "code": "@Test\r\npublic void testAssertionErrorInDeserializationPrintsVersion() {\r\n    AssertionError e = assertThrows(AssertionError.class, () -> gson.fromJson(\"{'a':'abc'}\", TestType.class));\r\n    ensureAssertionErrorPrintsGsonVersion(e);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "ensureAssertionErrorPrintsGsonVersion",
+    "start_line": 82,
+    "end_line": 92,
+    "code": "private static void ensureAssertionErrorPrintsGsonVersion(AssertionError expected) {\r\n    String msg = expected.getMessage();\r\n    // System.err.println(msg);\r\n    int start = msg.indexOf(\"(GSON\");\r\n    assertThat(start > 0).isTrue();\r\n    int end = msg.indexOf(\"):\") + 1;\r\n    assertThat(end > 0 && end > start + 6).isTrue();\r\n    String version = msg.substring(start, end);\r\n    // System.err.println(version);\r\n    assertThat(version).matches(GSON_VERSION_PATTERN);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\GsonVersionDiagnosticsTest.java"
+  }
+]

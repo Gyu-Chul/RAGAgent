@@ -1,0 +1,106 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.typeadapters",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.typeadapters;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Objects",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.util.Objects;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "javax.annotation.PostConstruct",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import javax.annotation.PostConstruct;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  },
+  {
+    "type": "class",
+    "name": "PostConstructAdapterFactoryTest",
+    "start_line": 30,
+    "end_line": 119,
+    "code": "public class PostConstructAdapterFactoryTest {\r\n\r\n    @Test\r\n    public void test() throws Exception {\r\n        Gson gson = new GsonBuilder().registerTypeAdapterFactory(new PostConstructAdapterFactory()).create();\r\n        Sandwich unused = gson.fromJson(\"{\\\"bread\\\": \\\"white\\\", \\\"cheese\\\": \\\"cheddar\\\"}\", Sandwich.class);\r\n        var e = assertThrows(IllegalArgumentException.class, () -> gson.fromJson(\"{\\\"bread\\\": \\\"cheesey bread\\\", \\\"cheese\\\": \\\"swiss\\\"}\", Sandwich.class));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"too cheesey\");\r\n    }\r\n\r\n    @Test\r\n    public void testList() {\r\n        MultipleSandwiches sandwiches = new MultipleSandwiches(Arrays.asList(new Sandwich(\"white\", \"cheddar\"), new Sandwich(\"whole wheat\", \"swiss\")));\r\n        Gson gson = new GsonBuilder().registerTypeAdapterFactory(new PostConstructAdapterFactory()).create();\r\n        // Throws NullPointerException without the fix in https://github.com/google/gson/pull/1103\r\n        String json = gson.toJson(sandwiches);\r\n        assertThat(json).isEqualTo(\"{\\\"sandwiches\\\":[{\\\"bread\\\":\\\"white\\\",\\\"cheese\\\":\\\"cheddar\\\"},\" + \"{\\\"bread\\\":\\\"whole wheat\\\",\\\"cheese\\\":\\\"swiss\\\"}]}\");\r\n        MultipleSandwiches sandwichesFromJson = gson.fromJson(json, MultipleSandwiches.class);\r\n        assertThat(sandwichesFromJson).isEqualTo(sandwiches);\r\n    }\r\n\r\n    // for missing hashCode() override\r\n    @SuppressWarnings({ \"overrides\", \"EqualsHashCode\" })\r\n    static class Sandwich {\r\n\r\n        public String bread;\r\n\r\n        public String cheese;\r\n\r\n        public Sandwich(String bread, String cheese) {\r\n            this.bread = bread;\r\n            this.cheese = cheese;\r\n        }\r\n\r\n        @PostConstruct\r\n        private void validate() {\r\n            if (bread.equals(\"cheesey bread\") && cheese != null) {\r\n                throw new IllegalArgumentException(\"too cheesey\");\r\n            }\r\n        }\r\n\r\n        @Override\r\n        public boolean equals(Object o) {\r\n            if (o == this) {\r\n                return true;\r\n            }\r\n            if (!(o instanceof Sandwich)) {\r\n                return false;\r\n            }\r\n            Sandwich other = (Sandwich) o;\r\n            return Objects.equals(this.bread, other.bread) && Objects.equals(this.cheese, other.cheese);\r\n        }\r\n    }\r\n\r\n    // for missing hashCode() override\r\n    @SuppressWarnings({ \"overrides\", \"EqualsHashCode\" })\r\n    static class MultipleSandwiches {\r\n\r\n        public List<Sandwich> sandwiches;\r\n\r\n        public MultipleSandwiches(List<Sandwich> sandwiches) {\r\n            this.sandwiches = sandwiches;\r\n        }\r\n\r\n        @Override\r\n        public boolean equals(Object o) {\r\n            if (o == this) {\r\n                return true;\r\n            }\r\n            if (!(o instanceof MultipleSandwiches)) {\r\n                return false;\r\n            }\r\n            MultipleSandwiches other = (MultipleSandwiches) o;\r\n            return Objects.equals(this.sandwiches, other.sandwiches);\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  },
+  {
+    "type": "method",
+    "name": "test",
+    "start_line": 31,
+    "end_line": 45,
+    "code": "@Test\r\npublic void test() throws Exception {\r\n    Gson gson = new GsonBuilder().registerTypeAdapterFactory(new PostConstructAdapterFactory()).create();\r\n    Sandwich unused = gson.fromJson(\"{\\\"bread\\\": \\\"white\\\", \\\"cheese\\\": \\\"cheddar\\\"}\", Sandwich.class);\r\n    var e = assertThrows(IllegalArgumentException.class, () -> gson.fromJson(\"{\\\"bread\\\": \\\"cheesey bread\\\", \\\"cheese\\\": \\\"swiss\\\"}\", Sandwich.class));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"too cheesey\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testList",
+    "start_line": 47,
+    "end_line": 65,
+    "code": "@Test\r\npublic void testList() {\r\n    MultipleSandwiches sandwiches = new MultipleSandwiches(Arrays.asList(new Sandwich(\"white\", \"cheddar\"), new Sandwich(\"whole wheat\", \"swiss\")));\r\n    Gson gson = new GsonBuilder().registerTypeAdapterFactory(new PostConstructAdapterFactory()).create();\r\n    // Throws NullPointerException without the fix in https://github.com/google/gson/pull/1103\r\n    String json = gson.toJson(sandwiches);\r\n    assertThat(json).isEqualTo(\"{\\\"sandwiches\\\":[{\\\"bread\\\":\\\"white\\\",\\\"cheese\\\":\\\"cheddar\\\"},\" + \"{\\\"bread\\\":\\\"whole wheat\\\",\\\"cheese\\\":\\\"swiss\\\"}]}\");\r\n    MultipleSandwiches sandwichesFromJson = gson.fromJson(json, MultipleSandwiches.class);\r\n    assertThat(sandwichesFromJson).isEqualTo(sandwiches);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\test\\java\\com\\google\\gson\\typeadapters\\PostConstructAdapterFactoryTest.java"
+  }
+]

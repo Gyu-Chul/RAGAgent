@@ -1,0 +1,186 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.bind",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.bind;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapterFactory",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.TypeAdapterFactory;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.SerializedName",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.annotations.SerializedName;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonToken",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.stream.JsonToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.AccessibleObject",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.lang.reflect.AccessibleObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Field",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.lang.reflect.Field;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.HashMap",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.util.HashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "class",
+    "name": "EnumTypeAdapter",
+    "start_line": 35,
+    "end_line": 116,
+    "code": "/**\r\n * Adapter for enum classes (but not for the base class {@code java.lang.Enum}).\r\n */\r\nclass EnumTypeAdapter<T extends Enum<T>> extends TypeAdapter<T> {\r\n\r\n    static final TypeAdapterFactory FACTORY = new TypeAdapterFactory() {\r\n\r\n        @Override\r\n        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {\r\n            Class<? super T> rawType = typeToken.getRawType();\r\n            if (!Enum.class.isAssignableFrom(rawType) || rawType == Enum.class) {\r\n                return null;\r\n            }\r\n            if (!rawType.isEnum()) {\r\n                // handle anonymous subclasses\r\n                rawType = rawType.getSuperclass();\r\n            }\r\n            @SuppressWarnings({ \"rawtypes\", \"unchecked\" })\r\n            TypeAdapter<T> adapter = (TypeAdapter<T>) new EnumTypeAdapter(rawType);\r\n            return adapter;\r\n        }\r\n    };\r\n\r\n    private final Map<String, T> nameToConstant = new HashMap<>();\r\n\r\n    private final Map<String, T> stringToConstant = new HashMap<>();\r\n\r\n    private final Map<T, String> constantToName = new HashMap<>();\r\n\r\n    private EnumTypeAdapter(Class<T> classOfT) {\r\n        try {\r\n            // Uses reflection to find enum constants to work around name mismatches for obfuscated\r\n            // classes\r\n            Field[] fields = classOfT.getDeclaredFields();\r\n            int constantCount = 0;\r\n            for (Field f : fields) {\r\n                // Filter out non-constant fields, replacing elements as we go\r\n                if (f.isEnumConstant()) {\r\n                    fields[constantCount++] = f;\r\n                }\r\n            }\r\n            // Trim the array to the new length. Every enum type can be expected to have at least\r\n            // one declared field which is not an enum constant, namely the implicit $VALUES array\r\n            fields = Arrays.copyOf(fields, constantCount);\r\n            AccessibleObject.setAccessible(fields, true);\r\n            for (Field constantField : fields) {\r\n                @SuppressWarnings(\"unchecked\")\r\n                T constant = (T) constantField.get(null);\r\n                String name = constant.name();\r\n                String toStringVal = constant.toString();\r\n                SerializedName annotation = constantField.getAnnotation(SerializedName.class);\r\n                if (annotation != null) {\r\n                    name = annotation.value();\r\n                    for (String alternate : annotation.alternate()) {\r\n                        nameToConstant.put(alternate, constant);\r\n                    }\r\n                }\r\n                nameToConstant.put(name, constant);\r\n                stringToConstant.put(toStringVal, constant);\r\n                constantToName.put(constant, name);\r\n            }\r\n        } catch (IllegalAccessException e) {\r\n            // IllegalAccessException should be impossible due to the `setAccessible` call above;\r\n            // and even that should probably not fail since enum constants are implicitly public\r\n            throw new AssertionError(e);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public T read(JsonReader in) throws IOException {\r\n        if (in.peek() == JsonToken.NULL) {\r\n            in.nextNull();\r\n            return null;\r\n        }\r\n        String key = in.nextString();\r\n        T constant = nameToConstant.get(key);\r\n        // Note: If none of the approaches find the constant, this returns null\r\n        return (constant == null) ? stringToConstant.get(key) : constant;\r\n    }\r\n\r\n    @Override\r\n    public void write(JsonWriter out, T value) throws IOException {\r\n        out.value(value == null ? null : constantToName.get(value));\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "FACTORY",
+    "start_line": 36,
+    "end_line": 51,
+    "code": "static final TypeAdapterFactory FACTORY = new TypeAdapterFactory() {\r\n\r\n    @Override\r\n    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {\r\n        Class<? super T> rawType = typeToken.getRawType();\r\n        if (!Enum.class.isAssignableFrom(rawType) || rawType == Enum.class) {\r\n            return null;\r\n        }\r\n        if (!rawType.isEnum()) {\r\n            // handle anonymous subclasses\r\n            rawType = rawType.getSuperclass();\r\n        }\r\n        @SuppressWarnings({ \"rawtypes\", \"unchecked\" })\r\n        TypeAdapter<T> adapter = (TypeAdapter<T>) new EnumTypeAdapter(rawType);\r\n        return adapter;\r\n    }\r\n};",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "nameToConstant",
+    "start_line": 53,
+    "end_line": 53,
+    "code": "private final Map<String, T> nameToConstant = new HashMap<>();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "stringToConstant",
+    "start_line": 54,
+    "end_line": 54,
+    "code": "private final Map<String, T> stringToConstant = new HashMap<>();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "constantToName",
+    "start_line": 55,
+    "end_line": 55,
+    "code": "private final Map<T, String> constantToName = new HashMap<>();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "constructor",
+    "name": "EnumTypeAdapter",
+    "start_line": 57,
+    "end_line": 98,
+    "code": "private EnumTypeAdapter(Class<T> classOfT) {\r\n    try {\r\n        // Uses reflection to find enum constants to work around name mismatches for obfuscated\r\n        // classes\r\n        Field[] fields = classOfT.getDeclaredFields();\r\n        int constantCount = 0;\r\n        for (Field f : fields) {\r\n            // Filter out non-constant fields, replacing elements as we go\r\n            if (f.isEnumConstant()) {\r\n                fields[constantCount++] = f;\r\n            }\r\n        }\r\n        // Trim the array to the new length. Every enum type can be expected to have at least\r\n        // one declared field which is not an enum constant, namely the implicit $VALUES array\r\n        fields = Arrays.copyOf(fields, constantCount);\r\n        AccessibleObject.setAccessible(fields, true);\r\n        for (Field constantField : fields) {\r\n            @SuppressWarnings(\"unchecked\")\r\n            T constant = (T) constantField.get(null);\r\n            String name = constant.name();\r\n            String toStringVal = constant.toString();\r\n            SerializedName annotation = constantField.getAnnotation(SerializedName.class);\r\n            if (annotation != null) {\r\n                name = annotation.value();\r\n                for (String alternate : annotation.alternate()) {\r\n                    nameToConstant.put(alternate, constant);\r\n                }\r\n            }\r\n            nameToConstant.put(name, constant);\r\n            stringToConstant.put(toStringVal, constant);\r\n            constantToName.put(constant, name);\r\n        }\r\n    } catch (IllegalAccessException e) {\r\n        // IllegalAccessException should be impossible due to the `setAccessible` call above;\r\n        // and even that should probably not fail since enum constants are implicitly public\r\n        throw new AssertionError(e);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "read",
+    "start_line": 100,
+    "end_line": 110,
+    "code": "@Override\r\npublic T read(JsonReader in) throws IOException {\r\n    if (in.peek() == JsonToken.NULL) {\r\n        in.nextNull();\r\n        return null;\r\n    }\r\n    String key = in.nextString();\r\n    T constant = nameToConstant.get(key);\r\n    // Note: If none of the approaches find the constant, this returns null\r\n    return (constant == null) ? stringToConstant.get(key) : constant;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "write",
+    "start_line": 112,
+    "end_line": 115,
+    "code": "@Override\r\npublic void write(JsonWriter out, T value) throws IOException {\r\n    out.value(value == null ? null : constantToName.get(value));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\EnumTypeAdapter.java"
+  }
+]

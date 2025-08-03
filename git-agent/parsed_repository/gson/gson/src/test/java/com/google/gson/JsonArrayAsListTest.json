@@ -1,0 +1,242 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.MoreAsserts",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.common.MoreAsserts;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collections",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.Collections;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Comparator",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.util.Comparator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Spliterator",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.util.Spliterator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.stream.Collectors",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.util.stream.Collectors;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.stream.StreamSupport",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.util.stream.StreamSupport;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonArrayAsListTest",
+    "start_line": 33,
+    "end_line": 314,
+    "code": "/**\r\n * Tests for {@link JsonArray#asList()}.\r\n */\r\npublic class JsonArrayAsListTest {\r\n\r\n    @Test\r\n    public void testGet() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        List<JsonElement> list = a.asList();\r\n        assertThat(list.get(0)).isEqualTo(new JsonPrimitive(1));\r\n        assertThrows(IndexOutOfBoundsException.class, () -> list.get(-1));\r\n        assertThrows(IndexOutOfBoundsException.class, () -> list.get(2));\r\n        a.add((JsonElement) null);\r\n        assertThat(list.get(1)).isEqualTo(JsonNull.INSTANCE);\r\n    }\r\n\r\n    @Test\r\n    public void testSize() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        List<JsonElement> list = a.asList();\r\n        assertThat(list).hasSize(1);\r\n        list.add(new JsonPrimitive(2));\r\n        assertThat(list).hasSize(2);\r\n    }\r\n\r\n    @Test\r\n    public void testSet() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        List<JsonElement> list = a.asList();\r\n        JsonElement old = list.set(0, new JsonPrimitive(2));\r\n        assertThat(old).isEqualTo(new JsonPrimitive(1));\r\n        assertThat(list.get(0)).isEqualTo(new JsonPrimitive(2));\r\n        assertThat(a.get(0)).isEqualTo(new JsonPrimitive(2));\r\n        assertThrows(IndexOutOfBoundsException.class, () -> list.set(-1, new JsonPrimitive(1)));\r\n        assertThrows(IndexOutOfBoundsException.class, () -> list.set(2, new JsonPrimitive(1)));\r\n        NullPointerException e = assertThrows(NullPointerException.class, () -> list.set(0, null));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Element must be non-null\");\r\n    }\r\n\r\n    @Test\r\n    public void testAdd() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        List<JsonElement> list = a.asList();\r\n        list.add(0, new JsonPrimitive(2));\r\n        list.add(1, new JsonPrimitive(3));\r\n        assertThat(list.add(new JsonPrimitive(4))).isTrue();\r\n        assertThat(list.add(JsonNull.INSTANCE)).isTrue();\r\n        List<JsonElement> expectedList = Arrays.asList(new JsonPrimitive(2), new JsonPrimitive(3), new JsonPrimitive(1), new JsonPrimitive(4), JsonNull.INSTANCE);\r\n        assertThat(list).isEqualTo(expectedList);\r\n        assertThrows(IndexOutOfBoundsException.class, () -> list.set(-1, new JsonPrimitive(1)));\r\n        assertThrows(IndexOutOfBoundsException.class, () -> list.set(list.size(), new JsonPrimitive(1)));\r\n        NullPointerException e = assertThrows(NullPointerException.class, () -> list.add(0, null));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Element must be non-null\");\r\n        e = assertThrows(NullPointerException.class, () -> list.add(null));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Element must be non-null\");\r\n    }\r\n\r\n    @Test\r\n    public void testAddAll() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        List<JsonElement> list = a.asList();\r\n        list.addAll(Arrays.asList(new JsonPrimitive(2), new JsonPrimitive(3)));\r\n        List<JsonElement> expectedList = Arrays.asList(new JsonPrimitive(1), new JsonPrimitive(2), new JsonPrimitive(3));\r\n        assertThat(list).isEqualTo(expectedList);\r\n        assertThat(list).isEqualTo(expectedList);\r\n        NullPointerException e = assertThrows(NullPointerException.class, () -> list.addAll(0, Collections.singletonList(null)));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Element must be non-null\");\r\n        e = assertThrows(NullPointerException.class, () -> list.addAll(Collections.singletonList(null)));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Element must be non-null\");\r\n    }\r\n\r\n    @Test\r\n    public void testRemoveIndex() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        List<JsonElement> list = a.asList();\r\n        assertThat(list.remove(0)).isEqualTo(new JsonPrimitive(1));\r\n        assertThat(list).hasSize(0);\r\n        assertThat(a).hasSize(0);\r\n        assertThrows(IndexOutOfBoundsException.class, () -> list.remove(0));\r\n    }\r\n\r\n    @Test\r\n    public void testRemoveElement() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        List<JsonElement> list = a.asList();\r\n        assertThat(list.remove(new JsonPrimitive(1))).isTrue();\r\n        assertThat(list).hasSize(0);\r\n        assertThat(a).hasSize(0);\r\n        assertThat(list.remove(new JsonPrimitive(1))).isFalse();\r\n        assertThat(list.remove(null)).isFalse();\r\n    }\r\n\r\n    @Test\r\n    public void testClear() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        List<JsonElement> list = a.asList();\r\n        list.clear();\r\n        assertThat(list).hasSize(0);\r\n        assertThat(a).hasSize(0);\r\n    }\r\n\r\n    @Test\r\n    public void testContains() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        List<JsonElement> list = a.asList();\r\n        assertThat(list).contains(new JsonPrimitive(1));\r\n        assertThat(list).doesNotContain(new JsonPrimitive(2));\r\n        assertThat(list).doesNotContain(null);\r\n        @SuppressWarnings({ \"unlikely-arg-type\", \"CollectionIncompatibleType\" })\r\n        boolean // should only contain JsonPrimitive(1)\r\n        containsInt = list.contains(1);\r\n        assertThat(containsInt).isFalse();\r\n    }\r\n\r\n    @Test\r\n    public void testIndexOf() {\r\n        JsonArray a = new JsonArray();\r\n        // Add the same value twice to test indexOf vs. lastIndexOf\r\n        a.add(1);\r\n        a.add(1);\r\n        List<JsonElement> list = a.asList();\r\n        assertThat(list.indexOf(new JsonPrimitive(1))).isEqualTo(0);\r\n        assertThat(list.indexOf(new JsonPrimitive(2))).isEqualTo(-1);\r\n        assertThat(list.indexOf(null)).isEqualTo(-1);\r\n        @SuppressWarnings({ \"unlikely-arg-type\", \"CollectionIncompatibleType\" })\r\n        int // should only contain JsonPrimitive(1)\r\n        indexOfInt = list.indexOf(1);\r\n        assertThat(indexOfInt).isEqualTo(-1);\r\n        assertThat(list.lastIndexOf(new JsonPrimitive(1))).isEqualTo(1);\r\n        assertThat(list.lastIndexOf(new JsonPrimitive(2))).isEqualTo(-1);\r\n        assertThat(list.lastIndexOf(null)).isEqualTo(-1);\r\n    }\r\n\r\n    private <T> List<T> spliteratorToList(Spliterator<T> spliterator) {\r\n        return StreamSupport.stream(spliterator, false).collect(Collectors.toList());\r\n    }\r\n\r\n    @Test\r\n    public void testSpliterator() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        a.add(3);\r\n        a.add(2);\r\n        List<JsonElement> list = a.asList();\r\n        List<JsonElement> values = spliteratorToList(list.spliterator());\r\n        assertThat(values).containsExactly(new JsonPrimitive(1), new JsonPrimitive(3), new JsonPrimitive(2)).inOrder();\r\n        list = new JsonArray().asList();\r\n        assertThat(spliteratorToList(list.spliterator())).isEmpty();\r\n    }\r\n\r\n    @Test\r\n    public void testSort() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        a.add(3);\r\n        a.add(2);\r\n        List<JsonElement> list = a.asList();\r\n        // JsonElement does not implement Comparable\r\n        assertThrows(ClassCastException.class, () -> list.sort(null));\r\n        list.sort(Comparator.comparingInt(JsonElement::getAsInt));\r\n        assertThat(list).containsExactly(new JsonPrimitive(1), new JsonPrimitive(2), new JsonPrimitive(3)).inOrder();\r\n        assertThat(a).containsExactly(new JsonPrimitive(1), new JsonPrimitive(2), new JsonPrimitive(3)).inOrder();\r\n    }\r\n\r\n    @Test\r\n    public void testReplaceAll() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        a.add(3);\r\n        a.add(2);\r\n        List<JsonElement> list = a.asList();\r\n        list.replaceAll(element -> new JsonPrimitive(-element.getAsInt()));\r\n        assertThat(list).containsExactly(new JsonPrimitive(-1), new JsonPrimitive(-3), new JsonPrimitive(-2)).inOrder();\r\n        assertThat(a).containsExactly(new JsonPrimitive(-1), new JsonPrimitive(-3), new JsonPrimitive(-2)).inOrder();\r\n        var e = assertThrows(NullPointerException.class, () -> list.replaceAll(element -> null));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Element must be non-null\");\r\n    }\r\n\r\n    @Test\r\n    public void testToArray() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        List<JsonElement> list = a.asList();\r\n        assertThat(list.toArray()).isEqualTo(new Object[] { new JsonPrimitive(1) });\r\n        JsonElement[] array = list.toArray(new JsonElement[0]);\r\n        assertThat(array).isEqualTo(new Object[] { new JsonPrimitive(1) });\r\n        array = new JsonElement[1];\r\n        assertThat(list.toArray(array)).isEqualTo(array);\r\n        assertThat(array).isEqualTo(new Object[] { new JsonPrimitive(1) });\r\n        array = new JsonElement[] { null, new JsonPrimitive(2) };\r\n        assertThat(list.toArray(array)).isEqualTo(array);\r\n        // Should have set existing array element to null\r\n        assertThat(array).isEqualTo(new Object[] { new JsonPrimitive(1), null });\r\n    }\r\n\r\n    @Test\r\n    public void testEqualsHashCode() {\r\n        JsonArray a = new JsonArray();\r\n        a.add(1);\r\n        List<JsonElement> list = a.asList();\r\n        MoreAsserts.assertEqualsAndHashCode(list, Collections.singletonList(new JsonPrimitive(1)));\r\n        assertThat(list.equals(Collections.emptyList())).isFalse();\r\n        assertThat(list.equals(Collections.singletonList(new JsonPrimitive(2)))).isFalse();\r\n    }\r\n\r\n    /**\r\n     * Verify that {@code JsonArray} updates are visible to view and vice versa\r\n     */\r\n    @Test\r\n    public void testViewUpdates() {\r\n        JsonArray a = new JsonArray();\r\n        List<JsonElement> list = a.asList();\r\n        a.add(1);\r\n        assertThat(list).hasSize(1);\r\n        assertThat(list.get(0)).isEqualTo(new JsonPrimitive(1));\r\n        list.add(new JsonPrimitive(2));\r\n        assertThat(a).hasSize(2);\r\n        assertThat(a.get(1)).isEqualTo(new JsonPrimitive(2));\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGet",
+    "start_line": 34,
+    "end_line": 47,
+    "code": "@Test\r\npublic void testGet() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    List<JsonElement> list = a.asList();\r\n    assertThat(list.get(0)).isEqualTo(new JsonPrimitive(1));\r\n    assertThrows(IndexOutOfBoundsException.class, () -> list.get(-1));\r\n    assertThrows(IndexOutOfBoundsException.class, () -> list.get(2));\r\n    a.add((JsonElement) null);\r\n    assertThat(list.get(1)).isEqualTo(JsonNull.INSTANCE);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSize",
+    "start_line": 49,
+    "end_line": 58,
+    "code": "@Test\r\npublic void testSize() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    List<JsonElement> list = a.asList();\r\n    assertThat(list).hasSize(1);\r\n    list.add(new JsonPrimitive(2));\r\n    assertThat(list).hasSize(2);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSet",
+    "start_line": 60,
+    "end_line": 76,
+    "code": "@Test\r\npublic void testSet() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    List<JsonElement> list = a.asList();\r\n    JsonElement old = list.set(0, new JsonPrimitive(2));\r\n    assertThat(old).isEqualTo(new JsonPrimitive(1));\r\n    assertThat(list.get(0)).isEqualTo(new JsonPrimitive(2));\r\n    assertThat(a.get(0)).isEqualTo(new JsonPrimitive(2));\r\n    assertThrows(IndexOutOfBoundsException.class, () -> list.set(-1, new JsonPrimitive(1)));\r\n    assertThrows(IndexOutOfBoundsException.class, () -> list.set(2, new JsonPrimitive(1)));\r\n    NullPointerException e = assertThrows(NullPointerException.class, () -> list.set(0, null));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Element must be non-null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAdd",
+    "start_line": 78,
+    "end_line": 107,
+    "code": "@Test\r\npublic void testAdd() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    List<JsonElement> list = a.asList();\r\n    list.add(0, new JsonPrimitive(2));\r\n    list.add(1, new JsonPrimitive(3));\r\n    assertThat(list.add(new JsonPrimitive(4))).isTrue();\r\n    assertThat(list.add(JsonNull.INSTANCE)).isTrue();\r\n    List<JsonElement> expectedList = Arrays.asList(new JsonPrimitive(2), new JsonPrimitive(3), new JsonPrimitive(1), new JsonPrimitive(4), JsonNull.INSTANCE);\r\n    assertThat(list).isEqualTo(expectedList);\r\n    assertThrows(IndexOutOfBoundsException.class, () -> list.set(-1, new JsonPrimitive(1)));\r\n    assertThrows(IndexOutOfBoundsException.class, () -> list.set(list.size(), new JsonPrimitive(1)));\r\n    NullPointerException e = assertThrows(NullPointerException.class, () -> list.add(0, null));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Element must be non-null\");\r\n    e = assertThrows(NullPointerException.class, () -> list.add(null));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Element must be non-null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAddAll",
+    "start_line": 109,
+    "end_line": 131,
+    "code": "@Test\r\npublic void testAddAll() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    List<JsonElement> list = a.asList();\r\n    list.addAll(Arrays.asList(new JsonPrimitive(2), new JsonPrimitive(3)));\r\n    List<JsonElement> expectedList = Arrays.asList(new JsonPrimitive(1), new JsonPrimitive(2), new JsonPrimitive(3));\r\n    assertThat(list).isEqualTo(expectedList);\r\n    assertThat(list).isEqualTo(expectedList);\r\n    NullPointerException e = assertThrows(NullPointerException.class, () -> list.addAll(0, Collections.singletonList(null)));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Element must be non-null\");\r\n    e = assertThrows(NullPointerException.class, () -> list.addAll(Collections.singletonList(null)));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Element must be non-null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testRemoveIndex",
+    "start_line": 133,
+    "end_line": 144,
+    "code": "@Test\r\npublic void testRemoveIndex() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    List<JsonElement> list = a.asList();\r\n    assertThat(list.remove(0)).isEqualTo(new JsonPrimitive(1));\r\n    assertThat(list).hasSize(0);\r\n    assertThat(a).hasSize(0);\r\n    assertThrows(IndexOutOfBoundsException.class, () -> list.remove(0));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testRemoveElement",
+    "start_line": 146,
+    "end_line": 158,
+    "code": "@Test\r\npublic void testRemoveElement() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    List<JsonElement> list = a.asList();\r\n    assertThat(list.remove(new JsonPrimitive(1))).isTrue();\r\n    assertThat(list).hasSize(0);\r\n    assertThat(a).hasSize(0);\r\n    assertThat(list.remove(new JsonPrimitive(1))).isFalse();\r\n    assertThat(list.remove(null)).isFalse();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testClear",
+    "start_line": 160,
+    "end_line": 169,
+    "code": "@Test\r\npublic void testClear() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    List<JsonElement> list = a.asList();\r\n    list.clear();\r\n    assertThat(list).hasSize(0);\r\n    assertThat(a).hasSize(0);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testContains",
+    "start_line": 171,
+    "end_line": 184,
+    "code": "@Test\r\npublic void testContains() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    List<JsonElement> list = a.asList();\r\n    assertThat(list).contains(new JsonPrimitive(1));\r\n    assertThat(list).doesNotContain(new JsonPrimitive(2));\r\n    assertThat(list).doesNotContain(null);\r\n    @SuppressWarnings({ \"unlikely-arg-type\", \"CollectionIncompatibleType\" })\r\n    boolean // should only contain JsonPrimitive(1)\r\n    containsInt = list.contains(1);\r\n    assertThat(containsInt).isFalse();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testIndexOf",
+    "start_line": 186,
+    "end_line": 205,
+    "code": "@Test\r\npublic void testIndexOf() {\r\n    JsonArray a = new JsonArray();\r\n    // Add the same value twice to test indexOf vs. lastIndexOf\r\n    a.add(1);\r\n    a.add(1);\r\n    List<JsonElement> list = a.asList();\r\n    assertThat(list.indexOf(new JsonPrimitive(1))).isEqualTo(0);\r\n    assertThat(list.indexOf(new JsonPrimitive(2))).isEqualTo(-1);\r\n    assertThat(list.indexOf(null)).isEqualTo(-1);\r\n    @SuppressWarnings({ \"unlikely-arg-type\", \"CollectionIncompatibleType\" })\r\n    int // should only contain JsonPrimitive(1)\r\n    indexOfInt = list.indexOf(1);\r\n    assertThat(indexOfInt).isEqualTo(-1);\r\n    assertThat(list.lastIndexOf(new JsonPrimitive(1))).isEqualTo(1);\r\n    assertThat(list.lastIndexOf(new JsonPrimitive(2))).isEqualTo(-1);\r\n    assertThat(list.lastIndexOf(null)).isEqualTo(-1);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "spliteratorToList",
+    "start_line": 207,
+    "end_line": 209,
+    "code": "private <T> List<T> spliteratorToList(Spliterator<T> spliterator) {\r\n    return StreamSupport.stream(spliterator, false).collect(Collectors.toList());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSpliterator",
+    "start_line": 211,
+    "end_line": 226,
+    "code": "@Test\r\npublic void testSpliterator() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    a.add(3);\r\n    a.add(2);\r\n    List<JsonElement> list = a.asList();\r\n    List<JsonElement> values = spliteratorToList(list.spliterator());\r\n    assertThat(values).containsExactly(new JsonPrimitive(1), new JsonPrimitive(3), new JsonPrimitive(2)).inOrder();\r\n    list = new JsonArray().asList();\r\n    assertThat(spliteratorToList(list.spliterator())).isEmpty();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSort",
+    "start_line": 228,
+    "end_line": 246,
+    "code": "@Test\r\npublic void testSort() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    a.add(3);\r\n    a.add(2);\r\n    List<JsonElement> list = a.asList();\r\n    // JsonElement does not implement Comparable\r\n    assertThrows(ClassCastException.class, () -> list.sort(null));\r\n    list.sort(Comparator.comparingInt(JsonElement::getAsInt));\r\n    assertThat(list).containsExactly(new JsonPrimitive(1), new JsonPrimitive(2), new JsonPrimitive(3)).inOrder();\r\n    assertThat(a).containsExactly(new JsonPrimitive(1), new JsonPrimitive(2), new JsonPrimitive(3)).inOrder();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testReplaceAll",
+    "start_line": 248,
+    "end_line": 266,
+    "code": "@Test\r\npublic void testReplaceAll() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    a.add(3);\r\n    a.add(2);\r\n    List<JsonElement> list = a.asList();\r\n    list.replaceAll(element -> new JsonPrimitive(-element.getAsInt()));\r\n    assertThat(list).containsExactly(new JsonPrimitive(-1), new JsonPrimitive(-3), new JsonPrimitive(-2)).inOrder();\r\n    assertThat(a).containsExactly(new JsonPrimitive(-1), new JsonPrimitive(-3), new JsonPrimitive(-2)).inOrder();\r\n    var e = assertThrows(NullPointerException.class, () -> list.replaceAll(element -> null));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Element must be non-null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testToArray",
+    "start_line": 268,
+    "end_line": 287,
+    "code": "@Test\r\npublic void testToArray() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    List<JsonElement> list = a.asList();\r\n    assertThat(list.toArray()).isEqualTo(new Object[] { new JsonPrimitive(1) });\r\n    JsonElement[] array = list.toArray(new JsonElement[0]);\r\n    assertThat(array).isEqualTo(new Object[] { new JsonPrimitive(1) });\r\n    array = new JsonElement[1];\r\n    assertThat(list.toArray(array)).isEqualTo(array);\r\n    assertThat(array).isEqualTo(new Object[] { new JsonPrimitive(1) });\r\n    array = new JsonElement[] { null, new JsonPrimitive(2) };\r\n    assertThat(list.toArray(array)).isEqualTo(array);\r\n    // Should have set existing array element to null\r\n    assertThat(array).isEqualTo(new Object[] { new JsonPrimitive(1), null });\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEqualsHashCode",
+    "start_line": 289,
+    "end_line": 298,
+    "code": "@Test\r\npublic void testEqualsHashCode() {\r\n    JsonArray a = new JsonArray();\r\n    a.add(1);\r\n    List<JsonElement> list = a.asList();\r\n    MoreAsserts.assertEqualsAndHashCode(list, Collections.singletonList(new JsonPrimitive(1)));\r\n    assertThat(list.equals(Collections.emptyList())).isFalse();\r\n    assertThat(list.equals(Collections.singletonList(new JsonPrimitive(2)))).isFalse();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testViewUpdates",
+    "start_line": 301,
+    "end_line": 313,
+    "code": "/**\r\n * Verify that {@code JsonArray} updates are visible to view and vice versa\r\n */\r\n@Test\r\npublic void testViewUpdates() {\r\n    JsonArray a = new JsonArray();\r\n    List<JsonElement> list = a.asList();\r\n    a.add(1);\r\n    assertThat(list).hasSize(1);\r\n    assertThat(list.get(0)).isEqualTo(new JsonPrimitive(1));\r\n    list.add(new JsonPrimitive(2));\r\n    assertThat(a).hasSize(2);\r\n    assertThat(a.get(1)).isEqualTo(new JsonPrimitive(2));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonArrayAsListTest.java"
+  }
+]

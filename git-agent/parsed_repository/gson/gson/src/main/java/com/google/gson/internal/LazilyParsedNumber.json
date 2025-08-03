@@ -1,0 +1,154 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.internal;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.InvalidObjectException",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import java.io.InvalidObjectException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.ObjectInputStream",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import java.io.ObjectInputStream;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.ObjectStreamException",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.io.ObjectStreamException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "import",
+    "name": "java.math.BigDecimal",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.math.BigDecimal;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "class",
+    "name": "LazilyParsedNumber",
+    "start_line": 29,
+    "end_line": 111,
+    "code": "/**\r\n * This class holds a number value that is lazily converted to a specific number type\r\n *\r\n * @author Inderjeet Singh\r\n */\r\n// ignore warning about missing serialVersionUID\r\n@SuppressWarnings(\"serial\")\r\npublic final class LazilyParsedNumber extends Number {\r\n\r\n    private final String value;\r\n\r\n    /**\r\n     * @param value must not be null\r\n     */\r\n    public LazilyParsedNumber(String value) {\r\n        this.value = value;\r\n    }\r\n\r\n    private BigDecimal asBigDecimal() {\r\n        return NumberLimits.parseBigDecimal(value);\r\n    }\r\n\r\n    @Override\r\n    public int intValue() {\r\n        try {\r\n            return Integer.parseInt(value);\r\n        } catch (NumberFormatException e) {\r\n            try {\r\n                return (int) Long.parseLong(value);\r\n            } catch (NumberFormatException nfe) {\r\n                return asBigDecimal().intValue();\r\n            }\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public long longValue() {\r\n        try {\r\n            return Long.parseLong(value);\r\n        } catch (NumberFormatException e) {\r\n            return asBigDecimal().longValue();\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public float floatValue() {\r\n        return Float.parseFloat(value);\r\n    }\r\n\r\n    @Override\r\n    public double doubleValue() {\r\n        return Double.parseDouble(value);\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return value;\r\n    }\r\n\r\n    /**\r\n     * If somebody is unlucky enough to have to serialize one of these, serialize it as a BigDecimal\r\n     * so that they won't need Gson on the other side to deserialize it.\r\n     */\r\n    private Object writeReplace() throws ObjectStreamException {\r\n        return asBigDecimal();\r\n    }\r\n\r\n    private void readObject(ObjectInputStream in) throws IOException {\r\n        // Don't permit directly deserializing this class; writeReplace() should have written a\r\n        // replacement\r\n        throw new InvalidObjectException(\"Deserialization is unsupported\");\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        return value.hashCode();\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object obj) {\r\n        if (this == obj) {\r\n            return true;\r\n        }\r\n        if (obj instanceof LazilyParsedNumber) {\r\n            LazilyParsedNumber other = (LazilyParsedNumber) obj;\r\n            return value.equals(other.value);\r\n        }\r\n        return false;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "field",
+    "name": "value",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "private final String value;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "constructor",
+    "name": "LazilyParsedNumber",
+    "start_line": 36,
+    "end_line": 38,
+    "code": "/**\r\n * @param value must not be null\r\n */\r\npublic LazilyParsedNumber(String value) {\r\n    this.value = value;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "method",
+    "name": "asBigDecimal",
+    "start_line": 40,
+    "end_line": 42,
+    "code": "private BigDecimal asBigDecimal() {\r\n    return NumberLimits.parseBigDecimal(value);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "method",
+    "name": "intValue",
+    "start_line": 44,
+    "end_line": 55,
+    "code": "@Override\r\npublic int intValue() {\r\n    try {\r\n        return Integer.parseInt(value);\r\n    } catch (NumberFormatException e) {\r\n        try {\r\n            return (int) Long.parseLong(value);\r\n        } catch (NumberFormatException nfe) {\r\n            return asBigDecimal().intValue();\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "method",
+    "name": "longValue",
+    "start_line": 57,
+    "end_line": 64,
+    "code": "@Override\r\npublic long longValue() {\r\n    try {\r\n        return Long.parseLong(value);\r\n    } catch (NumberFormatException e) {\r\n        return asBigDecimal().longValue();\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "method",
+    "name": "floatValue",
+    "start_line": 66,
+    "end_line": 69,
+    "code": "@Override\r\npublic float floatValue() {\r\n    return Float.parseFloat(value);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "method",
+    "name": "doubleValue",
+    "start_line": 71,
+    "end_line": 74,
+    "code": "@Override\r\npublic double doubleValue() {\r\n    return Double.parseDouble(value);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "method",
+    "name": "toString",
+    "start_line": 76,
+    "end_line": 79,
+    "code": "@Override\r\npublic String toString() {\r\n    return value;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "method",
+    "name": "writeReplace",
+    "start_line": 85,
+    "end_line": 87,
+    "code": "/**\r\n * If somebody is unlucky enough to have to serialize one of these, serialize it as a BigDecimal\r\n * so that they won't need Gson on the other side to deserialize it.\r\n */\r\nprivate Object writeReplace() throws ObjectStreamException {\r\n    return asBigDecimal();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "method",
+    "name": "readObject",
+    "start_line": 89,
+    "end_line": 93,
+    "code": "private void readObject(ObjectInputStream in) throws IOException {\r\n    // Don't permit directly deserializing this class; writeReplace() should have written a\r\n    // replacement\r\n    throw new InvalidObjectException(\"Deserialization is unsupported\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "method",
+    "name": "hashCode",
+    "start_line": 95,
+    "end_line": 98,
+    "code": "@Override\r\npublic int hashCode() {\r\n    return value.hashCode();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  },
+  {
+    "type": "method",
+    "name": "equals",
+    "start_line": 100,
+    "end_line": 110,
+    "code": "@Override\r\npublic boolean equals(Object obj) {\r\n    if (this == obj) {\r\n        return true;\r\n    }\r\n    if (obj instanceof LazilyParsedNumber) {\r\n        LazilyParsedNumber other = (LazilyParsedNumber) obj;\r\n        return value.equals(other.value);\r\n    }\r\n    return false;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\LazilyParsedNumber.java"
+  }
+]

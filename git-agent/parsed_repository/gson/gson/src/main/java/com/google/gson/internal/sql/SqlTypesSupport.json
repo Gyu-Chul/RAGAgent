@@ -1,0 +1,106 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.sql",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.sql;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapterFactory",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.TypeAdapterFactory;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.bind.DefaultDateTypeAdapter.DateType",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.internal.bind.DefaultDateTypeAdapter.DateType;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  },
+  {
+    "type": "import",
+    "name": "java.sql.Timestamp",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.sql.Timestamp;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Date",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.util.Date;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  },
+  {
+    "type": "class",
+    "name": "SqlTypesSupport",
+    "start_line": 33,
+    "end_line": 85,
+    "code": "/**\r\n * Encapsulates access to {@code java.sql} types, to allow Gson to work without the {@code java.sql}\r\n * module being present. No {@link ClassNotFoundException}s will be thrown in case the {@code\r\n * java.sql} module is not present.\r\n *\r\n * <p>If {@link #SUPPORTS_SQL_TYPES} is {@code true}, all other constants of this class will be\r\n * non-{@code null}. However, if it is {@code false} all other constants will be {@code null} and\r\n * there will be no support for {@code java.sql} types.\r\n */\r\n@SuppressWarnings(\"JavaUtilDate\")\r\npublic final class SqlTypesSupport {\r\n\r\n    /**\r\n     * {@code true} if {@code java.sql} types are supported, {@code false} otherwise\r\n     */\r\n    public static final boolean SUPPORTS_SQL_TYPES;\r\n\r\n    public static final DateType<? extends Date> DATE_DATE_TYPE;\r\n\r\n    public static final DateType<? extends Date> TIMESTAMP_DATE_TYPE;\r\n\r\n    public static final TypeAdapterFactory DATE_FACTORY;\r\n\r\n    public static final TypeAdapterFactory TIME_FACTORY;\r\n\r\n    public static final TypeAdapterFactory TIMESTAMP_FACTORY;\r\n\r\n    static {\r\n        boolean sqlTypesSupport;\r\n        try {\r\n            Class.forName(\"java.sql.Date\");\r\n            sqlTypesSupport = true;\r\n        } catch (ClassNotFoundException classNotFoundException) {\r\n            sqlTypesSupport = false;\r\n        }\r\n        SUPPORTS_SQL_TYPES = sqlTypesSupport;\r\n        if (SUPPORTS_SQL_TYPES) {\r\n            DATE_DATE_TYPE = new DateType<java.sql.Date>(java.sql.Date.class) {\r\n\r\n                @Override\r\n                protected java.sql.Date deserialize(Date date) {\r\n                    return new java.sql.Date(date.getTime());\r\n                }\r\n            };\r\n            TIMESTAMP_DATE_TYPE = new DateType<Timestamp>(Timestamp.class) {\r\n\r\n                @Override\r\n                protected Timestamp deserialize(Date date) {\r\n                    return new Timestamp(date.getTime());\r\n                }\r\n            };\r\n            DATE_FACTORY = SqlDateTypeAdapter.FACTORY;\r\n            TIME_FACTORY = SqlTimeTypeAdapter.FACTORY;\r\n            TIMESTAMP_FACTORY = SqlTimestampTypeAdapter.FACTORY;\r\n        } else {\r\n            DATE_DATE_TYPE = null;\r\n            TIMESTAMP_DATE_TYPE = null;\r\n            DATE_FACTORY = null;\r\n            TIME_FACTORY = null;\r\n            TIMESTAMP_FACTORY = null;\r\n        }\r\n    }\r\n\r\n    private SqlTypesSupport() {\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  },
+  {
+    "type": "field",
+    "name": "SUPPORTS_SQL_TYPES",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "/**\r\n * {@code true} if {@code java.sql} types are supported, {@code false} otherwise\r\n */\r\npublic static final boolean SUPPORTS_SQL_TYPES;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  },
+  {
+    "type": "field",
+    "name": "DATE_DATE_TYPE",
+    "start_line": 38,
+    "end_line": 38,
+    "code": "public static final DateType<? extends Date> DATE_DATE_TYPE;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  },
+  {
+    "type": "field",
+    "name": "TIMESTAMP_DATE_TYPE",
+    "start_line": 39,
+    "end_line": 39,
+    "code": "public static final DateType<? extends Date> TIMESTAMP_DATE_TYPE;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  },
+  {
+    "type": "field",
+    "name": "DATE_FACTORY",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "public static final TypeAdapterFactory DATE_FACTORY;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  },
+  {
+    "type": "field",
+    "name": "TIME_FACTORY",
+    "start_line": 42,
+    "end_line": 42,
+    "code": "public static final TypeAdapterFactory TIME_FACTORY;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  },
+  {
+    "type": "field",
+    "name": "TIMESTAMP_FACTORY",
+    "start_line": 43,
+    "end_line": 43,
+    "code": "public static final TypeAdapterFactory TIMESTAMP_FACTORY;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  },
+  {
+    "type": "constructor",
+    "name": "SqlTypesSupport",
+    "start_line": 84,
+    "end_line": 84,
+    "code": "private SqlTypesSupport() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupport.java"
+  }
+]

@@ -1,0 +1,218 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.base.Throwables",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.common.base.Throwables;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonObject",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.JsonObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializationContext",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.JsonSerializationContext;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializer",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.JsonSerializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.ClassOverridingEquals",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.common.TestTypes.ClassOverridingEquals;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collection",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.util.Collection;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.function.ThrowingRunnable",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import org.junit.function.ThrowingRunnable;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "class",
+    "name": "CircularReferenceTest",
+    "start_line": 42,
+    "end_line": 143,
+    "code": "/**\r\n * Functional tests related to circular reference detection and error reporting.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class CircularReferenceTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n    }\r\n\r\n    @Test\r\n    public void testCircularSerialization() {\r\n        ContainsReferenceToSelfType a = new ContainsReferenceToSelfType();\r\n        ContainsReferenceToSelfType b = new ContainsReferenceToSelfType();\r\n        a.children.add(b);\r\n        b.children.add(a);\r\n        // Circular types should not get printed\r\n        assertThrowsStackOverflow(() -> gson.toJson(a));\r\n    }\r\n\r\n    @Test\r\n    public void testSelfReferenceIgnoredInSerialization() {\r\n        ClassOverridingEquals objA = new ClassOverridingEquals();\r\n        objA.ref = objA;\r\n        String json = gson.toJson(objA);\r\n        // self-reference is ignored\r\n        assertThat(json).doesNotContain(\"ref\");\r\n    }\r\n\r\n    @Test\r\n    public void testSelfReferenceArrayFieldSerialization() {\r\n        ClassWithSelfReferenceArray objA = new ClassWithSelfReferenceArray();\r\n        objA.children = new ClassWithSelfReferenceArray[] { objA };\r\n        // Circular reference to self can not be serialized\r\n        assertThrowsStackOverflow(() -> gson.toJson(objA));\r\n    }\r\n\r\n    @Test\r\n    public void testSelfReferenceCustomHandlerSerialization() {\r\n        ClassWithSelfReference obj = new ClassWithSelfReference();\r\n        obj.child = obj;\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(ClassWithSelfReference.class, new JsonSerializer<ClassWithSelfReference>() {\r\n\r\n            @Override\r\n            public JsonElement serialize(ClassWithSelfReference src, Type typeOfSrc, JsonSerializationContext context) {\r\n                JsonObject obj = new JsonObject();\r\n                obj.addProperty(\"property\", \"value\");\r\n                obj.add(\"child\", context.serialize(src.child));\r\n                return obj;\r\n            }\r\n        }).create();\r\n        // Circular reference to self can not be serialized\r\n        assertThrowsStackOverflow(() -> gson.toJson(obj));\r\n    }\r\n\r\n    /**\r\n     * Asserts that a {@link StackOverflowError} is thrown.\r\n     */\r\n    private static void assertThrowsStackOverflow(ThrowingRunnable runnable) {\r\n        // Obtain the root cause because the StackOverflowError might occur in JDK code, and that might\r\n        // wrap it in another exception class, for example InternalError\r\n        Throwable t = assertThrows(Throwable.class, runnable);\r\n        assertThat(Throwables.getRootCause(t)).isInstanceOf(StackOverflowError.class);\r\n    }\r\n\r\n    @Test\r\n    public void testDirectedAcyclicGraphSerialization() {\r\n        ContainsReferenceToSelfType a = new ContainsReferenceToSelfType();\r\n        ContainsReferenceToSelfType b = new ContainsReferenceToSelfType();\r\n        ContainsReferenceToSelfType c = new ContainsReferenceToSelfType();\r\n        a.children.add(b);\r\n        a.children.add(c);\r\n        b.children.add(c);\r\n        assertThat(gson.toJson(a)).isNotNull();\r\n    }\r\n\r\n    @Test\r\n    public void testDirectedAcyclicGraphDeserialization() {\r\n        String json = \"{\\\"children\\\":[{\\\"children\\\":[{\\\"children\\\":[]}]},{\\\"children\\\":[]}]}\";\r\n        ContainsReferenceToSelfType target = gson.fromJson(json, ContainsReferenceToSelfType.class);\r\n        assertThat(target).isNotNull();\r\n        assertThat(target.children).hasSize(2);\r\n    }\r\n\r\n    private static class ContainsReferenceToSelfType {\r\n\r\n        Collection<ContainsReferenceToSelfType> children = new ArrayList<>();\r\n    }\r\n\r\n    private static class ClassWithSelfReference {\r\n\r\n        ClassWithSelfReference child;\r\n    }\r\n\r\n    private static class ClassWithSelfReferenceArray {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        ClassWithSelfReferenceArray[] children;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 43,
+    "end_line": 43,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 45,
+    "end_line": 48,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCircularSerialization",
+    "start_line": 50,
+    "end_line": 58,
+    "code": "@Test\r\npublic void testCircularSerialization() {\r\n    ContainsReferenceToSelfType a = new ContainsReferenceToSelfType();\r\n    ContainsReferenceToSelfType b = new ContainsReferenceToSelfType();\r\n    a.children.add(b);\r\n    b.children.add(a);\r\n    // Circular types should not get printed\r\n    assertThrowsStackOverflow(() -> gson.toJson(a));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSelfReferenceIgnoredInSerialization",
+    "start_line": 60,
+    "end_line": 67,
+    "code": "@Test\r\npublic void testSelfReferenceIgnoredInSerialization() {\r\n    ClassOverridingEquals objA = new ClassOverridingEquals();\r\n    objA.ref = objA;\r\n    String json = gson.toJson(objA);\r\n    // self-reference is ignored\r\n    assertThat(json).doesNotContain(\"ref\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSelfReferenceArrayFieldSerialization",
+    "start_line": 69,
+    "end_line": 76,
+    "code": "@Test\r\npublic void testSelfReferenceArrayFieldSerialization() {\r\n    ClassWithSelfReferenceArray objA = new ClassWithSelfReferenceArray();\r\n    objA.children = new ClassWithSelfReferenceArray[] { objA };\r\n    // Circular reference to self can not be serialized\r\n    assertThrowsStackOverflow(() -> gson.toJson(objA));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSelfReferenceCustomHandlerSerialization",
+    "start_line": 78,
+    "end_line": 102,
+    "code": "@Test\r\npublic void testSelfReferenceCustomHandlerSerialization() {\r\n    ClassWithSelfReference obj = new ClassWithSelfReference();\r\n    obj.child = obj;\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(ClassWithSelfReference.class, new JsonSerializer<ClassWithSelfReference>() {\r\n\r\n        @Override\r\n        public JsonElement serialize(ClassWithSelfReference src, Type typeOfSrc, JsonSerializationContext context) {\r\n            JsonObject obj = new JsonObject();\r\n            obj.addProperty(\"property\", \"value\");\r\n            obj.add(\"child\", context.serialize(src.child));\r\n            return obj;\r\n        }\r\n    }).create();\r\n    // Circular reference to self can not be serialized\r\n    assertThrowsStackOverflow(() -> gson.toJson(obj));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "assertThrowsStackOverflow",
+    "start_line": 105,
+    "end_line": 110,
+    "code": "/**\r\n * Asserts that a {@link StackOverflowError} is thrown.\r\n */\r\nprivate static void assertThrowsStackOverflow(ThrowingRunnable runnable) {\r\n    // Obtain the root cause because the StackOverflowError might occur in JDK code, and that might\r\n    // wrap it in another exception class, for example InternalError\r\n    Throwable t = assertThrows(Throwable.class, runnable);\r\n    assertThat(Throwables.getRootCause(t)).isInstanceOf(StackOverflowError.class);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDirectedAcyclicGraphSerialization",
+    "start_line": 112,
+    "end_line": 121,
+    "code": "@Test\r\npublic void testDirectedAcyclicGraphSerialization() {\r\n    ContainsReferenceToSelfType a = new ContainsReferenceToSelfType();\r\n    ContainsReferenceToSelfType b = new ContainsReferenceToSelfType();\r\n    ContainsReferenceToSelfType c = new ContainsReferenceToSelfType();\r\n    a.children.add(b);\r\n    a.children.add(c);\r\n    b.children.add(c);\r\n    assertThat(gson.toJson(a)).isNotNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDirectedAcyclicGraphDeserialization",
+    "start_line": 123,
+    "end_line": 129,
+    "code": "@Test\r\npublic void testDirectedAcyclicGraphDeserialization() {\r\n    String json = \"{\\\"children\\\":[{\\\"children\\\":[{\\\"children\\\":[]}]},{\\\"children\\\":[]}]}\";\r\n    ContainsReferenceToSelfType target = gson.fromJson(json, ContainsReferenceToSelfType.class);\r\n    assertThat(target).isNotNull();\r\n    assertThat(target.children).hasSize(2);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CircularReferenceTest.java"
+  }
+]

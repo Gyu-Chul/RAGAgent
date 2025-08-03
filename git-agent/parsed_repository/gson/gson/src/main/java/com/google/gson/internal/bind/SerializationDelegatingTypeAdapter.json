@@ -1,0 +1,34 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.bind",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.bind;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\SerializationDelegatingTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\SerializationDelegatingTypeAdapter.java"
+  },
+  {
+    "type": "class",
+    "name": "SerializationDelegatingTypeAdapter",
+    "start_line": 22,
+    "end_line": 28,
+    "code": "/**\r\n * Type adapter which might delegate serialization to another adapter.\r\n */\r\npublic abstract class SerializationDelegatingTypeAdapter<T> extends TypeAdapter<T> {\r\n\r\n    /**\r\n     * Returns the adapter used for serialization, might be {@code this} or another adapter. That\r\n     * other adapter might itself also be a {@code SerializationDelegatingTypeAdapter}.\r\n     */\r\n    public abstract TypeAdapter<T> getSerializationDelegate();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\SerializationDelegatingTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "getSerializationDelegate",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "/**\r\n * Returns the adapter used for serialization, might be {@code this} or another adapter. That\r\n * other adapter might itself also be a {@code SerializationDelegatingTypeAdapter}.\r\n */\r\npublic abstract TypeAdapter<T> getSerializationDelegate();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\SerializationDelegatingTypeAdapter.java"
+  }
+]

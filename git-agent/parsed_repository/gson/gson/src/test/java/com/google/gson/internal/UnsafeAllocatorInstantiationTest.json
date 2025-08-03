@@ -1,0 +1,66 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.internal;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\UnsafeAllocatorInstantiationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\UnsafeAllocatorInstantiationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\UnsafeAllocatorInstantiationTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\UnsafeAllocatorInstantiationTest.java"
+  },
+  {
+    "type": "class",
+    "name": "UnsafeAllocatorInstantiationTest",
+    "start_line": 28,
+    "end_line": 64,
+    "code": "/**\r\n * Test unsafe allocator instantiation\r\n *\r\n * @author Ugljesa Jovanovic\r\n */\r\npublic final class UnsafeAllocatorInstantiationTest {\r\n\r\n    public interface Interface {\r\n    }\r\n\r\n    public abstract static class AbstractClass {\r\n    }\r\n\r\n    public static class ConcreteClass {\r\n    }\r\n\r\n    /**\r\n     * Ensure that an {@link AssertionError} is thrown when trying to instantiate an interface\r\n     */\r\n    @Test\r\n    public void testInterfaceInstantiation() {\r\n        AssertionError e = assertThrows(AssertionError.class, () -> UnsafeAllocator.INSTANCE.newInstance(Interface.class));\r\n        assertThat(e).hasMessageThat().startsWith(\"UnsafeAllocator is used for non-instantiable type\");\r\n    }\r\n\r\n    /**\r\n     * Ensure that an {@link AssertionError} is thrown when trying to instantiate an abstract class\r\n     */\r\n    @Test\r\n    public void testAbstractClassInstantiation() {\r\n        AssertionError e = assertThrows(AssertionError.class, () -> UnsafeAllocator.INSTANCE.newInstance(AbstractClass.class));\r\n        assertThat(e).hasMessageThat().startsWith(\"UnsafeAllocator is used for non-instantiable type\");\r\n    }\r\n\r\n    /**\r\n     * Ensure that no exception is thrown when trying to instantiate a concrete class\r\n     */\r\n    @Test\r\n    public void testConcreteClassInstantiation() throws Exception {\r\n        ConcreteClass instance = UnsafeAllocator.INSTANCE.newInstance(ConcreteClass.class);\r\n        assertThat(instance).isNotNull();\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\UnsafeAllocatorInstantiationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInterfaceInstantiation",
+    "start_line": 37,
+    "end_line": 44,
+    "code": "/**\r\n * Ensure that an {@link AssertionError} is thrown when trying to instantiate an interface\r\n */\r\n@Test\r\npublic void testInterfaceInstantiation() {\r\n    AssertionError e = assertThrows(AssertionError.class, () -> UnsafeAllocator.INSTANCE.newInstance(Interface.class));\r\n    assertThat(e).hasMessageThat().startsWith(\"UnsafeAllocator is used for non-instantiable type\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\UnsafeAllocatorInstantiationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testAbstractClassInstantiation",
+    "start_line": 49,
+    "end_line": 56,
+    "code": "/**\r\n * Ensure that an {@link AssertionError} is thrown when trying to instantiate an abstract class\r\n */\r\n@Test\r\npublic void testAbstractClassInstantiation() {\r\n    AssertionError e = assertThrows(AssertionError.class, () -> UnsafeAllocator.INSTANCE.newInstance(AbstractClass.class));\r\n    assertThat(e).hasMessageThat().startsWith(\"UnsafeAllocator is used for non-instantiable type\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\UnsafeAllocatorInstantiationTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testConcreteClassInstantiation",
+    "start_line": 59,
+    "end_line": 63,
+    "code": "/**\r\n * Ensure that no exception is thrown when trying to instantiate a concrete class\r\n */\r\n@Test\r\npublic void testConcreteClassInstantiation() throws Exception {\r\n    ConcreteClass instance = UnsafeAllocator.INSTANCE.newInstance(ConcreteClass.class);\r\n    assertThat(instance).isNotNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\UnsafeAllocatorInstantiationTest.java"
+  }
+]

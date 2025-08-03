@@ -1,0 +1,258 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.errorprone.annotations.CanIgnoreReturnValue",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.errorprone.annotations.CanIgnoreReturnValue;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.Streams",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.internal.Streams;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.Reader",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.io.Reader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "import",
+    "name": "java.math.BigDecimal",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.math.BigDecimal;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "import",
+    "name": "java.math.BigInteger",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.math.BigInteger;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonElement",
+    "start_line": 97,
+    "end_line": 435,
+    "code": "/**\r\n * A class representing an element of JSON. It could either be a {@link JsonObject}, a {@link\r\n * JsonArray}, a {@link JsonPrimitive} or a {@link JsonNull}.\r\n *\r\n * <p>This class provides multiple {@code getAs} methods which allow\r\n *\r\n * <ul>\r\n *   <li>obtaining the represented primitive value, for example {@link #getAsString()}\r\n *   <li>casting to the {@code JsonElement} subclasses in a convenient way, for example {@link\r\n *       #getAsJsonObject()}\r\n * </ul>\r\n *\r\n * <h2>Converting {@code JsonElement} from / to JSON</h2>\r\n *\r\n * There are two ways to parse JSON data as a {@link JsonElement}:\r\n *\r\n * <ul>\r\n *   <li>{@link JsonParser}, for example:\r\n *       <pre>\r\n * JsonObject jsonObject = JsonParser.parseString(\"{}\").getAsJsonObject();\r\n * </pre>\r\n *   <li>{@link Gson#fromJson(Reader, Class) Gson.fromJson(..., JsonElement.class)}<br>\r\n *       It is possible to directly specify a {@code JsonElement} subclass, for example:\r\n *       <pre>\r\n * JsonObject jsonObject = gson.fromJson(\"{}\", JsonObject.class);\r\n * </pre>\r\n * </ul>\r\n *\r\n * To convert a {@code JsonElement} to JSON either {@link #toString() JsonElement.toString()} or the\r\n * method {@link Gson#toJson(JsonElement)} and its overloads can be used.\r\n *\r\n * <p>It is also possible to obtain the {@link TypeAdapter} for {@code JsonElement} from a {@link\r\n * Gson} instance and then use it for conversion from and to JSON:\r\n *\r\n * <pre>{@code\r\n * TypeAdapter<JsonElement> adapter = gson.getAdapter(JsonElement.class);\r\n *\r\n * JsonElement value = adapter.fromJson(\"{}\");\r\n * String json = adapter.toJson(value);\r\n * }</pre>\r\n *\r\n * <h2>{@code JsonElement} as JSON data</h2>\r\n *\r\n * {@code JsonElement} can also be treated as JSON data, allowing to deserialize from a {@code\r\n * JsonElement} and serializing to a {@code JsonElement}. The {@link Gson} class offers these\r\n * methods for this:\r\n *\r\n * <ul>\r\n *   <li>{@link Gson#fromJson(JsonElement, Class) Gson.fromJson(JsonElement, ...)}, for example:\r\n *       <pre>\r\n * JsonObject jsonObject = ...;\r\n * MyClass myObj = gson.fromJson(jsonObject, MyClass.class);\r\n * </pre>\r\n *   <li>{@link Gson#toJsonTree(Object)}, for example:\r\n *       <pre>\r\n * MyClass myObj = ...;\r\n * JsonElement json = gson.toJsonTree(myObj);\r\n * </pre>\r\n * </ul>\r\n *\r\n * The {@link TypeAdapter} class provides corresponding methods as well:\r\n *\r\n * <ul>\r\n *   <li>{@link TypeAdapter#fromJsonTree(JsonElement)}\r\n *   <li>{@link TypeAdapter#toJsonTree(Object)}\r\n * </ul>\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic abstract class JsonElement {\r\n\r\n    /**\r\n     * @deprecated Creating custom {@code JsonElement} subclasses is highly discouraged and can lead\r\n     *     to undefined behavior.<br>\r\n     *     This constructor is only kept for backward compatibility.\r\n     */\r\n    @Deprecated\r\n    public JsonElement() {\r\n    }\r\n\r\n    /**\r\n     * Returns a deep copy of this element. Immutable elements like primitives and nulls are not\r\n     * copied.\r\n     *\r\n     * @since 2.8.2\r\n     */\r\n    public abstract JsonElement deepCopy();\r\n\r\n    /**\r\n     * Provides a check for verifying if this element is a JSON array or not.\r\n     *\r\n     * @return true if this element is of type {@link JsonArray}, false otherwise.\r\n     */\r\n    public boolean isJsonArray() {\r\n        return this instanceof JsonArray;\r\n    }\r\n\r\n    /**\r\n     * Provides a check for verifying if this element is a JSON object or not.\r\n     *\r\n     * @return true if this element is of type {@link JsonObject}, false otherwise.\r\n     */\r\n    public boolean isJsonObject() {\r\n        return this instanceof JsonObject;\r\n    }\r\n\r\n    /**\r\n     * Provides a check for verifying if this element is a primitive or not.\r\n     *\r\n     * @return true if this element is of type {@link JsonPrimitive}, false otherwise.\r\n     */\r\n    public boolean isJsonPrimitive() {\r\n        return this instanceof JsonPrimitive;\r\n    }\r\n\r\n    /**\r\n     * Provides a check for verifying if this element represents a null value or not.\r\n     *\r\n     * @return true if this element is of type {@link JsonNull}, false otherwise.\r\n     * @since 1.2\r\n     */\r\n    public boolean isJsonNull() {\r\n        return this instanceof JsonNull;\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a {@link JsonObject}. If this element is of some\r\n     * other type, an {@link IllegalStateException} will result. Hence it is best to use this method\r\n     * after ensuring that this element is of the desired type by calling {@link #isJsonObject()}\r\n     * first.\r\n     *\r\n     * @return this element as a {@link JsonObject}.\r\n     * @throws IllegalStateException if this element is of another type.\r\n     */\r\n    public JsonObject getAsJsonObject() {\r\n        if (isJsonObject()) {\r\n            return (JsonObject) this;\r\n        }\r\n        throw new IllegalStateException(\"Not a JSON Object: \" + this);\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a {@link JsonArray}. If this element is of some other\r\n     * type, an {@link IllegalStateException} will result. Hence it is best to use this method after\r\n     * ensuring that this element is of the desired type by calling {@link #isJsonArray()} first.\r\n     *\r\n     * @return this element as a {@link JsonArray}.\r\n     * @throws IllegalStateException if this element is of another type.\r\n     */\r\n    public JsonArray getAsJsonArray() {\r\n        if (isJsonArray()) {\r\n            return (JsonArray) this;\r\n        }\r\n        throw new IllegalStateException(\"Not a JSON Array: \" + this);\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a {@link JsonPrimitive}. If this element is of some\r\n     * other type, an {@link IllegalStateException} will result. Hence it is best to use this method\r\n     * after ensuring that this element is of the desired type by calling {@link #isJsonPrimitive()}\r\n     * first.\r\n     *\r\n     * @return this element as a {@link JsonPrimitive}.\r\n     * @throws IllegalStateException if this element is of another type.\r\n     */\r\n    public JsonPrimitive getAsJsonPrimitive() {\r\n        if (isJsonPrimitive()) {\r\n            return (JsonPrimitive) this;\r\n        }\r\n        throw new IllegalStateException(\"Not a JSON Primitive: \" + this);\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a {@link JsonNull}. If this element is of some other\r\n     * type, an {@link IllegalStateException} will result. Hence it is best to use this method after\r\n     * ensuring that this element is of the desired type by calling {@link #isJsonNull()} first.\r\n     *\r\n     * @return this element as a {@link JsonNull}.\r\n     * @throws IllegalStateException if this element is of another type.\r\n     * @since 1.2\r\n     */\r\n    // When this method is used only to verify that the value is JsonNull\r\n    @CanIgnoreReturnValue\r\n    public JsonNull getAsJsonNull() {\r\n        if (isJsonNull()) {\r\n            return (JsonNull) this;\r\n        }\r\n        throw new IllegalStateException(\"Not a JSON Null: \" + this);\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a boolean value.\r\n     *\r\n     * @return this element as a primitive boolean value.\r\n     * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n     *     JsonArray}.\r\n     * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n     *     more than a single element.\r\n     */\r\n    public boolean getAsBoolean() {\r\n        throw new UnsupportedOperationException(getClass().getSimpleName());\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a {@link Number}.\r\n     *\r\n     * @return this element as a {@link Number}.\r\n     * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n     *     JsonArray}, or cannot be converted to a number.\r\n     * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n     *     more than a single element.\r\n     */\r\n    public Number getAsNumber() {\r\n        throw new UnsupportedOperationException(getClass().getSimpleName());\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a string value.\r\n     *\r\n     * @return this element as a string value.\r\n     * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n     *     JsonArray}.\r\n     * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n     *     more than a single element.\r\n     */\r\n    public String getAsString() {\r\n        throw new UnsupportedOperationException(getClass().getSimpleName());\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a primitive double value.\r\n     *\r\n     * @return this element as a primitive double value.\r\n     * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n     *     JsonArray}.\r\n     * @throws NumberFormatException if the value contained is not a valid double.\r\n     * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n     *     more than a single element.\r\n     */\r\n    public double getAsDouble() {\r\n        throw new UnsupportedOperationException(getClass().getSimpleName());\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a primitive float value.\r\n     *\r\n     * @return this element as a primitive float value.\r\n     * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n     *     JsonArray}.\r\n     * @throws NumberFormatException if the value contained is not a valid float.\r\n     * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n     *     more than a single element.\r\n     */\r\n    public float getAsFloat() {\r\n        throw new UnsupportedOperationException(getClass().getSimpleName());\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a primitive long value.\r\n     *\r\n     * @return this element as a primitive long value.\r\n     * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n     *     JsonArray}.\r\n     * @throws NumberFormatException if the value contained is not a valid long.\r\n     * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n     *     more than a single element.\r\n     */\r\n    public long getAsLong() {\r\n        throw new UnsupportedOperationException(getClass().getSimpleName());\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a primitive integer value.\r\n     *\r\n     * @return this element as a primitive integer value.\r\n     * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n     *     JsonArray}.\r\n     * @throws NumberFormatException if the value contained is not a valid integer.\r\n     * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n     *     more than a single element.\r\n     */\r\n    public int getAsInt() {\r\n        throw new UnsupportedOperationException(getClass().getSimpleName());\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a primitive byte value.\r\n     *\r\n     * @return this element as a primitive byte value.\r\n     * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n     *     JsonArray}.\r\n     * @throws NumberFormatException if the value contained is not a valid byte.\r\n     * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n     *     more than a single element.\r\n     * @since 1.3\r\n     */\r\n    public byte getAsByte() {\r\n        throw new UnsupportedOperationException(getClass().getSimpleName());\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get the first character of the string value of this element.\r\n     *\r\n     * @return the first character of the string value.\r\n     * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n     *     JsonArray}, or if its string value is empty.\r\n     * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n     *     more than a single element.\r\n     * @since 1.3\r\n     * @deprecated This method is misleading, as it does not get this element as a char but rather as\r\n     *     a string's first character.\r\n     */\r\n    @Deprecated\r\n    public char getAsCharacter() {\r\n        throw new UnsupportedOperationException(getClass().getSimpleName());\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a {@link BigDecimal}.\r\n     *\r\n     * @return this element as a {@link BigDecimal}.\r\n     * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n     *     JsonArray}.\r\n     * @throws NumberFormatException if this element is not a valid {@link BigDecimal}.\r\n     * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n     *     more than a single element.\r\n     * @since 1.2\r\n     */\r\n    public BigDecimal getAsBigDecimal() {\r\n        throw new UnsupportedOperationException(getClass().getSimpleName());\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a {@link BigInteger}.\r\n     *\r\n     * @return this element as a {@link BigInteger}.\r\n     * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n     *     JsonArray}.\r\n     * @throws NumberFormatException if this element is not a valid {@link BigInteger}.\r\n     * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n     *     more than a single element.\r\n     * @since 1.2\r\n     */\r\n    public BigInteger getAsBigInteger() {\r\n        throw new UnsupportedOperationException(getClass().getSimpleName());\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get this element as a primitive short value.\r\n     *\r\n     * @return this element as a primitive short value.\r\n     * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n     *     JsonArray}.\r\n     * @throws NumberFormatException if the value contained is not a valid short.\r\n     * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n     *     more than a single element.\r\n     */\r\n    public short getAsShort() {\r\n        throw new UnsupportedOperationException(getClass().getSimpleName());\r\n    }\r\n\r\n    /**\r\n     * Converts this element to a JSON string.\r\n     *\r\n     * <p>For example:\r\n     *\r\n     * <pre>\r\n     * JsonObject object = new JsonObject();\r\n     * object.add(\"a\", JsonNull.INSTANCE);\r\n     * JsonArray array = new JsonArray();\r\n     * array.add(1);\r\n     * object.add(\"b\", array);\r\n     *\r\n     * String json = object.toString();\r\n     * // json: {\"a\":null,\"b\":[1]}\r\n     * </pre>\r\n     *\r\n     * If this element or any nested elements contain {@link Double#NaN NaN} or {@link\r\n     * Double#isInfinite() Infinity} that value is written to JSON, even though the JSON specification\r\n     * does not permit these values.\r\n     *\r\n     * <p>To customize formatting or to directly write to an {@link Appendable} instead of creating an\r\n     * intermediate {@code String} first, use {@link Gson#toJson(JsonElement, Appendable)\r\n     * Gson.toJson(JsonElement, ...)}.\r\n     *\r\n     * <p>To get the contained String value (without enclosing {@code \"} and without escaping), use\r\n     * {@link #getAsString()} instead:\r\n     *\r\n     * <pre>\r\n     * JsonPrimitive jsonPrimitive = new JsonPrimitive(\"with \\\" quote\");\r\n     * String json = jsonPrimitive.toString();\r\n     * // json: \"with \\\" quote\"\r\n     * String value = jsonPrimitive.getAsString();\r\n     * // value: with \" quote\r\n     * </pre>\r\n     */\r\n    @Override\r\n    public String toString() {\r\n        try {\r\n            StringBuilder stringBuilder = new StringBuilder();\r\n            JsonWriter jsonWriter = new JsonWriter(Streams.writerForAppendable(stringBuilder));\r\n            // Make writer lenient because toString() must not fail, even if for example JsonPrimitive\r\n            // contains NaN\r\n            jsonWriter.setStrictness(Strictness.LENIENT);\r\n            Streams.write(this, jsonWriter);\r\n            return stringBuilder.toString();\r\n        } catch (IOException e) {\r\n            throw new AssertionError(e);\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "constructor",
+    "name": "JsonElement",
+    "start_line": 103,
+    "end_line": 104,
+    "code": "/**\r\n * @deprecated Creating custom {@code JsonElement} subclasses is highly discouraged and can lead\r\n *     to undefined behavior.<br>\r\n *     This constructor is only kept for backward compatibility.\r\n */\r\n@Deprecated\r\npublic JsonElement() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "deepCopy",
+    "start_line": 112,
+    "end_line": 112,
+    "code": "/**\r\n * Returns a deep copy of this element. Immutable elements like primitives and nulls are not\r\n * copied.\r\n *\r\n * @since 2.8.2\r\n */\r\npublic abstract JsonElement deepCopy();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "isJsonArray",
+    "start_line": 119,
+    "end_line": 121,
+    "code": "/**\r\n * Provides a check for verifying if this element is a JSON array or not.\r\n *\r\n * @return true if this element is of type {@link JsonArray}, false otherwise.\r\n */\r\npublic boolean isJsonArray() {\r\n    return this instanceof JsonArray;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "isJsonObject",
+    "start_line": 128,
+    "end_line": 130,
+    "code": "/**\r\n * Provides a check for verifying if this element is a JSON object or not.\r\n *\r\n * @return true if this element is of type {@link JsonObject}, false otherwise.\r\n */\r\npublic boolean isJsonObject() {\r\n    return this instanceof JsonObject;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "isJsonPrimitive",
+    "start_line": 137,
+    "end_line": 139,
+    "code": "/**\r\n * Provides a check for verifying if this element is a primitive or not.\r\n *\r\n * @return true if this element is of type {@link JsonPrimitive}, false otherwise.\r\n */\r\npublic boolean isJsonPrimitive() {\r\n    return this instanceof JsonPrimitive;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "isJsonNull",
+    "start_line": 147,
+    "end_line": 149,
+    "code": "/**\r\n * Provides a check for verifying if this element represents a null value or not.\r\n *\r\n * @return true if this element is of type {@link JsonNull}, false otherwise.\r\n * @since 1.2\r\n */\r\npublic boolean isJsonNull() {\r\n    return this instanceof JsonNull;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsJsonObject",
+    "start_line": 160,
+    "end_line": 165,
+    "code": "/**\r\n * Convenience method to get this element as a {@link JsonObject}. If this element is of some\r\n * other type, an {@link IllegalStateException} will result. Hence it is best to use this method\r\n * after ensuring that this element is of the desired type by calling {@link #isJsonObject()}\r\n * first.\r\n *\r\n * @return this element as a {@link JsonObject}.\r\n * @throws IllegalStateException if this element is of another type.\r\n */\r\npublic JsonObject getAsJsonObject() {\r\n    if (isJsonObject()) {\r\n        return (JsonObject) this;\r\n    }\r\n    throw new IllegalStateException(\"Not a JSON Object: \" + this);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsJsonArray",
+    "start_line": 175,
+    "end_line": 180,
+    "code": "/**\r\n * Convenience method to get this element as a {@link JsonArray}. If this element is of some other\r\n * type, an {@link IllegalStateException} will result. Hence it is best to use this method after\r\n * ensuring that this element is of the desired type by calling {@link #isJsonArray()} first.\r\n *\r\n * @return this element as a {@link JsonArray}.\r\n * @throws IllegalStateException if this element is of another type.\r\n */\r\npublic JsonArray getAsJsonArray() {\r\n    if (isJsonArray()) {\r\n        return (JsonArray) this;\r\n    }\r\n    throw new IllegalStateException(\"Not a JSON Array: \" + this);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsJsonPrimitive",
+    "start_line": 191,
+    "end_line": 196,
+    "code": "/**\r\n * Convenience method to get this element as a {@link JsonPrimitive}. If this element is of some\r\n * other type, an {@link IllegalStateException} will result. Hence it is best to use this method\r\n * after ensuring that this element is of the desired type by calling {@link #isJsonPrimitive()}\r\n * first.\r\n *\r\n * @return this element as a {@link JsonPrimitive}.\r\n * @throws IllegalStateException if this element is of another type.\r\n */\r\npublic JsonPrimitive getAsJsonPrimitive() {\r\n    if (isJsonPrimitive()) {\r\n        return (JsonPrimitive) this;\r\n    }\r\n    throw new IllegalStateException(\"Not a JSON Primitive: \" + this);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsJsonNull",
+    "start_line": 207,
+    "end_line": 213,
+    "code": "/**\r\n * Convenience method to get this element as a {@link JsonNull}. If this element is of some other\r\n * type, an {@link IllegalStateException} will result. Hence it is best to use this method after\r\n * ensuring that this element is of the desired type by calling {@link #isJsonNull()} first.\r\n *\r\n * @return this element as a {@link JsonNull}.\r\n * @throws IllegalStateException if this element is of another type.\r\n * @since 1.2\r\n */\r\n// When this method is used only to verify that the value is JsonNull\r\n@CanIgnoreReturnValue\r\npublic JsonNull getAsJsonNull() {\r\n    if (isJsonNull()) {\r\n        return (JsonNull) this;\r\n    }\r\n    throw new IllegalStateException(\"Not a JSON Null: \" + this);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsBoolean",
+    "start_line": 224,
+    "end_line": 226,
+    "code": "/**\r\n * Convenience method to get this element as a boolean value.\r\n *\r\n * @return this element as a primitive boolean value.\r\n * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n *     JsonArray}.\r\n * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n *     more than a single element.\r\n */\r\npublic boolean getAsBoolean() {\r\n    throw new UnsupportedOperationException(getClass().getSimpleName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsNumber",
+    "start_line": 237,
+    "end_line": 239,
+    "code": "/**\r\n * Convenience method to get this element as a {@link Number}.\r\n *\r\n * @return this element as a {@link Number}.\r\n * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n *     JsonArray}, or cannot be converted to a number.\r\n * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n *     more than a single element.\r\n */\r\npublic Number getAsNumber() {\r\n    throw new UnsupportedOperationException(getClass().getSimpleName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsString",
+    "start_line": 250,
+    "end_line": 252,
+    "code": "/**\r\n * Convenience method to get this element as a string value.\r\n *\r\n * @return this element as a string value.\r\n * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n *     JsonArray}.\r\n * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n *     more than a single element.\r\n */\r\npublic String getAsString() {\r\n    throw new UnsupportedOperationException(getClass().getSimpleName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsDouble",
+    "start_line": 264,
+    "end_line": 266,
+    "code": "/**\r\n * Convenience method to get this element as a primitive double value.\r\n *\r\n * @return this element as a primitive double value.\r\n * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n *     JsonArray}.\r\n * @throws NumberFormatException if the value contained is not a valid double.\r\n * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n *     more than a single element.\r\n */\r\npublic double getAsDouble() {\r\n    throw new UnsupportedOperationException(getClass().getSimpleName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsFloat",
+    "start_line": 278,
+    "end_line": 280,
+    "code": "/**\r\n * Convenience method to get this element as a primitive float value.\r\n *\r\n * @return this element as a primitive float value.\r\n * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n *     JsonArray}.\r\n * @throws NumberFormatException if the value contained is not a valid float.\r\n * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n *     more than a single element.\r\n */\r\npublic float getAsFloat() {\r\n    throw new UnsupportedOperationException(getClass().getSimpleName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsLong",
+    "start_line": 292,
+    "end_line": 294,
+    "code": "/**\r\n * Convenience method to get this element as a primitive long value.\r\n *\r\n * @return this element as a primitive long value.\r\n * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n *     JsonArray}.\r\n * @throws NumberFormatException if the value contained is not a valid long.\r\n * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n *     more than a single element.\r\n */\r\npublic long getAsLong() {\r\n    throw new UnsupportedOperationException(getClass().getSimpleName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsInt",
+    "start_line": 306,
+    "end_line": 308,
+    "code": "/**\r\n * Convenience method to get this element as a primitive integer value.\r\n *\r\n * @return this element as a primitive integer value.\r\n * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n *     JsonArray}.\r\n * @throws NumberFormatException if the value contained is not a valid integer.\r\n * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n *     more than a single element.\r\n */\r\npublic int getAsInt() {\r\n    throw new UnsupportedOperationException(getClass().getSimpleName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsByte",
+    "start_line": 321,
+    "end_line": 323,
+    "code": "/**\r\n * Convenience method to get this element as a primitive byte value.\r\n *\r\n * @return this element as a primitive byte value.\r\n * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n *     JsonArray}.\r\n * @throws NumberFormatException if the value contained is not a valid byte.\r\n * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n *     more than a single element.\r\n * @since 1.3\r\n */\r\npublic byte getAsByte() {\r\n    throw new UnsupportedOperationException(getClass().getSimpleName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsCharacter",
+    "start_line": 337,
+    "end_line": 340,
+    "code": "/**\r\n * Convenience method to get the first character of the string value of this element.\r\n *\r\n * @return the first character of the string value.\r\n * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n *     JsonArray}, or if its string value is empty.\r\n * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n *     more than a single element.\r\n * @since 1.3\r\n * @deprecated This method is misleading, as it does not get this element as a char but rather as\r\n *     a string's first character.\r\n */\r\n@Deprecated\r\npublic char getAsCharacter() {\r\n    throw new UnsupportedOperationException(getClass().getSimpleName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsBigDecimal",
+    "start_line": 353,
+    "end_line": 355,
+    "code": "/**\r\n * Convenience method to get this element as a {@link BigDecimal}.\r\n *\r\n * @return this element as a {@link BigDecimal}.\r\n * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n *     JsonArray}.\r\n * @throws NumberFormatException if this element is not a valid {@link BigDecimal}.\r\n * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n *     more than a single element.\r\n * @since 1.2\r\n */\r\npublic BigDecimal getAsBigDecimal() {\r\n    throw new UnsupportedOperationException(getClass().getSimpleName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsBigInteger",
+    "start_line": 368,
+    "end_line": 370,
+    "code": "/**\r\n * Convenience method to get this element as a {@link BigInteger}.\r\n *\r\n * @return this element as a {@link BigInteger}.\r\n * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n *     JsonArray}.\r\n * @throws NumberFormatException if this element is not a valid {@link BigInteger}.\r\n * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n *     more than a single element.\r\n * @since 1.2\r\n */\r\npublic BigInteger getAsBigInteger() {\r\n    throw new UnsupportedOperationException(getClass().getSimpleName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsShort",
+    "start_line": 382,
+    "end_line": 384,
+    "code": "/**\r\n * Convenience method to get this element as a primitive short value.\r\n *\r\n * @return this element as a primitive short value.\r\n * @throws UnsupportedOperationException if this element is not a {@link JsonPrimitive} or {@link\r\n *     JsonArray}.\r\n * @throws NumberFormatException if the value contained is not a valid short.\r\n * @throws IllegalStateException if this element is of the type {@link JsonArray} but contains\r\n *     more than a single element.\r\n */\r\npublic short getAsShort() {\r\n    throw new UnsupportedOperationException(getClass().getSimpleName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  },
+  {
+    "type": "method",
+    "name": "toString",
+    "start_line": 421,
+    "end_line": 434,
+    "code": "/**\r\n * Converts this element to a JSON string.\r\n *\r\n * <p>For example:\r\n *\r\n * <pre>\r\n * JsonObject object = new JsonObject();\r\n * object.add(\"a\", JsonNull.INSTANCE);\r\n * JsonArray array = new JsonArray();\r\n * array.add(1);\r\n * object.add(\"b\", array);\r\n *\r\n * String json = object.toString();\r\n * // json: {\"a\":null,\"b\":[1]}\r\n * </pre>\r\n *\r\n * If this element or any nested elements contain {@link Double#NaN NaN} or {@link\r\n * Double#isInfinite() Infinity} that value is written to JSON, even though the JSON specification\r\n * does not permit these values.\r\n *\r\n * <p>To customize formatting or to directly write to an {@link Appendable} instead of creating an\r\n * intermediate {@code String} first, use {@link Gson#toJson(JsonElement, Appendable)\r\n * Gson.toJson(JsonElement, ...)}.\r\n *\r\n * <p>To get the contained String value (without enclosing {@code \"} and without escaping), use\r\n * {@link #getAsString()} instead:\r\n *\r\n * <pre>\r\n * JsonPrimitive jsonPrimitive = new JsonPrimitive(\"with \\\" quote\");\r\n * String json = jsonPrimitive.toString();\r\n * // json: \"with \\\" quote\"\r\n * String value = jsonPrimitive.getAsString();\r\n * // value: with \" quote\r\n * </pre>\r\n */\r\n@Override\r\npublic String toString() {\r\n    try {\r\n        StringBuilder stringBuilder = new StringBuilder();\r\n        JsonWriter jsonWriter = new JsonWriter(Streams.writerForAppendable(stringBuilder));\r\n        // Make writer lenient because toString() must not fail, even if for example JsonPrimitive\r\n        // contains NaN\r\n        jsonWriter.setStrictness(Strictness.LENIENT);\r\n        Streams.write(this, jsonWriter);\r\n        return stringBuilder.toString();\r\n    } catch (IOException e) {\r\n        throw new AssertionError(e);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonElement.java"
+  }
+]

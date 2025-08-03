@@ -1,0 +1,178 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.errorprone.annotations.CanIgnoreReturnValue",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.errorprone.annotations.CanIgnoreReturnValue;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonObject",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.JsonObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonParseException",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapterFactory",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.TypeAdapterFactory;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.JsonAdapter",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.annotations.JsonAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.Streams",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.internal.Streams;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.LinkedHashMap",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import java.util.LinkedHashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "class",
+    "name": "RuntimeTypeAdapterFactoryFunctionalTest",
+    "start_line": 39,
+    "end_line": 229,
+    "code": "/**\r\n * Functional tests for the RuntimeTypeAdapterFactory feature in extras.\r\n */\r\npublic final class RuntimeTypeAdapterFactoryFunctionalTest {\r\n\r\n    private final Gson gson = new Gson();\r\n\r\n    /**\r\n     * This test also ensures that {@link TypeAdapterFactory} registered through {@link JsonAdapter}\r\n     * work correctly for {@link Gson#getDelegateAdapter(TypeAdapterFactory, TypeToken)}.\r\n     */\r\n    @Test\r\n    public void testSubclassesAutomaticallySerialized() {\r\n        Shape shape = new Circle(25);\r\n        String json = gson.toJson(shape);\r\n        shape = gson.fromJson(json, Shape.class);\r\n        assertThat(((Circle) shape).radius).isEqualTo(25);\r\n        shape = new Square(15);\r\n        json = gson.toJson(shape);\r\n        shape = gson.fromJson(json, Shape.class);\r\n        assertThat(((Square) shape).side).isEqualTo(15);\r\n        assertThat(shape.type).isEqualTo(ShapeType.SQUARE);\r\n    }\r\n\r\n    @JsonAdapter(Shape.JsonAdapterFactory.class)\r\n    static class Shape {\r\n\r\n        final ShapeType type;\r\n\r\n        Shape(ShapeType type) {\r\n            this.type = type;\r\n        }\r\n\r\n        private static final class JsonAdapterFactory extends RuntimeTypeAdapterFactory<Shape> {\r\n\r\n            public JsonAdapterFactory() {\r\n                super(Shape.class, \"type\");\r\n                registerSubtype(Circle.class, ShapeType.CIRCLE.toString());\r\n                registerSubtype(Square.class, ShapeType.SQUARE.toString());\r\n            }\r\n        }\r\n    }\r\n\r\n    public enum ShapeType {\r\n\r\n        SQUARE, CIRCLE\r\n    }\r\n\r\n    private static final class Circle extends Shape {\r\n\r\n        final int radius;\r\n\r\n        Circle(int radius) {\r\n            super(ShapeType.CIRCLE);\r\n            this.radius = radius;\r\n        }\r\n    }\r\n\r\n    private static final class Square extends Shape {\r\n\r\n        final int side;\r\n\r\n        Square(int side) {\r\n            super(ShapeType.SQUARE);\r\n            this.side = side;\r\n        }\r\n    }\r\n\r\n    // Copied from the extras package\r\n    static class RuntimeTypeAdapterFactory<T> implements TypeAdapterFactory {\r\n\r\n        private final Class<?> baseType;\r\n\r\n        private final String typeFieldName;\r\n\r\n        private final Map<String, Class<?>> labelToSubtype = new LinkedHashMap<>();\r\n\r\n        private final Map<Class<?>, String> subtypeToLabel = new LinkedHashMap<>();\r\n\r\n        protected RuntimeTypeAdapterFactory(Class<?> baseType, String typeFieldName) {\r\n            if (typeFieldName == null || baseType == null) {\r\n                throw new NullPointerException();\r\n            }\r\n            this.baseType = baseType;\r\n            this.typeFieldName = typeFieldName;\r\n        }\r\n\r\n        /**\r\n         * Creates a new runtime type adapter for {@code baseType} using {@code typeFieldName} as the\r\n         * type field name. Type field names are case sensitive.\r\n         */\r\n        public static <T> RuntimeTypeAdapterFactory<T> of(Class<T> baseType, String typeFieldName) {\r\n            return new RuntimeTypeAdapterFactory<>(baseType, typeFieldName);\r\n        }\r\n\r\n        /**\r\n         * Creates a new runtime type adapter for {@code baseType} using {@code \"type\"} as the type\r\n         * field name.\r\n         */\r\n        public static <T> RuntimeTypeAdapterFactory<T> of(Class<T> baseType) {\r\n            return new RuntimeTypeAdapterFactory<>(baseType, \"type\");\r\n        }\r\n\r\n        /**\r\n         * Registers {@code type} identified by {@code label}. Labels are case sensitive.\r\n         *\r\n         * @throws IllegalArgumentException if either {@code type} or {@code label} have already been\r\n         *     registered on this type adapter.\r\n         */\r\n        @CanIgnoreReturnValue\r\n        public RuntimeTypeAdapterFactory<T> registerSubtype(Class<? extends T> type, String label) {\r\n            if (type == null || label == null) {\r\n                throw new NullPointerException();\r\n            }\r\n            if (subtypeToLabel.containsKey(type) || labelToSubtype.containsKey(label)) {\r\n                throw new IllegalArgumentException(\"types and labels must be unique\");\r\n            }\r\n            labelToSubtype.put(label, type);\r\n            subtypeToLabel.put(type, label);\r\n            return this;\r\n        }\r\n\r\n        /**\r\n         * Registers {@code type} identified by its {@link Class#getSimpleName simple name}. Labels are\r\n         * case sensitive.\r\n         *\r\n         * @throws IllegalArgumentException if either {@code type} or its simple name have already been\r\n         *     registered on this type adapter.\r\n         */\r\n        @CanIgnoreReturnValue\r\n        public RuntimeTypeAdapterFactory<T> registerSubtype(Class<? extends T> type) {\r\n            return registerSubtype(type, type.getSimpleName());\r\n        }\r\n\r\n        @Override\r\n        public <R> TypeAdapter<R> create(Gson gson, TypeToken<R> type) {\r\n            if (type.getRawType() != baseType) {\r\n                return null;\r\n            }\r\n            Map<String, TypeAdapter<?>> labelToDelegate = new LinkedHashMap<>();\r\n            Map<Class<?>, TypeAdapter<?>> subtypeToDelegate = new LinkedHashMap<>();\r\n            for (Map.Entry<String, Class<?>> entry : labelToSubtype.entrySet()) {\r\n                TypeAdapter<?> delegate = gson.getDelegateAdapter(this, TypeToken.get(entry.getValue()));\r\n                labelToDelegate.put(entry.getKey(), delegate);\r\n                subtypeToDelegate.put(entry.getValue(), delegate);\r\n            }\r\n            return new TypeAdapter<>() {\r\n\r\n                @Override\r\n                public R read(JsonReader in) {\r\n                    JsonElement jsonElement = Streams.parse(in);\r\n                    JsonElement labelJsonElement = jsonElement.getAsJsonObject().get(typeFieldName);\r\n                    if (labelJsonElement == null) {\r\n                        throw new JsonParseException(\"cannot deserialize \" + baseType + \" because it does not define a field named \" + typeFieldName);\r\n                    }\r\n                    String label = labelJsonElement.getAsString();\r\n                    // registration requires that subtype extends T\r\n                    @SuppressWarnings(\"unchecked\")\r\n                    TypeAdapter<R> delegate = (TypeAdapter<R>) labelToDelegate.get(label);\r\n                    if (delegate == null) {\r\n                        throw new JsonParseException(\"cannot deserialize \" + baseType + \" subtype named \" + label + \"; did you forget to register a subtype?\");\r\n                    }\r\n                    return delegate.fromJsonTree(jsonElement);\r\n                }\r\n\r\n                @Override\r\n                public void write(JsonWriter out, R value) throws IOException {\r\n                    Class<?> srcType = value.getClass();\r\n                    String label = subtypeToLabel.get(srcType);\r\n                    // registration requires that subtype extends T\r\n                    @SuppressWarnings(\"unchecked\")\r\n                    TypeAdapter<R> delegate = (TypeAdapter<R>) subtypeToDelegate.get(srcType);\r\n                    if (delegate == null) {\r\n                        throw new JsonParseException(\"cannot serialize \" + srcType.getName() + \"; did you forget to register a subtype?\");\r\n                    }\r\n                    JsonObject jsonObject = delegate.toJsonTree(value).getAsJsonObject();\r\n                    if (!jsonObject.has(typeFieldName)) {\r\n                        JsonObject clone = new JsonObject();\r\n                        clone.add(typeFieldName, new JsonPrimitive(label));\r\n                        for (Map.Entry<String, JsonElement> e : jsonObject.entrySet()) {\r\n                            clone.add(e.getKey(), e.getValue());\r\n                        }\r\n                        jsonObject = clone;\r\n                    }\r\n                    Streams.write(jsonObject, out);\r\n                }\r\n            };\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "private final Gson gson = new Gson();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSubclassesAutomaticallySerialized",
+    "start_line": 47,
+    "end_line": 59,
+    "code": "/**\r\n * This test also ensures that {@link TypeAdapterFactory} registered through {@link JsonAdapter}\r\n * work correctly for {@link Gson#getDelegateAdapter(TypeAdapterFactory, TypeToken)}.\r\n */\r\n@Test\r\npublic void testSubclassesAutomaticallySerialized() {\r\n    Shape shape = new Circle(25);\r\n    String json = gson.toJson(shape);\r\n    shape = gson.fromJson(json, Shape.class);\r\n    assertThat(((Circle) shape).radius).isEqualTo(25);\r\n    shape = new Square(15);\r\n    json = gson.toJson(shape);\r\n    shape = gson.fromJson(json, Shape.class);\r\n    assertThat(((Square) shape).side).isEqualTo(15);\r\n    assertThat(shape.type).isEqualTo(ShapeType.SQUARE);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\RuntimeTypeAdapterFactoryFunctionalTest.java"
+  }
+]

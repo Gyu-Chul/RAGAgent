@@ -1,0 +1,66 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Primitives.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Primitives.java"
+  },
+  {
+    "type": "class",
+    "name": "Primitives",
+    "start_line": 27,
+    "end_line": 100,
+    "code": "/**\r\n * Contains static utility methods pertaining to primitive types and their corresponding wrapper\r\n * types.\r\n *\r\n * @author Kevin Bourrillion\r\n */\r\npublic final class Primitives {\r\n\r\n    private Primitives() {\r\n    }\r\n\r\n    /**\r\n     * Returns true if this type is a primitive.\r\n     */\r\n    public static boolean isPrimitive(Type type) {\r\n        return type instanceof Class<?> && ((Class<?>) type).isPrimitive();\r\n    }\r\n\r\n    /**\r\n     * Returns {@code true} if {@code type} is one of the nine primitive-wrapper types, such as {@link\r\n     * Integer}.\r\n     *\r\n     * @see Class#isPrimitive\r\n     */\r\n    public static boolean isWrapperType(Type type) {\r\n        return type == Integer.class || type == Float.class || type == Byte.class || type == Double.class || type == Long.class || type == Character.class || type == Boolean.class || type == Short.class || type == Void.class;\r\n    }\r\n\r\n    /**\r\n     * Returns the corresponding wrapper type of {@code type} if it is a primitive type; otherwise\r\n     * returns {@code type} itself. Idempotent.\r\n     *\r\n     * <pre>\r\n     *     wrap(int.class) == Integer.class\r\n     *     wrap(Integer.class) == Integer.class\r\n     *     wrap(String.class) == String.class\r\n     * </pre>\r\n     */\r\n    @SuppressWarnings({ \"unchecked\", \"MissingBraces\" })\r\n    public static <T> Class<T> wrap(Class<T> type) {\r\n        if (type == int.class)\r\n            return (Class<T>) Integer.class;\r\n        if (type == float.class)\r\n            return (Class<T>) Float.class;\r\n        if (type == byte.class)\r\n            return (Class<T>) Byte.class;\r\n        if (type == double.class)\r\n            return (Class<T>) Double.class;\r\n        if (type == long.class)\r\n            return (Class<T>) Long.class;\r\n        if (type == char.class)\r\n            return (Class<T>) Character.class;\r\n        if (type == boolean.class)\r\n            return (Class<T>) Boolean.class;\r\n        if (type == short.class)\r\n            return (Class<T>) Short.class;\r\n        if (type == void.class)\r\n            return (Class<T>) Void.class;\r\n        return type;\r\n    }\r\n\r\n    /**\r\n     * Returns the corresponding primitive type of {@code type} if it is a wrapper type; otherwise\r\n     * returns {@code type} itself. Idempotent.\r\n     *\r\n     * <pre>\r\n     *     unwrap(Integer.class) == int.class\r\n     *     unwrap(int.class) == int.class\r\n     *     unwrap(String.class) == String.class\r\n     * </pre>\r\n     */\r\n    @SuppressWarnings({ \"unchecked\", \"MissingBraces\" })\r\n    public static <T> Class<T> unwrap(Class<T> type) {\r\n        if (type == Integer.class)\r\n            return (Class<T>) int.class;\r\n        if (type == Float.class)\r\n            return (Class<T>) float.class;\r\n        if (type == Byte.class)\r\n            return (Class<T>) byte.class;\r\n        if (type == Double.class)\r\n            return (Class<T>) double.class;\r\n        if (type == Long.class)\r\n            return (Class<T>) long.class;\r\n        if (type == Character.class)\r\n            return (Class<T>) char.class;\r\n        if (type == Boolean.class)\r\n            return (Class<T>) boolean.class;\r\n        if (type == Short.class)\r\n            return (Class<T>) short.class;\r\n        if (type == Void.class)\r\n            return (Class<T>) void.class;\r\n        return type;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Primitives.java"
+  },
+  {
+    "type": "constructor",
+    "name": "Primitives",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "private Primitives() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Primitives.java"
+  },
+  {
+    "type": "method",
+    "name": "isPrimitive",
+    "start_line": 31,
+    "end_line": 33,
+    "code": "/**\r\n * Returns true if this type is a primitive.\r\n */\r\npublic static boolean isPrimitive(Type type) {\r\n    return type instanceof Class<?> && ((Class<?>) type).isPrimitive();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Primitives.java"
+  },
+  {
+    "type": "method",
+    "name": "isWrapperType",
+    "start_line": 41,
+    "end_line": 51,
+    "code": "/**\r\n * Returns {@code true} if {@code type} is one of the nine primitive-wrapper types, such as {@link\r\n * Integer}.\r\n *\r\n * @see Class#isPrimitive\r\n */\r\npublic static boolean isWrapperType(Type type) {\r\n    return type == Integer.class || type == Float.class || type == Byte.class || type == Double.class || type == Long.class || type == Character.class || type == Boolean.class || type == Short.class || type == Void.class;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Primitives.java"
+  },
+  {
+    "type": "method",
+    "name": "wrap",
+    "start_line": 63,
+    "end_line": 75,
+    "code": "/**\r\n * Returns the corresponding wrapper type of {@code type} if it is a primitive type; otherwise\r\n * returns {@code type} itself. Idempotent.\r\n *\r\n * <pre>\r\n *     wrap(int.class) == Integer.class\r\n *     wrap(Integer.class) == Integer.class\r\n *     wrap(String.class) == String.class\r\n * </pre>\r\n */\r\n@SuppressWarnings({ \"unchecked\", \"MissingBraces\" })\r\npublic static <T> Class<T> wrap(Class<T> type) {\r\n    if (type == int.class)\r\n        return (Class<T>) Integer.class;\r\n    if (type == float.class)\r\n        return (Class<T>) Float.class;\r\n    if (type == byte.class)\r\n        return (Class<T>) Byte.class;\r\n    if (type == double.class)\r\n        return (Class<T>) Double.class;\r\n    if (type == long.class)\r\n        return (Class<T>) Long.class;\r\n    if (type == char.class)\r\n        return (Class<T>) Character.class;\r\n    if (type == boolean.class)\r\n        return (Class<T>) Boolean.class;\r\n    if (type == short.class)\r\n        return (Class<T>) Short.class;\r\n    if (type == void.class)\r\n        return (Class<T>) Void.class;\r\n    return type;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Primitives.java"
+  },
+  {
+    "type": "method",
+    "name": "unwrap",
+    "start_line": 87,
+    "end_line": 99,
+    "code": "/**\r\n * Returns the corresponding primitive type of {@code type} if it is a wrapper type; otherwise\r\n * returns {@code type} itself. Idempotent.\r\n *\r\n * <pre>\r\n *     unwrap(Integer.class) == int.class\r\n *     unwrap(int.class) == int.class\r\n *     unwrap(String.class) == String.class\r\n * </pre>\r\n */\r\n@SuppressWarnings({ \"unchecked\", \"MissingBraces\" })\r\npublic static <T> Class<T> unwrap(Class<T> type) {\r\n    if (type == Integer.class)\r\n        return (Class<T>) int.class;\r\n    if (type == Float.class)\r\n        return (Class<T>) float.class;\r\n    if (type == Byte.class)\r\n        return (Class<T>) byte.class;\r\n    if (type == Double.class)\r\n        return (Class<T>) double.class;\r\n    if (type == Long.class)\r\n        return (Class<T>) long.class;\r\n    if (type == Character.class)\r\n        return (Class<T>) char.class;\r\n    if (type == Boolean.class)\r\n        return (Class<T>) boolean.class;\r\n    if (type == Short.class)\r\n        return (Class<T>) short.class;\r\n    if (type == Void.class)\r\n        return (Class<T>) void.class;\r\n    return type;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\Primitives.java"
+  }
+]

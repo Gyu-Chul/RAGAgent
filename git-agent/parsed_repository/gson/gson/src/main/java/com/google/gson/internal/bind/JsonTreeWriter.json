@@ -1,0 +1,314 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.bind",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.bind;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.errorprone.annotations.CanIgnoreReturnValue",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.errorprone.annotations.CanIgnoreReturnValue;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonArray",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.JsonArray;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonNull",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.JsonNull;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonObject",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.JsonObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.Writer",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.io.Writer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Objects",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.Objects;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonTreeWriter",
+    "start_line": 33,
+    "end_line": 254,
+    "code": "/**\r\n * This writer creates a JsonElement.\r\n */\r\npublic final class JsonTreeWriter extends JsonWriter {\r\n\r\n    private static final Writer UNWRITABLE_WRITER = new Writer() {\r\n\r\n        @Override\r\n        public void write(char[] buffer, int offset, int counter) {\r\n            throw new AssertionError();\r\n        }\r\n\r\n        @Override\r\n        public void flush() {\r\n            throw new AssertionError();\r\n        }\r\n\r\n        @Override\r\n        public void close() {\r\n            throw new AssertionError();\r\n        }\r\n    };\r\n\r\n    /**\r\n     * Added to the top of the stack when this writer is closed to cause following ops to fail.\r\n     */\r\n    private static final JsonPrimitive SENTINEL_CLOSED = new JsonPrimitive(\"closed\");\r\n\r\n    /**\r\n     * The JsonElements and JsonArrays under modification, outermost to innermost.\r\n     */\r\n    private final List<JsonElement> stack = new ArrayList<>();\r\n\r\n    /**\r\n     * The name for the next JSON object value. If non-null, the top of the stack is a JsonObject.\r\n     */\r\n    private String pendingName;\r\n\r\n    /**\r\n     * the JSON element constructed by this writer.\r\n     */\r\n    // TODO: is this really what we want?;\r\n    private JsonElement product = JsonNull.INSTANCE;\r\n\r\n    public JsonTreeWriter() {\r\n        super(UNWRITABLE_WRITER);\r\n    }\r\n\r\n    /**\r\n     * Returns the top level object produced by this writer.\r\n     */\r\n    public JsonElement get() {\r\n        if (!stack.isEmpty()) {\r\n            throw new IllegalStateException(\"Expected one JSON element but was \" + stack);\r\n        }\r\n        return product;\r\n    }\r\n\r\n    private JsonElement peek() {\r\n        return stack.get(stack.size() - 1);\r\n    }\r\n\r\n    private void put(JsonElement value) {\r\n        if (pendingName != null) {\r\n            if (!value.isJsonNull() || getSerializeNulls()) {\r\n                JsonObject object = (JsonObject) peek();\r\n                object.add(pendingName, value);\r\n            }\r\n            pendingName = null;\r\n        } else if (stack.isEmpty()) {\r\n            product = value;\r\n        } else {\r\n            JsonElement element = peek();\r\n            if (element instanceof JsonArray) {\r\n                ((JsonArray) element).add(value);\r\n            } else {\r\n                throw new IllegalStateException();\r\n            }\r\n        }\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter beginArray() throws IOException {\r\n        JsonArray array = new JsonArray();\r\n        put(array);\r\n        stack.add(array);\r\n        return this;\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter endArray() throws IOException {\r\n        if (stack.isEmpty() || pendingName != null) {\r\n            throw new IllegalStateException();\r\n        }\r\n        JsonElement element = peek();\r\n        if (element instanceof JsonArray) {\r\n            stack.remove(stack.size() - 1);\r\n            return this;\r\n        }\r\n        throw new IllegalStateException();\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter beginObject() throws IOException {\r\n        JsonObject object = new JsonObject();\r\n        put(object);\r\n        stack.add(object);\r\n        return this;\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter endObject() throws IOException {\r\n        if (stack.isEmpty() || pendingName != null) {\r\n            throw new IllegalStateException();\r\n        }\r\n        JsonElement element = peek();\r\n        if (element instanceof JsonObject) {\r\n            stack.remove(stack.size() - 1);\r\n            return this;\r\n        }\r\n        throw new IllegalStateException();\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter name(String name) throws IOException {\r\n        Objects.requireNonNull(name, \"name == null\");\r\n        if (stack.isEmpty() || pendingName != null) {\r\n            throw new IllegalStateException(\"Did not expect a name\");\r\n        }\r\n        JsonElement element = peek();\r\n        if (element instanceof JsonObject) {\r\n            pendingName = name;\r\n            return this;\r\n        }\r\n        throw new IllegalStateException(\"Please begin an object before writing a name.\");\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter value(String value) throws IOException {\r\n        if (value == null) {\r\n            return nullValue();\r\n        }\r\n        put(new JsonPrimitive(value));\r\n        return this;\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter value(boolean value) throws IOException {\r\n        put(new JsonPrimitive(value));\r\n        return this;\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter value(Boolean value) throws IOException {\r\n        if (value == null) {\r\n            return nullValue();\r\n        }\r\n        put(new JsonPrimitive(value));\r\n        return this;\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter value(float value) throws IOException {\r\n        if (!isLenient() && (Float.isNaN(value) || Float.isInfinite(value))) {\r\n            throw new IllegalArgumentException(\"JSON forbids NaN and infinities: \" + value);\r\n        }\r\n        put(new JsonPrimitive(value));\r\n        return this;\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter value(double value) throws IOException {\r\n        if (!isLenient() && (Double.isNaN(value) || Double.isInfinite(value))) {\r\n            throw new IllegalArgumentException(\"JSON forbids NaN and infinities: \" + value);\r\n        }\r\n        put(new JsonPrimitive(value));\r\n        return this;\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter value(long value) throws IOException {\r\n        put(new JsonPrimitive(value));\r\n        return this;\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter value(Number value) throws IOException {\r\n        if (value == null) {\r\n            return nullValue();\r\n        }\r\n        if (!isLenient()) {\r\n            double d = value.doubleValue();\r\n            if (Double.isNaN(d) || Double.isInfinite(d)) {\r\n                throw new IllegalArgumentException(\"JSON forbids NaN and infinities: \" + value);\r\n            }\r\n        }\r\n        put(new JsonPrimitive(value));\r\n        return this;\r\n    }\r\n\r\n    @CanIgnoreReturnValue\r\n    @Override\r\n    public JsonWriter nullValue() throws IOException {\r\n        put(JsonNull.INSTANCE);\r\n        return this;\r\n    }\r\n\r\n    @Override\r\n    public JsonWriter jsonValue(String value) throws IOException {\r\n        throw new UnsupportedOperationException();\r\n    }\r\n\r\n    @Override\r\n    public void flush() throws IOException {\r\n    }\r\n\r\n    @Override\r\n    public void close() throws IOException {\r\n        if (!stack.isEmpty()) {\r\n            throw new IOException(\"Incomplete document\");\r\n        }\r\n        stack.add(SENTINEL_CLOSED);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "field",
+    "name": "UNWRITABLE_WRITER",
+    "start_line": 34,
+    "end_line": 50,
+    "code": "private static final Writer UNWRITABLE_WRITER = new Writer() {\r\n\r\n    @Override\r\n    public void write(char[] buffer, int offset, int counter) {\r\n        throw new AssertionError();\r\n    }\r\n\r\n    @Override\r\n    public void flush() {\r\n        throw new AssertionError();\r\n    }\r\n\r\n    @Override\r\n    public void close() {\r\n        throw new AssertionError();\r\n    }\r\n};",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "field",
+    "name": "SENTINEL_CLOSED",
+    "start_line": 53,
+    "end_line": 53,
+    "code": "/**\r\n * Added to the top of the stack when this writer is closed to cause following ops to fail.\r\n */\r\nprivate static final JsonPrimitive SENTINEL_CLOSED = new JsonPrimitive(\"closed\");",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "field",
+    "name": "stack",
+    "start_line": 56,
+    "end_line": 56,
+    "code": "/**\r\n * The JsonElements and JsonArrays under modification, outermost to innermost.\r\n */\r\nprivate final List<JsonElement> stack = new ArrayList<>();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "field",
+    "name": "pendingName",
+    "start_line": 59,
+    "end_line": 59,
+    "code": "/**\r\n * The name for the next JSON object value. If non-null, the top of the stack is a JsonObject.\r\n */\r\nprivate String pendingName;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "field",
+    "name": "product",
+    "start_line": 62,
+    "end_line": 62,
+    "code": "/**\r\n * the JSON element constructed by this writer.\r\n */\r\n// TODO: is this really what we want?;\r\nprivate JsonElement product = JsonNull.INSTANCE;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "constructor",
+    "name": "JsonTreeWriter",
+    "start_line": 64,
+    "end_line": 66,
+    "code": "public JsonTreeWriter() {\r\n    super(UNWRITABLE_WRITER);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "get",
+    "start_line": 69,
+    "end_line": 74,
+    "code": "/**\r\n * Returns the top level object produced by this writer.\r\n */\r\npublic JsonElement get() {\r\n    if (!stack.isEmpty()) {\r\n        throw new IllegalStateException(\"Expected one JSON element but was \" + stack);\r\n    }\r\n    return product;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "peek",
+    "start_line": 76,
+    "end_line": 78,
+    "code": "private JsonElement peek() {\r\n    return stack.get(stack.size() - 1);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "put",
+    "start_line": 80,
+    "end_line": 97,
+    "code": "private void put(JsonElement value) {\r\n    if (pendingName != null) {\r\n        if (!value.isJsonNull() || getSerializeNulls()) {\r\n            JsonObject object = (JsonObject) peek();\r\n            object.add(pendingName, value);\r\n        }\r\n        pendingName = null;\r\n    } else if (stack.isEmpty()) {\r\n        product = value;\r\n    } else {\r\n        JsonElement element = peek();\r\n        if (element instanceof JsonArray) {\r\n            ((JsonArray) element).add(value);\r\n        } else {\r\n            throw new IllegalStateException();\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "beginArray",
+    "start_line": 99,
+    "end_line": 106,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter beginArray() throws IOException {\r\n    JsonArray array = new JsonArray();\r\n    put(array);\r\n    stack.add(array);\r\n    return this;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "endArray",
+    "start_line": 108,
+    "end_line": 120,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter endArray() throws IOException {\r\n    if (stack.isEmpty() || pendingName != null) {\r\n        throw new IllegalStateException();\r\n    }\r\n    JsonElement element = peek();\r\n    if (element instanceof JsonArray) {\r\n        stack.remove(stack.size() - 1);\r\n        return this;\r\n    }\r\n    throw new IllegalStateException();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "beginObject",
+    "start_line": 122,
+    "end_line": 129,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter beginObject() throws IOException {\r\n    JsonObject object = new JsonObject();\r\n    put(object);\r\n    stack.add(object);\r\n    return this;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "endObject",
+    "start_line": 131,
+    "end_line": 143,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter endObject() throws IOException {\r\n    if (stack.isEmpty() || pendingName != null) {\r\n        throw new IllegalStateException();\r\n    }\r\n    JsonElement element = peek();\r\n    if (element instanceof JsonObject) {\r\n        stack.remove(stack.size() - 1);\r\n        return this;\r\n    }\r\n    throw new IllegalStateException();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "name",
+    "start_line": 145,
+    "end_line": 158,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter name(String name) throws IOException {\r\n    Objects.requireNonNull(name, \"name == null\");\r\n    if (stack.isEmpty() || pendingName != null) {\r\n        throw new IllegalStateException(\"Did not expect a name\");\r\n    }\r\n    JsonElement element = peek();\r\n    if (element instanceof JsonObject) {\r\n        pendingName = name;\r\n        return this;\r\n    }\r\n    throw new IllegalStateException(\"Please begin an object before writing a name.\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "value",
+    "start_line": 160,
+    "end_line": 168,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter value(String value) throws IOException {\r\n    if (value == null) {\r\n        return nullValue();\r\n    }\r\n    put(new JsonPrimitive(value));\r\n    return this;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "value",
+    "start_line": 170,
+    "end_line": 175,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter value(boolean value) throws IOException {\r\n    put(new JsonPrimitive(value));\r\n    return this;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "value",
+    "start_line": 177,
+    "end_line": 185,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter value(Boolean value) throws IOException {\r\n    if (value == null) {\r\n        return nullValue();\r\n    }\r\n    put(new JsonPrimitive(value));\r\n    return this;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "value",
+    "start_line": 187,
+    "end_line": 195,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter value(float value) throws IOException {\r\n    if (!isLenient() && (Float.isNaN(value) || Float.isInfinite(value))) {\r\n        throw new IllegalArgumentException(\"JSON forbids NaN and infinities: \" + value);\r\n    }\r\n    put(new JsonPrimitive(value));\r\n    return this;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "value",
+    "start_line": 197,
+    "end_line": 205,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter value(double value) throws IOException {\r\n    if (!isLenient() && (Double.isNaN(value) || Double.isInfinite(value))) {\r\n        throw new IllegalArgumentException(\"JSON forbids NaN and infinities: \" + value);\r\n    }\r\n    put(new JsonPrimitive(value));\r\n    return this;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "value",
+    "start_line": 207,
+    "end_line": 212,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter value(long value) throws IOException {\r\n    put(new JsonPrimitive(value));\r\n    return this;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "value",
+    "start_line": 214,
+    "end_line": 230,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter value(Number value) throws IOException {\r\n    if (value == null) {\r\n        return nullValue();\r\n    }\r\n    if (!isLenient()) {\r\n        double d = value.doubleValue();\r\n        if (Double.isNaN(d) || Double.isInfinite(d)) {\r\n            throw new IllegalArgumentException(\"JSON forbids NaN and infinities: \" + value);\r\n        }\r\n    }\r\n    put(new JsonPrimitive(value));\r\n    return this;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "nullValue",
+    "start_line": 232,
+    "end_line": 237,
+    "code": "@CanIgnoreReturnValue\r\n@Override\r\npublic JsonWriter nullValue() throws IOException {\r\n    put(JsonNull.INSTANCE);\r\n    return this;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "jsonValue",
+    "start_line": 239,
+    "end_line": 242,
+    "code": "@Override\r\npublic JsonWriter jsonValue(String value) throws IOException {\r\n    throw new UnsupportedOperationException();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "flush",
+    "start_line": 244,
+    "end_line": 245,
+    "code": "@Override\r\npublic void flush() throws IOException {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  },
+  {
+    "type": "method",
+    "name": "close",
+    "start_line": 247,
+    "end_line": 253,
+    "code": "@Override\r\npublic void close() throws IOException {\r\n    if (!stack.isEmpty()) {\r\n        throw new IOException(\"Incomplete document\");\r\n    }\r\n    stack.add(SENTINEL_CLOSED);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriter.java"
+  }
+]

@@ -1,0 +1,210 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonDeserializationContext",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.JsonDeserializationContext;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonDeserializer",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonDeserializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonObject",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.JsonObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonParseException",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.JsonParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.Base",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.common.TestTypes.Base;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.ClassWithBaseField",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.common.TestTypes.ClassWithBaseField;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "class",
+    "name": "CustomDeserializerTest",
+    "start_line": 40,
+    "end_line": 218,
+    "code": "/**\r\n * Functional Test exercising custom deserialization only. When test applies to both serialization\r\n * and deserialization then add it to CustomTypeAdapterTest.\r\n *\r\n * @author Joel Leitch\r\n */\r\npublic class CustomDeserializerTest {\r\n\r\n    private static final String DEFAULT_VALUE = \"test123\";\r\n\r\n    private static final String SUFFIX = \"blah\";\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new GsonBuilder().registerTypeAdapter(DataHolder.class, new DataHolderDeserializer()).create();\r\n    }\r\n\r\n    @Test\r\n    public void testDefaultConstructorNotCalledOnObject() {\r\n        DataHolder data = new DataHolder(DEFAULT_VALUE);\r\n        String json = gson.toJson(data);\r\n        DataHolder actual = gson.fromJson(json, DataHolder.class);\r\n        assertThat(actual.getData()).isEqualTo(DEFAULT_VALUE + SUFFIX);\r\n    }\r\n\r\n    @Test\r\n    public void testDefaultConstructorNotCalledOnField() {\r\n        DataHolderWrapper dataWrapper = new DataHolderWrapper(new DataHolder(DEFAULT_VALUE));\r\n        String json = gson.toJson(dataWrapper);\r\n        DataHolderWrapper actual = gson.fromJson(json, DataHolderWrapper.class);\r\n        assertThat(actual.getWrappedData().getData()).isEqualTo(DEFAULT_VALUE + SUFFIX);\r\n    }\r\n\r\n    private static class DataHolder {\r\n\r\n        private final String data;\r\n\r\n        // For use by Gson\r\n        @SuppressWarnings(\"unused\")\r\n        private DataHolder() {\r\n            throw new IllegalStateException();\r\n        }\r\n\r\n        public DataHolder(String data) {\r\n            this.data = data;\r\n        }\r\n\r\n        public String getData() {\r\n            return data;\r\n        }\r\n    }\r\n\r\n    private static class DataHolderWrapper {\r\n\r\n        private final DataHolder wrappedData;\r\n\r\n        // For use by Gson\r\n        @SuppressWarnings(\"unused\")\r\n        private DataHolderWrapper() {\r\n            this(new DataHolder(DEFAULT_VALUE));\r\n        }\r\n\r\n        public DataHolderWrapper(DataHolder data) {\r\n            this.wrappedData = data;\r\n        }\r\n\r\n        public DataHolder getWrappedData() {\r\n            return wrappedData;\r\n        }\r\n    }\r\n\r\n    private static class DataHolderDeserializer implements JsonDeserializer<DataHolder> {\r\n\r\n        @Override\r\n        public DataHolder deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {\r\n            JsonObject jsonObj = json.getAsJsonObject();\r\n            String dataString = jsonObj.get(\"data\").getAsString();\r\n            return new DataHolder(dataString + SUFFIX);\r\n        }\r\n    }\r\n\r\n    @Test\r\n    public void testJsonTypeFieldBasedDeserialization() {\r\n        String json = \"{field1:'abc',field2:'def',__type__:'SUB_TYPE1'}\";\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(MyBase.class, (JsonDeserializer<MyBase>) (json1, pojoType, context) -> {\r\n            String type = json1.getAsJsonObject().get(MyBase.TYPE_ACCESS).getAsString();\r\n            return context.deserialize(json1, SubTypes.valueOf(type).getSubclass());\r\n        }).create();\r\n        SubType1 target = (SubType1) gson.fromJson(json, MyBase.class);\r\n        assertThat(target.field1).isEqualTo(\"abc\");\r\n    }\r\n\r\n    private static class MyBase {\r\n\r\n        static final String TYPE_ACCESS = \"__type__\";\r\n    }\r\n\r\n    @SuppressWarnings(\"ImmutableEnumChecker\")\r\n    private enum SubTypes {\r\n\r\n        SUB_TYPE1(SubType1.class), SUB_TYPE2(SubType2.class);\r\n\r\n        private final Type subClass;\r\n\r\n        private SubTypes(Type subClass) {\r\n            this.subClass = subClass;\r\n        }\r\n\r\n        public Type getSubclass() {\r\n            return subClass;\r\n        }\r\n    }\r\n\r\n    private static class SubType1 extends MyBase {\r\n\r\n        String field1;\r\n    }\r\n\r\n    private static class SubType2 extends MyBase {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        String field2;\r\n    }\r\n\r\n    @Test\r\n    public void testCustomDeserializerReturnsNullForTopLevelObject() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (JsonDeserializer<Base>) (json, typeOfT, context) -> null).create();\r\n        String json = \"{baseName:'Base',subName:'SubRevised'}\";\r\n        Base target = gson.fromJson(json, Base.class);\r\n        assertThat(target).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testCustomDeserializerReturnsNull() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (JsonDeserializer<Base>) (json, typeOfT, context) -> null).create();\r\n        String json = \"{base:{baseName:'Base',subName:'SubRevised'}}\";\r\n        ClassWithBaseField target = gson.fromJson(json, ClassWithBaseField.class);\r\n        assertThat(target.base).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testCustomDeserializerReturnsNullForArrayElements() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (JsonDeserializer<Base>) (json, typeOfT, context) -> null).create();\r\n        String json = \"[{baseName:'Base'},{baseName:'Base'}]\";\r\n        Base[] target = gson.fromJson(json, Base[].class);\r\n        assertThat(target[0]).isNull();\r\n        assertThat(target[1]).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testCustomDeserializerReturnsNullForArrayElementsForArrayField() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (JsonDeserializer<Base>) (json, typeOfT, context) -> null).create();\r\n        String json = \"{bases:[{baseName:'Base'},{baseName:'Base'}]}\";\r\n        ClassWithBaseArray target = gson.fromJson(json, ClassWithBaseArray.class);\r\n        assertThat(target.bases[0]).isNull();\r\n        assertThat(target.bases[1]).isNull();\r\n    }\r\n\r\n    private static final class ClassWithBaseArray {\r\n\r\n        Base[] bases;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "field",
+    "name": "DEFAULT_VALUE",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "private static final String DEFAULT_VALUE = \"test123\";",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "field",
+    "name": "SUFFIX",
+    "start_line": 42,
+    "end_line": 42,
+    "code": "private static final String SUFFIX = \"blah\";",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 44,
+    "end_line": 44,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 46,
+    "end_line": 52,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new GsonBuilder().registerTypeAdapter(DataHolder.class, new DataHolderDeserializer()).create();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDefaultConstructorNotCalledOnObject",
+    "start_line": 54,
+    "end_line": 61,
+    "code": "@Test\r\npublic void testDefaultConstructorNotCalledOnObject() {\r\n    DataHolder data = new DataHolder(DEFAULT_VALUE);\r\n    String json = gson.toJson(data);\r\n    DataHolder actual = gson.fromJson(json, DataHolder.class);\r\n    assertThat(actual.getData()).isEqualTo(DEFAULT_VALUE + SUFFIX);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDefaultConstructorNotCalledOnField",
+    "start_line": 63,
+    "end_line": 70,
+    "code": "@Test\r\npublic void testDefaultConstructorNotCalledOnField() {\r\n    DataHolderWrapper dataWrapper = new DataHolderWrapper(new DataHolder(DEFAULT_VALUE));\r\n    String json = gson.toJson(dataWrapper);\r\n    DataHolderWrapper actual = gson.fromJson(json, DataHolderWrapper.class);\r\n    assertThat(actual.getWrappedData().getData()).isEqualTo(DEFAULT_VALUE + SUFFIX);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonTypeFieldBasedDeserialization",
+    "start_line": 119,
+    "end_line": 135,
+    "code": "@Test\r\npublic void testJsonTypeFieldBasedDeserialization() {\r\n    String json = \"{field1:'abc',field2:'def',__type__:'SUB_TYPE1'}\";\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(MyBase.class, (JsonDeserializer<MyBase>) (json1, pojoType, context) -> {\r\n        String type = json1.getAsJsonObject().get(MyBase.TYPE_ACCESS).getAsString();\r\n        return context.deserialize(json1, SubTypes.valueOf(type).getSubclass());\r\n    }).create();\r\n    SubType1 target = (SubType1) gson.fromJson(json, MyBase.class);\r\n    assertThat(target.field1).isEqualTo(\"abc\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomDeserializerReturnsNullForTopLevelObject",
+    "start_line": 165,
+    "end_line": 175,
+    "code": "@Test\r\npublic void testCustomDeserializerReturnsNullForTopLevelObject() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (JsonDeserializer<Base>) (json, typeOfT, context) -> null).create();\r\n    String json = \"{baseName:'Base',subName:'SubRevised'}\";\r\n    Base target = gson.fromJson(json, Base.class);\r\n    assertThat(target).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomDeserializerReturnsNull",
+    "start_line": 177,
+    "end_line": 187,
+    "code": "@Test\r\npublic void testCustomDeserializerReturnsNull() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (JsonDeserializer<Base>) (json, typeOfT, context) -> null).create();\r\n    String json = \"{base:{baseName:'Base',subName:'SubRevised'}}\";\r\n    ClassWithBaseField target = gson.fromJson(json, ClassWithBaseField.class);\r\n    assertThat(target.base).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomDeserializerReturnsNullForArrayElements",
+    "start_line": 189,
+    "end_line": 200,
+    "code": "@Test\r\npublic void testCustomDeserializerReturnsNullForArrayElements() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (JsonDeserializer<Base>) (json, typeOfT, context) -> null).create();\r\n    String json = \"[{baseName:'Base'},{baseName:'Base'}]\";\r\n    Base[] target = gson.fromJson(json, Base[].class);\r\n    assertThat(target[0]).isNull();\r\n    assertThat(target[1]).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomDeserializerReturnsNullForArrayElementsForArrayField",
+    "start_line": 202,
+    "end_line": 213,
+    "code": "@Test\r\npublic void testCustomDeserializerReturnsNullForArrayElementsForArrayField() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (JsonDeserializer<Base>) (json, typeOfT, context) -> null).create();\r\n    String json = \"{bases:[{baseName:'Base'},{baseName:'Base'}]}\";\r\n    ClassWithBaseArray target = gson.fromJson(json, ClassWithBaseArray.class);\r\n    assertThat(target.bases[0]).isNull();\r\n    assertThat(target.bases[1]).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CustomDeserializerTest.java"
+  }
+]

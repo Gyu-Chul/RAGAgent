@@ -1,0 +1,82 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\UnsafeAllocator.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.ObjectInputStream",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import java.io.ObjectInputStream;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\UnsafeAllocator.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.ObjectStreamClass",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import java.io.ObjectStreamClass;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\UnsafeAllocator.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Field",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.lang.reflect.Field;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\UnsafeAllocator.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Method",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.lang.reflect.Method;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\UnsafeAllocator.java"
+  },
+  {
+    "type": "class",
+    "name": "UnsafeAllocator",
+    "start_line": 30,
+    "end_line": 129,
+    "code": "/**\r\n * Do sneaky things to allocate objects without invoking their constructors.\r\n *\r\n * @author Joel Leitch\r\n * @author Jesse Wilson\r\n */\r\npublic abstract class UnsafeAllocator {\r\n\r\n    public abstract <T> T newInstance(Class<T> c) throws Exception;\r\n\r\n    /**\r\n     * Asserts that the class is instantiable. This check should have already occurred in {@link\r\n     * ConstructorConstructor}; this check here acts as safeguard since trying to use Unsafe for\r\n     * non-instantiable classes might crash the JVM on some devices.\r\n     */\r\n    private static void assertInstantiable(Class<?> c) {\r\n        String exceptionMessage = ConstructorConstructor.checkInstantiable(c);\r\n        if (exceptionMessage != null) {\r\n            throw new AssertionError(\"UnsafeAllocator is used for non-instantiable type: \" + exceptionMessage);\r\n        }\r\n    }\r\n\r\n    public static final UnsafeAllocator INSTANCE = create();\r\n\r\n    private static UnsafeAllocator create() {\r\n        // try JVM\r\n        // public class Unsafe {\r\n        //   public Object allocateInstance(Class<?> type);\r\n        // }\r\n        try {\r\n            Class<?> unsafeClass = Class.forName(\"sun.misc.Unsafe\");\r\n            Field f = unsafeClass.getDeclaredField(\"theUnsafe\");\r\n            f.setAccessible(true);\r\n            Object unsafe = f.get(null);\r\n            Method allocateInstance = unsafeClass.getMethod(\"allocateInstance\", Class.class);\r\n            return new UnsafeAllocator() {\r\n\r\n                @Override\r\n                @SuppressWarnings(\"unchecked\")\r\n                public <T> T newInstance(Class<T> c) throws Exception {\r\n                    assertInstantiable(c);\r\n                    return (T) allocateInstance.invoke(unsafe, c);\r\n                }\r\n            };\r\n        } catch (Exception ignored) {\r\n            // OK: try the next way\r\n        }\r\n        // try dalvikvm, post-gingerbread\r\n        // public class ObjectStreamClass {\r\n        //   private static native int getConstructorId(Class<?> c);\r\n        //   private static native Object newInstance(Class<?> instantiationClass, int methodId);\r\n        // }\r\n        try {\r\n            Method getConstructorId = ObjectStreamClass.class.getDeclaredMethod(\"getConstructorId\", Class.class);\r\n            getConstructorId.setAccessible(true);\r\n            int constructorId = (Integer) getConstructorId.invoke(null, Object.class);\r\n            Method newInstance = ObjectStreamClass.class.getDeclaredMethod(\"newInstance\", Class.class, int.class);\r\n            newInstance.setAccessible(true);\r\n            return new UnsafeAllocator() {\r\n\r\n                @Override\r\n                @SuppressWarnings(\"unchecked\")\r\n                public <T> T newInstance(Class<T> c) throws Exception {\r\n                    assertInstantiable(c);\r\n                    return (T) newInstance.invoke(null, c, constructorId);\r\n                }\r\n            };\r\n        } catch (Exception ignored) {\r\n            // OK: try the next way\r\n        }\r\n        // try dalvikvm, pre-gingerbread\r\n        // public class ObjectInputStream {\r\n        //   private static native Object newInstance(\r\n        //     Class<?> instantiationClass, Class<?> constructorClass);\r\n        // }\r\n        try {\r\n            Method newInstance = ObjectInputStream.class.getDeclaredMethod(\"newInstance\", Class.class, Class.class);\r\n            newInstance.setAccessible(true);\r\n            return new UnsafeAllocator() {\r\n\r\n                @Override\r\n                @SuppressWarnings(\"unchecked\")\r\n                public <T> T newInstance(Class<T> c) throws Exception {\r\n                    assertInstantiable(c);\r\n                    return (T) newInstance.invoke(null, c, Object.class);\r\n                }\r\n            };\r\n        } catch (Exception ignored) {\r\n            // OK: try the next way\r\n        }\r\n        // give up\r\n        return new UnsafeAllocator() {\r\n\r\n            @Override\r\n            public <T> T newInstance(Class<T> c) {\r\n                throw new UnsupportedOperationException(\"Cannot allocate \" + c + \". Usage of JDK sun.misc.Unsafe is enabled, but it could not be used.\" + \" Make sure your runtime is configured correctly.\");\r\n            }\r\n        };\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\UnsafeAllocator.java"
+  },
+  {
+    "type": "field",
+    "name": "INSTANCE",
+    "start_line": 46,
+    "end_line": 46,
+    "code": "public static final UnsafeAllocator INSTANCE = create();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\UnsafeAllocator.java"
+  },
+  {
+    "type": "method",
+    "name": "newInstance",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "public abstract <T> T newInstance(Class<T> c) throws Exception;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\UnsafeAllocator.java"
+  },
+  {
+    "type": "method",
+    "name": "assertInstantiable",
+    "start_line": 38,
+    "end_line": 44,
+    "code": "/**\r\n * Asserts that the class is instantiable. This check should have already occurred in {@link\r\n * ConstructorConstructor}; this check here acts as safeguard since trying to use Unsafe for\r\n * non-instantiable classes might crash the JVM on some devices.\r\n */\r\nprivate static void assertInstantiable(Class<?> c) {\r\n    String exceptionMessage = ConstructorConstructor.checkInstantiable(c);\r\n    if (exceptionMessage != null) {\r\n        throw new AssertionError(\"UnsafeAllocator is used for non-instantiable type: \" + exceptionMessage);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\UnsafeAllocator.java"
+  },
+  {
+    "type": "method",
+    "name": "create",
+    "start_line": 48,
+    "end_line": 128,
+    "code": "private static UnsafeAllocator create() {\r\n    // try JVM\r\n    // public class Unsafe {\r\n    //   public Object allocateInstance(Class<?> type);\r\n    // }\r\n    try {\r\n        Class<?> unsafeClass = Class.forName(\"sun.misc.Unsafe\");\r\n        Field f = unsafeClass.getDeclaredField(\"theUnsafe\");\r\n        f.setAccessible(true);\r\n        Object unsafe = f.get(null);\r\n        Method allocateInstance = unsafeClass.getMethod(\"allocateInstance\", Class.class);\r\n        return new UnsafeAllocator() {\r\n\r\n            @Override\r\n            @SuppressWarnings(\"unchecked\")\r\n            public <T> T newInstance(Class<T> c) throws Exception {\r\n                assertInstantiable(c);\r\n                return (T) allocateInstance.invoke(unsafe, c);\r\n            }\r\n        };\r\n    } catch (Exception ignored) {\r\n        // OK: try the next way\r\n    }\r\n    // try dalvikvm, post-gingerbread\r\n    // public class ObjectStreamClass {\r\n    //   private static native int getConstructorId(Class<?> c);\r\n    //   private static native Object newInstance(Class<?> instantiationClass, int methodId);\r\n    // }\r\n    try {\r\n        Method getConstructorId = ObjectStreamClass.class.getDeclaredMethod(\"getConstructorId\", Class.class);\r\n        getConstructorId.setAccessible(true);\r\n        int constructorId = (Integer) getConstructorId.invoke(null, Object.class);\r\n        Method newInstance = ObjectStreamClass.class.getDeclaredMethod(\"newInstance\", Class.class, int.class);\r\n        newInstance.setAccessible(true);\r\n        return new UnsafeAllocator() {\r\n\r\n            @Override\r\n            @SuppressWarnings(\"unchecked\")\r\n            public <T> T newInstance(Class<T> c) throws Exception {\r\n                assertInstantiable(c);\r\n                return (T) newInstance.invoke(null, c, constructorId);\r\n            }\r\n        };\r\n    } catch (Exception ignored) {\r\n        // OK: try the next way\r\n    }\r\n    // try dalvikvm, pre-gingerbread\r\n    // public class ObjectInputStream {\r\n    //   private static native Object newInstance(\r\n    //     Class<?> instantiationClass, Class<?> constructorClass);\r\n    // }\r\n    try {\r\n        Method newInstance = ObjectInputStream.class.getDeclaredMethod(\"newInstance\", Class.class, Class.class);\r\n        newInstance.setAccessible(true);\r\n        return new UnsafeAllocator() {\r\n\r\n            @Override\r\n            @SuppressWarnings(\"unchecked\")\r\n            public <T> T newInstance(Class<T> c) throws Exception {\r\n                assertInstantiable(c);\r\n                return (T) newInstance.invoke(null, c, Object.class);\r\n            }\r\n        };\r\n    } catch (Exception ignored) {\r\n        // OK: try the next way\r\n    }\r\n    // give up\r\n    return new UnsafeAllocator() {\r\n\r\n        @Override\r\n        public <T> T newInstance(Class<T> c) {\r\n            throw new UnsupportedOperationException(\"Cannot allocate \" + c + \". Usage of JDK sun.misc.Unsafe is enabled, but it could not be used.\" + \" Make sure your runtime is configured correctly.\");\r\n        }\r\n    };\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\UnsafeAllocator.java"
+  }
+]

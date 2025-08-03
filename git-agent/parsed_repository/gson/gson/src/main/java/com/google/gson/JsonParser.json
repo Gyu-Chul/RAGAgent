@@ -1,0 +1,138 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.errorprone.annotations.InlineMe",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import com.google.errorprone.annotations.InlineMe;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.Streams",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.internal.Streams;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonToken",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.stream.JsonToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.MalformedJsonException",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.stream.MalformedJsonException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.Reader",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.io.Reader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.StringReader",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.io.StringReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonParser",
+    "start_line": 73,
+    "end_line": 178,
+    "code": "/**\r\n * A parser to parse JSON into a parse tree of {@link JsonElement}s.\r\n *\r\n * <p>The JSON data is parsed in {@linkplain JsonReader#setStrictness(Strictness) lenient mode}.\r\n *\r\n * <p>Here's an example of parsing from a string:\r\n *\r\n * <pre>\r\n * String json = \"{\\\"key\\\": \\\"value\\\"}\";\r\n * JsonElement jsonElement = JsonParser.parseString(json);\r\n * JsonObject jsonObject = jsonElement.getAsJsonObject();\r\n * </pre>\r\n *\r\n * <p>It can also parse from a reader:\r\n *\r\n * <pre>\r\n * try (Reader reader = new FileReader(\"my-data.json\", StandardCharsets.UTF_8)) {\r\n *   JsonElement jsonElement = JsonParser.parseReader(reader);\r\n *   JsonObject jsonObject = jsonElement.getAsJsonObject();\r\n * }\r\n * </pre>\r\n *\r\n * <p>If you want to parse from a {@link JsonReader} for more customized parsing requirements, the\r\n * following example demonstrates how to achieve it:\r\n *\r\n * <pre>\r\n * String json = \"{\\\"skipObj\\\": {\\\"skipKey\\\": \\\"skipValue\\\"}, \\\"obj\\\": {\\\"key\\\": \\\"value\\\"}}\";\r\n * try (JsonReader jsonReader = new JsonReader(new StringReader(json))) {\r\n *   jsonReader.beginObject();\r\n *   while (jsonReader.hasNext()) {\r\n *     String fieldName = jsonReader.nextName();\r\n *     if (fieldName.equals(\"skipObj\")) {\r\n *       jsonReader.skipValue();\r\n *     } else {\r\n *       JsonElement jsonElement = JsonParser.parseReader(jsonReader);\r\n *       JsonObject jsonObject = jsonElement.getAsJsonObject();\r\n *     }\r\n *   }\r\n *   jsonReader.endObject();\r\n * }\r\n * </pre>\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n * @since 1.3\r\n */\r\npublic final class JsonParser {\r\n\r\n    /**\r\n     * @deprecated No need to instantiate this class, use the static methods instead.\r\n     */\r\n    @Deprecated\r\n    public JsonParser() {\r\n    }\r\n\r\n    /**\r\n     * Parses the specified JSON string into a parse tree. An exception is thrown if the JSON string\r\n     * has multiple top-level JSON elements, or if there is trailing data.\r\n     *\r\n     * <p>The JSON string is parsed in {@linkplain JsonReader#setStrictness(Strictness) lenient mode}.\r\n     *\r\n     * @param json JSON text\r\n     * @return a parse tree of {@link JsonElement}s corresponding to the specified JSON\r\n     * @throws JsonParseException if the specified text is not valid JSON\r\n     * @since 2.8.6\r\n     */\r\n    public static JsonElement parseString(String json) throws JsonSyntaxException {\r\n        return parseReader(new StringReader(json));\r\n    }\r\n\r\n    /**\r\n     * Parses the complete JSON string provided by the reader into a parse tree. An exception is\r\n     * thrown if the JSON string has multiple top-level JSON elements, or if there is trailing data.\r\n     *\r\n     * <p>The JSON data is parsed in {@linkplain JsonReader#setStrictness(Strictness) lenient mode}.\r\n     *\r\n     * @param reader JSON text\r\n     * @return a parse tree of {@link JsonElement}s corresponding to the specified JSON\r\n     * @throws JsonParseException if there is an IOException or if the specified text is not valid\r\n     *     JSON\r\n     * @since 2.8.6\r\n     */\r\n    public static JsonElement parseReader(Reader reader) throws JsonIOException, JsonSyntaxException {\r\n        try {\r\n            JsonReader jsonReader = new JsonReader(reader);\r\n            JsonElement element = parseReader(jsonReader);\r\n            if (!element.isJsonNull() && jsonReader.peek() != JsonToken.END_DOCUMENT) {\r\n                throw new JsonSyntaxException(\"Did not consume the entire document.\");\r\n            }\r\n            return element;\r\n        } catch (MalformedJsonException | NumberFormatException e) {\r\n            throw new JsonSyntaxException(e);\r\n        } catch (IOException e) {\r\n            throw new JsonIOException(e);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Returns the next value from the JSON stream as a parse tree. Unlike the other {@code parse}\r\n     * methods, no exception is thrown if the JSON data has multiple top-level JSON elements, or if\r\n     * there is trailing data.\r\n     *\r\n     * <p>If the {@linkplain JsonReader#getStrictness() strictness of the reader} is {@link\r\n     * Strictness#STRICT}, that strictness will be used for parsing. Otherwise the strictness will be\r\n     * temporarily changed to {@link Strictness#LENIENT} and will be restored once this method\r\n     * returns.\r\n     *\r\n     * @throws JsonParseException if there is an IOException or if the specified text is not valid\r\n     *     JSON\r\n     * @since 2.8.6\r\n     */\r\n    public static JsonElement parseReader(JsonReader reader) throws JsonIOException, JsonSyntaxException {\r\n        Strictness strictness = reader.getStrictness();\r\n        if (strictness == Strictness.LEGACY_STRICT) {\r\n            // For backward compatibility change to LENIENT if reader has default strictness LEGACY_STRICT\r\n            reader.setStrictness(Strictness.LENIENT);\r\n        }\r\n        try {\r\n            return Streams.parse(reader);\r\n        } catch (StackOverflowError | OutOfMemoryError e) {\r\n            throw new JsonParseException(\"Failed parsing JSON source: \" + reader + \" to Json\", e);\r\n        } finally {\r\n            reader.setStrictness(strictness);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * @deprecated Use {@link JsonParser#parseString}\r\n     */\r\n    @Deprecated\r\n    @InlineMe(replacement = \"JsonParser.parseString(json)\", imports = \"com.google.gson.JsonParser\")\r\n    public JsonElement parse(String json) throws JsonSyntaxException {\r\n        return parseString(json);\r\n    }\r\n\r\n    /**\r\n     * @deprecated Use {@link JsonParser#parseReader(Reader)}\r\n     */\r\n    @Deprecated\r\n    @InlineMe(replacement = \"JsonParser.parseReader(json)\", imports = \"com.google.gson.JsonParser\")\r\n    public JsonElement parse(Reader json) throws JsonIOException, JsonSyntaxException {\r\n        return parseReader(json);\r\n    }\r\n\r\n    /**\r\n     * @deprecated Use {@link JsonParser#parseReader(JsonReader)}\r\n     */\r\n    @Deprecated\r\n    @InlineMe(replacement = \"JsonParser.parseReader(json)\", imports = \"com.google.gson.JsonParser\")\r\n    public JsonElement parse(JsonReader json) throws JsonIOException, JsonSyntaxException {\r\n        return parseReader(json);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "constructor",
+    "name": "JsonParser",
+    "start_line": 77,
+    "end_line": 78,
+    "code": "/**\r\n * @deprecated No need to instantiate this class, use the static methods instead.\r\n */\r\n@Deprecated\r\npublic JsonParser() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "method",
+    "name": "parseString",
+    "start_line": 91,
+    "end_line": 93,
+    "code": "/**\r\n * Parses the specified JSON string into a parse tree. An exception is thrown if the JSON string\r\n * has multiple top-level JSON elements, or if there is trailing data.\r\n *\r\n * <p>The JSON string is parsed in {@linkplain JsonReader#setStrictness(Strictness) lenient mode}.\r\n *\r\n * @param json JSON text\r\n * @return a parse tree of {@link JsonElement}s corresponding to the specified JSON\r\n * @throws JsonParseException if the specified text is not valid JSON\r\n * @since 2.8.6\r\n */\r\npublic static JsonElement parseString(String json) throws JsonSyntaxException {\r\n    return parseReader(new StringReader(json));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "method",
+    "name": "parseReader",
+    "start_line": 107,
+    "end_line": 120,
+    "code": "/**\r\n * Parses the complete JSON string provided by the reader into a parse tree. An exception is\r\n * thrown if the JSON string has multiple top-level JSON elements, or if there is trailing data.\r\n *\r\n * <p>The JSON data is parsed in {@linkplain JsonReader#setStrictness(Strictness) lenient mode}.\r\n *\r\n * @param reader JSON text\r\n * @return a parse tree of {@link JsonElement}s corresponding to the specified JSON\r\n * @throws JsonParseException if there is an IOException or if the specified text is not valid\r\n *     JSON\r\n * @since 2.8.6\r\n */\r\npublic static JsonElement parseReader(Reader reader) throws JsonIOException, JsonSyntaxException {\r\n    try {\r\n        JsonReader jsonReader = new JsonReader(reader);\r\n        JsonElement element = parseReader(jsonReader);\r\n        if (!element.isJsonNull() && jsonReader.peek() != JsonToken.END_DOCUMENT) {\r\n            throw new JsonSyntaxException(\"Did not consume the entire document.\");\r\n        }\r\n        return element;\r\n    } catch (MalformedJsonException | NumberFormatException e) {\r\n        throw new JsonSyntaxException(e);\r\n    } catch (IOException e) {\r\n        throw new JsonIOException(e);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "method",
+    "name": "parseReader",
+    "start_line": 136,
+    "end_line": 150,
+    "code": "/**\r\n * Returns the next value from the JSON stream as a parse tree. Unlike the other {@code parse}\r\n * methods, no exception is thrown if the JSON data has multiple top-level JSON elements, or if\r\n * there is trailing data.\r\n *\r\n * <p>If the {@linkplain JsonReader#getStrictness() strictness of the reader} is {@link\r\n * Strictness#STRICT}, that strictness will be used for parsing. Otherwise the strictness will be\r\n * temporarily changed to {@link Strictness#LENIENT} and will be restored once this method\r\n * returns.\r\n *\r\n * @throws JsonParseException if there is an IOException or if the specified text is not valid\r\n *     JSON\r\n * @since 2.8.6\r\n */\r\npublic static JsonElement parseReader(JsonReader reader) throws JsonIOException, JsonSyntaxException {\r\n    Strictness strictness = reader.getStrictness();\r\n    if (strictness == Strictness.LEGACY_STRICT) {\r\n        // For backward compatibility change to LENIENT if reader has default strictness LEGACY_STRICT\r\n        reader.setStrictness(Strictness.LENIENT);\r\n    }\r\n    try {\r\n        return Streams.parse(reader);\r\n    } catch (StackOverflowError | OutOfMemoryError e) {\r\n        throw new JsonParseException(\"Failed parsing JSON source: \" + reader + \" to Json\", e);\r\n    } finally {\r\n        reader.setStrictness(strictness);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "method",
+    "name": "parse",
+    "start_line": 155,
+    "end_line": 159,
+    "code": "/**\r\n * @deprecated Use {@link JsonParser#parseString}\r\n */\r\n@Deprecated\r\n@InlineMe(replacement = \"JsonParser.parseString(json)\", imports = \"com.google.gson.JsonParser\")\r\npublic JsonElement parse(String json) throws JsonSyntaxException {\r\n    return parseString(json);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "method",
+    "name": "parse",
+    "start_line": 164,
+    "end_line": 168,
+    "code": "/**\r\n * @deprecated Use {@link JsonParser#parseReader(Reader)}\r\n */\r\n@Deprecated\r\n@InlineMe(replacement = \"JsonParser.parseReader(json)\", imports = \"com.google.gson.JsonParser\")\r\npublic JsonElement parse(Reader json) throws JsonIOException, JsonSyntaxException {\r\n    return parseReader(json);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  },
+  {
+    "type": "method",
+    "name": "parse",
+    "start_line": 173,
+    "end_line": 177,
+    "code": "/**\r\n * @deprecated Use {@link JsonParser#parseReader(JsonReader)}\r\n */\r\n@Deprecated\r\n@InlineMe(replacement = \"JsonParser.parseReader(json)\", imports = \"com.google.gson.JsonParser\")\r\npublic JsonElement parse(JsonReader json) throws JsonIOException, JsonSyntaxException {\r\n    return parseReader(json);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonParser.java"
+  }
+]

@@ -1,0 +1,74 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ParameterizedTypeFixtures.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.GsonTypes",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.internal.GsonTypes;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ParameterizedTypeFixtures.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.Primitives",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.internal.Primitives;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ParameterizedTypeFixtures.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Method",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.lang.reflect.Method;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ParameterizedTypeFixtures.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.ParameterizedType",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.lang.reflect.ParameterizedType;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ParameterizedTypeFixtures.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ParameterizedTypeFixtures.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Objects",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.Objects;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ParameterizedTypeFixtures.java"
+  },
+  {
+    "type": "class",
+    "name": "ParameterizedTypeFixtures",
+    "start_line": 34,
+    "end_line": 162,
+    "code": "/**\r\n * This class contains some test fixtures for Parameterized types. These classes should ideally\r\n * belong either in the common or functional package, but they are placed here because they need\r\n * access to package protected elements of com.google.gson.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class ParameterizedTypeFixtures {\r\n\r\n    private ParameterizedTypeFixtures() {\r\n    }\r\n\r\n    public static final class MyParameterizedType<T> {\r\n\r\n        public final T value;\r\n\r\n        public MyParameterizedType(T value) {\r\n            this.value = value;\r\n        }\r\n\r\n        public T getValue() {\r\n            return value;\r\n        }\r\n\r\n        public String getExpectedJson() {\r\n            String valueAsJson = getExpectedJson(value);\r\n            return String.format(\"{\\\"value\\\":%s}\", valueAsJson);\r\n        }\r\n\r\n        private static String getExpectedJson(Object obj) {\r\n            Class<?> clazz = obj.getClass();\r\n            if (Primitives.isWrapperType(Primitives.wrap(clazz))) {\r\n                return obj.toString();\r\n            } else if (obj.getClass().equals(String.class)) {\r\n                return \"\\\"\" + obj.toString() + \"\\\"\";\r\n            } else {\r\n                // Try invoking a getExpectedJson() method if it exists\r\n                try {\r\n                    Method method = clazz.getMethod(\"getExpectedJson\");\r\n                    Object results = method.invoke(obj);\r\n                    return (String) results;\r\n                } catch (ReflectiveOperationException e) {\r\n                    throw new RuntimeException(e);\r\n                }\r\n            }\r\n        }\r\n\r\n        @Override\r\n        public int hashCode() {\r\n            return value == null ? 0 : value.hashCode();\r\n        }\r\n\r\n        @Override\r\n        public boolean equals(Object obj) {\r\n            if (this == obj) {\r\n                return true;\r\n            }\r\n            if (!(obj instanceof MyParameterizedType<?>)) {\r\n                return false;\r\n            }\r\n            MyParameterizedType<?> that = (MyParameterizedType<?>) obj;\r\n            return Objects.equals(getValue(), that.getValue());\r\n        }\r\n    }\r\n\r\n    public static class MyParameterizedTypeInstanceCreator<T> implements InstanceCreator<MyParameterizedType<T>> {\r\n\r\n        private final T instanceOfT;\r\n\r\n        /**\r\n         * Caution the specified instance is reused by the instance creator for each call. This means\r\n         * that the fields of the same objects will be overwritten by Gson. This is usually fine in\r\n         * tests since there we deserialize just once, but quite dangerous in practice.\r\n         */\r\n        public MyParameterizedTypeInstanceCreator(T instanceOfT) {\r\n            this.instanceOfT = instanceOfT;\r\n        }\r\n\r\n        @Override\r\n        public MyParameterizedType<T> createInstance(Type type) {\r\n            return new MyParameterizedType<>(instanceOfT);\r\n        }\r\n    }\r\n\r\n    public static final class MyParameterizedTypeAdapter<T> implements JsonSerializer<MyParameterizedType<T>>, JsonDeserializer<MyParameterizedType<T>> {\r\n\r\n        @SuppressWarnings(\"unchecked\")\r\n        public static <T> String getExpectedJson(MyParameterizedType<T> obj) {\r\n            Class<T> clazz = (Class<T>) obj.value.getClass();\r\n            boolean addQuotes = !clazz.isArray() && !Primitives.unwrap(clazz).isPrimitive();\r\n            StringBuilder sb = new StringBuilder(\"{\\\"\");\r\n            sb.append(obj.value.getClass().getSimpleName()).append(\"\\\":\");\r\n            if (addQuotes) {\r\n                sb.append(\"\\\"\");\r\n            }\r\n            sb.append(obj.value.toString());\r\n            if (addQuotes) {\r\n                sb.append(\"\\\"\");\r\n            }\r\n            sb.append(\"}\");\r\n            return sb.toString();\r\n        }\r\n\r\n        @Override\r\n        public JsonElement serialize(MyParameterizedType<T> src, Type classOfSrc, JsonSerializationContext context) {\r\n            JsonObject json = new JsonObject();\r\n            T value = src.getValue();\r\n            json.add(value.getClass().getSimpleName(), context.serialize(value));\r\n            return json;\r\n        }\r\n\r\n        @SuppressWarnings(\"unchecked\")\r\n        @Override\r\n        public MyParameterizedType<T> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {\r\n            Type genericClass = ((ParameterizedType) typeOfT).getActualTypeArguments()[0];\r\n            Class<?> rawType = GsonTypes.getRawType(genericClass);\r\n            String className = rawType.getSimpleName();\r\n            JsonElement jsonElement = json.getAsJsonObject().get(className);\r\n            T value;\r\n            if (genericClass == Integer.class) {\r\n                value = (T) Integer.valueOf(jsonElement.getAsInt());\r\n            } else if (genericClass == String.class) {\r\n                value = (T) jsonElement.getAsString();\r\n            } else {\r\n                value = (T) jsonElement;\r\n            }\r\n            if (Primitives.isPrimitive(genericClass)) {\r\n                PrimitiveTypeAdapter typeAdapter = new PrimitiveTypeAdapter();\r\n                value = (T) typeAdapter.adaptType(value, rawType);\r\n            }\r\n            return new MyParameterizedType<>(value);\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ParameterizedTypeFixtures.java"
+  },
+  {
+    "type": "constructor",
+    "name": "ParameterizedTypeFixtures",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "private ParameterizedTypeFixtures() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ParameterizedTypeFixtures.java"
+  }
+]

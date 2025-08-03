@@ -1,0 +1,170 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.errorprone.annotations.Keep",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.errorprone.annotations.Keep;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.InstanceCreator",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.InstanceCreator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.Expose",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.annotations.Expose;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "class",
+    "name": "ExposeFieldsTest",
+    "start_line": 35,
+    "end_line": 191,
+    "code": "/**\r\n * Unit tests for the regarding functional \"@Expose\" type tests.\r\n *\r\n * @author Joel Leitch\r\n */\r\npublic class ExposeFieldsTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(SomeInterface.class, new SomeInterfaceInstanceCreator()).create();\r\n    }\r\n\r\n    @Test\r\n    public void testNullExposeFieldSerialization() {\r\n        ClassWithExposedFields object = new ClassWithExposedFields(null, 1);\r\n        String json = gson.toJson(object);\r\n        assertThat(json).isEqualTo(object.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testArrayWithOneNullExposeFieldObjectSerialization() {\r\n        ClassWithExposedFields object1 = new ClassWithExposedFields(1, 1);\r\n        ClassWithExposedFields object2 = new ClassWithExposedFields(null, 1);\r\n        ClassWithExposedFields object3 = new ClassWithExposedFields(2, 2);\r\n        ClassWithExposedFields[] objects = { object1, object2, object3 };\r\n        String json = gson.toJson(objects);\r\n        String expected = '[' + object1.getExpectedJson() + ',' + object2.getExpectedJson() + ',' + object3.getExpectedJson() + ']';\r\n        assertThat(json).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testExposeAnnotationSerialization() {\r\n        ClassWithExposedFields target = new ClassWithExposedFields(1, 2);\r\n        assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testExposeAnnotationDeserialization() {\r\n        String json = \"{a:3,b:4,d:20.0}\";\r\n        ClassWithExposedFields target = gson.fromJson(json, ClassWithExposedFields.class);\r\n        assertThat(target.a).isEqualTo(3);\r\n        assertThat(target.b).isNull();\r\n        assertThat(target.d).isNotEqualTo(20);\r\n    }\r\n\r\n    @Test\r\n    public void testNoExposedFieldSerialization() {\r\n        ClassWithNoExposedFields obj = new ClassWithNoExposedFields();\r\n        String json = gson.toJson(obj);\r\n        assertThat(json).isEqualTo(\"{}\");\r\n    }\r\n\r\n    @Test\r\n    public void testNoExposedFieldDeserialization() {\r\n        String json = \"{a:4,b:5}\";\r\n        ClassWithNoExposedFields obj = gson.fromJson(json, ClassWithNoExposedFields.class);\r\n        assertThat(obj.a).isEqualTo(0);\r\n        assertThat(obj.b).isEqualTo(1);\r\n    }\r\n\r\n    @Test\r\n    public void testExposedInterfaceFieldSerialization() {\r\n        String expected = \"{\\\"interfaceField\\\":{}}\";\r\n        ClassWithInterfaceField target = new ClassWithInterfaceField(new SomeObject());\r\n        String actual = gson.toJson(target);\r\n        assertThat(actual).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testExposedInterfaceFieldDeserialization() {\r\n        String json = \"{\\\"interfaceField\\\":{}}\";\r\n        ClassWithInterfaceField obj = gson.fromJson(json, ClassWithInterfaceField.class);\r\n        assertThat(obj.interfaceField).isNotNull();\r\n    }\r\n\r\n    private static class ClassWithExposedFields {\r\n\r\n        @Expose\r\n        private final Integer a;\r\n\r\n        private final Integer b;\r\n\r\n        @Expose(serialize = false)\r\n        @Keep\r\n        final long c;\r\n\r\n        @Expose(deserialize = false)\r\n        final double d;\r\n\r\n        @Expose(serialize = false, deserialize = false)\r\n        @Keep\r\n        final char e;\r\n\r\n        public ClassWithExposedFields(Integer a, Integer b) {\r\n            this(a, b, 1L, 2.0, 'a');\r\n        }\r\n\r\n        public ClassWithExposedFields(Integer a, Integer b, long c, double d, char e) {\r\n            this.a = a;\r\n            this.b = b;\r\n            this.c = c;\r\n            this.d = d;\r\n            this.e = e;\r\n        }\r\n\r\n        public String getExpectedJson() {\r\n            StringBuilder sb = new StringBuilder(\"{\");\r\n            if (a != null) {\r\n                sb.append(\"\\\"a\\\":\").append(a).append(\",\");\r\n            }\r\n            sb.append(\"\\\"d\\\":\").append(d);\r\n            sb.append(\"}\");\r\n            return sb.toString();\r\n        }\r\n    }\r\n\r\n    private static class ClassWithNoExposedFields {\r\n\r\n        private final int a = 0;\r\n\r\n        private final int b = 1;\r\n    }\r\n\r\n    private static interface SomeInterface {\r\n        // Empty interface\r\n    }\r\n\r\n    private static class SomeObject implements SomeInterface {\r\n        // Do nothing\r\n    }\r\n\r\n    private static class SomeInterfaceInstanceCreator implements InstanceCreator<SomeInterface> {\r\n\r\n        @Override\r\n        public SomeInterface createInstance(Type type) {\r\n            return new SomeObject();\r\n        }\r\n    }\r\n\r\n    private static class ClassWithInterfaceField {\r\n\r\n        @Expose\r\n        private final SomeInterface interfaceField;\r\n\r\n        public ClassWithInterfaceField(SomeInterface interfaceField) {\r\n            this.interfaceField = interfaceField;\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 39,
+    "end_line": 46,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().registerTypeAdapter(SomeInterface.class, new SomeInterfaceInstanceCreator()).create();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullExposeFieldSerialization",
+    "start_line": 48,
+    "end_line": 54,
+    "code": "@Test\r\npublic void testNullExposeFieldSerialization() {\r\n    ClassWithExposedFields object = new ClassWithExposedFields(null, 1);\r\n    String json = gson.toJson(object);\r\n    assertThat(json).isEqualTo(object.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayWithOneNullExposeFieldObjectSerialization",
+    "start_line": 56,
+    "end_line": 74,
+    "code": "@Test\r\npublic void testArrayWithOneNullExposeFieldObjectSerialization() {\r\n    ClassWithExposedFields object1 = new ClassWithExposedFields(1, 1);\r\n    ClassWithExposedFields object2 = new ClassWithExposedFields(null, 1);\r\n    ClassWithExposedFields object3 = new ClassWithExposedFields(2, 2);\r\n    ClassWithExposedFields[] objects = { object1, object2, object3 };\r\n    String json = gson.toJson(objects);\r\n    String expected = '[' + object1.getExpectedJson() + ',' + object2.getExpectedJson() + ',' + object3.getExpectedJson() + ']';\r\n    assertThat(json).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testExposeAnnotationSerialization",
+    "start_line": 76,
+    "end_line": 80,
+    "code": "@Test\r\npublic void testExposeAnnotationSerialization() {\r\n    ClassWithExposedFields target = new ClassWithExposedFields(1, 2);\r\n    assertThat(gson.toJson(target)).isEqualTo(target.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testExposeAnnotationDeserialization",
+    "start_line": 82,
+    "end_line": 90,
+    "code": "@Test\r\npublic void testExposeAnnotationDeserialization() {\r\n    String json = \"{a:3,b:4,d:20.0}\";\r\n    ClassWithExposedFields target = gson.fromJson(json, ClassWithExposedFields.class);\r\n    assertThat(target.a).isEqualTo(3);\r\n    assertThat(target.b).isNull();\r\n    assertThat(target.d).isNotEqualTo(20);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNoExposedFieldSerialization",
+    "start_line": 92,
+    "end_line": 98,
+    "code": "@Test\r\npublic void testNoExposedFieldSerialization() {\r\n    ClassWithNoExposedFields obj = new ClassWithNoExposedFields();\r\n    String json = gson.toJson(obj);\r\n    assertThat(json).isEqualTo(\"{}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNoExposedFieldDeserialization",
+    "start_line": 100,
+    "end_line": 107,
+    "code": "@Test\r\npublic void testNoExposedFieldDeserialization() {\r\n    String json = \"{a:4,b:5}\";\r\n    ClassWithNoExposedFields obj = gson.fromJson(json, ClassWithNoExposedFields.class);\r\n    assertThat(obj.a).isEqualTo(0);\r\n    assertThat(obj.b).isEqualTo(1);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testExposedInterfaceFieldSerialization",
+    "start_line": 109,
+    "end_line": 116,
+    "code": "@Test\r\npublic void testExposedInterfaceFieldSerialization() {\r\n    String expected = \"{\\\"interfaceField\\\":{}}\";\r\n    ClassWithInterfaceField target = new ClassWithInterfaceField(new SomeObject());\r\n    String actual = gson.toJson(target);\r\n    assertThat(actual).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testExposedInterfaceFieldDeserialization",
+    "start_line": 118,
+    "end_line": 124,
+    "code": "@Test\r\npublic void testExposedInterfaceFieldDeserialization() {\r\n    String json = \"{\\\"interfaceField\\\":{}}\";\r\n    ClassWithInterfaceField obj = gson.fromJson(json, ClassWithInterfaceField.class);\r\n    assertThat(obj.interfaceField).isNotNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ExposeFieldsTest.java"
+  }
+]

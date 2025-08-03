@@ -1,0 +1,66 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberPolicy.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.LazilyParsedNumber",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.internal.LazilyParsedNumber;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberPolicy.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.NumberLimits",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.internal.NumberLimits;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberPolicy.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberPolicy.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.MalformedJsonException",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.stream.MalformedJsonException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberPolicy.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberPolicy.java"
+  },
+  {
+    "type": "import",
+    "name": "java.math.BigDecimal",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.math.BigDecimal;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberPolicy.java"
+  },
+  {
+    "type": "enum",
+    "name": "ToNumberPolicy",
+    "start_line": 34,
+    "end_line": 113,
+    "code": "/**\r\n * An enumeration that defines two standard number reading strategies and a couple of strategies to\r\n * overcome some historical Gson limitations while deserializing numbers as {@link Object} and\r\n * {@link Number}.\r\n *\r\n * @see ToNumberStrategy\r\n * @since 2.8.9\r\n */\r\npublic enum ToNumberPolicy implements ToNumberStrategy {\r\n\r\n    /**\r\n     * Using this policy will ensure that numbers will be read as {@link Double} values. This is the\r\n     * default strategy used during deserialization of numbers as {@link Object}.\r\n     */\r\n    DOUBLE {\r\n\r\n        @Override\r\n        public Double readNumber(JsonReader in) throws IOException {\r\n            return in.nextDouble();\r\n        }\r\n    }\r\n    ,\r\n    /**\r\n     * Using this policy will ensure that numbers will be read as a lazily parsed number backed by a\r\n     * string. This is the default strategy used during deserialization of numbers as {@link Number}.\r\n     */\r\n    LAZILY_PARSED_NUMBER {\r\n\r\n        @Override\r\n        public Number readNumber(JsonReader in) throws IOException {\r\n            return new LazilyParsedNumber(in.nextString());\r\n        }\r\n    }\r\n    ,\r\n    /**\r\n     * Using this policy will ensure that numbers will be read as {@link Long} or {@link Double}\r\n     * values depending on how JSON numbers are represented: {@code Long} if the JSON number can be\r\n     * parsed as a {@code Long} value, or otherwise {@code Double} if it can be parsed as a {@code\r\n     * Double} value. If the parsed double-precision number results in a positive or negative infinity\r\n     * ({@link Double#isInfinite()}) or a NaN ({@link Double#isNaN()}) value and the {@code\r\n     * JsonReader} is not {@link JsonReader#isLenient() lenient}, a {@link MalformedJsonException} is\r\n     * thrown.\r\n     */\r\n    LONG_OR_DOUBLE {\r\n\r\n        @Override\r\n        public Number readNumber(JsonReader in) throws IOException, JsonParseException {\r\n            String value = in.nextString();\r\n            if (value.indexOf('.') >= 0) {\r\n                return parseAsDouble(value, in);\r\n            } else {\r\n                try {\r\n                    return Long.parseLong(value);\r\n                } catch (NumberFormatException e) {\r\n                    return parseAsDouble(value, in);\r\n                }\r\n            }\r\n        }\r\n\r\n        private Number parseAsDouble(String value, JsonReader in) throws IOException {\r\n            try {\r\n                Double d = Double.valueOf(value);\r\n                if ((d.isInfinite() || d.isNaN()) && !in.isLenient()) {\r\n                    throw new MalformedJsonException(\"JSON forbids NaN and infinities: \" + d + \"; at path \" + in.getPreviousPath());\r\n                }\r\n                return d;\r\n            } catch (NumberFormatException e) {\r\n                throw new JsonParseException(\"Cannot parse \" + value + \"; at path \" + in.getPreviousPath(), e);\r\n            }\r\n        }\r\n    }\r\n    ,\r\n    /**\r\n     * Using this policy will ensure that numbers will be read as numbers of arbitrary length using\r\n     * {@link BigDecimal}.\r\n     */\r\n    BIG_DECIMAL {\r\n\r\n        @Override\r\n        public BigDecimal readNumber(JsonReader in) throws IOException {\r\n            String value = in.nextString();\r\n            try {\r\n                return NumberLimits.parseBigDecimal(value);\r\n            } catch (NumberFormatException e) {\r\n                throw new JsonParseException(\"Cannot parse \" + value + \"; at path \" + in.getPreviousPath(), e);\r\n            }\r\n        }\r\n    }\r\n\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\ToNumberPolicy.java"
+  }
+]

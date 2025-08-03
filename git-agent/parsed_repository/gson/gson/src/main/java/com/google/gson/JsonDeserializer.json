@@ -1,0 +1,34 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonDeserializer.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonDeserializer.java"
+  },
+  {
+    "type": "interface",
+    "name": "JsonDeserializer",
+    "start_line": 76,
+    "end_line": 95,
+    "code": "/**\r\n * Interface representing a custom deserializer for JSON. You should write a custom deserializer, if\r\n * you are not happy with the default deserialization done by Gson. You will also need to register\r\n * this deserializer through {@link GsonBuilder#registerTypeAdapter(Type, Object)}.\r\n *\r\n * <p>Let us look at example where defining a deserializer will be useful. The {@code Id} class\r\n * defined below has two fields: {@code clazz} and {@code value}.\r\n *\r\n * <pre>\r\n * public class Id&lt;T&gt; {\r\n *   private final Class&lt;T&gt; clazz;\r\n *   private final long value;\r\n *   public Id(Class&lt;T&gt; clazz, long value) {\r\n *     this.clazz = clazz;\r\n *     this.value = value;\r\n *   }\r\n *   public long getValue() {\r\n *     return value;\r\n *   }\r\n * }\r\n * </pre>\r\n *\r\n * <p>The default deserialization of {@code Id(com.foo.MyObject.class, 20L)} will require the JSON\r\n * string to be <code>{\"clazz\":\"com.foo.MyObject\",\"value\":20}</code>. Suppose, you already know the\r\n * type of the field that the {@code Id} will be deserialized into, and hence just want to\r\n * deserialize it from a JSON string {@code 20}. You can achieve that by writing a custom\r\n * deserializer:\r\n *\r\n * <pre>\r\n * class IdDeserializer implements JsonDeserializer&lt;Id&gt; {\r\n *   public Id deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)\r\n *       throws JsonParseException {\r\n *     long idValue = json.getAsJsonPrimitive().getAsLong();\r\n *     return new Id((Class) typeOfT, idValue);\r\n *   }\r\n * }\r\n * </pre>\r\n *\r\n * <p>You will also need to register {@code IdDeserializer} with Gson as follows:\r\n *\r\n * <pre>\r\n * Gson gson = new GsonBuilder().registerTypeAdapter(Id.class, new IdDeserializer()).create();\r\n * </pre>\r\n *\r\n * <p>Deserializers should be stateless and thread-safe, otherwise the thread-safety guarantees of\r\n * {@link Gson} might not apply.\r\n *\r\n * <p>New applications should prefer {@link TypeAdapter}, whose streaming API is more efficient than\r\n * this interface's tree API.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n * @param <T> type for which the deserializer is being registered. It is possible that a\r\n *     deserializer may be asked to deserialize a specific generic type of the T.\r\n */\r\npublic interface JsonDeserializer<T> {\r\n\r\n    /**\r\n     * Gson invokes this call-back method during deserialization when it encounters a field of the\r\n     * specified type.\r\n     *\r\n     * <p>In the implementation of this call-back method, you should consider invoking {@link\r\n     * JsonDeserializationContext#deserialize(JsonElement, Type)} method to create objects for any\r\n     * non-trivial field of the returned object. However, you should never invoke it on the same type\r\n     * passing {@code json} since that will cause an infinite loop (Gson will call your call-back\r\n     * method again).\r\n     *\r\n     * @param json The Json data being deserialized\r\n     * @param typeOfT The type of the Object to deserialize to\r\n     * @return a deserialized object of the specified type typeOfT which is a subclass of {@code T}\r\n     * @throws JsonParseException if json is not in the expected format of {@code typeOfT}\r\n     */\r\n    public T deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonDeserializer.java"
+  },
+  {
+    "type": "method",
+    "name": "deserialize",
+    "start_line": 93,
+    "end_line": 94,
+    "code": "/**\r\n * Gson invokes this call-back method during deserialization when it encounters a field of the\r\n * specified type.\r\n *\r\n * <p>In the implementation of this call-back method, you should consider invoking {@link\r\n * JsonDeserializationContext#deserialize(JsonElement, Type)} method to create objects for any\r\n * non-trivial field of the returned object. However, you should never invoke it on the same type\r\n * passing {@code json} since that will cause an infinite loop (Gson will call your call-back\r\n * method again).\r\n *\r\n * @param json The Json data being deserialized\r\n * @param typeOfT The type of the Object to deserialize to\r\n * @return a deserialized object of the specified type typeOfT which is a subclass of {@code T}\r\n * @throws JsonParseException if json is not in the expected format of {@code typeOfT}\r\n */\r\npublic T deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonDeserializer.java"
+  }
+]

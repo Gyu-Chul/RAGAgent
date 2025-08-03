@@ -1,0 +1,218 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.bind",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.bind;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSyntaxException",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.JsonSyntaxException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapterFactory",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.TypeAdapterFactory;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.ConstructorConstructor",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.internal.ConstructorConstructor;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.GsonTypes",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.internal.GsonTypes;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.JsonReaderInternalAccess",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.internal.JsonReaderInternalAccess;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.ObjectConstructor",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.internal.ObjectConstructor;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.Streams",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.internal.Streams;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonToken",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import com.google.gson.stream.JsonToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 38,
+    "end_line": 38,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "class",
+    "name": "MapTypeAdapterFactory",
+    "start_line": 115,
+    "end_line": 281,
+    "code": "/**\r\n * Adapts maps to either JSON objects or JSON arrays.\r\n *\r\n * <h2>Maps as JSON objects</h2>\r\n *\r\n * For primitive keys or when complex map key serialization is not enabled, this converts Java\r\n * {@link Map Maps} to JSON Objects. This requires that map keys can be serialized as strings; this\r\n * is insufficient for some key types. For example, consider a map whose keys are points on a grid.\r\n * The default JSON form encodes reasonably:\r\n *\r\n * <pre>{@code\r\n * Map<Point, String> original = new LinkedHashMap<>();\r\n * original.put(new Point(5, 6), \"a\");\r\n * original.put(new Point(8, 8), \"b\");\r\n * System.out.println(gson.toJson(original, type));\r\n * }</pre>\r\n *\r\n * The above code prints this JSON object:\r\n *\r\n * <pre>{@code\r\n * {\r\n *   \"(5,6)\": \"a\",\r\n *   \"(8,8)\": \"b\"\r\n * }\r\n * }</pre>\r\n *\r\n * But GSON is unable to deserialize this value because the JSON string name is just the {@link\r\n * Object#toString() toString()} of the map key. Attempting to convert the above JSON to an object\r\n * fails with a parse exception:\r\n *\r\n * <pre>com.google.gson.JsonParseException: Expecting object found: \"(5,6)\"\r\n *   at com.google.gson.JsonObjectDeserializationVisitor.visitFieldUsingCustomHandler\r\n *   at com.google.gson.ObjectNavigator.navigateClassFields\r\n *   ...</pre>\r\n *\r\n * <h2>Maps as JSON arrays</h2>\r\n *\r\n * An alternative approach taken by this type adapter when it is required and complex map key\r\n * serialization is enabled is to encode maps as arrays of map entries. Each map entry is a two\r\n * element array containing a key and a value. This approach is more flexible because any type can\r\n * be used as the map's key; not just strings. But it's also less portable because the receiver of\r\n * such JSON must be aware of the map entry convention.\r\n *\r\n * <p>Register this adapter when you are creating your GSON instance.\r\n *\r\n * <pre>{@code\r\n * Gson gson = new GsonBuilder()\r\n *   .registerTypeAdapter(Map.class, new MapAsArrayTypeAdapter())\r\n *   .create();\r\n * }</pre>\r\n *\r\n * This will change the structure of the JSON emitted by the code above. Now we get an array. In\r\n * this case the arrays elements are map entries:\r\n *\r\n * <pre>{@code\r\n * [\r\n *   [\r\n *     {\r\n *       \"x\": 5,\r\n *       \"y\": 6\r\n *     },\r\n *     \"a\",\r\n *   ],\r\n *   [\r\n *     {\r\n *       \"x\": 8,\r\n *       \"y\": 8\r\n *     },\r\n *     \"b\"\r\n *   ]\r\n * ]\r\n * }</pre>\r\n *\r\n * This format will serialize and deserialize just fine as long as this adapter is registered.\r\n */\r\npublic final class MapTypeAdapterFactory implements TypeAdapterFactory {\r\n\r\n    private final ConstructorConstructor constructorConstructor;\r\n\r\n    final boolean complexMapKeySerialization;\r\n\r\n    public MapTypeAdapterFactory(ConstructorConstructor constructorConstructor, boolean complexMapKeySerialization) {\r\n        this.constructorConstructor = constructorConstructor;\r\n        this.complexMapKeySerialization = complexMapKeySerialization;\r\n    }\r\n\r\n    @Override\r\n    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {\r\n        Type type = typeToken.getType();\r\n        Class<? super T> rawType = typeToken.getRawType();\r\n        if (!Map.class.isAssignableFrom(rawType)) {\r\n            return null;\r\n        }\r\n        Type[] keyAndValueTypes = GsonTypes.getMapKeyAndValueTypes(type, rawType);\r\n        Type keyType = keyAndValueTypes[0];\r\n        Type valueType = keyAndValueTypes[1];\r\n        TypeAdapter<?> keyAdapter = getKeyAdapter(gson, keyType);\r\n        TypeAdapter<?> wrappedKeyAdapter = new TypeAdapterRuntimeTypeWrapper<>(gson, keyAdapter, keyType);\r\n        TypeAdapter<?> valueAdapter = gson.getAdapter(TypeToken.get(valueType));\r\n        TypeAdapter<?> wrappedValueAdapter = new TypeAdapterRuntimeTypeWrapper<>(gson, valueAdapter, valueType);\r\n        // Don't allow Unsafe usage to create instance; instances might be in broken state and calling\r\n        // Map methods could lead to confusing exceptions\r\n        boolean allowUnsafe = false;\r\n        ObjectConstructor<T> constructor = constructorConstructor.get(typeToken, allowUnsafe);\r\n        @SuppressWarnings({ \"unchecked\", \"rawtypes\" })\r\n        TypeAdapter<T> // we don't define a type parameter for the key or value types\r\n        result = new Adapter(wrappedKeyAdapter, wrappedValueAdapter, constructor);\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     * Returns a type adapter that writes the value as a string.\r\n     */\r\n    private TypeAdapter<?> getKeyAdapter(Gson context, Type keyType) {\r\n        return (keyType == boolean.class || keyType == Boolean.class) ? TypeAdapters.BOOLEAN_AS_STRING : context.getAdapter(TypeToken.get(keyType));\r\n    }\r\n\r\n    private final class Adapter<K, V> extends TypeAdapter<Map<K, V>> {\r\n\r\n        private final TypeAdapter<K> keyTypeAdapter;\r\n\r\n        private final TypeAdapter<V> valueTypeAdapter;\r\n\r\n        private final ObjectConstructor<? extends Map<K, V>> constructor;\r\n\r\n        public Adapter(TypeAdapter<K> keyTypeAdapter, TypeAdapter<V> valueTypeAdapter, ObjectConstructor<? extends Map<K, V>> constructor) {\r\n            this.keyTypeAdapter = keyTypeAdapter;\r\n            this.valueTypeAdapter = valueTypeAdapter;\r\n            this.constructor = constructor;\r\n        }\r\n\r\n        @Override\r\n        public Map<K, V> read(JsonReader in) throws IOException {\r\n            JsonToken peek = in.peek();\r\n            if (peek == JsonToken.NULL) {\r\n                in.nextNull();\r\n                return null;\r\n            }\r\n            Map<K, V> map = constructor.construct();\r\n            if (peek == JsonToken.BEGIN_ARRAY) {\r\n                in.beginArray();\r\n                while (in.hasNext()) {\r\n                    // entry array\r\n                    in.beginArray();\r\n                    K key = keyTypeAdapter.read(in);\r\n                    V value = valueTypeAdapter.read(in);\r\n                    V replaced = map.put(key, value);\r\n                    if (replaced != null) {\r\n                        throw new JsonSyntaxException(\"duplicate key: \" + key);\r\n                    }\r\n                    in.endArray();\r\n                }\r\n                in.endArray();\r\n            } else {\r\n                in.beginObject();\r\n                while (in.hasNext()) {\r\n                    JsonReaderInternalAccess.INSTANCE.promoteNameToValue(in);\r\n                    K key = keyTypeAdapter.read(in);\r\n                    V value = valueTypeAdapter.read(in);\r\n                    V replaced = map.put(key, value);\r\n                    if (replaced != null) {\r\n                        throw new JsonSyntaxException(\"duplicate key: \" + key);\r\n                    }\r\n                }\r\n                in.endObject();\r\n            }\r\n            return map;\r\n        }\r\n\r\n        @Override\r\n        public void write(JsonWriter out, Map<K, V> map) throws IOException {\r\n            if (map == null) {\r\n                out.nullValue();\r\n                return;\r\n            }\r\n            if (!complexMapKeySerialization) {\r\n                out.beginObject();\r\n                for (Map.Entry<K, V> entry : map.entrySet()) {\r\n                    out.name(String.valueOf(entry.getKey()));\r\n                    valueTypeAdapter.write(out, entry.getValue());\r\n                }\r\n                out.endObject();\r\n                return;\r\n            }\r\n            boolean hasComplexKeys = false;\r\n            List<JsonElement> keys = new ArrayList<>(map.size());\r\n            List<V> values = new ArrayList<>(map.size());\r\n            for (Map.Entry<K, V> entry : map.entrySet()) {\r\n                JsonElement keyElement = keyTypeAdapter.toJsonTree(entry.getKey());\r\n                keys.add(keyElement);\r\n                values.add(entry.getValue());\r\n                hasComplexKeys |= keyElement.isJsonArray() || keyElement.isJsonObject();\r\n            }\r\n            if (hasComplexKeys) {\r\n                out.beginArray();\r\n                for (int i = 0, size = keys.size(); i < size; i++) {\r\n                    // entry array\r\n                    out.beginArray();\r\n                    Streams.write(keys.get(i), out);\r\n                    valueTypeAdapter.write(out, values.get(i));\r\n                    out.endArray();\r\n                }\r\n                out.endArray();\r\n            } else {\r\n                out.beginObject();\r\n                for (int i = 0, size = keys.size(); i < size; i++) {\r\n                    JsonElement keyElement = keys.get(i);\r\n                    out.name(keyToString(keyElement));\r\n                    valueTypeAdapter.write(out, values.get(i));\r\n                }\r\n                out.endObject();\r\n            }\r\n        }\r\n\r\n        private String keyToString(JsonElement keyElement) {\r\n            if (keyElement.isJsonPrimitive()) {\r\n                JsonPrimitive primitive = keyElement.getAsJsonPrimitive();\r\n                if (primitive.isNumber()) {\r\n                    return String.valueOf(primitive.getAsNumber());\r\n                } else if (primitive.isBoolean()) {\r\n                    return Boolean.toString(primitive.getAsBoolean());\r\n                } else if (primitive.isString()) {\r\n                    return primitive.getAsString();\r\n                } else {\r\n                    throw new AssertionError();\r\n                }\r\n            } else if (keyElement.isJsonNull()) {\r\n                return \"null\";\r\n            } else {\r\n                throw new AssertionError();\r\n            }\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "field",
+    "name": "constructorConstructor",
+    "start_line": 116,
+    "end_line": 116,
+    "code": "private final ConstructorConstructor constructorConstructor;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "field",
+    "name": "complexMapKeySerialization",
+    "start_line": 117,
+    "end_line": 117,
+    "code": "final boolean complexMapKeySerialization;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "constructor",
+    "name": "MapTypeAdapterFactory",
+    "start_line": 119,
+    "end_line": 123,
+    "code": "public MapTypeAdapterFactory(ConstructorConstructor constructorConstructor, boolean complexMapKeySerialization) {\r\n    this.constructorConstructor = constructorConstructor;\r\n    this.complexMapKeySerialization = complexMapKeySerialization;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "method",
+    "name": "create",
+    "start_line": 125,
+    "end_line": 152,
+    "code": "@Override\r\npublic <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {\r\n    Type type = typeToken.getType();\r\n    Class<? super T> rawType = typeToken.getRawType();\r\n    if (!Map.class.isAssignableFrom(rawType)) {\r\n        return null;\r\n    }\r\n    Type[] keyAndValueTypes = GsonTypes.getMapKeyAndValueTypes(type, rawType);\r\n    Type keyType = keyAndValueTypes[0];\r\n    Type valueType = keyAndValueTypes[1];\r\n    TypeAdapter<?> keyAdapter = getKeyAdapter(gson, keyType);\r\n    TypeAdapter<?> wrappedKeyAdapter = new TypeAdapterRuntimeTypeWrapper<>(gson, keyAdapter, keyType);\r\n    TypeAdapter<?> valueAdapter = gson.getAdapter(TypeToken.get(valueType));\r\n    TypeAdapter<?> wrappedValueAdapter = new TypeAdapterRuntimeTypeWrapper<>(gson, valueAdapter, valueType);\r\n    // Don't allow Unsafe usage to create instance; instances might be in broken state and calling\r\n    // Map methods could lead to confusing exceptions\r\n    boolean allowUnsafe = false;\r\n    ObjectConstructor<T> constructor = constructorConstructor.get(typeToken, allowUnsafe);\r\n    @SuppressWarnings({ \"unchecked\", \"rawtypes\" })\r\n    TypeAdapter<T> // we don't define a type parameter for the key or value types\r\n    result = new Adapter(wrappedKeyAdapter, wrappedValueAdapter, constructor);\r\n    return result;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  },
+  {
+    "type": "method",
+    "name": "getKeyAdapter",
+    "start_line": 155,
+    "end_line": 159,
+    "code": "/**\r\n * Returns a type adapter that writes the value as a string.\r\n */\r\nprivate TypeAdapter<?> getKeyAdapter(Gson context, Type keyType) {\r\n    return (keyType == boolean.class || keyType == Boolean.class) ? TypeAdapters.BOOLEAN_AS_STRING : context.getAdapter(TypeToken.get(keyType));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\MapTypeAdapterFactory.java"
+  }
+]

@@ -1,0 +1,178 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.bind",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.bind;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonArray",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.JsonArray;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonNull",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.JsonNull;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonObject",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.JsonObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.LazilyParsedNumber",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.internal.LazilyParsedNumber;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonToken",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.stream.JsonToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayDeque",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.ArrayDeque;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Deque",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.util.Deque;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonElementTypeAdapter",
+    "start_line": 35,
+    "end_line": 171,
+    "code": "/**\r\n * Adapter for {@link JsonElement} and subclasses.\r\n */\r\nclass JsonElementTypeAdapter extends TypeAdapter<JsonElement> {\r\n\r\n    static final JsonElementTypeAdapter ADAPTER = new JsonElementTypeAdapter();\r\n\r\n    private JsonElementTypeAdapter() {\r\n    }\r\n\r\n    /**\r\n     * Tries to begin reading a JSON array or JSON object, returning {@code null} if the next element\r\n     * is neither of those.\r\n     */\r\n    private JsonElement tryBeginNesting(JsonReader in, JsonToken peeked) throws IOException {\r\n        switch(peeked) {\r\n            case BEGIN_ARRAY:\r\n                in.beginArray();\r\n                return new JsonArray();\r\n            case BEGIN_OBJECT:\r\n                in.beginObject();\r\n                return new JsonObject();\r\n            default:\r\n                return null;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Reads a {@link JsonElement} which cannot have any nested elements\r\n     */\r\n    private JsonElement readTerminal(JsonReader in, JsonToken peeked) throws IOException {\r\n        switch(peeked) {\r\n            case STRING:\r\n                return new JsonPrimitive(in.nextString());\r\n            case NUMBER:\r\n                String number = in.nextString();\r\n                return new JsonPrimitive(new LazilyParsedNumber(number));\r\n            case BOOLEAN:\r\n                return new JsonPrimitive(in.nextBoolean());\r\n            case NULL:\r\n                in.nextNull();\r\n                return JsonNull.INSTANCE;\r\n            default:\r\n                // When read(JsonReader) is called with JsonReader in invalid state\r\n                throw new IllegalStateException(\"Unexpected token: \" + peeked);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public JsonElement read(JsonReader in) throws IOException {\r\n        // Optimization if value already exists as JsonElement\r\n        if (in instanceof JsonTreeReader) {\r\n            return ((JsonTreeReader) in).nextJsonElement();\r\n        }\r\n        // Either JsonArray or JsonObject\r\n        JsonElement current;\r\n        JsonToken peeked = in.peek();\r\n        current = tryBeginNesting(in, peeked);\r\n        if (current == null) {\r\n            return readTerminal(in, peeked);\r\n        }\r\n        Deque<JsonElement> stack = new ArrayDeque<>();\r\n        while (true) {\r\n            while (in.hasNext()) {\r\n                String name = null;\r\n                // Name is only used for JSON object members\r\n                if (current instanceof JsonObject) {\r\n                    name = in.nextName();\r\n                }\r\n                peeked = in.peek();\r\n                JsonElement value = tryBeginNesting(in, peeked);\r\n                boolean isNesting = value != null;\r\n                if (value == null) {\r\n                    value = readTerminal(in, peeked);\r\n                }\r\n                if (current instanceof JsonArray) {\r\n                    ((JsonArray) current).add(value);\r\n                } else {\r\n                    ((JsonObject) current).add(name, value);\r\n                }\r\n                if (isNesting) {\r\n                    stack.addLast(current);\r\n                    current = value;\r\n                }\r\n            }\r\n            // End current element\r\n            if (current instanceof JsonArray) {\r\n                in.endArray();\r\n            } else {\r\n                in.endObject();\r\n            }\r\n            if (stack.isEmpty()) {\r\n                return current;\r\n            } else {\r\n                // Continue with enclosing element\r\n                current = stack.removeLast();\r\n            }\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void write(JsonWriter out, JsonElement value) throws IOException {\r\n        if (value == null || value.isJsonNull()) {\r\n            out.nullValue();\r\n        } else if (value.isJsonPrimitive()) {\r\n            JsonPrimitive primitive = value.getAsJsonPrimitive();\r\n            if (primitive.isNumber()) {\r\n                out.value(primitive.getAsNumber());\r\n            } else if (primitive.isBoolean()) {\r\n                out.value(primitive.getAsBoolean());\r\n            } else {\r\n                out.value(primitive.getAsString());\r\n            }\r\n        } else if (value.isJsonArray()) {\r\n            out.beginArray();\r\n            for (JsonElement e : value.getAsJsonArray()) {\r\n                write(out, e);\r\n            }\r\n            out.endArray();\r\n        } else if (value.isJsonObject()) {\r\n            out.beginObject();\r\n            for (Map.Entry<String, JsonElement> e : value.getAsJsonObject().entrySet()) {\r\n                out.name(e.getKey());\r\n                write(out, e.getValue());\r\n            }\r\n            out.endObject();\r\n        } else {\r\n            throw new IllegalArgumentException(\"Couldn't write \" + value.getClass());\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "ADAPTER",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "static final JsonElementTypeAdapter ADAPTER = new JsonElementTypeAdapter();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "constructor",
+    "name": "JsonElementTypeAdapter",
+    "start_line": 38,
+    "end_line": 38,
+    "code": "private JsonElementTypeAdapter() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "tryBeginNesting",
+    "start_line": 44,
+    "end_line": 55,
+    "code": "/**\r\n * Tries to begin reading a JSON array or JSON object, returning {@code null} if the next element\r\n * is neither of those.\r\n */\r\nprivate JsonElement tryBeginNesting(JsonReader in, JsonToken peeked) throws IOException {\r\n    switch(peeked) {\r\n        case BEGIN_ARRAY:\r\n            in.beginArray();\r\n            return new JsonArray();\r\n        case BEGIN_OBJECT:\r\n            in.beginObject();\r\n            return new JsonObject();\r\n        default:\r\n            return null;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "readTerminal",
+    "start_line": 58,
+    "end_line": 74,
+    "code": "/**\r\n * Reads a {@link JsonElement} which cannot have any nested elements\r\n */\r\nprivate JsonElement readTerminal(JsonReader in, JsonToken peeked) throws IOException {\r\n    switch(peeked) {\r\n        case STRING:\r\n            return new JsonPrimitive(in.nextString());\r\n        case NUMBER:\r\n            String number = in.nextString();\r\n            return new JsonPrimitive(new LazilyParsedNumber(number));\r\n        case BOOLEAN:\r\n            return new JsonPrimitive(in.nextBoolean());\r\n        case NULL:\r\n            in.nextNull();\r\n            return JsonNull.INSTANCE;\r\n        default:\r\n            // When read(JsonReader) is called with JsonReader in invalid state\r\n            throw new IllegalStateException(\"Unexpected token: \" + peeked);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "read",
+    "start_line": 76,
+    "end_line": 136,
+    "code": "@Override\r\npublic JsonElement read(JsonReader in) throws IOException {\r\n    // Optimization if value already exists as JsonElement\r\n    if (in instanceof JsonTreeReader) {\r\n        return ((JsonTreeReader) in).nextJsonElement();\r\n    }\r\n    // Either JsonArray or JsonObject\r\n    JsonElement current;\r\n    JsonToken peeked = in.peek();\r\n    current = tryBeginNesting(in, peeked);\r\n    if (current == null) {\r\n        return readTerminal(in, peeked);\r\n    }\r\n    Deque<JsonElement> stack = new ArrayDeque<>();\r\n    while (true) {\r\n        while (in.hasNext()) {\r\n            String name = null;\r\n            // Name is only used for JSON object members\r\n            if (current instanceof JsonObject) {\r\n                name = in.nextName();\r\n            }\r\n            peeked = in.peek();\r\n            JsonElement value = tryBeginNesting(in, peeked);\r\n            boolean isNesting = value != null;\r\n            if (value == null) {\r\n                value = readTerminal(in, peeked);\r\n            }\r\n            if (current instanceof JsonArray) {\r\n                ((JsonArray) current).add(value);\r\n            } else {\r\n                ((JsonObject) current).add(name, value);\r\n            }\r\n            if (isNesting) {\r\n                stack.addLast(current);\r\n                current = value;\r\n            }\r\n        }\r\n        // End current element\r\n        if (current instanceof JsonArray) {\r\n            in.endArray();\r\n        } else {\r\n            in.endObject();\r\n        }\r\n        if (stack.isEmpty()) {\r\n            return current;\r\n        } else {\r\n            // Continue with enclosing element\r\n            current = stack.removeLast();\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "write",
+    "start_line": 138,
+    "end_line": 170,
+    "code": "@Override\r\npublic void write(JsonWriter out, JsonElement value) throws IOException {\r\n    if (value == null || value.isJsonNull()) {\r\n        out.nullValue();\r\n    } else if (value.isJsonPrimitive()) {\r\n        JsonPrimitive primitive = value.getAsJsonPrimitive();\r\n        if (primitive.isNumber()) {\r\n            out.value(primitive.getAsNumber());\r\n        } else if (primitive.isBoolean()) {\r\n            out.value(primitive.getAsBoolean());\r\n        } else {\r\n            out.value(primitive.getAsString());\r\n        }\r\n    } else if (value.isJsonArray()) {\r\n        out.beginArray();\r\n        for (JsonElement e : value.getAsJsonArray()) {\r\n            write(out, e);\r\n        }\r\n        out.endArray();\r\n    } else if (value.isJsonObject()) {\r\n        out.beginObject();\r\n        for (Map.Entry<String, JsonElement> e : value.getAsJsonObject().entrySet()) {\r\n            out.name(e.getKey());\r\n            write(out, e.getValue());\r\n        }\r\n        out.endObject();\r\n    } else {\r\n        throw new IllegalArgumentException(\"Couldn't write \" + value.getClass());\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\JsonElementTypeAdapter.java"
+  }
+]

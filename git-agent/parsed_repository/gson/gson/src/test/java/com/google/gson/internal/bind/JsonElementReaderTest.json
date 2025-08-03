@@ -1,0 +1,242 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.bind",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.bind;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonParser",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.JsonParser;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Strictness",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.Strictness;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonToken",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.stream.JsonToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.MalformedJsonException",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.stream.MalformedJsonException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonElementReaderTest",
+    "start_line": 31,
+    "end_line": 292,
+    "code": "@SuppressWarnings(\"resource\")\r\npublic final class JsonElementReaderTest {\r\n\r\n    @Test\r\n    public void testNumbers() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[1, 2, 3]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginArray();\r\n        assertThat(reader.nextInt()).isEqualTo(1);\r\n        assertThat(reader.nextLong()).isEqualTo(2L);\r\n        assertThat(reader.nextDouble()).isEqualTo(3.0);\r\n        reader.endArray();\r\n    }\r\n\r\n    @Test\r\n    public void testLenientNansAndInfinities() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[NaN, -Infinity, Infinity]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.setStrictness(Strictness.LENIENT);\r\n        reader.beginArray();\r\n        assertThat(reader.nextDouble()).isNaN();\r\n        assertThat(reader.nextDouble()).isEqualTo(Double.NEGATIVE_INFINITY);\r\n        assertThat(reader.nextDouble()).isEqualTo(Double.POSITIVE_INFINITY);\r\n        reader.endArray();\r\n    }\r\n\r\n    @Test\r\n    public void testStrictNansAndInfinities() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[NaN, -Infinity, Infinity]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.setStrictness(Strictness.LEGACY_STRICT);\r\n        reader.beginArray();\r\n        var e = assertThrows(MalformedJsonException.class, () -> reader.nextDouble());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"JSON forbids NaN and infinities: NaN\");\r\n        assertThat(reader.nextString()).isEqualTo(\"NaN\");\r\n        e = assertThrows(MalformedJsonException.class, () -> reader.nextDouble());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"JSON forbids NaN and infinities: -Infinity\");\r\n        assertThat(reader.nextString()).isEqualTo(\"-Infinity\");\r\n        e = assertThrows(MalformedJsonException.class, () -> reader.nextDouble());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"JSON forbids NaN and infinities: Infinity\");\r\n        assertThat(reader.nextString()).isEqualTo(\"Infinity\");\r\n        reader.endArray();\r\n    }\r\n\r\n    @Test\r\n    public void testNumbersFromStrings() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[\\\"1\\\", \\\"2\\\", \\\"3\\\"]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginArray();\r\n        assertThat(reader.nextInt()).isEqualTo(1);\r\n        assertThat(reader.nextLong()).isEqualTo(2L);\r\n        assertThat(reader.nextDouble()).isEqualTo(3.0);\r\n        reader.endArray();\r\n    }\r\n\r\n    @Test\r\n    public void testStringsFromNumbers() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[1]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginArray();\r\n        assertThat(reader.nextString()).isEqualTo(\"1\");\r\n        reader.endArray();\r\n    }\r\n\r\n    @Test\r\n    public void testBooleans() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[true, false]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginArray();\r\n        assertThat(reader.nextBoolean()).isEqualTo(true);\r\n        assertThat(reader.nextBoolean()).isEqualTo(false);\r\n        reader.endArray();\r\n    }\r\n\r\n    @Test\r\n    public void testNulls() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[null,null]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginArray();\r\n        reader.nextNull();\r\n        reader.nextNull();\r\n        reader.endArray();\r\n    }\r\n\r\n    @Test\r\n    public void testStrings() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[\\\"A\\\",\\\"B\\\"]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginArray();\r\n        assertThat(reader.nextString()).isEqualTo(\"A\");\r\n        assertThat(reader.nextString()).isEqualTo(\"B\");\r\n        reader.endArray();\r\n    }\r\n\r\n    @Test\r\n    public void testArray() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[1, 2, 3]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.BEGIN_ARRAY);\r\n        reader.beginArray();\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n        assertThat(reader.nextInt()).isEqualTo(1);\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n        assertThat(reader.nextInt()).isEqualTo(2);\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n        assertThat(reader.nextInt()).isEqualTo(3);\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.END_ARRAY);\r\n        reader.endArray();\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n    }\r\n\r\n    @Test\r\n    public void testObject() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"{\\\"A\\\": 1, \\\"B\\\": 2}\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.BEGIN_OBJECT);\r\n        reader.beginObject();\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.NAME);\r\n        assertThat(reader.nextName()).isEqualTo(\"A\");\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n        assertThat(reader.nextInt()).isEqualTo(1);\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.NAME);\r\n        assertThat(reader.nextName()).isEqualTo(\"B\");\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n        assertThat(reader.nextInt()).isEqualTo(2);\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.END_OBJECT);\r\n        reader.endObject();\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n    }\r\n\r\n    @Test\r\n    public void testEmptyArray() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginArray();\r\n        reader.endArray();\r\n    }\r\n\r\n    @Test\r\n    public void testNestedArrays() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[[],[[]]]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginArray();\r\n        reader.beginArray();\r\n        reader.endArray();\r\n        reader.beginArray();\r\n        reader.beginArray();\r\n        reader.endArray();\r\n        reader.endArray();\r\n        reader.endArray();\r\n    }\r\n\r\n    @Test\r\n    public void testNestedObjects() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"{\\\"A\\\":{},\\\"B\\\":{\\\"C\\\":{}}}\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginObject();\r\n        assertThat(reader.nextName()).isEqualTo(\"A\");\r\n        reader.beginObject();\r\n        reader.endObject();\r\n        assertThat(reader.nextName()).isEqualTo(\"B\");\r\n        reader.beginObject();\r\n        assertThat(reader.nextName()).isEqualTo(\"C\");\r\n        reader.beginObject();\r\n        reader.endObject();\r\n        reader.endObject();\r\n        reader.endObject();\r\n    }\r\n\r\n    @Test\r\n    public void testEmptyObject() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"{}\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginObject();\r\n        reader.endObject();\r\n    }\r\n\r\n    @Test\r\n    public void testSkipValue() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[\\\"A\\\",{\\\"B\\\":[[]]},\\\"C\\\",[[]],\\\"D\\\",null]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginArray();\r\n        assertThat(reader.nextString()).isEqualTo(\"A\");\r\n        reader.skipValue();\r\n        assertThat(reader.nextString()).isEqualTo(\"C\");\r\n        reader.skipValue();\r\n        assertThat(reader.nextString()).isEqualTo(\"D\");\r\n        reader.skipValue();\r\n        reader.endArray();\r\n    }\r\n\r\n    @Test\r\n    public void testWrongType() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[[],\\\"A\\\"]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginArray();\r\n        assertThrows(IllegalStateException.class, () -> reader.nextBoolean());\r\n        assertThrows(IllegalStateException.class, () -> reader.nextNull());\r\n        assertThrows(IllegalStateException.class, () -> reader.nextString());\r\n        assertThrows(IllegalStateException.class, () -> reader.nextInt());\r\n        assertThrows(IllegalStateException.class, () -> reader.nextLong());\r\n        assertThrows(IllegalStateException.class, () -> reader.nextDouble());\r\n        assertThrows(IllegalStateException.class, () -> reader.nextName());\r\n        assertThrows(IllegalStateException.class, () -> reader.beginObject());\r\n        assertThrows(IllegalStateException.class, () -> reader.endArray());\r\n        assertThrows(IllegalStateException.class, () -> reader.endObject());\r\n        reader.beginArray();\r\n        reader.endArray();\r\n        assertThrows(IllegalStateException.class, () -> reader.nextBoolean());\r\n        assertThrows(IllegalStateException.class, () -> reader.nextNull());\r\n        assertThrows(NumberFormatException.class, () -> reader.nextInt());\r\n        assertThrows(NumberFormatException.class, () -> reader.nextLong());\r\n        assertThrows(NumberFormatException.class, () -> reader.nextDouble());\r\n        assertThrows(IllegalStateException.class, () -> reader.nextName());\r\n        assertThat(reader.nextString()).isEqualTo(\"A\");\r\n        reader.endArray();\r\n    }\r\n\r\n    @Test\r\n    public void testNextJsonElement() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"{\\\"A\\\": 1, \\\"B\\\" : {}, \\\"C\\\" : []}\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginObject();\r\n        var e = assertThrows(IllegalStateException.class, () -> reader.nextJsonElement());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Unexpected NAME when reading a JsonElement.\");\r\n        assertThat(reader.nextName()).isEqualTo(\"A\");\r\n        assertThat(reader.nextJsonElement()).isEqualTo(new JsonPrimitive(1));\r\n        assertThat(reader.nextName()).isEqualTo(\"B\");\r\n        reader.beginObject();\r\n        assertThrows(IllegalStateException.class, () -> reader.nextJsonElement());\r\n        reader.endObject();\r\n        assertThat(reader.nextName()).isEqualTo(\"C\");\r\n        reader.beginArray();\r\n        assertThrows(IllegalStateException.class, () -> reader.nextJsonElement());\r\n        reader.endArray();\r\n        reader.endObject();\r\n        assertThrows(IllegalStateException.class, () -> reader.nextJsonElement());\r\n    }\r\n\r\n    @Test\r\n    public void testEarlyClose() throws IOException {\r\n        JsonElement element = JsonParser.parseString(\"[1, 2, 3]\");\r\n        JsonTreeReader reader = new JsonTreeReader(element);\r\n        reader.beginArray();\r\n        reader.close();\r\n        var e = assertThrows(IllegalStateException.class, () -> reader.peek());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"JsonReader is closed\");\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNumbers",
+    "start_line": 34,
+    "end_line": 43,
+    "code": "@Test\r\npublic void testNumbers() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[1, 2, 3]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginArray();\r\n    assertThat(reader.nextInt()).isEqualTo(1);\r\n    assertThat(reader.nextLong()).isEqualTo(2L);\r\n    assertThat(reader.nextDouble()).isEqualTo(3.0);\r\n    reader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testLenientNansAndInfinities",
+    "start_line": 45,
+    "end_line": 55,
+    "code": "@Test\r\npublic void testLenientNansAndInfinities() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[NaN, -Infinity, Infinity]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.setStrictness(Strictness.LENIENT);\r\n    reader.beginArray();\r\n    assertThat(reader.nextDouble()).isNaN();\r\n    assertThat(reader.nextDouble()).isEqualTo(Double.NEGATIVE_INFINITY);\r\n    assertThat(reader.nextDouble()).isEqualTo(Double.POSITIVE_INFINITY);\r\n    reader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStrictNansAndInfinities",
+    "start_line": 57,
+    "end_line": 79,
+    "code": "@Test\r\npublic void testStrictNansAndInfinities() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[NaN, -Infinity, Infinity]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.setStrictness(Strictness.LEGACY_STRICT);\r\n    reader.beginArray();\r\n    var e = assertThrows(MalformedJsonException.class, () -> reader.nextDouble());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"JSON forbids NaN and infinities: NaN\");\r\n    assertThat(reader.nextString()).isEqualTo(\"NaN\");\r\n    e = assertThrows(MalformedJsonException.class, () -> reader.nextDouble());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"JSON forbids NaN and infinities: -Infinity\");\r\n    assertThat(reader.nextString()).isEqualTo(\"-Infinity\");\r\n    e = assertThrows(MalformedJsonException.class, () -> reader.nextDouble());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"JSON forbids NaN and infinities: Infinity\");\r\n    assertThat(reader.nextString()).isEqualTo(\"Infinity\");\r\n    reader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNumbersFromStrings",
+    "start_line": 81,
+    "end_line": 90,
+    "code": "@Test\r\npublic void testNumbersFromStrings() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[\\\"1\\\", \\\"2\\\", \\\"3\\\"]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginArray();\r\n    assertThat(reader.nextInt()).isEqualTo(1);\r\n    assertThat(reader.nextLong()).isEqualTo(2L);\r\n    assertThat(reader.nextDouble()).isEqualTo(3.0);\r\n    reader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStringsFromNumbers",
+    "start_line": 92,
+    "end_line": 99,
+    "code": "@Test\r\npublic void testStringsFromNumbers() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[1]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginArray();\r\n    assertThat(reader.nextString()).isEqualTo(\"1\");\r\n    reader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBooleans",
+    "start_line": 101,
+    "end_line": 109,
+    "code": "@Test\r\npublic void testBooleans() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[true, false]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginArray();\r\n    assertThat(reader.nextBoolean()).isEqualTo(true);\r\n    assertThat(reader.nextBoolean()).isEqualTo(false);\r\n    reader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNulls",
+    "start_line": 111,
+    "end_line": 119,
+    "code": "@Test\r\npublic void testNulls() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[null,null]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginArray();\r\n    reader.nextNull();\r\n    reader.nextNull();\r\n    reader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStrings",
+    "start_line": 121,
+    "end_line": 129,
+    "code": "@Test\r\npublic void testStrings() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[\\\"A\\\",\\\"B\\\"]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginArray();\r\n    assertThat(reader.nextString()).isEqualTo(\"A\");\r\n    assertThat(reader.nextString()).isEqualTo(\"B\");\r\n    reader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArray",
+    "start_line": 131,
+    "end_line": 146,
+    "code": "@Test\r\npublic void testArray() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[1, 2, 3]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.BEGIN_ARRAY);\r\n    reader.beginArray();\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n    assertThat(reader.nextInt()).isEqualTo(1);\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n    assertThat(reader.nextInt()).isEqualTo(2);\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n    assertThat(reader.nextInt()).isEqualTo(3);\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.END_ARRAY);\r\n    reader.endArray();\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testObject",
+    "start_line": 148,
+    "end_line": 165,
+    "code": "@Test\r\npublic void testObject() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"{\\\"A\\\": 1, \\\"B\\\": 2}\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.BEGIN_OBJECT);\r\n    reader.beginObject();\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.NAME);\r\n    assertThat(reader.nextName()).isEqualTo(\"A\");\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n    assertThat(reader.nextInt()).isEqualTo(1);\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.NAME);\r\n    assertThat(reader.nextName()).isEqualTo(\"B\");\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n    assertThat(reader.nextInt()).isEqualTo(2);\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.END_OBJECT);\r\n    reader.endObject();\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.END_DOCUMENT);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEmptyArray",
+    "start_line": 167,
+    "end_line": 173,
+    "code": "@Test\r\npublic void testEmptyArray() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginArray();\r\n    reader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNestedArrays",
+    "start_line": 175,
+    "end_line": 187,
+    "code": "@Test\r\npublic void testNestedArrays() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[[],[[]]]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginArray();\r\n    reader.beginArray();\r\n    reader.endArray();\r\n    reader.beginArray();\r\n    reader.beginArray();\r\n    reader.endArray();\r\n    reader.endArray();\r\n    reader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNestedObjects",
+    "start_line": 189,
+    "end_line": 204,
+    "code": "@Test\r\npublic void testNestedObjects() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"{\\\"A\\\":{},\\\"B\\\":{\\\"C\\\":{}}}\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginObject();\r\n    assertThat(reader.nextName()).isEqualTo(\"A\");\r\n    reader.beginObject();\r\n    reader.endObject();\r\n    assertThat(reader.nextName()).isEqualTo(\"B\");\r\n    reader.beginObject();\r\n    assertThat(reader.nextName()).isEqualTo(\"C\");\r\n    reader.beginObject();\r\n    reader.endObject();\r\n    reader.endObject();\r\n    reader.endObject();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEmptyObject",
+    "start_line": 206,
+    "end_line": 212,
+    "code": "@Test\r\npublic void testEmptyObject() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"{}\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginObject();\r\n    reader.endObject();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSkipValue",
+    "start_line": 214,
+    "end_line": 226,
+    "code": "@Test\r\npublic void testSkipValue() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[\\\"A\\\",{\\\"B\\\":[[]]},\\\"C\\\",[[]],\\\"D\\\",null]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginArray();\r\n    assertThat(reader.nextString()).isEqualTo(\"A\");\r\n    reader.skipValue();\r\n    assertThat(reader.nextString()).isEqualTo(\"C\");\r\n    reader.skipValue();\r\n    assertThat(reader.nextString()).isEqualTo(\"D\");\r\n    reader.skipValue();\r\n    reader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWrongType",
+    "start_line": 228,
+    "end_line": 257,
+    "code": "@Test\r\npublic void testWrongType() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[[],\\\"A\\\"]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginArray();\r\n    assertThrows(IllegalStateException.class, () -> reader.nextBoolean());\r\n    assertThrows(IllegalStateException.class, () -> reader.nextNull());\r\n    assertThrows(IllegalStateException.class, () -> reader.nextString());\r\n    assertThrows(IllegalStateException.class, () -> reader.nextInt());\r\n    assertThrows(IllegalStateException.class, () -> reader.nextLong());\r\n    assertThrows(IllegalStateException.class, () -> reader.nextDouble());\r\n    assertThrows(IllegalStateException.class, () -> reader.nextName());\r\n    assertThrows(IllegalStateException.class, () -> reader.beginObject());\r\n    assertThrows(IllegalStateException.class, () -> reader.endArray());\r\n    assertThrows(IllegalStateException.class, () -> reader.endObject());\r\n    reader.beginArray();\r\n    reader.endArray();\r\n    assertThrows(IllegalStateException.class, () -> reader.nextBoolean());\r\n    assertThrows(IllegalStateException.class, () -> reader.nextNull());\r\n    assertThrows(NumberFormatException.class, () -> reader.nextInt());\r\n    assertThrows(NumberFormatException.class, () -> reader.nextLong());\r\n    assertThrows(NumberFormatException.class, () -> reader.nextDouble());\r\n    assertThrows(IllegalStateException.class, () -> reader.nextName());\r\n    assertThat(reader.nextString()).isEqualTo(\"A\");\r\n    reader.endArray();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNextJsonElement",
+    "start_line": 259,
+    "end_line": 281,
+    "code": "@Test\r\npublic void testNextJsonElement() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"{\\\"A\\\": 1, \\\"B\\\" : {}, \\\"C\\\" : []}\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginObject();\r\n    var e = assertThrows(IllegalStateException.class, () -> reader.nextJsonElement());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Unexpected NAME when reading a JsonElement.\");\r\n    assertThat(reader.nextName()).isEqualTo(\"A\");\r\n    assertThat(reader.nextJsonElement()).isEqualTo(new JsonPrimitive(1));\r\n    assertThat(reader.nextName()).isEqualTo(\"B\");\r\n    reader.beginObject();\r\n    assertThrows(IllegalStateException.class, () -> reader.nextJsonElement());\r\n    reader.endObject();\r\n    assertThat(reader.nextName()).isEqualTo(\"C\");\r\n    reader.beginArray();\r\n    assertThrows(IllegalStateException.class, () -> reader.nextJsonElement());\r\n    reader.endArray();\r\n    reader.endObject();\r\n    assertThrows(IllegalStateException.class, () -> reader.nextJsonElement());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEarlyClose",
+    "start_line": 283,
+    "end_line": 291,
+    "code": "@Test\r\npublic void testEarlyClose() throws IOException {\r\n    JsonElement element = JsonParser.parseString(\"[1, 2, 3]\");\r\n    JsonTreeReader reader = new JsonTreeReader(element);\r\n    reader.beginArray();\r\n    reader.close();\r\n    var e = assertThrows(IllegalStateException.class, () -> reader.peek());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"JsonReader is closed\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonElementReaderTest.java"
+  }
+]

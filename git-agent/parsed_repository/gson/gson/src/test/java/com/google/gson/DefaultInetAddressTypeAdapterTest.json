@@ -1,0 +1,74 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultInetAddressTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultInetAddressTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.net.InetAddress",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.net.InetAddress;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultInetAddressTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultInetAddressTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultInetAddressTypeAdapterTest.java"
+  },
+  {
+    "type": "class",
+    "name": "DefaultInetAddressTypeAdapterTest",
+    "start_line": 30,
+    "end_line": 48,
+    "code": "/**\r\n * Unit tests for the default serializer/deserializer for the {@code InetAddress} type.\r\n *\r\n * @author Joel Leitch\r\n */\r\npublic class DefaultInetAddressTypeAdapterTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n    }\r\n\r\n    @Test\r\n    public void testInetAddressSerializationAndDeserialization() throws Exception {\r\n        // we really do want this method\r\n        @SuppressWarnings(\"AddressSelection\")\r\n        InetAddress address = InetAddress.getByName(\"8.8.8.8\");\r\n        String jsonAddress = gson.toJson(address);\r\n        assertThat(jsonAddress).isEqualTo(\"\\\"8.8.8.8\\\"\");\r\n        InetAddress value = gson.fromJson(jsonAddress, InetAddress.class);\r\n        assertThat(address).isEqualTo(value);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultInetAddressTypeAdapterTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultInetAddressTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 33,
+    "end_line": 36,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultInetAddressTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInetAddressSerializationAndDeserialization",
+    "start_line": 38,
+    "end_line": 47,
+    "code": "@Test\r\npublic void testInetAddressSerializationAndDeserialization() throws Exception {\r\n    // we really do want this method\r\n    @SuppressWarnings(\"AddressSelection\")\r\n    InetAddress address = InetAddress.getByName(\"8.8.8.8\");\r\n    String jsonAddress = gson.toJson(address);\r\n    assertThat(jsonAddress).isEqualTo(\"\\\"8.8.8.8\\\"\");\r\n    InetAddress value = gson.fromJson(jsonAddress, InetAddress.class);\r\n    assertThat(address).isEqualTo(value);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultInetAddressTypeAdapterTest.java"
+  }
+]

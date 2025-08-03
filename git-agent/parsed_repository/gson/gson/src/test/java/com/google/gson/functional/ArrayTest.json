@@ -1,0 +1,370 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonParseException",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.BagOfPrimitives",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.common.TestTypes.BagOfPrimitives;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.ClassWithObjects",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.common.TestTypes.ClassWithObjects;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.math.BigDecimal",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.math.BigDecimal;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collection",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.util.Collection;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "class",
+    "name": "ArrayTest",
+    "start_line": 41,
+    "end_line": 297,
+    "code": "/**\r\n * Functional tests for Json serialization and deserialization of arrays.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class ArrayTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n    }\r\n\r\n    @Test\r\n    public void testTopLevelArrayOfIntsSerialization() {\r\n        int[] target = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };\r\n        assertThat(gson.toJson(target)).isEqualTo(\"[1,2,3,4,5,6,7,8,9]\");\r\n    }\r\n\r\n    @Test\r\n    public void testTopLevelArrayOfIntsDeserialization() {\r\n        int[] expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };\r\n        int[] actual = gson.fromJson(\"[1,2,3,4,5,6,7,8,9]\", int[].class);\r\n        assertThat(actual).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testInvalidArrayDeserialization() {\r\n        String json = \"[1, 2 3, 4, 5]\";\r\n        // Gson should not deserialize array elements with missing ','\r\n        var e = assertThrows(JsonParseException.class, () -> gson.fromJson(json, int[].class));\r\n        assertThat(e).hasCauseThat().hasMessageThat().startsWith(\"Unterminated array\");\r\n    }\r\n\r\n    @Test\r\n    public void testEmptyArraySerialization() {\r\n        int[] target = {};\r\n        assertThat(gson.toJson(target)).isEqualTo(\"[]\");\r\n    }\r\n\r\n    @Test\r\n    public void testEmptyArrayDeserialization() {\r\n        int[] actualObject = gson.fromJson(\"[]\", int[].class);\r\n        assertThat(actualObject).hasLength(0);\r\n        Integer[] actualObject2 = gson.fromJson(\"[]\", Integer[].class);\r\n        assertThat(actualObject2).hasLength(0);\r\n        actualObject = gson.fromJson(\"[ ]\", int[].class);\r\n        assertThat(actualObject).hasLength(0);\r\n    }\r\n\r\n    @Test\r\n    public void testNullsInArraySerialization() {\r\n        String[] array = { \"foo\", null, \"bar\" };\r\n        String expected = \"[\\\"foo\\\",null,\\\"bar\\\"]\";\r\n        String json = gson.toJson(array);\r\n        assertThat(json).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testNullsInArrayDeserialization() {\r\n        String json = \"[\\\"foo\\\",null,\\\"bar\\\"]\";\r\n        String[] expected = { \"foo\", null, \"bar\" };\r\n        String[] target = gson.fromJson(json, expected.getClass());\r\n        assertThat(target).asList().containsAnyIn(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testSingleNullInArraySerialization() {\r\n        BagOfPrimitives[] array = new BagOfPrimitives[1];\r\n        array[0] = null;\r\n        String json = gson.toJson(array);\r\n        assertThat(json).isEqualTo(\"[null]\");\r\n    }\r\n\r\n    @Test\r\n    public void testSingleNullInArrayDeserialization() {\r\n        BagOfPrimitives[] array = gson.fromJson(\"[null]\", BagOfPrimitives[].class);\r\n        assertThat(array).asList().containsExactly((Object) null);\r\n    }\r\n\r\n    @Test\r\n    public void testNullsInArrayWithSerializeNullPropertySetSerialization() {\r\n        gson = new GsonBuilder().serializeNulls().create();\r\n        String[] array = { \"foo\", null, \"bar\" };\r\n        String expected = \"[\\\"foo\\\",null,\\\"bar\\\"]\";\r\n        String json = gson.toJson(array);\r\n        assertThat(json).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfStringsSerialization() {\r\n        String[] target = { \"Hello\", \"World\" };\r\n        assertThat(gson.toJson(target)).isEqualTo(\"[\\\"Hello\\\",\\\"World\\\"]\");\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfStringsDeserialization() {\r\n        String json = \"[\\\"Hello\\\",\\\"World\\\"]\";\r\n        String[] target = gson.fromJson(json, String[].class);\r\n        assertThat(target).asList().containsExactly(\"Hello\", \"World\");\r\n    }\r\n\r\n    @Test\r\n    public void testSingleStringArraySerialization() {\r\n        String[] s = { \"hello\" };\r\n        String output = gson.toJson(s);\r\n        assertThat(output).isEqualTo(\"[\\\"hello\\\"]\");\r\n    }\r\n\r\n    @Test\r\n    public void testSingleStringArrayDeserialization() {\r\n        String json = \"[\\\"hello\\\"]\";\r\n        String[] arrayType = gson.fromJson(json, String[].class);\r\n        assertThat(arrayType).asList().containsExactly(\"hello\");\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfCollectionSerialization() {\r\n        StringBuilder sb = new StringBuilder(\"[\");\r\n        int arraySize = 3;\r\n        Type typeToSerialize = new TypeToken<Collection<Integer>[]>() {\r\n        }.getType();\r\n        @SuppressWarnings({ \"rawtypes\", \"unchecked\" })\r\n        Collection<Integer>[] arrayOfCollection = new ArrayList[arraySize];\r\n        for (int i = 0; i < arraySize; ++i) {\r\n            int startValue = (3 * i) + 1;\r\n            sb.append('[').append(startValue).append(',').append(startValue + 1).append(']');\r\n            ArrayList<Integer> tmpList = new ArrayList<>();\r\n            tmpList.add(startValue);\r\n            tmpList.add(startValue + 1);\r\n            arrayOfCollection[i] = tmpList;\r\n            if (i < arraySize - 1) {\r\n                sb.append(',');\r\n            }\r\n        }\r\n        sb.append(']');\r\n        String json = gson.toJson(arrayOfCollection, typeToSerialize);\r\n        assertThat(json).isEqualTo(sb.toString());\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfCollectionDeserialization() {\r\n        String json = \"[[1,2],[3,4]]\";\r\n        Type type = new TypeToken<Collection<Integer>[]>() {\r\n        }.getType();\r\n        Collection<Integer>[] target = gson.fromJson(json, type);\r\n        assertThat(target.length).isEqualTo(2);\r\n        assertThat(target[0].toArray(new Integer[0])).isEqualTo(new Integer[] { 1, 2 });\r\n        assertThat(target[1].toArray(new Integer[0])).isEqualTo(new Integer[] { 3, 4 });\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfPrimitivesAsObjectsSerialization() {\r\n        Object[] objs = new Object[] { 1, \"abc\", 0.3f, 5L };\r\n        String json = gson.toJson(objs);\r\n        assertThat(json).contains(\"abc\");\r\n        assertThat(json).contains(\"0.3\");\r\n        assertThat(json).contains(\"5\");\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfPrimitivesAsObjectsDeserialization() {\r\n        String json = \"[1,'abc',0.3,1.1,5]\";\r\n        Object[] objs = gson.fromJson(json, Object[].class);\r\n        assertThat(((Number) objs[0]).intValue()).isEqualTo(1);\r\n        assertThat(objs[1]).isEqualTo(\"abc\");\r\n        assertThat(((Number) objs[2]).doubleValue()).isEqualTo(0.3);\r\n        assertThat(new BigDecimal(objs[3].toString())).isEqualTo(new BigDecimal(\"1.1\"));\r\n        assertThat(((Number) objs[4]).shortValue()).isEqualTo(5);\r\n    }\r\n\r\n    @Test\r\n    public void testObjectArrayWithNonPrimitivesSerialization() {\r\n        ClassWithObjects classWithObjects = new ClassWithObjects();\r\n        BagOfPrimitives bagOfPrimitives = new BagOfPrimitives();\r\n        String classWithObjectsJson = gson.toJson(classWithObjects);\r\n        String bagOfPrimitivesJson = gson.toJson(bagOfPrimitives);\r\n        Object[] objects = { classWithObjects, bagOfPrimitives };\r\n        String json = gson.toJson(objects);\r\n        assertThat(json).contains(classWithObjectsJson);\r\n        assertThat(json).contains(bagOfPrimitivesJson);\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfNullSerialization() {\r\n        Object[] array = { null };\r\n        String json = gson.toJson(array);\r\n        assertThat(json).isEqualTo(\"[null]\");\r\n    }\r\n\r\n    @Test\r\n    public void testArrayOfNullDeserialization() {\r\n        String[] values = gson.fromJson(\"[null]\", String[].class);\r\n        assertThat(values[0]).isNull();\r\n    }\r\n\r\n    /**\r\n     * Regression tests for Issue 272\r\n     */\r\n    @Test\r\n    public void testMultidimensionalArraysSerialization() {\r\n        String[][] items = { { \"3m Co\", \"71.72\", \"0.02\", \"0.03\", \"4/2 12:00am\", \"Manufacturing\" }, { \"Alcoa Inc\", \"29.01\", \"0.42\", \"1.47\", \"4/1 12:00am\", \"Manufacturing\" } };\r\n        String json = gson.toJson(items);\r\n        assertThat(json).contains(\"[[\\\"3m Co\");\r\n        assertThat(json).contains(\"Manufacturing\\\"]]\");\r\n    }\r\n\r\n    @Test\r\n    public void testMultidimensionalObjectArraysSerialization() {\r\n        Object[][] array = { new Object[] { 1, 2 } };\r\n        assertThat(gson.toJson(array)).isEqualTo(\"[[1,2]]\");\r\n    }\r\n\r\n    @Test\r\n    public void testMultidimensionalPrimitiveArraysSerialization() {\r\n        int[][] array = { { 1, 2 }, { 3, 4 } };\r\n        assertThat(gson.toJson(array)).isEqualTo(\"[[1,2],[3,4]]\");\r\n    }\r\n\r\n    /**\r\n     * Regression test for Issue 205\r\n     */\r\n    @Test\r\n    public void testMixingTypesInObjectArraySerialization() {\r\n        Object[] array = { 1, 2, new Object[] { \"one\", \"two\", 3 } };\r\n        assertThat(gson.toJson(array)).isEqualTo(\"[1,2,[\\\"one\\\",\\\"two\\\",3]]\");\r\n    }\r\n\r\n    /**\r\n     * Regression tests for Issue 272\r\n     */\r\n    @Test\r\n    public void testMultidimensionalArraysDeserialization() {\r\n        String json = \"[['3m Co','71.72','0.02','0.03','4/2 12:00am','Manufacturing'],\" + \"['Alcoa Inc','29.01','0.42','1.47','4/1 12:00am','Manufacturing']]\";\r\n        String[][] items = gson.fromJson(json, String[][].class);\r\n        assertThat(items[0][0]).isEqualTo(\"3m Co\");\r\n        assertThat(items[1][5]).isEqualTo(\"Manufacturing\");\r\n    }\r\n\r\n    @Test\r\n    public void testMultidimensionalPrimitiveArraysDeserialization() {\r\n        String json = \"[[1,2],[3,4]]\";\r\n        int[][] expected = { { 1, 2 }, { 3, 4 } };\r\n        assertThat(gson.fromJson(json, int[][].class)).isEqualTo(expected);\r\n    }\r\n\r\n    /**\r\n     * http://code.google.com/p/google-gson/issues/detail?id=342\r\n     */\r\n    @Test\r\n    public void testArrayElementsAreArrays() {\r\n        Object[] stringArrays = { new String[] { \"test1\", \"test2\" }, new String[] { \"test3\", \"test4\" } };\r\n        assertThat(new Gson().toJson(stringArrays)).isEqualTo(\"[[\\\"test1\\\",\\\"test2\\\"],[\\\"test3\\\",\\\"test4\\\"]]\");\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 42,
+    "end_line": 42,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 44,
+    "end_line": 47,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTopLevelArrayOfIntsSerialization",
+    "start_line": 49,
+    "end_line": 53,
+    "code": "@Test\r\npublic void testTopLevelArrayOfIntsSerialization() {\r\n    int[] target = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };\r\n    assertThat(gson.toJson(target)).isEqualTo(\"[1,2,3,4,5,6,7,8,9]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTopLevelArrayOfIntsDeserialization",
+    "start_line": 55,
+    "end_line": 60,
+    "code": "@Test\r\npublic void testTopLevelArrayOfIntsDeserialization() {\r\n    int[] expected = { 1, 2, 3, 4, 5, 6, 7, 8, 9 };\r\n    int[] actual = gson.fromJson(\"[1,2,3,4,5,6,7,8,9]\", int[].class);\r\n    assertThat(actual).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInvalidArrayDeserialization",
+    "start_line": 62,
+    "end_line": 68,
+    "code": "@Test\r\npublic void testInvalidArrayDeserialization() {\r\n    String json = \"[1, 2 3, 4, 5]\";\r\n    // Gson should not deserialize array elements with missing ','\r\n    var e = assertThrows(JsonParseException.class, () -> gson.fromJson(json, int[].class));\r\n    assertThat(e).hasCauseThat().hasMessageThat().startsWith(\"Unterminated array\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEmptyArraySerialization",
+    "start_line": 70,
+    "end_line": 74,
+    "code": "@Test\r\npublic void testEmptyArraySerialization() {\r\n    int[] target = {};\r\n    assertThat(gson.toJson(target)).isEqualTo(\"[]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEmptyArrayDeserialization",
+    "start_line": 76,
+    "end_line": 86,
+    "code": "@Test\r\npublic void testEmptyArrayDeserialization() {\r\n    int[] actualObject = gson.fromJson(\"[]\", int[].class);\r\n    assertThat(actualObject).hasLength(0);\r\n    Integer[] actualObject2 = gson.fromJson(\"[]\", Integer[].class);\r\n    assertThat(actualObject2).hasLength(0);\r\n    actualObject = gson.fromJson(\"[ ]\", int[].class);\r\n    assertThat(actualObject).hasLength(0);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullsInArraySerialization",
+    "start_line": 88,
+    "end_line": 94,
+    "code": "@Test\r\npublic void testNullsInArraySerialization() {\r\n    String[] array = { \"foo\", null, \"bar\" };\r\n    String expected = \"[\\\"foo\\\",null,\\\"bar\\\"]\";\r\n    String json = gson.toJson(array);\r\n    assertThat(json).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullsInArrayDeserialization",
+    "start_line": 96,
+    "end_line": 102,
+    "code": "@Test\r\npublic void testNullsInArrayDeserialization() {\r\n    String json = \"[\\\"foo\\\",null,\\\"bar\\\"]\";\r\n    String[] expected = { \"foo\", null, \"bar\" };\r\n    String[] target = gson.fromJson(json, expected.getClass());\r\n    assertThat(target).asList().containsAnyIn(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSingleNullInArraySerialization",
+    "start_line": 104,
+    "end_line": 110,
+    "code": "@Test\r\npublic void testSingleNullInArraySerialization() {\r\n    BagOfPrimitives[] array = new BagOfPrimitives[1];\r\n    array[0] = null;\r\n    String json = gson.toJson(array);\r\n    assertThat(json).isEqualTo(\"[null]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSingleNullInArrayDeserialization",
+    "start_line": 112,
+    "end_line": 116,
+    "code": "@Test\r\npublic void testSingleNullInArrayDeserialization() {\r\n    BagOfPrimitives[] array = gson.fromJson(\"[null]\", BagOfPrimitives[].class);\r\n    assertThat(array).asList().containsExactly((Object) null);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullsInArrayWithSerializeNullPropertySetSerialization",
+    "start_line": 118,
+    "end_line": 125,
+    "code": "@Test\r\npublic void testNullsInArrayWithSerializeNullPropertySetSerialization() {\r\n    gson = new GsonBuilder().serializeNulls().create();\r\n    String[] array = { \"foo\", null, \"bar\" };\r\n    String expected = \"[\\\"foo\\\",null,\\\"bar\\\"]\";\r\n    String json = gson.toJson(array);\r\n    assertThat(json).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfStringsSerialization",
+    "start_line": 127,
+    "end_line": 131,
+    "code": "@Test\r\npublic void testArrayOfStringsSerialization() {\r\n    String[] target = { \"Hello\", \"World\" };\r\n    assertThat(gson.toJson(target)).isEqualTo(\"[\\\"Hello\\\",\\\"World\\\"]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfStringsDeserialization",
+    "start_line": 133,
+    "end_line": 138,
+    "code": "@Test\r\npublic void testArrayOfStringsDeserialization() {\r\n    String json = \"[\\\"Hello\\\",\\\"World\\\"]\";\r\n    String[] target = gson.fromJson(json, String[].class);\r\n    assertThat(target).asList().containsExactly(\"Hello\", \"World\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSingleStringArraySerialization",
+    "start_line": 140,
+    "end_line": 145,
+    "code": "@Test\r\npublic void testSingleStringArraySerialization() {\r\n    String[] s = { \"hello\" };\r\n    String output = gson.toJson(s);\r\n    assertThat(output).isEqualTo(\"[\\\"hello\\\"]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSingleStringArrayDeserialization",
+    "start_line": 147,
+    "end_line": 152,
+    "code": "@Test\r\npublic void testSingleStringArrayDeserialization() {\r\n    String json = \"[\\\"hello\\\"]\";\r\n    String[] arrayType = gson.fromJson(json, String[].class);\r\n    assertThat(arrayType).asList().containsExactly(\"hello\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfCollectionSerialization",
+    "start_line": 154,
+    "end_line": 178,
+    "code": "@Test\r\npublic void testArrayOfCollectionSerialization() {\r\n    StringBuilder sb = new StringBuilder(\"[\");\r\n    int arraySize = 3;\r\n    Type typeToSerialize = new TypeToken<Collection<Integer>[]>() {\r\n    }.getType();\r\n    @SuppressWarnings({ \"rawtypes\", \"unchecked\" })\r\n    Collection<Integer>[] arrayOfCollection = new ArrayList[arraySize];\r\n    for (int i = 0; i < arraySize; ++i) {\r\n        int startValue = (3 * i) + 1;\r\n        sb.append('[').append(startValue).append(',').append(startValue + 1).append(']');\r\n        ArrayList<Integer> tmpList = new ArrayList<>();\r\n        tmpList.add(startValue);\r\n        tmpList.add(startValue + 1);\r\n        arrayOfCollection[i] = tmpList;\r\n        if (i < arraySize - 1) {\r\n            sb.append(',');\r\n        }\r\n    }\r\n    sb.append(']');\r\n    String json = gson.toJson(arrayOfCollection, typeToSerialize);\r\n    assertThat(json).isEqualTo(sb.toString());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfCollectionDeserialization",
+    "start_line": 180,
+    "end_line": 189,
+    "code": "@Test\r\npublic void testArrayOfCollectionDeserialization() {\r\n    String json = \"[[1,2],[3,4]]\";\r\n    Type type = new TypeToken<Collection<Integer>[]>() {\r\n    }.getType();\r\n    Collection<Integer>[] target = gson.fromJson(json, type);\r\n    assertThat(target.length).isEqualTo(2);\r\n    assertThat(target[0].toArray(new Integer[0])).isEqualTo(new Integer[] { 1, 2 });\r\n    assertThat(target[1].toArray(new Integer[0])).isEqualTo(new Integer[] { 3, 4 });\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfPrimitivesAsObjectsSerialization",
+    "start_line": 191,
+    "end_line": 198,
+    "code": "@Test\r\npublic void testArrayOfPrimitivesAsObjectsSerialization() {\r\n    Object[] objs = new Object[] { 1, \"abc\", 0.3f, 5L };\r\n    String json = gson.toJson(objs);\r\n    assertThat(json).contains(\"abc\");\r\n    assertThat(json).contains(\"0.3\");\r\n    assertThat(json).contains(\"5\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfPrimitivesAsObjectsDeserialization",
+    "start_line": 200,
+    "end_line": 209,
+    "code": "@Test\r\npublic void testArrayOfPrimitivesAsObjectsDeserialization() {\r\n    String json = \"[1,'abc',0.3,1.1,5]\";\r\n    Object[] objs = gson.fromJson(json, Object[].class);\r\n    assertThat(((Number) objs[0]).intValue()).isEqualTo(1);\r\n    assertThat(objs[1]).isEqualTo(\"abc\");\r\n    assertThat(((Number) objs[2]).doubleValue()).isEqualTo(0.3);\r\n    assertThat(new BigDecimal(objs[3].toString())).isEqualTo(new BigDecimal(\"1.1\"));\r\n    assertThat(((Number) objs[4]).shortValue()).isEqualTo(5);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testObjectArrayWithNonPrimitivesSerialization",
+    "start_line": 211,
+    "end_line": 223,
+    "code": "@Test\r\npublic void testObjectArrayWithNonPrimitivesSerialization() {\r\n    ClassWithObjects classWithObjects = new ClassWithObjects();\r\n    BagOfPrimitives bagOfPrimitives = new BagOfPrimitives();\r\n    String classWithObjectsJson = gson.toJson(classWithObjects);\r\n    String bagOfPrimitivesJson = gson.toJson(bagOfPrimitives);\r\n    Object[] objects = { classWithObjects, bagOfPrimitives };\r\n    String json = gson.toJson(objects);\r\n    assertThat(json).contains(classWithObjectsJson);\r\n    assertThat(json).contains(bagOfPrimitivesJson);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfNullSerialization",
+    "start_line": 225,
+    "end_line": 230,
+    "code": "@Test\r\npublic void testArrayOfNullSerialization() {\r\n    Object[] array = { null };\r\n    String json = gson.toJson(array);\r\n    assertThat(json).isEqualTo(\"[null]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayOfNullDeserialization",
+    "start_line": 232,
+    "end_line": 236,
+    "code": "@Test\r\npublic void testArrayOfNullDeserialization() {\r\n    String[] values = gson.fromJson(\"[null]\", String[].class);\r\n    assertThat(values[0]).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMultidimensionalArraysSerialization",
+    "start_line": 239,
+    "end_line": 248,
+    "code": "/**\r\n * Regression tests for Issue 272\r\n */\r\n@Test\r\npublic void testMultidimensionalArraysSerialization() {\r\n    String[][] items = { { \"3m Co\", \"71.72\", \"0.02\", \"0.03\", \"4/2 12:00am\", \"Manufacturing\" }, { \"Alcoa Inc\", \"29.01\", \"0.42\", \"1.47\", \"4/1 12:00am\", \"Manufacturing\" } };\r\n    String json = gson.toJson(items);\r\n    assertThat(json).contains(\"[[\\\"3m Co\");\r\n    assertThat(json).contains(\"Manufacturing\\\"]]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMultidimensionalObjectArraysSerialization",
+    "start_line": 250,
+    "end_line": 254,
+    "code": "@Test\r\npublic void testMultidimensionalObjectArraysSerialization() {\r\n    Object[][] array = { new Object[] { 1, 2 } };\r\n    assertThat(gson.toJson(array)).isEqualTo(\"[[1,2]]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMultidimensionalPrimitiveArraysSerialization",
+    "start_line": 256,
+    "end_line": 260,
+    "code": "@Test\r\npublic void testMultidimensionalPrimitiveArraysSerialization() {\r\n    int[][] array = { { 1, 2 }, { 3, 4 } };\r\n    assertThat(gson.toJson(array)).isEqualTo(\"[[1,2],[3,4]]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMixingTypesInObjectArraySerialization",
+    "start_line": 263,
+    "end_line": 267,
+    "code": "/**\r\n * Regression test for Issue 205\r\n */\r\n@Test\r\npublic void testMixingTypesInObjectArraySerialization() {\r\n    Object[] array = { 1, 2, new Object[] { \"one\", \"two\", 3 } };\r\n    assertThat(gson.toJson(array)).isEqualTo(\"[1,2,[\\\"one\\\",\\\"two\\\",3]]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMultidimensionalArraysDeserialization",
+    "start_line": 270,
+    "end_line": 278,
+    "code": "/**\r\n * Regression tests for Issue 272\r\n */\r\n@Test\r\npublic void testMultidimensionalArraysDeserialization() {\r\n    String json = \"[['3m Co','71.72','0.02','0.03','4/2 12:00am','Manufacturing'],\" + \"['Alcoa Inc','29.01','0.42','1.47','4/1 12:00am','Manufacturing']]\";\r\n    String[][] items = gson.fromJson(json, String[][].class);\r\n    assertThat(items[0][0]).isEqualTo(\"3m Co\");\r\n    assertThat(items[1][5]).isEqualTo(\"Manufacturing\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMultidimensionalPrimitiveArraysDeserialization",
+    "start_line": 280,
+    "end_line": 285,
+    "code": "@Test\r\npublic void testMultidimensionalPrimitiveArraysDeserialization() {\r\n    String json = \"[[1,2],[3,4]]\";\r\n    int[][] expected = { { 1, 2 }, { 3, 4 } };\r\n    assertThat(gson.fromJson(json, int[][].class)).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArrayElementsAreArrays",
+    "start_line": 288,
+    "end_line": 296,
+    "code": "/**\r\n * http://code.google.com/p/google-gson/issues/detail?id=342\r\n */\r\n@Test\r\npublic void testArrayElementsAreArrays() {\r\n    Object[] stringArrays = { new String[] { \"test1\", \"test2\" }, new String[] { \"test3\", \"test4\" } };\r\n    assertThat(new Gson().toJson(stringArrays)).isEqualTo(\"[[\\\"test1\\\",\\\"test2\\\"],[\\\"test3\\\",\\\"test4\\\"]]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ArrayTest.java"
+  }
+]

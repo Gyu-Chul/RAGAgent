@@ -1,0 +1,146 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.math.BigInteger",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.math.BigInteger;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.atomic.AtomicInteger",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.concurrent.atomic.AtomicInteger;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.atomic.AtomicLong",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.util.concurrent.atomic.AtomicLong;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "class",
+    "name": "GsonTypeAdapterTest",
+    "start_line": 35,
+    "end_line": 168,
+    "code": "/**\r\n * Contains numerous tests involving registered type converters with a Gson instance.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class GsonTypeAdapterTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new GsonBuilder().registerTypeAdapter(AtomicLong.class, new ExceptionTypeAdapter()).registerTypeAdapter(AtomicInteger.class, new AtomicIntegerTypeAdapter()).create();\r\n    }\r\n\r\n    @Test\r\n    public void testDefaultTypeAdapterThrowsParseException() {\r\n        assertThrows(JsonParseException.class, () -> gson.fromJson(\"{\\\"abc\\\":123}\", BigInteger.class));\r\n    }\r\n\r\n    @Test\r\n    public void testTypeAdapterThrowsException() {\r\n        Exception e = assertThrows(IllegalStateException.class, () -> gson.toJson(new AtomicLong(0)));\r\n        assertThat(e).isSameInstanceAs(ExceptionTypeAdapter.thrownException);\r\n        // Verify that serializer is made null-safe, i.e. it is not called for null\r\n        assertThat(gson.toJson(null, AtomicLong.class)).isEqualTo(\"null\");\r\n        e = assertThrows(JsonParseException.class, () -> gson.fromJson(\"123\", AtomicLong.class));\r\n        assertThat(e).hasCauseThat().isSameInstanceAs(ExceptionTypeAdapter.thrownException);\r\n        // Verify that deserializer is made null-safe, i.e. it is not called for null\r\n        assertThat(gson.fromJson(JsonNull.INSTANCE, AtomicLong.class)).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testTypeAdapterProperlyConvertsTypes() {\r\n        int intialValue = 1;\r\n        AtomicInteger atomicInt = new AtomicInteger(intialValue);\r\n        String json = gson.toJson(atomicInt);\r\n        assertThat(Integer.parseInt(json)).isEqualTo(intialValue + 1);\r\n        atomicInt = gson.fromJson(json, AtomicInteger.class);\r\n        assertThat(atomicInt.get()).isEqualTo(intialValue);\r\n    }\r\n\r\n    @Test\r\n    public void testTypeAdapterDoesNotAffectNonAdaptedTypes() {\r\n        String expected = \"blah\";\r\n        String actual = gson.toJson(expected);\r\n        assertThat(actual).isEqualTo(\"\\\"\" + expected + \"\\\"\");\r\n        actual = gson.fromJson(actual, String.class);\r\n        assertThat(actual).isEqualTo(expected);\r\n    }\r\n\r\n    private static class ExceptionTypeAdapter implements JsonSerializer<AtomicLong>, JsonDeserializer<AtomicLong> {\r\n\r\n        @SuppressWarnings(\"StaticAssignmentOfThrowable\")\r\n        static final IllegalStateException thrownException = new IllegalStateException(\"test-exception\");\r\n\r\n        @Override\r\n        public JsonElement serialize(AtomicLong src, Type typeOfSrc, JsonSerializationContext context) {\r\n            throw thrownException;\r\n        }\r\n\r\n        @Override\r\n        public AtomicLong deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {\r\n            throw thrownException;\r\n        }\r\n    }\r\n\r\n    private static class AtomicIntegerTypeAdapter implements JsonSerializer<AtomicInteger>, JsonDeserializer<AtomicInteger> {\r\n\r\n        @Override\r\n        public JsonElement serialize(AtomicInteger src, Type typeOfSrc, JsonSerializationContext context) {\r\n            return new JsonPrimitive(src.incrementAndGet());\r\n        }\r\n\r\n        @Override\r\n        public AtomicInteger deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {\r\n            int intValue = json.getAsInt();\r\n            return new AtomicInteger(--intValue);\r\n        }\r\n    }\r\n\r\n    abstract static class Abstract {\r\n\r\n        String a;\r\n    }\r\n\r\n    static class Concrete extends Abstract {\r\n\r\n        String b;\r\n    }\r\n\r\n    // https://groups.google.com/d/topic/google-gson/EBmOCa8kJPE/discussion\r\n    @Test\r\n    public void testDeserializerForAbstractClass() {\r\n        Concrete instance = new Concrete();\r\n        instance.a = \"android\";\r\n        instance.b = \"beep\";\r\n        assertSerialized(\"{\\\"a\\\":\\\"android\\\"}\", Abstract.class, true, true, instance);\r\n        assertSerialized(\"{\\\"a\\\":\\\"android\\\"}\", Abstract.class, true, false, instance);\r\n        assertSerialized(\"{\\\"a\\\":\\\"android\\\"}\", Abstract.class, false, true, instance);\r\n        assertSerialized(\"{\\\"a\\\":\\\"android\\\"}\", Abstract.class, false, false, instance);\r\n        assertSerialized(\"{\\\"b\\\":\\\"beep\\\",\\\"a\\\":\\\"android\\\"}\", Concrete.class, true, true, instance);\r\n        assertSerialized(\"{\\\"b\\\":\\\"beep\\\",\\\"a\\\":\\\"android\\\"}\", Concrete.class, true, false, instance);\r\n        assertSerialized(\"{\\\"b\\\":\\\"beep\\\",\\\"a\\\":\\\"android\\\"}\", Concrete.class, false, true, instance);\r\n        assertSerialized(\"{\\\"b\\\":\\\"beep\\\",\\\"a\\\":\\\"android\\\"}\", Concrete.class, false, false, instance);\r\n    }\r\n\r\n    private static void assertSerialized(String expected, Class<?> instanceType, boolean registerAbstractDeserializer, boolean registerAbstractHierarchyDeserializer, Object instance) {\r\n        JsonDeserializer<Abstract> deserializer = (json, typeOfT, context) -> {\r\n            throw new AssertionError();\r\n        };\r\n        GsonBuilder builder = new GsonBuilder();\r\n        if (registerAbstractDeserializer) {\r\n            builder.registerTypeAdapter(Abstract.class, deserializer);\r\n        }\r\n        if (registerAbstractHierarchyDeserializer) {\r\n            builder.registerTypeHierarchyAdapter(Abstract.class, deserializer);\r\n        }\r\n        Gson gson = builder.create();\r\n        assertThat(gson.toJson(instance, instanceType)).isEqualTo(expected);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 38,
+    "end_line": 45,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new GsonBuilder().registerTypeAdapter(AtomicLong.class, new ExceptionTypeAdapter()).registerTypeAdapter(AtomicInteger.class, new AtomicIntegerTypeAdapter()).create();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDefaultTypeAdapterThrowsParseException",
+    "start_line": 47,
+    "end_line": 50,
+    "code": "@Test\r\npublic void testDefaultTypeAdapterThrowsParseException() {\r\n    assertThrows(JsonParseException.class, () -> gson.fromJson(\"{\\\"abc\\\":123}\", BigInteger.class));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTypeAdapterThrowsException",
+    "start_line": 52,
+    "end_line": 65,
+    "code": "@Test\r\npublic void testTypeAdapterThrowsException() {\r\n    Exception e = assertThrows(IllegalStateException.class, () -> gson.toJson(new AtomicLong(0)));\r\n    assertThat(e).isSameInstanceAs(ExceptionTypeAdapter.thrownException);\r\n    // Verify that serializer is made null-safe, i.e. it is not called for null\r\n    assertThat(gson.toJson(null, AtomicLong.class)).isEqualTo(\"null\");\r\n    e = assertThrows(JsonParseException.class, () -> gson.fromJson(\"123\", AtomicLong.class));\r\n    assertThat(e).hasCauseThat().isSameInstanceAs(ExceptionTypeAdapter.thrownException);\r\n    // Verify that deserializer is made null-safe, i.e. it is not called for null\r\n    assertThat(gson.fromJson(JsonNull.INSTANCE, AtomicLong.class)).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTypeAdapterProperlyConvertsTypes",
+    "start_line": 67,
+    "end_line": 76,
+    "code": "@Test\r\npublic void testTypeAdapterProperlyConvertsTypes() {\r\n    int intialValue = 1;\r\n    AtomicInteger atomicInt = new AtomicInteger(intialValue);\r\n    String json = gson.toJson(atomicInt);\r\n    assertThat(Integer.parseInt(json)).isEqualTo(intialValue + 1);\r\n    atomicInt = gson.fromJson(json, AtomicInteger.class);\r\n    assertThat(atomicInt.get()).isEqualTo(intialValue);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTypeAdapterDoesNotAffectNonAdaptedTypes",
+    "start_line": 78,
+    "end_line": 86,
+    "code": "@Test\r\npublic void testTypeAdapterDoesNotAffectNonAdaptedTypes() {\r\n    String expected = \"blah\";\r\n    String actual = gson.toJson(expected);\r\n    assertThat(actual).isEqualTo(\"\\\"\" + expected + \"\\\"\");\r\n    actual = gson.fromJson(actual, String.class);\r\n    assertThat(actual).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserializerForAbstractClass",
+    "start_line": 133,
+    "end_line": 146,
+    "code": "// https://groups.google.com/d/topic/google-gson/EBmOCa8kJPE/discussion\r\n@Test\r\npublic void testDeserializerForAbstractClass() {\r\n    Concrete instance = new Concrete();\r\n    instance.a = \"android\";\r\n    instance.b = \"beep\";\r\n    assertSerialized(\"{\\\"a\\\":\\\"android\\\"}\", Abstract.class, true, true, instance);\r\n    assertSerialized(\"{\\\"a\\\":\\\"android\\\"}\", Abstract.class, true, false, instance);\r\n    assertSerialized(\"{\\\"a\\\":\\\"android\\\"}\", Abstract.class, false, true, instance);\r\n    assertSerialized(\"{\\\"a\\\":\\\"android\\\"}\", Abstract.class, false, false, instance);\r\n    assertSerialized(\"{\\\"b\\\":\\\"beep\\\",\\\"a\\\":\\\"android\\\"}\", Concrete.class, true, true, instance);\r\n    assertSerialized(\"{\\\"b\\\":\\\"beep\\\",\\\"a\\\":\\\"android\\\"}\", Concrete.class, true, false, instance);\r\n    assertSerialized(\"{\\\"b\\\":\\\"beep\\\",\\\"a\\\":\\\"android\\\"}\", Concrete.class, false, true, instance);\r\n    assertSerialized(\"{\\\"b\\\":\\\"beep\\\",\\\"a\\\":\\\"android\\\"}\", Concrete.class, false, false, instance);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "assertSerialized",
+    "start_line": 148,
+    "end_line": 167,
+    "code": "private static void assertSerialized(String expected, Class<?> instanceType, boolean registerAbstractDeserializer, boolean registerAbstractHierarchyDeserializer, Object instance) {\r\n    JsonDeserializer<Abstract> deserializer = (json, typeOfT, context) -> {\r\n        throw new AssertionError();\r\n    };\r\n    GsonBuilder builder = new GsonBuilder();\r\n    if (registerAbstractDeserializer) {\r\n        builder.registerTypeAdapter(Abstract.class, deserializer);\r\n    }\r\n    if (registerAbstractHierarchyDeserializer) {\r\n        builder.registerTypeHierarchyAdapter(Abstract.class, deserializer);\r\n    }\r\n    Gson gson = builder.create();\r\n    assertThat(gson.toJson(instance, instanceType)).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\GsonTypeAdapterTest.java"
+  }
+]

@@ -1,0 +1,178 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.Streams",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.internal.Streams;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.bind.JsonTreeReader",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.internal.bind.JsonTreeReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.bind.JsonTreeWriter",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.internal.bind.JsonTreeWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonToken",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.stream.JsonToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.Reader",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.io.Reader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.StringReader",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.io.StringReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.Writer",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.io.Writer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "class",
+    "name": "TypeAdapter",
+    "start_line": 121,
+    "end_line": 322,
+    "code": "/**\r\n * Converts Java objects to and from JSON.\r\n *\r\n * <h2>Defining a type's JSON form</h2>\r\n *\r\n * By default Gson converts application classes to JSON using its built-in type adapters. If Gson's\r\n * default JSON conversion isn't appropriate for a type, extend this class to customize the\r\n * conversion. Here's an example of a type adapter for an (X,Y) coordinate point:\r\n *\r\n * <pre>{@code\r\n * public class PointAdapter extends TypeAdapter<Point> {\r\n *   public Point read(JsonReader reader) throws IOException {\r\n *     if (reader.peek() == JsonToken.NULL) {\r\n *       reader.nextNull();\r\n *       return null;\r\n *     }\r\n *     String xy = reader.nextString();\r\n *     String[] parts = xy.split(\",\");\r\n *     int x = Integer.parseInt(parts[0]);\r\n *     int y = Integer.parseInt(parts[1]);\r\n *     return new Point(x, y);\r\n *   }\r\n *   public void write(JsonWriter writer, Point value) throws IOException {\r\n *     if (value == null) {\r\n *       writer.nullValue();\r\n *       return;\r\n *     }\r\n *     String xy = value.getX() + \",\" + value.getY();\r\n *     writer.value(xy);\r\n *   }\r\n * }\r\n * }</pre>\r\n *\r\n * With this type adapter installed, Gson will convert {@code Points} to JSON as strings like {@code\r\n * \"5,8\"} rather than objects like {@code {\"x\":5,\"y\":8}}. In this case the type adapter binds a rich\r\n * Java class to a compact JSON value.\r\n *\r\n * <p>The {@link #read(JsonReader) read()} method must read exactly one value and {@link\r\n * #write(JsonWriter,Object) write()} must write exactly one value. For primitive types this is\r\n * means readers should make exactly one call to {@code nextBoolean()}, {@code nextDouble()}, {@code\r\n * nextInt()}, {@code nextLong()}, {@code nextString()} or {@code nextNull()}. Writers should make\r\n * exactly one call to one of {@code value()} or {@code nullValue()}. For arrays, type adapters\r\n * should start with a call to {@code beginArray()}, convert all elements, and finish with a call to\r\n * {@code endArray()}. For objects, they should start with {@code beginObject()}, convert the\r\n * object, and finish with {@code endObject()}. Failing to convert a value or converting too many\r\n * values may cause the application to crash.\r\n *\r\n * <p>Type adapters should be prepared to read null from the stream and write it to the stream.\r\n * Alternatively, they should use {@link #nullSafe()} method while registering the type adapter with\r\n * Gson. If your {@code Gson} instance has been configured to {@link GsonBuilder#serializeNulls()},\r\n * these nulls will be written to the final document. Otherwise the value (and the corresponding\r\n * name when writing to a JSON object) will be omitted automatically. In either case your type\r\n * adapter must handle null.\r\n *\r\n * <p>Type adapters should be stateless and thread-safe, otherwise the thread-safety guarantees of\r\n * {@link Gson} might not apply.\r\n *\r\n * <p>To use a custom type adapter with Gson, you must <i>register</i> it with a {@link\r\n * GsonBuilder}:\r\n *\r\n * <pre>{@code\r\n * GsonBuilder builder = new GsonBuilder();\r\n * builder.registerTypeAdapter(Point.class, new PointAdapter());\r\n * // if PointAdapter didn't check for nulls in its read/write methods, you should instead use\r\n * // builder.registerTypeAdapter(Point.class, new PointAdapter().nullSafe());\r\n * ...\r\n * Gson gson = builder.create();\r\n * }</pre>\r\n *\r\n * @since 2.1\r\n */\r\n// non-Javadoc:\r\n//\r\n// <h2>JSON Conversion</h2>\r\n// <p>A type adapter registered with Gson is automatically invoked while serializing\r\n// or deserializing JSON. However, you can also use type adapters directly to serialize\r\n// and deserialize JSON. Here is an example for deserialization: <pre>{@code\r\n//   String json = \"{'origin':'0,0','points':['1,2','3,4']}\";\r\n//   TypeAdapter<Graph> graphAdapter = gson.getAdapter(Graph.class);\r\n//   Graph graph = graphAdapter.fromJson(json);\r\n// }</pre>\r\n// And an example for serialization: <pre>{@code\r\n//   Graph graph = new Graph(...);\r\n//   TypeAdapter<Graph> graphAdapter = gson.getAdapter(Graph.class);\r\n//   String json = graphAdapter.toJson(graph);\r\n// }</pre>\r\n//\r\n// <p>Type adapters are <strong>type-specific</strong>. For example, a {@code\r\n// TypeAdapter<Date>} can convert {@code Date} instances to JSON and JSON to\r\n// instances of {@code Date}, but cannot convert any other types.\r\n//\r\npublic abstract class TypeAdapter<T> {\r\n\r\n    public TypeAdapter() {\r\n    }\r\n\r\n    /**\r\n     * Writes one JSON value (an array, object, string, number, boolean or null) for {@code value}.\r\n     *\r\n     * @param value the Java object to write. May be null.\r\n     */\r\n    public abstract void write(JsonWriter out, T value) throws IOException;\r\n\r\n    /**\r\n     * Converts {@code value} to a JSON document and writes it to {@code out}.\r\n     *\r\n     * <p>A {@link JsonWriter} with default configuration is used for writing the JSON data. To\r\n     * customize this behavior, create a {@link JsonWriter}, configure it and then use {@link\r\n     * #write(JsonWriter, Object)} instead.\r\n     *\r\n     * @param value the Java object to convert. May be {@code null}.\r\n     * @since 2.2\r\n     */\r\n    public final void toJson(Writer out, T value) throws IOException {\r\n        JsonWriter writer = new JsonWriter(out);\r\n        write(writer, value);\r\n    }\r\n\r\n    /**\r\n     * Converts {@code value} to a JSON document.\r\n     *\r\n     * <p>A {@link JsonWriter} with default configuration is used for writing the JSON data. To\r\n     * customize this behavior, create a {@link JsonWriter}, configure it and then use {@link\r\n     * #write(JsonWriter, Object)} instead.\r\n     *\r\n     * @throws JsonIOException wrapping {@code IOException}s thrown by {@link #write(JsonWriter,\r\n     *     Object)}\r\n     * @param value the Java object to convert. May be {@code null}.\r\n     * @since 2.2\r\n     */\r\n    public final String toJson(T value) {\r\n        StringBuilder stringBuilder = new StringBuilder();\r\n        try {\r\n            toJson(Streams.writerForAppendable(stringBuilder), value);\r\n        } catch (IOException e) {\r\n            throw new JsonIOException(e);\r\n        }\r\n        return stringBuilder.toString();\r\n    }\r\n\r\n    /**\r\n     * Converts {@code value} to a JSON tree.\r\n     *\r\n     * @param value the Java object to convert. May be {@code null}.\r\n     * @return the converted JSON tree. May be {@link JsonNull}.\r\n     * @throws JsonIOException wrapping {@code IOException}s thrown by {@link #write(JsonWriter,\r\n     *     Object)}\r\n     * @since 2.2\r\n     */\r\n    public final JsonElement toJsonTree(T value) {\r\n        try {\r\n            JsonTreeWriter jsonWriter = new JsonTreeWriter();\r\n            write(jsonWriter, value);\r\n            return jsonWriter.get();\r\n        } catch (IOException e) {\r\n            throw new JsonIOException(e);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Reads one JSON value (an array, object, string, number, boolean or null) and converts it to a\r\n     * Java object. Returns the converted object.\r\n     *\r\n     * @return the converted Java object. May be {@code null}.\r\n     */\r\n    public abstract T read(JsonReader in) throws IOException;\r\n\r\n    /**\r\n     * Converts the JSON document in {@code in} to a Java object.\r\n     *\r\n     * <p>A {@link JsonReader} with default configuration (that is with {@link\r\n     * Strictness#LEGACY_STRICT} as strictness) is used for reading the JSON data. To customize this\r\n     * behavior, create a {@link JsonReader}, configure it and then use {@link #read(JsonReader)}\r\n     * instead.\r\n     *\r\n     * <p>No exception is thrown if the JSON data has multiple top-level JSON elements, or if there is\r\n     * trailing data.\r\n     *\r\n     * @return the converted Java object. May be {@code null}.\r\n     * @since 2.2\r\n     */\r\n    public final T fromJson(Reader in) throws IOException {\r\n        JsonReader reader = new JsonReader(in);\r\n        return read(reader);\r\n    }\r\n\r\n    /**\r\n     * Converts the JSON document in {@code json} to a Java object.\r\n     *\r\n     * <p>A {@link JsonReader} with default configuration (that is with {@link\r\n     * Strictness#LEGACY_STRICT} as strictness) is used for reading the JSON data. To customize this\r\n     * behavior, create a {@link JsonReader}, configure it and then use {@link #read(JsonReader)}\r\n     * instead.\r\n     *\r\n     * <p>No exception is thrown if the JSON data has multiple top-level JSON elements, or if there is\r\n     * trailing data.\r\n     *\r\n     * @return the converted Java object. May be {@code null}.\r\n     * @since 2.2\r\n     */\r\n    public final T fromJson(String json) throws IOException {\r\n        return fromJson(new StringReader(json));\r\n    }\r\n\r\n    /**\r\n     * Converts {@code jsonTree} to a Java object.\r\n     *\r\n     * @param jsonTree the JSON element to convert. May be {@link JsonNull}.\r\n     * @return the converted Java object. May be {@code null}.\r\n     * @throws JsonIOException wrapping {@code IOException}s thrown by {@link #read(JsonReader)}\r\n     * @since 2.2\r\n     */\r\n    public final T fromJsonTree(JsonElement jsonTree) {\r\n        try {\r\n            JsonReader jsonReader = new JsonTreeReader(jsonTree);\r\n            return read(jsonReader);\r\n        } catch (IOException e) {\r\n            throw new JsonIOException(e);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * This wrapper method is used to make a type adapter null tolerant. In general, a type adapter is\r\n     * required to handle nulls in write and read methods. Here is how this is typically done:<br>\r\n     *\r\n     * <pre>{@code\r\n     * Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class,\r\n     *   new TypeAdapter<Foo>() {\r\n     *     public Foo read(JsonReader in) throws IOException {\r\n     *       if (in.peek() == JsonToken.NULL) {\r\n     *         in.nextNull();\r\n     *         return null;\r\n     *       }\r\n     *       // read a Foo from in and return it\r\n     *     }\r\n     *     public void write(JsonWriter out, Foo src) throws IOException {\r\n     *       if (src == null) {\r\n     *         out.nullValue();\r\n     *         return;\r\n     *       }\r\n     *       // write src as JSON to out\r\n     *     }\r\n     *   }).create();\r\n     * }</pre>\r\n     *\r\n     * You can avoid this boilerplate handling of nulls by wrapping your type adapter with this\r\n     * method. Here is how we will rewrite the above example:\r\n     *\r\n     * <pre>{@code\r\n     * Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class,\r\n     *   new TypeAdapter<Foo>() {\r\n     *     public Foo read(JsonReader in) throws IOException {\r\n     *       // read a Foo from in and return it\r\n     *     }\r\n     *     public void write(JsonWriter out, Foo src) throws IOException {\r\n     *       // write src as JSON to out\r\n     *     }\r\n     *   }.nullSafe()).create();\r\n     * }</pre>\r\n     *\r\n     * Note that we didn't need to check for nulls in our type adapter after we used nullSafe.\r\n     */\r\n    public final TypeAdapter<T> nullSafe() {\r\n        if (!(this instanceof TypeAdapter.NullSafeTypeAdapter)) {\r\n            return new NullSafeTypeAdapter();\r\n        }\r\n        return this;\r\n    }\r\n\r\n    private final class NullSafeTypeAdapter extends TypeAdapter<T> {\r\n\r\n        @Override\r\n        public void write(JsonWriter out, T value) throws IOException {\r\n            if (value == null) {\r\n                out.nullValue();\r\n            } else {\r\n                TypeAdapter.this.write(out, value);\r\n            }\r\n        }\r\n\r\n        @Override\r\n        public T read(JsonReader reader) throws IOException {\r\n            if (reader.peek() == JsonToken.NULL) {\r\n                reader.nextNull();\r\n                return null;\r\n            }\r\n            return TypeAdapter.this.read(reader);\r\n        }\r\n\r\n        @Override\r\n        public String toString() {\r\n            return \"NullSafeTypeAdapter[\" + TypeAdapter.this + \"]\";\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "constructor",
+    "name": "TypeAdapter",
+    "start_line": 123,
+    "end_line": 123,
+    "code": "public TypeAdapter() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "write",
+    "start_line": 130,
+    "end_line": 130,
+    "code": "/**\r\n * Writes one JSON value (an array, object, string, number, boolean or null) for {@code value}.\r\n *\r\n * @param value the Java object to write. May be null.\r\n */\r\npublic abstract void write(JsonWriter out, T value) throws IOException;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "toJson",
+    "start_line": 142,
+    "end_line": 145,
+    "code": "/**\r\n * Converts {@code value} to a JSON document and writes it to {@code out}.\r\n *\r\n * <p>A {@link JsonWriter} with default configuration is used for writing the JSON data. To\r\n * customize this behavior, create a {@link JsonWriter}, configure it and then use {@link\r\n * #write(JsonWriter, Object)} instead.\r\n *\r\n * @param value the Java object to convert. May be {@code null}.\r\n * @since 2.2\r\n */\r\npublic final void toJson(Writer out, T value) throws IOException {\r\n    JsonWriter writer = new JsonWriter(out);\r\n    write(writer, value);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "toJson",
+    "start_line": 159,
+    "end_line": 167,
+    "code": "/**\r\n * Converts {@code value} to a JSON document.\r\n *\r\n * <p>A {@link JsonWriter} with default configuration is used for writing the JSON data. To\r\n * customize this behavior, create a {@link JsonWriter}, configure it and then use {@link\r\n * #write(JsonWriter, Object)} instead.\r\n *\r\n * @throws JsonIOException wrapping {@code IOException}s thrown by {@link #write(JsonWriter,\r\n *     Object)}\r\n * @param value the Java object to convert. May be {@code null}.\r\n * @since 2.2\r\n */\r\npublic final String toJson(T value) {\r\n    StringBuilder stringBuilder = new StringBuilder();\r\n    try {\r\n        toJson(Streams.writerForAppendable(stringBuilder), value);\r\n    } catch (IOException e) {\r\n        throw new JsonIOException(e);\r\n    }\r\n    return stringBuilder.toString();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "toJsonTree",
+    "start_line": 178,
+    "end_line": 186,
+    "code": "/**\r\n * Converts {@code value} to a JSON tree.\r\n *\r\n * @param value the Java object to convert. May be {@code null}.\r\n * @return the converted JSON tree. May be {@link JsonNull}.\r\n * @throws JsonIOException wrapping {@code IOException}s thrown by {@link #write(JsonWriter,\r\n *     Object)}\r\n * @since 2.2\r\n */\r\npublic final JsonElement toJsonTree(T value) {\r\n    try {\r\n        JsonTreeWriter jsonWriter = new JsonTreeWriter();\r\n        write(jsonWriter, value);\r\n        return jsonWriter.get();\r\n    } catch (IOException e) {\r\n        throw new JsonIOException(e);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "read",
+    "start_line": 194,
+    "end_line": 194,
+    "code": "/**\r\n * Reads one JSON value (an array, object, string, number, boolean or null) and converts it to a\r\n * Java object. Returns the converted object.\r\n *\r\n * @return the converted Java object. May be {@code null}.\r\n */\r\npublic abstract T read(JsonReader in) throws IOException;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "fromJson",
+    "start_line": 210,
+    "end_line": 213,
+    "code": "/**\r\n * Converts the JSON document in {@code in} to a Java object.\r\n *\r\n * <p>A {@link JsonReader} with default configuration (that is with {@link\r\n * Strictness#LEGACY_STRICT} as strictness) is used for reading the JSON data. To customize this\r\n * behavior, create a {@link JsonReader}, configure it and then use {@link #read(JsonReader)}\r\n * instead.\r\n *\r\n * <p>No exception is thrown if the JSON data has multiple top-level JSON elements, or if there is\r\n * trailing data.\r\n *\r\n * @return the converted Java object. May be {@code null}.\r\n * @since 2.2\r\n */\r\npublic final T fromJson(Reader in) throws IOException {\r\n    JsonReader reader = new JsonReader(in);\r\n    return read(reader);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "fromJson",
+    "start_line": 229,
+    "end_line": 231,
+    "code": "/**\r\n * Converts the JSON document in {@code json} to a Java object.\r\n *\r\n * <p>A {@link JsonReader} with default configuration (that is with {@link\r\n * Strictness#LEGACY_STRICT} as strictness) is used for reading the JSON data. To customize this\r\n * behavior, create a {@link JsonReader}, configure it and then use {@link #read(JsonReader)}\r\n * instead.\r\n *\r\n * <p>No exception is thrown if the JSON data has multiple top-level JSON elements, or if there is\r\n * trailing data.\r\n *\r\n * @return the converted Java object. May be {@code null}.\r\n * @since 2.2\r\n */\r\npublic final T fromJson(String json) throws IOException {\r\n    return fromJson(new StringReader(json));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "fromJsonTree",
+    "start_line": 241,
+    "end_line": 248,
+    "code": "/**\r\n * Converts {@code jsonTree} to a Java object.\r\n *\r\n * @param jsonTree the JSON element to convert. May be {@link JsonNull}.\r\n * @return the converted Java object. May be {@code null}.\r\n * @throws JsonIOException wrapping {@code IOException}s thrown by {@link #read(JsonReader)}\r\n * @since 2.2\r\n */\r\npublic final T fromJsonTree(JsonElement jsonTree) {\r\n    try {\r\n        JsonReader jsonReader = new JsonTreeReader(jsonTree);\r\n        return read(jsonReader);\r\n    } catch (IOException e) {\r\n        throw new JsonIOException(e);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "nullSafe",
+    "start_line": 291,
+    "end_line": 296,
+    "code": "/**\r\n * This wrapper method is used to make a type adapter null tolerant. In general, a type adapter is\r\n * required to handle nulls in write and read methods. Here is how this is typically done:<br>\r\n *\r\n * <pre>{@code\r\n * Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class,\r\n *   new TypeAdapter<Foo>() {\r\n *     public Foo read(JsonReader in) throws IOException {\r\n *       if (in.peek() == JsonToken.NULL) {\r\n *         in.nextNull();\r\n *         return null;\r\n *       }\r\n *       // read a Foo from in and return it\r\n *     }\r\n *     public void write(JsonWriter out, Foo src) throws IOException {\r\n *       if (src == null) {\r\n *         out.nullValue();\r\n *         return;\r\n *       }\r\n *       // write src as JSON to out\r\n *     }\r\n *   }).create();\r\n * }</pre>\r\n *\r\n * You can avoid this boilerplate handling of nulls by wrapping your type adapter with this\r\n * method. Here is how we will rewrite the above example:\r\n *\r\n * <pre>{@code\r\n * Gson gson = new GsonBuilder().registerTypeAdapter(Foo.class,\r\n *   new TypeAdapter<Foo>() {\r\n *     public Foo read(JsonReader in) throws IOException {\r\n *       // read a Foo from in and return it\r\n *     }\r\n *     public void write(JsonWriter out, Foo src) throws IOException {\r\n *       // write src as JSON to out\r\n *     }\r\n *   }.nullSafe()).create();\r\n * }</pre>\r\n *\r\n * Note that we didn't need to check for nulls in our type adapter after we used nullSafe.\r\n */\r\npublic final TypeAdapter<T> nullSafe() {\r\n    if (!(this instanceof TypeAdapter.NullSafeTypeAdapter)) {\r\n        return new NullSafeTypeAdapter();\r\n    }\r\n    return this;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\TypeAdapter.java"
+  }
+]

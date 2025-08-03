@@ -1,0 +1,98 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.reflect",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.reflect;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\reflect\\Java17ReflectionHelperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\reflect\\Java17ReflectionHelperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Constructor",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.lang.reflect.Constructor;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\reflect\\Java17ReflectionHelperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Field",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.lang.reflect.Field;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\reflect\\Java17ReflectionHelperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Method",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.lang.reflect.Method;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\reflect\\Java17ReflectionHelperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.nio.file.attribute.GroupPrincipal",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.nio.file.attribute.GroupPrincipal;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\reflect\\Java17ReflectionHelperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.nio.file.attribute.UserPrincipal",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.nio.file.attribute.UserPrincipal;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\reflect\\Java17ReflectionHelperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Objects",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.util.Objects;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\reflect\\Java17ReflectionHelperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\reflect\\Java17ReflectionHelperTest.java"
+  },
+  {
+    "type": "class",
+    "name": "Java17ReflectionHelperTest",
+    "start_line": 29,
+    "end_line": 94,
+    "code": "public class Java17ReflectionHelperTest {\r\n\r\n    @Test\r\n    public void testJava17Record() throws ClassNotFoundException {\r\n        Class<?> unixDomainPrincipalClass = Class.forName(\"jdk.net.UnixDomainPrincipal\");\r\n        // UnixDomainPrincipal is a record\r\n        assertThat(ReflectionHelper.isRecord(unixDomainPrincipalClass)).isTrue();\r\n        // with 2 components\r\n        assertThat(ReflectionHelper.getRecordComponentNames(unixDomainPrincipalClass)).isEqualTo(new String[] { \"user\", \"group\" });\r\n        // Check canonical constructor\r\n        Constructor<?> constructor = ReflectionHelper.getCanonicalRecordConstructor(unixDomainPrincipalClass);\r\n        assertThat(constructor).isNotNull();\r\n        assertThat(constructor.getParameterTypes()).isEqualTo(new Class<?>[] { UserPrincipal.class, GroupPrincipal.class });\r\n    }\r\n\r\n    @Test\r\n    public void testJava17RecordAccessors() throws ReflectiveOperationException {\r\n        // Create an instance of UnixDomainPrincipal, using our custom implementation of UserPrincipal,\r\n        // and GroupPrincipal. Then attempt to access each component of the record using our accessor\r\n        // methods.\r\n        Class<?> unixDomainPrincipalClass = Class.forName(\"jdk.net.UnixDomainPrincipal\");\r\n        Object unixDomainPrincipal = ReflectionHelper.getCanonicalRecordConstructor(unixDomainPrincipalClass).newInstance(new PrincipalImpl(\"user\"), new PrincipalImpl(\"group\"));\r\n        String[] componentNames = ReflectionHelper.getRecordComponentNames(unixDomainPrincipalClass);\r\n        assertThat(componentNames).isNotEmpty();\r\n        for (String componentName : componentNames) {\r\n            Field componentField = unixDomainPrincipalClass.getDeclaredField(componentName);\r\n            Method accessor = ReflectionHelper.getAccessor(unixDomainPrincipalClass, componentField);\r\n            Object principal = accessor.invoke(unixDomainPrincipal);\r\n            assertThat(principal).isEqualTo(new PrincipalImpl(componentName));\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Implementation of {@link UserPrincipal} and {@link GroupPrincipal} just for record tests.\r\n     */\r\n    public static class PrincipalImpl implements UserPrincipal, GroupPrincipal {\r\n\r\n        private final String name;\r\n\r\n        public PrincipalImpl(String name) {\r\n            this.name = name;\r\n        }\r\n\r\n        @Override\r\n        public String getName() {\r\n            return name;\r\n        }\r\n\r\n        @Override\r\n        public boolean equals(Object o) {\r\n            if (o instanceof PrincipalImpl) {\r\n                return Objects.equals(name, ((PrincipalImpl) o).name);\r\n            }\r\n            return false;\r\n        }\r\n\r\n        @Override\r\n        public int hashCode() {\r\n            return Objects.hash(name);\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\reflect\\Java17ReflectionHelperTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJava17Record",
+    "start_line": 30,
+    "end_line": 44,
+    "code": "@Test\r\npublic void testJava17Record() throws ClassNotFoundException {\r\n    Class<?> unixDomainPrincipalClass = Class.forName(\"jdk.net.UnixDomainPrincipal\");\r\n    // UnixDomainPrincipal is a record\r\n    assertThat(ReflectionHelper.isRecord(unixDomainPrincipalClass)).isTrue();\r\n    // with 2 components\r\n    assertThat(ReflectionHelper.getRecordComponentNames(unixDomainPrincipalClass)).isEqualTo(new String[] { \"user\", \"group\" });\r\n    // Check canonical constructor\r\n    Constructor<?> constructor = ReflectionHelper.getCanonicalRecordConstructor(unixDomainPrincipalClass);\r\n    assertThat(constructor).isNotNull();\r\n    assertThat(constructor.getParameterTypes()).isEqualTo(new Class<?>[] { UserPrincipal.class, GroupPrincipal.class });\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\reflect\\Java17ReflectionHelperTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJava17RecordAccessors",
+    "start_line": 46,
+    "end_line": 66,
+    "code": "@Test\r\npublic void testJava17RecordAccessors() throws ReflectiveOperationException {\r\n    // Create an instance of UnixDomainPrincipal, using our custom implementation of UserPrincipal,\r\n    // and GroupPrincipal. Then attempt to access each component of the record using our accessor\r\n    // methods.\r\n    Class<?> unixDomainPrincipalClass = Class.forName(\"jdk.net.UnixDomainPrincipal\");\r\n    Object unixDomainPrincipal = ReflectionHelper.getCanonicalRecordConstructor(unixDomainPrincipalClass).newInstance(new PrincipalImpl(\"user\"), new PrincipalImpl(\"group\"));\r\n    String[] componentNames = ReflectionHelper.getRecordComponentNames(unixDomainPrincipalClass);\r\n    assertThat(componentNames).isNotEmpty();\r\n    for (String componentName : componentNames) {\r\n        Field componentField = unixDomainPrincipalClass.getDeclaredField(componentName);\r\n        Method accessor = ReflectionHelper.getAccessor(unixDomainPrincipalClass, componentField);\r\n        Object principal = accessor.invoke(unixDomainPrincipal);\r\n        assertThat(principal).isEqualTo(new PrincipalImpl(componentName));\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\reflect\\Java17ReflectionHelperTest.java"
+  }
+]

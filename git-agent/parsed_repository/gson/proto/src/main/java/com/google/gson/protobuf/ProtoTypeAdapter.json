@@ -1,0 +1,410 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.protobuf",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.protobuf;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Objects.requireNonNull",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static java.util.Objects.requireNonNull;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.base.CaseFormat",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.common.base.CaseFormat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.collect.MapMaker",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.common.collect.MapMaker;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.reflect.TypeToken",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.common.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.errorprone.annotations.CanIgnoreReturnValue",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.errorprone.annotations.CanIgnoreReturnValue;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonArray",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.JsonArray;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonDeserializationContext",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.JsonDeserializationContext;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonDeserializer",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.JsonDeserializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonObject",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.JsonObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonParseException",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.JsonParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializationContext",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import com.google.gson.JsonSerializationContext;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializer",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import com.google.gson.JsonSerializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.protobuf.DescriptorProtos.EnumValueOptions",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import com.google.protobuf.DescriptorProtos.EnumValueOptions;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.protobuf.DescriptorProtos.FieldOptions",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import com.google.protobuf.DescriptorProtos.FieldOptions;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.protobuf.Descriptors.Descriptor",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "import com.google.protobuf.Descriptors.Descriptor;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.protobuf.Descriptors.EnumDescriptor",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "import com.google.protobuf.Descriptors.EnumDescriptor;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.protobuf.Descriptors.EnumValueDescriptor",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "import com.google.protobuf.Descriptors.EnumValueDescriptor;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.protobuf.Descriptors.FieldDescriptor",
+    "start_line": 38,
+    "end_line": 38,
+    "code": "import com.google.protobuf.Descriptors.FieldDescriptor;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.protobuf.DynamicMessage",
+    "start_line": 39,
+    "end_line": 39,
+    "code": "import com.google.protobuf.DynamicMessage;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.protobuf.Extension",
+    "start_line": 40,
+    "end_line": 40,
+    "code": "import com.google.protobuf.Extension;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.protobuf.Message",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "import com.google.protobuf.Message;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Field",
+    "start_line": 42,
+    "end_line": 42,
+    "code": "import java.lang.reflect.Field;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Method",
+    "start_line": 43,
+    "end_line": 43,
+    "code": "import java.lang.reflect.Method;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 44,
+    "end_line": 44,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 45,
+    "end_line": 45,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collection",
+    "start_line": 46,
+    "end_line": 46,
+    "code": "import java.util.Collection;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.HashSet",
+    "start_line": 47,
+    "end_line": 47,
+    "code": "import java.util.HashSet;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 48,
+    "end_line": 48,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 49,
+    "end_line": 49,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Set",
+    "start_line": 50,
+    "end_line": 50,
+    "code": "import java.util.Set;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.ConcurrentMap",
+    "start_line": 51,
+    "end_line": 51,
+    "code": "import java.util.concurrent.ConcurrentMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "class",
+    "name": "ProtoTypeAdapter",
+    "start_line": 75,
+    "end_line": 451,
+    "code": "/**\r\n * GSON type adapter for protocol buffers that knows how to serialize enums either by using their\r\n * values or their names, and also supports custom proto field names.\r\n *\r\n * <p>You can specify which case representation is used for the proto fields when writing/reading\r\n * the JSON payload by calling {@link Builder#setFieldNameSerializationFormat(CaseFormat,\r\n * CaseFormat)}.\r\n *\r\n * <p>An example of default serialization/deserialization using custom proto field names is shown\r\n * below:\r\n *\r\n * <pre>\r\n * message MyMessage {\r\n *   // Will be serialized as 'osBuildID' instead of the default 'osBuildId'.\r\n *   string os_build_id = 1 [(serialized_name) = \"osBuildID\"];\r\n * }\r\n * </pre>\r\n *\r\n * @author Inderjeet Singh\r\n * @author Emmanuel Cron\r\n * @author Stanley Wang\r\n */\r\npublic class ProtoTypeAdapter implements JsonSerializer<Message>, JsonDeserializer<Message> {\r\n\r\n    /**\r\n     * Determines how enum <u>values</u> should be serialized.\r\n     */\r\n    public enum EnumSerialization {\r\n\r\n        /**\r\n         * Serializes and deserializes enum values using their <b>number</b>. When this is used, custom\r\n         * value names set on enums are ignored.\r\n         */\r\n        NUMBER,\r\n        /**\r\n         * Serializes and deserializes enum values using their <b>name</b>.\r\n         */\r\n        NAME\r\n    }\r\n\r\n    /**\r\n     * Builder for {@link ProtoTypeAdapter}s.\r\n     */\r\n    public static class Builder {\r\n\r\n        private final Set<Extension<FieldOptions, String>> serializedNameExtensions;\r\n\r\n        private final Set<Extension<EnumValueOptions, String>> serializedEnumValueExtensions;\r\n\r\n        private EnumSerialization enumSerialization;\r\n\r\n        private CaseFormat protoFormat;\r\n\r\n        private CaseFormat jsonFormat;\r\n\r\n        private boolean shouldUseJsonNameFieldOption;\r\n\r\n        private Builder(EnumSerialization enumSerialization, CaseFormat fromFieldNameFormat, CaseFormat toFieldNameFormat) {\r\n            this.serializedNameExtensions = new HashSet<>();\r\n            this.serializedEnumValueExtensions = new HashSet<>();\r\n            setEnumSerialization(enumSerialization);\r\n            setFieldNameSerializationFormat(fromFieldNameFormat, toFieldNameFormat);\r\n            this.shouldUseJsonNameFieldOption = false;\r\n        }\r\n\r\n        @CanIgnoreReturnValue\r\n        public Builder setEnumSerialization(EnumSerialization enumSerialization) {\r\n            this.enumSerialization = requireNonNull(enumSerialization);\r\n            return this;\r\n        }\r\n\r\n        /**\r\n         * Sets the field names serialization format. The first parameter defines how to read the format\r\n         * of the proto field names you are converting to JSON. The second parameter defines which\r\n         * format to use when serializing them.\r\n         *\r\n         * <p>For example, if you use the following parameters: {@link CaseFormat#LOWER_UNDERSCORE},\r\n         * {@link CaseFormat#LOWER_CAMEL}, the following conversion will occur:\r\n         *\r\n         * <pre>{@code\r\n         * PROTO     <->  JSON\r\n         * my_field       myField\r\n         * foo            foo\r\n         * n__id_ct       nIdCt\r\n         * }</pre>\r\n         */\r\n        @CanIgnoreReturnValue\r\n        public Builder setFieldNameSerializationFormat(CaseFormat fromFieldNameFormat, CaseFormat toFieldNameFormat) {\r\n            this.protoFormat = fromFieldNameFormat;\r\n            this.jsonFormat = toFieldNameFormat;\r\n            return this;\r\n        }\r\n\r\n        /**\r\n         * Adds a field proto annotation that, when set, overrides the default field name\r\n         * serialization/deserialization. For example, if you add the '{@code serialized_name}'\r\n         * annotation and you define a field in your proto like the one below:\r\n         *\r\n         * <pre>\r\n         * string client_app_id = 1 [(serialized_name) = \"appId\"];\r\n         * </pre>\r\n         *\r\n         * ...the adapter will serialize the field using '{@code appId}' instead of the default ' {@code\r\n         * clientAppId}'. This lets you customize the name serialization of any proto field.\r\n         */\r\n        @CanIgnoreReturnValue\r\n        public Builder addSerializedNameExtension(Extension<FieldOptions, String> serializedNameExtension) {\r\n            serializedNameExtensions.add(requireNonNull(serializedNameExtension));\r\n            return this;\r\n        }\r\n\r\n        /**\r\n         * Adds an enum value proto annotation that, when set, overrides the default <b>enum</b> value\r\n         * serialization/deserialization of this adapter. For example, if you add the ' {@code\r\n         * serialized_value}' annotation and you define an enum in your proto like the one below:\r\n         *\r\n         * <pre>\r\n         * enum MyEnum {\r\n         *   UNKNOWN = 0;\r\n         *   CLIENT_APP_ID = 1 [(serialized_value) = \"APP_ID\"];\r\n         *   TWO = 2 [(serialized_value) = \"2\"];\r\n         * }\r\n         * </pre>\r\n         *\r\n         * ...the adapter will serialize the value {@code CLIENT_APP_ID} as \"{@code APP_ID}\" and the\r\n         * value {@code TWO} as \"{@code 2}\". This works for both serialization and deserialization.\r\n         *\r\n         * <p>Note that you need to set the enum serialization of this adapter to {@link\r\n         * EnumSerialization#NAME}, otherwise these annotations will be ignored.\r\n         */\r\n        @CanIgnoreReturnValue\r\n        public Builder addSerializedEnumValueExtension(Extension<EnumValueOptions, String> serializedEnumValueExtension) {\r\n            serializedEnumValueExtensions.add(requireNonNull(serializedEnumValueExtension));\r\n            return this;\r\n        }\r\n\r\n        /**\r\n         * Sets or unsets a flag (default false) that, when set, causes the adapter to use the {@code\r\n         * json_name} field option from a proto field for serialization. Unlike other field options that\r\n         * can be defined as annotations on a proto field, {@code json_name} cannot be accessed via a\r\n         * proto field's {@link FieldDescriptor#getOptions} and registered via {@link\r\n         * ProtoTypeAdapter.Builder#addSerializedNameExtension}.\r\n         *\r\n         * <p>This flag is subordinate to any custom serialized name extensions added to this adapter.\r\n         * In other words, serialized name extensions take precedence over this setting. For example, a\r\n         * field defined like:\r\n         *\r\n         * <pre>\r\n         * string client_app_id = 1 [json_name = \"foo\", (serialized_name) = \"bar\"];\r\n         * </pre>\r\n         *\r\n         * ...will be serialized as '{@code bar}' if {@code shouldUseJsonNameFieldOption} is set to\r\n         * {@code true} and the '{@code serialized_name}' annotation is added to the adapter.\r\n         *\r\n         * @since 2.12.0\r\n         */\r\n        @CanIgnoreReturnValue\r\n        public Builder setShouldUseJsonNameFieldOption(boolean shouldUseJsonNameFieldOption) {\r\n            this.shouldUseJsonNameFieldOption = shouldUseJsonNameFieldOption;\r\n            return this;\r\n        }\r\n\r\n        public ProtoTypeAdapter build() {\r\n            return new ProtoTypeAdapter(enumSerialization, protoFormat, jsonFormat, serializedNameExtensions, serializedEnumValueExtensions, shouldUseJsonNameFieldOption);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Creates a new {@link ProtoTypeAdapter} builder, defaulting enum serialization to {@link\r\n     * EnumSerialization#NAME} and converting field serialization from {@link\r\n     * CaseFormat#LOWER_UNDERSCORE} to {@link CaseFormat#LOWER_CAMEL}.\r\n     */\r\n    public static Builder newBuilder() {\r\n        return new Builder(EnumSerialization.NAME, CaseFormat.LOWER_UNDERSCORE, CaseFormat.LOWER_CAMEL);\r\n    }\r\n\r\n    private static final FieldDescriptor.Type ENUM_TYPE = FieldDescriptor.Type.ENUM;\r\n\r\n    private static final ConcurrentMap<String, ConcurrentMap<Class<?>, Method>> mapOfMapOfMethods = new MapMaker().makeMap();\r\n\r\n    private final EnumSerialization enumSerialization;\r\n\r\n    private final CaseFormat protoFormat;\r\n\r\n    private final CaseFormat jsonFormat;\r\n\r\n    private final Set<Extension<FieldOptions, String>> serializedNameExtensions;\r\n\r\n    private final Set<Extension<EnumValueOptions, String>> serializedEnumValueExtensions;\r\n\r\n    private final boolean shouldUseJsonNameFieldOption;\r\n\r\n    private ProtoTypeAdapter(EnumSerialization enumSerialization, CaseFormat protoFormat, CaseFormat jsonFormat, Set<Extension<FieldOptions, String>> serializedNameExtensions, Set<Extension<EnumValueOptions, String>> serializedEnumValueExtensions, boolean shouldUseJsonNameFieldOption) {\r\n        this.enumSerialization = enumSerialization;\r\n        this.protoFormat = protoFormat;\r\n        this.jsonFormat = jsonFormat;\r\n        this.serializedNameExtensions = serializedNameExtensions;\r\n        this.serializedEnumValueExtensions = serializedEnumValueExtensions;\r\n        this.shouldUseJsonNameFieldOption = shouldUseJsonNameFieldOption;\r\n    }\r\n\r\n    @Override\r\n    public JsonElement serialize(Message src, Type typeOfSrc, JsonSerializationContext context) {\r\n        JsonObject ret = new JsonObject();\r\n        Map<FieldDescriptor, Object> fields = src.getAllFields();\r\n        for (Map.Entry<FieldDescriptor, Object> fieldPair : fields.entrySet()) {\r\n            FieldDescriptor desc = fieldPair.getKey();\r\n            String name = getCustSerializedName(desc);\r\n            if (desc.getType() == ENUM_TYPE) {\r\n                // Enum collections are also returned as ENUM_TYPE\r\n                if (fieldPair.getValue() instanceof Collection) {\r\n                    // Build the array to avoid infinite loop\r\n                    JsonArray array = new JsonArray();\r\n                    @SuppressWarnings(\"unchecked\")\r\n                    Collection<EnumValueDescriptor> enumDescs = (Collection<EnumValueDescriptor>) fieldPair.getValue();\r\n                    for (EnumValueDescriptor enumDesc : enumDescs) {\r\n                        array.add(context.serialize(getEnumValue(enumDesc)));\r\n                        ret.add(name, array);\r\n                    }\r\n                } else {\r\n                    EnumValueDescriptor enumDesc = ((EnumValueDescriptor) fieldPair.getValue());\r\n                    ret.add(name, context.serialize(getEnumValue(enumDesc)));\r\n                }\r\n            } else {\r\n                ret.add(name, context.serialize(fieldPair.getValue()));\r\n            }\r\n        }\r\n        return ret;\r\n    }\r\n\r\n    @Override\r\n    public Message deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {\r\n        try {\r\n            JsonObject jsonObject = json.getAsJsonObject();\r\n            @SuppressWarnings(\"unchecked\")\r\n            Class<? extends Message> protoClass = (Class<? extends Message>) typeOfT;\r\n            if (DynamicMessage.class.isAssignableFrom(protoClass)) {\r\n                throw new IllegalStateException(\"only generated messages are supported\");\r\n            }\r\n            // Invoke the ProtoClass.newBuilder() method\r\n            Message.Builder protoBuilder = (Message.Builder) getCachedMethod(protoClass, \"newBuilder\").invoke(null);\r\n            Message defaultInstance = (Message) getCachedMethod(protoClass, \"getDefaultInstance\").invoke(null);\r\n            Descriptor protoDescriptor = (Descriptor) getCachedMethod(protoClass, \"getDescriptor\").invoke(null);\r\n            // Call setters on all of the available fields\r\n            for (FieldDescriptor fieldDescriptor : protoDescriptor.getFields()) {\r\n                String jsonFieldName = getCustSerializedName(fieldDescriptor);\r\n                JsonElement jsonElement = jsonObject.get(jsonFieldName);\r\n                if (jsonElement != null && !jsonElement.isJsonNull()) {\r\n                    // Do not reuse jsonFieldName here, it might have a custom value\r\n                    Object fieldValue;\r\n                    if (fieldDescriptor.getType() == ENUM_TYPE) {\r\n                        if (jsonElement.isJsonArray()) {\r\n                            // Handling array\r\n                            Collection<EnumValueDescriptor> enumCollection = new ArrayList<>(jsonElement.getAsJsonArray().size());\r\n                            for (JsonElement element : jsonElement.getAsJsonArray()) {\r\n                                enumCollection.add(findValueByNameAndExtension(fieldDescriptor.getEnumType(), element));\r\n                            }\r\n                            fieldValue = enumCollection;\r\n                        } else {\r\n                            // No array, just a plain value\r\n                            fieldValue = findValueByNameAndExtension(fieldDescriptor.getEnumType(), jsonElement);\r\n                        }\r\n                        protoBuilder.setField(fieldDescriptor, fieldValue);\r\n                    } else if (fieldDescriptor.isRepeated()) {\r\n                        // If the type is an array, then we have to grab the type from the class.\r\n                        // protobuf java field names are always lower camel case\r\n                        String protoArrayFieldName = protoFormat.to(CaseFormat.LOWER_CAMEL, fieldDescriptor.getName()) + \"_\";\r\n                        Field protoArrayField = protoClass.getDeclaredField(protoArrayFieldName);\r\n                        @SuppressWarnings(\"unchecked\")\r\n                        TypeToken<? extends List<?>> protoArrayFieldType = (TypeToken<? extends List<?>>) TypeToken.of(protoArrayField.getGenericType());\r\n                        // Get the type as `List<E>`, otherwise type might be Protobuf internal interface for\r\n                        // which no instance can be created\r\n                        Type protoArrayResolvedFieldType = protoArrayFieldType.getSupertype(List.class).getType();\r\n                        fieldValue = context.deserialize(jsonElement, protoArrayResolvedFieldType);\r\n                        protoBuilder.setField(fieldDescriptor, fieldValue);\r\n                    } else {\r\n                        Object field = defaultInstance.getField(fieldDescriptor);\r\n                        fieldValue = context.deserialize(jsonElement, field.getClass());\r\n                        protoBuilder.setField(fieldDescriptor, fieldValue);\r\n                    }\r\n                }\r\n            }\r\n            return protoBuilder.build();\r\n        } catch (Exception e) {\r\n            throw new JsonParseException(\"Error while parsing proto\", e);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Retrieves the custom field name for a given FieldDescriptor via its field options, falling back\r\n     * to its name as a default.\r\n     */\r\n    private String getCustSerializedName(FieldDescriptor fieldDescriptor) {\r\n        FieldOptions options = fieldDescriptor.getOptions();\r\n        for (Extension<FieldOptions, String> extension : serializedNameExtensions) {\r\n            if (options.hasExtension(extension)) {\r\n                return options.getExtension(extension);\r\n            }\r\n        }\r\n        if (shouldUseJsonNameFieldOption && fieldDescriptor.toProto().hasJsonName()) {\r\n            return fieldDescriptor.getJsonName();\r\n        }\r\n        return protoFormat.to(jsonFormat, fieldDescriptor.getName());\r\n    }\r\n\r\n    /**\r\n     * Retrieves the custom enum value name from the given options, and if not found, returns the\r\n     * specified default value.\r\n     */\r\n    private String getCustSerializedEnumValue(EnumValueOptions options, String defaultValue) {\r\n        for (Extension<EnumValueOptions, String> extension : serializedEnumValueExtensions) {\r\n            if (options.hasExtension(extension)) {\r\n                return options.getExtension(extension);\r\n            }\r\n        }\r\n        return defaultValue;\r\n    }\r\n\r\n    /**\r\n     * Returns the enum value to use for serialization, depending on the value of {@link\r\n     * EnumSerialization} that was given to this adapter.\r\n     */\r\n    private Object getEnumValue(EnumValueDescriptor enumDesc) {\r\n        if (enumSerialization == EnumSerialization.NAME) {\r\n            return getCustSerializedEnumValue(enumDesc.getOptions(), enumDesc.getName());\r\n        } else {\r\n            return enumDesc.getNumber();\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Finds an enum value in the given {@link EnumDescriptor} that matches the given JSON element,\r\n     * either by name if the current adapter is using {@link EnumSerialization#NAME}, otherwise by\r\n     * number. If matching by name, it uses the extension value if it is defined, otherwise it uses\r\n     * its default value.\r\n     *\r\n     * @throws IllegalArgumentException if a matching name/number was not found\r\n     */\r\n    private EnumValueDescriptor findValueByNameAndExtension(EnumDescriptor desc, JsonElement jsonElement) {\r\n        if (enumSerialization == EnumSerialization.NAME) {\r\n            // With enum name\r\n            for (EnumValueDescriptor enumDesc : desc.getValues()) {\r\n                String enumValue = getCustSerializedEnumValue(enumDesc.getOptions(), enumDesc.getName());\r\n                if (enumValue.equals(jsonElement.getAsString())) {\r\n                    return enumDesc;\r\n                }\r\n            }\r\n            throw new IllegalArgumentException(String.format(\"Unrecognized enum name: %s\", jsonElement.getAsString()));\r\n        } else {\r\n            // With enum value\r\n            EnumValueDescriptor fieldValue = desc.findValueByNumber(jsonElement.getAsInt());\r\n            if (fieldValue == null) {\r\n                throw new IllegalArgumentException(String.format(\"Unrecognized enum value: %d\", jsonElement.getAsInt()));\r\n            }\r\n            return fieldValue;\r\n        }\r\n    }\r\n\r\n    private static Method getCachedMethod(Class<?> clazz, String methodName, Class<?>... methodParamTypes) throws NoSuchMethodException {\r\n        ConcurrentMap<Class<?>, Method> mapOfMethods = mapOfMapOfMethods.get(methodName);\r\n        if (mapOfMethods == null) {\r\n            mapOfMethods = new MapMaker().makeMap();\r\n            ConcurrentMap<Class<?>, Method> previous = mapOfMapOfMethods.putIfAbsent(methodName, mapOfMethods);\r\n            mapOfMethods = previous == null ? mapOfMethods : previous;\r\n        }\r\n        Method method = mapOfMethods.get(clazz);\r\n        if (method == null) {\r\n            method = clazz.getMethod(methodName, methodParamTypes);\r\n            mapOfMethods.putIfAbsent(clazz, method);\r\n            // NB: it doesn't matter which method we return in the event of a race.\r\n        }\r\n        return method;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "ENUM_TYPE",
+    "start_line": 227,
+    "end_line": 227,
+    "code": "private static final FieldDescriptor.Type ENUM_TYPE = FieldDescriptor.Type.ENUM;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "mapOfMapOfMethods",
+    "start_line": 229,
+    "end_line": 230,
+    "code": "private static final ConcurrentMap<String, ConcurrentMap<Class<?>, Method>> mapOfMapOfMethods = new MapMaker().makeMap();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "enumSerialization",
+    "start_line": 232,
+    "end_line": 232,
+    "code": "private final EnumSerialization enumSerialization;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "protoFormat",
+    "start_line": 233,
+    "end_line": 233,
+    "code": "private final CaseFormat protoFormat;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "jsonFormat",
+    "start_line": 234,
+    "end_line": 234,
+    "code": "private final CaseFormat jsonFormat;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "serializedNameExtensions",
+    "start_line": 235,
+    "end_line": 235,
+    "code": "private final Set<Extension<FieldOptions, String>> serializedNameExtensions;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "serializedEnumValueExtensions",
+    "start_line": 236,
+    "end_line": 236,
+    "code": "private final Set<Extension<EnumValueOptions, String>> serializedEnumValueExtensions;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "shouldUseJsonNameFieldOption",
+    "start_line": 237,
+    "end_line": 237,
+    "code": "private final boolean shouldUseJsonNameFieldOption;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "constructor",
+    "name": "ProtoTypeAdapter",
+    "start_line": 239,
+    "end_line": 252,
+    "code": "private ProtoTypeAdapter(EnumSerialization enumSerialization, CaseFormat protoFormat, CaseFormat jsonFormat, Set<Extension<FieldOptions, String>> serializedNameExtensions, Set<Extension<EnumValueOptions, String>> serializedEnumValueExtensions, boolean shouldUseJsonNameFieldOption) {\r\n    this.enumSerialization = enumSerialization;\r\n    this.protoFormat = protoFormat;\r\n    this.jsonFormat = jsonFormat;\r\n    this.serializedNameExtensions = serializedNameExtensions;\r\n    this.serializedEnumValueExtensions = serializedEnumValueExtensions;\r\n    this.shouldUseJsonNameFieldOption = shouldUseJsonNameFieldOption;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "newBuilder",
+    "start_line": 223,
+    "end_line": 225,
+    "code": "/**\r\n * Creates a new {@link ProtoTypeAdapter} builder, defaulting enum serialization to {@link\r\n * EnumSerialization#NAME} and converting field serialization from {@link\r\n * CaseFormat#LOWER_UNDERSCORE} to {@link CaseFormat#LOWER_CAMEL}.\r\n */\r\npublic static Builder newBuilder() {\r\n    return new Builder(EnumSerialization.NAME, CaseFormat.LOWER_UNDERSCORE, CaseFormat.LOWER_CAMEL);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "serialize",
+    "start_line": 254,
+    "end_line": 284,
+    "code": "@Override\r\npublic JsonElement serialize(Message src, Type typeOfSrc, JsonSerializationContext context) {\r\n    JsonObject ret = new JsonObject();\r\n    Map<FieldDescriptor, Object> fields = src.getAllFields();\r\n    for (Map.Entry<FieldDescriptor, Object> fieldPair : fields.entrySet()) {\r\n        FieldDescriptor desc = fieldPair.getKey();\r\n        String name = getCustSerializedName(desc);\r\n        if (desc.getType() == ENUM_TYPE) {\r\n            // Enum collections are also returned as ENUM_TYPE\r\n            if (fieldPair.getValue() instanceof Collection) {\r\n                // Build the array to avoid infinite loop\r\n                JsonArray array = new JsonArray();\r\n                @SuppressWarnings(\"unchecked\")\r\n                Collection<EnumValueDescriptor> enumDescs = (Collection<EnumValueDescriptor>) fieldPair.getValue();\r\n                for (EnumValueDescriptor enumDesc : enumDescs) {\r\n                    array.add(context.serialize(getEnumValue(enumDesc)));\r\n                    ret.add(name, array);\r\n                }\r\n            } else {\r\n                EnumValueDescriptor enumDesc = ((EnumValueDescriptor) fieldPair.getValue());\r\n                ret.add(name, context.serialize(getEnumValue(enumDesc)));\r\n            }\r\n        } else {\r\n            ret.add(name, context.serialize(fieldPair.getValue()));\r\n        }\r\n    }\r\n    return ret;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "deserialize",
+    "start_line": 286,
+    "end_line": 357,
+    "code": "@Override\r\npublic Message deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {\r\n    try {\r\n        JsonObject jsonObject = json.getAsJsonObject();\r\n        @SuppressWarnings(\"unchecked\")\r\n        Class<? extends Message> protoClass = (Class<? extends Message>) typeOfT;\r\n        if (DynamicMessage.class.isAssignableFrom(protoClass)) {\r\n            throw new IllegalStateException(\"only generated messages are supported\");\r\n        }\r\n        // Invoke the ProtoClass.newBuilder() method\r\n        Message.Builder protoBuilder = (Message.Builder) getCachedMethod(protoClass, \"newBuilder\").invoke(null);\r\n        Message defaultInstance = (Message) getCachedMethod(protoClass, \"getDefaultInstance\").invoke(null);\r\n        Descriptor protoDescriptor = (Descriptor) getCachedMethod(protoClass, \"getDescriptor\").invoke(null);\r\n        // Call setters on all of the available fields\r\n        for (FieldDescriptor fieldDescriptor : protoDescriptor.getFields()) {\r\n            String jsonFieldName = getCustSerializedName(fieldDescriptor);\r\n            JsonElement jsonElement = jsonObject.get(jsonFieldName);\r\n            if (jsonElement != null && !jsonElement.isJsonNull()) {\r\n                // Do not reuse jsonFieldName here, it might have a custom value\r\n                Object fieldValue;\r\n                if (fieldDescriptor.getType() == ENUM_TYPE) {\r\n                    if (jsonElement.isJsonArray()) {\r\n                        // Handling array\r\n                        Collection<EnumValueDescriptor> enumCollection = new ArrayList<>(jsonElement.getAsJsonArray().size());\r\n                        for (JsonElement element : jsonElement.getAsJsonArray()) {\r\n                            enumCollection.add(findValueByNameAndExtension(fieldDescriptor.getEnumType(), element));\r\n                        }\r\n                        fieldValue = enumCollection;\r\n                    } else {\r\n                        // No array, just a plain value\r\n                        fieldValue = findValueByNameAndExtension(fieldDescriptor.getEnumType(), jsonElement);\r\n                    }\r\n                    protoBuilder.setField(fieldDescriptor, fieldValue);\r\n                } else if (fieldDescriptor.isRepeated()) {\r\n                    // If the type is an array, then we have to grab the type from the class.\r\n                    // protobuf java field names are always lower camel case\r\n                    String protoArrayFieldName = protoFormat.to(CaseFormat.LOWER_CAMEL, fieldDescriptor.getName()) + \"_\";\r\n                    Field protoArrayField = protoClass.getDeclaredField(protoArrayFieldName);\r\n                    @SuppressWarnings(\"unchecked\")\r\n                    TypeToken<? extends List<?>> protoArrayFieldType = (TypeToken<? extends List<?>>) TypeToken.of(protoArrayField.getGenericType());\r\n                    // Get the type as `List<E>`, otherwise type might be Protobuf internal interface for\r\n                    // which no instance can be created\r\n                    Type protoArrayResolvedFieldType = protoArrayFieldType.getSupertype(List.class).getType();\r\n                    fieldValue = context.deserialize(jsonElement, protoArrayResolvedFieldType);\r\n                    protoBuilder.setField(fieldDescriptor, fieldValue);\r\n                } else {\r\n                    Object field = defaultInstance.getField(fieldDescriptor);\r\n                    fieldValue = context.deserialize(jsonElement, field.getClass());\r\n                    protoBuilder.setField(fieldDescriptor, fieldValue);\r\n                }\r\n            }\r\n        }\r\n        return protoBuilder.build();\r\n    } catch (Exception e) {\r\n        throw new JsonParseException(\"Error while parsing proto\", e);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "getCustSerializedName",
+    "start_line": 363,
+    "end_line": 374,
+    "code": "/**\r\n * Retrieves the custom field name for a given FieldDescriptor via its field options, falling back\r\n * to its name as a default.\r\n */\r\nprivate String getCustSerializedName(FieldDescriptor fieldDescriptor) {\r\n    FieldOptions options = fieldDescriptor.getOptions();\r\n    for (Extension<FieldOptions, String> extension : serializedNameExtensions) {\r\n        if (options.hasExtension(extension)) {\r\n            return options.getExtension(extension);\r\n        }\r\n    }\r\n    if (shouldUseJsonNameFieldOption && fieldDescriptor.toProto().hasJsonName()) {\r\n        return fieldDescriptor.getJsonName();\r\n    }\r\n    return protoFormat.to(jsonFormat, fieldDescriptor.getName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "getCustSerializedEnumValue",
+    "start_line": 380,
+    "end_line": 387,
+    "code": "/**\r\n * Retrieves the custom enum value name from the given options, and if not found, returns the\r\n * specified default value.\r\n */\r\nprivate String getCustSerializedEnumValue(EnumValueOptions options, String defaultValue) {\r\n    for (Extension<EnumValueOptions, String> extension : serializedEnumValueExtensions) {\r\n        if (options.hasExtension(extension)) {\r\n            return options.getExtension(extension);\r\n        }\r\n    }\r\n    return defaultValue;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "getEnumValue",
+    "start_line": 393,
+    "end_line": 399,
+    "code": "/**\r\n * Returns the enum value to use for serialization, depending on the value of {@link\r\n * EnumSerialization} that was given to this adapter.\r\n */\r\nprivate Object getEnumValue(EnumValueDescriptor enumDesc) {\r\n    if (enumSerialization == EnumSerialization.NAME) {\r\n        return getCustSerializedEnumValue(enumDesc.getOptions(), enumDesc.getName());\r\n    } else {\r\n        return enumDesc.getNumber();\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "findValueByNameAndExtension",
+    "start_line": 409,
+    "end_line": 430,
+    "code": "/**\r\n * Finds an enum value in the given {@link EnumDescriptor} that matches the given JSON element,\r\n * either by name if the current adapter is using {@link EnumSerialization#NAME}, otherwise by\r\n * number. If matching by name, it uses the extension value if it is defined, otherwise it uses\r\n * its default value.\r\n *\r\n * @throws IllegalArgumentException if a matching name/number was not found\r\n */\r\nprivate EnumValueDescriptor findValueByNameAndExtension(EnumDescriptor desc, JsonElement jsonElement) {\r\n    if (enumSerialization == EnumSerialization.NAME) {\r\n        // With enum name\r\n        for (EnumValueDescriptor enumDesc : desc.getValues()) {\r\n            String enumValue = getCustSerializedEnumValue(enumDesc.getOptions(), enumDesc.getName());\r\n            if (enumValue.equals(jsonElement.getAsString())) {\r\n                return enumDesc;\r\n            }\r\n        }\r\n        throw new IllegalArgumentException(String.format(\"Unrecognized enum name: %s\", jsonElement.getAsString()));\r\n    } else {\r\n        // With enum value\r\n        EnumValueDescriptor fieldValue = desc.findValueByNumber(jsonElement.getAsInt());\r\n        if (fieldValue == null) {\r\n            throw new IllegalArgumentException(String.format(\"Unrecognized enum value: %d\", jsonElement.getAsInt()));\r\n        }\r\n        return fieldValue;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "getCachedMethod",
+    "start_line": 432,
+    "end_line": 450,
+    "code": "private static Method getCachedMethod(Class<?> clazz, String methodName, Class<?>... methodParamTypes) throws NoSuchMethodException {\r\n    ConcurrentMap<Class<?>, Method> mapOfMethods = mapOfMapOfMethods.get(methodName);\r\n    if (mapOfMethods == null) {\r\n        mapOfMethods = new MapMaker().makeMap();\r\n        ConcurrentMap<Class<?>, Method> previous = mapOfMapOfMethods.putIfAbsent(methodName, mapOfMethods);\r\n        mapOfMethods = previous == null ? mapOfMethods : previous;\r\n    }\r\n    Method method = mapOfMethods.get(clazz);\r\n    if (method == null) {\r\n        method = clazz.getMethod(methodName, methodParamTypes);\r\n        mapOfMethods.putIfAbsent(clazz, method);\r\n        // NB: it doesn't matter which method we return in the event of a race.\r\n    }\r\n    return method;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\proto\\src\\main\\java\\com\\google\\gson\\protobuf\\ProtoTypeAdapter.java"
+  }
+]

@@ -1,0 +1,234 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.MoreAsserts",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.common.MoreAsserts;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.AbstractMap.SimpleEntry",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.util.AbstractMap.SimpleEntry;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collection",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.util.Collection;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collections",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.util.Collections;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.HashMap",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.util.HashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map.Entry",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.util.Map.Entry;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Set",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.util.Set;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonObjectAsMapTest",
+    "start_line": 36,
+    "end_line": 278,
+    "code": "/**\r\n * Tests for {@link JsonObject#asMap()}.\r\n */\r\npublic class JsonObjectAsMapTest {\r\n\r\n    @Test\r\n    public void testSize() {\r\n        JsonObject o = new JsonObject();\r\n        assertThat(o.asMap().size()).isEqualTo(0);\r\n        o.addProperty(\"a\", 1);\r\n        Map<String, JsonElement> map = o.asMap();\r\n        assertThat(map).hasSize(1);\r\n        map.clear();\r\n        assertThat(map).hasSize(0);\r\n        assertThat(o.size()).isEqualTo(0);\r\n    }\r\n\r\n    @Test\r\n    public void testContainsKey() {\r\n        JsonObject o = new JsonObject();\r\n        o.addProperty(\"a\", 1);\r\n        Map<String, JsonElement> map = o.asMap();\r\n        assertThat(map.containsKey(\"a\")).isTrue();\r\n        assertThat(map.containsKey(\"b\")).isFalse();\r\n        assertThat(map.containsKey(null)).isFalse();\r\n    }\r\n\r\n    @Test\r\n    public void testContainsValue() {\r\n        JsonObject o = new JsonObject();\r\n        o.addProperty(\"a\", 1);\r\n        o.add(\"b\", JsonNull.INSTANCE);\r\n        Map<String, JsonElement> map = o.asMap();\r\n        assertThat(map.containsValue(new JsonPrimitive(1))).isTrue();\r\n        assertThat(map.containsValue(new JsonPrimitive(2))).isFalse();\r\n        assertThat(map.containsValue(null)).isFalse();\r\n        @SuppressWarnings({ \"unlikely-arg-type\", \"CollectionIncompatibleType\" })\r\n        boolean // should only contain JsonPrimitive(1)\r\n        containsInt = map.containsValue(1);\r\n        assertThat(containsInt).isFalse();\r\n    }\r\n\r\n    @Test\r\n    public void testGet() {\r\n        JsonObject o = new JsonObject();\r\n        o.addProperty(\"a\", 1);\r\n        Map<String, JsonElement> map = o.asMap();\r\n        assertThat(map.get(\"a\")).isEqualTo(new JsonPrimitive(1));\r\n        assertThat(map.get(\"b\")).isNull();\r\n        assertThat(map.get(null)).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testPut() {\r\n        JsonObject o = new JsonObject();\r\n        Map<String, JsonElement> map = o.asMap();\r\n        assertThat(map.put(\"a\", new JsonPrimitive(1))).isNull();\r\n        assertThat(map.get(\"a\")).isEqualTo(new JsonPrimitive(1));\r\n        JsonElement old = map.put(\"a\", new JsonPrimitive(2));\r\n        assertThat(old).isEqualTo(new JsonPrimitive(1));\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map.get(\"a\")).isEqualTo(new JsonPrimitive(2));\r\n        assertThat(o.get(\"a\")).isEqualTo(new JsonPrimitive(2));\r\n        assertThat(map.put(\"b\", JsonNull.INSTANCE)).isNull();\r\n        assertThat(map.get(\"b\")).isEqualTo(JsonNull.INSTANCE);\r\n        var e = assertThrows(NullPointerException.class, () -> map.put(null, new JsonPrimitive(1)));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"key == null\");\r\n        e = assertThrows(NullPointerException.class, () -> map.put(\"a\", null));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"value == null\");\r\n    }\r\n\r\n    @Test\r\n    public void testRemove() {\r\n        JsonObject o = new JsonObject();\r\n        o.addProperty(\"a\", 1);\r\n        Map<String, JsonElement> map = o.asMap();\r\n        assertThat(map.remove(\"b\")).isNull();\r\n        assertThat(map).hasSize(1);\r\n        JsonElement old = map.remove(\"a\");\r\n        assertThat(old).isEqualTo(new JsonPrimitive(1));\r\n        assertThat(map).hasSize(0);\r\n        assertThat(map.remove(\"a\")).isNull();\r\n        assertThat(map).hasSize(0);\r\n        assertThat(o.size()).isEqualTo(0);\r\n        assertThat(map.remove(null)).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testPutAll() {\r\n        JsonObject o = new JsonObject();\r\n        o.addProperty(\"a\", 1);\r\n        Map<String, JsonElement> otherMap = new HashMap<>();\r\n        otherMap.put(\"a\", new JsonPrimitive(2));\r\n        otherMap.put(\"b\", new JsonPrimitive(3));\r\n        Map<String, JsonElement> map = o.asMap();\r\n        map.putAll(otherMap);\r\n        assertThat(map).hasSize(2);\r\n        assertThat(map.get(\"a\")).isEqualTo(new JsonPrimitive(2));\r\n        assertThat(map.get(\"b\")).isEqualTo(new JsonPrimitive(3));\r\n        var e = assertThrows(NullPointerException.class, () -> map.putAll(Collections.singletonMap(null, new JsonPrimitive(1))));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"key == null\");\r\n        e = assertThrows(NullPointerException.class, () -> map.putAll(Collections.singletonMap(\"a\", null)));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"value == null\");\r\n    }\r\n\r\n    @Test\r\n    public void testClear() {\r\n        JsonObject o = new JsonObject();\r\n        o.addProperty(\"a\", 1);\r\n        Map<String, JsonElement> map = o.asMap();\r\n        map.clear();\r\n        assertThat(map).hasSize(0);\r\n        assertThat(o.size()).isEqualTo(0);\r\n    }\r\n\r\n    @Test\r\n    public void testKeySet() {\r\n        JsonObject o = new JsonObject();\r\n        o.addProperty(\"b\", 1);\r\n        o.addProperty(\"a\", 2);\r\n        Map<String, JsonElement> map = o.asMap();\r\n        Set<String> keySet = map.keySet();\r\n        // Should contain keys in same order\r\n        assertThat(keySet).containsExactly(\"b\", \"a\").inOrder();\r\n        // Key set doesn't support insertions\r\n        assertThrows(UnsupportedOperationException.class, () -> keySet.add(\"c\"));\r\n        assertThat(keySet.remove(\"a\")).isTrue();\r\n        assertThat(map.keySet()).isEqualTo(Collections.singleton(\"b\"));\r\n        assertThat(o.keySet()).isEqualTo(Collections.singleton(\"b\"));\r\n    }\r\n\r\n    @Test\r\n    public void testValues() {\r\n        JsonObject o = new JsonObject();\r\n        o.addProperty(\"a\", 2);\r\n        o.addProperty(\"b\", 1);\r\n        Map<String, JsonElement> map = o.asMap();\r\n        Collection<JsonElement> values = map.values();\r\n        // Should contain values in same order\r\n        assertThat(values).containsExactly(new JsonPrimitive(2), new JsonPrimitive(1)).inOrder();\r\n        // Values collection doesn't support insertions\r\n        assertThrows(UnsupportedOperationException.class, () -> values.add(new JsonPrimitive(3)));\r\n        assertThat(values.remove(new JsonPrimitive(2))).isTrue();\r\n        assertThat(new ArrayList<>(map.values())).isEqualTo(Collections.singletonList(new JsonPrimitive(1)));\r\n        assertThat(o.size()).isEqualTo(1);\r\n        assertThat(o.get(\"b\")).isEqualTo(new JsonPrimitive(1));\r\n    }\r\n\r\n    @Test\r\n    public void testEntrySet() {\r\n        JsonObject o = new JsonObject();\r\n        o.addProperty(\"b\", 2);\r\n        o.addProperty(\"a\", 1);\r\n        Map<String, JsonElement> map = o.asMap();\r\n        Set<Entry<String, JsonElement>> entrySet = map.entrySet();\r\n        List<Entry<?, ?>> expectedEntrySet = Arrays.asList(new SimpleEntry<>(\"b\", new JsonPrimitive(2)), new SimpleEntry<>(\"a\", new JsonPrimitive(1)));\r\n        // Should contain entries in same order\r\n        assertThat(new ArrayList<>(entrySet)).isEqualTo(expectedEntrySet);\r\n        // Entry set doesn't support insertions\r\n        assertThrows(UnsupportedOperationException.class, () -> entrySet.add(new SimpleEntry<>(\"c\", new JsonPrimitive(3))));\r\n        assertThat(entrySet.remove(new SimpleEntry<>(\"a\", new JsonPrimitive(1)))).isTrue();\r\n        assertThat(map.entrySet()).isEqualTo(Collections.singleton(new SimpleEntry<>(\"b\", new JsonPrimitive(2))));\r\n        assertThat(o.entrySet()).isEqualTo(Collections.singleton(new SimpleEntry<>(\"b\", new JsonPrimitive(2))));\r\n        // Should return false because entry has already been removed\r\n        assertThat(entrySet.remove(new SimpleEntry<>(\"a\", new JsonPrimitive(1)))).isFalse();\r\n        Entry<String, JsonElement> entry = entrySet.iterator().next();\r\n        JsonElement old = entry.setValue(new JsonPrimitive(3));\r\n        assertThat(old).isEqualTo(new JsonPrimitive(2));\r\n        assertThat(map.entrySet()).isEqualTo(Collections.singleton(new SimpleEntry<>(\"b\", new JsonPrimitive(3))));\r\n        assertThat(o.entrySet()).isEqualTo(Collections.singleton(new SimpleEntry<>(\"b\", new JsonPrimitive(3))));\r\n        var e = assertThrows(NullPointerException.class, () -> entry.setValue(null));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"value == null\");\r\n    }\r\n\r\n    @Test\r\n    public void testEqualsHashCode() {\r\n        JsonObject o = new JsonObject();\r\n        o.addProperty(\"a\", 1);\r\n        Map<String, JsonElement> map = o.asMap();\r\n        MoreAsserts.assertEqualsAndHashCode(map, Collections.singletonMap(\"a\", new JsonPrimitive(1)));\r\n        assertThat(map.equals(Collections.emptyMap())).isFalse();\r\n        assertThat(map.equals(Collections.singletonMap(\"a\", new JsonPrimitive(2)))).isFalse();\r\n    }\r\n\r\n    /**\r\n     * Verify that {@code JsonObject} updates are visible to view and vice versa\r\n     */\r\n    @Test\r\n    public void testViewUpdates() {\r\n        JsonObject o = new JsonObject();\r\n        Map<String, JsonElement> map = o.asMap();\r\n        o.addProperty(\"a\", 1);\r\n        assertThat(map).hasSize(1);\r\n        assertThat(map.get(\"a\")).isEqualTo(new JsonPrimitive(1));\r\n        map.put(\"b\", new JsonPrimitive(2));\r\n        assertThat(o.size()).isEqualTo(2);\r\n        assertThat(map.get(\"b\")).isEqualTo(new JsonPrimitive(2));\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSize",
+    "start_line": 37,
+    "end_line": 49,
+    "code": "@Test\r\npublic void testSize() {\r\n    JsonObject o = new JsonObject();\r\n    assertThat(o.asMap().size()).isEqualTo(0);\r\n    o.addProperty(\"a\", 1);\r\n    Map<String, JsonElement> map = o.asMap();\r\n    assertThat(map).hasSize(1);\r\n    map.clear();\r\n    assertThat(map).hasSize(0);\r\n    assertThat(o.size()).isEqualTo(0);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testContainsKey",
+    "start_line": 51,
+    "end_line": 60,
+    "code": "@Test\r\npublic void testContainsKey() {\r\n    JsonObject o = new JsonObject();\r\n    o.addProperty(\"a\", 1);\r\n    Map<String, JsonElement> map = o.asMap();\r\n    assertThat(map.containsKey(\"a\")).isTrue();\r\n    assertThat(map.containsKey(\"b\")).isFalse();\r\n    assertThat(map.containsKey(null)).isFalse();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testContainsValue",
+    "start_line": 62,
+    "end_line": 76,
+    "code": "@Test\r\npublic void testContainsValue() {\r\n    JsonObject o = new JsonObject();\r\n    o.addProperty(\"a\", 1);\r\n    o.add(\"b\", JsonNull.INSTANCE);\r\n    Map<String, JsonElement> map = o.asMap();\r\n    assertThat(map.containsValue(new JsonPrimitive(1))).isTrue();\r\n    assertThat(map.containsValue(new JsonPrimitive(2))).isFalse();\r\n    assertThat(map.containsValue(null)).isFalse();\r\n    @SuppressWarnings({ \"unlikely-arg-type\", \"CollectionIncompatibleType\" })\r\n    boolean // should only contain JsonPrimitive(1)\r\n    containsInt = map.containsValue(1);\r\n    assertThat(containsInt).isFalse();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGet",
+    "start_line": 78,
+    "end_line": 87,
+    "code": "@Test\r\npublic void testGet() {\r\n    JsonObject o = new JsonObject();\r\n    o.addProperty(\"a\", 1);\r\n    Map<String, JsonElement> map = o.asMap();\r\n    assertThat(map.get(\"a\")).isEqualTo(new JsonPrimitive(1));\r\n    assertThat(map.get(\"b\")).isNull();\r\n    assertThat(map.get(null)).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testPut",
+    "start_line": 89,
+    "end_line": 111,
+    "code": "@Test\r\npublic void testPut() {\r\n    JsonObject o = new JsonObject();\r\n    Map<String, JsonElement> map = o.asMap();\r\n    assertThat(map.put(\"a\", new JsonPrimitive(1))).isNull();\r\n    assertThat(map.get(\"a\")).isEqualTo(new JsonPrimitive(1));\r\n    JsonElement old = map.put(\"a\", new JsonPrimitive(2));\r\n    assertThat(old).isEqualTo(new JsonPrimitive(1));\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map.get(\"a\")).isEqualTo(new JsonPrimitive(2));\r\n    assertThat(o.get(\"a\")).isEqualTo(new JsonPrimitive(2));\r\n    assertThat(map.put(\"b\", JsonNull.INSTANCE)).isNull();\r\n    assertThat(map.get(\"b\")).isEqualTo(JsonNull.INSTANCE);\r\n    var e = assertThrows(NullPointerException.class, () -> map.put(null, new JsonPrimitive(1)));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"key == null\");\r\n    e = assertThrows(NullPointerException.class, () -> map.put(\"a\", null));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"value == null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testRemove",
+    "start_line": 113,
+    "end_line": 131,
+    "code": "@Test\r\npublic void testRemove() {\r\n    JsonObject o = new JsonObject();\r\n    o.addProperty(\"a\", 1);\r\n    Map<String, JsonElement> map = o.asMap();\r\n    assertThat(map.remove(\"b\")).isNull();\r\n    assertThat(map).hasSize(1);\r\n    JsonElement old = map.remove(\"a\");\r\n    assertThat(old).isEqualTo(new JsonPrimitive(1));\r\n    assertThat(map).hasSize(0);\r\n    assertThat(map.remove(\"a\")).isNull();\r\n    assertThat(map).hasSize(0);\r\n    assertThat(o.size()).isEqualTo(0);\r\n    assertThat(map.remove(null)).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testPutAll",
+    "start_line": 133,
+    "end_line": 158,
+    "code": "@Test\r\npublic void testPutAll() {\r\n    JsonObject o = new JsonObject();\r\n    o.addProperty(\"a\", 1);\r\n    Map<String, JsonElement> otherMap = new HashMap<>();\r\n    otherMap.put(\"a\", new JsonPrimitive(2));\r\n    otherMap.put(\"b\", new JsonPrimitive(3));\r\n    Map<String, JsonElement> map = o.asMap();\r\n    map.putAll(otherMap);\r\n    assertThat(map).hasSize(2);\r\n    assertThat(map.get(\"a\")).isEqualTo(new JsonPrimitive(2));\r\n    assertThat(map.get(\"b\")).isEqualTo(new JsonPrimitive(3));\r\n    var e = assertThrows(NullPointerException.class, () -> map.putAll(Collections.singletonMap(null, new JsonPrimitive(1))));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"key == null\");\r\n    e = assertThrows(NullPointerException.class, () -> map.putAll(Collections.singletonMap(\"a\", null)));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"value == null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testClear",
+    "start_line": 160,
+    "end_line": 169,
+    "code": "@Test\r\npublic void testClear() {\r\n    JsonObject o = new JsonObject();\r\n    o.addProperty(\"a\", 1);\r\n    Map<String, JsonElement> map = o.asMap();\r\n    map.clear();\r\n    assertThat(map).hasSize(0);\r\n    assertThat(o.size()).isEqualTo(0);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testKeySet",
+    "start_line": 171,
+    "end_line": 188,
+    "code": "@Test\r\npublic void testKeySet() {\r\n    JsonObject o = new JsonObject();\r\n    o.addProperty(\"b\", 1);\r\n    o.addProperty(\"a\", 2);\r\n    Map<String, JsonElement> map = o.asMap();\r\n    Set<String> keySet = map.keySet();\r\n    // Should contain keys in same order\r\n    assertThat(keySet).containsExactly(\"b\", \"a\").inOrder();\r\n    // Key set doesn't support insertions\r\n    assertThrows(UnsupportedOperationException.class, () -> keySet.add(\"c\"));\r\n    assertThat(keySet.remove(\"a\")).isTrue();\r\n    assertThat(map.keySet()).isEqualTo(Collections.singleton(\"b\"));\r\n    assertThat(o.keySet()).isEqualTo(Collections.singleton(\"b\"));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testValues",
+    "start_line": 190,
+    "end_line": 209,
+    "code": "@Test\r\npublic void testValues() {\r\n    JsonObject o = new JsonObject();\r\n    o.addProperty(\"a\", 2);\r\n    o.addProperty(\"b\", 1);\r\n    Map<String, JsonElement> map = o.asMap();\r\n    Collection<JsonElement> values = map.values();\r\n    // Should contain values in same order\r\n    assertThat(values).containsExactly(new JsonPrimitive(2), new JsonPrimitive(1)).inOrder();\r\n    // Values collection doesn't support insertions\r\n    assertThrows(UnsupportedOperationException.class, () -> values.add(new JsonPrimitive(3)));\r\n    assertThat(values.remove(new JsonPrimitive(2))).isTrue();\r\n    assertThat(new ArrayList<>(map.values())).isEqualTo(Collections.singletonList(new JsonPrimitive(1)));\r\n    assertThat(o.size()).isEqualTo(1);\r\n    assertThat(o.get(\"b\")).isEqualTo(new JsonPrimitive(1));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEntrySet",
+    "start_line": 211,
+    "end_line": 251,
+    "code": "@Test\r\npublic void testEntrySet() {\r\n    JsonObject o = new JsonObject();\r\n    o.addProperty(\"b\", 2);\r\n    o.addProperty(\"a\", 1);\r\n    Map<String, JsonElement> map = o.asMap();\r\n    Set<Entry<String, JsonElement>> entrySet = map.entrySet();\r\n    List<Entry<?, ?>> expectedEntrySet = Arrays.asList(new SimpleEntry<>(\"b\", new JsonPrimitive(2)), new SimpleEntry<>(\"a\", new JsonPrimitive(1)));\r\n    // Should contain entries in same order\r\n    assertThat(new ArrayList<>(entrySet)).isEqualTo(expectedEntrySet);\r\n    // Entry set doesn't support insertions\r\n    assertThrows(UnsupportedOperationException.class, () -> entrySet.add(new SimpleEntry<>(\"c\", new JsonPrimitive(3))));\r\n    assertThat(entrySet.remove(new SimpleEntry<>(\"a\", new JsonPrimitive(1)))).isTrue();\r\n    assertThat(map.entrySet()).isEqualTo(Collections.singleton(new SimpleEntry<>(\"b\", new JsonPrimitive(2))));\r\n    assertThat(o.entrySet()).isEqualTo(Collections.singleton(new SimpleEntry<>(\"b\", new JsonPrimitive(2))));\r\n    // Should return false because entry has already been removed\r\n    assertThat(entrySet.remove(new SimpleEntry<>(\"a\", new JsonPrimitive(1)))).isFalse();\r\n    Entry<String, JsonElement> entry = entrySet.iterator().next();\r\n    JsonElement old = entry.setValue(new JsonPrimitive(3));\r\n    assertThat(old).isEqualTo(new JsonPrimitive(2));\r\n    assertThat(map.entrySet()).isEqualTo(Collections.singleton(new SimpleEntry<>(\"b\", new JsonPrimitive(3))));\r\n    assertThat(o.entrySet()).isEqualTo(Collections.singleton(new SimpleEntry<>(\"b\", new JsonPrimitive(3))));\r\n    var e = assertThrows(NullPointerException.class, () -> entry.setValue(null));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"value == null\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEqualsHashCode",
+    "start_line": 253,
+    "end_line": 262,
+    "code": "@Test\r\npublic void testEqualsHashCode() {\r\n    JsonObject o = new JsonObject();\r\n    o.addProperty(\"a\", 1);\r\n    Map<String, JsonElement> map = o.asMap();\r\n    MoreAsserts.assertEqualsAndHashCode(map, Collections.singletonMap(\"a\", new JsonPrimitive(1)));\r\n    assertThat(map.equals(Collections.emptyMap())).isFalse();\r\n    assertThat(map.equals(Collections.singletonMap(\"a\", new JsonPrimitive(2)))).isFalse();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testViewUpdates",
+    "start_line": 265,
+    "end_line": 277,
+    "code": "/**\r\n * Verify that {@code JsonObject} updates are visible to view and vice versa\r\n */\r\n@Test\r\npublic void testViewUpdates() {\r\n    JsonObject o = new JsonObject();\r\n    Map<String, JsonElement> map = o.asMap();\r\n    o.addProperty(\"a\", 1);\r\n    assertThat(map).hasSize(1);\r\n    assertThat(map.get(\"a\")).isEqualTo(new JsonPrimitive(1));\r\n    map.put(\"b\", new JsonPrimitive(2));\r\n    assertThat(o.size()).isEqualTo(2);\r\n    assertThat(map.get(\"b\")).isEqualTo(new JsonPrimitive(2));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\JsonObjectAsMapTest.java"
+  }
+]

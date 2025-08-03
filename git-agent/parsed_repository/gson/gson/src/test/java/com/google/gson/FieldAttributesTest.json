@@ -1,0 +1,138 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Modifier",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.lang.reflect.Modifier;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "class",
+    "name": "FieldAttributesTest",
+    "start_line": 35,
+    "end_line": 81,
+    "code": "/**\r\n * Unit tests for the {@link FieldAttributes} class.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class FieldAttributesTest {\r\n\r\n    private FieldAttributes fieldAttributes;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        fieldAttributes = new FieldAttributes(Foo.class.getField(\"bar\"));\r\n    }\r\n\r\n    @Test\r\n    public void testNullField() {\r\n        assertThrows(NullPointerException.class, () -> new FieldAttributes(null));\r\n    }\r\n\r\n    @Test\r\n    public void testDeclaringClass() {\r\n        assertThat(fieldAttributes.getDeclaringClass()).isAssignableTo(Foo.class);\r\n    }\r\n\r\n    @Test\r\n    public void testModifiers() {\r\n        assertThat(fieldAttributes.hasModifier(Modifier.STATIC)).isFalse();\r\n        assertThat(fieldAttributes.hasModifier(Modifier.FINAL)).isFalse();\r\n        assertThat(fieldAttributes.hasModifier(Modifier.ABSTRACT)).isFalse();\r\n        assertThat(fieldAttributes.hasModifier(Modifier.VOLATILE)).isFalse();\r\n        assertThat(fieldAttributes.hasModifier(Modifier.PROTECTED)).isFalse();\r\n        assertThat(fieldAttributes.hasModifier(Modifier.PUBLIC)).isTrue();\r\n        assertThat(fieldAttributes.hasModifier(Modifier.TRANSIENT)).isTrue();\r\n    }\r\n\r\n    @Test\r\n    public void testName() {\r\n        assertThat(fieldAttributes.getName()).isEqualTo(\"bar\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeclaredTypeAndClass() {\r\n        Type expectedType = new TypeToken<List<String>>() {\r\n        }.getType();\r\n        assertThat(fieldAttributes.getDeclaredType()).isEqualTo(expectedType);\r\n        assertThat(fieldAttributes.getDeclaredClass()).isAssignableTo(List.class);\r\n    }\r\n\r\n    private static class Foo {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        public transient List<String> bar;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "field",
+    "name": "fieldAttributes",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "private FieldAttributes fieldAttributes;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 38,
+    "end_line": 41,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    fieldAttributes = new FieldAttributes(Foo.class.getField(\"bar\"));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullField",
+    "start_line": 43,
+    "end_line": 46,
+    "code": "@Test\r\npublic void testNullField() {\r\n    assertThrows(NullPointerException.class, () -> new FieldAttributes(null));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeclaringClass",
+    "start_line": 48,
+    "end_line": 51,
+    "code": "@Test\r\npublic void testDeclaringClass() {\r\n    assertThat(fieldAttributes.getDeclaringClass()).isAssignableTo(Foo.class);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testModifiers",
+    "start_line": 53,
+    "end_line": 63,
+    "code": "@Test\r\npublic void testModifiers() {\r\n    assertThat(fieldAttributes.hasModifier(Modifier.STATIC)).isFalse();\r\n    assertThat(fieldAttributes.hasModifier(Modifier.FINAL)).isFalse();\r\n    assertThat(fieldAttributes.hasModifier(Modifier.ABSTRACT)).isFalse();\r\n    assertThat(fieldAttributes.hasModifier(Modifier.VOLATILE)).isFalse();\r\n    assertThat(fieldAttributes.hasModifier(Modifier.PROTECTED)).isFalse();\r\n    assertThat(fieldAttributes.hasModifier(Modifier.PUBLIC)).isTrue();\r\n    assertThat(fieldAttributes.hasModifier(Modifier.TRANSIENT)).isTrue();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testName",
+    "start_line": 65,
+    "end_line": 68,
+    "code": "@Test\r\npublic void testName() {\r\n    assertThat(fieldAttributes.getName()).isEqualTo(\"bar\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeclaredTypeAndClass",
+    "start_line": 70,
+    "end_line": 75,
+    "code": "@Test\r\npublic void testDeclaredTypeAndClass() {\r\n    Type expectedType = new TypeToken<List<String>>() {\r\n    }.getType();\r\n    assertThat(fieldAttributes.getDeclaredType()).isEqualTo(expectedType);\r\n    assertThat(fieldAttributes.getDeclaredClass()).isAssignableTo(List.class);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\FieldAttributesTest.java"
+  }
+]

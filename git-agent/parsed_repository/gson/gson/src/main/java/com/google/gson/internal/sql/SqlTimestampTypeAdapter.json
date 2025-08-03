@@ -1,0 +1,130 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.sql",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.sql;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapterFactory",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.TypeAdapterFactory;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.sql.Timestamp",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.sql.Timestamp;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Date",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.util.Date;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "class",
+    "name": "SqlTimestampTypeAdapter",
+    "start_line": 29,
+    "end_line": 61,
+    "code": "@SuppressWarnings(\"JavaUtilDate\")\r\nclass SqlTimestampTypeAdapter extends TypeAdapter<Timestamp> {\r\n\r\n    static final TypeAdapterFactory FACTORY = new TypeAdapterFactory() {\r\n\r\n        // we use a runtime check to make sure the 'T's equal\r\n        @SuppressWarnings(\"unchecked\")\r\n        @Override\r\n        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {\r\n            if (typeToken.getRawType() == Timestamp.class) {\r\n                TypeAdapter<Date> dateTypeAdapter = gson.getAdapter(Date.class);\r\n                return (TypeAdapter<T>) new SqlTimestampTypeAdapter(dateTypeAdapter);\r\n            } else {\r\n                return null;\r\n            }\r\n        }\r\n    };\r\n\r\n    private final TypeAdapter<Date> dateTypeAdapter;\r\n\r\n    private SqlTimestampTypeAdapter(TypeAdapter<Date> dateTypeAdapter) {\r\n        this.dateTypeAdapter = dateTypeAdapter;\r\n    }\r\n\r\n    @Override\r\n    public Timestamp read(JsonReader in) throws IOException {\r\n        Date date = dateTypeAdapter.read(in);\r\n        return date != null ? new Timestamp(date.getTime()) : null;\r\n    }\r\n\r\n    @Override\r\n    public void write(JsonWriter out, Timestamp value) throws IOException {\r\n        dateTypeAdapter.write(out, value);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "FACTORY",
+    "start_line": 31,
+    "end_line": 43,
+    "code": "static final TypeAdapterFactory FACTORY = new TypeAdapterFactory() {\r\n\r\n    // we use a runtime check to make sure the 'T's equal\r\n    @SuppressWarnings(\"unchecked\")\r\n    @Override\r\n    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {\r\n        if (typeToken.getRawType() == Timestamp.class) {\r\n            TypeAdapter<Date> dateTypeAdapter = gson.getAdapter(Date.class);\r\n            return (TypeAdapter<T>) new SqlTimestampTypeAdapter(dateTypeAdapter);\r\n        } else {\r\n            return null;\r\n        }\r\n    }\r\n};",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "dateTypeAdapter",
+    "start_line": 45,
+    "end_line": 45,
+    "code": "private final TypeAdapter<Date> dateTypeAdapter;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "constructor",
+    "name": "SqlTimestampTypeAdapter",
+    "start_line": 47,
+    "end_line": 49,
+    "code": "private SqlTimestampTypeAdapter(TypeAdapter<Date> dateTypeAdapter) {\r\n    this.dateTypeAdapter = dateTypeAdapter;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "read",
+    "start_line": 51,
+    "end_line": 55,
+    "code": "@Override\r\npublic Timestamp read(JsonReader in) throws IOException {\r\n    Date date = dateTypeAdapter.read(in);\r\n    return date != null ? new Timestamp(date.getTime()) : null;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "write",
+    "start_line": 57,
+    "end_line": 60,
+    "code": "@Override\r\npublic void write(JsonWriter out, Timestamp value) throws IOException {\r\n    dateTypeAdapter.write(out, value);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\sql\\SqlTimestampTypeAdapter.java"
+  }
+]

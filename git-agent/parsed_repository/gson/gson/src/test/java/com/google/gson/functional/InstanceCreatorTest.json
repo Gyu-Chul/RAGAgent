@@ -1,0 +1,170 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.InstanceCreator",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.InstanceCreator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.Base",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.common.TestTypes.Base;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.ClassWithBaseField",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.common.TestTypes.ClassWithBaseField;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.Sub",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.common.TestTypes.Sub;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.SortedSet",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.util.SortedSet;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.TreeSet",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.util.TreeSet;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "class",
+    "name": "InstanceCreatorTest",
+    "start_line": 41,
+    "end_line": 111,
+    "code": "/**\r\n * Functional Test exercising custom deserialization only. When test applies to both serialization\r\n * and deserialization then add it to CustomTypeAdapterTest.\r\n *\r\n * @author Inderjeet Singh\r\n */\r\npublic class InstanceCreatorTest {\r\n\r\n    @Test\r\n    public void testInstanceCreatorReturnsBaseType() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (InstanceCreator<Base>) type -> new Base()).create();\r\n        String json = \"{baseName:'BaseRevised',subName:'Sub'}\";\r\n        Base base = gson.fromJson(json, Base.class);\r\n        assertThat(base.baseName).isEqualTo(\"BaseRevised\");\r\n    }\r\n\r\n    @Test\r\n    public void testInstanceCreatorReturnsSubTypeForTopLevelObject() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (InstanceCreator<Base>) type -> new Sub()).create();\r\n        String json = \"{baseName:'Base',subName:'SubRevised'}\";\r\n        Base base = gson.fromJson(json, Base.class);\r\n        assertThat(base).isInstanceOf(Sub.class);\r\n        Sub sub = (Sub) base;\r\n        assertThat(sub.subName).isNotEqualTo(\"SubRevised\");\r\n        assertThat(sub.subName).isEqualTo(Sub.SUB_NAME);\r\n    }\r\n\r\n    @Test\r\n    public void testInstanceCreatorReturnsSubTypeForField() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (InstanceCreator<Base>) type -> new Sub()).create();\r\n        String json = \"{base:{baseName:'Base',subName:'SubRevised'}}\";\r\n        ClassWithBaseField target = gson.fromJson(json, ClassWithBaseField.class);\r\n        assertThat(target.base).isInstanceOf(Sub.class);\r\n        assertThat(((Sub) target.base).subName).isEqualTo(Sub.SUB_NAME);\r\n    }\r\n\r\n    // This regressed in Gson 2.0 and 2.1\r\n    @Test\r\n    public void testInstanceCreatorForCollectionType() {\r\n        @SuppressWarnings(\"serial\")\r\n        class SubArrayList<T> extends ArrayList<T> {\r\n        }\r\n        InstanceCreator<List<String>> listCreator = type -> new SubArrayList<>();\r\n        Type listOfStringType = new TypeToken<List<String>>() {\r\n        }.getType();\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(listOfStringType, listCreator).create();\r\n        List<String> list = gson.fromJson(\"[\\\"a\\\"]\", listOfStringType);\r\n        assertThat(list.getClass()).isEqualTo(SubArrayList.class);\r\n    }\r\n\r\n    @SuppressWarnings(\"unchecked\")\r\n    @Test\r\n    public void testInstanceCreatorForParametrizedType() {\r\n        @SuppressWarnings(\"serial\")\r\n        class SubTreeSet<T> extends TreeSet<T> {\r\n        }\r\n        InstanceCreator<SortedSet<?>> sortedSetCreator = type -> new SubTreeSet<>();\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(SortedSet.class, sortedSetCreator).create();\r\n        Type sortedSetType = new TypeToken<SortedSet<String>>() {\r\n        }.getType();\r\n        SortedSet<String> set = gson.fromJson(\"[\\\"a\\\"]\", sortedSetType);\r\n        assertThat(set.first()).isEqualTo(\"a\");\r\n        assertThat(set.getClass()).isEqualTo(SubTreeSet.class);\r\n        set = gson.fromJson(\"[\\\"b\\\"]\", SortedSet.class);\r\n        assertThat(set.first()).isEqualTo(\"b\");\r\n        assertThat(set.getClass()).isEqualTo(SubTreeSet.class);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInstanceCreatorReturnsBaseType",
+    "start_line": 43,
+    "end_line": 52,
+    "code": "@Test\r\npublic void testInstanceCreatorReturnsBaseType() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (InstanceCreator<Base>) type -> new Base()).create();\r\n    String json = \"{baseName:'BaseRevised',subName:'Sub'}\";\r\n    Base base = gson.fromJson(json, Base.class);\r\n    assertThat(base.baseName).isEqualTo(\"BaseRevised\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInstanceCreatorReturnsSubTypeForTopLevelObject",
+    "start_line": 54,
+    "end_line": 68,
+    "code": "@Test\r\npublic void testInstanceCreatorReturnsSubTypeForTopLevelObject() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (InstanceCreator<Base>) type -> new Sub()).create();\r\n    String json = \"{baseName:'Base',subName:'SubRevised'}\";\r\n    Base base = gson.fromJson(json, Base.class);\r\n    assertThat(base).isInstanceOf(Sub.class);\r\n    Sub sub = (Sub) base;\r\n    assertThat(sub.subName).isNotEqualTo(\"SubRevised\");\r\n    assertThat(sub.subName).isEqualTo(Sub.SUB_NAME);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInstanceCreatorReturnsSubTypeForField",
+    "start_line": 70,
+    "end_line": 80,
+    "code": "@Test\r\npublic void testInstanceCreatorReturnsSubTypeForField() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (InstanceCreator<Base>) type -> new Sub()).create();\r\n    String json = \"{base:{baseName:'Base',subName:'SubRevised'}}\";\r\n    ClassWithBaseField target = gson.fromJson(json, ClassWithBaseField.class);\r\n    assertThat(target.base).isInstanceOf(Sub.class);\r\n    assertThat(((Sub) target.base).subName).isEqualTo(Sub.SUB_NAME);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInstanceCreatorForCollectionType",
+    "start_line": 83,
+    "end_line": 92,
+    "code": "// This regressed in Gson 2.0 and 2.1\r\n@Test\r\npublic void testInstanceCreatorForCollectionType() {\r\n    @SuppressWarnings(\"serial\")\r\n    class SubArrayList<T> extends ArrayList<T> {\r\n    }\r\n    InstanceCreator<List<String>> listCreator = type -> new SubArrayList<>();\r\n    Type listOfStringType = new TypeToken<List<String>>() {\r\n    }.getType();\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(listOfStringType, listCreator).create();\r\n    List<String> list = gson.fromJson(\"[\\\"a\\\"]\", listOfStringType);\r\n    assertThat(list.getClass()).isEqualTo(SubArrayList.class);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testInstanceCreatorForParametrizedType",
+    "start_line": 94,
+    "end_line": 110,
+    "code": "@SuppressWarnings(\"unchecked\")\r\n@Test\r\npublic void testInstanceCreatorForParametrizedType() {\r\n    @SuppressWarnings(\"serial\")\r\n    class SubTreeSet<T> extends TreeSet<T> {\r\n    }\r\n    InstanceCreator<SortedSet<?>> sortedSetCreator = type -> new SubTreeSet<>();\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(SortedSet.class, sortedSetCreator).create();\r\n    Type sortedSetType = new TypeToken<SortedSet<String>>() {\r\n    }.getType();\r\n    SortedSet<String> set = gson.fromJson(\"[\\\"a\\\"]\", sortedSetType);\r\n    assertThat(set.first()).isEqualTo(\"a\");\r\n    assertThat(set.getClass()).isEqualTo(SubTreeSet.class);\r\n    set = gson.fromJson(\"[\\\"b\\\"]\", SortedSet.class);\r\n    assertThat(set.first()).isEqualTo(\"b\");\r\n    assertThat(set.getClass()).isEqualTo(SubTreeSet.class);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\InstanceCreatorTest.java"
+  }
+]

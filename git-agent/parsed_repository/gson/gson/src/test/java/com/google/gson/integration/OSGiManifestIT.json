@@ -1,0 +1,242 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.integration",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.integration;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertWithMessage",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertWithMessage;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.fail",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.fail;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.base.Splitter",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.common.base.Splitter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.GsonBuildConfig",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.internal.GsonBuildConfig;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.InputStream",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.io.InputStream;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "java.net.URL",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.net.URL;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collections",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.util.Collections;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.jar.Attributes",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.jar.Attributes;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.jar.Manifest",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.util.jar.Manifest;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.stream.Collectors",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.util.stream.Collectors;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "class",
+    "name": "OSGiManifestIT",
+    "start_line": 48,
+    "end_line": 241,
+    "code": "/**\r\n * Performs assertions on the generated OSGi manifest attributes. This is an integration test\r\n * ({@code *IT.java}) intended to be run against the final JAR.\r\n *\r\n * <p>Note: These tests must be run on the command line with {@code mvn clean verify}, running them\r\n * in the IDE will not work because it won't use the generated JAR, and additionally the\r\n * bnd-maven-plugin seems to behave differently in the IDE (at least Eclipse), adding unexpected\r\n * {@code Import-Package} entries for JDK classes (<a\r\n * href=\"https://github.com/bndtools/bnd/issues/6258>bnd-maven-plugin issue</a>).<br>\r\n * Running Maven's {@code clean} phase is necessary due to a <a\r\n * href=\"https://github.com/bndtools/bnd/issues/6221\">bnd-maven-plugin bug</a>.\r\n */\r\n// class name must end with 'IT' for Maven Failsafe Plugin\r\n@SuppressWarnings(\"MemberName\")\r\npublic class OSGiManifestIT {\r\n\r\n    private static class ManifestData {\r\n\r\n        public final URL url;\r\n\r\n        public final Manifest manifest;\r\n\r\n        public ManifestData(URL url, Manifest manifest) {\r\n            this.url = url;\r\n            this.manifest = manifest;\r\n        }\r\n    }\r\n\r\n    private static final String GSON_VERSION = GsonBuildConfig.VERSION;\r\n\r\n    private Attributes manifestAttributes;\r\n\r\n    @Before\r\n    public void getGsonManifestAttributes() throws Exception {\r\n        ManifestData manifestData = findManifest(\"com.google.gson\");\r\n        // Make sure manifest was loaded from final Gson JAR (and not intermediate manifest is used)\r\n        assertWithMessage(\"Should load manifest from Gson JAR file; run this test with `mvn clean verify` on\" + \" command line and not from IDE\").that(manifestData.url.toString()).endsWith(\".jar!/META-INF/MANIFEST.MF\");\r\n        manifestAttributes = manifestData.manifest.getMainAttributes();\r\n    }\r\n\r\n    private String getAttribute(String name) {\r\n        return manifestAttributes.getValue(name);\r\n    }\r\n\r\n    @Test\r\n    public void testBundleInformation() {\r\n        assertThat(getAttribute(\"Bundle-SymbolicName\")).isEqualTo(\"com.google.gson\");\r\n        assertThat(getAttribute(\"Bundle-Name\")).isEqualTo(\"Gson\");\r\n        assertThat(getAttribute(\"Bundle-License\")).isEqualTo(\"\\\"Apache-2.0\\\";link=\\\"https://www.apache.org/licenses/LICENSE-2.0.txt\\\"\");\r\n        assertThat(getAttribute(\"Bundle-Version\")).isEqualTo(GSON_VERSION.replace(\"-SNAPSHOT\", \".SNAPSHOT\"));\r\n    }\r\n\r\n    @Test\r\n    public void testImports() throws Exception {\r\n        // Keep only 'major.minor', drop the 'patch' version\r\n        String errorProneVersion = shortenVersionNumber(findManifest(\"com.google.errorprone.annotations\").manifest.getMainAttributes().getValue(\"Bundle-Version\"), 1);\r\n        String nextMajorErrorProneVersion = increaseVersionNumber(errorProneVersion, 0);\r\n        String errorProneVersionRange = \"[\" + errorProneVersion + \",\" + nextMajorErrorProneVersion + \")\";\r\n        List<String> imports = splitPackages(getAttribute(\"Import-Package\"));\r\n        // If imports contains `java.*`, then either user started from IDE, or IDE rebuilt project while\r\n        // Maven build was running, see https://github.com/bndtools/bnd/issues/6258\r\n        if (imports.stream().anyMatch(i -> i.startsWith(\"java.\"))) {\r\n            fail(\"Test must be run from command line with `mvn clean verify`; additionally make sure your\" + \" IDE did not rebuild the project in the meantime\");\r\n        }\r\n        assertThat(imports).containsExactly(// Dependency on JDK's sun.misc.Unsafe should be optional\r\n        \"sun.misc;resolution:=optional\", // Dependency on error prone should be optional\r\n        \"com.google.errorprone.annotations;resolution:=optional;version=\\\"\" + errorProneVersionRange + \"\\\"\");\r\n        // Should not contain any import for Gson's own packages, see\r\n        // https://github.com/google/gson/pull/2735#issuecomment-2330047410\r\n        for (String importedPackage : imports) {\r\n            assertThat(importedPackage).doesNotContain(\"com.google.gson\");\r\n        }\r\n    }\r\n\r\n    @Test\r\n    public void testExports() {\r\n        String gsonVersion = GSON_VERSION.replace(\"-SNAPSHOT\", \"\");\r\n        List<String> exports = splitPackages(getAttribute(\"Export-Package\"));\r\n        // When not running `mvn clean` the exports might differ slightly, see\r\n        // https://github.com/bndtools/bnd/issues/6221\r\n        assertWithMessage(\"Unexpected exports; make sure you are running `mvn clean ...`\").that(exports).// Note: This just represents the currently generated exports; especially the `uses` can be\r\n        // adjusted if necessary when Gson's implementation changes\r\n        containsExactly(\"com.google.gson;uses:=\\\"com.google.gson.reflect,com.google.gson.stream\\\";version=\\\"\" + gsonVersion + \"\\\"\", \"com.google.gson.annotations;version=\\\"\" + gsonVersion + \"\\\"\", \"com.google.gson.reflect;version=\\\"\" + gsonVersion + \"\\\"\", \"com.google.gson.stream;uses:=\\\"com.google.gson\\\";version=\\\"\" + gsonVersion + \"\\\"\");\r\n    }\r\n\r\n    @Test\r\n    public void testRequireCapability() {\r\n        String expectedJavaVersion = \"1.8\";\r\n        // Defines the minimum required Java version\r\n        assertThat(getAttribute(\"Require-Capability\")).isEqualTo(\"osgi.ee;filter:=\\\"(&(osgi.ee=JavaSE)(version=\" + expectedJavaVersion + \"))\\\"\");\r\n        // Should not define deprecated \"Bundle-RequiredExecutionEnvironment\"\r\n        assertThat(getAttribute(\"Bundle-RequiredExecutionEnvironment\")).isNull();\r\n    }\r\n\r\n    private ManifestData findManifest(String bundleName) throws IOException {\r\n        List<URL> manifestResources = Collections.list(getClass().getClassLoader().getResources(\"META-INF/MANIFEST.MF\"));\r\n        for (URL manifestResource : manifestResources) {\r\n            Manifest manifest;\r\n            try (InputStream is = manifestResource.openStream()) {\r\n                manifest = new Manifest(is);\r\n            }\r\n            if (bundleName.equals(manifest.getMainAttributes().getValue(\"Bundle-SymbolicName\"))) {\r\n                return new ManifestData(manifestResource, manifest);\r\n            }\r\n        }\r\n        fail(\"Cannot find \" + bundleName + \" OSGi bundle manifest among: \" + manifestResources + \"\\nRun this test with `mvn clean verify` on command line and not from the IDE.\");\r\n        return null;\r\n    }\r\n\r\n    /**\r\n     * Splits a list of packages separated by {@code ','}.\r\n     */\r\n    private List<String> splitPackages(String packagesString) {\r\n        List<String> splitPackages = new ArrayList<>();\r\n        int nextSplitStart = 0;\r\n        boolean isInQuotes = false;\r\n        for (int i = 0; i < packagesString.length(); i++) {\r\n            char c = packagesString.charAt(i);\r\n            // Ignore ',' inside quotes\r\n            if (c == '\"') {\r\n                isInQuotes = !isInQuotes;\r\n            } else if (c == ',' && !isInQuotes) {\r\n                splitPackages.add(packagesString.substring(nextSplitStart, i));\r\n                // skip past the ','\r\n                nextSplitStart = i + 1;\r\n            }\r\n        }\r\n        // Add package behind last ','\r\n        splitPackages.add(packagesString.substring(nextSplitStart));\r\n        return splitPackages;\r\n    }\r\n\r\n    /**\r\n     * Shortens a version number by dropping lower parts. For example {@code 1.2.3 -> 1.2} (when\r\n     * {@code keepPosition = 1}).\r\n     *\r\n     * @param versionString e.g. \"1.2.3\"\r\n     * @param keepPosition position of the version to keep: 0 = major, 1 = minor, ...\r\n     * @return shortened version number\r\n     */\r\n    private String shortenVersionNumber(String versionString, int keepPosition) {\r\n        return Splitter.on('.').splitToStream(versionString).limit(keepPosition + 1).collect(Collectors.joining(\".\"));\r\n    }\r\n\r\n    /**\r\n     * Increases part of a version number (and drops lower parts). For example {@code 1.2.3 -> 1.3}\r\n     * (when {@code position = 1}).\r\n     *\r\n     * @param versionString e.g. \"1.2.3\"\r\n     * @param position position of the version to increase: 0 = major, 1 = minor, ...\r\n     * @return increased version number\r\n     */\r\n    private String increaseVersionNumber(String versionString, int position) {\r\n        List<Integer> splitVersion = new ArrayList<>();\r\n        for (String versionPiece : Splitter.on('.').split(versionString)) {\r\n            splitVersion.add(Integer.valueOf(versionPiece));\r\n        }\r\n        // Drop lower version parts\r\n        splitVersion = splitVersion.subList(0, position + 1);\r\n        // Increase version number\r\n        splitVersion.set(position, splitVersion.get(position) + 1);\r\n        return splitVersion.stream().map(i -> i.toString()).collect(Collectors.joining(\".\"));\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "field",
+    "name": "GSON_VERSION",
+    "start_line": 60,
+    "end_line": 60,
+    "code": "private static final String GSON_VERSION = GsonBuildConfig.VERSION;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "field",
+    "name": "manifestAttributes",
+    "start_line": 61,
+    "end_line": 61,
+    "code": "private Attributes manifestAttributes;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "method",
+    "name": "getGsonManifestAttributes",
+    "start_line": 63,
+    "end_line": 74,
+    "code": "@Before\r\npublic void getGsonManifestAttributes() throws Exception {\r\n    ManifestData manifestData = findManifest(\"com.google.gson\");\r\n    // Make sure manifest was loaded from final Gson JAR (and not intermediate manifest is used)\r\n    assertWithMessage(\"Should load manifest from Gson JAR file; run this test with `mvn clean verify` on\" + \" command line and not from IDE\").that(manifestData.url.toString()).endsWith(\".jar!/META-INF/MANIFEST.MF\");\r\n    manifestAttributes = manifestData.manifest.getMainAttributes();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "method",
+    "name": "getAttribute",
+    "start_line": 76,
+    "end_line": 78,
+    "code": "private String getAttribute(String name) {\r\n    return manifestAttributes.getValue(name);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "method",
+    "name": "testBundleInformation",
+    "start_line": 80,
+    "end_line": 88,
+    "code": "@Test\r\npublic void testBundleInformation() {\r\n    assertThat(getAttribute(\"Bundle-SymbolicName\")).isEqualTo(\"com.google.gson\");\r\n    assertThat(getAttribute(\"Bundle-Name\")).isEqualTo(\"Gson\");\r\n    assertThat(getAttribute(\"Bundle-License\")).isEqualTo(\"\\\"Apache-2.0\\\";link=\\\"https://www.apache.org/licenses/LICENSE-2.0.txt\\\"\");\r\n    assertThat(getAttribute(\"Bundle-Version\")).isEqualTo(GSON_VERSION.replace(\"-SNAPSHOT\", \".SNAPSHOT\"));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "method",
+    "name": "testImports",
+    "start_line": 90,
+    "end_line": 127,
+    "code": "@Test\r\npublic void testImports() throws Exception {\r\n    // Keep only 'major.minor', drop the 'patch' version\r\n    String errorProneVersion = shortenVersionNumber(findManifest(\"com.google.errorprone.annotations\").manifest.getMainAttributes().getValue(\"Bundle-Version\"), 1);\r\n    String nextMajorErrorProneVersion = increaseVersionNumber(errorProneVersion, 0);\r\n    String errorProneVersionRange = \"[\" + errorProneVersion + \",\" + nextMajorErrorProneVersion + \")\";\r\n    List<String> imports = splitPackages(getAttribute(\"Import-Package\"));\r\n    // If imports contains `java.*`, then either user started from IDE, or IDE rebuilt project while\r\n    // Maven build was running, see https://github.com/bndtools/bnd/issues/6258\r\n    if (imports.stream().anyMatch(i -> i.startsWith(\"java.\"))) {\r\n        fail(\"Test must be run from command line with `mvn clean verify`; additionally make sure your\" + \" IDE did not rebuild the project in the meantime\");\r\n    }\r\n    assertThat(imports).containsExactly(// Dependency on JDK's sun.misc.Unsafe should be optional\r\n    \"sun.misc;resolution:=optional\", // Dependency on error prone should be optional\r\n    \"com.google.errorprone.annotations;resolution:=optional;version=\\\"\" + errorProneVersionRange + \"\\\"\");\r\n    // Should not contain any import for Gson's own packages, see\r\n    // https://github.com/google/gson/pull/2735#issuecomment-2330047410\r\n    for (String importedPackage : imports) {\r\n        assertThat(importedPackage).doesNotContain(\"com.google.gson\");\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "method",
+    "name": "testExports",
+    "start_line": 129,
+    "end_line": 147,
+    "code": "@Test\r\npublic void testExports() {\r\n    String gsonVersion = GSON_VERSION.replace(\"-SNAPSHOT\", \"\");\r\n    List<String> exports = splitPackages(getAttribute(\"Export-Package\"));\r\n    // When not running `mvn clean` the exports might differ slightly, see\r\n    // https://github.com/bndtools/bnd/issues/6221\r\n    assertWithMessage(\"Unexpected exports; make sure you are running `mvn clean ...`\").that(exports).// Note: This just represents the currently generated exports; especially the `uses` can be\r\n    // adjusted if necessary when Gson's implementation changes\r\n    containsExactly(\"com.google.gson;uses:=\\\"com.google.gson.reflect,com.google.gson.stream\\\";version=\\\"\" + gsonVersion + \"\\\"\", \"com.google.gson.annotations;version=\\\"\" + gsonVersion + \"\\\"\", \"com.google.gson.reflect;version=\\\"\" + gsonVersion + \"\\\"\", \"com.google.gson.stream;uses:=\\\"com.google.gson\\\";version=\\\"\" + gsonVersion + \"\\\"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "method",
+    "name": "testRequireCapability",
+    "start_line": 149,
+    "end_line": 159,
+    "code": "@Test\r\npublic void testRequireCapability() {\r\n    String expectedJavaVersion = \"1.8\";\r\n    // Defines the minimum required Java version\r\n    assertThat(getAttribute(\"Require-Capability\")).isEqualTo(\"osgi.ee;filter:=\\\"(&(osgi.ee=JavaSE)(version=\" + expectedJavaVersion + \"))\\\"\");\r\n    // Should not define deprecated \"Bundle-RequiredExecutionEnvironment\"\r\n    assertThat(getAttribute(\"Bundle-RequiredExecutionEnvironment\")).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "method",
+    "name": "findManifest",
+    "start_line": 161,
+    "end_line": 182,
+    "code": "private ManifestData findManifest(String bundleName) throws IOException {\r\n    List<URL> manifestResources = Collections.list(getClass().getClassLoader().getResources(\"META-INF/MANIFEST.MF\"));\r\n    for (URL manifestResource : manifestResources) {\r\n        Manifest manifest;\r\n        try (InputStream is = manifestResource.openStream()) {\r\n            manifest = new Manifest(is);\r\n        }\r\n        if (bundleName.equals(manifest.getMainAttributes().getValue(\"Bundle-SymbolicName\"))) {\r\n            return new ManifestData(manifestResource, manifest);\r\n        }\r\n    }\r\n    fail(\"Cannot find \" + bundleName + \" OSGi bundle manifest among: \" + manifestResources + \"\\nRun this test with `mvn clean verify` on command line and not from the IDE.\");\r\n    return null;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "method",
+    "name": "splitPackages",
+    "start_line": 185,
+    "end_line": 204,
+    "code": "/**\r\n * Splits a list of packages separated by {@code ','}.\r\n */\r\nprivate List<String> splitPackages(String packagesString) {\r\n    List<String> splitPackages = new ArrayList<>();\r\n    int nextSplitStart = 0;\r\n    boolean isInQuotes = false;\r\n    for (int i = 0; i < packagesString.length(); i++) {\r\n        char c = packagesString.charAt(i);\r\n        // Ignore ',' inside quotes\r\n        if (c == '\"') {\r\n            isInQuotes = !isInQuotes;\r\n        } else if (c == ',' && !isInQuotes) {\r\n            splitPackages.add(packagesString.substring(nextSplitStart, i));\r\n            // skip past the ','\r\n            nextSplitStart = i + 1;\r\n        }\r\n    }\r\n    // Add package behind last ','\r\n    splitPackages.add(packagesString.substring(nextSplitStart));\r\n    return splitPackages;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "method",
+    "name": "shortenVersionNumber",
+    "start_line": 214,
+    "end_line": 219,
+    "code": "/**\r\n * Shortens a version number by dropping lower parts. For example {@code 1.2.3 -> 1.2} (when\r\n * {@code keepPosition = 1}).\r\n *\r\n * @param versionString e.g. \"1.2.3\"\r\n * @param keepPosition position of the version to keep: 0 = major, 1 = minor, ...\r\n * @return shortened version number\r\n */\r\nprivate String shortenVersionNumber(String versionString, int keepPosition) {\r\n    return Splitter.on('.').splitToStream(versionString).limit(keepPosition + 1).collect(Collectors.joining(\".\"));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  },
+  {
+    "type": "method",
+    "name": "increaseVersionNumber",
+    "start_line": 229,
+    "end_line": 240,
+    "code": "/**\r\n * Increases part of a version number (and drops lower parts). For example {@code 1.2.3 -> 1.3}\r\n * (when {@code position = 1}).\r\n *\r\n * @param versionString e.g. \"1.2.3\"\r\n * @param position position of the version to increase: 0 = major, 1 = minor, ...\r\n * @return increased version number\r\n */\r\nprivate String increaseVersionNumber(String versionString, int position) {\r\n    List<Integer> splitVersion = new ArrayList<>();\r\n    for (String versionPiece : Splitter.on('.').split(versionString)) {\r\n        splitVersion.add(Integer.valueOf(versionPiece));\r\n    }\r\n    // Drop lower version parts\r\n    splitVersion = splitVersion.subList(0, position + 1);\r\n    // Increase version number\r\n    splitVersion.set(position, splitVersion.get(position) + 1);\r\n    return splitVersion.stream().map(i -> i.toString()).collect(Collectors.joining(\".\"));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\integration\\OSGiManifestIT.java"
+  }
+]

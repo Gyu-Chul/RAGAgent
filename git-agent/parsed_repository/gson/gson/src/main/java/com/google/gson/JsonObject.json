@@ -1,0 +1,218 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.errorprone.annotations.CanIgnoreReturnValue",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.errorprone.annotations.CanIgnoreReturnValue;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.LinkedTreeMap",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.internal.LinkedTreeMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Set",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.util.Set;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonObject",
+    "start_line": 40,
+    "end_line": 259,
+    "code": "/**\r\n * A class representing an object type in JSON. An object consists of name-value pairs where names\r\n * are strings, and values are any other type of {@link JsonElement}. This allows for a creating a\r\n * tree of JsonElements. The member elements of this object are maintained in order they were added.\r\n * This class does not support {@code null} values. If {@code null} is provided as value argument to\r\n * any of the methods, it is converted to a {@link JsonNull}.\r\n *\r\n * <p>{@code JsonObject} does not implement the {@link Map} interface, but a {@code Map} view of it\r\n * can be obtained with {@link #asMap()}.\r\n *\r\n * <p>See the {@link JsonElement} documentation for details on how to convert {@code JsonObject} and\r\n * generally any {@code JsonElement} from and to JSON.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic final class JsonObject extends JsonElement {\r\n\r\n    private final LinkedTreeMap<String, JsonElement> members = new LinkedTreeMap<>(false);\r\n\r\n    /**\r\n     * Creates an empty JsonObject.\r\n     */\r\n    // superclass constructor\r\n    @SuppressWarnings(\"deprecation\")\r\n    public JsonObject() {\r\n    }\r\n\r\n    /**\r\n     * Creates a deep copy of this element and all its children.\r\n     *\r\n     * @since 2.8.2\r\n     */\r\n    @Override\r\n    public JsonObject deepCopy() {\r\n        JsonObject result = new JsonObject();\r\n        for (Map.Entry<String, JsonElement> entry : members.entrySet()) {\r\n            result.add(entry.getKey(), entry.getValue().deepCopy());\r\n        }\r\n        return result;\r\n    }\r\n\r\n    /**\r\n     * Adds a member, which is a name-value pair, to self. The name must be a String, but the value\r\n     * can be an arbitrary {@link JsonElement}, thereby allowing you to build a full tree of\r\n     * JsonElements rooted at this node.\r\n     *\r\n     * @param property name of the member.\r\n     * @param value the member object.\r\n     */\r\n    public void add(String property, JsonElement value) {\r\n        members.put(property, value == null ? JsonNull.INSTANCE : value);\r\n    }\r\n\r\n    /**\r\n     * Removes the {@code property} from this object.\r\n     *\r\n     * @param property name of the member that should be removed.\r\n     * @return the {@link JsonElement} object that is being removed, or {@code null} if no member with\r\n     *     this name exists.\r\n     * @since 1.3\r\n     */\r\n    @CanIgnoreReturnValue\r\n    public JsonElement remove(String property) {\r\n        return members.remove(property);\r\n    }\r\n\r\n    /**\r\n     * Convenience method to add a string member. The specified value is converted to a {@link\r\n     * JsonPrimitive} of String.\r\n     *\r\n     * @param property name of the member.\r\n     * @param value the string value associated with the member.\r\n     */\r\n    public void addProperty(String property, String value) {\r\n        add(property, value == null ? JsonNull.INSTANCE : new JsonPrimitive(value));\r\n    }\r\n\r\n    /**\r\n     * Convenience method to add a number member. The specified value is converted to a {@link\r\n     * JsonPrimitive} of Number.\r\n     *\r\n     * @param property name of the member.\r\n     * @param value the number value associated with the member.\r\n     */\r\n    public void addProperty(String property, Number value) {\r\n        add(property, value == null ? JsonNull.INSTANCE : new JsonPrimitive(value));\r\n    }\r\n\r\n    /**\r\n     * Convenience method to add a boolean member. The specified value is converted to a {@link\r\n     * JsonPrimitive} of Boolean.\r\n     *\r\n     * @param property name of the member.\r\n     * @param value the boolean value associated with the member.\r\n     */\r\n    public void addProperty(String property, Boolean value) {\r\n        add(property, value == null ? JsonNull.INSTANCE : new JsonPrimitive(value));\r\n    }\r\n\r\n    /**\r\n     * Convenience method to add a char member. The specified value is converted to a {@link\r\n     * JsonPrimitive} of Character.\r\n     *\r\n     * @param property name of the member.\r\n     * @param value the char value associated with the member.\r\n     */\r\n    public void addProperty(String property, Character value) {\r\n        add(property, value == null ? JsonNull.INSTANCE : new JsonPrimitive(value));\r\n    }\r\n\r\n    /**\r\n     * Returns a set of members of this object. The set is ordered, and the order is in which the\r\n     * elements were added.\r\n     *\r\n     * @return a set of members of this object.\r\n     */\r\n    public Set<Map.Entry<String, JsonElement>> entrySet() {\r\n        return members.entrySet();\r\n    }\r\n\r\n    /**\r\n     * Returns a set of members key values.\r\n     *\r\n     * @return a set of member keys as Strings\r\n     * @since 2.8.1\r\n     */\r\n    public Set<String> keySet() {\r\n        return members.keySet();\r\n    }\r\n\r\n    /**\r\n     * Returns the number of key/value pairs in the object.\r\n     *\r\n     * @return the number of key/value pairs in the object.\r\n     * @since 2.7\r\n     */\r\n    public int size() {\r\n        return members.size();\r\n    }\r\n\r\n    /**\r\n     * Returns true if the number of key/value pairs in the object is zero.\r\n     *\r\n     * @return true if the number of key/value pairs in the object is zero.\r\n     * @since 2.10.1\r\n     */\r\n    public boolean isEmpty() {\r\n        return members.isEmpty();\r\n    }\r\n\r\n    /**\r\n     * Convenience method to check if a member with the specified name is present in this object.\r\n     *\r\n     * @param memberName name of the member that is being checked for presence.\r\n     * @return true if there is a member with the specified name, false otherwise.\r\n     */\r\n    public boolean has(String memberName) {\r\n        return members.containsKey(memberName);\r\n    }\r\n\r\n    /**\r\n     * Returns the member with the specified name.\r\n     *\r\n     * @param memberName name of the member that is being requested.\r\n     * @return the member matching the name, or {@code null} if no such member exists.\r\n     */\r\n    public JsonElement get(String memberName) {\r\n        return members.get(memberName);\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get the specified member as a {@link JsonPrimitive}.\r\n     *\r\n     * @param memberName name of the member being requested.\r\n     * @return the {@code JsonPrimitive} corresponding to the specified member, or {@code null} if no\r\n     *     member with this name exists.\r\n     * @throws ClassCastException if the member is not of type {@code JsonPrimitive}.\r\n     */\r\n    public JsonPrimitive getAsJsonPrimitive(String memberName) {\r\n        return (JsonPrimitive) members.get(memberName);\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get the specified member as a {@link JsonArray}.\r\n     *\r\n     * @param memberName name of the member being requested.\r\n     * @return the {@code JsonArray} corresponding to the specified member, or {@code null} if no\r\n     *     member with this name exists.\r\n     * @throws ClassCastException if the member is not of type {@code JsonArray}.\r\n     */\r\n    public JsonArray getAsJsonArray(String memberName) {\r\n        return (JsonArray) members.get(memberName);\r\n    }\r\n\r\n    /**\r\n     * Convenience method to get the specified member as a {@link JsonObject}.\r\n     *\r\n     * @param memberName name of the member being requested.\r\n     * @return the {@code JsonObject} corresponding to the specified member, or {@code null} if no\r\n     *     member with this name exists.\r\n     * @throws ClassCastException if the member is not of type {@code JsonObject}.\r\n     */\r\n    public JsonObject getAsJsonObject(String memberName) {\r\n        return (JsonObject) members.get(memberName);\r\n    }\r\n\r\n    /**\r\n     * Returns a mutable {@link Map} view of this {@code JsonObject}. Changes to the {@code Map} are\r\n     * visible in this {@code JsonObject} and the other way around.\r\n     *\r\n     * <p>The {@code Map} does not permit {@code null} keys or values. Unlike {@code JsonObject}'s\r\n     * {@code null} handling, a {@link NullPointerException} is thrown when trying to add {@code\r\n     * null}. Use {@link JsonNull} for JSON null values.\r\n     *\r\n     * @return mutable {@code Map} view\r\n     * @since 2.10\r\n     */\r\n    public Map<String, JsonElement> asMap() {\r\n        // It is safe to expose the underlying map because it disallows null keys and values\r\n        return members;\r\n    }\r\n\r\n    /**\r\n     * Returns whether the other object is equal to this. This method only considers the other object\r\n     * to be equal if it is an instance of {@code JsonObject} and has equal members, ignoring order.\r\n     */\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        return (o == this) || (o instanceof JsonObject && ((JsonObject) o).members.equals(members));\r\n    }\r\n\r\n    /**\r\n     * Returns the hash code of this object. This method calculates the hash code based on the members\r\n     * of this object, ignoring order.\r\n     */\r\n    @Override\r\n    public int hashCode() {\r\n        return members.hashCode();\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "field",
+    "name": "members",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "private final LinkedTreeMap<String, JsonElement> members = new LinkedTreeMap<>(false);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "constructor",
+    "name": "JsonObject",
+    "start_line": 44,
+    "end_line": 45,
+    "code": "/**\r\n * Creates an empty JsonObject.\r\n */\r\n// superclass constructor\r\n@SuppressWarnings(\"deprecation\")\r\npublic JsonObject() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "deepCopy",
+    "start_line": 52,
+    "end_line": 59,
+    "code": "/**\r\n * Creates a deep copy of this element and all its children.\r\n *\r\n * @since 2.8.2\r\n */\r\n@Override\r\npublic JsonObject deepCopy() {\r\n    JsonObject result = new JsonObject();\r\n    for (Map.Entry<String, JsonElement> entry : members.entrySet()) {\r\n        result.add(entry.getKey(), entry.getValue().deepCopy());\r\n    }\r\n    return result;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "add",
+    "start_line": 69,
+    "end_line": 71,
+    "code": "/**\r\n * Adds a member, which is a name-value pair, to self. The name must be a String, but the value\r\n * can be an arbitrary {@link JsonElement}, thereby allowing you to build a full tree of\r\n * JsonElements rooted at this node.\r\n *\r\n * @param property name of the member.\r\n * @param value the member object.\r\n */\r\npublic void add(String property, JsonElement value) {\r\n    members.put(property, value == null ? JsonNull.INSTANCE : value);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "remove",
+    "start_line": 81,
+    "end_line": 84,
+    "code": "/**\r\n * Removes the {@code property} from this object.\r\n *\r\n * @param property name of the member that should be removed.\r\n * @return the {@link JsonElement} object that is being removed, or {@code null} if no member with\r\n *     this name exists.\r\n * @since 1.3\r\n */\r\n@CanIgnoreReturnValue\r\npublic JsonElement remove(String property) {\r\n    return members.remove(property);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "addProperty",
+    "start_line": 93,
+    "end_line": 95,
+    "code": "/**\r\n * Convenience method to add a string member. The specified value is converted to a {@link\r\n * JsonPrimitive} of String.\r\n *\r\n * @param property name of the member.\r\n * @param value the string value associated with the member.\r\n */\r\npublic void addProperty(String property, String value) {\r\n    add(property, value == null ? JsonNull.INSTANCE : new JsonPrimitive(value));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "addProperty",
+    "start_line": 104,
+    "end_line": 106,
+    "code": "/**\r\n * Convenience method to add a number member. The specified value is converted to a {@link\r\n * JsonPrimitive} of Number.\r\n *\r\n * @param property name of the member.\r\n * @param value the number value associated with the member.\r\n */\r\npublic void addProperty(String property, Number value) {\r\n    add(property, value == null ? JsonNull.INSTANCE : new JsonPrimitive(value));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "addProperty",
+    "start_line": 115,
+    "end_line": 117,
+    "code": "/**\r\n * Convenience method to add a boolean member. The specified value is converted to a {@link\r\n * JsonPrimitive} of Boolean.\r\n *\r\n * @param property name of the member.\r\n * @param value the boolean value associated with the member.\r\n */\r\npublic void addProperty(String property, Boolean value) {\r\n    add(property, value == null ? JsonNull.INSTANCE : new JsonPrimitive(value));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "addProperty",
+    "start_line": 126,
+    "end_line": 128,
+    "code": "/**\r\n * Convenience method to add a char member. The specified value is converted to a {@link\r\n * JsonPrimitive} of Character.\r\n *\r\n * @param property name of the member.\r\n * @param value the char value associated with the member.\r\n */\r\npublic void addProperty(String property, Character value) {\r\n    add(property, value == null ? JsonNull.INSTANCE : new JsonPrimitive(value));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "entrySet",
+    "start_line": 136,
+    "end_line": 138,
+    "code": "/**\r\n * Returns a set of members of this object. The set is ordered, and the order is in which the\r\n * elements were added.\r\n *\r\n * @return a set of members of this object.\r\n */\r\npublic Set<Map.Entry<String, JsonElement>> entrySet() {\r\n    return members.entrySet();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "keySet",
+    "start_line": 146,
+    "end_line": 148,
+    "code": "/**\r\n * Returns a set of members key values.\r\n *\r\n * @return a set of member keys as Strings\r\n * @since 2.8.1\r\n */\r\npublic Set<String> keySet() {\r\n    return members.keySet();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "size",
+    "start_line": 156,
+    "end_line": 158,
+    "code": "/**\r\n * Returns the number of key/value pairs in the object.\r\n *\r\n * @return the number of key/value pairs in the object.\r\n * @since 2.7\r\n */\r\npublic int size() {\r\n    return members.size();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "isEmpty",
+    "start_line": 166,
+    "end_line": 168,
+    "code": "/**\r\n * Returns true if the number of key/value pairs in the object is zero.\r\n *\r\n * @return true if the number of key/value pairs in the object is zero.\r\n * @since 2.10.1\r\n */\r\npublic boolean isEmpty() {\r\n    return members.isEmpty();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "has",
+    "start_line": 176,
+    "end_line": 178,
+    "code": "/**\r\n * Convenience method to check if a member with the specified name is present in this object.\r\n *\r\n * @param memberName name of the member that is being checked for presence.\r\n * @return true if there is a member with the specified name, false otherwise.\r\n */\r\npublic boolean has(String memberName) {\r\n    return members.containsKey(memberName);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "get",
+    "start_line": 186,
+    "end_line": 188,
+    "code": "/**\r\n * Returns the member with the specified name.\r\n *\r\n * @param memberName name of the member that is being requested.\r\n * @return the member matching the name, or {@code null} if no such member exists.\r\n */\r\npublic JsonElement get(String memberName) {\r\n    return members.get(memberName);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsJsonPrimitive",
+    "start_line": 198,
+    "end_line": 200,
+    "code": "/**\r\n * Convenience method to get the specified member as a {@link JsonPrimitive}.\r\n *\r\n * @param memberName name of the member being requested.\r\n * @return the {@code JsonPrimitive} corresponding to the specified member, or {@code null} if no\r\n *     member with this name exists.\r\n * @throws ClassCastException if the member is not of type {@code JsonPrimitive}.\r\n */\r\npublic JsonPrimitive getAsJsonPrimitive(String memberName) {\r\n    return (JsonPrimitive) members.get(memberName);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsJsonArray",
+    "start_line": 210,
+    "end_line": 212,
+    "code": "/**\r\n * Convenience method to get the specified member as a {@link JsonArray}.\r\n *\r\n * @param memberName name of the member being requested.\r\n * @return the {@code JsonArray} corresponding to the specified member, or {@code null} if no\r\n *     member with this name exists.\r\n * @throws ClassCastException if the member is not of type {@code JsonArray}.\r\n */\r\npublic JsonArray getAsJsonArray(String memberName) {\r\n    return (JsonArray) members.get(memberName);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "getAsJsonObject",
+    "start_line": 222,
+    "end_line": 224,
+    "code": "/**\r\n * Convenience method to get the specified member as a {@link JsonObject}.\r\n *\r\n * @param memberName name of the member being requested.\r\n * @return the {@code JsonObject} corresponding to the specified member, or {@code null} if no\r\n *     member with this name exists.\r\n * @throws ClassCastException if the member is not of type {@code JsonObject}.\r\n */\r\npublic JsonObject getAsJsonObject(String memberName) {\r\n    return (JsonObject) members.get(memberName);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "asMap",
+    "start_line": 237,
+    "end_line": 240,
+    "code": "/**\r\n * Returns a mutable {@link Map} view of this {@code JsonObject}. Changes to the {@code Map} are\r\n * visible in this {@code JsonObject} and the other way around.\r\n *\r\n * <p>The {@code Map} does not permit {@code null} keys or values. Unlike {@code JsonObject}'s\r\n * {@code null} handling, a {@link NullPointerException} is thrown when trying to add {@code\r\n * null}. Use {@link JsonNull} for JSON null values.\r\n *\r\n * @return mutable {@code Map} view\r\n * @since 2.10\r\n */\r\npublic Map<String, JsonElement> asMap() {\r\n    // It is safe to expose the underlying map because it disallows null keys and values\r\n    return members;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "equals",
+    "start_line": 246,
+    "end_line": 249,
+    "code": "/**\r\n * Returns whether the other object is equal to this. This method only considers the other object\r\n * to be equal if it is an instance of {@code JsonObject} and has equal members, ignoring order.\r\n */\r\n@Override\r\npublic boolean equals(Object o) {\r\n    return (o == this) || (o instanceof JsonObject && ((JsonObject) o).members.equals(members));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  },
+  {
+    "type": "method",
+    "name": "hashCode",
+    "start_line": 255,
+    "end_line": 258,
+    "code": "/**\r\n * Returns the hash code of this object. This method calculates the hash code based on the members\r\n * of this object, ignoring order.\r\n */\r\n@Override\r\npublic int hashCode() {\r\n    return members.hashCode();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\JsonObject.java"
+  }
+]

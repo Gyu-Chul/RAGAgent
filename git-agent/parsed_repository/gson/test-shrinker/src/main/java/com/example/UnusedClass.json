@@ -1,0 +1,42 @@
+[
+  {
+    "type": "package",
+    "name": "com.example",
+    "start_line": 1,
+    "end_line": 1,
+    "code": "package com.example;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\UnusedClass.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.annotations.SerializedName",
+    "start_line": 3,
+    "end_line": 3,
+    "code": "import com.google.gson.annotations.SerializedName;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\UnusedClass.java"
+  },
+  {
+    "type": "class",
+    "name": "UnusedClass",
+    "start_line": 11,
+    "end_line": 16,
+    "code": "/**\r\n * Class with no-args constructor and field annotated with {@code @SerializedName}, but which is not\r\n * actually used anywhere in the code.\r\n *\r\n * <p>The default ProGuard rules should not keep this class.\r\n */\r\npublic class UnusedClass {\r\n\r\n    public UnusedClass() {\r\n    }\r\n\r\n    @SerializedName(\"i\")\r\n    public int i;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\UnusedClass.java"
+  },
+  {
+    "type": "field",
+    "name": "i",
+    "start_line": 14,
+    "end_line": 15,
+    "code": "@SerializedName(\"i\")\r\npublic int i;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\UnusedClass.java"
+  },
+  {
+    "type": "constructor",
+    "name": "UnusedClass",
+    "start_line": 12,
+    "end_line": 12,
+    "code": "public UnusedClass() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\test-shrinker\\src\\main\\java\\com\\example\\UnusedClass.java"
+  }
+]

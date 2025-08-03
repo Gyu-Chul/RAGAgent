@@ -1,0 +1,170 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.StringReader",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.io.StringReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collections",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.util.Collections;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.LinkedHashMap",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.util.LinkedHashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "class",
+    "name": "ObjectTypeAdapterTest",
+    "start_line": 31,
+    "end_line": 117,
+    "code": "public final class ObjectTypeAdapterTest {\r\n\r\n    private final Gson gson = new GsonBuilder().create();\r\n\r\n    private final TypeAdapter<Object> adapter = gson.getAdapter(Object.class);\r\n\r\n    @Test\r\n    public void testDeserialize() throws Exception {\r\n        Map<?, ?> map = (Map<?, ?>) adapter.fromJson(\"{\\\"a\\\":5,\\\"b\\\":[1,2,null],\\\"c\\\":{\\\"x\\\":\\\"y\\\"}}\");\r\n        assertThat(map.get(\"a\")).isEqualTo(5.0);\r\n        assertThat(map.get(\"b\")).isEqualTo(Arrays.asList(1.0, 2.0, null));\r\n        assertThat(map.get(\"c\")).isEqualTo(Collections.singletonMap(\"x\", \"y\"));\r\n        assertThat(map).hasSize(3);\r\n    }\r\n\r\n    @Test\r\n    public void testSerialize() {\r\n        Object object = new RuntimeType();\r\n        assertThat(adapter.toJson(object).replace(\"\\\"\", \"'\")).isEqualTo(\"{'a':5,'b':[1,2,null]}\");\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeNullValue() {\r\n        Map<String, Object> map = new LinkedHashMap<>();\r\n        map.put(\"a\", null);\r\n        assertThat(adapter.toJson(map).replace('\"', '\\'')).isEqualTo(\"{'a':null}\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeserializeNullValue() throws Exception {\r\n        Map<String, Object> map = new LinkedHashMap<>();\r\n        map.put(\"a\", null);\r\n        assertThat(adapter.fromJson(\"{\\\"a\\\":null}\")).isEqualTo(map);\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeObject() {\r\n        assertThat(adapter.toJson(new Object())).isEqualTo(\"{}\");\r\n    }\r\n\r\n    /**\r\n     * Deeply nested JSON arrays should not cause {@link StackOverflowError}\r\n     */\r\n    @SuppressWarnings(\"unchecked\")\r\n    @Test\r\n    public void testDeserializeDeeplyNestedArrays() throws IOException {\r\n        int times = 10000;\r\n        // [[[ ... ]]]\r\n        String json = \"[\".repeat(times) + \"]\".repeat(times);\r\n        JsonReader jsonReader = new JsonReader(new StringReader(json));\r\n        jsonReader.setNestingLimit(Integer.MAX_VALUE);\r\n        int actualTimes = 0;\r\n        List<List<?>> current = (List<List<?>>) adapter.read(jsonReader);\r\n        while (true) {\r\n            actualTimes++;\r\n            if (current.isEmpty()) {\r\n                break;\r\n            }\r\n            assertThat(current).hasSize(1);\r\n            current = (List<List<?>>) current.get(0);\r\n        }\r\n        assertThat(actualTimes).isEqualTo(times);\r\n    }\r\n\r\n    /**\r\n     * Deeply nested JSON objects should not cause {@link StackOverflowError}\r\n     */\r\n    @SuppressWarnings(\"unchecked\")\r\n    @Test\r\n    public void testDeserializeDeeplyNestedObjects() throws IOException {\r\n        int times = 10000;\r\n        // {\"a\":{\"a\": ... {\"a\":null} ... }}\r\n        String json = \"{\\\"a\\\":\".repeat(times) + \"null\" + \"}\".repeat(times);\r\n        JsonReader jsonReader = new JsonReader(new StringReader(json));\r\n        jsonReader.setNestingLimit(Integer.MAX_VALUE);\r\n        int actualTimes = 0;\r\n        Map<String, Map<?, ?>> current = (Map<String, Map<?, ?>>) adapter.read(jsonReader);\r\n        while (current != null) {\r\n            assertThat(current).hasSize(1);\r\n            actualTimes++;\r\n            current = (Map<String, Map<?, ?>>) current.get(\"a\");\r\n        }\r\n        assertThat(actualTimes).isEqualTo(times);\r\n    }\r\n\r\n    @SuppressWarnings({ \"unused\", \"ClassCanBeStatic\" })\r\n    private class RuntimeType {\r\n\r\n        Object a = 5;\r\n\r\n        Object b = Arrays.asList(1, 2, null);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "private final Gson gson = new GsonBuilder().create();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "field",
+    "name": "adapter",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "private final TypeAdapter<Object> adapter = gson.getAdapter(Object.class);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserialize",
+    "start_line": 35,
+    "end_line": 42,
+    "code": "@Test\r\npublic void testDeserialize() throws Exception {\r\n    Map<?, ?> map = (Map<?, ?>) adapter.fromJson(\"{\\\"a\\\":5,\\\"b\\\":[1,2,null],\\\"c\\\":{\\\"x\\\":\\\"y\\\"}}\");\r\n    assertThat(map.get(\"a\")).isEqualTo(5.0);\r\n    assertThat(map.get(\"b\")).isEqualTo(Arrays.asList(1.0, 2.0, null));\r\n    assertThat(map.get(\"c\")).isEqualTo(Collections.singletonMap(\"x\", \"y\"));\r\n    assertThat(map).hasSize(3);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerialize",
+    "start_line": 44,
+    "end_line": 48,
+    "code": "@Test\r\npublic void testSerialize() {\r\n    Object object = new RuntimeType();\r\n    assertThat(adapter.toJson(object).replace(\"\\\"\", \"'\")).isEqualTo(\"{'a':5,'b':[1,2,null]}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeNullValue",
+    "start_line": 50,
+    "end_line": 55,
+    "code": "@Test\r\npublic void testSerializeNullValue() {\r\n    Map<String, Object> map = new LinkedHashMap<>();\r\n    map.put(\"a\", null);\r\n    assertThat(adapter.toJson(map).replace('\"', '\\'')).isEqualTo(\"{'a':null}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserializeNullValue",
+    "start_line": 57,
+    "end_line": 62,
+    "code": "@Test\r\npublic void testDeserializeNullValue() throws Exception {\r\n    Map<String, Object> map = new LinkedHashMap<>();\r\n    map.put(\"a\", null);\r\n    assertThat(adapter.fromJson(\"{\\\"a\\\":null}\")).isEqualTo(map);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeObject",
+    "start_line": 64,
+    "end_line": 67,
+    "code": "@Test\r\npublic void testSerializeObject() {\r\n    assertThat(adapter.toJson(new Object())).isEqualTo(\"{}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserializeDeeplyNestedArrays",
+    "start_line": 70,
+    "end_line": 90,
+    "code": "/**\r\n * Deeply nested JSON arrays should not cause {@link StackOverflowError}\r\n */\r\n@SuppressWarnings(\"unchecked\")\r\n@Test\r\npublic void testDeserializeDeeplyNestedArrays() throws IOException {\r\n    int times = 10000;\r\n    // [[[ ... ]]]\r\n    String json = \"[\".repeat(times) + \"]\".repeat(times);\r\n    JsonReader jsonReader = new JsonReader(new StringReader(json));\r\n    jsonReader.setNestingLimit(Integer.MAX_VALUE);\r\n    int actualTimes = 0;\r\n    List<List<?>> current = (List<List<?>>) adapter.read(jsonReader);\r\n    while (true) {\r\n        actualTimes++;\r\n        if (current.isEmpty()) {\r\n            break;\r\n        }\r\n        assertThat(current).hasSize(1);\r\n        current = (List<List<?>>) current.get(0);\r\n    }\r\n    assertThat(actualTimes).isEqualTo(times);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserializeDeeplyNestedObjects",
+    "start_line": 93,
+    "end_line": 110,
+    "code": "/**\r\n * Deeply nested JSON objects should not cause {@link StackOverflowError}\r\n */\r\n@SuppressWarnings(\"unchecked\")\r\n@Test\r\npublic void testDeserializeDeeplyNestedObjects() throws IOException {\r\n    int times = 10000;\r\n    // {\"a\":{\"a\": ... {\"a\":null} ... }}\r\n    String json = \"{\\\"a\\\":\".repeat(times) + \"null\" + \"}\".repeat(times);\r\n    JsonReader jsonReader = new JsonReader(new StringReader(json));\r\n    jsonReader.setNestingLimit(Integer.MAX_VALUE);\r\n    int actualTimes = 0;\r\n    Map<String, Map<?, ?>> current = (Map<String, Map<?, ?>>) adapter.read(jsonReader);\r\n    while (current != null) {\r\n        assertThat(current).hasSize(1);\r\n        actualTimes++;\r\n        current = (Map<String, Map<?, ?>>) current.get(\"a\");\r\n    }\r\n    assertThat(actualTimes).isEqualTo(times);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\ObjectTypeAdapterTest.java"
+  }
+]

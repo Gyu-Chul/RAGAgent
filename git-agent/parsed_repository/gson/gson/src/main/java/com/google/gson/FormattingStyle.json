@@ -1,0 +1,130 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Objects",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import java.util.Objects;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "class",
+    "name": "FormattingStyle",
+    "start_line": 39,
+    "end_line": 156,
+    "code": "/**\r\n * A class used to control what the serialization output looks like.\r\n *\r\n * <p>It currently has the following configuration methods, but more methods might be added in the\r\n * future:\r\n *\r\n * <ul>\r\n *   <li>{@link #withNewline(String)}\r\n *   <li>{@link #withIndent(String)}\r\n *   <li>{@link #withSpaceAfterSeparators(boolean)}\r\n * </ul>\r\n *\r\n * @see GsonBuilder#setFormattingStyle(FormattingStyle)\r\n * @see JsonWriter#setFormattingStyle(FormattingStyle)\r\n * @see <a href=\"https://en.wikipedia.org/wiki/Newline\">Wikipedia Newline article</a>\r\n * @since 2.11.0\r\n */\r\npublic class FormattingStyle {\r\n\r\n    private final String newline;\r\n\r\n    private final String indent;\r\n\r\n    private final boolean spaceAfterSeparators;\r\n\r\n    /**\r\n     * The default compact formatting style:\r\n     *\r\n     * <ul>\r\n     *   <li>no newline\r\n     *   <li>no indent\r\n     *   <li>no space after {@code ','} and {@code ':'}\r\n     * </ul>\r\n     */\r\n    public static final FormattingStyle COMPACT = new FormattingStyle(\"\", \"\", false);\r\n\r\n    /**\r\n     * The default pretty printing formatting style:\r\n     *\r\n     * <ul>\r\n     *   <li>{@code \"\\n\"} as newline\r\n     *   <li>two spaces as indent\r\n     *   <li>a space between {@code ':'} and the subsequent value\r\n     * </ul>\r\n     */\r\n    public static final FormattingStyle PRETTY = new FormattingStyle(\"\\n\", \"  \", true);\r\n\r\n    private FormattingStyle(String newline, String indent, boolean spaceAfterSeparators) {\r\n        Objects.requireNonNull(newline, \"newline == null\");\r\n        Objects.requireNonNull(indent, \"indent == null\");\r\n        if (!newline.matches(\"[\\r\\n]*\")) {\r\n            throw new IllegalArgumentException(\"Only combinations of \\\\n and \\\\r are allowed in newline.\");\r\n        }\r\n        if (!indent.matches(\"[ \\t]*\")) {\r\n            throw new IllegalArgumentException(\"Only combinations of spaces and tabs are allowed in indent.\");\r\n        }\r\n        this.newline = newline;\r\n        this.indent = indent;\r\n        this.spaceAfterSeparators = spaceAfterSeparators;\r\n    }\r\n\r\n    /**\r\n     * Creates a {@link FormattingStyle} with the specified newline setting.\r\n     *\r\n     * <p>It can be used to accommodate certain OS convention, for example hardcode {@code \"\\n\"} for\r\n     * Linux and macOS, {@code \"\\r\\n\"} for Windows, or call {@link java.lang.System#lineSeparator()}\r\n     * to match the current OS.\r\n     *\r\n     * <p>Only combinations of {@code \\n} and {@code \\r} are allowed.\r\n     *\r\n     * @param newline the string value that will be used as newline.\r\n     * @return a newly created {@link FormattingStyle}\r\n     * @see #getNewline()\r\n     */\r\n    public FormattingStyle withNewline(String newline) {\r\n        return new FormattingStyle(newline, this.indent, this.spaceAfterSeparators);\r\n    }\r\n\r\n    /**\r\n     * Creates a {@link FormattingStyle} with the specified indent string.\r\n     *\r\n     * <p>Only combinations of spaces and tabs are allowed in indent.\r\n     *\r\n     * @param indent the string value that will be used as indent.\r\n     * @return a newly created {@link FormattingStyle}\r\n     * @see #getIndent()\r\n     */\r\n    public FormattingStyle withIndent(String indent) {\r\n        return new FormattingStyle(this.newline, indent, this.spaceAfterSeparators);\r\n    }\r\n\r\n    /**\r\n     * Creates a {@link FormattingStyle} which either uses a space after the separators {@code ','}\r\n     * and {@code ':'} in the JSON output, or not.\r\n     *\r\n     * <p>This setting has no effect on the {@linkplain #withNewline(String) configured newline}. If a\r\n     * non-empty newline is configured, it will always be added after {@code ','} and no space is\r\n     * added after the {@code ','} in that case.\r\n     *\r\n     * @param spaceAfterSeparators whether to output a space after {@code ','} and {@code ':'}.\r\n     * @return a newly created {@link FormattingStyle}\r\n     * @see #usesSpaceAfterSeparators()\r\n     */\r\n    public FormattingStyle withSpaceAfterSeparators(boolean spaceAfterSeparators) {\r\n        return new FormattingStyle(this.newline, this.indent, spaceAfterSeparators);\r\n    }\r\n\r\n    /**\r\n     * Returns the string value that will be used as a newline.\r\n     *\r\n     * @return the newline value.\r\n     * @see #withNewline(String)\r\n     */\r\n    public String getNewline() {\r\n        return this.newline;\r\n    }\r\n\r\n    /**\r\n     * Returns the string value that will be used as indent.\r\n     *\r\n     * @return the indent value.\r\n     * @see #withIndent(String)\r\n     */\r\n    public String getIndent() {\r\n        return this.indent;\r\n    }\r\n\r\n    /**\r\n     * Returns whether a space will be used after {@code ','} and {@code ':'}.\r\n     *\r\n     * @see #withSpaceAfterSeparators(boolean)\r\n     */\r\n    public boolean usesSpaceAfterSeparators() {\r\n        return this.spaceAfterSeparators;\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "field",
+    "name": "newline",
+    "start_line": 40,
+    "end_line": 40,
+    "code": "private final String newline;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "field",
+    "name": "indent",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "private final String indent;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "field",
+    "name": "spaceAfterSeparators",
+    "start_line": 42,
+    "end_line": 42,
+    "code": "private final boolean spaceAfterSeparators;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "field",
+    "name": "COMPACT",
+    "start_line": 53,
+    "end_line": 53,
+    "code": "/**\r\n * The default compact formatting style:\r\n *\r\n * <ul>\r\n *   <li>no newline\r\n *   <li>no indent\r\n *   <li>no space after {@code ','} and {@code ':'}\r\n * </ul>\r\n */\r\npublic static final FormattingStyle COMPACT = new FormattingStyle(\"\", \"\", false);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "field",
+    "name": "PRETTY",
+    "start_line": 64,
+    "end_line": 64,
+    "code": "/**\r\n * The default pretty printing formatting style:\r\n *\r\n * <ul>\r\n *   <li>{@code \"\\n\"} as newline\r\n *   <li>two spaces as indent\r\n *   <li>a space between {@code ':'} and the subsequent value\r\n * </ul>\r\n */\r\npublic static final FormattingStyle PRETTY = new FormattingStyle(\"\\n\", \"  \", true);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "constructor",
+    "name": "FormattingStyle",
+    "start_line": 66,
+    "end_line": 80,
+    "code": "private FormattingStyle(String newline, String indent, boolean spaceAfterSeparators) {\r\n    Objects.requireNonNull(newline, \"newline == null\");\r\n    Objects.requireNonNull(indent, \"indent == null\");\r\n    if (!newline.matches(\"[\\r\\n]*\")) {\r\n        throw new IllegalArgumentException(\"Only combinations of \\\\n and \\\\r are allowed in newline.\");\r\n    }\r\n    if (!indent.matches(\"[ \\t]*\")) {\r\n        throw new IllegalArgumentException(\"Only combinations of spaces and tabs are allowed in indent.\");\r\n    }\r\n    this.newline = newline;\r\n    this.indent = indent;\r\n    this.spaceAfterSeparators = spaceAfterSeparators;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "method",
+    "name": "withNewline",
+    "start_line": 95,
+    "end_line": 97,
+    "code": "/**\r\n * Creates a {@link FormattingStyle} with the specified newline setting.\r\n *\r\n * <p>It can be used to accommodate certain OS convention, for example hardcode {@code \"\\n\"} for\r\n * Linux and macOS, {@code \"\\r\\n\"} for Windows, or call {@link java.lang.System#lineSeparator()}\r\n * to match the current OS.\r\n *\r\n * <p>Only combinations of {@code \\n} and {@code \\r} are allowed.\r\n *\r\n * @param newline the string value that will be used as newline.\r\n * @return a newly created {@link FormattingStyle}\r\n * @see #getNewline()\r\n */\r\npublic FormattingStyle withNewline(String newline) {\r\n    return new FormattingStyle(newline, this.indent, this.spaceAfterSeparators);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "method",
+    "name": "withIndent",
+    "start_line": 108,
+    "end_line": 110,
+    "code": "/**\r\n * Creates a {@link FormattingStyle} with the specified indent string.\r\n *\r\n * <p>Only combinations of spaces and tabs are allowed in indent.\r\n *\r\n * @param indent the string value that will be used as indent.\r\n * @return a newly created {@link FormattingStyle}\r\n * @see #getIndent()\r\n */\r\npublic FormattingStyle withIndent(String indent) {\r\n    return new FormattingStyle(this.newline, indent, this.spaceAfterSeparators);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "method",
+    "name": "withSpaceAfterSeparators",
+    "start_line": 124,
+    "end_line": 126,
+    "code": "/**\r\n * Creates a {@link FormattingStyle} which either uses a space after the separators {@code ','}\r\n * and {@code ':'} in the JSON output, or not.\r\n *\r\n * <p>This setting has no effect on the {@linkplain #withNewline(String) configured newline}. If a\r\n * non-empty newline is configured, it will always be added after {@code ','} and no space is\r\n * added after the {@code ','} in that case.\r\n *\r\n * @param spaceAfterSeparators whether to output a space after {@code ','} and {@code ':'}.\r\n * @return a newly created {@link FormattingStyle}\r\n * @see #usesSpaceAfterSeparators()\r\n */\r\npublic FormattingStyle withSpaceAfterSeparators(boolean spaceAfterSeparators) {\r\n    return new FormattingStyle(this.newline, this.indent, spaceAfterSeparators);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "method",
+    "name": "getNewline",
+    "start_line": 134,
+    "end_line": 136,
+    "code": "/**\r\n * Returns the string value that will be used as a newline.\r\n *\r\n * @return the newline value.\r\n * @see #withNewline(String)\r\n */\r\npublic String getNewline() {\r\n    return this.newline;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "method",
+    "name": "getIndent",
+    "start_line": 144,
+    "end_line": 146,
+    "code": "/**\r\n * Returns the string value that will be used as indent.\r\n *\r\n * @return the indent value.\r\n * @see #withIndent(String)\r\n */\r\npublic String getIndent() {\r\n    return this.indent;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  },
+  {
+    "type": "method",
+    "name": "usesSpaceAfterSeparators",
+    "start_line": 153,
+    "end_line": 155,
+    "code": "/**\r\n * Returns whether a space will be used after {@code ','} and {@code ':'}.\r\n *\r\n * @see #withSpaceAfterSeparators(boolean)\r\n */\r\npublic boolean usesSpaceAfterSeparators() {\r\n    return this.spaceAfterSeparators;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\FormattingStyle.java"
+  }
+]

@@ -1,0 +1,274 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.bind",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.bind;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSyntaxException",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.JsonSyntaxException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapterFactory",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.TypeAdapterFactory;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.JavaVersion",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.internal.JavaVersion;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.PreJava9DateFormatProvider",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.internal.PreJava9DateFormatProvider;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.bind.util.ISO8601Utils",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.internal.bind.util.ISO8601Utils;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonToken",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.stream.JsonToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.DateFormat",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.text.DateFormat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.ParseException",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.text.ParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.ParsePosition",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import java.text.ParsePosition;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.SimpleDateFormat",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import java.text.SimpleDateFormat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Date",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "import java.util.Date;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Locale",
+    "start_line": 38,
+    "end_line": 38,
+    "code": "import java.util.Locale;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Objects",
+    "start_line": 39,
+    "end_line": 39,
+    "code": "import java.util.Objects;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.TimeZone",
+    "start_line": 40,
+    "end_line": 40,
+    "code": "import java.util.TimeZone;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "class",
+    "name": "DefaultDateTypeAdapter",
+    "start_line": 55,
+    "end_line": 198,
+    "code": "/**\r\n * This type adapter supports subclasses of date by defining a {@link\r\n * DefaultDateTypeAdapter.DateType} and then using its {@code createAdapterFactory} methods.\r\n *\r\n * <p><b>Important:</b> Instances of this class (or rather the {@link SimpleDateFormat} they use)\r\n * capture the current default {@link Locale} and {@link TimeZone} when they are created. Therefore\r\n * avoid storing factories obtained from {@link DateType} in {@code static} fields, since they only\r\n * create a single adapter instance and its behavior would then depend on when Gson classes are\r\n * loaded first, and which default {@code Locale} and {@code TimeZone} was used at that point.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic final class DefaultDateTypeAdapter<T extends Date> extends TypeAdapter<T> {\r\n\r\n    private static final String SIMPLE_NAME = \"DefaultDateTypeAdapter\";\r\n\r\n    /**\r\n     * Factory for {@link Date} adapters which use {@link DateFormat#DEFAULT} as style.\r\n     */\r\n    public static final TypeAdapterFactory DEFAULT_STYLE_FACTORY = // Because SimpleDateFormat captures the default TimeZone when it was created, let the factory\r\n    // always create new DefaultDateTypeAdapter instances (which are then cached by the Gson\r\n    // instances) instead of having a single static DefaultDateTypeAdapter instance\r\n    // Otherwise the behavior would depend on when an application first loads Gson classes and\r\n    // which default TimeZone is set at that point, which would be quite brittle\r\n    new TypeAdapterFactory() {\r\n\r\n        // we use a runtime check to make sure the 'T's equal\r\n        @SuppressWarnings(\"unchecked\")\r\n        @Override\r\n        public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {\r\n            return typeToken.getRawType() == Date.class ? (TypeAdapter<T>) new DefaultDateTypeAdapter<>(DateType.DATE, DateFormat.DEFAULT, DateFormat.DEFAULT) : null;\r\n        }\r\n\r\n        @Override\r\n        public String toString() {\r\n            return \"DefaultDateTypeAdapter#DEFAULT_STYLE_FACTORY\";\r\n        }\r\n    };\r\n\r\n    public abstract static class DateType<T extends Date> {\r\n\r\n        public static final DateType<Date> DATE = new DateType<Date>(Date.class) {\r\n\r\n            @Override\r\n            protected Date deserialize(Date date) {\r\n                return date;\r\n            }\r\n        };\r\n\r\n        private final Class<T> dateClass;\r\n\r\n        protected DateType(Class<T> dateClass) {\r\n            this.dateClass = dateClass;\r\n        }\r\n\r\n        protected abstract T deserialize(Date date);\r\n\r\n        private TypeAdapterFactory createFactory(DefaultDateTypeAdapter<T> adapter) {\r\n            return TypeAdapters.newFactory(dateClass, adapter);\r\n        }\r\n\r\n        public final TypeAdapterFactory createAdapterFactory(String datePattern) {\r\n            return createFactory(new DefaultDateTypeAdapter<>(this, datePattern));\r\n        }\r\n\r\n        public final TypeAdapterFactory createAdapterFactory(int dateStyle, int timeStyle) {\r\n            return createFactory(new DefaultDateTypeAdapter<>(this, dateStyle, timeStyle));\r\n        }\r\n    }\r\n\r\n    private final DateType<T> dateType;\r\n\r\n    /**\r\n     * List of 1 or more different date formats used for de-serialization attempts. The first of them\r\n     * is used for serialization as well.\r\n     */\r\n    private final List<DateFormat> dateFormats = new ArrayList<>();\r\n\r\n    private DefaultDateTypeAdapter(DateType<T> dateType, String datePattern) {\r\n        this.dateType = Objects.requireNonNull(dateType);\r\n        dateFormats.add(new SimpleDateFormat(datePattern, Locale.US));\r\n        if (!Locale.getDefault().equals(Locale.US)) {\r\n            dateFormats.add(new SimpleDateFormat(datePattern));\r\n        }\r\n    }\r\n\r\n    private DefaultDateTypeAdapter(DateType<T> dateType, int dateStyle, int timeStyle) {\r\n        this.dateType = Objects.requireNonNull(dateType);\r\n        dateFormats.add(DateFormat.getDateTimeInstance(dateStyle, timeStyle, Locale.US));\r\n        if (!Locale.getDefault().equals(Locale.US)) {\r\n            dateFormats.add(DateFormat.getDateTimeInstance(dateStyle, timeStyle));\r\n        }\r\n        if (JavaVersion.isJava9OrLater()) {\r\n            dateFormats.add(PreJava9DateFormatProvider.getUsDateTimeFormat(dateStyle, timeStyle));\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public void write(JsonWriter out, Date value) throws IOException {\r\n        if (value == null) {\r\n            out.nullValue();\r\n            return;\r\n        }\r\n        DateFormat dateFormat = dateFormats.get(0);\r\n        String dateFormatAsString;\r\n        // Needs to be synchronized since JDK DateFormat classes are not thread-safe\r\n        synchronized (dateFormats) {\r\n            dateFormatAsString = dateFormat.format(value);\r\n        }\r\n        out.value(dateFormatAsString);\r\n    }\r\n\r\n    @Override\r\n    public T read(JsonReader in) throws IOException {\r\n        if (in.peek() == JsonToken.NULL) {\r\n            in.nextNull();\r\n            return null;\r\n        }\r\n        Date date = deserializeToDate(in);\r\n        return dateType.deserialize(date);\r\n    }\r\n\r\n    private Date deserializeToDate(JsonReader in) throws IOException {\r\n        String s = in.nextString();\r\n        // Needs to be synchronized since JDK DateFormat classes are not thread-safe\r\n        synchronized (dateFormats) {\r\n            for (DateFormat dateFormat : dateFormats) {\r\n                TimeZone originalTimeZone = dateFormat.getTimeZone();\r\n                try {\r\n                    return dateFormat.parse(s);\r\n                } catch (ParseException ignored) {\r\n                    // OK: try the next format\r\n                } finally {\r\n                    dateFormat.setTimeZone(originalTimeZone);\r\n                }\r\n            }\r\n        }\r\n        try {\r\n            return ISO8601Utils.parse(s, new ParsePosition(0));\r\n        } catch (ParseException e) {\r\n            throw new JsonSyntaxException(\"Failed parsing '\" + s + \"' as Date; at path \" + in.getPreviousPath(), e);\r\n        }\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        DateFormat defaultFormat = dateFormats.get(0);\r\n        if (defaultFormat instanceof SimpleDateFormat) {\r\n            return SIMPLE_NAME + '(' + ((SimpleDateFormat) defaultFormat).toPattern() + ')';\r\n        } else {\r\n            return SIMPLE_NAME + '(' + defaultFormat.getClass().getSimpleName() + ')';\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "SIMPLE_NAME",
+    "start_line": 56,
+    "end_line": 56,
+    "code": "private static final String SIMPLE_NAME = \"DefaultDateTypeAdapter\";",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "DEFAULT_STYLE_FACTORY",
+    "start_line": 59,
+    "end_line": 80,
+    "code": "/**\r\n * Factory for {@link Date} adapters which use {@link DateFormat#DEFAULT} as style.\r\n */\r\npublic static final TypeAdapterFactory DEFAULT_STYLE_FACTORY = // Because SimpleDateFormat captures the default TimeZone when it was created, let the factory\r\n// always create new DefaultDateTypeAdapter instances (which are then cached by the Gson\r\n// instances) instead of having a single static DefaultDateTypeAdapter instance\r\n// Otherwise the behavior would depend on when an application first loads Gson classes and\r\n// which default TimeZone is set at that point, which would be quite brittle\r\nnew TypeAdapterFactory() {\r\n\r\n    // we use a runtime check to make sure the 'T's equal\r\n    @SuppressWarnings(\"unchecked\")\r\n    @Override\r\n    public <T> TypeAdapter<T> create(Gson gson, TypeToken<T> typeToken) {\r\n        return typeToken.getRawType() == Date.class ? (TypeAdapter<T>) new DefaultDateTypeAdapter<>(DateType.DATE, DateFormat.DEFAULT, DateFormat.DEFAULT) : null;\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return \"DefaultDateTypeAdapter#DEFAULT_STYLE_FACTORY\";\r\n    }\r\n};",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "dateType",
+    "start_line": 112,
+    "end_line": 112,
+    "code": "private final DateType<T> dateType;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "field",
+    "name": "dateFormats",
+    "start_line": 118,
+    "end_line": 118,
+    "code": "/**\r\n * List of 1 or more different date formats used for de-serialization attempts. The first of them\r\n * is used for serialization as well.\r\n */\r\nprivate final List<DateFormat> dateFormats = new ArrayList<>();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "constructor",
+    "name": "DefaultDateTypeAdapter",
+    "start_line": 120,
+    "end_line": 126,
+    "code": "private DefaultDateTypeAdapter(DateType<T> dateType, String datePattern) {\r\n    this.dateType = Objects.requireNonNull(dateType);\r\n    dateFormats.add(new SimpleDateFormat(datePattern, Locale.US));\r\n    if (!Locale.getDefault().equals(Locale.US)) {\r\n        dateFormats.add(new SimpleDateFormat(datePattern));\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "constructor",
+    "name": "DefaultDateTypeAdapter",
+    "start_line": 128,
+    "end_line": 137,
+    "code": "private DefaultDateTypeAdapter(DateType<T> dateType, int dateStyle, int timeStyle) {\r\n    this.dateType = Objects.requireNonNull(dateType);\r\n    dateFormats.add(DateFormat.getDateTimeInstance(dateStyle, timeStyle, Locale.US));\r\n    if (!Locale.getDefault().equals(Locale.US)) {\r\n        dateFormats.add(DateFormat.getDateTimeInstance(dateStyle, timeStyle));\r\n    }\r\n    if (JavaVersion.isJava9OrLater()) {\r\n        dateFormats.add(PreJava9DateFormatProvider.getUsDateTimeFormat(dateStyle, timeStyle));\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "write",
+    "start_line": 139,
+    "end_line": 153,
+    "code": "@Override\r\npublic void write(JsonWriter out, Date value) throws IOException {\r\n    if (value == null) {\r\n        out.nullValue();\r\n        return;\r\n    }\r\n    DateFormat dateFormat = dateFormats.get(0);\r\n    String dateFormatAsString;\r\n    // Needs to be synchronized since JDK DateFormat classes are not thread-safe\r\n    synchronized (dateFormats) {\r\n        dateFormatAsString = dateFormat.format(value);\r\n    }\r\n    out.value(dateFormatAsString);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "read",
+    "start_line": 155,
+    "end_line": 163,
+    "code": "@Override\r\npublic T read(JsonReader in) throws IOException {\r\n    if (in.peek() == JsonToken.NULL) {\r\n        in.nextNull();\r\n        return null;\r\n    }\r\n    Date date = deserializeToDate(in);\r\n    return dateType.deserialize(date);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "deserializeToDate",
+    "start_line": 165,
+    "end_line": 187,
+    "code": "private Date deserializeToDate(JsonReader in) throws IOException {\r\n    String s = in.nextString();\r\n    // Needs to be synchronized since JDK DateFormat classes are not thread-safe\r\n    synchronized (dateFormats) {\r\n        for (DateFormat dateFormat : dateFormats) {\r\n            TimeZone originalTimeZone = dateFormat.getTimeZone();\r\n            try {\r\n                return dateFormat.parse(s);\r\n            } catch (ParseException ignored) {\r\n                // OK: try the next format\r\n            } finally {\r\n                dateFormat.setTimeZone(originalTimeZone);\r\n            }\r\n        }\r\n    }\r\n    try {\r\n        return ISO8601Utils.parse(s, new ParsePosition(0));\r\n    } catch (ParseException e) {\r\n        throw new JsonSyntaxException(\"Failed parsing '\" + s + \"' as Date; at path \" + in.getPreviousPath(), e);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  },
+  {
+    "type": "method",
+    "name": "toString",
+    "start_line": 189,
+    "end_line": 197,
+    "code": "@Override\r\npublic String toString() {\r\n    DateFormat defaultFormat = dateFormats.get(0);\r\n    if (defaultFormat instanceof SimpleDateFormat) {\r\n        return SIMPLE_NAME + '(' + ((SimpleDateFormat) defaultFormat).toPattern() + ')';\r\n    } else {\r\n        return SIMPLE_NAME + '(' + defaultFormat.getClass().getSimpleName() + ')';\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\bind\\DefaultDateTypeAdapter.java"
+  }
+]

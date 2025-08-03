@@ -1,0 +1,234 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertWithMessage",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static com.google.common.truth.Truth.assertWithMessage;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collection",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.util.Collection;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collections",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.util.Collections;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.EnumMap",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.util.EnumMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.HashSet",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.util.HashSet;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.LinkedHashMap",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.util.LinkedHashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Set",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.util.Set;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.TreeMap",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import java.util.TreeMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.TreeSet",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import java.util.TreeSet;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.ConcurrentHashMap",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "import java.util.concurrent.ConcurrentHashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.ConcurrentSkipListMap",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "import java.util.concurrent.ConcurrentSkipListMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.LinkedBlockingDeque",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "import java.util.concurrent.LinkedBlockingDeque;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 38,
+    "end_line": 38,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "class",
+    "name": "ConstructorConstructorTest",
+    "start_line": 40,
+    "end_line": 271,
+    "code": "public class ConstructorConstructorTest {\r\n\r\n    private ConstructorConstructor constructorConstructor = new ConstructorConstructor(Collections.emptyMap(), true, Collections.emptyList());\r\n\r\n    private abstract static class AbstractClass {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        public AbstractClass() {\r\n        }\r\n    }\r\n\r\n    private interface Interface {\r\n    }\r\n\r\n    /**\r\n     * Verify that ConstructorConstructor does not try to invoke no-args constructor of abstract\r\n     * class.\r\n     */\r\n    @Test\r\n    public void testGet_AbstractClassNoArgConstructor() {\r\n        ObjectConstructor<AbstractClass> constructor = constructorConstructor.get(TypeToken.get(AbstractClass.class));\r\n        var e = assertThrows(RuntimeException.class, () -> constructor.construct());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Abstract classes can't be instantiated! Adjust the R8 configuration or register an\" + \" InstanceCreator or a TypeAdapter for this type. Class name:\" + \" com.google.gson.internal.ConstructorConstructorTest$AbstractClass\\n\" + \"See https://github.com/google/gson/blob/main/Troubleshooting.md#r8-abstract-class\");\r\n    }\r\n\r\n    @Test\r\n    public void testGet_Interface() {\r\n        ObjectConstructor<Interface> constructor = constructorConstructor.get(TypeToken.get(Interface.class));\r\n        var e = assertThrows(RuntimeException.class, () -> constructor.construct());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Interfaces can't be instantiated! Register an InstanceCreator or a TypeAdapter for\" + \" this type. Interface name:\" + \" com.google.gson.internal.ConstructorConstructorTest$Interface\");\r\n    }\r\n\r\n    @SuppressWarnings(\"serial\")\r\n    private static class CustomSortedSet<E> extends TreeSet<E> {\r\n\r\n        // Removes default no-args constructor\r\n        @SuppressWarnings(\"unused\")\r\n        CustomSortedSet(Void v) {\r\n        }\r\n    }\r\n\r\n    @SuppressWarnings(\"serial\")\r\n    private static class CustomSet<E> extends HashSet<E> {\r\n\r\n        // Removes default no-args constructor\r\n        @SuppressWarnings(\"unused\")\r\n        CustomSet(Void v) {\r\n        }\r\n    }\r\n\r\n    @SuppressWarnings(\"serial\")\r\n    private static class CustomQueue<E> extends LinkedBlockingDeque<E> {\r\n\r\n        // Removes default no-args constructor\r\n        @SuppressWarnings(\"unused\")\r\n        CustomQueue(Void v) {\r\n        }\r\n    }\r\n\r\n    @SuppressWarnings(\"serial\")\r\n    private static class CustomList<E> extends ArrayList<E> {\r\n\r\n        // Removes default no-args constructor\r\n        @SuppressWarnings(\"unused\")\r\n        CustomList(Void v) {\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Tests that creation of custom {@code Collection} subclasses without no-args constructor should\r\n     * not use default JDK types (which would cause {@link ClassCastException}).\r\n     *\r\n     * <p>Currently this test is rather contrived because the instances created using Unsafe are not\r\n     * usable because their fields are not properly initialized, but assume that user has custom\r\n     * classes which would be functional.\r\n     */\r\n    @Test\r\n    public void testCustomCollectionCreation() {\r\n        Class<?>[] collectionTypes = { CustomSortedSet.class, CustomSet.class, CustomQueue.class, CustomList.class };\r\n        for (Class<?> collectionType : collectionTypes) {\r\n            Object actual = constructorConstructor.get(TypeToken.getParameterized(collectionType, Integer.class)).construct();\r\n            assertWithMessage(\"Failed for \" + collectionType + \"; created instance of \" + actual.getClass()).that(actual).isInstanceOf(collectionType);\r\n        }\r\n    }\r\n\r\n    private static interface CustomCollectionInterface extends Collection<String> {\r\n    }\r\n\r\n    private static interface CustomSetInterface extends Set<String> {\r\n    }\r\n\r\n    private static interface CustomListInterface extends List<String> {\r\n    }\r\n\r\n    @Test\r\n    public void testCustomCollectionInterfaceCreation() {\r\n        Class<?>[] interfaces = { CustomCollectionInterface.class, CustomSetInterface.class, CustomListInterface.class };\r\n        for (Class<?> interfaceType : interfaces) {\r\n            var objectConstructor = constructorConstructor.get(TypeToken.get(interfaceType));\r\n            var exception = assertThrows(RuntimeException.class, () -> objectConstructor.construct());\r\n            assertThat(exception).hasMessageThat().isEqualTo(\"Interfaces can't be instantiated! Register an InstanceCreator or a TypeAdapter\" + \" for this type. Interface name: \" + interfaceType.getName());\r\n        }\r\n    }\r\n\r\n    @Test\r\n    public void testStringMapCreation() {\r\n        // When creating raw Map should use Gson's LinkedTreeMap, assuming keys could be String\r\n        Object actual = constructorConstructor.get(TypeToken.get(Map.class)).construct();\r\n        assertThat(actual).isInstanceOf(LinkedTreeMap.class);\r\n        // When creating a `Map<String, ...>` should use Gson's LinkedTreeMap\r\n        actual = constructorConstructor.get(new TypeToken<Map<String, Integer>>() {\r\n        }).construct();\r\n        assertThat(actual).isInstanceOf(LinkedTreeMap.class);\r\n        // But when explicitly requesting a JDK `LinkedHashMap<String, ...>` should use LinkedHashMap\r\n        actual = constructorConstructor.get(new TypeToken<LinkedHashMap<String, Integer>>() {\r\n        }).construct();\r\n        assertThat(actual).isInstanceOf(LinkedHashMap.class);\r\n        // For all Map types with non-String key, should use JDK LinkedHashMap by default\r\n        // This is also done to avoid ClassCastException later, because Gson's LinkedTreeMap requires\r\n        // that keys are Comparable\r\n        Class<?>[] nonStringTypes = { Integer.class, CharSequence.class, Object.class };\r\n        for (Class<?> keyType : nonStringTypes) {\r\n            actual = constructorConstructor.get(TypeToken.getParameterized(Map.class, keyType, Integer.class)).construct();\r\n            assertWithMessage(\"Failed for key type \" + keyType + \"; created instance of \" + actual.getClass()).that(actual).isInstanceOf(LinkedHashMap.class);\r\n        }\r\n    }\r\n\r\n    private enum MyEnum {\r\n    }\r\n\r\n    @SuppressWarnings(\"serial\")\r\n    private static class CustomEnumMap<K, V> extends EnumMap<MyEnum, V> {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        CustomEnumMap(Void v) {\r\n            super(MyEnum.class);\r\n        }\r\n    }\r\n\r\n    @SuppressWarnings(\"serial\")\r\n    private static class CustomConcurrentNavigableMap<K, V> extends ConcurrentSkipListMap<K, V> {\r\n\r\n        // Removes default no-args constructor\r\n        @SuppressWarnings(\"unused\")\r\n        CustomConcurrentNavigableMap(Void v) {\r\n        }\r\n    }\r\n\r\n    @SuppressWarnings(\"serial\")\r\n    private static class CustomConcurrentMap<K, V> extends ConcurrentHashMap<K, V> {\r\n\r\n        // Removes default no-args constructor\r\n        @SuppressWarnings(\"unused\")\r\n        CustomConcurrentMap(Void v) {\r\n        }\r\n    }\r\n\r\n    @SuppressWarnings(\"serial\")\r\n    private static class CustomSortedMap<K, V> extends TreeMap<K, V> {\r\n\r\n        // Removes default no-args constructor\r\n        @SuppressWarnings(\"unused\")\r\n        CustomSortedMap(Void v) {\r\n        }\r\n    }\r\n\r\n    @SuppressWarnings(\"serial\")\r\n    private static class CustomLinkedHashMap<K, V> extends LinkedHashMap<K, V> {\r\n\r\n        // Removes default no-args constructor\r\n        @SuppressWarnings(\"unused\")\r\n        CustomLinkedHashMap(Void v) {\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Tests that creation of custom {@code Map} subclasses without no-args constructor should not use\r\n     * default JDK types (which would cause {@link ClassCastException}).\r\n     *\r\n     * <p>Currently this test is rather contrived because the instances created using Unsafe are not\r\n     * usable because their fields are not properly initialized, but assume that user has custom\r\n     * classes which would be functional.\r\n     */\r\n    @Test\r\n    public void testCustomMapCreation() {\r\n        Class<?>[] mapTypes = { CustomEnumMap.class, CustomConcurrentNavigableMap.class, CustomConcurrentMap.class, CustomSortedMap.class, CustomLinkedHashMap.class };\r\n        for (Class<?> mapType : mapTypes) {\r\n            Object actual = constructorConstructor.get(TypeToken.getParameterized(mapType, String.class, Integer.class)).construct();\r\n            assertWithMessage(\"Failed for \" + mapType + \"; created instance of \" + actual.getClass()).that(actual).isInstanceOf(mapType);\r\n        }\r\n    }\r\n\r\n    private static interface CustomMapInterface extends Map<String, Integer> {\r\n    }\r\n\r\n    @Test\r\n    public void testCustomMapInterfaceCreation() {\r\n        var objectConstructor = constructorConstructor.get(TypeToken.get(CustomMapInterface.class));\r\n        var exception = assertThrows(RuntimeException.class, () -> objectConstructor.construct());\r\n        assertThat(exception).hasMessageThat().isEqualTo(\"Interfaces can't be instantiated! Register an InstanceCreator or a TypeAdapter\" + \" for this type. Interface name: \" + CustomMapInterface.class.getName());\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "field",
+    "name": "constructorConstructor",
+    "start_line": 41,
+    "end_line": 42,
+    "code": "private ConstructorConstructor constructorConstructor = new ConstructorConstructor(Collections.emptyMap(), true, Collections.emptyList());",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGet_AbstractClassNoArgConstructor",
+    "start_line": 55,
+    "end_line": 67,
+    "code": "/**\r\n * Verify that ConstructorConstructor does not try to invoke no-args constructor of abstract\r\n * class.\r\n */\r\n@Test\r\npublic void testGet_AbstractClassNoArgConstructor() {\r\n    ObjectConstructor<AbstractClass> constructor = constructorConstructor.get(TypeToken.get(AbstractClass.class));\r\n    var e = assertThrows(RuntimeException.class, () -> constructor.construct());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Abstract classes can't be instantiated! Adjust the R8 configuration or register an\" + \" InstanceCreator or a TypeAdapter for this type. Class name:\" + \" com.google.gson.internal.ConstructorConstructorTest$AbstractClass\\n\" + \"See https://github.com/google/gson/blob/main/Troubleshooting.md#r8-abstract-class\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGet_Interface",
+    "start_line": 69,
+    "end_line": 80,
+    "code": "@Test\r\npublic void testGet_Interface() {\r\n    ObjectConstructor<Interface> constructor = constructorConstructor.get(TypeToken.get(Interface.class));\r\n    var e = assertThrows(RuntimeException.class, () -> constructor.construct());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Interfaces can't be instantiated! Register an InstanceCreator or a TypeAdapter for\" + \" this type. Interface name:\" + \" com.google.gson.internal.ConstructorConstructorTest$Interface\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomCollectionCreation",
+    "start_line": 118,
+    "end_line": 134,
+    "code": "/**\r\n * Tests that creation of custom {@code Collection} subclasses without no-args constructor should\r\n * not use default JDK types (which would cause {@link ClassCastException}).\r\n *\r\n * <p>Currently this test is rather contrived because the instances created using Unsafe are not\r\n * usable because their fields are not properly initialized, but assume that user has custom\r\n * classes which would be functional.\r\n */\r\n@Test\r\npublic void testCustomCollectionCreation() {\r\n    Class<?>[] collectionTypes = { CustomSortedSet.class, CustomSet.class, CustomQueue.class, CustomList.class };\r\n    for (Class<?> collectionType : collectionTypes) {\r\n        Object actual = constructorConstructor.get(TypeToken.getParameterized(collectionType, Integer.class)).construct();\r\n        assertWithMessage(\"Failed for \" + collectionType + \"; created instance of \" + actual.getClass()).that(actual).isInstanceOf(collectionType);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomCollectionInterfaceCreation",
+    "start_line": 142,
+    "end_line": 158,
+    "code": "@Test\r\npublic void testCustomCollectionInterfaceCreation() {\r\n    Class<?>[] interfaces = { CustomCollectionInterface.class, CustomSetInterface.class, CustomListInterface.class };\r\n    for (Class<?> interfaceType : interfaces) {\r\n        var objectConstructor = constructorConstructor.get(TypeToken.get(interfaceType));\r\n        var exception = assertThrows(RuntimeException.class, () -> objectConstructor.construct());\r\n        assertThat(exception).hasMessageThat().isEqualTo(\"Interfaces can't be instantiated! Register an InstanceCreator or a TypeAdapter\" + \" for this type. Interface name: \" + interfaceType.getName());\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStringMapCreation",
+    "start_line": 160,
+    "end_line": 189,
+    "code": "@Test\r\npublic void testStringMapCreation() {\r\n    // When creating raw Map should use Gson's LinkedTreeMap, assuming keys could be String\r\n    Object actual = constructorConstructor.get(TypeToken.get(Map.class)).construct();\r\n    assertThat(actual).isInstanceOf(LinkedTreeMap.class);\r\n    // When creating a `Map<String, ...>` should use Gson's LinkedTreeMap\r\n    actual = constructorConstructor.get(new TypeToken<Map<String, Integer>>() {\r\n    }).construct();\r\n    assertThat(actual).isInstanceOf(LinkedTreeMap.class);\r\n    // But when explicitly requesting a JDK `LinkedHashMap<String, ...>` should use LinkedHashMap\r\n    actual = constructorConstructor.get(new TypeToken<LinkedHashMap<String, Integer>>() {\r\n    }).construct();\r\n    assertThat(actual).isInstanceOf(LinkedHashMap.class);\r\n    // For all Map types with non-String key, should use JDK LinkedHashMap by default\r\n    // This is also done to avoid ClassCastException later, because Gson's LinkedTreeMap requires\r\n    // that keys are Comparable\r\n    Class<?>[] nonStringTypes = { Integer.class, CharSequence.class, Object.class };\r\n    for (Class<?> keyType : nonStringTypes) {\r\n        actual = constructorConstructor.get(TypeToken.getParameterized(Map.class, keyType, Integer.class)).construct();\r\n        assertWithMessage(\"Failed for key type \" + keyType + \"; created instance of \" + actual.getClass()).that(actual).isInstanceOf(LinkedHashMap.class);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomMapCreation",
+    "start_line": 237,
+    "end_line": 256,
+    "code": "/**\r\n * Tests that creation of custom {@code Map} subclasses without no-args constructor should not use\r\n * default JDK types (which would cause {@link ClassCastException}).\r\n *\r\n * <p>Currently this test is rather contrived because the instances created using Unsafe are not\r\n * usable because their fields are not properly initialized, but assume that user has custom\r\n * classes which would be functional.\r\n */\r\n@Test\r\npublic void testCustomMapCreation() {\r\n    Class<?>[] mapTypes = { CustomEnumMap.class, CustomConcurrentNavigableMap.class, CustomConcurrentMap.class, CustomSortedMap.class, CustomLinkedHashMap.class };\r\n    for (Class<?> mapType : mapTypes) {\r\n        Object actual = constructorConstructor.get(TypeToken.getParameterized(mapType, String.class, Integer.class)).construct();\r\n        assertWithMessage(\"Failed for \" + mapType + \"; created instance of \" + actual.getClass()).that(actual).isInstanceOf(mapType);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomMapInterfaceCreation",
+    "start_line": 260,
+    "end_line": 270,
+    "code": "@Test\r\npublic void testCustomMapInterfaceCreation() {\r\n    var objectConstructor = constructorConstructor.get(TypeToken.get(CustomMapInterface.class));\r\n    var exception = assertThrows(RuntimeException.class, () -> objectConstructor.construct());\r\n    assertThat(exception).hasMessageThat().isEqualTo(\"Interfaces can't be instantiated! Register an InstanceCreator or a TypeAdapter\" + \" for this type. Interface name: \" + CustomMapInterface.class.getName());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\ConstructorConstructorTest.java"
+  }
+]

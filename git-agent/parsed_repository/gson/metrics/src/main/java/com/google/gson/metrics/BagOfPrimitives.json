@@ -1,0 +1,122 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.metrics",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.metrics;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.base.Objects",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import com.google.common.base.Objects;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "class",
+    "name": "BagOfPrimitives",
+    "start_line": 25,
+    "end_line": 96,
+    "code": "/**\r\n * Class with a bunch of primitive fields\r\n *\r\n * @author Inderjeet Singh\r\n */\r\npublic class BagOfPrimitives {\r\n\r\n    public static final long DEFAULT_VALUE = 0;\r\n\r\n    public long longValue;\r\n\r\n    public int intValue;\r\n\r\n    public boolean booleanValue;\r\n\r\n    public String stringValue;\r\n\r\n    public BagOfPrimitives() {\r\n        this(DEFAULT_VALUE, 0, false, \"\");\r\n    }\r\n\r\n    public BagOfPrimitives(long longValue, int intValue, boolean booleanValue, String stringValue) {\r\n        this.longValue = longValue;\r\n        this.intValue = intValue;\r\n        this.booleanValue = booleanValue;\r\n        this.stringValue = stringValue;\r\n    }\r\n\r\n    public int getIntValue() {\r\n        return intValue;\r\n    }\r\n\r\n    public String getExpectedJson() {\r\n        return \"{\" + \"\\\"longValue\\\":\" + longValue + \",\" + \"\\\"intValue\\\":\" + intValue + \",\" + \"\\\"booleanValue\\\":\" + booleanValue + \",\" + \"\\\"stringValue\\\":\\\"\" + stringValue + \"\\\"\" + \"}\";\r\n    }\r\n\r\n    @Override\r\n    public int hashCode() {\r\n        int prime = 31;\r\n        int result = 1;\r\n        result = prime * result + (booleanValue ? 1231 : 1237);\r\n        result = prime * result + intValue;\r\n        result = prime * result + (int) (longValue ^ (longValue >>> 32));\r\n        result = prime * result + ((stringValue == null) ? 0 : stringValue.hashCode());\r\n        return result;\r\n    }\r\n\r\n    @Override\r\n    public boolean equals(Object o) {\r\n        if (this == o) {\r\n            return true;\r\n        }\r\n        if (!(o instanceof BagOfPrimitives)) {\r\n            return false;\r\n        }\r\n        BagOfPrimitives that = (BagOfPrimitives) o;\r\n        return longValue == that.longValue && intValue == that.intValue && booleanValue == that.booleanValue && Objects.equal(stringValue, that.stringValue);\r\n    }\r\n\r\n    @Override\r\n    public String toString() {\r\n        return String.format(\"(longValue=%d,intValue=%d,booleanValue=%b,stringValue=%s)\", longValue, intValue, booleanValue, stringValue);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "field",
+    "name": "DEFAULT_VALUE",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "public static final long DEFAULT_VALUE = 0;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "field",
+    "name": "longValue",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "public long longValue;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "field",
+    "name": "intValue",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "public int intValue;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "field",
+    "name": "booleanValue",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "public boolean booleanValue;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "field",
+    "name": "stringValue",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "public String stringValue;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "constructor",
+    "name": "BagOfPrimitives",
+    "start_line": 32,
+    "end_line": 34,
+    "code": "public BagOfPrimitives() {\r\n    this(DEFAULT_VALUE, 0, false, \"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "constructor",
+    "name": "BagOfPrimitives",
+    "start_line": 36,
+    "end_line": 41,
+    "code": "public BagOfPrimitives(long longValue, int intValue, boolean booleanValue, String stringValue) {\r\n    this.longValue = longValue;\r\n    this.intValue = intValue;\r\n    this.booleanValue = booleanValue;\r\n    this.stringValue = stringValue;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "method",
+    "name": "getIntValue",
+    "start_line": 43,
+    "end_line": 45,
+    "code": "public int getIntValue() {\r\n    return intValue;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "method",
+    "name": "getExpectedJson",
+    "start_line": 47,
+    "end_line": 62,
+    "code": "public String getExpectedJson() {\r\n    return \"{\" + \"\\\"longValue\\\":\" + longValue + \",\" + \"\\\"intValue\\\":\" + intValue + \",\" + \"\\\"booleanValue\\\":\" + booleanValue + \",\" + \"\\\"stringValue\\\":\\\"\" + stringValue + \"\\\"\" + \"}\";\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "method",
+    "name": "hashCode",
+    "start_line": 64,
+    "end_line": 73,
+    "code": "@Override\r\npublic int hashCode() {\r\n    int prime = 31;\r\n    int result = 1;\r\n    result = prime * result + (booleanValue ? 1231 : 1237);\r\n    result = prime * result + intValue;\r\n    result = prime * result + (int) (longValue ^ (longValue >>> 32));\r\n    result = prime * result + ((stringValue == null) ? 0 : stringValue.hashCode());\r\n    return result;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "method",
+    "name": "equals",
+    "start_line": 75,
+    "end_line": 88,
+    "code": "@Override\r\npublic boolean equals(Object o) {\r\n    if (this == o) {\r\n        return true;\r\n    }\r\n    if (!(o instanceof BagOfPrimitives)) {\r\n        return false;\r\n    }\r\n    BagOfPrimitives that = (BagOfPrimitives) o;\r\n    return longValue == that.longValue && intValue == that.intValue && booleanValue == that.booleanValue && Objects.equal(stringValue, that.stringValue);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  },
+  {
+    "type": "method",
+    "name": "toString",
+    "start_line": 90,
+    "end_line": 95,
+    "code": "@Override\r\npublic String toString() {\r\n    return String.format(\"(longValue=%d,intValue=%d,booleanValue=%b,stringValue=%s)\", longValue, intValue, booleanValue, stringValue);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\metrics\\src\\main\\java\\com\\google\\gson\\metrics\\BagOfPrimitives.java"
+  }
+]

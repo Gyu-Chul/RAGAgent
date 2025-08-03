@@ -1,0 +1,186 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.bind.util",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.bind.util;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.ParseException",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.text.ParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.text.ParsePosition",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.text.ParsePosition;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Calendar",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.Calendar;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Date",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.util.Date;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.GregorianCalendar",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.util.GregorianCalendar;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Locale",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.util.Locale;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.TimeZone",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.util.TimeZone;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "class",
+    "name": "ISO8601UtilsTest",
+    "start_line": 31,
+    "end_line": 126,
+    "code": "// class name\r\n@SuppressWarnings(\"MemberName\")\r\npublic class ISO8601UtilsTest {\r\n\r\n    private static TimeZone utcTimeZone() {\r\n        return TimeZone.getTimeZone(\"UTC\");\r\n    }\r\n\r\n    private static GregorianCalendar createUtcCalendar() {\r\n        TimeZone utc = utcTimeZone();\r\n        GregorianCalendar calendar = new GregorianCalendar(utc);\r\n        // Calendar was created with current time, must clear it\r\n        calendar.clear();\r\n        return calendar;\r\n    }\r\n\r\n    @Test\r\n    public void testDateFormatString() {\r\n        GregorianCalendar calendar = new GregorianCalendar(utcTimeZone(), Locale.US);\r\n        // Calendar was created with current time, must clear it\r\n        calendar.clear();\r\n        calendar.set(2018, Calendar.JUNE, 25);\r\n        Date date = calendar.getTime();\r\n        String dateStr = ISO8601Utils.format(date);\r\n        String expectedDate = \"2018-06-25T00:00:00Z\";\r\n        assertThat(dateStr).isEqualTo(expectedDate);\r\n    }\r\n\r\n    @Test\r\n    @SuppressWarnings(\"JavaUtilDate\")\r\n    public void testDateFormatWithMilliseconds() {\r\n        long time = 1530209176870L;\r\n        Date date = new Date(time);\r\n        String dateStr = ISO8601Utils.format(date, true);\r\n        String expectedDate = \"2018-06-28T18:06:16.870Z\";\r\n        assertThat(dateStr).isEqualTo(expectedDate);\r\n    }\r\n\r\n    @Test\r\n    @SuppressWarnings(\"JavaUtilDate\")\r\n    public void testDateFormatWithTimezone() {\r\n        long time = 1530209176870L;\r\n        Date date = new Date(time);\r\n        String dateStr = ISO8601Utils.format(date, true, TimeZone.getTimeZone(\"Brazil/East\"));\r\n        String expectedDate = \"2018-06-28T15:06:16.870-03:00\";\r\n        assertThat(dateStr).isEqualTo(expectedDate);\r\n    }\r\n\r\n    @Test\r\n    @SuppressWarnings(\"UndefinedEquals\")\r\n    public void testDateParseWithDefaultTimezone() throws ParseException {\r\n        String dateStr = \"2018-06-25\";\r\n        Date date = ISO8601Utils.parse(dateStr, new ParsePosition(0));\r\n        Date expectedDate = new GregorianCalendar(2018, Calendar.JUNE, 25).getTime();\r\n        assertThat(date).isEqualTo(expectedDate);\r\n    }\r\n\r\n    @Test\r\n    public void testDateParseInvalidDay() {\r\n        String dateStr = \"2022-12-33\";\r\n        assertThrows(ParseException.class, () -> ISO8601Utils.parse(dateStr, new ParsePosition(0)));\r\n    }\r\n\r\n    @Test\r\n    public void testDateParseInvalidMonth() {\r\n        String dateStr = \"2022-14-30\";\r\n        assertThrows(ParseException.class, () -> ISO8601Utils.parse(dateStr, new ParsePosition(0)));\r\n    }\r\n\r\n    @Test\r\n    @SuppressWarnings(\"UndefinedEquals\")\r\n    public void testDateParseWithTimezone() throws ParseException {\r\n        String dateStr = \"2018-06-25T00:00:00-03:00\";\r\n        Date date = ISO8601Utils.parse(dateStr, new ParsePosition(0));\r\n        GregorianCalendar calendar = createUtcCalendar();\r\n        calendar.set(2018, Calendar.JUNE, 25, 3, 0);\r\n        Date expectedDate = calendar.getTime();\r\n        assertThat(date).isEqualTo(expectedDate);\r\n    }\r\n\r\n    @Test\r\n    @SuppressWarnings(\"UndefinedEquals\")\r\n    public void testDateParseSpecialTimezone() throws ParseException {\r\n        String dateStr = \"2018-06-25T00:02:00-02:58\";\r\n        Date date = ISO8601Utils.parse(dateStr, new ParsePosition(0));\r\n        GregorianCalendar calendar = createUtcCalendar();\r\n        calendar.set(2018, Calendar.JUNE, 25, 3, 0);\r\n        Date expectedDate = calendar.getTime();\r\n        assertThat(date).isEqualTo(expectedDate);\r\n    }\r\n\r\n    @Test\r\n    public void testDateParseInvalidTime() {\r\n        String dateStr = \"2018-06-25T61:60:62-03:00\";\r\n        assertThrows(ParseException.class, () -> ISO8601Utils.parse(dateStr, new ParsePosition(0)));\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "utcTimeZone",
+    "start_line": 34,
+    "end_line": 36,
+    "code": "private static TimeZone utcTimeZone() {\r\n    return TimeZone.getTimeZone(\"UTC\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "createUtcCalendar",
+    "start_line": 38,
+    "end_line": 44,
+    "code": "private static GregorianCalendar createUtcCalendar() {\r\n    TimeZone utc = utcTimeZone();\r\n    GregorianCalendar calendar = new GregorianCalendar(utc);\r\n    // Calendar was created with current time, must clear it\r\n    calendar.clear();\r\n    return calendar;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDateFormatString",
+    "start_line": 46,
+    "end_line": 56,
+    "code": "@Test\r\npublic void testDateFormatString() {\r\n    GregorianCalendar calendar = new GregorianCalendar(utcTimeZone(), Locale.US);\r\n    // Calendar was created with current time, must clear it\r\n    calendar.clear();\r\n    calendar.set(2018, Calendar.JUNE, 25);\r\n    Date date = calendar.getTime();\r\n    String dateStr = ISO8601Utils.format(date);\r\n    String expectedDate = \"2018-06-25T00:00:00Z\";\r\n    assertThat(dateStr).isEqualTo(expectedDate);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDateFormatWithMilliseconds",
+    "start_line": 58,
+    "end_line": 66,
+    "code": "@Test\r\n@SuppressWarnings(\"JavaUtilDate\")\r\npublic void testDateFormatWithMilliseconds() {\r\n    long time = 1530209176870L;\r\n    Date date = new Date(time);\r\n    String dateStr = ISO8601Utils.format(date, true);\r\n    String expectedDate = \"2018-06-28T18:06:16.870Z\";\r\n    assertThat(dateStr).isEqualTo(expectedDate);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDateFormatWithTimezone",
+    "start_line": 68,
+    "end_line": 76,
+    "code": "@Test\r\n@SuppressWarnings(\"JavaUtilDate\")\r\npublic void testDateFormatWithTimezone() {\r\n    long time = 1530209176870L;\r\n    Date date = new Date(time);\r\n    String dateStr = ISO8601Utils.format(date, true, TimeZone.getTimeZone(\"Brazil/East\"));\r\n    String expectedDate = \"2018-06-28T15:06:16.870-03:00\";\r\n    assertThat(dateStr).isEqualTo(expectedDate);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDateParseWithDefaultTimezone",
+    "start_line": 78,
+    "end_line": 85,
+    "code": "@Test\r\n@SuppressWarnings(\"UndefinedEquals\")\r\npublic void testDateParseWithDefaultTimezone() throws ParseException {\r\n    String dateStr = \"2018-06-25\";\r\n    Date date = ISO8601Utils.parse(dateStr, new ParsePosition(0));\r\n    Date expectedDate = new GregorianCalendar(2018, Calendar.JUNE, 25).getTime();\r\n    assertThat(date).isEqualTo(expectedDate);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDateParseInvalidDay",
+    "start_line": 87,
+    "end_line": 91,
+    "code": "@Test\r\npublic void testDateParseInvalidDay() {\r\n    String dateStr = \"2022-12-33\";\r\n    assertThrows(ParseException.class, () -> ISO8601Utils.parse(dateStr, new ParsePosition(0)));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDateParseInvalidMonth",
+    "start_line": 93,
+    "end_line": 97,
+    "code": "@Test\r\npublic void testDateParseInvalidMonth() {\r\n    String dateStr = \"2022-14-30\";\r\n    assertThrows(ParseException.class, () -> ISO8601Utils.parse(dateStr, new ParsePosition(0)));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDateParseWithTimezone",
+    "start_line": 99,
+    "end_line": 108,
+    "code": "@Test\r\n@SuppressWarnings(\"UndefinedEquals\")\r\npublic void testDateParseWithTimezone() throws ParseException {\r\n    String dateStr = \"2018-06-25T00:00:00-03:00\";\r\n    Date date = ISO8601Utils.parse(dateStr, new ParsePosition(0));\r\n    GregorianCalendar calendar = createUtcCalendar();\r\n    calendar.set(2018, Calendar.JUNE, 25, 3, 0);\r\n    Date expectedDate = calendar.getTime();\r\n    assertThat(date).isEqualTo(expectedDate);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDateParseSpecialTimezone",
+    "start_line": 110,
+    "end_line": 119,
+    "code": "@Test\r\n@SuppressWarnings(\"UndefinedEquals\")\r\npublic void testDateParseSpecialTimezone() throws ParseException {\r\n    String dateStr = \"2018-06-25T00:02:00-02:58\";\r\n    Date date = ISO8601Utils.parse(dateStr, new ParsePosition(0));\r\n    GregorianCalendar calendar = createUtcCalendar();\r\n    calendar.set(2018, Calendar.JUNE, 25, 3, 0);\r\n    Date expectedDate = calendar.getTime();\r\n    assertThat(date).isEqualTo(expectedDate);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDateParseInvalidTime",
+    "start_line": 121,
+    "end_line": 125,
+    "code": "@Test\r\npublic void testDateParseInvalidTime() {\r\n    String dateStr = \"2018-06-25T61:60:62-03:00\";\r\n    assertThrows(ParseException.class, () -> ISO8601Utils.parse(dateStr, new ParsePosition(0)));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\util\\ISO8601UtilsTest.java"
+  }
+]

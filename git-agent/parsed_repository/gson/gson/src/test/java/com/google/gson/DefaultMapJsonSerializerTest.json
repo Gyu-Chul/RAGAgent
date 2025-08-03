@@ -1,0 +1,98 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultMapJsonSerializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultMapJsonSerializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultMapJsonSerializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultMapJsonSerializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.HashMap",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.util.HashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultMapJsonSerializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultMapJsonSerializerTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultMapJsonSerializerTest.java"
+  },
+  {
+    "type": "class",
+    "name": "DefaultMapJsonSerializerTest",
+    "start_line": 33,
+    "end_line": 69,
+    "code": "/**\r\n * Unit test for the default JSON map serialization object located in the {@link\r\n * DefaultTypeAdapters} class.\r\n *\r\n * @author Joel Leitch\r\n */\r\npublic class DefaultMapJsonSerializerTest {\r\n\r\n    private Gson gson = new Gson();\r\n\r\n    @Test\r\n    public void testEmptyMapNoTypeSerialization() {\r\n        Map<String, String> emptyMap = new HashMap<>();\r\n        JsonElement element = gson.toJsonTree(emptyMap, emptyMap.getClass());\r\n        assertThat(element).isInstanceOf(JsonObject.class);\r\n        JsonObject emptyMapJsonObject = (JsonObject) element;\r\n        assertThat(emptyMapJsonObject.entrySet()).isEmpty();\r\n    }\r\n\r\n    @Test\r\n    public void testEmptyMapSerialization() {\r\n        Type mapType = new TypeToken<Map<String, String>>() {\r\n        }.getType();\r\n        Map<String, String> emptyMap = new HashMap<>();\r\n        JsonElement element = gson.toJsonTree(emptyMap, mapType);\r\n        assertThat(element).isInstanceOf(JsonObject.class);\r\n        JsonObject emptyMapJsonObject = (JsonObject) element;\r\n        assertThat(emptyMapJsonObject.entrySet()).isEmpty();\r\n    }\r\n\r\n    @Test\r\n    public void testNonEmptyMapSerialization() {\r\n        Type mapType = new TypeToken<Map<String, String>>() {\r\n        }.getType();\r\n        Map<String, String> myMap = new HashMap<>();\r\n        String key = \"key1\";\r\n        myMap.put(key, \"value1\");\r\n        Gson gson = new Gson();\r\n        JsonElement element = gson.toJsonTree(myMap, mapType);\r\n        assertThat(element.isJsonObject()).isTrue();\r\n        JsonObject mapJsonObject = element.getAsJsonObject();\r\n        assertThat(mapJsonObject.has(key)).isTrue();\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultMapJsonSerializerTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "private Gson gson = new Gson();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultMapJsonSerializerTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEmptyMapNoTypeSerialization",
+    "start_line": 36,
+    "end_line": 43,
+    "code": "@Test\r\npublic void testEmptyMapNoTypeSerialization() {\r\n    Map<String, String> emptyMap = new HashMap<>();\r\n    JsonElement element = gson.toJsonTree(emptyMap, emptyMap.getClass());\r\n    assertThat(element).isInstanceOf(JsonObject.class);\r\n    JsonObject emptyMapJsonObject = (JsonObject) element;\r\n    assertThat(emptyMapJsonObject.entrySet()).isEmpty();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultMapJsonSerializerTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEmptyMapSerialization",
+    "start_line": 45,
+    "end_line": 54,
+    "code": "@Test\r\npublic void testEmptyMapSerialization() {\r\n    Type mapType = new TypeToken<Map<String, String>>() {\r\n    }.getType();\r\n    Map<String, String> emptyMap = new HashMap<>();\r\n    JsonElement element = gson.toJsonTree(emptyMap, mapType);\r\n    assertThat(element).isInstanceOf(JsonObject.class);\r\n    JsonObject emptyMapJsonObject = (JsonObject) element;\r\n    assertThat(emptyMapJsonObject.entrySet()).isEmpty();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultMapJsonSerializerTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNonEmptyMapSerialization",
+    "start_line": 56,
+    "end_line": 68,
+    "code": "@Test\r\npublic void testNonEmptyMapSerialization() {\r\n    Type mapType = new TypeToken<Map<String, String>>() {\r\n    }.getType();\r\n    Map<String, String> myMap = new HashMap<>();\r\n    String key = \"key1\";\r\n    myMap.put(key, \"value1\");\r\n    Gson gson = new Gson();\r\n    JsonElement element = gson.toJsonTree(myMap, mapType);\r\n    assertThat(element.isJsonObject()).isTrue();\r\n    JsonObject mapJsonObject = element.getAsJsonObject();\r\n    assertThat(mapJsonObject.has(key)).isTrue();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\DefaultMapJsonSerializerTest.java"
+  }
+]

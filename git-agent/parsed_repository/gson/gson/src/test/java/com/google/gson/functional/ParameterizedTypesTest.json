@@ -1,0 +1,378 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.base.Objects",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.common.base.Objects;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonArray",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonArray;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonObject",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.JsonObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.ParameterizedTypeFixtures.MyParameterizedType",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.ParameterizedTypeFixtures.MyParameterizedType;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.ParameterizedTypeFixtures.MyParameterizedTypeAdapter",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.ParameterizedTypeFixtures.MyParameterizedTypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.ParameterizedTypeFixtures.MyParameterizedTypeInstanceCreator",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.ParameterizedTypeFixtures.MyParameterizedTypeInstanceCreator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.BagOfPrimitives",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.common.TestTypes.BagOfPrimitives;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.Reader",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.io.Reader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.Serializable",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import java.io.Serializable;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.StringReader",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import java.io.StringReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.StringWriter",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "import java.io.StringWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.Writer",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "import java.io.Writer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 38,
+    "end_line": 38,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 39,
+    "end_line": 39,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 40,
+    "end_line": 40,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 42,
+    "end_line": 42,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "class",
+    "name": "ParameterizedTypesTest",
+    "start_line": 50,
+    "end_line": 551,
+    "code": "/**\r\n * Functional tests for the serialization and deserialization of parameterized types in Gson.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class ParameterizedTypesTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() {\r\n        gson = new Gson();\r\n    }\r\n\r\n    @Test\r\n    public void testParameterizedTypesSerialization() {\r\n        MyParameterizedType<Integer> src = new MyParameterizedType<>(10);\r\n        Type typeOfSrc = new TypeToken<MyParameterizedType<Integer>>() {\r\n        }.getType();\r\n        String json = gson.toJson(src, typeOfSrc);\r\n        assertThat(json).isEqualTo(src.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testParameterizedTypeDeserialization() {\r\n        BagOfPrimitives bag = new BagOfPrimitives();\r\n        MyParameterizedType<BagOfPrimitives> expected = new MyParameterizedType<>(bag);\r\n        Type expectedType = new TypeToken<MyParameterizedType<BagOfPrimitives>>() {\r\n        }.getType();\r\n        BagOfPrimitives bagDefaultInstance = new BagOfPrimitives();\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(expectedType, new MyParameterizedTypeInstanceCreator<>(bagDefaultInstance)).create();\r\n        String json = expected.getExpectedJson();\r\n        MyParameterizedType<BagOfPrimitives> actual = gson.fromJson(json, expectedType);\r\n        assertThat(actual).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testTypesWithMultipleParametersSerialization() {\r\n        MultiParameters<Integer, Float, Double, String, BagOfPrimitives> src = new MultiParameters<>(10, 1.0F, 2.1D, \"abc\", new BagOfPrimitives());\r\n        Type typeOfSrc = new TypeToken<MultiParameters<Integer, Float, Double, String, BagOfPrimitives>>() {\r\n        }.getType();\r\n        String json = gson.toJson(src, typeOfSrc);\r\n        String expected = \"{\\\"a\\\":10,\\\"b\\\":1.0,\\\"c\\\":2.1,\\\"d\\\":\\\"abc\\\",\" + \"\\\"e\\\":{\\\"longValue\\\":0,\\\"intValue\\\":0,\\\"booleanValue\\\":false,\\\"stringValue\\\":\\\"\\\"}}\";\r\n        assertThat(json).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testTypesWithMultipleParametersDeserialization() {\r\n        Type typeOfTarget = new TypeToken<MultiParameters<Integer, Float, Double, String, BagOfPrimitives>>() {\r\n        }.getType();\r\n        String json = \"{\\\"a\\\":10,\\\"b\\\":1.0,\\\"c\\\":2.1,\\\"d\\\":\\\"abc\\\",\" + \"\\\"e\\\":{\\\"longValue\\\":0,\\\"intValue\\\":0,\\\"booleanValue\\\":false,\\\"stringValue\\\":\\\"\\\"}}\";\r\n        MultiParameters<Integer, Float, Double, String, BagOfPrimitives> target = gson.fromJson(json, typeOfTarget);\r\n        MultiParameters<Integer, Float, Double, String, BagOfPrimitives> expected = new MultiParameters<>(10, 1.0F, 2.1D, \"abc\", new BagOfPrimitives());\r\n        assertThat(target).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testParameterizedTypeWithCustomSerializer() {\r\n        Type ptIntegerType = new TypeToken<MyParameterizedType<Integer>>() {\r\n        }.getType();\r\n        Type ptStringType = new TypeToken<MyParameterizedType<String>>() {\r\n        }.getType();\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(ptIntegerType, new MyParameterizedTypeAdapter<Integer>()).registerTypeAdapter(ptStringType, new MyParameterizedTypeAdapter<String>()).create();\r\n        MyParameterizedType<Integer> intTarget = new MyParameterizedType<>(10);\r\n        String json = gson.toJson(intTarget, ptIntegerType);\r\n        assertThat(json).isEqualTo(MyParameterizedTypeAdapter.getExpectedJson(intTarget));\r\n        MyParameterizedType<String> stringTarget = new MyParameterizedType<>(\"abc\");\r\n        json = gson.toJson(stringTarget, ptStringType);\r\n        assertThat(json).isEqualTo(MyParameterizedTypeAdapter.getExpectedJson(stringTarget));\r\n    }\r\n\r\n    @Test\r\n    public void testParameterizedTypesWithCustomDeserializer() {\r\n        Type ptIntegerType = new TypeToken<MyParameterizedType<Integer>>() {\r\n        }.getType();\r\n        Type ptStringType = new TypeToken<MyParameterizedType<String>>() {\r\n        }.getType();\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(ptIntegerType, new MyParameterizedTypeAdapter<Integer>()).registerTypeAdapter(ptStringType, new MyParameterizedTypeAdapter<String>()).registerTypeAdapter(ptStringType, new MyParameterizedTypeInstanceCreator<>(\"\")).registerTypeAdapter(ptIntegerType, new MyParameterizedTypeInstanceCreator<>(0)).create();\r\n        MyParameterizedType<Integer> src = new MyParameterizedType<>(10);\r\n        String json = MyParameterizedTypeAdapter.getExpectedJson(src);\r\n        MyParameterizedType<Integer> intTarget = gson.fromJson(json, ptIntegerType);\r\n        assertThat(intTarget.value).isEqualTo(10);\r\n        MyParameterizedType<String> srcStr = new MyParameterizedType<>(\"abc\");\r\n        json = MyParameterizedTypeAdapter.getExpectedJson(srcStr);\r\n        MyParameterizedType<String> stringTarget = gson.fromJson(json, ptStringType);\r\n        assertThat(stringTarget.value).isEqualTo(\"abc\");\r\n    }\r\n\r\n    @Test\r\n    public void testParameterizedTypesWithWriterSerialization() {\r\n        Writer writer = new StringWriter();\r\n        MyParameterizedType<Integer> src = new MyParameterizedType<>(10);\r\n        Type typeOfSrc = new TypeToken<MyParameterizedType<Integer>>() {\r\n        }.getType();\r\n        gson.toJson(src, typeOfSrc, writer);\r\n        assertThat(writer.toString()).isEqualTo(src.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testParameterizedTypeWithReaderDeserialization() {\r\n        BagOfPrimitives bag = new BagOfPrimitives();\r\n        MyParameterizedType<BagOfPrimitives> expected = new MyParameterizedType<>(bag);\r\n        Type expectedType = new TypeToken<MyParameterizedType<BagOfPrimitives>>() {\r\n        }.getType();\r\n        BagOfPrimitives bagDefaultInstance = new BagOfPrimitives();\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(expectedType, new MyParameterizedTypeInstanceCreator<>(bagDefaultInstance)).create();\r\n        Reader json = new StringReader(expected.getExpectedJson());\r\n        MyParameterizedType<BagOfPrimitives> actual = gson.fromJson(json, expectedType);\r\n        assertThat(actual).isEqualTo(expected);\r\n    }\r\n\r\n    @SuppressWarnings(\"varargs\")\r\n    @SafeVarargs\r\n    private static <T> T[] arrayOf(T... args) {\r\n        return args;\r\n    }\r\n\r\n    @Test\r\n    public void testVariableTypeFieldsAndGenericArraysSerialization() {\r\n        Integer obj = 0;\r\n        Integer[] array = { 1, 2, 3 };\r\n        List<Integer> list = new ArrayList<>();\r\n        list.add(4);\r\n        list.add(5);\r\n        List<Integer>[] arrayOfLists = arrayOf(list, list);\r\n        Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n        }.getType();\r\n        ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(obj, array, list, arrayOfLists, list, arrayOfLists);\r\n        String json = gson.toJson(objToSerialize, typeOfSrc);\r\n        assertThat(json).isEqualTo(objToSerialize.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testVariableTypeFieldsAndGenericArraysDeserialization() {\r\n        Integer obj = 0;\r\n        Integer[] array = { 1, 2, 3 };\r\n        List<Integer> list = new ArrayList<>();\r\n        list.add(4);\r\n        list.add(5);\r\n        List<Integer>[] arrayOfLists = arrayOf(list, list);\r\n        Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n        }.getType();\r\n        ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(obj, array, list, arrayOfLists, list, arrayOfLists);\r\n        String json = gson.toJson(objToSerialize, typeOfSrc);\r\n        ObjectWithTypeVariables<Integer> objAfterDeserialization = gson.fromJson(json, typeOfSrc);\r\n        assertThat(json).isEqualTo(objAfterDeserialization.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testVariableTypeDeserialization() {\r\n        Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n        }.getType();\r\n        ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(0, null, null, null, null, null);\r\n        String json = gson.toJson(objToSerialize, typeOfSrc);\r\n        ObjectWithTypeVariables<Integer> objAfterDeserialization = gson.fromJson(json, typeOfSrc);\r\n        assertThat(json).isEqualTo(objAfterDeserialization.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testVariableTypeArrayDeserialization() {\r\n        Integer[] array = { 1, 2, 3 };\r\n        Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n        }.getType();\r\n        ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(null, array, null, null, null, null);\r\n        String json = gson.toJson(objToSerialize, typeOfSrc);\r\n        ObjectWithTypeVariables<Integer> objAfterDeserialization = gson.fromJson(json, typeOfSrc);\r\n        assertThat(json).isEqualTo(objAfterDeserialization.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testParameterizedTypeWithVariableTypeDeserialization() {\r\n        List<Integer> list = new ArrayList<>();\r\n        list.add(4);\r\n        list.add(5);\r\n        Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n        }.getType();\r\n        ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(null, null, list, null, null, null);\r\n        String json = gson.toJson(objToSerialize, typeOfSrc);\r\n        ObjectWithTypeVariables<Integer> objAfterDeserialization = gson.fromJson(json, typeOfSrc);\r\n        assertThat(json).isEqualTo(objAfterDeserialization.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testParameterizedTypeGenericArraysSerialization() {\r\n        List<Integer> list = new ArrayList<>();\r\n        list.add(1);\r\n        list.add(2);\r\n        List<Integer>[] arrayOfLists = arrayOf(list, list);\r\n        Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n        }.getType();\r\n        ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(null, null, null, arrayOfLists, null, null);\r\n        String json = gson.toJson(objToSerialize, typeOfSrc);\r\n        assertThat(json).isEqualTo(\"{\\\"arrayOfListOfTypeParameters\\\":[[1,2],[1,2]]}\");\r\n    }\r\n\r\n    @Test\r\n    public void testParameterizedTypeGenericArraysDeserialization() {\r\n        List<Integer> list = new ArrayList<>();\r\n        list.add(1);\r\n        list.add(2);\r\n        List<Integer>[] arrayOfLists = arrayOf(list, list);\r\n        Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n        }.getType();\r\n        ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(null, null, null, arrayOfLists, null, null);\r\n        String json = gson.toJson(objToSerialize, typeOfSrc);\r\n        ObjectWithTypeVariables<Integer> objAfterDeserialization = gson.fromJson(json, typeOfSrc);\r\n        assertThat(json).isEqualTo(objAfterDeserialization.getExpectedJson());\r\n    }\r\n\r\n    /**\r\n     * An test object that has fields that are type variables.\r\n     *\r\n     * @param <T> Enforce T to be a string to make writing the \"toExpectedJson\" method easier.\r\n     */\r\n    private static class ObjectWithTypeVariables<T extends Number> {\r\n\r\n        private final T typeParameterObj;\r\n\r\n        private final T[] typeParameterArray;\r\n\r\n        private final List<T> listOfTypeParameters;\r\n\r\n        private final List<T>[] arrayOfListOfTypeParameters;\r\n\r\n        private final List<? extends T> listOfWildcardTypeParameters;\r\n\r\n        private final List<? extends T>[] arrayOfListOfWildcardTypeParameters;\r\n\r\n        // For use by Gson\r\n        @SuppressWarnings(\"unused\")\r\n        private ObjectWithTypeVariables() {\r\n            this(null, null, null, null, null, null);\r\n        }\r\n\r\n        public ObjectWithTypeVariables(T obj, T[] array, List<T> list, List<T>[] arrayOfList, List<? extends T> wildcardList, List<? extends T>[] arrayOfWildcardList) {\r\n            this.typeParameterObj = obj;\r\n            this.typeParameterArray = array;\r\n            this.listOfTypeParameters = list;\r\n            this.arrayOfListOfTypeParameters = arrayOfList;\r\n            this.listOfWildcardTypeParameters = wildcardList;\r\n            this.arrayOfListOfWildcardTypeParameters = arrayOfWildcardList;\r\n        }\r\n\r\n        public String getExpectedJson() {\r\n            StringBuilder sb = new StringBuilder().append(\"{\");\r\n            boolean needsComma = false;\r\n            if (typeParameterObj != null) {\r\n                sb.append(\"\\\"typeParameterObj\\\":\").append(toString(typeParameterObj));\r\n                needsComma = true;\r\n            }\r\n            if (typeParameterArray != null) {\r\n                if (needsComma) {\r\n                    sb.append(',');\r\n                }\r\n                sb.append(\"\\\"typeParameterArray\\\":[\");\r\n                appendObjectsToBuilder(sb, Arrays.asList(typeParameterArray));\r\n                sb.append(']');\r\n                needsComma = true;\r\n            }\r\n            if (listOfTypeParameters != null) {\r\n                if (needsComma) {\r\n                    sb.append(',');\r\n                }\r\n                sb.append(\"\\\"listOfTypeParameters\\\":[\");\r\n                appendObjectsToBuilder(sb, listOfTypeParameters);\r\n                sb.append(']');\r\n                needsComma = true;\r\n            }\r\n            if (arrayOfListOfTypeParameters != null) {\r\n                if (needsComma) {\r\n                    sb.append(',');\r\n                }\r\n                sb.append(\"\\\"arrayOfListOfTypeParameters\\\":[\");\r\n                appendObjectsToBuilder(sb, arrayOfListOfTypeParameters);\r\n                sb.append(']');\r\n                needsComma = true;\r\n            }\r\n            if (listOfWildcardTypeParameters != null) {\r\n                if (needsComma) {\r\n                    sb.append(',');\r\n                }\r\n                sb.append(\"\\\"listOfWildcardTypeParameters\\\":[\");\r\n                appendObjectsToBuilder(sb, listOfWildcardTypeParameters);\r\n                sb.append(']');\r\n                needsComma = true;\r\n            }\r\n            if (arrayOfListOfWildcardTypeParameters != null) {\r\n                if (needsComma) {\r\n                    sb.append(',');\r\n                }\r\n                sb.append(\"\\\"arrayOfListOfWildcardTypeParameters\\\":[\");\r\n                appendObjectsToBuilder(sb, arrayOfListOfWildcardTypeParameters);\r\n                sb.append(']');\r\n                needsComma = true;\r\n            }\r\n            sb.append('}');\r\n            return sb.toString();\r\n        }\r\n\r\n        private void appendObjectsToBuilder(StringBuilder sb, Iterable<? extends T> iterable) {\r\n            boolean isFirst = true;\r\n            for (T obj : iterable) {\r\n                if (!isFirst) {\r\n                    sb.append(',');\r\n                }\r\n                isFirst = false;\r\n                sb.append(toString(obj));\r\n            }\r\n        }\r\n\r\n        private void appendObjectsToBuilder(StringBuilder sb, List<? extends T>[] arrayOfList) {\r\n            boolean isFirst = true;\r\n            for (List<? extends T> list : arrayOfList) {\r\n                if (!isFirst) {\r\n                    sb.append(',');\r\n                }\r\n                isFirst = false;\r\n                if (list != null) {\r\n                    sb.append('[');\r\n                    appendObjectsToBuilder(sb, list);\r\n                    sb.append(']');\r\n                } else {\r\n                    sb.append(\"null\");\r\n                }\r\n            }\r\n        }\r\n\r\n        public String toString(T obj) {\r\n            return obj.toString();\r\n        }\r\n    }\r\n\r\n    private static final class MultiParameters<A, B, C, D, E> {\r\n\r\n        A a;\r\n\r\n        B b;\r\n\r\n        C c;\r\n\r\n        D d;\r\n\r\n        E e;\r\n\r\n        // For use by Gson\r\n        @SuppressWarnings(\"unused\")\r\n        private MultiParameters() {\r\n        }\r\n\r\n        MultiParameters(A a, B b, C c, D d, E e) {\r\n            super();\r\n            this.a = a;\r\n            this.b = b;\r\n            this.c = c;\r\n            this.d = d;\r\n            this.e = e;\r\n        }\r\n\r\n        @Override\r\n        public int hashCode() {\r\n            int prime = 31;\r\n            int result = 1;\r\n            result = prime * result + ((a == null) ? 0 : a.hashCode());\r\n            result = prime * result + ((b == null) ? 0 : b.hashCode());\r\n            result = prime * result + ((c == null) ? 0 : c.hashCode());\r\n            result = prime * result + ((d == null) ? 0 : d.hashCode());\r\n            result = prime * result + ((e == null) ? 0 : e.hashCode());\r\n            return result;\r\n        }\r\n\r\n        @Override\r\n        public boolean equals(Object o) {\r\n            if (this == o) {\r\n                return true;\r\n            }\r\n            if (!(o instanceof MultiParameters<?, ?, ?, ?, ?>)) {\r\n                return false;\r\n            }\r\n            MultiParameters<?, ?, ?, ?, ?> that = (MultiParameters<?, ?, ?, ?, ?>) o;\r\n            return Objects.equal(a, that.a) && Objects.equal(b, that.b) && Objects.equal(c, that.c) && Objects.equal(d, that.d) && Objects.equal(e, that.e);\r\n        }\r\n    }\r\n\r\n    // Begin: tests to reproduce issue 103\r\n    private static class Quantity {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        int q = 10;\r\n    }\r\n\r\n    private static class MyQuantity extends Quantity {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        int q2 = 20;\r\n    }\r\n\r\n    private interface Measurable<T> {\r\n    }\r\n\r\n    private interface Field<T> {\r\n    }\r\n\r\n    private interface Immutable {\r\n    }\r\n\r\n    public static final class Amount<Q extends Quantity> implements Measurable<Q>, Field<Amount<?>>, Serializable, Immutable {\r\n\r\n        private static final long serialVersionUID = -7560491093120970437L;\r\n\r\n        int value = 30;\r\n    }\r\n\r\n    @Test\r\n    public void testDeepParameterizedTypeSerialization() {\r\n        Amount<MyQuantity> amount = new Amount<>();\r\n        String json = gson.toJson(amount);\r\n        assertThat(json).contains(\"value\");\r\n        assertThat(json).contains(\"30\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeepParameterizedTypeDeserialization() {\r\n        String json = \"{value:30}\";\r\n        Type type = new TypeToken<Amount<MyQuantity>>() {\r\n        }.getType();\r\n        Amount<MyQuantity> amount = gson.fromJson(json, type);\r\n        assertThat(amount.value).isEqualTo(30);\r\n    }\r\n\r\n    // End: tests to reproduce issue 103\r\n    private static void assertCorrectlyDeserialized(Object object) {\r\n        @SuppressWarnings(\"unchecked\")\r\n        List<Quantity> list = (List<Quantity>) object;\r\n        assertThat(list.size()).isEqualTo(1);\r\n        assertThat(list.get(0).q).isEqualTo(4);\r\n    }\r\n\r\n    @Test\r\n    public void testGsonFromJsonTypeToken() {\r\n        TypeToken<List<Quantity>> typeToken = new TypeToken<>() {\r\n        };\r\n        Type type = typeToken.getType();\r\n        {\r\n            JsonObject jsonObject = new JsonObject();\r\n            jsonObject.addProperty(\"q\", 4);\r\n            JsonArray jsonArray = new JsonArray();\r\n            jsonArray.add(jsonObject);\r\n            assertCorrectlyDeserialized(gson.fromJson(jsonArray, typeToken));\r\n            assertCorrectlyDeserialized(gson.fromJson(jsonArray, type));\r\n        }\r\n        String json = \"[{\\\"q\\\":4}]\";\r\n        {\r\n            assertCorrectlyDeserialized(gson.fromJson(json, typeToken));\r\n            assertCorrectlyDeserialized(gson.fromJson(json, type));\r\n        }\r\n        {\r\n            assertCorrectlyDeserialized(gson.fromJson(new StringReader(json), typeToken));\r\n            assertCorrectlyDeserialized(gson.fromJson(new StringReader(json), type));\r\n        }\r\n        {\r\n            JsonReader reader = new JsonReader(new StringReader(json));\r\n            assertCorrectlyDeserialized(gson.fromJson(reader, typeToken));\r\n            reader = new JsonReader(new StringReader(json));\r\n            assertCorrectlyDeserialized(gson.fromJson(reader, type));\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 51,
+    "end_line": 51,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 53,
+    "end_line": 56,
+    "code": "@Before\r\npublic void setUp() {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParameterizedTypesSerialization",
+    "start_line": 58,
+    "end_line": 64,
+    "code": "@Test\r\npublic void testParameterizedTypesSerialization() {\r\n    MyParameterizedType<Integer> src = new MyParameterizedType<>(10);\r\n    Type typeOfSrc = new TypeToken<MyParameterizedType<Integer>>() {\r\n    }.getType();\r\n    String json = gson.toJson(src, typeOfSrc);\r\n    assertThat(json).isEqualTo(src.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParameterizedTypeDeserialization",
+    "start_line": 66,
+    "end_line": 81,
+    "code": "@Test\r\npublic void testParameterizedTypeDeserialization() {\r\n    BagOfPrimitives bag = new BagOfPrimitives();\r\n    MyParameterizedType<BagOfPrimitives> expected = new MyParameterizedType<>(bag);\r\n    Type expectedType = new TypeToken<MyParameterizedType<BagOfPrimitives>>() {\r\n    }.getType();\r\n    BagOfPrimitives bagDefaultInstance = new BagOfPrimitives();\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(expectedType, new MyParameterizedTypeInstanceCreator<>(bagDefaultInstance)).create();\r\n    String json = expected.getExpectedJson();\r\n    MyParameterizedType<BagOfPrimitives> actual = gson.fromJson(json, expectedType);\r\n    assertThat(actual).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTypesWithMultipleParametersSerialization",
+    "start_line": 83,
+    "end_line": 95,
+    "code": "@Test\r\npublic void testTypesWithMultipleParametersSerialization() {\r\n    MultiParameters<Integer, Float, Double, String, BagOfPrimitives> src = new MultiParameters<>(10, 1.0F, 2.1D, \"abc\", new BagOfPrimitives());\r\n    Type typeOfSrc = new TypeToken<MultiParameters<Integer, Float, Double, String, BagOfPrimitives>>() {\r\n    }.getType();\r\n    String json = gson.toJson(src, typeOfSrc);\r\n    String expected = \"{\\\"a\\\":10,\\\"b\\\":1.0,\\\"c\\\":2.1,\\\"d\\\":\\\"abc\\\",\" + \"\\\"e\\\":{\\\"longValue\\\":0,\\\"intValue\\\":0,\\\"booleanValue\\\":false,\\\"stringValue\\\":\\\"\\\"}}\";\r\n    assertThat(json).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTypesWithMultipleParametersDeserialization",
+    "start_line": 97,
+    "end_line": 110,
+    "code": "@Test\r\npublic void testTypesWithMultipleParametersDeserialization() {\r\n    Type typeOfTarget = new TypeToken<MultiParameters<Integer, Float, Double, String, BagOfPrimitives>>() {\r\n    }.getType();\r\n    String json = \"{\\\"a\\\":10,\\\"b\\\":1.0,\\\"c\\\":2.1,\\\"d\\\":\\\"abc\\\",\" + \"\\\"e\\\":{\\\"longValue\\\":0,\\\"intValue\\\":0,\\\"booleanValue\\\":false,\\\"stringValue\\\":\\\"\\\"}}\";\r\n    MultiParameters<Integer, Float, Double, String, BagOfPrimitives> target = gson.fromJson(json, typeOfTarget);\r\n    MultiParameters<Integer, Float, Double, String, BagOfPrimitives> expected = new MultiParameters<>(10, 1.0F, 2.1D, \"abc\", new BagOfPrimitives());\r\n    assertThat(target).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParameterizedTypeWithCustomSerializer",
+    "start_line": 112,
+    "end_line": 128,
+    "code": "@Test\r\npublic void testParameterizedTypeWithCustomSerializer() {\r\n    Type ptIntegerType = new TypeToken<MyParameterizedType<Integer>>() {\r\n    }.getType();\r\n    Type ptStringType = new TypeToken<MyParameterizedType<String>>() {\r\n    }.getType();\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(ptIntegerType, new MyParameterizedTypeAdapter<Integer>()).registerTypeAdapter(ptStringType, new MyParameterizedTypeAdapter<String>()).create();\r\n    MyParameterizedType<Integer> intTarget = new MyParameterizedType<>(10);\r\n    String json = gson.toJson(intTarget, ptIntegerType);\r\n    assertThat(json).isEqualTo(MyParameterizedTypeAdapter.getExpectedJson(intTarget));\r\n    MyParameterizedType<String> stringTarget = new MyParameterizedType<>(\"abc\");\r\n    json = gson.toJson(stringTarget, ptStringType);\r\n    assertThat(json).isEqualTo(MyParameterizedTypeAdapter.getExpectedJson(stringTarget));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParameterizedTypesWithCustomDeserializer",
+    "start_line": 130,
+    "end_line": 151,
+    "code": "@Test\r\npublic void testParameterizedTypesWithCustomDeserializer() {\r\n    Type ptIntegerType = new TypeToken<MyParameterizedType<Integer>>() {\r\n    }.getType();\r\n    Type ptStringType = new TypeToken<MyParameterizedType<String>>() {\r\n    }.getType();\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(ptIntegerType, new MyParameterizedTypeAdapter<Integer>()).registerTypeAdapter(ptStringType, new MyParameterizedTypeAdapter<String>()).registerTypeAdapter(ptStringType, new MyParameterizedTypeInstanceCreator<>(\"\")).registerTypeAdapter(ptIntegerType, new MyParameterizedTypeInstanceCreator<>(0)).create();\r\n    MyParameterizedType<Integer> src = new MyParameterizedType<>(10);\r\n    String json = MyParameterizedTypeAdapter.getExpectedJson(src);\r\n    MyParameterizedType<Integer> intTarget = gson.fromJson(json, ptIntegerType);\r\n    assertThat(intTarget.value).isEqualTo(10);\r\n    MyParameterizedType<String> srcStr = new MyParameterizedType<>(\"abc\");\r\n    json = MyParameterizedTypeAdapter.getExpectedJson(srcStr);\r\n    MyParameterizedType<String> stringTarget = gson.fromJson(json, ptStringType);\r\n    assertThat(stringTarget.value).isEqualTo(\"abc\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParameterizedTypesWithWriterSerialization",
+    "start_line": 153,
+    "end_line": 160,
+    "code": "@Test\r\npublic void testParameterizedTypesWithWriterSerialization() {\r\n    Writer writer = new StringWriter();\r\n    MyParameterizedType<Integer> src = new MyParameterizedType<>(10);\r\n    Type typeOfSrc = new TypeToken<MyParameterizedType<Integer>>() {\r\n    }.getType();\r\n    gson.toJson(src, typeOfSrc, writer);\r\n    assertThat(writer.toString()).isEqualTo(src.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParameterizedTypeWithReaderDeserialization",
+    "start_line": 162,
+    "end_line": 177,
+    "code": "@Test\r\npublic void testParameterizedTypeWithReaderDeserialization() {\r\n    BagOfPrimitives bag = new BagOfPrimitives();\r\n    MyParameterizedType<BagOfPrimitives> expected = new MyParameterizedType<>(bag);\r\n    Type expectedType = new TypeToken<MyParameterizedType<BagOfPrimitives>>() {\r\n    }.getType();\r\n    BagOfPrimitives bagDefaultInstance = new BagOfPrimitives();\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(expectedType, new MyParameterizedTypeInstanceCreator<>(bagDefaultInstance)).create();\r\n    Reader json = new StringReader(expected.getExpectedJson());\r\n    MyParameterizedType<BagOfPrimitives> actual = gson.fromJson(json, expectedType);\r\n    assertThat(actual).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "arrayOf",
+    "start_line": 179,
+    "end_line": 183,
+    "code": "@SuppressWarnings(\"varargs\")\r\n@SafeVarargs\r\nprivate static <T> T[] arrayOf(T... args) {\r\n    return args;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testVariableTypeFieldsAndGenericArraysSerialization",
+    "start_line": 185,
+    "end_line": 200,
+    "code": "@Test\r\npublic void testVariableTypeFieldsAndGenericArraysSerialization() {\r\n    Integer obj = 0;\r\n    Integer[] array = { 1, 2, 3 };\r\n    List<Integer> list = new ArrayList<>();\r\n    list.add(4);\r\n    list.add(5);\r\n    List<Integer>[] arrayOfLists = arrayOf(list, list);\r\n    Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n    }.getType();\r\n    ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(obj, array, list, arrayOfLists, list, arrayOfLists);\r\n    String json = gson.toJson(objToSerialize, typeOfSrc);\r\n    assertThat(json).isEqualTo(objToSerialize.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testVariableTypeFieldsAndGenericArraysDeserialization",
+    "start_line": 202,
+    "end_line": 218,
+    "code": "@Test\r\npublic void testVariableTypeFieldsAndGenericArraysDeserialization() {\r\n    Integer obj = 0;\r\n    Integer[] array = { 1, 2, 3 };\r\n    List<Integer> list = new ArrayList<>();\r\n    list.add(4);\r\n    list.add(5);\r\n    List<Integer>[] arrayOfLists = arrayOf(list, list);\r\n    Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n    }.getType();\r\n    ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(obj, array, list, arrayOfLists, list, arrayOfLists);\r\n    String json = gson.toJson(objToSerialize, typeOfSrc);\r\n    ObjectWithTypeVariables<Integer> objAfterDeserialization = gson.fromJson(json, typeOfSrc);\r\n    assertThat(json).isEqualTo(objAfterDeserialization.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testVariableTypeDeserialization",
+    "start_line": 220,
+    "end_line": 229,
+    "code": "@Test\r\npublic void testVariableTypeDeserialization() {\r\n    Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n    }.getType();\r\n    ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(0, null, null, null, null, null);\r\n    String json = gson.toJson(objToSerialize, typeOfSrc);\r\n    ObjectWithTypeVariables<Integer> objAfterDeserialization = gson.fromJson(json, typeOfSrc);\r\n    assertThat(json).isEqualTo(objAfterDeserialization.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testVariableTypeArrayDeserialization",
+    "start_line": 231,
+    "end_line": 242,
+    "code": "@Test\r\npublic void testVariableTypeArrayDeserialization() {\r\n    Integer[] array = { 1, 2, 3 };\r\n    Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n    }.getType();\r\n    ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(null, array, null, null, null, null);\r\n    String json = gson.toJson(objToSerialize, typeOfSrc);\r\n    ObjectWithTypeVariables<Integer> objAfterDeserialization = gson.fromJson(json, typeOfSrc);\r\n    assertThat(json).isEqualTo(objAfterDeserialization.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParameterizedTypeWithVariableTypeDeserialization",
+    "start_line": 244,
+    "end_line": 257,
+    "code": "@Test\r\npublic void testParameterizedTypeWithVariableTypeDeserialization() {\r\n    List<Integer> list = new ArrayList<>();\r\n    list.add(4);\r\n    list.add(5);\r\n    Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n    }.getType();\r\n    ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(null, null, list, null, null, null);\r\n    String json = gson.toJson(objToSerialize, typeOfSrc);\r\n    ObjectWithTypeVariables<Integer> objAfterDeserialization = gson.fromJson(json, typeOfSrc);\r\n    assertThat(json).isEqualTo(objAfterDeserialization.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParameterizedTypeGenericArraysSerialization",
+    "start_line": 259,
+    "end_line": 271,
+    "code": "@Test\r\npublic void testParameterizedTypeGenericArraysSerialization() {\r\n    List<Integer> list = new ArrayList<>();\r\n    list.add(1);\r\n    list.add(2);\r\n    List<Integer>[] arrayOfLists = arrayOf(list, list);\r\n    Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n    }.getType();\r\n    ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(null, null, null, arrayOfLists, null, null);\r\n    String json = gson.toJson(objToSerialize, typeOfSrc);\r\n    assertThat(json).isEqualTo(\"{\\\"arrayOfListOfTypeParameters\\\":[[1,2],[1,2]]}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testParameterizedTypeGenericArraysDeserialization",
+    "start_line": 273,
+    "end_line": 287,
+    "code": "@Test\r\npublic void testParameterizedTypeGenericArraysDeserialization() {\r\n    List<Integer> list = new ArrayList<>();\r\n    list.add(1);\r\n    list.add(2);\r\n    List<Integer>[] arrayOfLists = arrayOf(list, list);\r\n    Type typeOfSrc = new TypeToken<ObjectWithTypeVariables<Integer>>() {\r\n    }.getType();\r\n    ObjectWithTypeVariables<Integer> objToSerialize = new ObjectWithTypeVariables<>(null, null, null, arrayOfLists, null, null);\r\n    String json = gson.toJson(objToSerialize, typeOfSrc);\r\n    ObjectWithTypeVariables<Integer> objAfterDeserialization = gson.fromJson(json, typeOfSrc);\r\n    assertThat(json).isEqualTo(objAfterDeserialization.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeepParameterizedTypeSerialization",
+    "start_line": 491,
+    "end_line": 497,
+    "code": "@Test\r\npublic void testDeepParameterizedTypeSerialization() {\r\n    Amount<MyQuantity> amount = new Amount<>();\r\n    String json = gson.toJson(amount);\r\n    assertThat(json).contains(\"value\");\r\n    assertThat(json).contains(\"30\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeepParameterizedTypeDeserialization",
+    "start_line": 499,
+    "end_line": 505,
+    "code": "@Test\r\npublic void testDeepParameterizedTypeDeserialization() {\r\n    String json = \"{value:30}\";\r\n    Type type = new TypeToken<Amount<MyQuantity>>() {\r\n    }.getType();\r\n    Amount<MyQuantity> amount = gson.fromJson(json, type);\r\n    assertThat(amount.value).isEqualTo(30);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "assertCorrectlyDeserialized",
+    "start_line": 509,
+    "end_line": 514,
+    "code": "// End: tests to reproduce issue 103\r\nprivate static void assertCorrectlyDeserialized(Object object) {\r\n    @SuppressWarnings(\"unchecked\")\r\n    List<Quantity> list = (List<Quantity>) object;\r\n    assertThat(list.size()).isEqualTo(1);\r\n    assertThat(list.get(0).q).isEqualTo(4);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonFromJsonTypeToken",
+    "start_line": 516,
+    "end_line": 550,
+    "code": "@Test\r\npublic void testGsonFromJsonTypeToken() {\r\n    TypeToken<List<Quantity>> typeToken = new TypeToken<>() {\r\n    };\r\n    Type type = typeToken.getType();\r\n    {\r\n        JsonObject jsonObject = new JsonObject();\r\n        jsonObject.addProperty(\"q\", 4);\r\n        JsonArray jsonArray = new JsonArray();\r\n        jsonArray.add(jsonObject);\r\n        assertCorrectlyDeserialized(gson.fromJson(jsonArray, typeToken));\r\n        assertCorrectlyDeserialized(gson.fromJson(jsonArray, type));\r\n    }\r\n    String json = \"[{\\\"q\\\":4}]\";\r\n    {\r\n        assertCorrectlyDeserialized(gson.fromJson(json, typeToken));\r\n        assertCorrectlyDeserialized(gson.fromJson(json, type));\r\n    }\r\n    {\r\n        assertCorrectlyDeserialized(gson.fromJson(new StringReader(json), typeToken));\r\n        assertCorrectlyDeserialized(gson.fromJson(new StringReader(json), type));\r\n    }\r\n    {\r\n        JsonReader reader = new JsonReader(new StringReader(json));\r\n        assertCorrectlyDeserialized(gson.fromJson(reader, typeToken));\r\n        reader = new JsonReader(new StringReader(json));\r\n        assertCorrectlyDeserialized(gson.fromJson(reader, type));\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ParameterizedTypesTest.java"
+  }
+]

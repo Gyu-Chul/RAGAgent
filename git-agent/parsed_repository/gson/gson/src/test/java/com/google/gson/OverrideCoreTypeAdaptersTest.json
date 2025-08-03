@@ -1,0 +1,106 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Locale",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.Locale;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  },
+  {
+    "type": "class",
+    "name": "OverrideCoreTypeAdaptersTest",
+    "start_line": 32,
+    "end_line": 86,
+    "code": "/**\r\n * Tests handling of Core Type Adapters\r\n *\r\n * @author Jesse Wilson\r\n */\r\npublic class OverrideCoreTypeAdaptersTest {\r\n\r\n    private static final TypeAdapter<Boolean> booleanAsIntAdapter = new TypeAdapter<>() {\r\n\r\n        @Override\r\n        public void write(JsonWriter out, Boolean value) throws IOException {\r\n            out.value(value ? 1 : 0);\r\n        }\r\n\r\n        @Override\r\n        public Boolean read(JsonReader in) throws IOException {\r\n            int value = in.nextInt();\r\n            return value != 0;\r\n        }\r\n    };\r\n\r\n    private static final TypeAdapter<String> swapCaseStringAdapter = new TypeAdapter<>() {\r\n\r\n        @Override\r\n        public void write(JsonWriter out, String value) throws IOException {\r\n            out.value(value.toUpperCase(Locale.US));\r\n        }\r\n\r\n        @Override\r\n        public String read(JsonReader in) throws IOException {\r\n            return in.nextString().toLowerCase(Locale.US);\r\n        }\r\n    };\r\n\r\n    @Test\r\n    public void testOverrideWrapperBooleanAdapter() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Boolean.class, booleanAsIntAdapter).create();\r\n        assertThat(gson.toJson(true, boolean.class)).isEqualTo(\"true\");\r\n        assertThat(gson.toJson(true, Boolean.class)).isEqualTo(\"1\");\r\n        assertThat(gson.fromJson(\"true\", boolean.class)).isEqualTo(true);\r\n        assertThat(gson.fromJson(\"1\", Boolean.class)).isEqualTo(true);\r\n        assertThat(gson.fromJson(\"0\", Boolean.class)).isEqualTo(false);\r\n    }\r\n\r\n    @Test\r\n    public void testOverridePrimitiveBooleanAdapter() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(boolean.class, booleanAsIntAdapter).create();\r\n        assertThat(gson.toJson(true, boolean.class)).isEqualTo(\"1\");\r\n        assertThat(gson.toJson(true, Boolean.class)).isEqualTo(\"true\");\r\n        assertThat(gson.fromJson(\"1\", boolean.class)).isEqualTo(true);\r\n        assertThat(gson.fromJson(\"true\", Boolean.class)).isEqualTo(true);\r\n        assertThat(gson.toJson(false, boolean.class)).isEqualTo(\"0\");\r\n    }\r\n\r\n    @Test\r\n    public void testOverrideStringAdapter() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(String.class, swapCaseStringAdapter).create();\r\n        assertThat(gson.toJson(\"Hello\", String.class)).isEqualTo(\"\\\"HELLO\\\"\");\r\n        assertThat(gson.fromJson(\"\\\"Hello\\\"\", String.class)).isEqualTo(\"hello\");\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  },
+  {
+    "type": "field",
+    "name": "booleanAsIntAdapter",
+    "start_line": 33,
+    "end_line": 45,
+    "code": "private static final TypeAdapter<Boolean> booleanAsIntAdapter = new TypeAdapter<>() {\r\n\r\n    @Override\r\n    public void write(JsonWriter out, Boolean value) throws IOException {\r\n        out.value(value ? 1 : 0);\r\n    }\r\n\r\n    @Override\r\n    public Boolean read(JsonReader in) throws IOException {\r\n        int value = in.nextInt();\r\n        return value != 0;\r\n    }\r\n};",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  },
+  {
+    "type": "field",
+    "name": "swapCaseStringAdapter",
+    "start_line": 47,
+    "end_line": 58,
+    "code": "private static final TypeAdapter<String> swapCaseStringAdapter = new TypeAdapter<>() {\r\n\r\n    @Override\r\n    public void write(JsonWriter out, String value) throws IOException {\r\n        out.value(value.toUpperCase(Locale.US));\r\n    }\r\n\r\n    @Override\r\n    public String read(JsonReader in) throws IOException {\r\n        return in.nextString().toLowerCase(Locale.US);\r\n    }\r\n};",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testOverrideWrapperBooleanAdapter",
+    "start_line": 60,
+    "end_line": 68,
+    "code": "@Test\r\npublic void testOverrideWrapperBooleanAdapter() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Boolean.class, booleanAsIntAdapter).create();\r\n    assertThat(gson.toJson(true, boolean.class)).isEqualTo(\"true\");\r\n    assertThat(gson.toJson(true, Boolean.class)).isEqualTo(\"1\");\r\n    assertThat(gson.fromJson(\"true\", boolean.class)).isEqualTo(true);\r\n    assertThat(gson.fromJson(\"1\", Boolean.class)).isEqualTo(true);\r\n    assertThat(gson.fromJson(\"0\", Boolean.class)).isEqualTo(false);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testOverridePrimitiveBooleanAdapter",
+    "start_line": 70,
+    "end_line": 78,
+    "code": "@Test\r\npublic void testOverridePrimitiveBooleanAdapter() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(boolean.class, booleanAsIntAdapter).create();\r\n    assertThat(gson.toJson(true, boolean.class)).isEqualTo(\"1\");\r\n    assertThat(gson.toJson(true, Boolean.class)).isEqualTo(\"true\");\r\n    assertThat(gson.fromJson(\"1\", boolean.class)).isEqualTo(true);\r\n    assertThat(gson.fromJson(\"true\", Boolean.class)).isEqualTo(true);\r\n    assertThat(gson.toJson(false, boolean.class)).isEqualTo(\"0\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testOverrideStringAdapter",
+    "start_line": 80,
+    "end_line": 85,
+    "code": "@Test\r\npublic void testOverrideStringAdapter() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(String.class, swapCaseStringAdapter).create();\r\n    assertThat(gson.toJson(\"Hello\", String.class)).isEqualTo(\"\\\"HELLO\\\"\");\r\n    assertThat(gson.fromJson(\"\\\"Hello\\\"\", String.class)).isEqualTo(\"hello\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\OverrideCoreTypeAdaptersTest.java"
+  }
+]

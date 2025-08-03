@@ -1,5 +1,7 @@
 import os
 import json
+# ✨ 1. 새로 만든 자바 파서(parse_json3)를 임포트합니다.
+from src.parse_json3.parse_json3 import parse_json3
 from src.parse_json.parse_json import parse_json
 from src.parse_json2.parse_json2 import parse_json2
 
@@ -18,20 +20,37 @@ def process_repository_files(repo_name: str):
     js_directories_to_parse = set()
 
     for root, dirs, files in os.walk(repo_path):
+        # 제외할 디렉터리 목록
         if 'node_modules' in dirs:
             dirs.remove('node_modules')
         if '.git' in dirs:
             dirs.remove('.git')
+        # 자바 프로젝트의 빌드 결과물 디렉터리도 제외
+        if 'target' in dirs:
+            dirs.remove('target')
+        if 'build' in dirs:
+            dirs.remove('build')
 
         for filename in files:
+            file_path = os.path.join(root, filename) # 공통으로 사용할 file_path
+
             if filename.endswith(".py"):
-                file_path = os.path.join(root, filename)
                 try:
                     print(f"파이썬 파일 발견: {file_path}")
                     parse_json(file_path)
                 except Exception as e:
                     print(f"[오류] '{file_path}' 파이썬 파일 처리 중 오류: {e}")
 
+            # ✨ 2. 자바(.java) 파일을 처리하는 로직을 여기에 추가합니다.
+            elif filename.endswith(".java"):
+                try:
+                    print(f"자바 파일 발견: {file_path}")
+                    # 임포트한 자바 파서 함수를 호출합니다.
+                    parse_json3(file_path)
+                except Exception as e:
+                    print(f"[오류] '{file_path}' 자바 파일 처리 중 오류: {e}")
+
+        # 기존 자바스크립트 처리 로직은 그대로 유지
         if any(f.endswith('.js') for f in files):
             js_directories_to_parse.add(root)
 
@@ -43,6 +62,7 @@ def process_repository_files(repo_name: str):
             except Exception as e:
                 print(f"[오류] '{js_dir}' 자바스크립트 디렉토리 처리 중 오류: {e}")
 
+    # 이하 GitAiData.json 생성 로직은 동일
     parsed_repo_path = os.path.join(PARSED_BASE_DIR, repo_name)
     os.makedirs(parsed_repo_path, exist_ok=True)
     git_ai_data_path = os.path.join(parsed_repo_path, 'GitAiData.json')

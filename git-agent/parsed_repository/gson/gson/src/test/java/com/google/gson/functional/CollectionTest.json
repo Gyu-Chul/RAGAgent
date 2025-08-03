@@ -1,0 +1,522 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.InstanceCreator",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.InstanceCreator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonIOException",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.JsonIOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializationContext",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.JsonSerializationContext;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializer",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.JsonSerializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.TestTypes.BagOfPrimitives",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.common.TestTypes.BagOfPrimitives;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.AbstractCollection",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import java.util.AbstractCollection;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collection",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "import java.util.Collection;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collections",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "import java.util.Collections;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.HashSet",
+    "start_line": 38,
+    "end_line": 38,
+    "code": "import java.util.HashSet;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Iterator",
+    "start_line": 39,
+    "end_line": 39,
+    "code": "import java.util.Iterator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.LinkedList",
+    "start_line": 40,
+    "end_line": 40,
+    "code": "import java.util.LinkedList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 41,
+    "end_line": 41,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 42,
+    "end_line": 42,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.PriorityQueue",
+    "start_line": 43,
+    "end_line": 43,
+    "code": "import java.util.PriorityQueue;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Queue",
+    "start_line": 44,
+    "end_line": 44,
+    "code": "import java.util.Queue;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Set",
+    "start_line": 45,
+    "end_line": 45,
+    "code": "import java.util.Set;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Stack",
+    "start_line": 46,
+    "end_line": 46,
+    "code": "import java.util.Stack;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Vector",
+    "start_line": 47,
+    "end_line": 47,
+    "code": "import java.util.Vector;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 48,
+    "end_line": 48,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 49,
+    "end_line": 49,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "class",
+    "name": "CollectionTest",
+    "start_line": 57,
+    "end_line": 504,
+    "code": "/**\r\n * Functional tests for Json serialization and deserialization of collections.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class CollectionTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n    }\r\n\r\n    @Test\r\n    public void testTopLevelCollectionOfIntegersSerialization() {\r\n        Collection<Integer> target = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);\r\n        Type targetType = new TypeToken<Collection<Integer>>() {\r\n        }.getType();\r\n        String json = gson.toJson(target, targetType);\r\n        assertThat(json).isEqualTo(\"[1,2,3,4,5,6,7,8,9]\");\r\n    }\r\n\r\n    @Test\r\n    public void testTopLevelCollectionOfIntegersDeserialization() {\r\n        String json = \"[0,1,2,3,4,5,6,7,8,9]\";\r\n        Type collectionType = new TypeToken<Collection<Integer>>() {\r\n        }.getType();\r\n        Collection<Integer> target = gson.fromJson(json, collectionType);\r\n        int[] expected = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };\r\n        assertThat(toIntArray(target)).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testTopLevelListOfIntegerCollectionsDeserialization() {\r\n        String json = \"[[1,2,3],[4,5,6],[7,8,9]]\";\r\n        Type collectionType = new TypeToken<Collection<Collection<Integer>>>() {\r\n        }.getType();\r\n        List<Collection<Integer>> target = gson.fromJson(json, collectionType);\r\n        int[][] expected = new int[3][3];\r\n        for (int i = 0; i < 3; ++i) {\r\n            int start = (3 * i) + 1;\r\n            for (int j = 0; j < 3; ++j) {\r\n                expected[i][j] = start + j;\r\n            }\r\n        }\r\n        for (int i = 0; i < 3; i++) {\r\n            assertThat(toIntArray(target.get(i))).isEqualTo(expected[i]);\r\n        }\r\n    }\r\n\r\n    @Test\r\n    @SuppressWarnings(\"JdkObsolete\")\r\n    public void testLinkedListSerialization() {\r\n        List<String> list = new LinkedList<>();\r\n        list.add(\"a1\");\r\n        list.add(\"a2\");\r\n        Type linkedListType = new TypeToken<LinkedList<String>>() {\r\n        }.getType();\r\n        String json = gson.toJson(list, linkedListType);\r\n        assertThat(json).contains(\"a1\");\r\n        assertThat(json).contains(\"a2\");\r\n    }\r\n\r\n    @Test\r\n    public void testLinkedListDeserialization() {\r\n        String json = \"['a1','a2']\";\r\n        Type linkedListType = new TypeToken<LinkedList<String>>() {\r\n        }.getType();\r\n        List<String> list = gson.fromJson(json, linkedListType);\r\n        assertThat(list.get(0)).isEqualTo(\"a1\");\r\n        assertThat(list.get(1)).isEqualTo(\"a2\");\r\n    }\r\n\r\n    @Test\r\n    @SuppressWarnings(\"JdkObsolete\")\r\n    public void testQueueSerialization() {\r\n        Queue<String> queue = new LinkedList<>();\r\n        queue.add(\"a1\");\r\n        queue.add(\"a2\");\r\n        Type queueType = new TypeToken<Queue<String>>() {\r\n        }.getType();\r\n        String json = gson.toJson(queue, queueType);\r\n        assertThat(json).contains(\"a1\");\r\n        assertThat(json).contains(\"a2\");\r\n    }\r\n\r\n    @Test\r\n    public void testQueueDeserialization() {\r\n        String json = \"['a1','a2']\";\r\n        Type queueType = new TypeToken<Queue<String>>() {\r\n        }.getType();\r\n        Queue<String> queue = gson.fromJson(json, queueType);\r\n        assertThat(queue.element()).isEqualTo(\"a1\");\r\n        queue.remove();\r\n        assertThat(queue.element()).isEqualTo(\"a2\");\r\n    }\r\n\r\n    @Test\r\n    public void testPriorityQueue() {\r\n        Type type = new TypeToken<PriorityQueue<Integer>>() {\r\n        }.getType();\r\n        PriorityQueue<Integer> queue = gson.fromJson(\"[10, 20, 22]\", type);\r\n        assertThat(queue.size()).isEqualTo(3);\r\n        String json = gson.toJson(queue);\r\n        assertThat(queue.remove()).isEqualTo(10);\r\n        assertThat(queue.remove()).isEqualTo(20);\r\n        assertThat(queue.remove()).isEqualTo(22);\r\n        assertThat(json).isEqualTo(\"[10,20,22]\");\r\n    }\r\n\r\n    @Test\r\n    public void testVector() {\r\n        Type type = new TypeToken<Vector<Integer>>() {\r\n        }.getType();\r\n        Vector<Integer> target = gson.fromJson(\"[10, 20, 31]\", type);\r\n        assertThat(target.size()).isEqualTo(3);\r\n        assertThat(target.get(0)).isEqualTo(10);\r\n        assertThat(target.get(1)).isEqualTo(20);\r\n        assertThat(target.get(2)).isEqualTo(31);\r\n        String json = gson.toJson(target);\r\n        assertThat(json).isEqualTo(\"[10,20,31]\");\r\n    }\r\n\r\n    @Test\r\n    public void testStack() {\r\n        Type type = new TypeToken<Stack<Integer>>() {\r\n        }.getType();\r\n        Stack<Integer> target = gson.fromJson(\"[11, 13, 17]\", type);\r\n        assertThat(target.size()).isEqualTo(3);\r\n        String json = gson.toJson(target);\r\n        assertThat(target.pop()).isEqualTo(17);\r\n        assertThat(target.pop()).isEqualTo(13);\r\n        assertThat(target.pop()).isEqualTo(11);\r\n        assertThat(json).isEqualTo(\"[11,13,17]\");\r\n    }\r\n\r\n    private static class CollectionWithoutNoArgsConstructor<E> extends AbstractCollection<E> {\r\n\r\n        // Remove implicit no-args constructor\r\n        public CollectionWithoutNoArgsConstructor(int unused) {\r\n        }\r\n\r\n        @Override\r\n        public boolean add(E e) {\r\n            throw new AssertionError(\"not used by test\");\r\n        }\r\n\r\n        @Override\r\n        public Iterator<E> iterator() {\r\n            return Collections.emptyIterator();\r\n        }\r\n\r\n        @Override\r\n        public int size() {\r\n            return 0;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Tests that when a custom Collection class without no-args constructor is deserialized, Gson\r\n     * does not use JDK Unsafe to create an instance, since that likely leads to a broken Collection\r\n     * instance.\r\n     */\r\n    @Test\r\n    public void testCollectionWithoutNoArgsConstructor() {\r\n        var collectionType = new TypeToken<CollectionWithoutNoArgsConstructor<String>>() {\r\n        };\r\n        JsonIOException e = assertThrows(JsonIOException.class, () -> gson.fromJson(\"[]\", collectionType));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Unable to create instance of \" + CollectionWithoutNoArgsConstructor.class + \"; Register an InstanceCreator or a TypeAdapter for this type.\");\r\n        // But serialization should work fine\r\n        assertThat(gson.toJson(new CollectionWithoutNoArgsConstructor<>(0))).isEqualTo(\"[]\");\r\n        // Deserialization should work when registering custom creator\r\n        gson = new GsonBuilder().registerTypeAdapter(CollectionWithoutNoArgsConstructor.class, (InstanceCreator<CollectionWithoutNoArgsConstructor<?>>) type -> new CollectionWithoutNoArgsConstructor<>(0)).create();\r\n        var collection = gson.fromJson(\"[]\", collectionType);\r\n        assertThat(collection).isInstanceOf(CollectionWithoutNoArgsConstructor.class);\r\n    }\r\n\r\n    @Test\r\n    public void testNullsInListSerialization() {\r\n        List<String> list = new ArrayList<>();\r\n        list.add(\"foo\");\r\n        list.add(null);\r\n        list.add(\"bar\");\r\n        String expected = \"[\\\"foo\\\",null,\\\"bar\\\"]\";\r\n        Type typeOfList = new TypeToken<List<String>>() {\r\n        }.getType();\r\n        String json = gson.toJson(list, typeOfList);\r\n        assertThat(json).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testNullsInListDeserialization() {\r\n        List<String> expected = new ArrayList<>();\r\n        expected.add(\"foo\");\r\n        expected.add(null);\r\n        expected.add(\"bar\");\r\n        String json = \"[\\\"foo\\\",null,\\\"bar\\\"]\";\r\n        Type expectedType = new TypeToken<List<String>>() {\r\n        }.getType();\r\n        List<String> target = gson.fromJson(json, expectedType);\r\n        for (int i = 0; i < expected.size(); ++i) {\r\n            assertThat(target.get(i)).isEqualTo(expected.get(i));\r\n        }\r\n    }\r\n\r\n    @Test\r\n    public void testCollectionOfObjectSerialization() {\r\n        List<Object> target = new ArrayList<>();\r\n        target.add(\"Hello\");\r\n        target.add(\"World\");\r\n        assertThat(gson.toJson(target)).isEqualTo(\"[\\\"Hello\\\",\\\"World\\\"]\");\r\n        Type type = new TypeToken<List<Object>>() {\r\n        }.getType();\r\n        assertThat(gson.toJson(target, type)).isEqualTo(\"[\\\"Hello\\\",\\\"World\\\"]\");\r\n    }\r\n\r\n    @Test\r\n    public void testCollectionOfObjectWithNullSerialization() {\r\n        List<Object> target = new ArrayList<>();\r\n        target.add(\"Hello\");\r\n        target.add(null);\r\n        target.add(\"World\");\r\n        assertThat(gson.toJson(target)).isEqualTo(\"[\\\"Hello\\\",null,\\\"World\\\"]\");\r\n        Type type = new TypeToken<List<Object>>() {\r\n        }.getType();\r\n        assertThat(gson.toJson(target, type)).isEqualTo(\"[\\\"Hello\\\",null,\\\"World\\\"]\");\r\n    }\r\n\r\n    @Test\r\n    public void testCollectionOfStringsSerialization() {\r\n        List<String> target = new ArrayList<>();\r\n        target.add(\"Hello\");\r\n        target.add(\"World\");\r\n        assertThat(gson.toJson(target)).isEqualTo(\"[\\\"Hello\\\",\\\"World\\\"]\");\r\n    }\r\n\r\n    @Test\r\n    public void testCollectionOfBagOfPrimitivesSerialization() {\r\n        List<BagOfPrimitives> target = new ArrayList<>();\r\n        BagOfPrimitives objA = new BagOfPrimitives(3L, 1, true, \"blah\");\r\n        BagOfPrimitives objB = new BagOfPrimitives(2L, 6, false, \"blahB\");\r\n        target.add(objA);\r\n        target.add(objB);\r\n        String result = gson.toJson(target);\r\n        assertThat(result).startsWith(\"[\");\r\n        assertThat(result).endsWith(\"]\");\r\n        for (BagOfPrimitives obj : target) {\r\n            assertThat(result).contains(obj.getExpectedJson());\r\n        }\r\n    }\r\n\r\n    @Test\r\n    public void testCollectionOfStringsDeserialization() {\r\n        String json = \"[\\\"Hello\\\",\\\"World\\\"]\";\r\n        Type collectionType = new TypeToken<Collection<String>>() {\r\n        }.getType();\r\n        Collection<String> target = gson.fromJson(json, collectionType);\r\n        assertThat(target).containsExactly(\"Hello\", \"World\").inOrder();\r\n    }\r\n\r\n    @Test\r\n    public void testRawCollectionOfIntegersSerialization() {\r\n        Collection<Integer> target = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);\r\n        assertThat(gson.toJson(target)).isEqualTo(\"[1,2,3,4,5,6,7,8,9]\");\r\n    }\r\n\r\n    @Test\r\n    public void testObjectCollectionSerialization() {\r\n        BagOfPrimitives bag1 = new BagOfPrimitives();\r\n        Collection<?> target = Arrays.asList(bag1, bag1, \"test\");\r\n        String json = gson.toJson(target);\r\n        assertThat(json).contains(bag1.getExpectedJson());\r\n    }\r\n\r\n    @Test\r\n    public void testRawCollectionDeserializationNotAllowed() {\r\n        String json = \"[0,1,2,3,4,5,6,7,8,9]\";\r\n        Collection<?> integers = gson.fromJson(json, Collection.class);\r\n        // JsonReader converts numbers to double by default so we need a floating point comparison\r\n        assertThat(integers).containsExactly(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0).inOrder();\r\n        json = \"[\\\"Hello\\\", \\\"World\\\"]\";\r\n        Collection<?> strings = gson.fromJson(json, Collection.class);\r\n        assertThat(strings).containsExactly(\"Hello\", \"World\").inOrder();\r\n    }\r\n\r\n    @Test\r\n    public void testRawCollectionOfBagOfPrimitivesNotAllowed() {\r\n        BagOfPrimitives bag = new BagOfPrimitives(10, 20, false, \"stringValue\");\r\n        String json = '[' + bag.getExpectedJson() + ',' + bag.getExpectedJson() + ']';\r\n        Collection<?> target = gson.fromJson(json, Collection.class);\r\n        assertThat(target.size()).isEqualTo(2);\r\n        for (Object bag1 : target) {\r\n            // Gson 2.0 converts raw objects into maps\r\n            @SuppressWarnings(\"unchecked\")\r\n            Map<String, Object> map = (Map<String, Object>) bag1;\r\n            assertThat(map.values()).containsExactly(10.0, 20.0, false, \"stringValue\");\r\n        }\r\n    }\r\n\r\n    @Test\r\n    public void testWildcardPrimitiveCollectionSerilaization() {\r\n        Collection<? extends Integer> target = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);\r\n        Type collectionType = new TypeToken<Collection<? extends Integer>>() {\r\n        }.getType();\r\n        String json = gson.toJson(target, collectionType);\r\n        assertThat(json).isEqualTo(\"[1,2,3,4,5,6,7,8,9]\");\r\n        json = gson.toJson(target);\r\n        assertThat(json).isEqualTo(\"[1,2,3,4,5,6,7,8,9]\");\r\n    }\r\n\r\n    @Test\r\n    public void testWildcardPrimitiveCollectionDeserilaization() {\r\n        String json = \"[1,2,3,4,5,6,7,8,9]\";\r\n        Type collectionType = new TypeToken<Collection<? extends Integer>>() {\r\n        }.getType();\r\n        Collection<? extends Integer> target = gson.fromJson(json, collectionType);\r\n        assertThat(target.size()).isEqualTo(9);\r\n        assertThat(target).contains(1);\r\n        assertThat(target).contains(2);\r\n    }\r\n\r\n    @Test\r\n    public void testWildcardCollectionField() {\r\n        Collection<BagOfPrimitives> collection = new ArrayList<>();\r\n        BagOfPrimitives objA = new BagOfPrimitives(3L, 1, true, \"blah\");\r\n        BagOfPrimitives objB = new BagOfPrimitives(2L, 6, false, \"blahB\");\r\n        collection.add(objA);\r\n        collection.add(objB);\r\n        ObjectWithWildcardCollection target = new ObjectWithWildcardCollection(collection);\r\n        String json = gson.toJson(target);\r\n        assertThat(json).contains(objA.getExpectedJson());\r\n        assertThat(json).contains(objB.getExpectedJson());\r\n        target = gson.fromJson(json, ObjectWithWildcardCollection.class);\r\n        Collection<? extends BagOfPrimitives> deserializedCollection = target.getCollection();\r\n        assertThat(deserializedCollection.size()).isEqualTo(2);\r\n        assertThat(deserializedCollection).contains(objA);\r\n        assertThat(deserializedCollection).contains(objB);\r\n    }\r\n\r\n    @Test\r\n    public void testFieldIsArrayList() {\r\n        HasArrayListField object = new HasArrayListField();\r\n        object.longs.add(1L);\r\n        object.longs.add(3L);\r\n        String json = gson.toJson(object, HasArrayListField.class);\r\n        assertThat(json).isEqualTo(\"{\\\"longs\\\":[1,3]}\");\r\n        HasArrayListField copy = gson.fromJson(\"{\\\"longs\\\":[1,3]}\", HasArrayListField.class);\r\n        assertThat(copy.longs).isEqualTo(Arrays.asList(1L, 3L));\r\n    }\r\n\r\n    @Test\r\n    public void testUserCollectionTypeAdapter() {\r\n        Type listOfString = new TypeToken<List<String>>() {\r\n        }.getType();\r\n        Object stringListSerializer = new JsonSerializer<List<String>>() {\r\n\r\n            @Override\r\n            public JsonElement serialize(List<String> src, Type typeOfSrc, JsonSerializationContext context) {\r\n                return new JsonPrimitive(src.get(0) + \";\" + src.get(1));\r\n            }\r\n        };\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(listOfString, stringListSerializer).create();\r\n        assertThat(gson.toJson(Arrays.asList(\"ab\", \"cd\"), listOfString)).isEqualTo(\"\\\"ab;cd\\\"\");\r\n    }\r\n\r\n    static class HasArrayListField {\r\n\r\n        ArrayList<Long> longs = new ArrayList<>();\r\n    }\r\n\r\n    private static int[] toIntArray(Collection<?> collection) {\r\n        int[] ints = new int[collection.size()];\r\n        int i = 0;\r\n        for (Iterator<?> iterator = collection.iterator(); iterator.hasNext(); ++i) {\r\n            Object obj = iterator.next();\r\n            if (obj instanceof Integer) {\r\n                ints[i] = (Integer) obj;\r\n            } else if (obj instanceof Long) {\r\n                ints[i] = ((Long) obj).intValue();\r\n            }\r\n        }\r\n        return ints;\r\n    }\r\n\r\n    private static class ObjectWithWildcardCollection {\r\n\r\n        private final Collection<? extends BagOfPrimitives> collection;\r\n\r\n        public ObjectWithWildcardCollection(Collection<? extends BagOfPrimitives> collection) {\r\n            this.collection = collection;\r\n        }\r\n\r\n        public Collection<? extends BagOfPrimitives> getCollection() {\r\n            return collection;\r\n        }\r\n    }\r\n\r\n    private static class Entry {\r\n\r\n        int value;\r\n\r\n        Entry(int value) {\r\n            this.value = value;\r\n        }\r\n    }\r\n\r\n    @Test\r\n    public void testSetSerialization() {\r\n        Set<Entry> set = new HashSet<>();\r\n        set.add(new Entry(1));\r\n        set.add(new Entry(2));\r\n        String json = gson.toJson(set);\r\n        assertThat(json).contains(\"1\");\r\n        assertThat(json).contains(\"2\");\r\n    }\r\n\r\n    @Test\r\n    public void testSetDeserialization() {\r\n        String json = \"[{value:1},{value:2}]\";\r\n        Type type = new TypeToken<Set<Entry>>() {\r\n        }.getType();\r\n        Set<Entry> set = gson.fromJson(json, type);\r\n        assertThat(set.size()).isEqualTo(2);\r\n        for (Entry entry : set) {\r\n            assertThat(entry.value).isAnyOf(1, 2);\r\n        }\r\n    }\r\n\r\n    private static class BigClass {\r\n\r\n        private Map<String, ? extends List<SmallClass>> inBig;\r\n    }\r\n\r\n    private static class SmallClass {\r\n\r\n        private String inSmall;\r\n    }\r\n\r\n    @Test\r\n    public void testIssue1107() {\r\n        String json = \"{\\n\" + \"  \\\"inBig\\\": {\\n\" + \"    \\\"key\\\": [\\n\" + \"      { \\\"inSmall\\\": \\\"hello\\\" }\\n\" + \"    ]\\n\" + \"  }\\n\" + \"}\";\r\n        BigClass bigClass = new Gson().fromJson(json, BigClass.class);\r\n        SmallClass small = bigClass.inBig.get(\"key\").get(0);\r\n        assertThat(small).isNotNull();\r\n        assertThat(small.inSmall).isEqualTo(\"hello\");\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 58,
+    "end_line": 58,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 60,
+    "end_line": 63,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTopLevelCollectionOfIntegersSerialization",
+    "start_line": 65,
+    "end_line": 71,
+    "code": "@Test\r\npublic void testTopLevelCollectionOfIntegersSerialization() {\r\n    Collection<Integer> target = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);\r\n    Type targetType = new TypeToken<Collection<Integer>>() {\r\n    }.getType();\r\n    String json = gson.toJson(target, targetType);\r\n    assertThat(json).isEqualTo(\"[1,2,3,4,5,6,7,8,9]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTopLevelCollectionOfIntegersDeserialization",
+    "start_line": 73,
+    "end_line": 80,
+    "code": "@Test\r\npublic void testTopLevelCollectionOfIntegersDeserialization() {\r\n    String json = \"[0,1,2,3,4,5,6,7,8,9]\";\r\n    Type collectionType = new TypeToken<Collection<Integer>>() {\r\n    }.getType();\r\n    Collection<Integer> target = gson.fromJson(json, collectionType);\r\n    int[] expected = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };\r\n    assertThat(toIntArray(target)).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTopLevelListOfIntegerCollectionsDeserialization",
+    "start_line": 82,
+    "end_line": 98,
+    "code": "@Test\r\npublic void testTopLevelListOfIntegerCollectionsDeserialization() {\r\n    String json = \"[[1,2,3],[4,5,6],[7,8,9]]\";\r\n    Type collectionType = new TypeToken<Collection<Collection<Integer>>>() {\r\n    }.getType();\r\n    List<Collection<Integer>> target = gson.fromJson(json, collectionType);\r\n    int[][] expected = new int[3][3];\r\n    for (int i = 0; i < 3; ++i) {\r\n        int start = (3 * i) + 1;\r\n        for (int j = 0; j < 3; ++j) {\r\n            expected[i][j] = start + j;\r\n        }\r\n    }\r\n    for (int i = 0; i < 3; i++) {\r\n        assertThat(toIntArray(target.get(i))).isEqualTo(expected[i]);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testLinkedListSerialization",
+    "start_line": 100,
+    "end_line": 110,
+    "code": "@Test\r\n@SuppressWarnings(\"JdkObsolete\")\r\npublic void testLinkedListSerialization() {\r\n    List<String> list = new LinkedList<>();\r\n    list.add(\"a1\");\r\n    list.add(\"a2\");\r\n    Type linkedListType = new TypeToken<LinkedList<String>>() {\r\n    }.getType();\r\n    String json = gson.toJson(list, linkedListType);\r\n    assertThat(json).contains(\"a1\");\r\n    assertThat(json).contains(\"a2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testLinkedListDeserialization",
+    "start_line": 112,
+    "end_line": 119,
+    "code": "@Test\r\npublic void testLinkedListDeserialization() {\r\n    String json = \"['a1','a2']\";\r\n    Type linkedListType = new TypeToken<LinkedList<String>>() {\r\n    }.getType();\r\n    List<String> list = gson.fromJson(json, linkedListType);\r\n    assertThat(list.get(0)).isEqualTo(\"a1\");\r\n    assertThat(list.get(1)).isEqualTo(\"a2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testQueueSerialization",
+    "start_line": 121,
+    "end_line": 131,
+    "code": "@Test\r\n@SuppressWarnings(\"JdkObsolete\")\r\npublic void testQueueSerialization() {\r\n    Queue<String> queue = new LinkedList<>();\r\n    queue.add(\"a1\");\r\n    queue.add(\"a2\");\r\n    Type queueType = new TypeToken<Queue<String>>() {\r\n    }.getType();\r\n    String json = gson.toJson(queue, queueType);\r\n    assertThat(json).contains(\"a1\");\r\n    assertThat(json).contains(\"a2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testQueueDeserialization",
+    "start_line": 133,
+    "end_line": 141,
+    "code": "@Test\r\npublic void testQueueDeserialization() {\r\n    String json = \"['a1','a2']\";\r\n    Type queueType = new TypeToken<Queue<String>>() {\r\n    }.getType();\r\n    Queue<String> queue = gson.fromJson(json, queueType);\r\n    assertThat(queue.element()).isEqualTo(\"a1\");\r\n    queue.remove();\r\n    assertThat(queue.element()).isEqualTo(\"a2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testPriorityQueue",
+    "start_line": 143,
+    "end_line": 153,
+    "code": "@Test\r\npublic void testPriorityQueue() {\r\n    Type type = new TypeToken<PriorityQueue<Integer>>() {\r\n    }.getType();\r\n    PriorityQueue<Integer> queue = gson.fromJson(\"[10, 20, 22]\", type);\r\n    assertThat(queue.size()).isEqualTo(3);\r\n    String json = gson.toJson(queue);\r\n    assertThat(queue.remove()).isEqualTo(10);\r\n    assertThat(queue.remove()).isEqualTo(20);\r\n    assertThat(queue.remove()).isEqualTo(22);\r\n    assertThat(json).isEqualTo(\"[10,20,22]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testVector",
+    "start_line": 155,
+    "end_line": 165,
+    "code": "@Test\r\npublic void testVector() {\r\n    Type type = new TypeToken<Vector<Integer>>() {\r\n    }.getType();\r\n    Vector<Integer> target = gson.fromJson(\"[10, 20, 31]\", type);\r\n    assertThat(target.size()).isEqualTo(3);\r\n    assertThat(target.get(0)).isEqualTo(10);\r\n    assertThat(target.get(1)).isEqualTo(20);\r\n    assertThat(target.get(2)).isEqualTo(31);\r\n    String json = gson.toJson(target);\r\n    assertThat(json).isEqualTo(\"[10,20,31]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStack",
+    "start_line": 167,
+    "end_line": 177,
+    "code": "@Test\r\npublic void testStack() {\r\n    Type type = new TypeToken<Stack<Integer>>() {\r\n    }.getType();\r\n    Stack<Integer> target = gson.fromJson(\"[11, 13, 17]\", type);\r\n    assertThat(target.size()).isEqualTo(3);\r\n    String json = gson.toJson(target);\r\n    assertThat(target.pop()).isEqualTo(17);\r\n    assertThat(target.pop()).isEqualTo(13);\r\n    assertThat(target.pop()).isEqualTo(11);\r\n    assertThat(json).isEqualTo(\"[11,13,17]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCollectionWithoutNoArgsConstructor",
+    "start_line": 204,
+    "end_line": 229,
+    "code": "/**\r\n * Tests that when a custom Collection class without no-args constructor is deserialized, Gson\r\n * does not use JDK Unsafe to create an instance, since that likely leads to a broken Collection\r\n * instance.\r\n */\r\n@Test\r\npublic void testCollectionWithoutNoArgsConstructor() {\r\n    var collectionType = new TypeToken<CollectionWithoutNoArgsConstructor<String>>() {\r\n    };\r\n    JsonIOException e = assertThrows(JsonIOException.class, () -> gson.fromJson(\"[]\", collectionType));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Unable to create instance of \" + CollectionWithoutNoArgsConstructor.class + \"; Register an InstanceCreator or a TypeAdapter for this type.\");\r\n    // But serialization should work fine\r\n    assertThat(gson.toJson(new CollectionWithoutNoArgsConstructor<>(0))).isEqualTo(\"[]\");\r\n    // Deserialization should work when registering custom creator\r\n    gson = new GsonBuilder().registerTypeAdapter(CollectionWithoutNoArgsConstructor.class, (InstanceCreator<CollectionWithoutNoArgsConstructor<?>>) type -> new CollectionWithoutNoArgsConstructor<>(0)).create();\r\n    var collection = gson.fromJson(\"[]\", collectionType);\r\n    assertThat(collection).isInstanceOf(CollectionWithoutNoArgsConstructor.class);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullsInListSerialization",
+    "start_line": 231,
+    "end_line": 241,
+    "code": "@Test\r\npublic void testNullsInListSerialization() {\r\n    List<String> list = new ArrayList<>();\r\n    list.add(\"foo\");\r\n    list.add(null);\r\n    list.add(\"bar\");\r\n    String expected = \"[\\\"foo\\\",null,\\\"bar\\\"]\";\r\n    Type typeOfList = new TypeToken<List<String>>() {\r\n    }.getType();\r\n    String json = gson.toJson(list, typeOfList);\r\n    assertThat(json).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullsInListDeserialization",
+    "start_line": 243,
+    "end_line": 255,
+    "code": "@Test\r\npublic void testNullsInListDeserialization() {\r\n    List<String> expected = new ArrayList<>();\r\n    expected.add(\"foo\");\r\n    expected.add(null);\r\n    expected.add(\"bar\");\r\n    String json = \"[\\\"foo\\\",null,\\\"bar\\\"]\";\r\n    Type expectedType = new TypeToken<List<String>>() {\r\n    }.getType();\r\n    List<String> target = gson.fromJson(json, expectedType);\r\n    for (int i = 0; i < expected.size(); ++i) {\r\n        assertThat(target.get(i)).isEqualTo(expected.get(i));\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCollectionOfObjectSerialization",
+    "start_line": 257,
+    "end_line": 266,
+    "code": "@Test\r\npublic void testCollectionOfObjectSerialization() {\r\n    List<Object> target = new ArrayList<>();\r\n    target.add(\"Hello\");\r\n    target.add(\"World\");\r\n    assertThat(gson.toJson(target)).isEqualTo(\"[\\\"Hello\\\",\\\"World\\\"]\");\r\n    Type type = new TypeToken<List<Object>>() {\r\n    }.getType();\r\n    assertThat(gson.toJson(target, type)).isEqualTo(\"[\\\"Hello\\\",\\\"World\\\"]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCollectionOfObjectWithNullSerialization",
+    "start_line": 268,
+    "end_line": 278,
+    "code": "@Test\r\npublic void testCollectionOfObjectWithNullSerialization() {\r\n    List<Object> target = new ArrayList<>();\r\n    target.add(\"Hello\");\r\n    target.add(null);\r\n    target.add(\"World\");\r\n    assertThat(gson.toJson(target)).isEqualTo(\"[\\\"Hello\\\",null,\\\"World\\\"]\");\r\n    Type type = new TypeToken<List<Object>>() {\r\n    }.getType();\r\n    assertThat(gson.toJson(target, type)).isEqualTo(\"[\\\"Hello\\\",null,\\\"World\\\"]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCollectionOfStringsSerialization",
+    "start_line": 280,
+    "end_line": 286,
+    "code": "@Test\r\npublic void testCollectionOfStringsSerialization() {\r\n    List<String> target = new ArrayList<>();\r\n    target.add(\"Hello\");\r\n    target.add(\"World\");\r\n    assertThat(gson.toJson(target)).isEqualTo(\"[\\\"Hello\\\",\\\"World\\\"]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCollectionOfBagOfPrimitivesSerialization",
+    "start_line": 288,
+    "end_line": 302,
+    "code": "@Test\r\npublic void testCollectionOfBagOfPrimitivesSerialization() {\r\n    List<BagOfPrimitives> target = new ArrayList<>();\r\n    BagOfPrimitives objA = new BagOfPrimitives(3L, 1, true, \"blah\");\r\n    BagOfPrimitives objB = new BagOfPrimitives(2L, 6, false, \"blahB\");\r\n    target.add(objA);\r\n    target.add(objB);\r\n    String result = gson.toJson(target);\r\n    assertThat(result).startsWith(\"[\");\r\n    assertThat(result).endsWith(\"]\");\r\n    for (BagOfPrimitives obj : target) {\r\n        assertThat(result).contains(obj.getExpectedJson());\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCollectionOfStringsDeserialization",
+    "start_line": 304,
+    "end_line": 311,
+    "code": "@Test\r\npublic void testCollectionOfStringsDeserialization() {\r\n    String json = \"[\\\"Hello\\\",\\\"World\\\"]\";\r\n    Type collectionType = new TypeToken<Collection<String>>() {\r\n    }.getType();\r\n    Collection<String> target = gson.fromJson(json, collectionType);\r\n    assertThat(target).containsExactly(\"Hello\", \"World\").inOrder();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testRawCollectionOfIntegersSerialization",
+    "start_line": 313,
+    "end_line": 317,
+    "code": "@Test\r\npublic void testRawCollectionOfIntegersSerialization() {\r\n    Collection<Integer> target = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);\r\n    assertThat(gson.toJson(target)).isEqualTo(\"[1,2,3,4,5,6,7,8,9]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testObjectCollectionSerialization",
+    "start_line": 319,
+    "end_line": 325,
+    "code": "@Test\r\npublic void testObjectCollectionSerialization() {\r\n    BagOfPrimitives bag1 = new BagOfPrimitives();\r\n    Collection<?> target = Arrays.asList(bag1, bag1, \"test\");\r\n    String json = gson.toJson(target);\r\n    assertThat(json).contains(bag1.getExpectedJson());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testRawCollectionDeserializationNotAllowed",
+    "start_line": 327,
+    "end_line": 339,
+    "code": "@Test\r\npublic void testRawCollectionDeserializationNotAllowed() {\r\n    String json = \"[0,1,2,3,4,5,6,7,8,9]\";\r\n    Collection<?> integers = gson.fromJson(json, Collection.class);\r\n    // JsonReader converts numbers to double by default so we need a floating point comparison\r\n    assertThat(integers).containsExactly(0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0).inOrder();\r\n    json = \"[\\\"Hello\\\", \\\"World\\\"]\";\r\n    Collection<?> strings = gson.fromJson(json, Collection.class);\r\n    assertThat(strings).containsExactly(\"Hello\", \"World\").inOrder();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testRawCollectionOfBagOfPrimitivesNotAllowed",
+    "start_line": 341,
+    "end_line": 353,
+    "code": "@Test\r\npublic void testRawCollectionOfBagOfPrimitivesNotAllowed() {\r\n    BagOfPrimitives bag = new BagOfPrimitives(10, 20, false, \"stringValue\");\r\n    String json = '[' + bag.getExpectedJson() + ',' + bag.getExpectedJson() + ']';\r\n    Collection<?> target = gson.fromJson(json, Collection.class);\r\n    assertThat(target.size()).isEqualTo(2);\r\n    for (Object bag1 : target) {\r\n        // Gson 2.0 converts raw objects into maps\r\n        @SuppressWarnings(\"unchecked\")\r\n        Map<String, Object> map = (Map<String, Object>) bag1;\r\n        assertThat(map.values()).containsExactly(10.0, 20.0, false, \"stringValue\");\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWildcardPrimitiveCollectionSerilaization",
+    "start_line": 355,
+    "end_line": 364,
+    "code": "@Test\r\npublic void testWildcardPrimitiveCollectionSerilaization() {\r\n    Collection<? extends Integer> target = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9);\r\n    Type collectionType = new TypeToken<Collection<? extends Integer>>() {\r\n    }.getType();\r\n    String json = gson.toJson(target, collectionType);\r\n    assertThat(json).isEqualTo(\"[1,2,3,4,5,6,7,8,9]\");\r\n    json = gson.toJson(target);\r\n    assertThat(json).isEqualTo(\"[1,2,3,4,5,6,7,8,9]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWildcardPrimitiveCollectionDeserilaization",
+    "start_line": 366,
+    "end_line": 374,
+    "code": "@Test\r\npublic void testWildcardPrimitiveCollectionDeserilaization() {\r\n    String json = \"[1,2,3,4,5,6,7,8,9]\";\r\n    Type collectionType = new TypeToken<Collection<? extends Integer>>() {\r\n    }.getType();\r\n    Collection<? extends Integer> target = gson.fromJson(json, collectionType);\r\n    assertThat(target.size()).isEqualTo(9);\r\n    assertThat(target).contains(1);\r\n    assertThat(target).contains(2);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWildcardCollectionField",
+    "start_line": 376,
+    "end_line": 394,
+    "code": "@Test\r\npublic void testWildcardCollectionField() {\r\n    Collection<BagOfPrimitives> collection = new ArrayList<>();\r\n    BagOfPrimitives objA = new BagOfPrimitives(3L, 1, true, \"blah\");\r\n    BagOfPrimitives objB = new BagOfPrimitives(2L, 6, false, \"blahB\");\r\n    collection.add(objA);\r\n    collection.add(objB);\r\n    ObjectWithWildcardCollection target = new ObjectWithWildcardCollection(collection);\r\n    String json = gson.toJson(target);\r\n    assertThat(json).contains(objA.getExpectedJson());\r\n    assertThat(json).contains(objB.getExpectedJson());\r\n    target = gson.fromJson(json, ObjectWithWildcardCollection.class);\r\n    Collection<? extends BagOfPrimitives> deserializedCollection = target.getCollection();\r\n    assertThat(deserializedCollection.size()).isEqualTo(2);\r\n    assertThat(deserializedCollection).contains(objA);\r\n    assertThat(deserializedCollection).contains(objB);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testFieldIsArrayList",
+    "start_line": 396,
+    "end_line": 405,
+    "code": "@Test\r\npublic void testFieldIsArrayList() {\r\n    HasArrayListField object = new HasArrayListField();\r\n    object.longs.add(1L);\r\n    object.longs.add(3L);\r\n    String json = gson.toJson(object, HasArrayListField.class);\r\n    assertThat(json).isEqualTo(\"{\\\"longs\\\":[1,3]}\");\r\n    HasArrayListField copy = gson.fromJson(\"{\\\"longs\\\":[1,3]}\", HasArrayListField.class);\r\n    assertThat(copy.longs).isEqualTo(Arrays.asList(1L, 3L));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testUserCollectionTypeAdapter",
+    "start_line": 407,
+    "end_line": 420,
+    "code": "@Test\r\npublic void testUserCollectionTypeAdapter() {\r\n    Type listOfString = new TypeToken<List<String>>() {\r\n    }.getType();\r\n    Object stringListSerializer = new JsonSerializer<List<String>>() {\r\n\r\n        @Override\r\n        public JsonElement serialize(List<String> src, Type typeOfSrc, JsonSerializationContext context) {\r\n            return new JsonPrimitive(src.get(0) + \";\" + src.get(1));\r\n        }\r\n    };\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(listOfString, stringListSerializer).create();\r\n    assertThat(gson.toJson(Arrays.asList(\"ab\", \"cd\"), listOfString)).isEqualTo(\"\\\"ab;cd\\\"\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "toIntArray",
+    "start_line": 426,
+    "end_line": 438,
+    "code": "private static int[] toIntArray(Collection<?> collection) {\r\n    int[] ints = new int[collection.size()];\r\n    int i = 0;\r\n    for (Iterator<?> iterator = collection.iterator(); iterator.hasNext(); ++i) {\r\n        Object obj = iterator.next();\r\n        if (obj instanceof Integer) {\r\n            ints[i] = (Integer) obj;\r\n        } else if (obj instanceof Long) {\r\n            ints[i] = ((Long) obj).intValue();\r\n        }\r\n    }\r\n    return ints;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSetSerialization",
+    "start_line": 460,
+    "end_line": 468,
+    "code": "@Test\r\npublic void testSetSerialization() {\r\n    Set<Entry> set = new HashSet<>();\r\n    set.add(new Entry(1));\r\n    set.add(new Entry(2));\r\n    String json = gson.toJson(set);\r\n    assertThat(json).contains(\"1\");\r\n    assertThat(json).contains(\"2\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSetDeserialization",
+    "start_line": 470,
+    "end_line": 479,
+    "code": "@Test\r\npublic void testSetDeserialization() {\r\n    String json = \"[{value:1},{value:2}]\";\r\n    Type type = new TypeToken<Set<Entry>>() {\r\n    }.getType();\r\n    Set<Entry> set = gson.fromJson(json, type);\r\n    assertThat(set.size()).isEqualTo(2);\r\n    for (Entry entry : set) {\r\n        assertThat(entry.value).isAnyOf(1, 2);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testIssue1107",
+    "start_line": 489,
+    "end_line": 503,
+    "code": "@Test\r\npublic void testIssue1107() {\r\n    String json = \"{\\n\" + \"  \\\"inBig\\\": {\\n\" + \"    \\\"key\\\": [\\n\" + \"      { \\\"inSmall\\\": \\\"hello\\\" }\\n\" + \"    ]\\n\" + \"  }\\n\" + \"}\";\r\n    BigClass bigClass = new Gson().fromJson(json, BigClass.class);\r\n    SmallClass small = bigClass.inBig.get(\"key\").get(0);\r\n    assertThat(small).isNotNull();\r\n    assertThat(small.inSmall).isEqualTo(\"hello\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\CollectionTest.java"
+  }
+]

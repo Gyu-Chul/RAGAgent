@@ -1,0 +1,218 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.reflect",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.reflect;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonIOException",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import com.google.gson.JsonIOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.GsonBuildConfig",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.internal.GsonBuildConfig;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.TroubleshootingGuide",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.internal.TroubleshootingGuide;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.AccessibleObject",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.lang.reflect.AccessibleObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Constructor",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.lang.reflect.Constructor;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Field",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.lang.reflect.Field;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Method",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import java.lang.reflect.Method;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Modifier",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import java.lang.reflect.Modifier;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "class",
+    "name": "ReflectionHelper",
+    "start_line": 28,
+    "end_line": 325,
+    "code": "public class ReflectionHelper {\r\n\r\n    private static final RecordHelper RECORD_HELPER;\r\n\r\n    static {\r\n        RecordHelper instance;\r\n        try {\r\n            // Try to construct the RecordSupportedHelper, if this fails, records are not supported on\r\n            // this JVM.\r\n            instance = new RecordSupportedHelper();\r\n        } catch (ReflectiveOperationException e) {\r\n            instance = new RecordNotSupportedHelper();\r\n        }\r\n        RECORD_HELPER = instance;\r\n    }\r\n\r\n    private ReflectionHelper() {\r\n    }\r\n\r\n    private static String getInaccessibleTroubleshootingSuffix(Exception e) {\r\n        // Class was added in Java 9, therefore cannot use instanceof\r\n        if (e.getClass().getName().equals(\"java.lang.reflect.InaccessibleObjectException\")) {\r\n            String message = e.getMessage();\r\n            String troubleshootingId = message != null && message.contains(\"to module com.google.gson\") ? \"reflection-inaccessible-to-module-gson\" : \"reflection-inaccessible\";\r\n            return \"\\nSee \" + TroubleshootingGuide.createUrl(troubleshootingId);\r\n        }\r\n        return \"\";\r\n    }\r\n\r\n    /**\r\n     * Internal implementation of making an {@link AccessibleObject} accessible.\r\n     *\r\n     * @param object the object that {@link AccessibleObject#setAccessible(boolean)} should be called\r\n     *     on.\r\n     * @throws JsonIOException if making the object accessible fails\r\n     */\r\n    public static void makeAccessible(AccessibleObject object) throws JsonIOException {\r\n        try {\r\n            object.setAccessible(true);\r\n        } catch (Exception exception) {\r\n            String description = getAccessibleObjectDescription(object, false);\r\n            throw new JsonIOException(\"Failed making \" + description + \" accessible; either increase its visibility\" + \" or write a custom TypeAdapter for its declaring type.\" + getInaccessibleTroubleshootingSuffix(exception), exception);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Returns a short string describing the {@link AccessibleObject} in a human-readable way. The\r\n     * result is normally shorter than {@link AccessibleObject#toString()} because it omits modifiers\r\n     * (e.g. {@code final}) and uses simple names for constructor and method parameter types.\r\n     *\r\n     * @param object object to describe\r\n     * @param uppercaseFirstLetter whether the first letter of the description should be uppercased\r\n     */\r\n    public static String getAccessibleObjectDescription(AccessibleObject object, boolean uppercaseFirstLetter) {\r\n        String description;\r\n        if (object instanceof Field) {\r\n            description = \"field '\" + fieldToString((Field) object) + \"'\";\r\n        } else if (object instanceof Method) {\r\n            Method method = (Method) object;\r\n            StringBuilder methodSignatureBuilder = new StringBuilder(method.getName());\r\n            appendExecutableParameters(method, methodSignatureBuilder);\r\n            String methodSignature = methodSignatureBuilder.toString();\r\n            description = \"method '\" + method.getDeclaringClass().getName() + \"#\" + methodSignature + \"'\";\r\n        } else if (object instanceof Constructor) {\r\n            description = \"constructor '\" + constructorToString((Constructor<?>) object) + \"'\";\r\n        } else {\r\n            description = \"<unknown AccessibleObject> \" + object.toString();\r\n        }\r\n        if (uppercaseFirstLetter && Character.isLowerCase(description.charAt(0))) {\r\n            description = Character.toUpperCase(description.charAt(0)) + description.substring(1);\r\n        }\r\n        return description;\r\n    }\r\n\r\n    /**\r\n     * Creates a string representation for a field, omitting modifiers and the field type.\r\n     */\r\n    public static String fieldToString(Field field) {\r\n        return field.getDeclaringClass().getName() + \"#\" + field.getName();\r\n    }\r\n\r\n    /**\r\n     * Creates a string representation for a constructor. E.g.: {@code java.lang.String(char[], int,\r\n     * int)}\r\n     */\r\n    public static String constructorToString(Constructor<?> constructor) {\r\n        StringBuilder stringBuilder = new StringBuilder(constructor.getDeclaringClass().getName());\r\n        appendExecutableParameters(constructor, stringBuilder);\r\n        return stringBuilder.toString();\r\n    }\r\n\r\n    // Ideally parameter type would be java.lang.reflect.Executable, but that was added\r\n    // in Android API level 26\r\n    private static void appendExecutableParameters(AccessibleObject executable, StringBuilder stringBuilder) {\r\n        stringBuilder.append('(');\r\n        Class<?>[] parameters = (executable instanceof Method) ? ((Method) executable).getParameterTypes() : ((Constructor<?>) executable).getParameterTypes();\r\n        for (int i = 0; i < parameters.length; i++) {\r\n            if (i > 0) {\r\n                stringBuilder.append(\", \");\r\n            }\r\n            stringBuilder.append(parameters[i].getSimpleName());\r\n        }\r\n        stringBuilder.append(')');\r\n    }\r\n\r\n    public static boolean isStatic(Class<?> clazz) {\r\n        return Modifier.isStatic(clazz.getModifiers());\r\n    }\r\n\r\n    /**\r\n     * Returns whether the class is anonymous or a non-static local class.\r\n     */\r\n    public static boolean isAnonymousOrNonStaticLocal(Class<?> clazz) {\r\n        return !isStatic(clazz) && (clazz.isAnonymousClass() || clazz.isLocalClass());\r\n    }\r\n\r\n    /**\r\n     * Tries making the constructor accessible, returning an exception message if this fails.\r\n     *\r\n     * @param constructor constructor to make accessible\r\n     * @return exception message; {@code null} if successful, non-{@code null} if unsuccessful\r\n     */\r\n    public static String tryMakeAccessible(Constructor<?> constructor) {\r\n        try {\r\n            constructor.setAccessible(true);\r\n            return null;\r\n        } catch (Exception exception) {\r\n            return \"Failed making constructor '\" + constructorToString(constructor) + \"' accessible; either increase its visibility or write a custom InstanceCreator or\" + \" TypeAdapter for its declaring type: \" + // Include the message since it might contain more detailed information\r\n            exception.getMessage() + getInaccessibleTroubleshootingSuffix(exception);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * If records are supported on the JVM, this is equivalent to a call to Class.isRecord()\r\n     */\r\n    public static boolean isRecord(Class<?> raw) {\r\n        return RECORD_HELPER.isRecord(raw);\r\n    }\r\n\r\n    public static String[] getRecordComponentNames(Class<?> raw) {\r\n        return RECORD_HELPER.getRecordComponentNames(raw);\r\n    }\r\n\r\n    /**\r\n     * Looks up the record accessor method that corresponds to the given record field\r\n     */\r\n    public static Method getAccessor(Class<?> raw, Field field) {\r\n        return RECORD_HELPER.getAccessor(raw, field);\r\n    }\r\n\r\n    public static <T> Constructor<T> getCanonicalRecordConstructor(Class<T> raw) {\r\n        return RECORD_HELPER.getCanonicalRecordConstructor(raw);\r\n    }\r\n\r\n    public static RuntimeException createExceptionForUnexpectedIllegalAccess(IllegalAccessException exception) {\r\n        throw new RuntimeException(\"Unexpected IllegalAccessException occurred (Gson \" + GsonBuildConfig.VERSION + \"). Certain ReflectionAccessFilter features require Java >= 9 to work correctly. If\" + \" you are not using ReflectionAccessFilter, report this to the Gson maintainers.\", exception);\r\n    }\r\n\r\n    private static RuntimeException createExceptionForRecordReflectionException(ReflectiveOperationException exception) {\r\n        throw new RuntimeException(\"Unexpected ReflectiveOperationException occurred\" + \" (Gson \" + GsonBuildConfig.VERSION + \").\" + \" To support Java records, reflection is utilized to read out information\" + \" about records. All these invocations happens after it is established\" + \" that records exist in the JVM. This exception is unexpected behavior.\", exception);\r\n    }\r\n\r\n    /**\r\n     * Internal abstraction over reflection when Records are supported.\r\n     */\r\n    private abstract static class RecordHelper {\r\n\r\n        abstract boolean isRecord(Class<?> clazz);\r\n\r\n        abstract String[] getRecordComponentNames(Class<?> clazz);\r\n\r\n        abstract <T> Constructor<T> getCanonicalRecordConstructor(Class<T> raw);\r\n\r\n        public abstract Method getAccessor(Class<?> raw, Field field);\r\n    }\r\n\r\n    private static class RecordSupportedHelper extends RecordHelper {\r\n\r\n        private final Method isRecord;\r\n\r\n        private final Method getRecordComponents;\r\n\r\n        private final Method getName;\r\n\r\n        private final Method getType;\r\n\r\n        private RecordSupportedHelper() throws NoSuchMethodException, ClassNotFoundException {\r\n            isRecord = Class.class.getMethod(\"isRecord\");\r\n            getRecordComponents = Class.class.getMethod(\"getRecordComponents\");\r\n            Class<?> classRecordComponent = Class.forName(\"java.lang.reflect.RecordComponent\");\r\n            getName = classRecordComponent.getMethod(\"getName\");\r\n            getType = classRecordComponent.getMethod(\"getType\");\r\n        }\r\n\r\n        @Override\r\n        boolean isRecord(Class<?> raw) {\r\n            try {\r\n                return (boolean) isRecord.invoke(raw);\r\n            } catch (ReflectiveOperationException e) {\r\n                throw createExceptionForRecordReflectionException(e);\r\n            }\r\n        }\r\n\r\n        @Override\r\n        String[] getRecordComponentNames(Class<?> raw) {\r\n            try {\r\n                Object[] recordComponents = (Object[]) getRecordComponents.invoke(raw);\r\n                String[] componentNames = new String[recordComponents.length];\r\n                for (int i = 0; i < recordComponents.length; i++) {\r\n                    componentNames[i] = (String) getName.invoke(recordComponents[i]);\r\n                }\r\n                return componentNames;\r\n            } catch (ReflectiveOperationException e) {\r\n                throw createExceptionForRecordReflectionException(e);\r\n            }\r\n        }\r\n\r\n        @Override\r\n        public <T> Constructor<T> getCanonicalRecordConstructor(Class<T> raw) {\r\n            try {\r\n                Object[] recordComponents = (Object[]) getRecordComponents.invoke(raw);\r\n                Class<?>[] recordComponentTypes = new Class<?>[recordComponents.length];\r\n                for (int i = 0; i < recordComponents.length; i++) {\r\n                    recordComponentTypes[i] = (Class<?>) getType.invoke(recordComponents[i]);\r\n                }\r\n                // Uses getDeclaredConstructor because implicit constructor has same visibility as record\r\n                // and might therefore not be public\r\n                return raw.getDeclaredConstructor(recordComponentTypes);\r\n            } catch (ReflectiveOperationException e) {\r\n                throw createExceptionForRecordReflectionException(e);\r\n            }\r\n        }\r\n\r\n        @Override\r\n        public Method getAccessor(Class<?> raw, Field field) {\r\n            try {\r\n                // Records consists of record components, each with a unique name, a corresponding field and\r\n                // accessor method with the same name. Ref.:\r\n                // https://docs.oracle.com/javase/specs/jls/se17/html/jls-8.html#jls-8.10.3\r\n                return raw.getMethod(field.getName());\r\n            } catch (ReflectiveOperationException e) {\r\n                throw createExceptionForRecordReflectionException(e);\r\n            }\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Instance used when records are not supported\r\n     */\r\n    private static class RecordNotSupportedHelper extends RecordHelper {\r\n\r\n        @Override\r\n        boolean isRecord(Class<?> clazz) {\r\n            return false;\r\n        }\r\n\r\n        @Override\r\n        String[] getRecordComponentNames(Class<?> clazz) {\r\n            throw new UnsupportedOperationException(\"Records are not supported on this JVM, this method should not be called\");\r\n        }\r\n\r\n        @Override\r\n        <T> Constructor<T> getCanonicalRecordConstructor(Class<T> raw) {\r\n            throw new UnsupportedOperationException(\"Records are not supported on this JVM, this method should not be called\");\r\n        }\r\n\r\n        @Override\r\n        public Method getAccessor(Class<?> raw, Field field) {\r\n            throw new UnsupportedOperationException(\"Records are not supported on this JVM, this method should not be called\");\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "field",
+    "name": "RECORD_HELPER",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "private static final RecordHelper RECORD_HELPER;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "constructor",
+    "name": "ReflectionHelper",
+    "start_line": 44,
+    "end_line": 44,
+    "code": "private ReflectionHelper() {\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "getInaccessibleTroubleshootingSuffix",
+    "start_line": 46,
+    "end_line": 57,
+    "code": "private static String getInaccessibleTroubleshootingSuffix(Exception e) {\r\n    // Class was added in Java 9, therefore cannot use instanceof\r\n    if (e.getClass().getName().equals(\"java.lang.reflect.InaccessibleObjectException\")) {\r\n        String message = e.getMessage();\r\n        String troubleshootingId = message != null && message.contains(\"to module com.google.gson\") ? \"reflection-inaccessible-to-module-gson\" : \"reflection-inaccessible\";\r\n        return \"\\nSee \" + TroubleshootingGuide.createUrl(troubleshootingId);\r\n    }\r\n    return \"\";\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "makeAccessible",
+    "start_line": 66,
+    "end_line": 79,
+    "code": "/**\r\n * Internal implementation of making an {@link AccessibleObject} accessible.\r\n *\r\n * @param object the object that {@link AccessibleObject#setAccessible(boolean)} should be called\r\n *     on.\r\n * @throws JsonIOException if making the object accessible fails\r\n */\r\npublic static void makeAccessible(AccessibleObject object) throws JsonIOException {\r\n    try {\r\n        object.setAccessible(true);\r\n    } catch (Exception exception) {\r\n        String description = getAccessibleObjectDescription(object, false);\r\n        throw new JsonIOException(\"Failed making \" + description + \" accessible; either increase its visibility\" + \" or write a custom TypeAdapter for its declaring type.\" + getInaccessibleTroubleshootingSuffix(exception), exception);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "getAccessibleObjectDescription",
+    "start_line": 89,
+    "end_line": 113,
+    "code": "/**\r\n * Returns a short string describing the {@link AccessibleObject} in a human-readable way. The\r\n * result is normally shorter than {@link AccessibleObject#toString()} because it omits modifiers\r\n * (e.g. {@code final}) and uses simple names for constructor and method parameter types.\r\n *\r\n * @param object object to describe\r\n * @param uppercaseFirstLetter whether the first letter of the description should be uppercased\r\n */\r\npublic static String getAccessibleObjectDescription(AccessibleObject object, boolean uppercaseFirstLetter) {\r\n    String description;\r\n    if (object instanceof Field) {\r\n        description = \"field '\" + fieldToString((Field) object) + \"'\";\r\n    } else if (object instanceof Method) {\r\n        Method method = (Method) object;\r\n        StringBuilder methodSignatureBuilder = new StringBuilder(method.getName());\r\n        appendExecutableParameters(method, methodSignatureBuilder);\r\n        String methodSignature = methodSignatureBuilder.toString();\r\n        description = \"method '\" + method.getDeclaringClass().getName() + \"#\" + methodSignature + \"'\";\r\n    } else if (object instanceof Constructor) {\r\n        description = \"constructor '\" + constructorToString((Constructor<?>) object) + \"'\";\r\n    } else {\r\n        description = \"<unknown AccessibleObject> \" + object.toString();\r\n    }\r\n    if (uppercaseFirstLetter && Character.isLowerCase(description.charAt(0))) {\r\n        description = Character.toUpperCase(description.charAt(0)) + description.substring(1);\r\n    }\r\n    return description;\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "fieldToString",
+    "start_line": 116,
+    "end_line": 118,
+    "code": "/**\r\n * Creates a string representation for a field, omitting modifiers and the field type.\r\n */\r\npublic static String fieldToString(Field field) {\r\n    return field.getDeclaringClass().getName() + \"#\" + field.getName();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "constructorToString",
+    "start_line": 124,
+    "end_line": 129,
+    "code": "/**\r\n * Creates a string representation for a constructor. E.g.: {@code java.lang.String(char[], int,\r\n * int)}\r\n */\r\npublic static String constructorToString(Constructor<?> constructor) {\r\n    StringBuilder stringBuilder = new StringBuilder(constructor.getDeclaringClass().getName());\r\n    appendExecutableParameters(constructor, stringBuilder);\r\n    return stringBuilder.toString();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "appendExecutableParameters",
+    "start_line": 133,
+    "end_line": 149,
+    "code": "// Ideally parameter type would be java.lang.reflect.Executable, but that was added\r\n// in Android API level 26\r\nprivate static void appendExecutableParameters(AccessibleObject executable, StringBuilder stringBuilder) {\r\n    stringBuilder.append('(');\r\n    Class<?>[] parameters = (executable instanceof Method) ? ((Method) executable).getParameterTypes() : ((Constructor<?>) executable).getParameterTypes();\r\n    for (int i = 0; i < parameters.length; i++) {\r\n        if (i > 0) {\r\n            stringBuilder.append(\", \");\r\n        }\r\n        stringBuilder.append(parameters[i].getSimpleName());\r\n    }\r\n    stringBuilder.append(')');\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "isStatic",
+    "start_line": 151,
+    "end_line": 153,
+    "code": "public static boolean isStatic(Class<?> clazz) {\r\n    return Modifier.isStatic(clazz.getModifiers());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "isAnonymousOrNonStaticLocal",
+    "start_line": 156,
+    "end_line": 158,
+    "code": "/**\r\n * Returns whether the class is anonymous or a non-static local class.\r\n */\r\npublic static boolean isAnonymousOrNonStaticLocal(Class<?> clazz) {\r\n    return !isStatic(clazz) && (clazz.isAnonymousClass() || clazz.isLocalClass());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "tryMakeAccessible",
+    "start_line": 166,
+    "end_line": 179,
+    "code": "/**\r\n * Tries making the constructor accessible, returning an exception message if this fails.\r\n *\r\n * @param constructor constructor to make accessible\r\n * @return exception message; {@code null} if successful, non-{@code null} if unsuccessful\r\n */\r\npublic static String tryMakeAccessible(Constructor<?> constructor) {\r\n    try {\r\n        constructor.setAccessible(true);\r\n        return null;\r\n    } catch (Exception exception) {\r\n        return \"Failed making constructor '\" + constructorToString(constructor) + \"' accessible; either increase its visibility or write a custom InstanceCreator or\" + \" TypeAdapter for its declaring type: \" + // Include the message since it might contain more detailed information\r\n        exception.getMessage() + getInaccessibleTroubleshootingSuffix(exception);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "isRecord",
+    "start_line": 182,
+    "end_line": 184,
+    "code": "/**\r\n * If records are supported on the JVM, this is equivalent to a call to Class.isRecord()\r\n */\r\npublic static boolean isRecord(Class<?> raw) {\r\n    return RECORD_HELPER.isRecord(raw);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "getRecordComponentNames",
+    "start_line": 186,
+    "end_line": 188,
+    "code": "public static String[] getRecordComponentNames(Class<?> raw) {\r\n    return RECORD_HELPER.getRecordComponentNames(raw);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "getAccessor",
+    "start_line": 191,
+    "end_line": 193,
+    "code": "/**\r\n * Looks up the record accessor method that corresponds to the given record field\r\n */\r\npublic static Method getAccessor(Class<?> raw, Field field) {\r\n    return RECORD_HELPER.getAccessor(raw, field);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "getCanonicalRecordConstructor",
+    "start_line": 195,
+    "end_line": 197,
+    "code": "public static <T> Constructor<T> getCanonicalRecordConstructor(Class<T> raw) {\r\n    return RECORD_HELPER.getCanonicalRecordConstructor(raw);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "createExceptionForUnexpectedIllegalAccess",
+    "start_line": 199,
+    "end_line": 207,
+    "code": "public static RuntimeException createExceptionForUnexpectedIllegalAccess(IllegalAccessException exception) {\r\n    throw new RuntimeException(\"Unexpected IllegalAccessException occurred (Gson \" + GsonBuildConfig.VERSION + \"). Certain ReflectionAccessFilter features require Java >= 9 to work correctly. If\" + \" you are not using ReflectionAccessFilter, report this to the Gson maintainers.\", exception);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  },
+  {
+    "type": "method",
+    "name": "createExceptionForRecordReflectionException",
+    "start_line": 209,
+    "end_line": 220,
+    "code": "private static RuntimeException createExceptionForRecordReflectionException(ReflectiveOperationException exception) {\r\n    throw new RuntimeException(\"Unexpected ReflectiveOperationException occurred\" + \" (Gson \" + GsonBuildConfig.VERSION + \").\" + \" To support Java records, reflection is utilized to read out information\" + \" about records. All these invocations happens after it is established\" + \" that records exist in the JVM. This exception is unexpected behavior.\", exception);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\internal\\reflect\\ReflectionHelper.java"
+  }
+]

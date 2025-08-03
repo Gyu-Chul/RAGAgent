@@ -1,0 +1,186 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonDeserializationContext",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.JsonDeserializationContext;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonDeserializer",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.JsonDeserializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSerializer",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.JsonSerializer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.reflect.Type",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import java.lang.reflect.Type;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "class",
+    "name": "TypeAdapterRuntimeTypeWrapperTest",
+    "start_line": 35,
+    "end_line": 205,
+    "code": "public class TypeAdapterRuntimeTypeWrapperTest {\r\n\r\n    private static class Base {\r\n    }\r\n\r\n    private static class Subclass extends Base {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        String f = \"test\";\r\n    }\r\n\r\n    private static class Container {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        Base b = new Subclass();\r\n    }\r\n\r\n    private static class Deserializer implements JsonDeserializer<Base> {\r\n\r\n        @Override\r\n        public Base deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) {\r\n            throw new AssertionError(\"not needed for this test\");\r\n        }\r\n    }\r\n\r\n    /**\r\n     * When custom {@link JsonSerializer} is registered for Base should prefer that over reflective\r\n     * adapter for Subclass for serialization.\r\n     */\r\n    @Test\r\n    public void testJsonSerializer() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (JsonSerializer<Base>) (src, typeOfSrc, context) -> new JsonPrimitive(\"serializer\")).create();\r\n        String json = gson.toJson(new Container());\r\n        assertThat(json).isEqualTo(\"{\\\"b\\\":\\\"serializer\\\"}\");\r\n    }\r\n\r\n    /**\r\n     * When only {@link JsonDeserializer} is registered for Base, then on serialization should prefer\r\n     * reflective adapter for Subclass since Base would use reflective adapter as delegate.\r\n     */\r\n    @Test\r\n    public void testJsonDeserializer_ReflectiveSerializerDelegate() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, new Deserializer()).create();\r\n        String json = gson.toJson(new Container());\r\n        assertThat(json).isEqualTo(\"{\\\"b\\\":{\\\"f\\\":\\\"test\\\"}}\");\r\n    }\r\n\r\n    /**\r\n     * When {@link JsonDeserializer} with custom adapter as delegate is registered for Base, then on\r\n     * serialization should prefer custom adapter delegate for Base over reflective adapter for\r\n     * Subclass.\r\n     */\r\n    @Test\r\n    public void testJsonDeserializer_CustomSerializerDelegate() {\r\n        Gson gson = new GsonBuilder().// Register custom delegate\r\n        registerTypeAdapter(Base.class, new TypeAdapter<Base>() {\r\n\r\n            @Override\r\n            public Base read(JsonReader in) throws IOException {\r\n                throw new UnsupportedOperationException();\r\n            }\r\n\r\n            @Override\r\n            public void write(JsonWriter out, Base value) throws IOException {\r\n                out.value(\"custom delegate\");\r\n            }\r\n        }).registerTypeAdapter(Base.class, new Deserializer()).create();\r\n        String json = gson.toJson(new Container());\r\n        assertThat(json).isEqualTo(\"{\\\"b\\\":\\\"custom delegate\\\"}\");\r\n    }\r\n\r\n    /**\r\n     * When two (or more) {@link JsonDeserializer}s are registered for Base which eventually fall back\r\n     * to reflective adapter as delegate, then on serialization should prefer reflective adapter for\r\n     * Subclass.\r\n     */\r\n    @Test\r\n    public void testJsonDeserializer_ReflectiveTreeSerializerDelegate() {\r\n        Gson gson = new GsonBuilder().// Register delegate which itself falls back to reflective serialization\r\n        registerTypeAdapter(Base.class, new Deserializer()).registerTypeAdapter(Base.class, new Deserializer()).create();\r\n        String json = gson.toJson(new Container());\r\n        assertThat(json).isEqualTo(\"{\\\"b\\\":{\\\"f\\\":\\\"test\\\"}}\");\r\n    }\r\n\r\n    /**\r\n     * When {@link JsonDeserializer} with {@link JsonSerializer} as delegate is registered for Base,\r\n     * then on serialization should prefer {@code JsonSerializer} over reflective adapter for\r\n     * Subclass.\r\n     */\r\n    @Test\r\n    public void testJsonDeserializer_JsonSerializerDelegate() {\r\n        Gson gson = new GsonBuilder().// Register JsonSerializer as delegate\r\n        registerTypeAdapter(Base.class, (JsonSerializer<Base>) (src, typeOfSrc, context) -> new JsonPrimitive(\"custom delegate\")).registerTypeAdapter(Base.class, new Deserializer()).create();\r\n        String json = gson.toJson(new Container());\r\n        assertThat(json).isEqualTo(\"{\\\"b\\\":\\\"custom delegate\\\"}\");\r\n    }\r\n\r\n    /**\r\n     * When a {@link JsonDeserializer} is registered for Subclass, and a custom {@link JsonSerializer}\r\n     * is registered for Base, then Gson should prefer the reflective adapter for Subclass for\r\n     * backward compatibility (see https://github.com/google/gson/pull/1787#issuecomment-1222175189)\r\n     * even though normally TypeAdapterRuntimeTypeWrapper should prefer the custom serializer for\r\n     * Base.\r\n     */\r\n    @Test\r\n    public void testJsonDeserializer_SubclassBackwardCompatibility() {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Subclass.class, (JsonDeserializer<Subclass>) (json, typeOfT, context) -> {\r\n            throw new AssertionError(\"not needed for this test\");\r\n        }).registerTypeAdapter(Base.class, (JsonSerializer<Base>) (src, typeOfSrc, context) -> new JsonPrimitive(\"base\")).create();\r\n        String json = gson.toJson(new Container());\r\n        assertThat(json).isEqualTo(\"{\\\"b\\\":{\\\"f\\\":\\\"test\\\"}}\");\r\n    }\r\n\r\n    private static class CyclicBase {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        CyclicBase f;\r\n    }\r\n\r\n    private static class CyclicSub extends CyclicBase {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        int i;\r\n\r\n        public CyclicSub(int i) {\r\n            this.i = i;\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Tests behavior when the type of a field refers to a type whose adapter is currently in the\r\n     * process of being created. For these cases {@link Gson} uses a future adapter for the type. That\r\n     * adapter later uses the actual adapter as delegate.\r\n     */\r\n    @Test\r\n    public void testGsonFutureAdapter() {\r\n        CyclicBase b = new CyclicBase();\r\n        b.f = new CyclicSub(2);\r\n        String json = new Gson().toJson(b);\r\n        assertThat(json).isEqualTo(\"{\\\"f\\\":{\\\"i\\\":2}}\");\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonSerializer",
+    "start_line": 59,
+    "end_line": 70,
+    "code": "/**\r\n * When custom {@link JsonSerializer} is registered for Base should prefer that over reflective\r\n * adapter for Subclass for serialization.\r\n */\r\n@Test\r\npublic void testJsonSerializer() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, (JsonSerializer<Base>) (src, typeOfSrc, context) -> new JsonPrimitive(\"serializer\")).create();\r\n    String json = gson.toJson(new Container());\r\n    assertThat(json).isEqualTo(\"{\\\"b\\\":\\\"serializer\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonDeserializer_ReflectiveSerializerDelegate",
+    "start_line": 76,
+    "end_line": 82,
+    "code": "/**\r\n * When only {@link JsonDeserializer} is registered for Base, then on serialization should prefer\r\n * reflective adapter for Subclass since Base would use reflective adapter as delegate.\r\n */\r\n@Test\r\npublic void testJsonDeserializer_ReflectiveSerializerDelegate() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Base.class, new Deserializer()).create();\r\n    String json = gson.toJson(new Container());\r\n    assertThat(json).isEqualTo(\"{\\\"b\\\":{\\\"f\\\":\\\"test\\\"}}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonDeserializer_CustomSerializerDelegate",
+    "start_line": 89,
+    "end_line": 112,
+    "code": "/**\r\n * When {@link JsonDeserializer} with custom adapter as delegate is registered for Base, then on\r\n * serialization should prefer custom adapter delegate for Base over reflective adapter for\r\n * Subclass.\r\n */\r\n@Test\r\npublic void testJsonDeserializer_CustomSerializerDelegate() {\r\n    Gson gson = new GsonBuilder().// Register custom delegate\r\n    registerTypeAdapter(Base.class, new TypeAdapter<Base>() {\r\n\r\n        @Override\r\n        public Base read(JsonReader in) throws IOException {\r\n            throw new UnsupportedOperationException();\r\n        }\r\n\r\n        @Override\r\n        public void write(JsonWriter out, Base value) throws IOException {\r\n            out.value(\"custom delegate\");\r\n        }\r\n    }).registerTypeAdapter(Base.class, new Deserializer()).create();\r\n    String json = gson.toJson(new Container());\r\n    assertThat(json).isEqualTo(\"{\\\"b\\\":\\\"custom delegate\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonDeserializer_ReflectiveTreeSerializerDelegate",
+    "start_line": 119,
+    "end_line": 130,
+    "code": "/**\r\n * When two (or more) {@link JsonDeserializer}s are registered for Base which eventually fall back\r\n * to reflective adapter as delegate, then on serialization should prefer reflective adapter for\r\n * Subclass.\r\n */\r\n@Test\r\npublic void testJsonDeserializer_ReflectiveTreeSerializerDelegate() {\r\n    Gson gson = new GsonBuilder().// Register delegate which itself falls back to reflective serialization\r\n    registerTypeAdapter(Base.class, new Deserializer()).registerTypeAdapter(Base.class, new Deserializer()).create();\r\n    String json = gson.toJson(new Container());\r\n    assertThat(json).isEqualTo(\"{\\\"b\\\":{\\\"f\\\":\\\"test\\\"}}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonDeserializer_JsonSerializerDelegate",
+    "start_line": 137,
+    "end_line": 151,
+    "code": "/**\r\n * When {@link JsonDeserializer} with {@link JsonSerializer} as delegate is registered for Base,\r\n * then on serialization should prefer {@code JsonSerializer} over reflective adapter for\r\n * Subclass.\r\n */\r\n@Test\r\npublic void testJsonDeserializer_JsonSerializerDelegate() {\r\n    Gson gson = new GsonBuilder().// Register JsonSerializer as delegate\r\n    registerTypeAdapter(Base.class, (JsonSerializer<Base>) (src, typeOfSrc, context) -> new JsonPrimitive(\"custom delegate\")).registerTypeAdapter(Base.class, new Deserializer()).create();\r\n    String json = gson.toJson(new Container());\r\n    assertThat(json).isEqualTo(\"{\\\"b\\\":\\\"custom delegate\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonDeserializer_SubclassBackwardCompatibility",
+    "start_line": 160,
+    "end_line": 177,
+    "code": "/**\r\n * When a {@link JsonDeserializer} is registered for Subclass, and a custom {@link JsonSerializer}\r\n * is registered for Base, then Gson should prefer the reflective adapter for Subclass for\r\n * backward compatibility (see https://github.com/google/gson/pull/1787#issuecomment-1222175189)\r\n * even though normally TypeAdapterRuntimeTypeWrapper should prefer the custom serializer for\r\n * Base.\r\n */\r\n@Test\r\npublic void testJsonDeserializer_SubclassBackwardCompatibility() {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Subclass.class, (JsonDeserializer<Subclass>) (json, typeOfT, context) -> {\r\n        throw new AssertionError(\"not needed for this test\");\r\n    }).registerTypeAdapter(Base.class, (JsonSerializer<Base>) (src, typeOfSrc, context) -> new JsonPrimitive(\"base\")).create();\r\n    String json = gson.toJson(new Container());\r\n    assertThat(json).isEqualTo(\"{\\\"b\\\":{\\\"f\\\":\\\"test\\\"}}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testGsonFutureAdapter",
+    "start_line": 198,
+    "end_line": 204,
+    "code": "/**\r\n * Tests behavior when the type of a field refers to a type whose adapter is currently in the\r\n * process of being created. For these cases {@link Gson} uses a future adapter for the type. That\r\n * adapter later uses the actual adapter as delegate.\r\n */\r\n@Test\r\npublic void testGsonFutureAdapter() {\r\n    CyclicBase b = new CyclicBase();\r\n    b.f = new CyclicSub(2);\r\n    String json = new Gson().toJson(b);\r\n    assertThat(json).isEqualTo(\"{\\\"f\\\":{\\\"i\\\":2}}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\TypeAdapterRuntimeTypeWrapperTest.java"
+  }
+]

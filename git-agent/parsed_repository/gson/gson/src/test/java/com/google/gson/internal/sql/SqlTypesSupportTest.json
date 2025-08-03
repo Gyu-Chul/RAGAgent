@@ -1,0 +1,42 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.sql",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.sql;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupportTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupportTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupportTest.java"
+  },
+  {
+    "type": "class",
+    "name": "SqlTypesSupportTest",
+    "start_line": 23,
+    "end_line": 35,
+    "code": "public class SqlTypesSupportTest {\r\n\r\n    @Test\r\n    public void testSupported() {\r\n        assertThat(SqlTypesSupport.SUPPORTS_SQL_TYPES).isTrue();\r\n        assertThat(SqlTypesSupport.DATE_DATE_TYPE).isNotNull();\r\n        assertThat(SqlTypesSupport.TIMESTAMP_DATE_TYPE).isNotNull();\r\n        assertThat(SqlTypesSupport.DATE_FACTORY).isNotNull();\r\n        assertThat(SqlTypesSupport.TIME_FACTORY).isNotNull();\r\n        assertThat(SqlTypesSupport.TIMESTAMP_FACTORY).isNotNull();\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupportTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSupported",
+    "start_line": 24,
+    "end_line": 34,
+    "code": "@Test\r\npublic void testSupported() {\r\n    assertThat(SqlTypesSupport.SUPPORTS_SQL_TYPES).isTrue();\r\n    assertThat(SqlTypesSupport.DATE_DATE_TYPE).isNotNull();\r\n    assertThat(SqlTypesSupport.TIMESTAMP_DATE_TYPE).isNotNull();\r\n    assertThat(SqlTypesSupport.DATE_FACTORY).isNotNull();\r\n    assertThat(SqlTypesSupport.TIME_FACTORY).isNotNull();\r\n    assertThat(SqlTypesSupport.TIMESTAMP_FACTORY).isNotNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\sql\\SqlTypesSupportTest.java"
+  }
+]

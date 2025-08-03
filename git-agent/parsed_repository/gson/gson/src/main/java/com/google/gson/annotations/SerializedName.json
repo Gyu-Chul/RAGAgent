@@ -1,0 +1,58 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.annotations",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.annotations;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\SerializedName.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.annotation.Documented",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import java.lang.annotation.Documented;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\SerializedName.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.annotation.ElementType",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import java.lang.annotation.ElementType;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\SerializedName.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.annotation.Retention",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.lang.annotation.Retention;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\SerializedName.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.annotation.RetentionPolicy",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.lang.annotation.RetentionPolicy;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\SerializedName.java"
+  },
+  {
+    "type": "import",
+    "name": "java.lang.annotation.Target",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.lang.annotation.Target;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\SerializedName.java"
+  },
+  {
+    "type": "annotation",
+    "name": "SerializedName",
+    "start_line": 83,
+    "end_line": 101,
+    "code": "/**\r\n * An annotation that indicates this member should be serialized to JSON with the provided name\r\n * value as its field name.\r\n *\r\n * <p>This annotation will override any {@link com.google.gson.FieldNamingPolicy}, including the\r\n * default field naming policy, that may have been set on the {@link com.google.gson.Gson} instance.\r\n * A different naming policy can set using the {@code GsonBuilder} class. See {@link\r\n * com.google.gson.GsonBuilder#setFieldNamingPolicy(com.google.gson.FieldNamingPolicy)} for more\r\n * information.\r\n *\r\n * <p>Here is an example of how this annotation is meant to be used:\r\n *\r\n * <pre>\r\n * public class MyClass {\r\n *   &#64;SerializedName(\"name\") String a;\r\n *   &#64;SerializedName(value=\"name1\", alternate={\"name2\", \"name3\"}) String b;\r\n *   String c;\r\n *\r\n *   public MyClass(String a, String b, String c) {\r\n *     this.a = a;\r\n *     this.b = b;\r\n *     this.c = c;\r\n *   }\r\n * }\r\n * </pre>\r\n *\r\n * <p>The following shows the output that is generated when serializing an instance of the above\r\n * example class:\r\n *\r\n * <pre>\r\n * MyClass target = new MyClass(\"v1\", \"v2\", \"v3\");\r\n * Gson gson = new Gson();\r\n * String json = gson.toJson(target);\r\n * System.out.println(json);\r\n *\r\n * ===== OUTPUT =====\r\n * {\"name\":\"v1\",\"name1\":\"v2\",\"c\":\"v3\"}\r\n * </pre>\r\n *\r\n * <p>NOTE: The value you specify in this annotation must be a valid JSON field name. While\r\n * deserializing, all values specified in the annotation will be deserialized into the field. For\r\n * example:\r\n *\r\n * <pre>\r\n *   MyClass target = gson.fromJson(\"{'name1':'v1'}\", MyClass.class);\r\n *   assertEquals(\"v1\", target.b);\r\n *   target = gson.fromJson(\"{'name2':'v2'}\", MyClass.class);\r\n *   assertEquals(\"v2\", target.b);\r\n *   target = gson.fromJson(\"{'name3':'v3'}\", MyClass.class);\r\n *   assertEquals(\"v3\", target.b);\r\n * </pre>\r\n *\r\n * Note that MyClass.b is now deserialized from either name1, name2 or name3.\r\n *\r\n * @see com.google.gson.FieldNamingPolicy\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\n@Documented\r\n@Retention(RetentionPolicy.RUNTIME)\r\n@Target({ ElementType.FIELD, ElementType.METHOD })\r\npublic @interface SerializedName {\r\n\r\n    /**\r\n     * The desired name of the field when it is serialized or deserialized.\r\n     *\r\n     * @return the desired name of the field when it is serialized or deserialized\r\n     */\r\n    String value();\r\n\r\n    /**\r\n     * The alternative names of the field when it is deserialized\r\n     *\r\n     * @return the alternative names of the field when it is deserialized\r\n     */\r\n    String[] alternate() default {};\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\main\\java\\com\\google\\gson\\annotations\\SerializedName.java"
+  }
+]

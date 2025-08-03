@@ -1,0 +1,130 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.CountDownLatch",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.util.concurrent.CountDownLatch;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.ExecutorService",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.util.concurrent.ExecutorService;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.Executors",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import java.util.concurrent.Executors;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.concurrent.atomic.AtomicReference",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import java.util.concurrent.atomic.AtomicReference;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "class",
+    "name": "ConcurrencyTest",
+    "start_line": 34,
+    "end_line": 153,
+    "code": "/**\r\n * Tests for ensuring Gson thread-safety.\r\n *\r\n * @author Inderjeet Singh\r\n * @author Joel Leitch\r\n */\r\npublic class ConcurrencyTest {\r\n\r\n    private Gson gson;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        gson = new Gson();\r\n    }\r\n\r\n    /**\r\n     * Source-code based on\r\n     * http://groups.google.com/group/google-gson/browse_thread/thread/563bb51ee2495081\r\n     */\r\n    @Test\r\n    public void testSingleThreadSerialization() {\r\n        MyObject myObj = new MyObject();\r\n        for (int i = 0; i < 10; i++) {\r\n            assertThat(gson.toJson(myObj)).isEqualTo(\"{\\\"a\\\":\\\"hello\\\",\\\"b\\\":\\\"world\\\",\\\"i\\\":42}\");\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Source-code based on\r\n     * http://groups.google.com/group/google-gson/browse_thread/thread/563bb51ee2495081\r\n     */\r\n    @Test\r\n    public void testSingleThreadDeserialization() {\r\n        for (int i = 0; i < 10; i++) {\r\n            MyObject deserialized = gson.fromJson(\"{'a':'hello','b':'world','i':1}\", MyObject.class);\r\n            assertThat(deserialized.a).isEqualTo(\"hello\");\r\n            assertThat(deserialized.b).isEqualTo(\"world\");\r\n            assertThat(deserialized.i).isEqualTo(1);\r\n        }\r\n    }\r\n\r\n    /**\r\n     * Source-code based on\r\n     * http://groups.google.com/group/google-gson/browse_thread/thread/563bb51ee2495081\r\n     */\r\n    @Test\r\n    public void testMultiThreadSerialization() throws InterruptedException {\r\n        CountDownLatch startLatch = new CountDownLatch(1);\r\n        CountDownLatch finishedLatch = new CountDownLatch(10);\r\n        AtomicReference<Throwable> error = new AtomicReference<>(null);\r\n        ExecutorService executor = Executors.newFixedThreadPool(10);\r\n        for (int taskCount = 0; taskCount < 10; taskCount++) {\r\n            executor.execute(new Runnable() {\r\n\r\n                @Override\r\n                public void run() {\r\n                    MyObject myObj = new MyObject();\r\n                    try {\r\n                        startLatch.await();\r\n                        for (int i = 0; i < 10; i++) {\r\n                            assertThat(gson.toJson(myObj)).isEqualTo(\"{\\\"a\\\":\\\"hello\\\",\\\"b\\\":\\\"world\\\",\\\"i\\\":42}\");\r\n                        }\r\n                    } catch (Throwable t) {\r\n                        error.set(t);\r\n                    } finally {\r\n                        finishedLatch.countDown();\r\n                    }\r\n                }\r\n            });\r\n        }\r\n        startLatch.countDown();\r\n        finishedLatch.await();\r\n        assertThat(error.get()).isNull();\r\n    }\r\n\r\n    /**\r\n     * Source-code based on\r\n     * http://groups.google.com/group/google-gson/browse_thread/thread/563bb51ee2495081\r\n     */\r\n    @Test\r\n    public void testMultiThreadDeserialization() throws InterruptedException {\r\n        CountDownLatch startLatch = new CountDownLatch(1);\r\n        CountDownLatch finishedLatch = new CountDownLatch(10);\r\n        AtomicReference<Throwable> error = new AtomicReference<>(null);\r\n        ExecutorService executor = Executors.newFixedThreadPool(10);\r\n        for (int taskCount = 0; taskCount < 10; taskCount++) {\r\n            executor.execute(() -> {\r\n                try {\r\n                    startLatch.await();\r\n                    for (int i = 0; i < 10; i++) {\r\n                        MyObject deserialized = gson.fromJson(\"{'a':'hello','b':'world','i':1}\", MyObject.class);\r\n                        assertThat(deserialized.a).isEqualTo(\"hello\");\r\n                        assertThat(deserialized.b).isEqualTo(\"world\");\r\n                        assertThat(deserialized.i).isEqualTo(1);\r\n                    }\r\n                } catch (Throwable t) {\r\n                    error.set(t);\r\n                } finally {\r\n                    finishedLatch.countDown();\r\n                }\r\n            });\r\n        }\r\n        startLatch.countDown();\r\n        finishedLatch.await();\r\n        assertThat(error.get()).isNull();\r\n    }\r\n\r\n    @SuppressWarnings(\"unused\")\r\n    private static class MyObject {\r\n\r\n        String a;\r\n\r\n        String b;\r\n\r\n        int i;\r\n\r\n        MyObject() {\r\n            this(\"hello\", \"world\", 42);\r\n        }\r\n\r\n        public MyObject(String a, String b, int i) {\r\n            this.a = a;\r\n            this.b = b;\r\n            this.i = i;\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "field",
+    "name": "gson",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "private Gson gson;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 37,
+    "end_line": 40,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    gson = new Gson();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSingleThreadSerialization",
+    "start_line": 46,
+    "end_line": 52,
+    "code": "/**\r\n * Source-code based on\r\n * http://groups.google.com/group/google-gson/browse_thread/thread/563bb51ee2495081\r\n */\r\n@Test\r\npublic void testSingleThreadSerialization() {\r\n    MyObject myObj = new MyObject();\r\n    for (int i = 0; i < 10; i++) {\r\n        assertThat(gson.toJson(myObj)).isEqualTo(\"{\\\"a\\\":\\\"hello\\\",\\\"b\\\":\\\"world\\\",\\\"i\\\":42}\");\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSingleThreadDeserialization",
+    "start_line": 58,
+    "end_line": 66,
+    "code": "/**\r\n * Source-code based on\r\n * http://groups.google.com/group/google-gson/browse_thread/thread/563bb51ee2495081\r\n */\r\n@Test\r\npublic void testSingleThreadDeserialization() {\r\n    for (int i = 0; i < 10; i++) {\r\n        MyObject deserialized = gson.fromJson(\"{'a':'hello','b':'world','i':1}\", MyObject.class);\r\n        assertThat(deserialized.a).isEqualTo(\"hello\");\r\n        assertThat(deserialized.b).isEqualTo(\"world\");\r\n        assertThat(deserialized.i).isEqualTo(1);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMultiThreadSerialization",
+    "start_line": 72,
+    "end_line": 101,
+    "code": "/**\r\n * Source-code based on\r\n * http://groups.google.com/group/google-gson/browse_thread/thread/563bb51ee2495081\r\n */\r\n@Test\r\npublic void testMultiThreadSerialization() throws InterruptedException {\r\n    CountDownLatch startLatch = new CountDownLatch(1);\r\n    CountDownLatch finishedLatch = new CountDownLatch(10);\r\n    AtomicReference<Throwable> error = new AtomicReference<>(null);\r\n    ExecutorService executor = Executors.newFixedThreadPool(10);\r\n    for (int taskCount = 0; taskCount < 10; taskCount++) {\r\n        executor.execute(new Runnable() {\r\n\r\n            @Override\r\n            public void run() {\r\n                MyObject myObj = new MyObject();\r\n                try {\r\n                    startLatch.await();\r\n                    for (int i = 0; i < 10; i++) {\r\n                        assertThat(gson.toJson(myObj)).isEqualTo(\"{\\\"a\\\":\\\"hello\\\",\\\"b\\\":\\\"world\\\",\\\"i\\\":42}\");\r\n                    }\r\n                } catch (Throwable t) {\r\n                    error.set(t);\r\n                } finally {\r\n                    finishedLatch.countDown();\r\n                }\r\n            }\r\n        });\r\n    }\r\n    startLatch.countDown();\r\n    finishedLatch.await();\r\n    assertThat(error.get()).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testMultiThreadDeserialization",
+    "start_line": 107,
+    "end_line": 135,
+    "code": "/**\r\n * Source-code based on\r\n * http://groups.google.com/group/google-gson/browse_thread/thread/563bb51ee2495081\r\n */\r\n@Test\r\npublic void testMultiThreadDeserialization() throws InterruptedException {\r\n    CountDownLatch startLatch = new CountDownLatch(1);\r\n    CountDownLatch finishedLatch = new CountDownLatch(10);\r\n    AtomicReference<Throwable> error = new AtomicReference<>(null);\r\n    ExecutorService executor = Executors.newFixedThreadPool(10);\r\n    for (int taskCount = 0; taskCount < 10; taskCount++) {\r\n        executor.execute(() -> {\r\n            try {\r\n                startLatch.await();\r\n                for (int i = 0; i < 10; i++) {\r\n                    MyObject deserialized = gson.fromJson(\"{'a':'hello','b':'world','i':1}\", MyObject.class);\r\n                    assertThat(deserialized.a).isEqualTo(\"hello\");\r\n                    assertThat(deserialized.b).isEqualTo(\"world\");\r\n                    assertThat(deserialized.i).isEqualTo(1);\r\n                }\r\n            } catch (Throwable t) {\r\n                error.set(t);\r\n            } finally {\r\n                finishedLatch.countDown();\r\n            }\r\n        });\r\n    }\r\n    startLatch.countDown();\r\n    finishedLatch.await();\r\n    assertThat(error.get()).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\ConcurrencyTest.java"
+  }
+]

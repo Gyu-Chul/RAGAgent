@@ -1,0 +1,154 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.bind",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.bind;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.reflect.Java17ReflectionHelperTest",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.internal.reflect.Java17ReflectionHelperTest;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.nio.file.attribute.GroupPrincipal",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.nio.file.attribute.GroupPrincipal;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.nio.file.attribute.UserPrincipal",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.nio.file.attribute.UserPrincipal;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.security.Principal",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.security.Principal;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Before",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import org.junit.Before;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "class",
+    "name": "Java17ReflectiveTypeAdapterFactoryTest",
+    "start_line": 34,
+    "end_line": 98,
+    "code": "public class Java17ReflectiveTypeAdapterFactoryTest {\r\n\r\n    // The class jdk.net.UnixDomainPrincipal is one of the few Record types that are included in the\r\n    // JDK.\r\n    // We use this to test serialization and deserialization of Record classes, so we do not need to\r\n    // have record support at the language level for these tests. This class was added in JDK 16.\r\n    Class<?> unixDomainPrincipalClass;\r\n\r\n    @Before\r\n    public void setUp() throws Exception {\r\n        unixDomainPrincipalClass = Class.forName(\"jdk.net.UnixDomainPrincipal\");\r\n    }\r\n\r\n    // Class for which the normal reflection based adapter is used\r\n    private static class DummyClass {\r\n\r\n        @SuppressWarnings(\"unused\")\r\n        public String s;\r\n    }\r\n\r\n    @Test\r\n    public void testCustomAdapterForRecords() {\r\n        Gson gson = new Gson();\r\n        TypeAdapter<?> recordAdapter = gson.getAdapter(unixDomainPrincipalClass);\r\n        TypeAdapter<?> defaultReflectionAdapter = gson.getAdapter(DummyClass.class);\r\n        assertThat(defaultReflectionAdapter.getClass()).isNotEqualTo(recordAdapter.getClass());\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeRecords() throws ReflectiveOperationException {\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(UserPrincipal.class, new PrincipalTypeAdapter<>()).registerTypeAdapter(GroupPrincipal.class, new PrincipalTypeAdapter<>()).create();\r\n        UserPrincipal userPrincipal = gson.fromJson(\"\\\"user\\\"\", UserPrincipal.class);\r\n        GroupPrincipal groupPrincipal = gson.fromJson(\"\\\"group\\\"\", GroupPrincipal.class);\r\n        Object recordInstance = unixDomainPrincipalClass.getDeclaredConstructor(UserPrincipal.class, GroupPrincipal.class).newInstance(userPrincipal, groupPrincipal);\r\n        String serialized = gson.toJson(recordInstance);\r\n        Object deserializedRecordInstance = gson.fromJson(serialized, unixDomainPrincipalClass);\r\n        assertThat(deserializedRecordInstance).isEqualTo(recordInstance);\r\n        assertThat(serialized).isEqualTo(\"{\\\"user\\\":\\\"user\\\",\\\"group\\\":\\\"group\\\"}\");\r\n    }\r\n\r\n    private static class PrincipalTypeAdapter<T extends Principal> extends TypeAdapter<T> {\r\n\r\n        @Override\r\n        public void write(JsonWriter out, T principal) throws IOException {\r\n            out.value(principal.getName());\r\n        }\r\n\r\n        @Override\r\n        public T read(JsonReader in) throws IOException {\r\n            String name = in.nextString();\r\n            // This type adapter is only used for Group and User Principal, both of which are implemented\r\n            // by PrincipalImpl.\r\n            @SuppressWarnings(\"unchecked\")\r\n            T principal = (T) new Java17ReflectionHelperTest.PrincipalImpl(name);\r\n            return principal;\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "field",
+    "name": "unixDomainPrincipalClass",
+    "start_line": 40,
+    "end_line": 40,
+    "code": "// The class jdk.net.UnixDomainPrincipal is one of the few Record types that are included in the\r\n// JDK.\r\n// We use this to test serialization and deserialization of Record classes, so we do not need to\r\n// have record support at the language level for these tests. This class was added in JDK 16.\r\nClass<?> unixDomainPrincipalClass;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "method",
+    "name": "setUp",
+    "start_line": 42,
+    "end_line": 45,
+    "code": "@Before\r\npublic void setUp() throws Exception {\r\n    unixDomainPrincipalClass = Class.forName(\"jdk.net.UnixDomainPrincipal\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testCustomAdapterForRecords",
+    "start_line": 53,
+    "end_line": 59,
+    "code": "@Test\r\npublic void testCustomAdapterForRecords() {\r\n    Gson gson = new Gson();\r\n    TypeAdapter<?> recordAdapter = gson.getAdapter(unixDomainPrincipalClass);\r\n    TypeAdapter<?> defaultReflectionAdapter = gson.getAdapter(DummyClass.class);\r\n    assertThat(defaultReflectionAdapter.getClass()).isNotEqualTo(recordAdapter.getClass());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeRecords",
+    "start_line": 61,
+    "end_line": 80,
+    "code": "@Test\r\npublic void testSerializeRecords() throws ReflectiveOperationException {\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(UserPrincipal.class, new PrincipalTypeAdapter<>()).registerTypeAdapter(GroupPrincipal.class, new PrincipalTypeAdapter<>()).create();\r\n    UserPrincipal userPrincipal = gson.fromJson(\"\\\"user\\\"\", UserPrincipal.class);\r\n    GroupPrincipal groupPrincipal = gson.fromJson(\"\\\"group\\\"\", GroupPrincipal.class);\r\n    Object recordInstance = unixDomainPrincipalClass.getDeclaredConstructor(UserPrincipal.class, GroupPrincipal.class).newInstance(userPrincipal, groupPrincipal);\r\n    String serialized = gson.toJson(recordInstance);\r\n    Object deserializedRecordInstance = gson.fromJson(serialized, unixDomainPrincipalClass);\r\n    assertThat(deserializedRecordInstance).isEqualTo(recordInstance);\r\n    assertThat(serialized).isEqualTo(\"{\\\"user\\\":\\\"user\\\",\\\"group\\\":\\\"group\\\"}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\Java17ReflectiveTypeAdapterFactoryTest.java"
+  }
+]

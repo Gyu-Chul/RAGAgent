@@ -1,0 +1,34 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.interceptors",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "package com.google.gson.interceptors;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\interceptors\\JsonPostDeserializer.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.InstanceCreator",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import com.google.gson.InstanceCreator;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\interceptors\\JsonPostDeserializer.java"
+  },
+  {
+    "type": "interface",
+    "name": "JsonPostDeserializer",
+    "start_line": 27,
+    "end_line": 31,
+    "code": "/**\r\n * This interface is implemented by a class that wishes to inspect or modify an object after it has\r\n * been deserialized. You must define a no-args constructor or register an {@link InstanceCreator}\r\n * for such a class.\r\n *\r\n * @author Inderjeet Singh\r\n */\r\npublic interface JsonPostDeserializer<T> {\r\n\r\n    /**\r\n     * This method is called by Gson after the object has been deserialized from Json.\r\n     */\r\n    public void postDeserialize(T object);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\interceptors\\JsonPostDeserializer.java"
+  },
+  {
+    "type": "method",
+    "name": "postDeserialize",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "/**\r\n * This method is called by Gson after the object has been deserialized from Json.\r\n */\r\npublic void postDeserialize(T object);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\extras\\src\\main\\java\\com\\google\\gson\\interceptors\\JsonPostDeserializer.java"
+  }
+]

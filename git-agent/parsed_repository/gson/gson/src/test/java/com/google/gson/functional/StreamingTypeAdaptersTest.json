@@ -1,0 +1,354 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.base.Splitter",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.common.base.Splitter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.GsonBuilder",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.GsonBuilder;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonArray",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.JsonArray;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonObject",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.JsonObject;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSyntaxException",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import com.google.gson.JsonSyntaxException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.reflect.TypeToken",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import com.google.gson.reflect.TypeToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 32,
+    "end_line": 32,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 33,
+    "end_line": 33,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.ArrayList",
+    "start_line": 34,
+    "end_line": 34,
+    "code": "import java.util.ArrayList;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 35,
+    "end_line": 35,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Collections",
+    "start_line": 36,
+    "end_line": 36,
+    "code": "import java.util.Collections;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.LinkedHashMap",
+    "start_line": 37,
+    "end_line": 37,
+    "code": "import java.util.LinkedHashMap;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 38,
+    "end_line": 38,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Map",
+    "start_line": 39,
+    "end_line": 39,
+    "code": "import java.util.Map;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 40,
+    "end_line": 40,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "class",
+    "name": "StreamingTypeAdaptersTest",
+    "start_line": 42,
+    "end_line": 287,
+    "code": "public final class StreamingTypeAdaptersTest {\r\n\r\n    private Gson miniGson = new GsonBuilder().create();\r\n\r\n    private TypeAdapter<Truck> truckAdapter = miniGson.getAdapter(Truck.class);\r\n\r\n    private TypeAdapter<Map<String, Double>> mapAdapter = miniGson.getAdapter(new TypeToken<Map<String, Double>>() {\r\n    });\r\n\r\n    @Test\r\n    public void testSerialize() {\r\n        Truck truck = new Truck();\r\n        truck.passengers = Arrays.asList(new Person(\"Jesse\", 29), new Person(\"Jodie\", 29));\r\n        truck.horsePower = 300;\r\n        assertThat(truckAdapter.toJson(truck).replace('\\\"', '\\'')).isEqualTo(\"{'horsePower':300.0,\" + \"'passengers':[{'age':29,'name':'Jesse'},{'age':29,'name':'Jodie'}]}\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeserialize() throws IOException {\r\n        String json = \"{'horsePower':300.0,\" + \"'passengers':[{'age':29,'name':'Jesse'},{'age':29,'name':'Jodie'}]}\";\r\n        Truck truck = truckAdapter.fromJson(json.replace('\\'', '\\\"'));\r\n        assertThat(truck.horsePower).isEqualTo(300.0);\r\n        assertThat(truck.passengers).isEqualTo(Arrays.asList(new Person(\"Jesse\", 29), new Person(\"Jodie\", 29)));\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeNullField() {\r\n        Truck truck = new Truck();\r\n        truck.passengers = null;\r\n        assertThat(truckAdapter.toJson(truck).replace('\\\"', '\\'')).isEqualTo(\"{'horsePower':0.0,'passengers':null}\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeserializeNullField() throws IOException {\r\n        Truck truck = truckAdapter.fromJson(\"{'horsePower':0.0,'passengers':null}\".replace('\\'', '\\\"'));\r\n        assertThat(truck.passengers).isNull();\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeNullObject() {\r\n        Truck truck = new Truck();\r\n        truck.passengers = Arrays.asList((Person) null);\r\n        assertThat(truckAdapter.toJson(truck).replace('\\\"', '\\'')).isEqualTo(\"{'horsePower':0.0,'passengers':[null]}\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeserializeNullObject() throws IOException {\r\n        Truck truck = truckAdapter.fromJson(\"{'horsePower':0.0,'passengers':[null]}\".replace('\\'', '\\\"'));\r\n        assertThat(truck.passengers).isEqualTo(Arrays.asList((Person) null));\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeWithCustomTypeAdapter() {\r\n        usePersonNameAdapter();\r\n        Truck truck = new Truck();\r\n        truck.passengers = Arrays.asList(new Person(\"Jesse\", 29), new Person(\"Jodie\", 29));\r\n        assertThat(truckAdapter.toJson(truck).replace('\\\"', '\\'')).isEqualTo(\"{'horsePower':0.0,'passengers':['Jesse','Jodie']}\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeserializeWithCustomTypeAdapter() throws IOException {\r\n        usePersonNameAdapter();\r\n        Truck truck = truckAdapter.fromJson(\"{'horsePower':0.0,'passengers':['Jesse','Jodie']}\".replace('\\'', '\\\"'));\r\n        assertThat(truck.passengers).isEqualTo(Arrays.asList(new Person(\"Jesse\", -1), new Person(\"Jodie\", -1)));\r\n    }\r\n\r\n    private void usePersonNameAdapter() {\r\n        TypeAdapter<Person> personNameAdapter = new TypeAdapter<>() {\r\n\r\n            @Override\r\n            public Person read(JsonReader in) throws IOException {\r\n                String name = in.nextString();\r\n                return new Person(name, -1);\r\n            }\r\n\r\n            @Override\r\n            public void write(JsonWriter out, Person value) throws IOException {\r\n                out.value(value.name);\r\n            }\r\n        };\r\n        miniGson = new GsonBuilder().registerTypeAdapter(Person.class, personNameAdapter).create();\r\n        truckAdapter = miniGson.getAdapter(Truck.class);\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeMap() {\r\n        Map<String, Double> map = new LinkedHashMap<>();\r\n        map.put(\"a\", 5.0);\r\n        map.put(\"b\", 10.0);\r\n        assertThat(mapAdapter.toJson(map).replace('\"', '\\'')).isEqualTo(\"{'a':5.0,'b':10.0}\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeserializeMap() throws IOException {\r\n        Map<String, Double> map = new LinkedHashMap<>();\r\n        map.put(\"a\", 5.0);\r\n        map.put(\"b\", 10.0);\r\n        assertThat(mapAdapter.fromJson(\"{'a':5.0,'b':10.0}\".replace('\\'', '\\\"'))).isEqualTo(map);\r\n    }\r\n\r\n    @Test\r\n    public void testSerialize1dArray() {\r\n        TypeAdapter<double[]> arrayAdapter = miniGson.getAdapter(new TypeToken<double[]>() {\r\n        });\r\n        assertThat(arrayAdapter.toJson(new double[] { 1.0, 2.0, 3.0 })).isEqualTo(\"[1.0,2.0,3.0]\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeserialize1dArray() throws IOException {\r\n        TypeAdapter<double[]> arrayAdapter = miniGson.getAdapter(new TypeToken<double[]>() {\r\n        });\r\n        double[] array = arrayAdapter.fromJson(\"[1.0,2.0,3.0]\");\r\n        assertThat(array).isEqualTo(new double[] { 1.0, 2.0, 3.0 });\r\n    }\r\n\r\n    @Test\r\n    public void testSerialize2dArray() {\r\n        TypeAdapter<double[][]> arrayAdapter = miniGson.getAdapter(new TypeToken<double[][]>() {\r\n        });\r\n        double[][] array = { { 1.0, 2.0 }, { 3.0 } };\r\n        assertThat(arrayAdapter.toJson(array)).isEqualTo(\"[[1.0,2.0],[3.0]]\");\r\n    }\r\n\r\n    @Test\r\n    public void testDeserialize2dArray() throws IOException {\r\n        TypeAdapter<double[][]> arrayAdapter = miniGson.getAdapter(new TypeToken<double[][]>() {\r\n        });\r\n        double[][] array = arrayAdapter.fromJson(\"[[1.0,2.0],[3.0]]\");\r\n        double[][] expected = { { 1.0, 2.0 }, { 3.0 } };\r\n        assertThat(array).isEqualTo(expected);\r\n    }\r\n\r\n    @Test\r\n    public void testNullSafe() {\r\n        TypeAdapter<Person> typeAdapter = new TypeAdapter<>() {\r\n\r\n            @Override\r\n            public Person read(JsonReader in) throws IOException {\r\n                List<String> values = Splitter.on(',').splitToList(in.nextString());\r\n                return new Person(values.get(0), Integer.parseInt(values.get(1)));\r\n            }\r\n\r\n            @Override\r\n            public void write(JsonWriter out, Person person) throws IOException {\r\n                out.value(person.name + \",\" + person.age);\r\n            }\r\n        };\r\n        Gson gson = new GsonBuilder().registerTypeAdapter(Person.class, typeAdapter).create();\r\n        Truck truck = new Truck();\r\n        truck.horsePower = 1.0D;\r\n        truck.passengers = new ArrayList<>();\r\n        truck.passengers.add(null);\r\n        truck.passengers.add(new Person(\"jesse\", 30));\r\n        assertThrows(NullPointerException.class, () -> gson.toJson(truck, Truck.class));\r\n        String json = \"{horsePower:1.0,passengers:[null,'jesse,30']}\";\r\n        var e = assertThrows(JsonSyntaxException.class, () -> gson.fromJson(json, Truck.class));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"java.lang.IllegalStateException: Expected a string but was NULL at line 1 column 33\" + \" path $.passengers[0]\\n\" + \"See https://github.com/google/gson/blob/main/Troubleshooting.md#adapter-not-null-safe\");\r\n        Gson gson2 = new GsonBuilder().registerTypeAdapter(Person.class, typeAdapter.nullSafe()).create();\r\n        assertThat(gson2.toJson(truck, Truck.class)).isEqualTo(\"{\\\"horsePower\\\":1.0,\\\"passengers\\\":[null,\\\"jesse,30\\\"]}\");\r\n        Truck deserialized = gson2.fromJson(json, Truck.class);\r\n        assertThat(deserialized.horsePower).isEqualTo(1.0D);\r\n        assertThat(deserialized.passengers.get(0)).isNull();\r\n        assertThat(deserialized.passengers.get(1).name).isEqualTo(\"jesse\");\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeRecursive() {\r\n        TypeAdapter<Node> nodeAdapter = miniGson.getAdapter(Node.class);\r\n        Node root = new Node(\"root\");\r\n        root.left = new Node(\"left\");\r\n        root.right = new Node(\"right\");\r\n        assertThat(nodeAdapter.toJson(root).replace('\"', '\\'')).isEqualTo(\"{'label':'root',\" + \"'left':{'label':'left','left':null,'right':null},\" + \"'right':{'label':'right','left':null,'right':null}}\");\r\n    }\r\n\r\n    @Test\r\n    public void testFromJsonTree() {\r\n        JsonObject truckObject = new JsonObject();\r\n        truckObject.add(\"horsePower\", new JsonPrimitive(300));\r\n        JsonArray passengersArray = new JsonArray();\r\n        JsonObject jesseObject = new JsonObject();\r\n        jesseObject.add(\"age\", new JsonPrimitive(30));\r\n        jesseObject.add(\"name\", new JsonPrimitive(\"Jesse\"));\r\n        passengersArray.add(jesseObject);\r\n        truckObject.add(\"passengers\", passengersArray);\r\n        Truck truck = truckAdapter.fromJsonTree(truckObject);\r\n        assertThat(truck.horsePower).isEqualTo(300.0);\r\n        assertThat(truck.passengers).isEqualTo(Arrays.asList(new Person(\"Jesse\", 30)));\r\n    }\r\n\r\n    static class Truck {\r\n\r\n        double horsePower;\r\n\r\n        List<Person> passengers = Collections.emptyList();\r\n    }\r\n\r\n    static class Person {\r\n\r\n        int age;\r\n\r\n        String name;\r\n\r\n        Person(String name, int age) {\r\n            this.name = name;\r\n            this.age = age;\r\n        }\r\n\r\n        @Override\r\n        public boolean equals(Object o) {\r\n            return o instanceof Person && ((Person) o).name.equals(name) && ((Person) o).age == age;\r\n        }\r\n\r\n        @Override\r\n        public int hashCode() {\r\n            return name.hashCode() ^ age;\r\n        }\r\n    }\r\n\r\n    static class Node {\r\n\r\n        String label;\r\n\r\n        Node left;\r\n\r\n        Node right;\r\n\r\n        Node(String label) {\r\n            this.label = label;\r\n        }\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "field",
+    "name": "miniGson",
+    "start_line": 43,
+    "end_line": 43,
+    "code": "private Gson miniGson = new GsonBuilder().create();",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "field",
+    "name": "truckAdapter",
+    "start_line": 44,
+    "end_line": 44,
+    "code": "private TypeAdapter<Truck> truckAdapter = miniGson.getAdapter(Truck.class);",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "field",
+    "name": "mapAdapter",
+    "start_line": 45,
+    "end_line": 46,
+    "code": "private TypeAdapter<Map<String, Double>> mapAdapter = miniGson.getAdapter(new TypeToken<Map<String, Double>>() {\r\n});",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerialize",
+    "start_line": 48,
+    "end_line": 58,
+    "code": "@Test\r\npublic void testSerialize() {\r\n    Truck truck = new Truck();\r\n    truck.passengers = Arrays.asList(new Person(\"Jesse\", 29), new Person(\"Jodie\", 29));\r\n    truck.horsePower = 300;\r\n    assertThat(truckAdapter.toJson(truck).replace('\\\"', '\\'')).isEqualTo(\"{'horsePower':300.0,\" + \"'passengers':[{'age':29,'name':'Jesse'},{'age':29,'name':'Jodie'}]}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserialize",
+    "start_line": 60,
+    "end_line": 69,
+    "code": "@Test\r\npublic void testDeserialize() throws IOException {\r\n    String json = \"{'horsePower':300.0,\" + \"'passengers':[{'age':29,'name':'Jesse'},{'age':29,'name':'Jodie'}]}\";\r\n    Truck truck = truckAdapter.fromJson(json.replace('\\'', '\\\"'));\r\n    assertThat(truck.horsePower).isEqualTo(300.0);\r\n    assertThat(truck.passengers).isEqualTo(Arrays.asList(new Person(\"Jesse\", 29), new Person(\"Jodie\", 29)));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeNullField",
+    "start_line": 71,
+    "end_line": 77,
+    "code": "@Test\r\npublic void testSerializeNullField() {\r\n    Truck truck = new Truck();\r\n    truck.passengers = null;\r\n    assertThat(truckAdapter.toJson(truck).replace('\\\"', '\\'')).isEqualTo(\"{'horsePower':0.0,'passengers':null}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserializeNullField",
+    "start_line": 79,
+    "end_line": 83,
+    "code": "@Test\r\npublic void testDeserializeNullField() throws IOException {\r\n    Truck truck = truckAdapter.fromJson(\"{'horsePower':0.0,'passengers':null}\".replace('\\'', '\\\"'));\r\n    assertThat(truck.passengers).isNull();\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeNullObject",
+    "start_line": 85,
+    "end_line": 91,
+    "code": "@Test\r\npublic void testSerializeNullObject() {\r\n    Truck truck = new Truck();\r\n    truck.passengers = Arrays.asList((Person) null);\r\n    assertThat(truckAdapter.toJson(truck).replace('\\\"', '\\'')).isEqualTo(\"{'horsePower':0.0,'passengers':[null]}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserializeNullObject",
+    "start_line": 93,
+    "end_line": 98,
+    "code": "@Test\r\npublic void testDeserializeNullObject() throws IOException {\r\n    Truck truck = truckAdapter.fromJson(\"{'horsePower':0.0,'passengers':[null]}\".replace('\\'', '\\\"'));\r\n    assertThat(truck.passengers).isEqualTo(Arrays.asList((Person) null));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeWithCustomTypeAdapter",
+    "start_line": 100,
+    "end_line": 107,
+    "code": "@Test\r\npublic void testSerializeWithCustomTypeAdapter() {\r\n    usePersonNameAdapter();\r\n    Truck truck = new Truck();\r\n    truck.passengers = Arrays.asList(new Person(\"Jesse\", 29), new Person(\"Jodie\", 29));\r\n    assertThat(truckAdapter.toJson(truck).replace('\\\"', '\\'')).isEqualTo(\"{'horsePower':0.0,'passengers':['Jesse','Jodie']}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserializeWithCustomTypeAdapter",
+    "start_line": 109,
+    "end_line": 117,
+    "code": "@Test\r\npublic void testDeserializeWithCustomTypeAdapter() throws IOException {\r\n    usePersonNameAdapter();\r\n    Truck truck = truckAdapter.fromJson(\"{'horsePower':0.0,'passengers':['Jesse','Jodie']}\".replace('\\'', '\\\"'));\r\n    assertThat(truck.passengers).isEqualTo(Arrays.asList(new Person(\"Jesse\", -1), new Person(\"Jodie\", -1)));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "usePersonNameAdapter",
+    "start_line": 119,
+    "end_line": 135,
+    "code": "private void usePersonNameAdapter() {\r\n    TypeAdapter<Person> personNameAdapter = new TypeAdapter<>() {\r\n\r\n        @Override\r\n        public Person read(JsonReader in) throws IOException {\r\n            String name = in.nextString();\r\n            return new Person(name, -1);\r\n        }\r\n\r\n        @Override\r\n        public void write(JsonWriter out, Person value) throws IOException {\r\n            out.value(value.name);\r\n        }\r\n    };\r\n    miniGson = new GsonBuilder().registerTypeAdapter(Person.class, personNameAdapter).create();\r\n    truckAdapter = miniGson.getAdapter(Truck.class);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeMap",
+    "start_line": 137,
+    "end_line": 143,
+    "code": "@Test\r\npublic void testSerializeMap() {\r\n    Map<String, Double> map = new LinkedHashMap<>();\r\n    map.put(\"a\", 5.0);\r\n    map.put(\"b\", 10.0);\r\n    assertThat(mapAdapter.toJson(map).replace('\"', '\\'')).isEqualTo(\"{'a':5.0,'b':10.0}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserializeMap",
+    "start_line": 145,
+    "end_line": 151,
+    "code": "@Test\r\npublic void testDeserializeMap() throws IOException {\r\n    Map<String, Double> map = new LinkedHashMap<>();\r\n    map.put(\"a\", 5.0);\r\n    map.put(\"b\", 10.0);\r\n    assertThat(mapAdapter.fromJson(\"{'a':5.0,'b':10.0}\".replace('\\'', '\\\"'))).isEqualTo(map);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerialize1dArray",
+    "start_line": 153,
+    "end_line": 157,
+    "code": "@Test\r\npublic void testSerialize1dArray() {\r\n    TypeAdapter<double[]> arrayAdapter = miniGson.getAdapter(new TypeToken<double[]>() {\r\n    });\r\n    assertThat(arrayAdapter.toJson(new double[] { 1.0, 2.0, 3.0 })).isEqualTo(\"[1.0,2.0,3.0]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserialize1dArray",
+    "start_line": 159,
+    "end_line": 164,
+    "code": "@Test\r\npublic void testDeserialize1dArray() throws IOException {\r\n    TypeAdapter<double[]> arrayAdapter = miniGson.getAdapter(new TypeToken<double[]>() {\r\n    });\r\n    double[] array = arrayAdapter.fromJson(\"[1.0,2.0,3.0]\");\r\n    assertThat(array).isEqualTo(new double[] { 1.0, 2.0, 3.0 });\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerialize2dArray",
+    "start_line": 166,
+    "end_line": 171,
+    "code": "@Test\r\npublic void testSerialize2dArray() {\r\n    TypeAdapter<double[][]> arrayAdapter = miniGson.getAdapter(new TypeToken<double[][]>() {\r\n    });\r\n    double[][] array = { { 1.0, 2.0 }, { 3.0 } };\r\n    assertThat(arrayAdapter.toJson(array)).isEqualTo(\"[[1.0,2.0],[3.0]]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testDeserialize2dArray",
+    "start_line": 173,
+    "end_line": 179,
+    "code": "@Test\r\npublic void testDeserialize2dArray() throws IOException {\r\n    TypeAdapter<double[][]> arrayAdapter = miniGson.getAdapter(new TypeToken<double[][]>() {\r\n    });\r\n    double[][] array = arrayAdapter.fromJson(\"[[1.0,2.0],[3.0]]\");\r\n    double[][] expected = { { 1.0, 2.0 }, { 3.0 } };\r\n    assertThat(array).isEqualTo(expected);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNullSafe",
+    "start_line": 181,
+    "end_line": 222,
+    "code": "@Test\r\npublic void testNullSafe() {\r\n    TypeAdapter<Person> typeAdapter = new TypeAdapter<>() {\r\n\r\n        @Override\r\n        public Person read(JsonReader in) throws IOException {\r\n            List<String> values = Splitter.on(',').splitToList(in.nextString());\r\n            return new Person(values.get(0), Integer.parseInt(values.get(1)));\r\n        }\r\n\r\n        @Override\r\n        public void write(JsonWriter out, Person person) throws IOException {\r\n            out.value(person.name + \",\" + person.age);\r\n        }\r\n    };\r\n    Gson gson = new GsonBuilder().registerTypeAdapter(Person.class, typeAdapter).create();\r\n    Truck truck = new Truck();\r\n    truck.horsePower = 1.0D;\r\n    truck.passengers = new ArrayList<>();\r\n    truck.passengers.add(null);\r\n    truck.passengers.add(new Person(\"jesse\", 30));\r\n    assertThrows(NullPointerException.class, () -> gson.toJson(truck, Truck.class));\r\n    String json = \"{horsePower:1.0,passengers:[null,'jesse,30']}\";\r\n    var e = assertThrows(JsonSyntaxException.class, () -> gson.fromJson(json, Truck.class));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"java.lang.IllegalStateException: Expected a string but was NULL at line 1 column 33\" + \" path $.passengers[0]\\n\" + \"See https://github.com/google/gson/blob/main/Troubleshooting.md#adapter-not-null-safe\");\r\n    Gson gson2 = new GsonBuilder().registerTypeAdapter(Person.class, typeAdapter.nullSafe()).create();\r\n    assertThat(gson2.toJson(truck, Truck.class)).isEqualTo(\"{\\\"horsePower\\\":1.0,\\\"passengers\\\":[null,\\\"jesse,30\\\"]}\");\r\n    Truck deserialized = gson2.fromJson(json, Truck.class);\r\n    assertThat(deserialized.horsePower).isEqualTo(1.0D);\r\n    assertThat(deserialized.passengers.get(0)).isNull();\r\n    assertThat(deserialized.passengers.get(1).name).isEqualTo(\"jesse\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeRecursive",
+    "start_line": 224,
+    "end_line": 235,
+    "code": "@Test\r\npublic void testSerializeRecursive() {\r\n    TypeAdapter<Node> nodeAdapter = miniGson.getAdapter(Node.class);\r\n    Node root = new Node(\"root\");\r\n    root.left = new Node(\"left\");\r\n    root.right = new Node(\"right\");\r\n    assertThat(nodeAdapter.toJson(root).replace('\"', '\\'')).isEqualTo(\"{'label':'root',\" + \"'left':{'label':'left','left':null,'right':null},\" + \"'right':{'label':'right','left':null,'right':null}}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testFromJsonTree",
+    "start_line": 237,
+    "end_line": 251,
+    "code": "@Test\r\npublic void testFromJsonTree() {\r\n    JsonObject truckObject = new JsonObject();\r\n    truckObject.add(\"horsePower\", new JsonPrimitive(300));\r\n    JsonArray passengersArray = new JsonArray();\r\n    JsonObject jesseObject = new JsonObject();\r\n    jesseObject.add(\"age\", new JsonPrimitive(30));\r\n    jesseObject.add(\"name\", new JsonPrimitive(\"Jesse\"));\r\n    passengersArray.add(jesseObject);\r\n    truckObject.add(\"passengers\", passengersArray);\r\n    Truck truck = truckAdapter.fromJsonTree(truckObject);\r\n    assertThat(truck.horsePower).isEqualTo(300.0);\r\n    assertThat(truck.passengers).isEqualTo(Arrays.asList(new Person(\"Jesse\", 30)));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\StreamingTypeAdaptersTest.java"
+  }
+]

@@ -1,0 +1,290 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.internal.bind",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "package com.google.gson.internal.bind;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonElement",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import com.google.gson.JsonElement;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonNull",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import com.google.gson.JsonNull;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Strictness",
+    "start_line": 24,
+    "end_line": 24,
+    "code": "import com.google.gson.Strictness;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.common.MoreAsserts",
+    "start_line": 25,
+    "end_line": 25,
+    "code": "import com.google.gson.common.MoreAsserts;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonWriter",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "import com.google.gson.stream.JsonWriter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 27,
+    "end_line": 27,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.Writer",
+    "start_line": 28,
+    "end_line": 28,
+    "code": "import java.io.Writer;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.Arrays",
+    "start_line": 29,
+    "end_line": 29,
+    "code": "import java.util.Arrays;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.util.List",
+    "start_line": 30,
+    "end_line": 30,
+    "code": "import java.util.List;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 31,
+    "end_line": 31,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "class",
+    "name": "JsonTreeWriterTest",
+    "start_line": 33,
+    "end_line": 284,
+    "code": "@SuppressWarnings(\"resource\")\r\npublic final class JsonTreeWriterTest {\r\n\r\n    @Test\r\n    public void testArray() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.beginArray();\r\n        writer.value(1);\r\n        writer.value(2);\r\n        writer.value(3);\r\n        writer.endArray();\r\n        assertThat(writer.get().toString()).isEqualTo(\"[1,2,3]\");\r\n    }\r\n\r\n    @Test\r\n    public void testNestedArray() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.beginArray();\r\n        writer.beginArray();\r\n        writer.endArray();\r\n        writer.beginArray();\r\n        writer.beginArray();\r\n        writer.endArray();\r\n        writer.endArray();\r\n        writer.endArray();\r\n        assertThat(writer.get().toString()).isEqualTo(\"[[],[[]]]\");\r\n    }\r\n\r\n    @Test\r\n    public void testObject() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.beginObject();\r\n        writer.name(\"A\").value(1);\r\n        writer.name(\"B\").value(2);\r\n        writer.endObject();\r\n        assertThat(writer.get().toString()).isEqualTo(\"{\\\"A\\\":1,\\\"B\\\":2}\");\r\n    }\r\n\r\n    @Test\r\n    public void testNestedObject() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.beginObject();\r\n        writer.name(\"A\");\r\n        writer.beginObject();\r\n        writer.name(\"B\");\r\n        writer.beginObject();\r\n        writer.endObject();\r\n        writer.endObject();\r\n        writer.name(\"C\");\r\n        writer.beginObject();\r\n        writer.endObject();\r\n        writer.endObject();\r\n        assertThat(writer.get().toString()).isEqualTo(\"{\\\"A\\\":{\\\"B\\\":{}},\\\"C\\\":{}}\");\r\n    }\r\n\r\n    @Test\r\n    public void testWriteAfterClose() throws Exception {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.setStrictness(Strictness.LENIENT);\r\n        writer.beginArray();\r\n        writer.value(\"A\");\r\n        writer.endArray();\r\n        writer.close();\r\n        assertThrows(IllegalStateException.class, () -> writer.beginArray());\r\n    }\r\n\r\n    @Test\r\n    public void testPrematureClose() throws Exception {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.setStrictness(Strictness.LENIENT);\r\n        writer.beginArray();\r\n        var e = assertThrows(IOException.class, () -> writer.close());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Incomplete document\");\r\n    }\r\n\r\n    @Test\r\n    public void testNameAsTopLevelValue() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        IllegalStateException e = assertThrows(IllegalStateException.class, () -> writer.name(\"hello\"));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Did not expect a name\");\r\n        writer.value(12);\r\n        writer.close();\r\n        e = assertThrows(IllegalStateException.class, () -> writer.name(\"hello\"));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Please begin an object before writing a name.\");\r\n    }\r\n\r\n    @Test\r\n    public void testNameInArray() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.beginArray();\r\n        IllegalStateException e = assertThrows(IllegalStateException.class, () -> writer.name(\"hello\"));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Please begin an object before writing a name.\");\r\n        writer.value(12);\r\n        e = assertThrows(IllegalStateException.class, () -> writer.name(\"hello\"));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Please begin an object before writing a name.\");\r\n        writer.endArray();\r\n        assertThat(writer.get().toString()).isEqualTo(\"[12]\");\r\n    }\r\n\r\n    @Test\r\n    public void testTwoNames() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.beginObject();\r\n        writer.name(\"a\");\r\n        IllegalStateException e = assertThrows(IllegalStateException.class, () -> writer.name(\"a\"));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Did not expect a name\");\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeNullsFalse() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.setSerializeNulls(false);\r\n        writer.beginObject();\r\n        writer.name(\"A\");\r\n        writer.nullValue();\r\n        writer.endObject();\r\n        assertThat(writer.get().toString()).isEqualTo(\"{}\");\r\n    }\r\n\r\n    @Test\r\n    public void testSerializeNullsTrue() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.setSerializeNulls(true);\r\n        writer.beginObject();\r\n        writer.name(\"A\");\r\n        writer.nullValue();\r\n        writer.endObject();\r\n        assertThat(writer.get().toString()).isEqualTo(\"{\\\"A\\\":null}\");\r\n    }\r\n\r\n    @Test\r\n    public void testEmptyWriter() {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        assertThat(writer.get()).isEqualTo(JsonNull.INSTANCE);\r\n    }\r\n\r\n    @Test\r\n    public void testBeginArray() throws Exception {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        assertThat(writer.beginArray()).isEqualTo(writer);\r\n    }\r\n\r\n    @Test\r\n    public void testBeginObject() throws Exception {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        assertThat(writer.beginObject()).isEqualTo(writer);\r\n    }\r\n\r\n    @Test\r\n    public void testValueString() throws Exception {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        String n = \"as\";\r\n        assertThat(writer.value(n)).isEqualTo(writer);\r\n    }\r\n\r\n    @Test\r\n    public void testBoolValue() throws Exception {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        boolean bool = true;\r\n        assertThat(writer.value(bool)).isEqualTo(writer);\r\n    }\r\n\r\n    @Test\r\n    public void testBoolMaisValue() throws Exception {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        Boolean bool = true;\r\n        assertThat(writer.value(bool)).isEqualTo(writer);\r\n    }\r\n\r\n    @Test\r\n    public void testLenientNansAndInfinities() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.setStrictness(Strictness.LENIENT);\r\n        writer.beginArray();\r\n        writer.value(Float.NaN);\r\n        writer.value(Float.NEGATIVE_INFINITY);\r\n        writer.value(Float.POSITIVE_INFINITY);\r\n        writer.value(Double.NaN);\r\n        writer.value(Double.NEGATIVE_INFINITY);\r\n        writer.value(Double.POSITIVE_INFINITY);\r\n        writer.endArray();\r\n        assertThat(writer.get().toString()).isEqualTo(\"[NaN,-Infinity,Infinity,NaN,-Infinity,Infinity]\");\r\n    }\r\n\r\n    @Test\r\n    public void testStrictNansAndInfinities() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.setStrictness(Strictness.LEGACY_STRICT);\r\n        writer.beginArray();\r\n        assertThrows(IllegalArgumentException.class, () -> writer.value(Float.NaN));\r\n        assertThrows(IllegalArgumentException.class, () -> writer.value(Float.NEGATIVE_INFINITY));\r\n        assertThrows(IllegalArgumentException.class, () -> writer.value(Float.POSITIVE_INFINITY));\r\n        assertThrows(IllegalArgumentException.class, () -> writer.value(Double.NaN));\r\n        assertThrows(IllegalArgumentException.class, () -> writer.value(Double.NEGATIVE_INFINITY));\r\n        assertThrows(IllegalArgumentException.class, () -> writer.value(Double.POSITIVE_INFINITY));\r\n    }\r\n\r\n    @Test\r\n    public void testStrictBoxedNansAndInfinities() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.setStrictness(Strictness.LEGACY_STRICT);\r\n        writer.beginArray();\r\n        assertThrows(IllegalArgumentException.class, () -> writer.value(Float.valueOf(Float.NaN)));\r\n        assertThrows(IllegalArgumentException.class, () -> writer.value(Float.valueOf(Float.NEGATIVE_INFINITY)));\r\n        assertThrows(IllegalArgumentException.class, () -> writer.value(Float.valueOf(Float.POSITIVE_INFINITY)));\r\n        assertThrows(IllegalArgumentException.class, () -> writer.value(Double.valueOf(Double.NaN)));\r\n        assertThrows(IllegalArgumentException.class, () -> writer.value(Double.valueOf(Double.NEGATIVE_INFINITY)));\r\n        assertThrows(IllegalArgumentException.class, () -> writer.value(Double.valueOf(Double.POSITIVE_INFINITY)));\r\n    }\r\n\r\n    @Test\r\n    public void testJsonValue() throws IOException {\r\n        JsonTreeWriter writer = new JsonTreeWriter();\r\n        writer.beginArray();\r\n        assertThrows(UnsupportedOperationException.class, () -> writer.jsonValue(\"test\"));\r\n    }\r\n\r\n    /**\r\n     * {@link JsonTreeWriter} effectively replaces the complete writing logic of {@link JsonWriter} to\r\n     * create a {@link JsonElement} tree instead of writing to a {@link Writer}. Therefore all\r\n     * relevant methods of {@code JsonWriter} must be overridden.\r\n     */\r\n    @Test\r\n    public void testOverrides() {\r\n        List<String> ignoredMethods = Arrays.asList(\"setLenient(boolean)\", \"isLenient()\", \"setStrictness(com.google.gson.Strictness)\", \"getStrictness()\", \"setIndent(java.lang.String)\", \"setHtmlSafe(boolean)\", \"isHtmlSafe()\", \"setFormattingStyle(com.google.gson.FormattingStyle)\", \"getFormattingStyle()\", \"setSerializeNulls(boolean)\", \"getSerializeNulls()\");\r\n        MoreAsserts.assertOverridesMethods(JsonWriter.class, JsonTreeWriter.class, ignoredMethods);\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testArray",
+    "start_line": 35,
+    "end_line": 44,
+    "code": "@Test\r\npublic void testArray() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.beginArray();\r\n    writer.value(1);\r\n    writer.value(2);\r\n    writer.value(3);\r\n    writer.endArray();\r\n    assertThat(writer.get().toString()).isEqualTo(\"[1,2,3]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNestedArray",
+    "start_line": 46,
+    "end_line": 58,
+    "code": "@Test\r\npublic void testNestedArray() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.beginArray();\r\n    writer.beginArray();\r\n    writer.endArray();\r\n    writer.beginArray();\r\n    writer.beginArray();\r\n    writer.endArray();\r\n    writer.endArray();\r\n    writer.endArray();\r\n    assertThat(writer.get().toString()).isEqualTo(\"[[],[[]]]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testObject",
+    "start_line": 60,
+    "end_line": 68,
+    "code": "@Test\r\npublic void testObject() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.beginObject();\r\n    writer.name(\"A\").value(1);\r\n    writer.name(\"B\").value(2);\r\n    writer.endObject();\r\n    assertThat(writer.get().toString()).isEqualTo(\"{\\\"A\\\":1,\\\"B\\\":2}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNestedObject",
+    "start_line": 70,
+    "end_line": 85,
+    "code": "@Test\r\npublic void testNestedObject() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.beginObject();\r\n    writer.name(\"A\");\r\n    writer.beginObject();\r\n    writer.name(\"B\");\r\n    writer.beginObject();\r\n    writer.endObject();\r\n    writer.endObject();\r\n    writer.name(\"C\");\r\n    writer.beginObject();\r\n    writer.endObject();\r\n    writer.endObject();\r\n    assertThat(writer.get().toString()).isEqualTo(\"{\\\"A\\\":{\\\"B\\\":{}},\\\"C\\\":{}}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testWriteAfterClose",
+    "start_line": 87,
+    "end_line": 96,
+    "code": "@Test\r\npublic void testWriteAfterClose() throws Exception {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.setStrictness(Strictness.LENIENT);\r\n    writer.beginArray();\r\n    writer.value(\"A\");\r\n    writer.endArray();\r\n    writer.close();\r\n    assertThrows(IllegalStateException.class, () -> writer.beginArray());\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testPrematureClose",
+    "start_line": 98,
+    "end_line": 105,
+    "code": "@Test\r\npublic void testPrematureClose() throws Exception {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.setStrictness(Strictness.LENIENT);\r\n    writer.beginArray();\r\n    var e = assertThrows(IOException.class, () -> writer.close());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Incomplete document\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNameAsTopLevelValue",
+    "start_line": 107,
+    "end_line": 118,
+    "code": "@Test\r\npublic void testNameAsTopLevelValue() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    IllegalStateException e = assertThrows(IllegalStateException.class, () -> writer.name(\"hello\"));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Did not expect a name\");\r\n    writer.value(12);\r\n    writer.close();\r\n    e = assertThrows(IllegalStateException.class, () -> writer.name(\"hello\"));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Please begin an object before writing a name.\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testNameInArray",
+    "start_line": 120,
+    "end_line": 135,
+    "code": "@Test\r\npublic void testNameInArray() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.beginArray();\r\n    IllegalStateException e = assertThrows(IllegalStateException.class, () -> writer.name(\"hello\"));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Please begin an object before writing a name.\");\r\n    writer.value(12);\r\n    e = assertThrows(IllegalStateException.class, () -> writer.name(\"hello\"));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Please begin an object before writing a name.\");\r\n    writer.endArray();\r\n    assertThat(writer.get().toString()).isEqualTo(\"[12]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testTwoNames",
+    "start_line": 137,
+    "end_line": 144,
+    "code": "@Test\r\npublic void testTwoNames() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.beginObject();\r\n    writer.name(\"a\");\r\n    IllegalStateException e = assertThrows(IllegalStateException.class, () -> writer.name(\"a\"));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Did not expect a name\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeNullsFalse",
+    "start_line": 146,
+    "end_line": 155,
+    "code": "@Test\r\npublic void testSerializeNullsFalse() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.setSerializeNulls(false);\r\n    writer.beginObject();\r\n    writer.name(\"A\");\r\n    writer.nullValue();\r\n    writer.endObject();\r\n    assertThat(writer.get().toString()).isEqualTo(\"{}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testSerializeNullsTrue",
+    "start_line": 157,
+    "end_line": 166,
+    "code": "@Test\r\npublic void testSerializeNullsTrue() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.setSerializeNulls(true);\r\n    writer.beginObject();\r\n    writer.name(\"A\");\r\n    writer.nullValue();\r\n    writer.endObject();\r\n    assertThat(writer.get().toString()).isEqualTo(\"{\\\"A\\\":null}\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testEmptyWriter",
+    "start_line": 168,
+    "end_line": 172,
+    "code": "@Test\r\npublic void testEmptyWriter() {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    assertThat(writer.get()).isEqualTo(JsonNull.INSTANCE);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBeginArray",
+    "start_line": 174,
+    "end_line": 178,
+    "code": "@Test\r\npublic void testBeginArray() throws Exception {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    assertThat(writer.beginArray()).isEqualTo(writer);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBeginObject",
+    "start_line": 180,
+    "end_line": 184,
+    "code": "@Test\r\npublic void testBeginObject() throws Exception {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    assertThat(writer.beginObject()).isEqualTo(writer);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testValueString",
+    "start_line": 186,
+    "end_line": 191,
+    "code": "@Test\r\npublic void testValueString() throws Exception {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    String n = \"as\";\r\n    assertThat(writer.value(n)).isEqualTo(writer);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBoolValue",
+    "start_line": 193,
+    "end_line": 198,
+    "code": "@Test\r\npublic void testBoolValue() throws Exception {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    boolean bool = true;\r\n    assertThat(writer.value(bool)).isEqualTo(writer);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBoolMaisValue",
+    "start_line": 200,
+    "end_line": 205,
+    "code": "@Test\r\npublic void testBoolMaisValue() throws Exception {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    Boolean bool = true;\r\n    assertThat(writer.value(bool)).isEqualTo(writer);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testLenientNansAndInfinities",
+    "start_line": 207,
+    "end_line": 221,
+    "code": "@Test\r\npublic void testLenientNansAndInfinities() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.setStrictness(Strictness.LENIENT);\r\n    writer.beginArray();\r\n    writer.value(Float.NaN);\r\n    writer.value(Float.NEGATIVE_INFINITY);\r\n    writer.value(Float.POSITIVE_INFINITY);\r\n    writer.value(Double.NaN);\r\n    writer.value(Double.NEGATIVE_INFINITY);\r\n    writer.value(Double.POSITIVE_INFINITY);\r\n    writer.endArray();\r\n    assertThat(writer.get().toString()).isEqualTo(\"[NaN,-Infinity,Infinity,NaN,-Infinity,Infinity]\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStrictNansAndInfinities",
+    "start_line": 223,
+    "end_line": 234,
+    "code": "@Test\r\npublic void testStrictNansAndInfinities() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.setStrictness(Strictness.LEGACY_STRICT);\r\n    writer.beginArray();\r\n    assertThrows(IllegalArgumentException.class, () -> writer.value(Float.NaN));\r\n    assertThrows(IllegalArgumentException.class, () -> writer.value(Float.NEGATIVE_INFINITY));\r\n    assertThrows(IllegalArgumentException.class, () -> writer.value(Float.POSITIVE_INFINITY));\r\n    assertThrows(IllegalArgumentException.class, () -> writer.value(Double.NaN));\r\n    assertThrows(IllegalArgumentException.class, () -> writer.value(Double.NEGATIVE_INFINITY));\r\n    assertThrows(IllegalArgumentException.class, () -> writer.value(Double.POSITIVE_INFINITY));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testStrictBoxedNansAndInfinities",
+    "start_line": 236,
+    "end_line": 253,
+    "code": "@Test\r\npublic void testStrictBoxedNansAndInfinities() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.setStrictness(Strictness.LEGACY_STRICT);\r\n    writer.beginArray();\r\n    assertThrows(IllegalArgumentException.class, () -> writer.value(Float.valueOf(Float.NaN)));\r\n    assertThrows(IllegalArgumentException.class, () -> writer.value(Float.valueOf(Float.NEGATIVE_INFINITY)));\r\n    assertThrows(IllegalArgumentException.class, () -> writer.value(Float.valueOf(Float.POSITIVE_INFINITY)));\r\n    assertThrows(IllegalArgumentException.class, () -> writer.value(Double.valueOf(Double.NaN)));\r\n    assertThrows(IllegalArgumentException.class, () -> writer.value(Double.valueOf(Double.NEGATIVE_INFINITY)));\r\n    assertThrows(IllegalArgumentException.class, () -> writer.value(Double.valueOf(Double.POSITIVE_INFINITY)));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonValue",
+    "start_line": 255,
+    "end_line": 260,
+    "code": "@Test\r\npublic void testJsonValue() throws IOException {\r\n    JsonTreeWriter writer = new JsonTreeWriter();\r\n    writer.beginArray();\r\n    assertThrows(UnsupportedOperationException.class, () -> writer.jsonValue(\"test\"));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testOverrides",
+    "start_line": 267,
+    "end_line": 283,
+    "code": "/**\r\n * {@link JsonTreeWriter} effectively replaces the complete writing logic of {@link JsonWriter} to\r\n * create a {@link JsonElement} tree instead of writing to a {@link Writer}. Therefore all\r\n * relevant methods of {@code JsonWriter} must be overridden.\r\n */\r\n@Test\r\npublic void testOverrides() {\r\n    List<String> ignoredMethods = Arrays.asList(\"setLenient(boolean)\", \"isLenient()\", \"setStrictness(com.google.gson.Strictness)\", \"getStrictness()\", \"setIndent(java.lang.String)\", \"setHtmlSafe(boolean)\", \"isHtmlSafe()\", \"setFormattingStyle(com.google.gson.FormattingStyle)\", \"getFormattingStyle()\", \"setSerializeNulls(boolean)\", \"getSerializeNulls()\");\r\n    MoreAsserts.assertOverridesMethods(JsonWriter.class, JsonTreeWriter.class, ignoredMethods);\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\internal\\bind\\JsonTreeWriterTest.java"
+  }
+]

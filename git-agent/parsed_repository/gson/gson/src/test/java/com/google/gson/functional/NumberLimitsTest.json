@@ -1,0 +1,242 @@
+[
+  {
+    "type": "package",
+    "name": "com.google.gson.functional",
+    "start_line": 1,
+    "end_line": 1,
+    "code": "package com.google.gson.functional;\r\n\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.common.truth.Truth.assertThat",
+    "start_line": 3,
+    "end_line": 3,
+    "code": "import static com.google.common.truth.Truth.assertThat;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Assert.assertThrows",
+    "start_line": 4,
+    "end_line": 4,
+    "code": "import static org.junit.Assert.assertThrows;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.Gson",
+    "start_line": 6,
+    "end_line": 6,
+    "code": "import com.google.gson.Gson;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonParseException",
+    "start_line": 7,
+    "end_line": 7,
+    "code": "import com.google.gson.JsonParseException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonPrimitive",
+    "start_line": 8,
+    "end_line": 8,
+    "code": "import com.google.gson.JsonPrimitive;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.JsonSyntaxException",
+    "start_line": 9,
+    "end_line": 9,
+    "code": "import com.google.gson.JsonSyntaxException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.ToNumberPolicy",
+    "start_line": 10,
+    "end_line": 10,
+    "code": "import com.google.gson.ToNumberPolicy;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.ToNumberStrategy",
+    "start_line": 11,
+    "end_line": 11,
+    "code": "import com.google.gson.ToNumberStrategy;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.TypeAdapter",
+    "start_line": 12,
+    "end_line": 12,
+    "code": "import com.google.gson.TypeAdapter;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.internal.LazilyParsedNumber",
+    "start_line": 13,
+    "end_line": 13,
+    "code": "import com.google.gson.internal.LazilyParsedNumber;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonReader",
+    "start_line": 14,
+    "end_line": 14,
+    "code": "import com.google.gson.stream.JsonReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.JsonToken",
+    "start_line": 15,
+    "end_line": 15,
+    "code": "import com.google.gson.stream.JsonToken;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "com.google.gson.stream.MalformedJsonException",
+    "start_line": 16,
+    "end_line": 16,
+    "code": "import com.google.gson.stream.MalformedJsonException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.IOException",
+    "start_line": 17,
+    "end_line": 17,
+    "code": "import java.io.IOException;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.ObjectOutputStream",
+    "start_line": 18,
+    "end_line": 18,
+    "code": "import java.io.ObjectOutputStream;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.OutputStream",
+    "start_line": 19,
+    "end_line": 19,
+    "code": "import java.io.OutputStream;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.io.StringReader",
+    "start_line": 20,
+    "end_line": 20,
+    "code": "import java.io.StringReader;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.math.BigDecimal",
+    "start_line": 21,
+    "end_line": 21,
+    "code": "import java.math.BigDecimal;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "java.math.BigInteger",
+    "start_line": 22,
+    "end_line": 22,
+    "code": "import java.math.BigInteger;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "import",
+    "name": "org.junit.Test",
+    "start_line": 23,
+    "end_line": 23,
+    "code": "import org.junit.Test;\r\n",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "class",
+    "name": "NumberLimitsTest",
+    "start_line": 25,
+    "end_line": 228,
+    "code": "public class NumberLimitsTest {\r\n\r\n    private static final int MAX_LENGTH = 10_000;\r\n\r\n    private static JsonReader jsonReader(String json) {\r\n        return new JsonReader(new StringReader(json));\r\n    }\r\n\r\n    /**\r\n     * Tests how {@link JsonReader} behaves for large numbers.\r\n     *\r\n     * <p>Currently {@link JsonReader} itself does not enforce any limits. The reasons for this are:\r\n     *\r\n     * <ul>\r\n     *   <li>Methods such as {@link JsonReader#nextDouble()} seem to have no problem parsing extremely\r\n     *       large or small numbers (it rounds to 0 or Infinity) (to be verified?; if it had\r\n     *       performance problems with certain numbers, then it would affect other parts of Gson which\r\n     *       parse as float or double as well)\r\n     *   <li>Enforcing limits only when a JSON number is encountered would be ineffective when users\r\n     *       want to consume a JSON number as string using {@link JsonReader#nextString()} unless they\r\n     *       explicitly call {@link JsonReader#peek()} and check if the value is a JSON number.\r\n     *       Otherwise the limits could be circumvented because {@link JsonReader#nextString()} reads\r\n     *       both strings and numbers, and for JSON strings no restrictions are enforced.\r\n     * </ul>\r\n     */\r\n    @Test\r\n    public void testJsonReader() throws IOException {\r\n        JsonReader reader = jsonReader(\"1\".repeat(1000));\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n        assertThat(reader.nextString()).isEqualTo(\"1\".repeat(1000));\r\n        JsonReader reader2 = jsonReader(\"1\".repeat(MAX_LENGTH + 1));\r\n        // Currently JsonReader does not recognize large JSON numbers as numbers but treats them\r\n        // as unquoted string\r\n        MalformedJsonException e = assertThrows(MalformedJsonException.class, () -> reader2.peek());\r\n        assertThat(e).hasMessageThat().startsWith(\"Use JsonReader.setStrictness(Strictness.LENIENT) to accept malformed JSON\");\r\n        reader = jsonReader(\"1e9999\");\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n        assertThat(reader.nextString()).isEqualTo(\"1e9999\");\r\n        reader = jsonReader(\"1e+9999\");\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n        assertThat(reader.nextString()).isEqualTo(\"1e+9999\");\r\n        reader = jsonReader(\"1e10000\");\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n        assertThat(reader.nextString()).isEqualTo(\"1e10000\");\r\n        reader = jsonReader(\"1e00001\");\r\n        assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n        assertThat(reader.nextString()).isEqualTo(\"1e00001\");\r\n    }\r\n\r\n    @Test\r\n    public void testJsonPrimitive() {\r\n        assertThat(new JsonPrimitive(\"1\".repeat(MAX_LENGTH)).getAsBigDecimal()).isEqualTo(new BigDecimal(\"1\".repeat(MAX_LENGTH)));\r\n        assertThat(new JsonPrimitive(\"1e9999\").getAsBigDecimal()).isEqualTo(new BigDecimal(\"1e9999\"));\r\n        assertThat(new JsonPrimitive(\"1e-9999\").getAsBigDecimal()).isEqualTo(new BigDecimal(\"1e-9999\"));\r\n        NumberFormatException e = assertThrows(NumberFormatException.class, () -> new JsonPrimitive(\"1\".repeat(MAX_LENGTH + 1)).getAsBigDecimal());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Number string too large: 111111111111111111111111111111...\");\r\n        e = assertThrows(NumberFormatException.class, () -> new JsonPrimitive(\"1e10000\").getAsBigDecimal());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e10000\");\r\n        e = assertThrows(NumberFormatException.class, () -> new JsonPrimitive(\"1e-10000\").getAsBigDecimal());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e-10000\");\r\n        assertThat(new JsonPrimitive(\"1\".repeat(MAX_LENGTH)).getAsBigInteger()).isEqualTo(new BigInteger(\"1\".repeat(MAX_LENGTH)));\r\n        e = assertThrows(NumberFormatException.class, () -> new JsonPrimitive(\"1\".repeat(MAX_LENGTH + 1)).getAsBigInteger());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Number string too large: 111111111111111111111111111111...\");\r\n    }\r\n\r\n    @Test\r\n    public void testToNumberPolicy() throws IOException {\r\n        ToNumberStrategy strategy = ToNumberPolicy.BIG_DECIMAL;\r\n        assertThat(strategy.readNumber(jsonReader(\"\\\"\" + \"1\".repeat(MAX_LENGTH) + \"\\\"\"))).isEqualTo(new BigDecimal(\"1\".repeat(MAX_LENGTH)));\r\n        assertThat(strategy.readNumber(jsonReader(\"1e9999\"))).isEqualTo(new BigDecimal(\"1e9999\"));\r\n        JsonParseException e = assertThrows(JsonParseException.class, () -> strategy.readNumber(jsonReader(\"\\\"\" + \"1\".repeat(MAX_LENGTH + 1) + \"\\\"\")));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Cannot parse \" + \"1\".repeat(MAX_LENGTH + 1) + \"; at path $\");\r\n        assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Number string too large: 111111111111111111111111111111...\");\r\n        e = assertThrows(JsonParseException.class, () -> strategy.readNumber(jsonReader(\"\\\"1e10000\\\"\")));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Cannot parse 1e10000; at path $\");\r\n        assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e10000\");\r\n    }\r\n\r\n    @Test\r\n    public void testLazilyParsedNumber() throws IOException {\r\n        assertThat(new LazilyParsedNumber(\"1\".repeat(MAX_LENGTH)).intValue()).isEqualTo(new BigDecimal(\"1\".repeat(MAX_LENGTH)).intValue());\r\n        assertThat(new LazilyParsedNumber(\"1e9999\").intValue()).isEqualTo(new BigDecimal(\"1e9999\").intValue());\r\n        NumberFormatException e = assertThrows(NumberFormatException.class, () -> new LazilyParsedNumber(\"1\".repeat(MAX_LENGTH + 1)).intValue());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Number string too large: 111111111111111111111111111111...\");\r\n        e = assertThrows(NumberFormatException.class, () -> new LazilyParsedNumber(\"1e10000\").intValue());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e10000\");\r\n        e = assertThrows(NumberFormatException.class, () -> new LazilyParsedNumber(\"1e10000\").longValue());\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e10000\");\r\n        ObjectOutputStream objOut = new ObjectOutputStream(OutputStream.nullOutputStream());\r\n        // Number is serialized as BigDecimal; should also enforce limits during this conversion\r\n        e = assertThrows(NumberFormatException.class, () -> objOut.writeObject(new LazilyParsedNumber(\"1e10000\")));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e10000\");\r\n    }\r\n\r\n    @Test\r\n    public void testBigDecimalAdapter() throws IOException {\r\n        TypeAdapter<BigDecimal> adapter = new Gson().getAdapter(BigDecimal.class);\r\n        assertThat(adapter.fromJson(\"\\\"\" + \"1\".repeat(MAX_LENGTH) + \"\\\"\")).isEqualTo(new BigDecimal(\"1\".repeat(MAX_LENGTH)));\r\n        assertThat(adapter.fromJson(\"\\\"1e9999\\\"\")).isEqualTo(new BigDecimal(\"1e9999\"));\r\n        JsonSyntaxException e = assertThrows(JsonSyntaxException.class, () -> adapter.fromJson(\"\\\"\" + \"1\".repeat(MAX_LENGTH + 1) + \"\\\"\"));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Failed parsing '\" + \"1\".repeat(MAX_LENGTH + 1) + \"' as BigDecimal; at path $\");\r\n        assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Number string too large: 111111111111111111111111111111...\");\r\n        e = assertThrows(JsonSyntaxException.class, () -> adapter.fromJson(\"\\\"1e10000\\\"\"));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Failed parsing '1e10000' as BigDecimal; at path $\");\r\n        assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e10000\");\r\n    }\r\n\r\n    @Test\r\n    public void testBigIntegerAdapter() throws IOException {\r\n        TypeAdapter<BigInteger> adapter = new Gson().getAdapter(BigInteger.class);\r\n        assertThat(adapter.fromJson(\"\\\"\" + \"1\".repeat(MAX_LENGTH) + \"\\\"\")).isEqualTo(new BigInteger(\"1\".repeat(MAX_LENGTH)));\r\n        JsonSyntaxException e = assertThrows(JsonSyntaxException.class, () -> adapter.fromJson(\"\\\"\" + \"1\".repeat(MAX_LENGTH + 1) + \"\\\"\"));\r\n        assertThat(e).hasMessageThat().isEqualTo(\"Failed parsing '\" + \"1\".repeat(MAX_LENGTH + 1) + \"' as BigInteger; at path $\");\r\n        assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Number string too large: 111111111111111111111111111111...\");\r\n    }\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "field",
+    "name": "MAX_LENGTH",
+    "start_line": 26,
+    "end_line": 26,
+    "code": "private static final int MAX_LENGTH = 10_000;",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "jsonReader",
+    "start_line": 28,
+    "end_line": 30,
+    "code": "private static JsonReader jsonReader(String json) {\r\n    return new JsonReader(new StringReader(json));\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonReader",
+    "start_line": 49,
+    "end_line": 78,
+    "code": "/**\r\n * Tests how {@link JsonReader} behaves for large numbers.\r\n *\r\n * <p>Currently {@link JsonReader} itself does not enforce any limits. The reasons for this are:\r\n *\r\n * <ul>\r\n *   <li>Methods such as {@link JsonReader#nextDouble()} seem to have no problem parsing extremely\r\n *       large or small numbers (it rounds to 0 or Infinity) (to be verified?; if it had\r\n *       performance problems with certain numbers, then it would affect other parts of Gson which\r\n *       parse as float or double as well)\r\n *   <li>Enforcing limits only when a JSON number is encountered would be ineffective when users\r\n *       want to consume a JSON number as string using {@link JsonReader#nextString()} unless they\r\n *       explicitly call {@link JsonReader#peek()} and check if the value is a JSON number.\r\n *       Otherwise the limits could be circumvented because {@link JsonReader#nextString()} reads\r\n *       both strings and numbers, and for JSON strings no restrictions are enforced.\r\n * </ul>\r\n */\r\n@Test\r\npublic void testJsonReader() throws IOException {\r\n    JsonReader reader = jsonReader(\"1\".repeat(1000));\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n    assertThat(reader.nextString()).isEqualTo(\"1\".repeat(1000));\r\n    JsonReader reader2 = jsonReader(\"1\".repeat(MAX_LENGTH + 1));\r\n    // Currently JsonReader does not recognize large JSON numbers as numbers but treats them\r\n    // as unquoted string\r\n    MalformedJsonException e = assertThrows(MalformedJsonException.class, () -> reader2.peek());\r\n    assertThat(e).hasMessageThat().startsWith(\"Use JsonReader.setStrictness(Strictness.LENIENT) to accept malformed JSON\");\r\n    reader = jsonReader(\"1e9999\");\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n    assertThat(reader.nextString()).isEqualTo(\"1e9999\");\r\n    reader = jsonReader(\"1e+9999\");\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n    assertThat(reader.nextString()).isEqualTo(\"1e+9999\");\r\n    reader = jsonReader(\"1e10000\");\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n    assertThat(reader.nextString()).isEqualTo(\"1e10000\");\r\n    reader = jsonReader(\"1e00001\");\r\n    assertThat(reader.peek()).isEqualTo(JsonToken.NUMBER);\r\n    assertThat(reader.nextString()).isEqualTo(\"1e00001\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testJsonPrimitive",
+    "start_line": 80,
+    "end_line": 115,
+    "code": "@Test\r\npublic void testJsonPrimitive() {\r\n    assertThat(new JsonPrimitive(\"1\".repeat(MAX_LENGTH)).getAsBigDecimal()).isEqualTo(new BigDecimal(\"1\".repeat(MAX_LENGTH)));\r\n    assertThat(new JsonPrimitive(\"1e9999\").getAsBigDecimal()).isEqualTo(new BigDecimal(\"1e9999\"));\r\n    assertThat(new JsonPrimitive(\"1e-9999\").getAsBigDecimal()).isEqualTo(new BigDecimal(\"1e-9999\"));\r\n    NumberFormatException e = assertThrows(NumberFormatException.class, () -> new JsonPrimitive(\"1\".repeat(MAX_LENGTH + 1)).getAsBigDecimal());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Number string too large: 111111111111111111111111111111...\");\r\n    e = assertThrows(NumberFormatException.class, () -> new JsonPrimitive(\"1e10000\").getAsBigDecimal());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e10000\");\r\n    e = assertThrows(NumberFormatException.class, () -> new JsonPrimitive(\"1e-10000\").getAsBigDecimal());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e-10000\");\r\n    assertThat(new JsonPrimitive(\"1\".repeat(MAX_LENGTH)).getAsBigInteger()).isEqualTo(new BigInteger(\"1\".repeat(MAX_LENGTH)));\r\n    e = assertThrows(NumberFormatException.class, () -> new JsonPrimitive(\"1\".repeat(MAX_LENGTH + 1)).getAsBigInteger());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Number string too large: 111111111111111111111111111111...\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testToNumberPolicy",
+    "start_line": 117,
+    "end_line": 145,
+    "code": "@Test\r\npublic void testToNumberPolicy() throws IOException {\r\n    ToNumberStrategy strategy = ToNumberPolicy.BIG_DECIMAL;\r\n    assertThat(strategy.readNumber(jsonReader(\"\\\"\" + \"1\".repeat(MAX_LENGTH) + \"\\\"\"))).isEqualTo(new BigDecimal(\"1\".repeat(MAX_LENGTH)));\r\n    assertThat(strategy.readNumber(jsonReader(\"1e9999\"))).isEqualTo(new BigDecimal(\"1e9999\"));\r\n    JsonParseException e = assertThrows(JsonParseException.class, () -> strategy.readNumber(jsonReader(\"\\\"\" + \"1\".repeat(MAX_LENGTH + 1) + \"\\\"\")));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Cannot parse \" + \"1\".repeat(MAX_LENGTH + 1) + \"; at path $\");\r\n    assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Number string too large: 111111111111111111111111111111...\");\r\n    e = assertThrows(JsonParseException.class, () -> strategy.readNumber(jsonReader(\"\\\"1e10000\\\"\")));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Cannot parse 1e10000; at path $\");\r\n    assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e10000\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testLazilyParsedNumber",
+    "start_line": 147,
+    "end_line": 179,
+    "code": "@Test\r\npublic void testLazilyParsedNumber() throws IOException {\r\n    assertThat(new LazilyParsedNumber(\"1\".repeat(MAX_LENGTH)).intValue()).isEqualTo(new BigDecimal(\"1\".repeat(MAX_LENGTH)).intValue());\r\n    assertThat(new LazilyParsedNumber(\"1e9999\").intValue()).isEqualTo(new BigDecimal(\"1e9999\").intValue());\r\n    NumberFormatException e = assertThrows(NumberFormatException.class, () -> new LazilyParsedNumber(\"1\".repeat(MAX_LENGTH + 1)).intValue());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Number string too large: 111111111111111111111111111111...\");\r\n    e = assertThrows(NumberFormatException.class, () -> new LazilyParsedNumber(\"1e10000\").intValue());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e10000\");\r\n    e = assertThrows(NumberFormatException.class, () -> new LazilyParsedNumber(\"1e10000\").longValue());\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e10000\");\r\n    ObjectOutputStream objOut = new ObjectOutputStream(OutputStream.nullOutputStream());\r\n    // Number is serialized as BigDecimal; should also enforce limits during this conversion\r\n    e = assertThrows(NumberFormatException.class, () -> objOut.writeObject(new LazilyParsedNumber(\"1e10000\")));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e10000\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBigDecimalAdapter",
+    "start_line": 181,
+    "end_line": 207,
+    "code": "@Test\r\npublic void testBigDecimalAdapter() throws IOException {\r\n    TypeAdapter<BigDecimal> adapter = new Gson().getAdapter(BigDecimal.class);\r\n    assertThat(adapter.fromJson(\"\\\"\" + \"1\".repeat(MAX_LENGTH) + \"\\\"\")).isEqualTo(new BigDecimal(\"1\".repeat(MAX_LENGTH)));\r\n    assertThat(adapter.fromJson(\"\\\"1e9999\\\"\")).isEqualTo(new BigDecimal(\"1e9999\"));\r\n    JsonSyntaxException e = assertThrows(JsonSyntaxException.class, () -> adapter.fromJson(\"\\\"\" + \"1\".repeat(MAX_LENGTH + 1) + \"\\\"\"));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Failed parsing '\" + \"1\".repeat(MAX_LENGTH + 1) + \"' as BigDecimal; at path $\");\r\n    assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Number string too large: 111111111111111111111111111111...\");\r\n    e = assertThrows(JsonSyntaxException.class, () -> adapter.fromJson(\"\\\"1e10000\\\"\"));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Failed parsing '1e10000' as BigDecimal; at path $\");\r\n    assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Number has unsupported scale: 1e10000\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  },
+  {
+    "type": "method",
+    "name": "testBigIntegerAdapter",
+    "start_line": 209,
+    "end_line": 227,
+    "code": "@Test\r\npublic void testBigIntegerAdapter() throws IOException {\r\n    TypeAdapter<BigInteger> adapter = new Gson().getAdapter(BigInteger.class);\r\n    assertThat(adapter.fromJson(\"\\\"\" + \"1\".repeat(MAX_LENGTH) + \"\\\"\")).isEqualTo(new BigInteger(\"1\".repeat(MAX_LENGTH)));\r\n    JsonSyntaxException e = assertThrows(JsonSyntaxException.class, () -> adapter.fromJson(\"\\\"\" + \"1\".repeat(MAX_LENGTH + 1) + \"\\\"\"));\r\n    assertThat(e).hasMessageThat().isEqualTo(\"Failed parsing '\" + \"1\".repeat(MAX_LENGTH + 1) + \"' as BigInteger; at path $\");\r\n    assertThat(e).hasCauseThat().hasMessageThat().isEqualTo(\"Number string too large: 111111111111111111111111111111...\");\r\n}",
+    "file_path": "C:\\Users\\su9ki\\Desktop\\git-ai\\git-agent\\repository\\gson\\gson\\src\\test\\java\\com\\google\\gson\\functional\\NumberLimitsTest.java"
+  }
+]
