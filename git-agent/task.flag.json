@@ -812,5 +812,14 @@
     "name": "JEYSports",
     "created_date": "2025-07-20 20:19:48",
     "updated_date": "2025-07-20 20:20:09"
+  },
+  {
+    "id": 92,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-03 20:14:04",
+    "updated_date": "2025-08-03 20:14:22"
   }
 ]

@@ -32,8 +32,7 @@ def render_vector_db(repo_name: str):
     log_panel = ResultLogPanel()
 
     async def handle_api_call(api_function, *args):
-        with ui.spinner(size='lg', color='blue'):
-            result = await api_function(*args)
+        result = await api_function(*args)
         log_panel.add_log(str(result))
 
     with ui.row().style('height:100vh; width:100vw; overflow:hidden;'):
