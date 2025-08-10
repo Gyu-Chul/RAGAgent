@@ -440,14 +440,145 @@ async def delete_entity(req: DeleteEntityRequest):
 
 #########################################################################################
 
+# ─────────────────────────────────────────────────────────────────────────────
+# 설정값 (환경에 맞게 조절)
+DEFAULT_EMBED_BATCH = 256                     # 임베딩 배치 크기
+DEFAULT_MAX_PAYLOAD_BYTES = 50 * 1024 * 1024  # gRPC 64MB보다 여유 있게 50MB 목표
+# ─────────────────────────────────────────────────────────────────────────────
+# 상단 설정
+HARD_CAP_CHARS = 65000  # 스키마 못 읽을 때 최후 안전값(VarChar 65535 하한선 근처)
+
+def _dtype_is_varchar(dt) -> bool:
+    # dt가 enum, int, str 어느 형태든 'varchar' 판별
+    s = str(dt).lower()
+    return ("varchar" in s) or (s.strip() in {"23", "varchar", "data_type.varchar"})
+
+def _get_maxlen_from_field(f: dict) -> int | None:
+    # params or type_params 안에서 max_length 추출 (str일 수 있음)
+    for key in ("params", "type_params"):
+        params = f.get(key) or {}
+        if "max_length" in params:
+            try:
+                return int(params["max_length"])
+            except Exception:
+                pass
+    return None
+
+def get_varchar_limits(schema_info: dict) -> dict[str, int]:
+    """필드별 VarChar max_length 매핑. 못 찾으면 None (나중에 하드캡 적용)."""
+    limits = {}
+    for f in schema_info.get("fields", []):
+        if _dtype_is_varchar(f.get("data_type")):
+            ml = _get_maxlen_from_field(f)
+            if isinstance(ml, int) and ml > 0:
+                limits[f["name"]] = ml
+    return limits
+
+
+
+def truncate_utf8(s: str, max_bytes: int) -> str:
+    """UTF-8 바이트 기준 안전 절단(멀티바이트 깨짐 방지)."""
+    if s is None or max_bytes is None:
+        return s
+    b = s.encode("utf-8")
+    if len(b) <= max_bytes:
+        return s
+    ell = "…[TRUNCATED]"
+    ell_b = ell.encode("utf-8")
+    keep = max_bytes - len(ell_b)
+    if keep <= 0:
+        return b[:max_bytes].decode("utf-8", errors="ignore")
+    return b[:keep].decode("utf-8", errors="ignore") + ell
+
+
+def truncate_chars(s: str, max_chars: int | None) -> str:
+    if s is None or max_chars is None:
+        return s
+    if len(s) <= max_chars:
+        return s
+    ell = "…[TRUNCATED]"
+    keep = max(0, max_chars - len(ell))
+    return (s[:keep] + ell) if keep > 0 else s[:max_chars]
+
+
+
+def approx_row_bytes(vec, item: dict, include_text: bool) -> int:
+    """gRPC 페이로드 근사치: 벡터(float32) + 텍스트(옵션) + 오버헤드."""
+    vec_bytes = (len(vec) * 4) if hasattr(vec, "__len__") else 0  # float32 가정
+    text_bytes = 0
+    if include_text:
+        try:
+            text_bytes = len(json.dumps(item, ensure_ascii=False).encode("utf-8"))
+        except Exception:
+            text_bytes = 0
+    return vec_bytes + text_bytes + 512  # 헤더/필드 오버헤드 여유치
+
+
+def build_row_for_schema(item: dict, vec, field_names: set[str], varchar_limits: dict[str, int]):
+    row = {"embedding": vec}
+
+    if "text" in field_names:
+        raw = json.dumps(item, ensure_ascii=False)
+        ml = varchar_limits.get("text", HARD_CAP_CHARS)
+        row["text"] = truncate_chars(raw, ml)
+
+    if "code" in field_names:
+        raw = item.get("code", "[NO CODE]")
+        ml = varchar_limits.get("code", HARD_CAP_CHARS)
+        row["code"] = truncate_chars(raw, ml)
+
+    if "type" in field_names:
+        raw = item.get("type", "unknown")
+        ml = varchar_limits.get("type")  # 일반적으로 작음, 없으면 제한 없음
+        row["type"] = truncate_chars(raw, ml) if ml else raw
+
+    if "name" in field_names:
+        raw = item.get("name", "unknown")
+        ml = varchar_limits.get("name")
+        row["name"] = truncate_chars(raw, ml) if ml else raw
+
+    if "file_path" in field_names:
+        raw = item.get("file_path", "unknown")
+        ml = varchar_limits.get("file_path")
+        row["file_path"] = truncate_chars(raw, ml) if ml else raw
+
+    if "start_line" in field_names:
+        row["start_line"] = int(item.get("start_line", 0))
+    if "end_line" in field_names:
+        row["end_line"] = int(item.get("end_line", 0))
+
+    # (선택) 잘림 여부 표시
+    if "is_truncated" in field_names:
+        def over(name: str) -> bool:
+            if name not in row:
+                return False
+            lm = varchar_limits.get(name, HARD_CAP_CHARS if name in ("text", "code") else None)
+            return lm is not None and len(row[name]) >= lm
+        row["is_truncated"] = bool(over("text") or over("code"))
+
+    return row
+
+
+
 @router.post("/embed_json_file")
 async def embed_json_file(
     file: UploadFile = File(...),
     collection_name: str = Form(...),
-    version: int = Form(1)
+    version: int = Form(1),
+    embed_batch_size: int = Form(DEFAULT_EMBED_BATCH),              # 임베딩 배치
+    max_payload_bytes: int = Form(DEFAULT_MAX_PAYLOAD_BYTES),       # gRPC 페이로드 컷
 ):
+    """
+    대규모 JSON:
+    - 임베딩: embed_batch_size로 쪼개서 처리
+    - 삽입: gRPC 페이로드를 max_payload_bytes 이하가 되도록 바이트 기준 분할
+    - VarChar: 스키마 max_length에 맞춰 UTF-8 안전 절단
+    - 시간: 임베딩/삽입/전체 경과 포함해 message로 반환
+    """
     try:
-        # 1. JSON 파일 유효성 검사 및 저장
+        total_start = time.perf_counter()
+
+        # 1) 파일 검증 + 임시 저장
         if not file.filename.endswith(".json"):
             return {"success": False, "message": "❌ JSON 파일만 업로드 가능합니다."}
 
@@ -455,40 +586,94 @@ async def embed_json_file(
             tmp.write(await file.read())
             tmp_path = tmp.name
 
-        # 2. JSON 로드
+        # 2) JSON 로드
         with open(tmp_path, "r", encoding="utf-8") as f:
             data = json.load(f)
         all_items = data if isinstance(data, list) else [data]
+        total_items = len(all_items)
+        if total_items == 0:
+            return {"success": False, "message": "⚠️ 비어있는 JSON입니다."}
 
-        # 3. 임베딩 수행
+        # 3) 환경 준비
         device = "cuda" if torch.cuda.is_available() else "cpu"
         embedding_fn = SentenceTransformerEmbeddingFunction(
             model_name="sentence-transformers/all-mpnet-base-v2",
             device=device
         )
-        docs_as_strings = [json.dumps(item, ensure_ascii=False) for item in all_items]
-        vectors = embedding_fn.encode_documents(docs_as_strings)
 
-        if len(vectors) != len(all_items):
-            return {"success": False, "message": "❌ 벡터/데이터 개수 불일치"}
-
-        # 4. 버전에 맞는 데이터 구성
-        insert_data = build_insert_data(collection_name, all_items, vectors)  # ✅ 컬렉션 이름 전달
-
-
-        # 5. 컬렉션 존재 확인 후 데이터 삽입
         if not client.has_collection(collection_name):
             return {"success": False, "message": f"❌ 컬렉션 '{collection_name}' 존재하지 않음"}
 
-        client.insert(collection_name=collection_name, data=insert_data)
+        # 스키마 1회 조회
+        schema_info = client.describe_collection(collection_name)
+        field_names = {f["name"] for f in schema_info.get("fields", [])}
+        varchar_limits = get_varchar_limits(schema_info)
 
-        # 6. 총 엔티티 수 확인
+        embed_elapsed_total = 0.0
+        insert_elapsed_total = 0.0
+        inserted_count = 0
+
+        # 4) 배치 임베딩 루프
+        for start in range(0, total_items, embed_batch_size):
+            end = min(start + embed_batch_size, total_items)
+            batch_items = all_items[start:end]
+            docs_as_strings = [json.dumps(item, ensure_ascii=False) for item in batch_items]
+
+            # 임베딩 시간 측정 (CUDA 동기화로 정확도↑)
+            if device == "cuda":
+                torch.cuda.synchronize()
+            t0 = time.perf_counter()
+            vectors = embedding_fn.encode_documents(docs_as_strings)
+            if device == "cuda":
+                torch.cuda.synchronize()
+            embed_elapsed_total += (time.perf_counter() - t0)
+
+            if len(vectors) != len(batch_items):
+                return {"success": False, "message": "❌ 벡터/데이터 개수 불일치(배치)"}
+
+            # 5) 삽입: 바이트 기준으로 분할 전송
+            buffer_rows = []
+            buffer_bytes = 0
+
+            include_text = ("text" in field_names)
+
+            for i, item in enumerate(batch_items):
+                row = build_row_for_schema(item, vectors[i], field_names, varchar_limits)
+                row_bytes = approx_row_bytes(vectors[i], item, include_text=include_text)
+
+                # 현재 버퍼 + 새 행이 한도를 넘으면 먼저 flush
+                if buffer_rows and (buffer_bytes + row_bytes) > max_payload_bytes:
+                    t1 = time.perf_counter()
+                    client.insert(collection_name=collection_name, data=buffer_rows)
+                    insert_elapsed_total += (time.perf_counter() - t1)
+                    inserted_count += len(buffer_rows)
+                    buffer_rows = []
+                    buffer_bytes = 0
+
+                buffer_rows.append(row)
+                buffer_bytes += row_bytes
+
+            # 잔여 flush
+            if buffer_rows:
+                t1 = time.perf_counter()
+                client.insert(collection_name=collection_name, data=buffer_rows)
+                insert_elapsed_total += (time.perf_counter() - t1)
+                inserted_count += len(buffer_rows)
+
+        # 6) 총 엔티티 수
         stats = client.get_collection_stats(collection_name)
         total_count = int(stats["row_count"])
 
+        total_elapsed = time.perf_counter() - total_start
+
+        # search_basic_api 스타일의 message
         return {
             "success": True,
-            "message": f"🎉 {len(insert_data)}개 엔티티 삽입 완료!",
+            "message": (
+                f"🎉 {inserted_count}개 엔티티 삽입 완료 "
+                f"(⏱️ 임베딩 {embed_elapsed_total:.2f}s, 삽입 {insert_elapsed_total:.2f}s, 전체 {total_elapsed:.2f}s; "
+                f"배치 embed={embed_batch_size}, payload≤{max_payload_bytes // (1024*1024)}MB)"
+            ),
             "total_entities": total_count
         }
 
@@ -498,46 +683,6 @@ async def embed_json_file(
     finally:
         if 'tmp_path' in locals() and os.path.exists(tmp_path):
             os.remove(tmp_path)
-
-
-def build_insert_data(collection_name: str, items: list, vectors: list):
-    # 1. 컬렉션의 실제 스키마 확인
-    schema_info = client.describe_collection(collection_name)
-    field_names = {f["name"] for f in schema_info["fields"]}
-
-    data = []
-    for idx, item in enumerate(items):
-        vec = vectors[idx]
-
-        # 2. 기본적으로 항상 embedding 추가
-        row = {"embedding": vec}
-
-        # 3. 스키마에 존재하는 필드만 추가
-        if "text" in field_names:
-            row["text"] = json.dumps(item, ensure_ascii=False)
-
-        if "code" in field_names:
-            row["code"] = item.get("code", "[NO CODE]")
-
-        if "type" in field_names:
-            row["type"] = item.get("type", "unknown")
-
-        if "name" in field_names:
-            row["name"] = item.get("name", "unknown")
-
-        if "start_line" in field_names:
-            row["start_line"] = int(item.get("start_line", 0))
-
-        if "end_line" in field_names:
-            row["end_line"] = int(item.get("end_line", 0))
-
-        if "file_path" in field_names:
-            row["file_path"] = item.get("file_path", "unknown")
-
-        data.append(row)
-
-    return data
-
 
 #########################################################################################
 ################# 검색 #################

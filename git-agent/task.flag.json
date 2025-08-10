@@ -821,5 +821,59 @@
     "name": "git-ai-sample",
     "created_date": "2025-08-03 20:14:04",
     "updated_date": "2025-08-03 20:14:22"
+  },
+  {
+    "id": 93,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai",
+    "name": "git-ai",
+    "created_date": "2025-08-05 00:31:54",
+    "updated_date": "2025-08-05 00:31:57"
+  },
+  {
+    "id": 94,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/CppTest-Game",
+    "name": "CppTest-Game",
+    "created_date": "2025-08-05 00:35:51",
+    "updated_date": "2025-08-05 00:38:49"
+  },
+  {
+    "id": 96,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-05 00:40:37",
+    "updated_date": "2025-08-05 00:40:49"
+  },
+  {
+    "id": 97,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/HAB",
+    "name": "HAB",
+    "created_date": "2025-08-05 01:41:45",
+    "updated_date": "2025-08-05 01:41:50"
+  },
+  {
+    "id": 98,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/HAB",
+    "name": "HAB",
+    "created_date": "2025-08-05 01:42:39",
+    "updated_date": "2025-08-05 01:42:42"
+  },
+  {
+    "id": 99,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/huggingface/transformers",
+    "name": "transformers",
+    "created_date": "2025-08-09 18:54:24",
+    "updated_date": "2025-08-09 18:55:19"
   }
 ]

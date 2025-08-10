@@ -114,7 +114,7 @@ async def embed_json_file(collection_name: str, file_name: str, file_content):
         files = {'file': (file_name, file_content, 'application/json')}
         data = {'collection_name': collection_name}
 
-        async with httpx.AsyncClient(timeout=120.0) as client:
+        async with httpx.AsyncClient(timeout=3600.0) as client:
             res = await client.post(f'{BASE_URL}/embed_json_file', files=files, data=data)
 
         return res.json().get('message', '✅ 처리 완료')
