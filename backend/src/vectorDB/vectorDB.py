@@ -1,7 +1,9 @@
-from fastapi import APIRouter, UploadFile, File, Form, Query
+from fastapi import APIRouter, UploadFile, File, Form, Query, HTTPException
 from pymilvus import MilvusClient, FieldSchema, CollectionSchema, DataType
 from pymilvus.model.dense import SentenceTransformerEmbeddingFunction
 from pydantic import BaseModel
+from pathlib import Path
+from typing import Any, Dict, List
 
 import json, os, torch, tempfile, time
 
@@ -559,35 +561,157 @@ def build_row_for_schema(item: dict, vec, field_names: set[str], varchar_limits:
     return row
 
 
+#################################################### 업로드를 통한 json 읽기 방법
+# @router.post("/embed_json_file")
+# async def embed_json_file(
+#     file: UploadFile = File(...),
+#     collection_name: str = Form(...),
+#     version: int = Form(1),
+#     embed_batch_size: int = Form(DEFAULT_EMBED_BATCH),              # 임베딩 배치
+#     max_payload_bytes: int = Form(DEFAULT_MAX_PAYLOAD_BYTES),       # gRPC 페이로드 컷
+# ):
+#     """
+#     대규모 JSON:
+#     - 임베딩: embed_batch_size로 쪼개서 처리
+#     - 삽입: gRPC 페이로드를 max_payload_bytes 이하가 되도록 바이트 기준 분할
+#     - VarChar: 스키마 max_length에 맞춰 UTF-8 안전 절단
+#     - 시간: 임베딩/삽입/전체 경과 포함해 message로 반환
+#     """
+#     try:
+#         total_start = time.perf_counter()
+
+#         # 1) 파일 검증 + 임시 저장
+#         if not file.filename.endswith(".json"):
+#             return {"success": False, "message": "❌ JSON 파일만 업로드 가능합니다."}
+
+#         with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as tmp:
+#             tmp.write(await file.read())
+#             tmp_path = tmp.name
+
+#         # 2) JSON 로드
+#         with open(tmp_path, "r", encoding="utf-8") as f:
+#             data = json.load(f)
+#         all_items = data if isinstance(data, list) else [data]
+#         total_items = len(all_items)
+#         if total_items == 0:
+#             return {"success": False, "message": "⚠️ 비어있는 JSON입니다."}
+
+#         # 3) 환경 준비
+#         device = "cuda" if torch.cuda.is_available() else "cpu"
+#         embedding_fn = SentenceTransformerEmbeddingFunction(
+#             model_name="sentence-transformers/all-mpnet-base-v2",
+#             device=device
+#         )
+
+#         if not client.has_collection(collection_name):
+#             return {"success": False, "message": f"❌ 컬렉션 '{collection_name}' 존재하지 않음"}
+
+#         # 스키마 1회 조회
+#         schema_info = client.describe_collection(collection_name)
+#         field_names = {f["name"] for f in schema_info.get("fields", [])}
+#         varchar_limits = get_varchar_limits(schema_info)
+
+#         embed_elapsed_total = 0.0
+#         insert_elapsed_total = 0.0
+#         inserted_count = 0
+
+#         # 4) 배치 임베딩 루프
+#         for start in range(0, total_items, embed_batch_size):
+#             end = min(start + embed_batch_size, total_items)
+#             batch_items = all_items[start:end]
+#             docs_as_strings = [json.dumps(item, ensure_ascii=False) for item in batch_items]
+
+#             # 임베딩 시간 측정 (CUDA 동기화로 정확도↑)
+#             if device == "cuda":
+#                 torch.cuda.synchronize()
+#             t0 = time.perf_counter()
+#             vectors = embedding_fn.encode_documents(docs_as_strings)
+#             if device == "cuda":
+#                 torch.cuda.synchronize()
+#             embed_elapsed_total += (time.perf_counter() - t0)
+
+#             if len(vectors) != len(batch_items):
+#                 return {"success": False, "message": "❌ 벡터/데이터 개수 불일치(배치)"}
+
+#             # 5) 삽입: 바이트 기준으로 분할 전송
+#             buffer_rows = []
+#             buffer_bytes = 0
+
+#             include_text = ("text" in field_names)
+
+#             for i, item in enumerate(batch_items):
+#                 row = build_row_for_schema(item, vectors[i], field_names, varchar_limits)
+#                 row_bytes = approx_row_bytes(vectors[i], item, include_text=include_text)
+
+#                 # 현재 버퍼 + 새 행이 한도를 넘으면 먼저 flush
+#                 if buffer_rows and (buffer_bytes + row_bytes) > max_payload_bytes:
+#                     t1 = time.perf_counter()
+#                     client.insert(collection_name=collection_name, data=buffer_rows)
+#                     insert_elapsed_total += (time.perf_counter() - t1)
+#                     inserted_count += len(buffer_rows)
+#                     buffer_rows = []
+#                     buffer_bytes = 0
+
+#                 buffer_rows.append(row)
+#                 buffer_bytes += row_bytes
+
+#             # 잔여 flush
+#             if buffer_rows:
+#                 t1 = time.perf_counter()
+#                 client.insert(collection_name=collection_name, data=buffer_rows)
+#                 insert_elapsed_total += (time.perf_counter() - t1)
+#                 inserted_count += len(buffer_rows)
+
+#         # 6) 총 엔티티 수
+#         stats = client.get_collection_stats(collection_name)
+#         total_count = int(stats["row_count"])
+
+#         total_elapsed = time.perf_counter() - total_start
+
+#         # search_basic_api 스타일의 message
+#         return {
+#             "success": True,
+#             "message": (
+#                 f"🎉 {inserted_count}개 엔티티 삽입 완료 "
+#                 f"(⏱️ 임베딩 {embed_elapsed_total:.2f}s, 삽입 {insert_elapsed_total:.2f}s, 전체 {total_elapsed:.2f}s; "
+#                 f"배치 embed={embed_batch_size}, payload≤{max_payload_bytes // (1024*1024)}MB)"
+#             ),
+#             "total_entities": total_count
+#         }
+
+#     except Exception as e:
+#         return {"success": False, "message": f"❌ 오류 발생: {e}"}
+
+#     finally:
+#         if 'tmp_path' in locals() and os.path.exists(tmp_path):
+#             os.remove(tmp_path)
+
+
+
+class EmbedJsonRequest(BaseModel):
+    json_path: str
+    collection_name: str
+    version: int = 1
+    embed_batch_size: int = DEFAULT_EMBED_BATCH
+    max_payload_bytes: int = DEFAULT_MAX_PAYLOAD_BYTES
 
 @router.post("/embed_json_file")
-async def embed_json_file(
-    file: UploadFile = File(...),
-    collection_name: str = Form(...),
-    version: int = Form(1),
-    embed_batch_size: int = Form(DEFAULT_EMBED_BATCH),              # 임베딩 배치
-    max_payload_bytes: int = Form(DEFAULT_MAX_PAYLOAD_BYTES),       # gRPC 페이로드 컷
-):
+async def embed_json_file(req: EmbedJsonRequest):
     """
-    대규모 JSON:
-    - 임베딩: embed_batch_size로 쪼개서 처리
-    - 삽입: gRPC 페이로드를 max_payload_bytes 이하가 되도록 바이트 기준 분할
-    - VarChar: 스키마 max_length에 맞춰 UTF-8 안전 절단
-    - 시간: 임베딩/삽입/전체 경과 포함해 message로 반환
+    Content-Type: application/json 요청 전용
+    기존 로직 유지, 파일 업로드 대신 서버에 존재하는 JSON 파일 경로를 받음
     """
     try:
         total_start = time.perf_counter()
 
-        # 1) 파일 검증 + 임시 저장
-        if not file.filename.endswith(".json"):
-            return {"success": False, "message": "❌ JSON 파일만 업로드 가능합니다."}
-
-        with tempfile.NamedTemporaryFile(delete=False, suffix=".json") as tmp:
-            tmp.write(await file.read())
-            tmp_path = tmp.name
+        # 1) 파일 경로 검증
+        if not req.json_path.endswith(".json"):
+            return {"success": False, "message": "❌ JSON 파일만 처리 가능합니다."}
+        if not os.path.exists(req.json_path):
+            return {"success": False, "message": f"❌ 파일이 존재하지 않음: {req.json_path}"}
 
         # 2) JSON 로드
-        with open(tmp_path, "r", encoding="utf-8") as f:
+        with open(req.json_path, "r", encoding="utf-8") as f:
             data = json.load(f)
         all_items = data if isinstance(data, list) else [data]
         total_items = len(all_items)
@@ -601,11 +725,11 @@ async def embed_json_file(
             device=device
         )
 
-        if not client.has_collection(collection_name):
-            return {"success": False, "message": f"❌ 컬렉션 '{collection_name}' 존재하지 않음"}
+        if not client.has_collection(req.collection_name):
+            return {"success": False, "message": f"❌ 컬렉션 '{req.collection_name}' 존재하지 않음"}
 
         # 스키마 1회 조회
-        schema_info = client.describe_collection(collection_name)
+        schema_info = client.describe_collection(req.collection_name)
         field_names = {f["name"] for f in schema_info.get("fields", [])}
         varchar_limits = get_varchar_limits(schema_info)
 
@@ -614,12 +738,11 @@ async def embed_json_file(
         inserted_count = 0
 
         # 4) 배치 임베딩 루프
-        for start in range(0, total_items, embed_batch_size):
-            end = min(start + embed_batch_size, total_items)
+        for start in range(0, total_items, req.embed_batch_size):
+            end = min(start + req.embed_batch_size, total_items)
             batch_items = all_items[start:end]
             docs_as_strings = [json.dumps(item, ensure_ascii=False) for item in batch_items]
 
-            # 임베딩 시간 측정 (CUDA 동기화로 정확도↑)
             if device == "cuda":
                 torch.cuda.synchronize()
             t0 = time.perf_counter()
@@ -631,20 +754,17 @@ async def embed_json_file(
             if len(vectors) != len(batch_items):
                 return {"success": False, "message": "❌ 벡터/데이터 개수 불일치(배치)"}
 
-            # 5) 삽입: 바이트 기준으로 분할 전송
             buffer_rows = []
             buffer_bytes = 0
-
             include_text = ("text" in field_names)
 
             for i, item in enumerate(batch_items):
                 row = build_row_for_schema(item, vectors[i], field_names, varchar_limits)
                 row_bytes = approx_row_bytes(vectors[i], item, include_text=include_text)
 
-                # 현재 버퍼 + 새 행이 한도를 넘으면 먼저 flush
-                if buffer_rows and (buffer_bytes + row_bytes) > max_payload_bytes:
+                if buffer_rows and (buffer_bytes + row_bytes) > req.max_payload_bytes:
                     t1 = time.perf_counter()
-                    client.insert(collection_name=collection_name, data=buffer_rows)
+                    client.insert(collection_name=req.collection_name, data=buffer_rows)
                     insert_elapsed_total += (time.perf_counter() - t1)
                     inserted_count += len(buffer_rows)
                     buffer_rows = []
@@ -653,36 +773,29 @@ async def embed_json_file(
                 buffer_rows.append(row)
                 buffer_bytes += row_bytes
 
-            # 잔여 flush
             if buffer_rows:
                 t1 = time.perf_counter()
-                client.insert(collection_name=collection_name, data=buffer_rows)
+                client.insert(collection_name=req.collection_name, data=buffer_rows)
                 insert_elapsed_total += (time.perf_counter() - t1)
                 inserted_count += len(buffer_rows)
 
-        # 6) 총 엔티티 수
-        stats = client.get_collection_stats(collection_name)
+        stats = client.get_collection_stats(req.collection_name)
         total_count = int(stats["row_count"])
 
         total_elapsed = time.perf_counter() - total_start
 
-        # search_basic_api 스타일의 message
         return {
             "success": True,
             "message": (
                 f"🎉 {inserted_count}개 엔티티 삽입 완료 "
                 f"(⏱️ 임베딩 {embed_elapsed_total:.2f}s, 삽입 {insert_elapsed_total:.2f}s, 전체 {total_elapsed:.2f}s; "
-                f"배치 embed={embed_batch_size}, payload≤{max_payload_bytes // (1024*1024)}MB)"
+                f"배치 embed={req.embed_batch_size}, payload≤{req.max_payload_bytes // (1024*1024)}MB)"
             ),
             "total_entities": total_count
         }
 
     except Exception as e:
         return {"success": False, "message": f"❌ 오류 발생: {e}"}
-
-    finally:
-        if 'tmp_path' in locals() and os.path.exists(tmp_path):
-            os.remove(tmp_path)
 
 #########################################################################################
 ################# 검색 #################
@@ -795,3 +908,75 @@ async def search_with_metadata_filter_api(
 
     except Exception as e:
         return {"success": False, "message": f"❌ 검색 오류: {e}"}
+    
+
+
+############################### total json 임시 생성
+
+# ── 프로젝트 루트 자동 탐색 ─────────────────────────────
+def find_project_root(marker_dir_name="git-ai") -> Path:
+    """marker_dir_name 디렉토리까지 상위로 탐색하여 Path 반환"""
+    path = Path(__file__).resolve()
+    for parent in path.parents:
+        if parent.name == marker_dir_name:
+            return parent
+    raise RuntimeError(f"❌ 프로젝트 루트 디렉토리 '{marker_dir_name}'를 찾을 수 없습니다.")
+
+PROJECT_ROOT = find_project_root("git-ai")
+TARGET_ROOT = PROJECT_ROOT / "git-agent" / "parsed_repository"
+
+def iter_json_items(p: Path):
+    """파일이 리스트면 원소를, 오브젝트면 그 자체를 yield. 실패하면 에러 dict."""
+    try:
+        with p.open("r", encoding="utf-8") as f:
+            data = json.load(f)
+        if isinstance(data, list):
+            for item in data:
+                yield item
+        else:
+            yield data
+    except Exception as e:
+        yield {"_error": f"failed_to_parse:{p.name}", "_reason": str(e)}
+
+@router.post("/merge-json")
+def merge_json(repo: str):
+    target_dir = (TARGET_ROOT / repo).resolve()
+
+    # TARGET_ROOT 바깥을 가리키는 우회 방지
+    if TARGET_ROOT not in target_dir.parents and target_dir != TARGET_ROOT:
+        raise HTTPException(status_code=400, detail="Invalid repo path.")
+
+    if not target_dir.exists() or not target_dir.is_dir():
+        raise HTTPException(status_code=404, detail=f"Not found: {target_dir}")
+
+    json_files = sorted(target_dir.rglob("*.json"))
+    if not json_files:
+        raise HTTPException(status_code=404, detail=f"No JSON files under: {target_dir}")
+
+    out_path = (target_dir / f"{repo}__all.json").resolve()
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+
+    total = 0
+    skipped = 0
+    merged: List[Dict[str, Any]] = []
+
+    for jp in json_files:
+        for item in iter_json_items(jp):
+            if isinstance(item, dict) and "_error" in item:
+                skipped += 1
+                continue
+            if isinstance(item, dict):
+                item.setdefault("_source_file", str(jp.relative_to(target_dir)))
+            merged.append(item)
+            total += 1
+
+    with out_path.open("w", encoding="utf-8") as out:
+        json.dump(merged, out, ensure_ascii=False, indent=2)
+
+    return {
+        "repo": repo,
+        "out_path": str(out_path),
+        "files_scanned": len(json_files),
+        "merged_items": total,
+        "skipped": skipped
+    }
