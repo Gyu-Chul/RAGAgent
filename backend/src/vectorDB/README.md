@@ -170,8 +170,9 @@ GET /api/vectorDB/view_entities?collection_name={컬렉션명}
 /search-basic
 - 메타데이터 필터링 없이 기본 검색
 GET /api/vectorDB/search_basic
-params = ```
-{
+
+```
+params = {
     "collection_name": collection_name,
     "query_text": query_text
 }
@@ -179,6 +180,7 @@ params = ```
 
 
 응답 예시
+
 ```
 {
     "success": true,
@@ -203,7 +205,9 @@ params = ```
 /search-with-metadata
 - 메타데이터 필터링 후 검색
 GET /api/vectorDB/search_with_metadata
-        ```
+        
+```
+
 params = {
             "collection_name": collection_name,
             "query_text": query_text,
@@ -213,6 +217,7 @@ params = {
 
 
 응답 예시
+
 ```
 {
     "success": true,
@@ -245,20 +250,24 @@ params = {
 - 통합된 하나의 total json 생성 요청
     POST /api/vectorDB/merge-json
     Content-Type: application/json
-    ```
+
+
+```
   {"repo": "transformers"}
-    ```
+```
 
 응답 예시
-    ```
-    {
-    "repo": "transformers",
-    "out_path": "/home/ubuntu/git-ai/git-agent/parsed_repository/transformers/transformers__all.json",
-    "files_scanned": 128,
-    "merged_items": 127,
-    "skipped": 1
-    }
-    ```
+
+```
+{
+"repo": "transformers",
+"out_path": "/home/ubuntu/git-ai/git-agent/parsed_repository/transformers/transformers__all.json",
+"files_scanned": 128,
+"merged_items": 127,
+"skipped": 1
+}
+```
+
 
 
 
