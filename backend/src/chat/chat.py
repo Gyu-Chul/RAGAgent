@@ -3,7 +3,7 @@ import os
 import json
 from datetime import datetime
 from typing import Dict, List, Any
-
+from src.vectorDB.vectorDB import search_basic_api
 router = APIRouter()
 
 
@@ -45,7 +45,7 @@ async def request(message,branch: str, room: str,id):
 
     # 1. JSON 데이터 로드
     data = load_data_from_json(repo_name)
-    print(data)
+    print(message)
 
     # 2. 데이터 검색 및 수정
     try:
@@ -59,16 +59,23 @@ async def request(message,branch: str, room: str,id):
             new_id = last_id + 1
 
         # 2. 새로운 메시지 객체 생성
+        result = await search_basic_api(
+            query_text=message,
+            collection_name="git_ai_sample",
+            top_k=5
+        )
+        print(result)
+
         new_message = {
             "type": "GitAI",  # 추가되는 메시지는 'user' 타입으로 가정
-            "content": "메세지 수신 성공",
+            "content": result["results"],
             "create_date": datetime.now().strftime("%Y%m%d%H%M%S"),  # YYYYMMDDHHMMSS 형식
             "id": new_id
         }
 
         # 3. 채팅 목록에 새로운 메시지 추가
         chat_list.append(new_message)
-        print(f"Message Added: id={new_id}, content='{message}'")
+        print(f"Message Added: id={new_id}, content='테스트입니다.'")
 
     except KeyError:
         # branch나 room이 존재하지 않을 경우 404 에러 반환
