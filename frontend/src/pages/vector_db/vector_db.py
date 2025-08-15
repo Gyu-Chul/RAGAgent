@@ -12,20 +12,48 @@ def vector_db_sidebar(repo_name: str):
         ui.button(f'⬅️ 레포지토리로 돌아가기', on_click=lambda: ui.navigate.to(f'/project/{repo_name}')).style(
             'margin-bottom:10px; width:100%;')
 
+# --- 유틸: 마크다운 예약문자 무해화 + 코드블록 래핑 ---
+def _fence_code(text: str, lang: str = "text") -> str:
+    if text is None:
+        text = ""
+    # 코드블록 내부에 ``` 가 있으면 깨지지 않게 분리
+    safe = text.replace("```", "`\u200b``")  # backtick + zero width space
+    return f"```{lang}\n{safe}\n```"
+
+def _inline(code: str) -> str:
+    if code is None:
+        code = ""
+    return "`" + code.replace("`", "`\u200b") + "`"
 
 def format_search_results(results: list[dict]) -> str:
     if not results:
         return "⚠️ 검색 결과가 없습니다."
-    logs = []
+
+    parts = []
     for idx, r in enumerate(results, 1):
-        logs.append(
-            f"[{idx}] ID: {r.get('id','N/A')} | 유사도: {r.get('distance'):.4f}\n"
-            f"📂 Path: {r.get('file_path','')}\n"
-            f"🔖 Type: {r.get('type','')} | Name: {r.get('name','')}\n"
-            f"💻 Text/Code: {(r.get('text') or r.get('code_preview',''))[:120]}...\n"
-            "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+        rid = str(r.get('id', 'N/A'))
+        dist = r.get('distance')
+        dist_str = f"{dist:.4f}" if isinstance(dist, (int, float)) else "N/A"
+
+        path = r.get('file_path', '') or ''
+        typ  = r.get('type', '') or ''
+        name = r.get('name', '') or ''
+
+        # text/code 스니펫은 코드블록으로 고정폭 표시 + 줄바꿈 유지
+        snippet = r.get('text') or r.get('code_preview') or ''
+        snippet = snippet[:1200]  # 너무 길면 조금 잘라서
+        snippet_block = _fence_code(snippet, "text")
+
+        parts.append(
+            "\n".join([
+                f"**[{idx}]** ID: {_inline(rid)} · 유사도: {dist_str}",
+                f"📂 Path: {_inline(path)}",
+                f"🔖 Type: {_inline(typ)} · Name: {_inline(name)}",
+                f"💻 Snippet:\n{snippet_block}",
+                "---",
+            ])
         )
-    return "\n".join(logs)
+    return "\n".join(parts)
 
 
 def render_vector_db(repo_name: str):

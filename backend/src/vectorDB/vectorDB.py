@@ -566,7 +566,6 @@ def build_row_for_schema(item: dict, vec, field_names: set[str], varchar_limits:
 # async def embed_json_file(
 #     file: UploadFile = File(...),
 #     collection_name: str = Form(...),
-#     version: int = Form(1),
 #     embed_batch_size: int = Form(DEFAULT_EMBED_BATCH),              # 임베딩 배치
 #     max_payload_bytes: int = Form(DEFAULT_MAX_PAYLOAD_BYTES),       # gRPC 페이로드 컷
 # ):
@@ -686,12 +685,12 @@ def build_row_for_schema(item: dict, vec, field_names: set[str], varchar_limits:
 #         if 'tmp_path' in locals() and os.path.exists(tmp_path):
 #             os.remove(tmp_path)
 
-
-
+##########################################################################################################################################################
+############################################################################# 실제 임베딩 api
+##########################################################################################################################################################
 class EmbedJsonRequest(BaseModel):
     json_path: str
     collection_name: str
-    version: int = 1
     embed_batch_size: int = DEFAULT_EMBED_BATCH
     max_payload_bytes: int = DEFAULT_MAX_PAYLOAD_BYTES
 
@@ -729,8 +728,8 @@ async def embed_json_file(req: EmbedJsonRequest):
             return {"success": False, "message": f"❌ 컬렉션 '{req.collection_name}' 존재하지 않음"}
 
         # 스키마 1회 조회
-        schema_info = client.describe_collection(req.collection_name)
-        field_names = {f["name"] for f in schema_info.get("fields", [])}
+        schema_info = client.describe_collection(req.collection_name)       ### 해당하는 DB의 정보 추출 - 어떤 field가 있는지 즉, 어떤 메타데이터가 들어갈 수 있는지 정보 포함
+        field_names = {f["name"] for f in schema_info.get("fields", [])}    ### 그 정보에서 field name을 가져와서 임베딩할 때 어떤 구조로 임베딩할 것인지 자동 결정 (분기 없이 버전 처리 성공)
         varchar_limits = get_varchar_limits(schema_info)
 
         embed_elapsed_total = 0.0
@@ -797,6 +796,10 @@ async def embed_json_file(req: EmbedJsonRequest):
     except Exception as e:
         return {"success": False, "message": f"❌ 오류 발생: {e}"}
 
+##########################################################################################################################################################
+##########################################################################################################################################################
+##########################################################################################################################################################
+
 #########################################################################################
 ################# 검색 #################
 
@@ -811,7 +814,7 @@ embedding_fn = SentenceTransformerEmbeddingFunction(
 async def search_basic_api(
     query_text: str = Query(..., description="검색할 텍스트"),
     collection_name: str = Query(..., description="Milvus 컬렉션 이름"),
-    top_k: int = Query(5, description="검색 결과 상위 K개")
+    top_k: int = Query(3, description="검색 결과 상위 K개")
 ):
     try:
         start_time = time.time()
@@ -861,8 +864,8 @@ async def search_basic_api(
 async def search_with_metadata_filter_api(
     query_text: str = Query(..., description="검색할 텍스트"),
     collection_name: str = Query(..., description="Milvus 컬렉션 이름"),
-    metadata_filter: str = Query("", description="필터 조건 (예: type like \"%module%\")"),
-    top_k: int = Query(5, description="검색 결과 상위 K개")
+    metadata_filter: str = Query("type like \"%module%\"", description="필터 조건 (예: type like \"%module%\")"),
+    top_k: int = Query(3, description="검색 결과 상위 K개")
 ):
     try:
         start_time = time.time()
@@ -888,6 +891,18 @@ async def search_with_metadata_filter_api(
 
         for idx, hit in enumerate(results[0], 1):
             entity = hit.get("entity", {})
+
+            # 📌 줄바꿈·폰트 고정용 문자열 생성
+            formatted = "\n".join([
+                f"[{idx}] ID: {entity.get('id', '')} | 유사도: {hit['distance']:.4f}",
+                f"📂 Path: {entity.get('file_path', '')}",
+                f"🔖 Type: {entity.get('type', '')} | Name: {entity.get('name', '')}",
+                f"📏 Lines: {entity.get('start_line', '?')} - {entity.get('end_line', '?')}",
+                "💻 Code Preview:",
+                f"```python\n{(entity.get('code') or '')[:500]}\n```",
+                "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
+            ])
+
             response_logs.append({
                 "rank": idx,
                 "id": entity.get("id"),
@@ -897,7 +912,8 @@ async def search_with_metadata_filter_api(
                 "name": entity.get("name", ""),
                 "start_line": entity.get("start_line", "?"),
                 "end_line": entity.get("end_line", "?"),
-                "code_preview": (entity.get("code") or "")[:300]
+                "code_preview": (entity.get("code") or "")[:300],
+                "log_str": formatted  # 🔹 로그 출력을 위한 문자열
             })
 
         return {
@@ -908,6 +924,7 @@ async def search_with_metadata_filter_api(
 
     except Exception as e:
         return {"success": False, "message": f"❌ 검색 오류: {e}"}
+
     
 
 
