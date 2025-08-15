@@ -875,5 +875,149 @@
     "name": "transformers",
     "created_date": "2025-08-09 18:54:24",
     "updated_date": "2025-08-09 18:55:19"
+  },
+  {
+    "id": 100,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-15 12:32:53",
+    "updated_date": "2025-08-15 12:33:13"
+  },
+  {
+    "id": 101,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-15 12:33:57",
+    "updated_date": "2025-08-15 12:34:11"
+  },
+  {
+    "id": 102,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-15 12:39:33",
+    "updated_date": "2025-08-15 12:39:48"
+  },
+  {
+    "id": 103,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-15 12:40:41",
+    "updated_date": "2025-08-15 12:40:56"
+  },
+  {
+    "id": 104,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-15 12:41:41",
+    "updated_date": "2025-08-15 12:42:00"
+  },
+  {
+    "id": 105,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-15 12:45:49",
+    "updated_date": "2025-08-15 12:46:01"
+  },
+  {
+    "id": 106,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-15 12:49:16",
+    "updated_date": "2025-08-15 12:49:29"
+  },
+  {
+    "id": 107,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-15 13:42:58",
+    "updated_date": "2025-08-15 13:43:19"
+  },
+  {
+    "id": 108,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-15 14:22:45",
+    "updated_date": "2025-08-15 14:23:05"
+  },
+  {
+    "id": 109,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-08-15 14:26:29",
+    "updated_date": "2025-08-15 14:26:32"
+  },
+  {
+    "id": 110,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest.git",
+    "name": "awstest",
+    "created_date": "2025-08-15 14:44:19",
+    "updated_date": "2025-08-15 14:44:21"
+  },
+  {
+    "id": 111,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-08-15 14:46:06",
+    "updated_date": "2025-08-15 14:46:12"
+  },
+  {
+    "id": 112,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/su9king/awstest",
+    "name": "awstest",
+    "created_date": "2025-08-15 15:23:40",
+    "updated_date": "2025-08-15 15:23:41"
+  },
+  {
+    "id": 113,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-15 15:26:11",
+    "updated_date": "2025-08-15 15:26:28"
+  },
+  {
+    "id": 114,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-15 15:35:57",
+    "updated_date": "2025-08-15 15:36:15"
+  },
+  {
+    "id": 115,
+    "status": "SUCCESS",
+    "type": "GITCLONE",
+    "content": "https://github.com/Gyu-Chul/git-ai-sample",
+    "name": "git-ai-sample",
+    "created_date": "2025-08-15 15:57:48",
+    "updated_date": "2025-08-15 15:58:09"
   }
 ]

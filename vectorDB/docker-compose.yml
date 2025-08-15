@@ -11,7 +11,6 @@ services:
     volumes:
       #################### milvus.yaml의 위치 추가  ####################
       ####################  반드시 절대 경로로 수정   ####################
-      - //wsl.localhost/Ubuntu-20.04/home/ubuntu/git-ai/milvus_docker/milvus.yaml
       - ${DOCKER_VOLUME_DIRECTORY:-.}/volumes/etcd:/etcd
     command: etcd -advertise-client-urls=http://etcd:2379 -listen-client-urls http://0.0.0.0:2379 --data-dir /etcd
     healthcheck:

@@ -739,6 +739,8 @@ async def embed_json_file(req: EmbedJsonRequest):
 
         # 4) 배치 임베딩 루프
         for start in range(0, total_items, req.embed_batch_size):
+            print("임베딩 작업중 입니다.")
+            print(start,total_items)
             end = min(start + req.embed_batch_size, total_items)
             batch_items = all_items[start:end]
             docs_as_strings = [json.dumps(item, ensure_ascii=False) for item in batch_items]
@@ -814,6 +816,7 @@ async def search_basic_api(
     top_k: int = Query(5, description="검색 결과 상위 K개")
 ):
     try:
+        print("시작해보자.")
         start_time = time.time()
 
         # 🔹 임베딩 벡터 생성

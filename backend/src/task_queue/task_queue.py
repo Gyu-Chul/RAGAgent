@@ -1,6 +1,8 @@
 import threading
 import json
 import asyncio
+from pydantic import BaseModel
+from src.vectorDB.vectorDB import merge_json,embed_json_file,EmbedJsonRequest
 
 from pathlib import Path
 
@@ -61,6 +63,15 @@ async def task_worker():
                 current_status = task.get("status")
 
             if current_status != "PENDING":
+                if matching.get("type") == "GITCLONE":
+                    result = merge_json(matching.get("name"))
+                    params = {
+                        "json_path": result["out_path"],
+                        "collection_name": "git_ai_sample", #이거 하드 코딩이라 나중에 꼭 수정해야 함.
+                        "version": 1
+                    }
+                    request_obj = EmbedJsonRequest(**params)
+                    result2 = await embed_json_file(request_obj)
                 task_queue.pop(0)
                 continue
 

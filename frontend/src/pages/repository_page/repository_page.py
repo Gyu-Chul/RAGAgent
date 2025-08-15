@@ -5,6 +5,7 @@ from .data_manager import load_data_from_json, save_data_to_json
 from .sidebar import sidebar
 from .chat_area import chat_area
 from src.apis.repository_page.api import request
+import json
 
 #TODO 전체적인 소스코드 리팩토링 필요
 #TODO 전체적인 소스코드 리팩토링 필요
@@ -29,8 +30,49 @@ def render_repository_page(repo_name: str):
         if branch and room and room in data.get(branch, {}):
             with message_area:
                 for msg in data[branch][room]:
-                    ui.chat_message(text=msg.get('content', ''), name=msg.get('type', ''),
-                                    stamp=msg.get('create_date', ''), sent=msg.get('type') == 'user').classes('w-full')
+                    content = msg.get('content', '')
+                    msg_type = msg.get('type', '')
+
+                    # Check if the content is a list (JSON response)
+                    if isinstance(content, list):
+                        output_text = "🔎 **검색 결과**\n"
+
+                        # Process each item in the list
+                        for item in content:
+                            # Extract the 'text' field, which is a JSON string
+                            text_str = item.get('text', '{}')
+                            try:
+                                # Parse the inner JSON string
+                                inner_json = json.loads(text_str)
+
+                                # Extract relevant fields
+                                file_path = inner_json.get('file_path', 'N/A')
+                                function_name = inner_json.get('name', 'N/A')
+                                code = inner_json.get('code', 'N/A')
+
+                                # Format the output for better readability
+                                output_text += (
+                                    f"---"
+                                    f"📂 **파일**: {file_path}\n"
+                                    f"📜 **함수**: `{function_name}`\n"
+                                    f"```python\n{code}\n```\n"
+                                )
+                            except json.JSONDecodeError:
+                                output_text += f"⚠️ 데이터 처리 오류: {text_str}\n"
+
+                    # Check if the content is a string (simple message)
+                    elif isinstance(content, str):
+                        output_text = content
+
+                    else:
+                        output_text = "⚠️ 지원하지 않는 메시지 형식입니다."
+
+                    ui.chat_message(
+                        text=output_text,
+                        name=msg_type,
+                        stamp=msg.get('create_date', ''),
+                        sent=msg_type == 'user'
+                    ).classes('w-full')
 
     def on_room_open(room: str):
         state['room'] = room
