@@ -21,47 +21,24 @@ class ResultLogPanel:
         self.logs = deque(maxlen=max_logs)
         self.container = None
 
-    def add_log(self, message: str):
+    def add_log(self, message: str, as_code: bool = False):
         if self.container:
             self.logs.appendleft(message)
             self.container.clear()
             with self.container:
                 for log in self.logs:
-                    ui.markdown(log).style(
-                        "font-size: 13px; line-height: 1.35; white-space: normal;"
-                    )
-
+                    if as_code:
+                        ui.markdown(f"```text\n{log}\n```").style(
+                            "font-size: 13px; line-height: 1.35; white-space: pre;"
+                        )
+                    else:
+                        ui.markdown(log).style(
+                            "font-size: 13px; line-height: 1.35; white-space: normal;"
+                        )
     def render(self):
-        self.container = ui.column().classes('w-full')
+        # 부모 카드의 height:100%를 온전히 상속받아 꽉 채우고 내부 스크롤
+        self.container = ui.column().style(
+            'width:100%; height:100%; max-height:100%; overflow-y:auto;'
+        )
         return self.container
 
-
-def format_search_results(results: list[dict]) -> str:
-    if not results:
-        return "⚠️ 검색 결과가 없습니다."
-
-    parts = []
-    for idx, r in enumerate(results, 1):
-        rid = str(r.get('id', 'N/A'))
-        dist = r.get('distance')
-        dist_str = f"{dist:.4f}" if isinstance(dist, (int, float)) else "N/A"
-
-        path = r.get('file_path', '') or ''
-        typ  = r.get('type', '') or ''
-        name = r.get('name', '') or ''
-
-        # text/code 스니펫은 코드블록으로 고정폭 표시 + 줄바꿈 유지
-        snippet = r.get('text') or r.get('code_preview') or ''
-        snippet = snippet[:1200]  # 너무 길면 조금 잘라서
-        snippet_block = _fence_code(snippet, "text")
-
-        parts.append(
-            "\n".join([
-                f"**[{idx}]** ID: {_inline(rid)} · 유사도: {dist_str}",
-                f"📂 Path: {_inline(path)}",
-                f"🔖 Type: {_inline(typ)} · Name: {_inline(name)}",
-                f"💻 Snippet:\n{snippet_block}",
-                "---",
-            ])
-        )
-    return "\n".join(parts)

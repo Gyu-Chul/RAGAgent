@@ -3,7 +3,7 @@
 from nicegui import ui
 from src.apis.vector_db import apis
 from src.pages.vector_db.result_log_panel import ResultLogPanel
-
+import json
 
 def vector_db_sidebar(repo_name: str):
     with ui.column().style('width:260px; padding:20px; border-right:1px solid #ccc;'):
@@ -27,34 +27,23 @@ def _inline(code: str) -> str:
 
 def format_search_results(results: list[dict]) -> str:
     if not results:
-        return "⚠️ 검색 결과가 없습니다."
+        return json.dumps({"message": "⚠️ 검색 결과가 없습니다."}, ensure_ascii=False, indent=2)
 
-    parts = []
-    for idx, r in enumerate(results, 1):
-        rid = str(r.get('id', 'N/A'))
-        dist = r.get('distance')
-        dist_str = f"{dist:.4f}" if isinstance(dist, (int, float)) else "N/A"
+    output_list = []
+    for r in results:
+        output_item = {
+            "type": r.get("type", ""),
+            "name": r.get("name", ""),
+            "start_line": r.get("start_line", ""),
+            "end_line": r.get("end_line", ""),
+            "code": r.get("text") or r.get("code_preview") or "",
+            "file_path": r.get("file_path", ""),
+            "_source_file": r.get("_source_file", "")
+        }
+        output_list.append(output_item)
 
-        path = r.get('file_path', '') or ''
-        typ  = r.get('type', '') or ''
-        name = r.get('name', '') or ''
-
-        # text/code 스니펫은 코드블록으로 고정폭 표시 + 줄바꿈 유지
-        snippet = r.get('text') or r.get('code_preview') or ''
-        snippet = snippet[:1200]  # 너무 길면 조금 잘라서
-        snippet_block = _fence_code(snippet, "text")
-
-        parts.append(
-            "\n".join([
-                f"**[{idx}]** ID: {_inline(rid)} · 유사도: {dist_str}",
-                f"📂 Path: {_inline(path)}",
-                f"🔖 Type: {_inline(typ)} · Name: {_inline(name)}",
-                f"💻 Snippet:\n{snippet_block}",
-                "---",
-            ])
-        )
-    return "\n".join(parts)
-
+    # 그냥 텍스트지만 JSON처럼 보이도록 포맷
+    return json.dumps(output_list, ensure_ascii=False, indent=2)
 
 def render_vector_db(repo_name: str):
     log_panel = ResultLogPanel()
@@ -145,18 +134,23 @@ def render_vector_db(repo_name: str):
                             async def on_basic_search():
                                 log_panel.add_log("⏳ 기본 검색 중...")
                                 message, results = await apis.search_basic(search_coll_input.value, search_query_input.value)
-                                log_panel.add_log(message + "\n" + format_search_results(results))
+                                log_panel.add_log(message)
+                                log_panel.add_log(format_search_results(results), as_code=True)
+
 
                             async def on_metadata_search():
                                 log_panel.add_log("⏳ 메타데이터 필터 검색 중...")
                                 message, results = await apis.search_with_metadata(
-                                    search_coll_input.value, search_query_input.value, search_filter_input.value)
-                                log_panel.add_log(message + "\n" + format_search_results(results))
+                                    search_coll_input.value, search_query_input.value, search_filter_input.value
+                                )
+                                log_panel.add_log(message)
+                                log_panel.add_log(f"```text\n{format_search_results(results)}\n```")
+
 
                             ui.button('🔍 기본 검색', on_click=on_basic_search)
                             ui.button('🧩 메타데이터 검색', on_click=on_metadata_search)
 
-            with ui.column().style('flex:1; min-width:300px;'):
+            with ui.column().style('flex:1; min-width:300px; height:900px;'):
                 ui.label('🪄 Result Log').classes('text-h6 font-bold mb-2')
                 with ui.card().style('padding:10px; height:100%; overflow:auto;').classes('shadow-md'):
                     log_panel.render()
