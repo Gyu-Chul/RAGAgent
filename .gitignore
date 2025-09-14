@@ -16,4 +16,4 @@ vectorDB/volumes/
 .idea
 
 ## Milvus Vector DB 데이터베이스의 실제 데이터
-/milvus/volumes/
+milvus/volumes/
