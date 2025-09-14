@@ -10,3 +10,6 @@ git-agent/repository/
 
 ## vectorDB 데이터베이스의 실제 데이터
 vectorDB/volumes/
+.claude
+.venv
+.idea
