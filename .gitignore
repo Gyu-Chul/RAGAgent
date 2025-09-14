@@ -8,8 +8,12 @@ package.json
 git-agent/parsed_repository/
 git-agent/repository/
 
+
 ## vectorDB 데이터베이스의 실제 데이터
 vectorDB/volumes/
 .claude
 .venv
 .idea
+
+## Milvus Vector DB 데이터베이스의 실제 데이터
+/milvus/volumes/
