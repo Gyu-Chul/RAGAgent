@@ -50,3 +50,10 @@ Milvus의 실시간 로그를 확인합니다. (종료는 Ctrl+C)
 ```Bash
 docker compose logs -f
 ```
+
+
+## WebUi 를 이용한 확인
+
+```bash
+http://127.0.0.1:9091/webui/
+```
