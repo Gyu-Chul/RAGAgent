@@ -2,7 +2,7 @@
 
 이 프로젝트는 Docker Compose를 사용하여 Milvus를 관리합니다. 
 
-## Doker-compose.yml 파일 다운로드
+<!-- ## Doker-compose.yml 파일 다운로드
 아래 스크립트를 실행하여 docker 파일을 다운로드합니다.
 ```bash
 bash install_milvus.sh
@@ -13,13 +13,15 @@ bash install_milvus.sh
 ```bash
 the attribute 'version' is obsolete, it will be ignored, please remove it to avoid potential confusion
 ```
-라는 경고 메세지는 기능에 영향을 미치지 않으나, 원한다면 `docker-compose.yml` 파일 상단의 `version: '3.5'`을 삭제하시길 바랍니다.
+라는 경고 메세지는 기능에 영향을 미치지 않으나, 원한다면 `docker-compose.yml` 파일 상단의 `version: '3.5'`을 삭제하시길 바랍니다. -->
 
 모든 명령어는 `docker-compose.yml` 파일이 있는 프로젝트 루트 디렉토리에서 실행해주세요.
 
 ## Milvus 시작하기
 아래 명령어로 Milvus를 백그라운드에서 실행합니다.
 ```bash
+bash start_milvus.sh
+    or
 docker compose up -d
 ```
 
