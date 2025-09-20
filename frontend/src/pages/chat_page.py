@@ -10,9 +10,12 @@ class ChatPage:
         self.auth_service = auth_service
         self.data_service = DummyDataService()
         self.repository = self.data_service.get_repository(repo_id)
-        self.selected_chat_room = None
+        # Auto-select first chat room
+        chat_rooms = self.data_service.get_chat_rooms(repo_id)
+        self.selected_chat_room = chat_rooms[0] if chat_rooms else None
         self.message_input = None
         self.messages_container = None
+        self.chat_area_container = None
 
     def render(self):
         if not self.repository:
@@ -23,7 +26,10 @@ class ChatPage:
 
             with ui.row().classes('w-full flex-1 overflow-hidden'):
                 self.render_sidebar()
-                self.render_chat_area()
+                # Chat area container that can be updated
+                self.chat_area_container = ui.column().classes('flex-1 h-full')
+                with self.chat_area_container:
+                    self.render_chat_area()
 
     def render_not_found(self):
         with ui.column().classes('w-full min-h-screen items-center justify-center'):
@@ -36,10 +42,10 @@ class ChatPage:
         with ui.column().classes('rag-sidebar w-80 h-full overflow-y-auto'):
             with ui.column().classes('p-6 gap-4 h-full'):
                 with ui.row().classes('items-center gap-3 mb-4'):
-                    ui.icon('chat').classes('text-blue-600 text-xl')
+                    ui.html('<span style="color: #2563eb; font-size: 20px;">💬</span>')
                     ui.html('<h2 class="text-lg font-semibold">Chat Rooms</h2>')
 
-                ui.button('New Chat Room', icon='add', on_click=self.show_create_chat_dialog).classes('rag-button-primary w-full')
+                ui.button('➕ New Chat Room', on_click=self.show_create_chat_dialog).classes('rag-button-primary w-full')
 
                 with ui.column().classes('gap-2 flex-1 overflow-y-auto'):
                     for room in chat_rooms:
@@ -49,9 +55,9 @@ class ChatPage:
 
                 with ui.column().classes('gap-2'):
                     if self.auth_service.is_admin():
-                        ui.button('Repository Settings', icon='settings', on_click=lambda: ui.navigate.to(f'/admin/repository/{self.repo_id}')).classes('rag-button-secondary w-full text-sm')
+                        ui.button('⚙️ Repository Settings', on_click=lambda: ui.navigate.to('/repositories')).classes('rag-button-secondary w-full text-sm')
 
-                    ui.button('Back to Dashboard', icon='dashboard', on_click=lambda: ui.navigate.to('/main')).classes('rag-button-secondary w-full text-sm')
+                    ui.button('🏠 Back to Dashboard', on_click=lambda: ui.navigate.to('/main')).classes('rag-button-secondary w-full text-sm')
 
     def render_chat_room_item(self, room):
         is_selected = self.selected_chat_room and self.selected_chat_room["id"] == room["id"]
@@ -65,7 +71,7 @@ class ChatPage:
             with ui.column().classes('gap-1 w-full'):
                 with ui.row().classes('items-center gap-2 w-full justify-between'):
                     ui.html(f'<span class="font-medium truncate">{room["name"]}</span>')
-                    ui.button(icon='more_vert', on_click=lambda r=room: self.show_room_options(r)).classes('text-gray-400 p-1')
+                    ui.button('⋮', on_click=lambda r=room: self.show_room_options(r)).style('color: #9ca3af; padding: 4px; background: transparent; border: none; font-size: 16px;')
 
                 ui.html(f'<div class="text-sm text-gray-600 truncate">{room["last_message"]}</div>')
 
@@ -83,7 +89,7 @@ class ChatPage:
     def render_empty_chat_state(self):
         with ui.column().classes('flex-1 items-center justify-center p-8'):
             with ui.card().classes('rag-card text-center max-w-md'):
-                ui.icon('chat').classes('text-6xl text-blue-400 mb-4')
+                ui.html('<div style="font-size: 96px; color: #60a5fa; margin-bottom: 16px;">💬</div>')
                 ui.html('<h3 class="text-xl font-semibold text-gray-800 mb-2">Welcome to RAG Chat</h3>')
                 ui.html(f'<p class="text-gray-600 mb-4">Start a conversation about the <strong>{self.repository["name"]}</strong> repository. Ask questions about the code, documentation, or issues.</p>')
 
@@ -116,15 +122,15 @@ class ChatPage:
 
         with ui.row().classes('items-center justify-between p-4 border-b bg-white'):
             with ui.row().classes('items-center gap-3'):
-                ui.icon('chat').classes('text-blue-600')
+                ui.html('<span style="color: #2563eb; font-size: 20px;">💬</span>')
                 with ui.column():
                     ui.html(f'<h3 class="font-semibold">{room["name"]}</h3>')
                     ui.html(f'<p class="text-sm text-gray-600">{self.repository["name"]} • {room["message_count"]} messages</p>')
 
             with ui.row().classes('items-center gap-2'):
-                ui.button('Clear Chat', icon='clear_all', on_click=self.clear_chat).classes('rag-button-secondary text-sm')
+                ui.button('🗑️ Clear Chat', on_click=self.clear_chat).classes('rag-button-secondary text-sm')
                 if self.auth_service.is_admin():
-                    ui.button('Repository Settings', icon='settings', on_click=lambda: ui.navigate.to(f'/admin/repository/{self.repo_id}')).classes('rag-button-secondary text-sm')
+                    ui.button('⚙️ Repository Settings', on_click=lambda: ui.navigate.to('/repositories')).classes('rag-button-secondary text-sm')
 
     def render_messages_area(self):
         with ui.column().classes('flex-1 overflow-y-auto p-4 gap-4').props('id=messages-container') as container:
@@ -137,46 +143,59 @@ class ChatPage:
     def render_message(self, message):
         is_user = message["sender"] == "user"
 
-        with ui.row().classes('w-full'):
+        with ui.row().style('width: 100%; margin-bottom: 16px;'):
             if is_user:
-                ui.element().classes('flex-1')  # spacer
-                with ui.card().classes('rag-chat-bubble rag-chat-user max-w-2xl'):
-                    ui.html(f'<div class="whitespace-pre-wrap">{message["content"]}</div>')
-                    ui.html(f'<div class="text-xs opacity-75 mt-2">{message["timestamp"].strftime("%H:%M")}</div>')
+                # User message - right aligned
+                ui.element().style('flex: 1;')  # spacer
+                with ui.column().style('max-width: 70%; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 16px; border-radius: 18px 18px 4px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'):
+                    ui.html(f'<div style="white-space: pre-wrap; line-height: 1.5;">{message["content"]}</div>')
+                    ui.html(f'<div style="font-size: 11px; opacity: 0.8; margin-top: 8px; text-align: right;">{message["timestamp"].strftime("%H:%M")}</div>')
             else:
-                with ui.card().classes('rag-chat-bubble rag-chat-bot max-w-4xl'):
-                    ui.html(f'<div class="whitespace-pre-wrap">{message["content"]}</div>')
+                # AI message - left aligned with RAG styling
+                with ui.column().style('max-width: 85%; background: white; border: 1px solid #e5e7eb; border-radius: 18px 18px 18px 4px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden;'):
 
-                    if message.get("sources"):
-                        ui.separator().classes('my-3')
-                        ui.html('<div class="text-sm font-medium text-gray-700 mb-2">📚 Sources:</div>')
-                        with ui.column().classes('gap-1'):
-                            for source in message["sources"]:
-                                with ui.row().classes('items-center gap-2 text-sm text-blue-600 hover:text-blue-800 cursor-pointer'):
-                                    ui.icon('description').classes('text-sm')
-                                    ui.html(f'<span>{source}</span>')
+                    # AI Header with gradient
+                    with ui.row().style('background: linear-gradient(90deg, #f8fafc 0%, #e2e8f0 100%); padding: 12px 16px; border-bottom: 1px solid #e5e7eb; align-items: center; gap: 8px;'):
+                        ui.html('<div style="width: 28px; height: 28px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 600;">🤖</div>')
+                        ui.html('<div style="font-weight: 600; color: #374151;">RAG-AGENT</div>')
+                        ui.html('<div style="background: linear-gradient(90deg, #10b981 0%, #059669 100%); color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 500;">AI + RAG</div>')
+                        ui.element().style('flex: 1;')
+                        ui.html(f'<div style="font-size: 11px; color: #6b7280;">{message["timestamp"].strftime("%H:%M")}</div>')
 
-                    ui.html(f'<div class="text-xs text-gray-500 mt-2">{message["timestamp"].strftime("%H:%M")}</div>')
+                    # Message content
+                    with ui.column().style('padding: 16px;'):
+                        ui.html(f'<div style="white-space: pre-wrap; line-height: 1.6; color: #374151;">{message["content"]}</div>')
 
-                ui.element().classes('flex-1')  # spacer
+                        # Sources section with enhanced RAG styling
+                        if message.get("sources"):
+                            with ui.column().style('margin-top: 16px; padding: 12px; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 8px; border-left: 4px solid #0ea5e9;'):
+                                with ui.row().style('align-items: center; gap: 8px; margin-bottom: 8px;'):
+                                    ui.html('<div style="width: 20px; height: 20px; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px;">📚</div>')
+                                    ui.html('<div style="font-weight: 600; color: #0f172a; font-size: 13px;">Retrieved from Repository</div>')
+
+                                with ui.column().style('gap: 6px;'):
+                                    for i, source in enumerate(message["sources"]):
+                                        with ui.row().style('align-items: center; gap: 8px; padding: 6px 8px; background: rgba(255,255,255,0.7); border-radius: 6px; border: 1px solid rgba(14,165,233,0.2);'):
+                                            ui.html(f'<div style="width: 16px; height: 16px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 3px; display: flex; align-items: center; justify-content: center; color: white; font-size: 8px; font-weight: 600;">{i+1}</div>')
+                                            ui.html(f'<div style="font-size: 12px; color: #1e40af; font-family: monospace;">{source}</div>')
+
+                ui.element().style('flex: 1;')  # spacer
 
     def render_input_area(self):
-        with ui.row().classes('p-4 border-t bg-white gap-2'):
+        with ui.row().style('padding: 16px; border-top: 1px solid #e5e7eb; background-color: white; gap: 8px; align-items: flex-end;'):
             self.message_input = ui.input(
-                placeholder=f'Ask anything about {self.repository["name"]}...',
-                on_keydown=self.handle_keydown
-            ).classes('rag-input flex-1')
+                placeholder=f'Ask anything about {self.repository["name"]}...'
+            ).style('flex: 1; padding: 12px; border: 1px solid #d1d5db; border-radius: 8px; font-size: 14px;')
 
-            with ui.button(icon='send', on_click=self.send_message).classes('rag-button-primary'):
-                pass
+            # Add Enter key handling
+            self.message_input.on('keydown.enter', self.send_message)
 
-            ui.button(icon='attach_file', on_click=self.show_attachment_options).classes('rag-button-secondary')
+            ui.button('📤 Send', on_click=self.send_message).style('background-color: #3b82f6; color: white; padding: 12px 16px; border-radius: 8px; border: none; cursor: pointer; font-size: 14px;')
 
-    def handle_keydown(self, e):
-        if e.key == 'Enter' and not e.shift:
-            self.send_message()
+            ui.button('📎', on_click=self.show_attachment_options).style('background-color: #6b7280; color: white; padding: 12px; border-radius: 8px; border: none; cursor: pointer;')
 
-    async def send_message(self):
+
+    def send_message(self):
         if not self.message_input.value.strip():
             return
 
@@ -192,10 +211,13 @@ class ChatPage:
         with self.messages_container:
             self.render_message(user_message)
 
-        await self.simulate_bot_response(message_content)
+        # Update UI immediately
+        ui.update()
 
-    async def simulate_bot_response(self, user_message: str):
-        await asyncio.sleep(1)
+        # Schedule bot response
+        ui.timer(1.0, lambda: self.simulate_bot_response(message_content), once=True)
+
+    def simulate_bot_response(self, user_message: str):
 
         bot_responses = {
             "authentication": "The authentication system in this repository uses JWT tokens with a custom middleware. You can find the implementation in `auth/middleware.py`. The main components include:\n\n1. **Token Generation**: Uses the `generate_jwt_token()` function\n2. **Token Validation**: Handled by `validate_token_middleware()`\n3. **User Session Management**: Managed through the `UserSession` class\n\nThe system supports both cookie-based and header-based authentication.",
@@ -229,13 +251,21 @@ class ChatPage:
         with self.messages_container:
             self.render_message(bot_message)
 
+        # Update UI and scroll to bottom
+        ui.update()
         ui.run_javascript('''
             const container = document.getElementById('messages-container');
-            container.scrollTop = container.scrollHeight;
+            if (container) {
+                container.scrollTop = container.scrollHeight;
+            }
         ''')
 
     def select_chat_room(self, room):
         self.selected_chat_room = room
+        # Update the chat area
+        self.chat_area_container.clear()
+        with self.chat_area_container:
+            self.render_chat_area()
         ui.update()
 
     def start_chat_with_question(self, question):
@@ -274,10 +304,10 @@ class ChatPage:
             ui.html(f'<h3 class="text-lg font-semibold mb-4">{room["name"]}</h3>')
 
             with ui.column().classes('gap-2'):
-                ui.button('Rename Room', icon='edit', on_click=lambda: self.rename_room(room, dialog)).classes('rag-button-secondary w-full text-left justify-start')
-                ui.button('Export Chat', icon='download', on_click=lambda: self.export_chat(room, dialog)).classes('rag-button-secondary w-full text-left justify-start')
+                ui.button('✏️ Rename Room', on_click=lambda: self.rename_room(room, dialog)).classes('rag-button-secondary w-full')
+                ui.button('💾 Export Chat', on_click=lambda: self.export_chat(room, dialog)).classes('rag-button-secondary w-full')
                 ui.separator()
-                ui.button('Delete Room', icon='delete', on_click=lambda: self.delete_room(room, dialog)).classes('bg-red-100 text-red-700 hover:bg-red-200 w-full text-left justify-start px-4 py-2 rounded-lg')
+                ui.button('🗑️ Delete Room', on_click=lambda: self.delete_room(room, dialog)).style('background: #fef2f2; color: #dc2626; padding: 8px 16px; border-radius: 6px; width: 100%; border: none; cursor: pointer;')
 
         dialog.open()
 

@@ -64,9 +64,12 @@ class MainPage:
         with ui.card().classes('rag-card'):
             ui.html('<h3 class="text-lg font-semibold mb-4">Quick Stats</h3>')
 
+            user = self.auth_service.get_current_user()
+            user_email = user["email"] if user else "unknown@ragagent.com"
+
             stats = [
                 {"label": "Total Repositories", "value": "3", "emoji": "📁"},
-                {"label": "Active Chats", "value": "12", "emoji": "💬"},
+                {"label": "Active Chats", "value": str(self.data_service.get_user_active_chats_count(user_email)), "emoji": "💬"},
                 {"label": "Vector Collections", "value": "8", "emoji": "🗄️"},
                 {"label": "Total Embeddings", "value": "1.9K", "emoji": "🧠"}
             ]
@@ -83,12 +86,9 @@ class MainPage:
         with ui.card().classes('rag-card'):
             ui.html('<h3 class="text-lg font-semibold mb-4">Recent Activity</h3>')
 
-            activities = [
-                {"type": "chat", "message": "New question in awesome-ml-project", "time": "2 min ago"},
-                {"type": "sync", "message": "microservices-api synchronized", "time": "1 hour ago"},
-                {"type": "member", "message": "New member joined react-dashboard", "time": "3 hours ago"},
-                {"type": "collection", "message": "Vector collection updated", "time": "1 day ago"}
-            ]
+            user = self.auth_service.get_current_user()
+            user_email = user["email"] if user else "unknown@ragagent.com"
+            activities = self.data_service.get_user_recent_activity(user_email)
 
             emojis = {
                 "chat": "💬",

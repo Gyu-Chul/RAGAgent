@@ -74,7 +74,7 @@ def run_app():
     ui.run(
         title="RAG-AGENT",
         favicon="🤖",
-        port=8086,
+        port=8088,
         show=False,
         reload=False
     )

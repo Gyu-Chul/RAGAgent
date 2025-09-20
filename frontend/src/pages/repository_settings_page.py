@@ -221,22 +221,33 @@ class RepositorySettingsPage:
         dialog.close()
 
     def show_members_dialog(self):
-        with ui.dialog() as dialog, ui.card().classes('w-96'):
-            ui.html('<h3 class="text-lg font-semibold mb-4">Repository Members</h3>')
+        with ui.dialog() as dialog, ui.card().style('width: 600px;'):
+            with ui.row().style('display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;'):
+                ui.html('<h3 style="font-size: 18px; font-weight: 600;">Repository Members</h3>')
+                ui.button('➕ Invite Member', on_click=lambda: self.show_invite_member_dialog(dialog)).style('background-color: #3b82f6; color: white; padding: 6px 12px; border-radius: 4px; border: none; font-size: 12px;')
 
             members = self.data_service.get_repository_members(self.selected_repo["id"])
 
-            with ui.column().classes('gap-3 max-h-80 overflow-y-auto'):
+            with ui.column().style('gap: 8px; max-height: 400px; overflow-y: auto;'):
                 for member in members:
-                    with ui.row().classes('items-center justify-between p-3 border rounded-lg'):
-                        with ui.row().classes('items-center gap-3'):
-                            ui.html('<div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm">👤</div>')
-                            with ui.column():
-                                ui.label(member["username"]).classes('font-medium')
-                                ui.label(member["email"]).classes('text-sm text-gray-500')
-                        ui.label(member["role"]).classes('text-sm px-2 py-1 bg-gray-100 rounded')
+                    with ui.row().style('display: flex; align-items: center; justify-content: space-between; padding: 12px; border: 1px solid #e5e7eb; border-radius: 8px;'):
+                        with ui.row().style('display: flex; align-items: center; gap: 12px;'):
+                            ui.html('<div style="width: 40px; height: 40px; background-color: #dbeafe; color: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px;">👤</div>')
+                            with ui.column().style('gap: 2px;'):
+                                ui.html(f'<div style="font-weight: 500; font-size: 14px;">{member["username"]}</div>')
+                                ui.html(f'<div style="font-size: 12px; color: #6b7280;">{member["email"]}</div>')
+                                ui.html(f'<div style="font-size: 11px; color: #9ca3af;">Joined {member["joined_at"].strftime("%b %d, %Y")}</div>')
 
-            ui.button('Close', on_click=dialog.close).classes('rag-button-secondary w-full mt-4')
+                        with ui.row().style('display: flex; align-items: center; gap: 8px;'):
+                            # Role dropdown
+                            role_select = ui.select(['admin', 'member'], value=member["role"], on_change=lambda e, m=member: self.change_member_role(m, e.value)).style('min-width: 80px; font-size: 12px;')
+
+                            # Action buttons (only show if not current user or if admin)
+                            current_user = self.auth_service.get_current_user()
+                            if current_user["email"] != member["email"]:
+                                ui.button('🚪', on_click=lambda m=member: self.kick_member(m, dialog)).style('background-color: #fef2f2; color: #dc2626; padding: 4px; border-radius: 4px; border: none; font-size: 12px; cursor: pointer;').tooltip('Remove member')
+
+            ui.button('Close', on_click=dialog.close).style('width: 100%; margin-top: 16px; background-color: #6b7280; color: white; padding: 8px; border-radius: 4px; border: none;')
 
         dialog.open()
 
@@ -291,4 +302,65 @@ class RepositorySettingsPage:
             return
 
         ui.notify('Repository deletion is not available in demo mode', color='blue')
+        dialog.close()
+
+    def change_member_role(self, member, new_role):
+        """Change a member's role"""
+        old_role = member["role"]
+        if old_role != new_role:
+            member["role"] = new_role
+            ui.notify(f'{member["username"]} role changed from {old_role} to {new_role}', color='green')
+        else:
+            ui.notify('Role unchanged', color='blue')
+
+    def kick_member(self, member, dialog):
+        """Remove a member from the repository"""
+        current_user = self.auth_service.get_current_user()
+        if current_user["email"] == member["email"]:
+            ui.notify('You cannot remove yourself', color='red')
+            return
+
+        # Show confirmation dialog
+        with ui.dialog() as confirm_dialog, ui.card().style('width: 400px;'):
+            ui.html(f'<h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">Remove Member</h3>')
+            ui.html(f'<p style="margin-bottom: 16px;">Are you sure you want to remove <strong>{member["username"]}</strong> from this repository?</p>')
+
+            with ui.row().style('display: flex; gap: 8px; justify-content: flex-end;'):
+                ui.button('Cancel', on_click=confirm_dialog.close).style('background-color: #6b7280; color: white; padding: 6px 12px; border-radius: 4px; border: none;')
+                ui.button('Remove', on_click=lambda: self.confirm_kick_member(member, confirm_dialog, dialog)).style('background-color: #dc2626; color: white; padding: 6px 12px; border-radius: 4px; border: none;')
+
+        confirm_dialog.open()
+
+    def confirm_kick_member(self, member, confirm_dialog, members_dialog):
+        """Confirm member removal"""
+        # In a real app, this would remove from database
+        ui.notify(f'{member["username"]} has been removed from the repository', color='green')
+        confirm_dialog.close()
+        members_dialog.close()
+        # Refresh the members dialog
+        self.show_members_dialog()
+
+    def show_invite_member_dialog(self, parent_dialog):
+        """Show dialog to invite new member"""
+        with ui.dialog() as invite_dialog, ui.card().style('width: 400px;'):
+            ui.html('<h3 style="font-size: 16px; font-weight: 600; margin-bottom: 12px;">Invite Member</h3>')
+
+            with ui.column().style('gap: 12px;'):
+                email_input = ui.input('Email Address', placeholder='user@example.com').style('width: 100%;')
+                role_select = ui.select(['member', 'admin'], value='member', label='Role').style('width: 100%;')
+
+                with ui.row().style('display: flex; gap: 8px; justify-content: flex-end; margin-top: 16px;'):
+                    ui.button('Cancel', on_click=invite_dialog.close).style('background-color: #6b7280; color: white; padding: 6px 12px; border-radius: 4px; border: none;')
+                    ui.button('Send Invite', on_click=lambda: self.send_invite(email_input.value, role_select.value, invite_dialog)).style('background-color: #3b82f6; color: white; padding: 6px 12px; border-radius: 4px; border: none;')
+
+        invite_dialog.open()
+
+    def send_invite(self, email, role, dialog):
+        """Send invitation to new member"""
+        if not email or '@' not in email:
+            ui.notify('Please enter a valid email address', color='red')
+            return
+
+        # In a real app, this would send an actual invitation
+        ui.notify(f'Invitation sent to {email} as {role}', color='green')
         dialog.close()

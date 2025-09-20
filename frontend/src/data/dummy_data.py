@@ -221,3 +221,32 @@ class DummyDataService:
         }
         self.chat_rooms.append(new_room)
         return new_room
+
+    def get_user_active_chats_count(self, user_email: str) -> int:
+        """Get the count of active chat rooms for a specific user"""
+        user_repos = []
+        if user_email == "admin@ragagent.com":
+            user_repos = ["1", "2", "3"]  # Admin has access to all repos
+        elif user_email == "user@ragagent.com":
+            user_repos = ["1", "2"]  # Regular user has access to specific repos
+        else:
+            user_repos = ["1"]  # Default access
+
+        user_chat_rooms = [room for room in self.chat_rooms if room["repository_id"] in user_repos]
+        return len(user_chat_rooms)
+
+    def get_user_recent_activity(self, user_email: str) -> List[Dict[str, Any]]:
+        """Get user-specific recent activity"""
+        if user_email == "admin@ragagent.com":
+            return [
+                {"type": "chat", "message": "New question in awesome-ml-project", "time": "2 min ago"},
+                {"type": "sync", "message": "microservices-api synchronized", "time": "1 hour ago"},
+                {"type": "member", "message": "New member joined react-dashboard", "time": "3 hours ago"},
+                {"type": "collection", "message": "Vector collection updated", "time": "1 day ago"}
+            ]
+        else:
+            return [
+                {"type": "chat", "message": "Asked about authentication system", "time": "1 hour ago"},
+                {"type": "chat", "message": "Discussion in react-dashboard", "time": "2 hours ago"},
+                {"type": "collection", "message": "Accessed code embeddings", "time": "1 day ago"}
+            ]
