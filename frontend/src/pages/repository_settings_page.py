@@ -32,16 +32,21 @@ class RepositorySettingsPage:
     def render_repository_item(self, repo):
         is_selected = self.selected_repo and self.selected_repo["id"] == repo["id"]
 
-        item_style = 'width: 100%; padding: 12px; margin-bottom: 8px; border-radius: 8px; cursor: pointer; border: 1px solid transparent;'
         if is_selected:
-            item_style += ' background-color: #dbeafe; border-color: #93c5fd;'
+            item_style = 'width: 100%; padding: 12px; margin-bottom: 8px; border-radius: 8px; cursor: pointer; border: 2px solid #3b82f6; background-color: #dbeafe;'
         else:
-            item_style += ' background-color: white; hover: background-color: #f1f5f9;'
+            item_style = 'width: 100%; padding: 12px; margin-bottom: 8px; border-radius: 8px; cursor: pointer; border: 1px solid #e5e7eb; background-color: white;'
 
-        with ui.column().style(item_style).on('click', lambda r=repo: self.select_repository(r)):
+        # Create a container that will be refreshed when selection changes
+        container = ui.column().style(item_style).on('click', lambda r=repo: self.select_repository(r))
+
+        with container:
             ui.html(f'<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;"><span style="color: #2563eb; font-size: 18px;">📁</span><span style="font-weight: 600;">{repo["name"]}</span></div>')
             ui.html(f'<div style="font-size: 14px; color: #6b7280; margin-bottom: 4px;">{repo["description"]}</div>')
             ui.html(f'<div style="font-size: 12px; color: #9ca3af;">⭐ {repo["stars"]} • {repo["language"]}</div>')
+
+        # Store reference for later updates
+        repo['_ui_container'] = container
 
     def render_main_content(self):
         self.main_content_container = ui.column().style('flex: 1; height: 100%; padding: 24px; overflow-y: auto; background-color: white;')
@@ -68,10 +73,6 @@ class RepositorySettingsPage:
                     ui.html(f'<h2 style="font-size: 24px; font-weight: 700; margin: 0;">{repo["name"]}</h2>')
                     self.render_status_badge(repo["status"])
 
-                with ui.row().style('display: flex; gap: 8px;'):
-                    ui.button('💬 Open Chat', on_click=lambda: ui.navigate.to(f'/chat/{repo["id"]}')).style('background-color: #3b82f6; color: white; padding: 8px 16px; border-radius: 6px; border: none;')
-                    if self.auth_service.is_admin():
-                        ui.button('⚙️ Admin Options', on_click=lambda: ui.navigate.to(f'/admin/repository/{repo["id"]}')).style('background-color: #6b7280; color: white; padding: 8px 16px; border-radius: 6px; border: none;')
 
             # Content section
             with ui.row().style('width: 100%; gap: 24px;'):
@@ -125,16 +126,21 @@ class RepositorySettingsPage:
 
     def render_quick_actions(self):
         with ui.column().style('background-color: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px;'):
-            ui.html('<h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Quick Actions</h3>')
+            ui.html('<h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Actions</h3>')
 
+            # Basic user actions
             actions = [
-                ("🗄️ View Vector DB", lambda: ui.navigate.to(f'/admin/vectordb/{self.selected_repo["id"]}'))
+                ("💬 Start Chat", lambda: ui.navigate.to(f'/chat/{self.selected_repo["id"]}')),
             ]
 
+            # Admin actions
             if self.auth_service.is_admin():
                 actions.extend([
-                    ("⚙️ Repository Options", lambda: ui.navigate.to(f'/admin/repository/{self.selected_repo["id"]}')),
-                    ("👥 Manage Members", lambda: self.show_members_dialog())
+                    ("🗄️ Vector Database", lambda: ui.navigate.to(f'/admin/vectordb/{self.selected_repo["id"]}')),
+                    ("👥 Manage Members", lambda: self.show_members_dialog()),
+                    ("📊 Analytics", lambda: ui.notify('Analytics feature coming soon', color='blue')),
+                    ("🔧 Settings", lambda: self.show_repository_settings()),
+                    ("🗑️ Delete Repository", lambda: self.show_delete_repository_dialog())
                 ])
 
             for label, action in actions:
@@ -175,6 +181,18 @@ class RepositorySettingsPage:
 
     def select_repository(self, repo):
         self.selected_repo = repo
+
+        # Update sidebar selection appearance
+        repositories = self.data_service.get_repositories()
+        for r in repositories:
+            if '_ui_container' in r:
+                if r["id"] == repo["id"]:
+                    # Selected style
+                    r['_ui_container'].style('width: 100%; padding: 12px; margin-bottom: 8px; border-radius: 8px; cursor: pointer; border: 2px solid #3b82f6; background-color: #dbeafe;')
+                else:
+                    # Unselected style
+                    r['_ui_container'].style('width: 100%; padding: 12px; margin-bottom: 8px; border-radius: 8px; cursor: pointer; border: 1px solid #e5e7eb; background-color: white;')
+
         # Update the main content area
         self.main_content_container.clear()
         with self.main_content_container:
@@ -230,3 +248,50 @@ class RepositorySettingsPage:
 
     def show_sync_logs(self):
         ui.notify('Sync logs feature coming soon', color='blue')
+
+    def show_repository_settings(self):
+        with ui.dialog() as dialog, ui.card().classes('w-96'):
+            ui.html('<h3 class="text-lg font-semibold mb-4">Repository Settings</h3>')
+
+            with ui.column().classes('gap-4'):
+                ui.input('Repository Name', value=self.selected_repo["name"]).classes('w-full')
+                ui.textarea('Description', value=self.selected_repo["description"]).classes('w-full')
+
+                with ui.row().classes('items-center gap-2'):
+                    ui.label('Auto Sync')
+                    ui.switch(value=True)
+
+                with ui.row().classes('items-center gap-2'):
+                    ui.label('Public Access')
+                    ui.switch(value=False)
+
+                with ui.row().classes('gap-2 mt-4'):
+                    ui.button('Cancel', on_click=dialog.close).classes('rag-button-secondary')
+                    ui.button('Save Settings', on_click=lambda: self.save_repository_settings(dialog)).classes('rag-button-primary')
+
+        dialog.open()
+
+    def save_repository_settings(self, dialog):
+        ui.notify('Repository settings saved!', color='green')
+        dialog.close()
+
+    def show_delete_repository_dialog(self):
+        with ui.dialog() as dialog, ui.card().classes('w-96'):
+            ui.html('<h3 class="text-lg font-semibold text-red-600 mb-4">Delete Repository</h3>')
+            ui.html('<p class="text-gray-600 mb-4">This action cannot be undone. The repository will be permanently removed from the system.</p>')
+
+            confirm_input = ui.input('Type "DELETE" to confirm', placeholder='DELETE').classes('w-full')
+
+            with ui.row().classes('gap-2 mt-6 w-full'):
+                ui.button('Cancel', on_click=dialog.close).classes('rag-button-secondary flex-1')
+                ui.button('Delete Repository', on_click=lambda: self.delete_repository(confirm_input.value, dialog)).classes('bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 flex-1')
+
+        dialog.open()
+
+    def delete_repository(self, confirmation, dialog):
+        if confirmation != "DELETE":
+            ui.notify('Please type "DELETE" to confirm', color='red')
+            return
+
+        ui.notify('Repository deletion is not available in demo mode', color='blue')
+        dialog.close()

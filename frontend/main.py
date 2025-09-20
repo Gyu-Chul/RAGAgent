@@ -5,7 +5,6 @@ from src.pages.auth_page import AuthPage
 from src.pages.main_page import MainPage
 from src.pages.repository_settings_page import RepositorySettingsPage
 from src.pages.account_settings_page import AccountSettingsPage
-from src.pages.repository_options_page import RepositoryOptionsPage
 from src.pages.vectordb_page import VectorDBPage
 from src.pages.chat_page import ChatPage
 from src.utils.theme import setup_theme
@@ -52,10 +51,9 @@ def account():
 
 @ui.page('/admin/repository/{repo_id}')
 def repository_options(repo_id: str):
-    if not auth_service.is_authenticated() or not auth_service.is_admin():
-        ui.navigate.to('/login')
-        return
-    return RepositoryOptionsPage(repo_id, auth_service).render()
+    # Redirect to unified repository page
+    ui.navigate.to('/repositories')
+    return
 
 @ui.page('/admin/vectordb/{repo_id}')
 def vectordb_management(repo_id: str):

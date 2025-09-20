@@ -62,7 +62,7 @@ class MainPage:
                 with ui.column().classes('gap-2'):
                     ui.button('💬 Chat', on_click=lambda repo_id=repo["id"]: ui.navigate.to(f'/chat/{repo_id}')).classes('rag-button-primary text-xs')
                     if self.auth_service.is_admin():
-                        ui.button('⚙️ Manage', on_click=lambda repo_id=repo["id"]: ui.navigate.to(f'/admin/repository/{repo_id}')).classes('rag-button-secondary text-xs')
+                        ui.button('⚙️ Manage', on_click=lambda: ui.navigate.to('/repositories')).classes('rag-button-secondary text-xs')
 
     def render_status_badge(self, status):
         colors = {
