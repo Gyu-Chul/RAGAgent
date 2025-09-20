@@ -128,12 +128,9 @@ class RepositorySettingsPage:
         with ui.column().style('background-color: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px;'):
             ui.html('<h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Actions</h3>')
 
-            # Basic user actions
-            actions = [
-                ("💬 Start Chat", lambda: ui.navigate.to(f'/chat/{self.selected_repo["id"]}')),
-            ]
-
             # Admin actions
+            actions = []
+
             if self.auth_service.is_admin():
                 actions.extend([
                     ("🗄️ Vector Database", lambda: ui.navigate.to(f'/admin/vectordb/{self.selected_repo["id"]}')),

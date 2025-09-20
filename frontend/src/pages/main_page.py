@@ -13,24 +13,12 @@ class MainPage:
 
             with ui.row().classes('w-full flex-1 p-6 gap-6'):
                 with ui.column().classes('flex-1 gap-6'):
-                    self.render_welcome_section()
                     self.render_repositories_section()
 
                 with ui.column().classes('w-80 gap-6'):
                     self.render_quick_stats()
                     self.render_recent_activity()
 
-    def render_welcome_section(self):
-        user = self.auth_service.get_current_user()
-        with ui.card().classes('rag-card w-full'):
-            with ui.column().classes('gap-4'):
-                ui.html(f'<h2 class="text-2xl font-bold">Welcome back, {user["name"]}! 👋</h2>')
-                ui.html('<p class="text-gray-600">Transform your GitHub repositories into intelligent RAG systems. Chat with your code, documentation, and issues using advanced AI.</p>')
-
-                with ui.row().classes('gap-4 mt-4'):
-                    ui.button('📁 Browse Repositories', on_click=lambda: ui.navigate.to('/repositories')).classes('rag-button-primary')
-                    if self.auth_service.is_admin():
-                        ui.button('⚙️ Admin Panel', on_click=lambda: self.show_admin_menu()).classes('rag-button-secondary')
 
     def render_repositories_section(self):
         with ui.card().classes('rag-card w-full'):
