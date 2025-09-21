@@ -1,13 +1,18 @@
 from nicegui import ui
 from src.components.header import Header
-from src.data.dummy_data import DummyDataService
+from src.services.api_service import api_service
 
 class RepositorySettingsPage:
     def __init__(self, auth_service):
         self.auth_service = auth_service
-        self.data_service = DummyDataService()
-        repositories = self.data_service.get_repositories()
-        self.selected_repo = repositories[0] if repositories else None
+        self.api_service = api_service
+        self.repo_containers = {}  # UI 컨테이너들을 저장할 딕셔너리
+        try:
+            repositories = self.api_service.get_repositories()
+            self.selected_repo = repositories[0] if repositories else None
+        except Exception as e:
+            ui.notify(f"Failed to load repositories: {str(e)}", type='negative')
+            self.selected_repo = None
 
     def render(self):
         with ui.column().style('width: 100%; min-height: 100vh; margin: 0; padding: 0;'):
@@ -24,7 +29,11 @@ class RepositorySettingsPage:
             if self.auth_service.is_admin():
                 ui.button('➕ Add New Repository', on_click=self.show_add_repository_dialog).style('width: 100%; background-color: #3b82f6; color: white; padding: 8px 16px; border-radius: 6px; border: none; margin-bottom: 16px;')
 
-            repositories = self.data_service.get_repositories()
+            try:
+                repositories = self.api_service.get_repositories()
+            except Exception as e:
+                ui.notify(f"Failed to load repositories: {str(e)}", type='negative')
+                repositories = []
 
             for repo in repositories:
                 self.render_repository_item(repo)
@@ -46,7 +55,7 @@ class RepositorySettingsPage:
             ui.html(f'<div style="font-size: 12px; color: #9ca3af;">⭐ {repo["stars"]} • {repo["language"]}</div>')
 
         # Store reference for later updates
-        repo['_ui_container'] = container
+        self.repo_containers[repo["id"]] = container
 
     def render_main_content(self):
         self.main_content_container = ui.column().style('flex: 1; height: 100%; padding: 24px; overflow-y: auto; background-color: white;')
@@ -150,15 +159,23 @@ class RepositorySettingsPage:
                 if self.auth_service.is_admin():
                     ui.button('👥 Manage', on_click=self.show_members_dialog).style('background-color: #6b7280; color: white; padding: 4px 8px; border-radius: 4px; border: none; font-size: 12px;')
 
-            members = self.data_service.get_repository_members(self.selected_repo["id"])[:3]
+            try:
+                members = self.api_service.get_repository_members(self.selected_repo["id"])[:3]
+            except Exception as e:
+                ui.notify(f"Failed to load members: {str(e)}", type='negative')
+                members = []
 
             for member in members:
                 with ui.row().style('display: flex; align-items: center; gap: 12px; margin-bottom: 12px;'):
                     ui.html('<div style="width: 32px; height: 32px; background-color: #dbeafe; color: #2563eb; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px;">👤</div>')
                     ui.html(f'<div><div style="font-weight: 500;">{member["username"]}</div><div style="font-size: 12px; color: #6b7280;">{member["role"]}</div></div>')
 
-            if len(self.data_service.get_repository_members(self.selected_repo["id"])) > 3:
-                ui.html(f'<div style="text-align: center; font-size: 12px; color: #6b7280;">... and {len(self.data_service.get_repository_members(self.selected_repo["id"])) - 3} more</div>')
+            try:
+                total_members = len(self.api_service.get_repository_members(self.selected_repo["id"]))
+                if total_members > 3:
+                    ui.html(f'<div style="text-align: center; font-size: 12px; color: #6b7280;">... and {total_members - 3} more</div>')
+            except Exception as e:
+                pass
 
     def render_status_badge(self, status):
         colors = {
@@ -180,15 +197,13 @@ class RepositorySettingsPage:
         self.selected_repo = repo
 
         # Update sidebar selection appearance
-        repositories = self.data_service.get_repositories()
-        for r in repositories:
-            if '_ui_container' in r:
-                if r["id"] == repo["id"]:
-                    # Selected style
-                    r['_ui_container'].style('width: 100%; padding: 12px; margin-bottom: 8px; border-radius: 8px; cursor: pointer; border: 2px solid #3b82f6; background-color: #dbeafe;')
-                else:
-                    # Unselected style
-                    r['_ui_container'].style('width: 100%; padding: 12px; margin-bottom: 8px; border-radius: 8px; cursor: pointer; border: 1px solid #e5e7eb; background-color: white;')
+        for repo_id, container in self.repo_containers.items():
+            if repo_id == repo["id"]:
+                # Selected style
+                container.style('width: 100%; padding: 12px; margin-bottom: 8px; border-radius: 8px; cursor: pointer; border: 2px solid #3b82f6; background-color: #dbeafe;')
+            else:
+                # Unselected style
+                container.style('width: 100%; padding: 12px; margin-bottom: 8px; border-radius: 8px; cursor: pointer; border: 1px solid #e5e7eb; background-color: white;')
 
         # Update the main content area
         self.main_content_container.clear()
@@ -226,7 +241,11 @@ class RepositorySettingsPage:
                 ui.html('<h3 style="font-size: 18px; font-weight: 600;">Repository Members</h3>')
                 ui.button('➕ Invite Member', on_click=lambda: self.show_invite_member_dialog(dialog)).style('background-color: #3b82f6; color: white; padding: 6px 12px; border-radius: 4px; border: none; font-size: 12px;')
 
-            members = self.data_service.get_repository_members(self.selected_repo["id"])
+            try:
+                members = self.api_service.get_repository_members(self.selected_repo["id"])
+            except Exception as e:
+                ui.notify(f"Failed to load members: {str(e)}", type='negative')
+                members = []
 
             with ui.column().style('gap: 8px; max-height: 400px; overflow-y: auto;'):
                 for member in members:

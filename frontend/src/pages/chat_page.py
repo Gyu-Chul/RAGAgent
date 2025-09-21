@@ -2,17 +2,22 @@ from nicegui import ui
 import asyncio
 from datetime import datetime
 from src.components.header import Header
-from src.data.dummy_data import DummyDataService
+from src.services.api_service import api_service
 
 class ChatPage:
     def __init__(self, repo_id: str, auth_service):
         self.repo_id = repo_id
         self.auth_service = auth_service
-        self.data_service = DummyDataService()
-        self.repository = self.data_service.get_repository(repo_id)
-        # Auto-select first chat room
-        chat_rooms = self.data_service.get_chat_rooms(repo_id)
-        self.selected_chat_room = chat_rooms[0] if chat_rooms else None
+        self.api_service = api_service
+        try:
+            self.repository = self.api_service.get_repository(repo_id)
+            # Auto-select first chat room
+            chat_rooms = self.api_service.get_chat_rooms(repo_id)
+            self.selected_chat_room = chat_rooms[0] if chat_rooms else None
+        except Exception as e:
+            self.repository = None
+            self.selected_chat_room = None
+            ui.notify(f"Failed to load repository data: {str(e)}", type='negative')
         self.message_input = None
         self.messages_container = None
         self.chat_area_container = None
@@ -37,7 +42,11 @@ class ChatPage:
             ui.button('Back to Repositories', on_click=lambda: ui.navigate.to('/repositories')).classes('rag-button-primary mt-4')
 
     def render_sidebar(self):
-        chat_rooms = self.data_service.get_chat_rooms(self.repo_id)
+        try:
+            chat_rooms = self.api_service.get_chat_rooms(self.repo_id)
+        except Exception as e:
+            ui.notify(f"Failed to load chat rooms: {str(e)}", type='negative')
+            chat_rooms = []
 
         with ui.column().classes('rag-sidebar w-80 h-full overflow-y-auto'):
             with ui.column().classes('p-6 gap-4 h-full'):
@@ -135,7 +144,11 @@ class ChatPage:
     def render_messages_area(self):
         with ui.column().classes('flex-1 overflow-y-auto p-4 gap-4').props('id=messages-container') as container:
             self.messages_container = container
-            messages = self.data_service.get_messages(self.selected_chat_room["id"])
+            try:
+                messages = self.api_service.get_messages(self.selected_chat_room["id"])
+            except Exception as e:
+                ui.notify(f"Failed to load messages: {str(e)}", type='negative')
+                messages = []
 
             for message in messages:
                 self.render_message(message)
@@ -202,63 +215,28 @@ class ChatPage:
         message_content = self.message_input.value.strip()
         self.message_input.value = ""
 
-        user_message = self.data_service.add_message(
-            self.selected_chat_room["id"],
-            "user",
-            message_content
-        )
+        try:
+            result = self.api_service.add_message(
+                self.selected_chat_room["id"],
+                "user",
+                message_content
+            )
 
-        with self.messages_container:
-            self.render_message(user_message)
+            with self.messages_container:
+                self.render_message(result["user_message"])
+                self.render_message(result["bot_response"])
 
-        # Update UI immediately
-        ui.update()
+            # Update UI and scroll to bottom
+            ui.update()
+            ui.run_javascript('''
+                const container = document.getElementById('messages-container');
+                if (container) {
+                    container.scrollTop = container.scrollHeight;
+                }
+            ''')
+        except Exception as e:
+            ui.notify(f"Failed to send message: {str(e)}", type='negative')
 
-        # Schedule bot response
-        ui.timer(1.0, lambda: self.simulate_bot_response(message_content), once=True)
-
-    def simulate_bot_response(self, user_message: str):
-
-        bot_responses = {
-            "authentication": "The authentication system in this repository uses JWT tokens with a custom middleware. You can find the implementation in `auth/middleware.py`. The main components include:\n\n1. **Token Generation**: Uses the `generate_jwt_token()` function\n2. **Token Validation**: Handled by `validate_token_middleware()`\n3. **User Session Management**: Managed through the `UserSession` class\n\nThe system supports both cookie-based and header-based authentication.",
-            "components": "This project has several main components:\n\n**Backend Services:**\n- API Gateway (`/gateway`)\n- Authentication Service (`/auth`)\n- Vector Database Service (`/vectordb`)\n- RAG Processing Engine (`/rag`)\n\n**Frontend:**\n- React Dashboard (`/frontend`)\n- Admin Panel (`/admin`)\n\n**Infrastructure:**\n- Docker containers for each service\n- Kubernetes deployment configs\n- CI/CD pipeline with GitHub Actions",
-            "deployment": "The deployment process follows a GitOps approach:\n\n1. **Local Development**: Use `docker-compose up` to run all services\n2. **Staging**: Automatic deployment to staging on PR merge\n3. **Production**: Manual approval required, deployed via Kubernetes\n\n**Key files:**\n- `docker-compose.yml` - Local development\n- `k8s/` - Kubernetes manifests\n- `.github/workflows/` - CI/CD pipelines\n\nThe system uses rolling deployments with health checks.",
-            "dependencies": "This project uses modern dependencies:\n\n**Backend (Python):**\n- FastAPI for API framework\n- Celery for async task processing\n- Redis for caching and message queuing\n- PostgreSQL for primary database\n- Milvus for vector storage\n\n**Frontend (React):**\n- Next.js for the React framework\n- Tailwind CSS for styling\n- React Query for state management\n- TypeScript for type safety\n\nAll dependencies are managed through `requirements.txt` and `package.json`."
-        }
-
-        response_content = "I can help you understand this repository! Based on your question, let me provide you with relevant information from the codebase."
-
-        for keyword, response in bot_responses.items():
-            if keyword in user_message.lower():
-                response_content = response
-                break
-
-        bot_message = self.data_service.add_message(
-            self.selected_chat_room["id"],
-            "bot",
-            response_content
-        )
-
-        if "authentication" in user_message.lower():
-            bot_message["sources"] = ["auth/middleware.py", "auth/models.py", "docs/authentication.md"]
-        elif "components" in user_message.lower():
-            bot_message["sources"] = ["README.md", "docker-compose.yml", "architecture.md"]
-        elif "deployment" in user_message.lower():
-            bot_message["sources"] = ["k8s/deployment.yaml", ".github/workflows/deploy.yml", "docs/deployment.md"]
-        elif "dependencies" in user_message.lower():
-            bot_message["sources"] = ["requirements.txt", "package.json", "Dockerfile"]
-
-        with self.messages_container:
-            self.render_message(bot_message)
-
-        # Update UI and scroll to bottom
-        ui.update()
-        ui.run_javascript('''
-            const container = document.getElementById('messages-container');
-            if (container) {
-                container.scrollTop = container.scrollHeight;
-            }
-        ''')
 
     def select_chat_room(self, room):
         self.selected_chat_room = room
@@ -270,7 +248,11 @@ class ChatPage:
 
     def start_chat_with_question(self, question):
         if not self.selected_chat_room:
-            new_room = self.data_service.create_chat_room("General Discussion", self.repo_id)
+            try:
+                new_room = self.api_service.create_chat_room("General Discussion", self.repo_id)
+            except Exception as e:
+                ui.notify(f"Failed to create chat room: {str(e)}", type='negative')
+                return
             self.selected_chat_room = new_room
 
         self.message_input.value = question
@@ -294,7 +276,11 @@ class ChatPage:
             ui.notify('Please enter a room name', color='red')
             return
 
-        new_room = self.data_service.create_chat_room(name.strip(), self.repo_id)
+        try:
+            new_room = self.api_service.create_chat_room(name.strip(), self.repo_id)
+        except Exception as e:
+            ui.notify(f"Failed to create chat room: {str(e)}", type='negative')
+            return
         ui.notify(f'Chat room "{name}" created successfully!', color='green')
         dialog.close()
         ui.update()

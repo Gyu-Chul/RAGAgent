@@ -1,11 +1,11 @@
 from nicegui import ui
 from src.components.header import Header
-from src.data.dummy_data import DummyDataService
+from src.services.api_service import api_service
 
 class MainPage:
     def __init__(self, auth_service):
         self.auth_service = auth_service
-        self.data_service = DummyDataService()
+        self.api_service = api_service
 
     def render(self):
         with ui.column().classes('w-full min-h-screen'):
@@ -25,7 +25,11 @@ class MainPage:
             with ui.column().classes('gap-4'):
                 ui.html('<h3 class="text-xl font-semibold">Your Repositories</h3>')
 
-                repositories = self.data_service.get_repositories()[:3]
+                try:
+                    repositories = self.api_service.get_repositories()[:3]
+                except Exception as e:
+                    ui.notify(f"Failed to load repositories: {str(e)}", type='negative')
+                    repositories = []
 
                 with ui.grid(columns=1).classes('w-full gap-4'):
                     for repo in repositories:
@@ -69,7 +73,7 @@ class MainPage:
 
             stats = [
                 {"label": "Total Repositories", "value": "3", "emoji": "📁"},
-                {"label": "Active Chats", "value": str(self.data_service.get_user_active_chats_count(user_email)), "emoji": "💬"},
+                {"label": "Active Chats", "value": str(self.api_service.get_user_active_chats_count(user_email)), "emoji": "💬"},
                 {"label": "Vector Collections", "value": "8", "emoji": "🗄️"},
                 {"label": "Total Embeddings", "value": "1.9K", "emoji": "🧠"}
             ]
@@ -88,7 +92,11 @@ class MainPage:
 
             user = self.auth_service.get_current_user()
             user_email = user["email"] if user else "unknown@ragagent.com"
-            activities = self.data_service.get_user_recent_activity(user_email)
+            try:
+                activities = self.api_service.get_user_recent_activity(user_email)
+            except Exception as e:
+                ui.notify(f"Failed to load recent activity: {str(e)}", type='negative')
+                activities = []
 
             emojis = {
                 "chat": "💬",

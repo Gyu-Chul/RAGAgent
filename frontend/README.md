@@ -11,15 +11,25 @@ GitHub 저장소를 지능형 RAG 시스템으로 변환하는 웹 인터페이�
 
 ## 🚀 사용 방법
 
-### 1. 설치 및 실행
+### 1. Gateway 서버 시작
+먼저 Gateway 서버를 실행해야 합니다:
+```bash
+cd gateway
+run.bat  # Windows
+# 또는 python main.py
+```
+
+### 2. 프론트엔드 설치 및 실행
 ```bash
 cd frontend
 pip install -r requirements.txt
 python main.py
 ```
 
-### 2. 접속
+### 3. 접속
 브라우저에서 `http://localhost:8000` 접속
+
+**중요**: Gateway 서버(`localhost:8080`)가 실행되어야 프론트엔드가 정상 작동합니다.
 
 ### 3. 데모 계정
 - **관리자**: `admin@ragagent.com` / `admin123`

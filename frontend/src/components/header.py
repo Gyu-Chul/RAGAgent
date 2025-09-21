@@ -12,7 +12,7 @@ class Header:
             with ui.row().classes('items-center gap-4'):
                 user = self.auth_service.get_current_user()
                 if user:
-                    ui.label(f"Welcome, {user['name']}").classes('text-white')
+                    ui.label(f"Welcome, {user.get('username', user.get('name', 'User'))}").classes('text-white')
 
                     with ui.row().classes('items-center gap-2'):
                         ui.button('👤 Profile', on_click=lambda: ui.navigate.to('/account')).style('color: white; background: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.3); padding: 8px 16px; border-radius: 6px;')

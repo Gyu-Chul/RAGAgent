@@ -1,71 +1,69 @@
 from typing import Optional, Dict, Any
 from datetime import datetime, timedelta
+import requests
 
 class AuthService:
     def __init__(self):
         self._current_user: Optional[Dict[str, Any]] = None
         self._session_token: Optional[str] = None
-        self._users_db = {
-            "admin@ragagent.com": {
-                "id": "1",
-                "username": "admin",
-                "email": "admin@ragagent.com",
-                "password": "admin123",
-                "role": "admin",
-                "name": "Administrator",
-                "created_at": datetime.now()
-            },
-            "user@ragagent.com": {
-                "id": "2",
-                "username": "user",
-                "email": "user@ragagent.com",
-                "password": "user123",
-                "role": "user",
-                "name": "Regular User",
-                "created_at": datetime.now()
-            }
-        }
+        self.gateway_url = "http://localhost:8080"
 
     def login(self, email: str, password: str) -> Dict[str, Any]:
-        if email in self._users_db:
-            user = self._users_db[email]
-            if user["password"] == password:
-                self._current_user = user.copy()
-                self._current_user.pop("password")
-                self._session_token = f"token_{user['id']}_{datetime.now().timestamp()}"
-                return {
-                    "success": True,
-                    "user": self._current_user,
-                    "token": self._session_token
-                }
+        try:
+            response = requests.post(f"{self.gateway_url}/auth/login", json={
+                "email": email,
+                "password": password
+            }, timeout=5)
 
-        return {"success": False, "message": "Invalid credentials"}
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success"):
+                    self._current_user = data["user"]
+                    self._session_token = data["token"]["access_token"]
+                    return {
+                        "success": True,
+                        "user": self._current_user,
+                        "token": self._session_token
+                    }
+                else:
+                    return {"success": False, "message": data.get("message", "Login failed")}
+            else:
+                try:
+                    error_data = response.json()
+                    return {"success": False, "message": error_data.get("detail", "Invalid credentials")}
+                except:
+                    return {"success": False, "message": "Invalid credentials"}
+        except requests.exceptions.ConnectionError:
+            return {"success": False, "message": "Gateway server not available"}
 
     def signup(self, username: str, email: str, password: str, name: str) -> Dict[str, Any]:
-        if email in self._users_db:
-            return {"success": False, "message": "Email already exists"}
+        try:
+            response = requests.post(f"{self.gateway_url}/auth/signup", json={
+                "email": email,
+                "password": password,
+                "username": username
+            }, timeout=5)
 
-        user_id = str(len(self._users_db) + 1)
-        new_user = {
-            "id": user_id,
-            "username": username,
-            "email": email,
-            "password": password,
-            "role": "user",
-            "name": name,
-            "created_at": datetime.now()
-        }
-
-        self._users_db[email] = new_user
-        self._current_user = new_user.copy()
-        self._current_user.pop("password")
-        self._session_token = f"token_{user_id}_{datetime.now().timestamp()}"
-
-        return {
-            "success": True,
-            "user": self._current_user,
-            "token": self._session_token
-        }
+            if response.status_code == 200:
+                data = response.json()
+                if data.get("success"):
+                    self._current_user = data["user"]
+                    self._session_token = data["token"]["access_token"]
+                    return {
+                        "success": True,
+                        "user": self._current_user,
+                        "token": self._session_token
+                    }
+                else:
+                    return {"success": False, "message": data.get("message", "Signup failed")}
+            else:
+                try:
+                    error_data = response.json()
+                    return {"success": False, "message": error_data.get("detail", "Signup failed")}
+                except:
+                    return {"success": False, "message": "Signup failed"}
+        except requests.exceptions.ConnectionError:
+            return {"success": False, "message": "Gateway server not available"}
 
     def logout(self) -> None:
         self._current_user = None
@@ -84,11 +82,7 @@ class AuthService:
         if not self.is_authenticated():
             return {"success": False, "message": "Not authenticated"}
 
-        email = self._current_user["email"]
-        self._users_db[email]["name"] = name
-        self._current_user["name"] = name
-
-        if password:
-            self._users_db[email]["password"] = password
+        # 현재는 간단히 로컬에서만 업데이트 (향후 Gateway API 추가 예정)
+        self._current_user["username"] = name
 
         return {"success": True, "message": "Profile updated successfully"}

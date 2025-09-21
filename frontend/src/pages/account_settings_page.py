@@ -32,7 +32,7 @@ class AccountSettingsPage:
                 with ui.row().classes('items-center gap-6'):
                     ui.html('<div class="w-16 h-16 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-2xl">👤</div>')
                     with ui.column().classes('flex-1'):
-                        ui.html(f'<h3 class="text-lg font-medium">{user["name"]}</h3>')
+                        ui.html(f'<h3 class="text-lg font-medium">{user.get("username", user.get("name", "User"))}</h3>')
                         ui.html(f'<p class="text-gray-600">{user["email"]}</p>')
                         ui.html(f'<span class="inline-block px-2 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">{user["role"].title()}</span>')
 
@@ -41,7 +41,7 @@ class AccountSettingsPage:
                 with ui.column().classes('gap-4'):
                     ui.html('<h4 class="font-medium">Update Profile</h4>')
 
-                    name_input = ui.input('Full Name', value=user["name"]).classes('rag-input w-full')
+                    name_input = ui.input('Username', value=user.get("username", user.get("name", ""))).classes('rag-input w-full')
                     email_input = ui.input('Email', value=user["email"]).classes('rag-input w-full bg-gray-50').props('readonly')
                     ui.label('Email cannot be changed').classes('text-xs text-gray-500')
 
@@ -115,7 +115,9 @@ class AccountSettingsPage:
             ui.notify('Password must be at least 6 characters long', color='red')
             return
 
-        result = self.auth_service.update_profile(self.auth_service.get_current_user()["name"], new)
+        current_user = self.auth_service.get_current_user()
+        current_name = current_user.get("username", current_user.get("name", ""))
+        result = self.auth_service.update_profile(current_name, new)
         if result['success']:
             ui.notify('Password changed successfully!', color='green')
         else:
