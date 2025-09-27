@@ -22,7 +22,7 @@ class UserSession(Base):
 
     id = Column(GUID(), primary_key=True, default=uuid.uuid4)
     user_id = Column(GUID(), ForeignKey("users.id"), nullable=False)
-    token = Column(String(512), unique=True, nullable=False, index=True)  # JWT 토큰
+    session_token = Column(String(512), unique=True, nullable=False, index=True)  # JWT 토큰
     refresh_token = Column(String(512), unique=True, nullable=True, index=True)
     expires_at = Column(DateTime(timezone=True), nullable=False)
     is_active = Column(Boolean, default=True)

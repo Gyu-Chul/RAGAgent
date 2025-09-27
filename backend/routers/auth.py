@@ -55,15 +55,16 @@ async def signup(user_data: UserCreate, db: Session = Depends(get_db)) -> LoginR
 
         user, access_token = login_result
 
-        # 응답 구성
-        user_response = UserResponse(
-            id=user.id,
-            username=user.username,
-            email=user.email,
-            role=user.role,
-            is_active=user.is_active,
-            created_at=user.created_at
-        )
+        # 응답 구성 - UUID를 명시적으로 문자열로 변환
+        user_data = {
+            "id": str(user.id),
+            "username": user.username,
+            "email": user.email,
+            "role": user.role,
+            "is_active": user.is_active,
+            "created_at": user.created_at
+        }
+        user_response = UserResponse(**user_data)
 
         token_response = Token(
             access_token=access_token,
@@ -81,7 +82,9 @@ async def signup(user_data: UserCreate, db: Session = Depends(get_db)) -> LoginR
     except HTTPException:
         raise
     except Exception as e:
+        import traceback
         print(f"Signup error: {e}")
+        print(f"Traceback: {traceback.format_exc()}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Internal server error during signup"
@@ -113,15 +116,16 @@ async def login(user_credentials: UserLogin, db: Session = Depends(get_db)) -> L
                 detail="User account is disabled"
             )
 
-        # 응답 구성
-        user_response = UserResponse(
-            id=user.id,
-            username=user.username,
-            email=user.email,
-            role=user.role,
-            is_active=user.is_active,
-            created_at=user.created_at
-        )
+        # 응답 구성 - UUID를 명시적으로 문자열로 변환
+        user_data = {
+            "id": str(user.id),
+            "username": user.username,
+            "email": user.email,
+            "role": user.role,
+            "is_active": user.is_active,
+            "created_at": user.created_at
+        }
+        user_response = UserResponse(**user_data)
 
         token_response = Token(
             access_token=access_token,
@@ -139,7 +143,9 @@ async def login(user_credentials: UserLogin, db: Session = Depends(get_db)) -> L
     except HTTPException:
         raise
     except Exception as e:
+        import traceback
         print(f"Login error: {e}")
+        print(f"Traceback: {traceback.format_exc()}")
         raise HTTPException(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail="Internal server error during login"
@@ -185,14 +191,15 @@ async def get_current_user_info(
     current_user: User = Depends(get_current_active_user)
 ) -> UserResponse:
     """현재 로그인한 사용자 정보 조회"""
-    return UserResponse(
-        id=current_user.id,
-        username=current_user.username,
-        email=current_user.email,
-        role=current_user.role,
-        is_active=current_user.is_active,
-        created_at=current_user.created_at
-    )
+    user_data = {
+        "id": str(current_user.id),
+        "username": current_user.username,
+        "email": current_user.email,
+        "role": current_user.role,
+        "is_active": current_user.is_active,
+        "created_at": current_user.created_at
+    }
+    return UserResponse(**user_data)
 
 
 @router.get("/health")

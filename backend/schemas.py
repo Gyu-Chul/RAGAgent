@@ -1,7 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional, List
 from datetime import datetime
-from uuid import UUID
 
 # 사용자 관련 스키마
 class UserBase(BaseModel):
@@ -16,7 +15,7 @@ class UserLogin(BaseModel):
     password: str
 
 class UserResponse(UserBase):
-    id: UUID
+    id: str
     role: str
     is_active: bool
     created_at: datetime
@@ -37,7 +36,7 @@ class TokenData(BaseModel):
 
 # 세션 관련 스키마
 class SessionResponse(BaseModel):
-    id: UUID
+    id: str
     session_token: str
     expires_at: datetime
     is_active: bool
@@ -56,8 +55,8 @@ class RepositoryCreate(RepositoryBase):
     pass
 
 class RepositoryResponse(RepositoryBase):
-    id: UUID
-    owner_id: UUID
+    id: str
+    owner_id: str
     stars: int
     language: Optional[str]
     status: str
@@ -73,9 +72,9 @@ class RepositoryResponse(RepositoryBase):
 
 # 저장소 멤버 관련 스키마
 class RepositoryMemberResponse(BaseModel):
-    id: UUID
-    repository_id: UUID
-    user_id: UUID
+    id: str
+    repository_id: str
+    user_id: str
     username: str
     email: str
     role: str
@@ -89,12 +88,12 @@ class ChatRoomBase(BaseModel):
     name: str
 
 class ChatRoomCreate(ChatRoomBase):
-    repository_id: UUID
+    repository_id: str
 
 class ChatRoomResponse(ChatRoomBase):
-    id: UUID
-    repository_id: UUID
-    created_by: UUID
+    id: str
+    repository_id: str
+    created_by: str
     message_count: int
     last_message: Optional[str]
     created_at: datetime
@@ -108,13 +107,13 @@ class ChatMessageBase(BaseModel):
     content: str
 
 class ChatMessageCreate(ChatMessageBase):
-    chat_room_id: UUID
+    chat_room_id: str
     sender_type: str = "user"
 
 class ChatMessageResponse(ChatMessageBase):
-    id: UUID
-    chat_room_id: UUID
-    sender_id: Optional[UUID]
+    id: str
+    chat_room_id: str
+    sender_id: Optional[str]
     sender_type: str
     sources: Optional[str]
     created_at: datetime
@@ -124,9 +123,9 @@ class ChatMessageResponse(ChatMessageBase):
 
 # 벡터 컬렉션 관련 스키마
 class VectorCollectionResponse(BaseModel):
-    id: UUID
+    id: str
     name: str
-    repository_id: UUID
+    repository_id: str
     description: Optional[str]
     entity_count: int
     dimension: int

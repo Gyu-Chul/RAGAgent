@@ -1,6 +1,5 @@
 # RAGIT
 
-Gateway-Backend 아키텍처 기반의 RAG (Retrieval-Augmented Generation) IT 시스템
 
 ## 프로젝트 구조
 

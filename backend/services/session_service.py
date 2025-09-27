@@ -19,7 +19,7 @@ class SessionService:
         session = UserSession(
             id=str(uuid.uuid4()),
             user_id=user_id,
-            token=token,
+            session_token=token,
             created_at=datetime.utcnow(),
             expires_at=datetime.utcnow() + timedelta(days=30),
             is_active=True
@@ -33,7 +33,7 @@ class SessionService:
     def get_session_by_token(self, db: Session, token: str) -> Optional[UserSession]:
         """토큰으로 세션 조회"""
         return db.query(UserSession).filter(
-            UserSession.token == token,
+            UserSession.session_token == token,
             UserSession.is_active == True,
             UserSession.expires_at > datetime.utcnow()
         ).first()
@@ -49,7 +49,7 @@ class SessionService:
     def invalidate_session(self, db: Session, token: str) -> bool:
         """세션 무효화"""
         try:
-            session = db.query(UserSession).filter(UserSession.token == token).first()
+            session = db.query(UserSession).filter(UserSession.session_token == token).first()
             if session:
                 session.is_active = False
                 db.commit()

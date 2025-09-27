@@ -50,13 +50,13 @@ class AuthenticationService:
             return None
 
         # 액세스 토큰 생성
-        access_token = default_token_service.create_access_token(user.id, user.username)
+        access_token = default_token_service.create_access_token(str(user.id), user.username)
 
         # 세션 생성
-        self._session_service.create_session(db, user.id, access_token)
+        self._session_service.create_session(db, str(user.id), access_token)
 
         # 마지막 로그인 시간 업데이트
-        self._user_service.update_last_login(db, user.id)
+        self._user_service.update_last_login(db, str(user.id))
 
         return user, access_token
 
