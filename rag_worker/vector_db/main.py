@@ -34,8 +34,18 @@ def main_menu():
         choice = input("원하는 작업의 번호를 입력하세요: ")
 
         if choice == '1':
-            name = input("생성할 컬렉션 이름 (기본값: langchain_default_collection): ") or config.DEFAULT_COLLECTION_NAME
-            db_utils.create_milvus_collection(name)
+            print("사용 가능한 모델 키:", ", ".join(config.EMBEDDING_MODELS.keys()))
+            model_key = input(f"사용할 모델 키를 입력하세요 (기본값: {config.DEFAULT_MODEL_KEY}): ") or config.DEFAULT_MODEL_KEY
+            
+            model_conf = config.EMBEDDING_MODELS.get(model_key)
+            if not model_conf:
+                print("❌ 잘못된 모델 키입니다.")
+                continue
+
+            collection_name = input(f"생성할 컬렉션 이름 (기본값: {model_key}_collection): ") or f"{model_key}_collection"
+            
+            # 선택된 모델의 dim 값을 직접 전달
+            db_utils.create_milvus_collection(collection_name, dim=model_conf["dim"])
         
         elif choice == '2':
             db_utils.list_milvus_collections()
@@ -48,25 +58,37 @@ def main_menu():
                 print("⚠️ 컬렉션 이름이 입력되지 않았습니다.")
 
         elif choice == '4':
-            c_name = input(f"임베딩할 컬렉션 이름 (기본값: {config.DEFAULT_COLLECTION_NAME}): ") or config.DEFAULT_COLLECTION_NAME
-            f_path = input(f"JSON 파일 경로 (기본값: {config.TEST_DATA_PATH}): ") or config.TEST_DATA_PATH
+            print("사용 가능한 모델 키:", ", ".join(config.EMBEDDING_MODELS.keys()))
+            model_key = input(f"사용할 모델 키를 입력하세요 (기본값: {config.DEFAULT_MODEL_KEY}): ") or config.DEFAULT_MODEL_KEY
             
-            inp = EmbeddingInput(json_path=f_path, collection_name=c_name)
+            collection_name = input(f"임베딩할 컬렉션 이름 (기본값: {model_key}_collection): ") or f"{model_key}_collection"
+            file_path = input(f"JSON 파일 경로 (기본값: {config.TEST_DATA_PATH}): ") or config.TEST_DATA_PATH
+
+            inp = EmbeddingInput(json_path=file_path, collection_name=collection_name, model_key=model_key)
             result = embedding_chain.invoke(inp)
-            print(result.get("message", result.get("error", "알 수 없는 오류")))
+            print(result.get("message", "오류 발생"))
 
         elif choice == '5':
-            c_name = input(f"검색할 컬렉션 이름 (기본값: {config.DEFAULT_COLLECTION_NAME}): ") or config.DEFAULT_COLLECTION_NAME
+            c_name = input(f"검색할 컬렉션 이름 (기본값: {config.DEFAULT_MODEL_KEY}_collection): ") or f"{config.DEFAULT_MODEL_KEY}_collection"
             query = input("검색어를 입력하세요: ")
             
+            # 👇 검색 모드 선택 UI 추가
+            print("--- 검색 모드 선택 ---")
+            print("1. 하이브리드 검색 (기본값)")
+            print("2. 벡터 검색")
+            print("3. BM25 검색")
+            mode_choice = input("선택: ")
+            
+            mode_map = {"1": "hybrid", "2": "vector", "3": "bm25"}
+            search_mode = mode_map.get(mode_choice, "hybrid")
+
             if query:
-                inp = SearchInput(query=query, collection_name=c_name)
+                inp = SearchInput(query=query, collection_name=c_name, search_mode=search_mode)
                 docs = search_chain.invoke(inp)
                 print("\n🔍 검색 결과:")
                 print(format_docs(docs))
             else:
                 print("⚠️ 검색어가 입력되지 않았습니다.")
-
         elif choice == '0':
             print("프로그램을 종료합니다.")
             break
