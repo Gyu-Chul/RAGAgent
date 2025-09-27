@@ -184,7 +184,7 @@ class RepositoryOptionsPage:
             danger_actions = [
                 ("Clear Vector Database", "Delete all vector embeddings and collections", self.clear_vectordb),
                 ("Reset Repository", "Remove all data and start fresh", self.reset_repository),
-                ("Delete Repository", "Permanently remove repository from RAG-AGENT", self.delete_repository)
+                ("Delete Repository", "Permanently remove repository from RAGIT", self.delete_repository)
             ]
 
             with ui.column().classes('gap-3'):

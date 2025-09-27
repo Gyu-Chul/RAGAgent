@@ -1,2 +1,0 @@
-nicegui==1.4.24
-requests>=2.31.0

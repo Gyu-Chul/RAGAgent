@@ -158,7 +158,7 @@ class DummyDataService:
                 "user_id": "1",
                 "username": "admin",
                 "role": "admin",
-                "email": "admin@ragagent.com",
+                "email": "admin@ragit.com",
                 "joined_at": datetime.now() - timedelta(days=30)
             },
             {
@@ -167,7 +167,7 @@ class DummyDataService:
                 "user_id": "2",
                 "username": "user",
                 "role": "member",
-                "email": "user@ragagent.com",
+                "email": "user@ragit.com",
                 "joined_at": datetime.now() - timedelta(days=25)
             },
             {
@@ -225,9 +225,9 @@ class DummyDataService:
     def get_user_active_chats_count(self, user_email: str) -> int:
         """Get the count of active chat rooms for a specific user"""
         user_repos = []
-        if user_email == "admin@ragagent.com":
+        if user_email == "admin@ragit.com":
             user_repos = ["1", "2", "3"]  # Admin has access to all repos
-        elif user_email == "user@ragagent.com":
+        elif user_email == "user@ragit.com":
             user_repos = ["1", "2"]  # Regular user has access to specific repos
         else:
             user_repos = ["1"]  # Default access
@@ -237,7 +237,7 @@ class DummyDataService:
 
     def get_user_recent_activity(self, user_email: str) -> List[Dict[str, Any]]:
         """Get user-specific recent activity"""
-        if user_email == "admin@ragagent.com":
+        if user_email == "admin@ragit.com":
             return [
                 {"type": "chat", "message": "New question in awesome-ml-project", "time": "2 min ago"},
                 {"type": "sync", "message": "microservices-api synchronized", "time": "1 hour ago"},

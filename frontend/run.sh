@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Starting RAG-AGENT Frontend..."
+echo "Starting RAGIT Frontend..."
 echo ""
 echo "Installing dependencies..."
 pip install -r requirements.txt

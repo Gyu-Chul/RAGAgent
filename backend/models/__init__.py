@@ -1,10 +1,13 @@
-from .user import User, UserSession, GUID
+from .types import GUID
+from .user import User
+from .session import UserSession
 from .repository import Repository, RepositoryMember
 from .chat import ChatRoom, ChatMessage
 from .vector import VectorCollection
 
 __all__ = [
-    "User", "UserSession", "GUID",
+    "GUID",
+    "User", "UserSession",
     "Repository", "RepositoryMember",
     "ChatRoom", "ChatMessage",
     "VectorCollection"

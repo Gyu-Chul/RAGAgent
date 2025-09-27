@@ -1,3 +1,9 @@
+"""
+RAGIT Frontend Main Application
+단일 책임: 애플리케이션 라우팅 및 초기화만 담당
+"""
+
+from typing import Any
 from nicegui import ui, app
 from src.services.auth_service import AuthService
 from src.services.navigation_service import NavigationService
@@ -14,18 +20,18 @@ auth_service = AuthService()
 nav_service = NavigationService()
 
 @ui.page('/')
-def index():
+def index() -> Any:
     if not auth_service.is_authenticated():
         return AuthPage(auth_service).render()
     else:
         return MainPage(auth_service).render()
 
 @ui.page('/login')
-def login():
+def login() -> Any:
     return AuthPage(auth_service, mode='login').render()
 
 @ui.page('/signup')
-def signup():
+def signup() -> Any:
     return AuthPage(auth_service, mode='signup').render()
 
 @ui.page('/main')
@@ -72,7 +78,7 @@ def chat(repo_id: str):
 def run_app():
     setup_theme()
     ui.run(
-        title="RAG-AGENT",
+        title="RAGIT",
         favicon="🤖",
         port=8000,
         show=False,

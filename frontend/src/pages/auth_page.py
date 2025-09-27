@@ -9,7 +9,7 @@ class AuthPage:
         with ui.row().classes('w-full h-screen items-center justify-center').style('background: linear-gradient(135deg, #667eea 0%, #764ba2 100%)'):
             with ui.card().classes('w-96 p-8'):
                 with ui.column().classes('w-full gap-6'):
-                    ui.html('<div class="text-center"><h1 class="text-3xl font-bold text-gray-800 mb-2">RAG-AGENT</h1><p class="text-gray-600">Transform GitHub repos into intelligent RAG systems</p></div>')
+                    ui.html('<div class="text-center"><h1 class="text-3xl font-bold text-gray-800 mb-2">RAGIT</h1><p class="text-gray-600">Transform GitHub repos into intelligent RAG systems</p></div>')
 
                     if self.mode == 'login':
                         self.render_login_form()
@@ -32,8 +32,8 @@ class AuthPage:
             ui.separator()
             with ui.card().classes('bg-blue-50 border border-blue-200 p-4'):
                 ui.label('Demo Accounts:').classes('font-semibold text-blue-800 mb-2')
-                ui.label('Admin: admin@ragagent.com / admin123').classes('text-sm text-blue-700')
-                ui.label('User: user@ragagent.com / user123').classes('text-sm text-blue-700')
+                ui.label('Admin: admin@ragit.com / admin123').classes('text-sm text-blue-700')
+                ui.label('User: user@ragit.com / user123').classes('text-sm text-blue-700')
 
     def render_signup_form(self):
         with ui.column().classes('w-full gap-4'):

@@ -1,3 +1,9 @@
+"""
+Gateway 인증 라우터
+단일 책임: 인증 요청을 백엔드로 프록시하는 역할만 담당
+"""
+
+from typing import Dict, Any
 from fastapi import APIRouter, HTTPException, status
 from schemas import LoginRequest, SignupRequest
 from services.proxy_service import BackendProxyService

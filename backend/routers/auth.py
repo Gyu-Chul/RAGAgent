@@ -1,77 +1,68 @@
+"""
+인증 관련 라우터
+단일 책임: HTTP 요청/응답 처리 및 서비스 호출만 담당
+"""
+
+from typing import Dict, Any
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
-from datetime import datetime, timedelta
-import uuid
 
-from app.core.database import get_db
-from app.models import User, UserSession
-from app.schemas import (
+from core.database import get_db
+from models import User
+from schemas import (
     UserCreate, UserLogin, UserResponse, LoginResponse,
     Token, APIResponse
 )
-from app.services.auth_service import AuthService, get_current_active_user
-from app.config import ACCESS_TOKEN_EXPIRE_MINUTES
+from services.auth_service import (
+    auth_service,
+    get_current_active_user
+)
+from config import ACCESS_TOKEN_EXPIRE_MINUTES
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
 
+
 @router.post("/signup", response_model=LoginResponse)
-async def signup(user_data: UserCreate, db: Session = Depends(get_db)):
+async def signup(user_data: UserCreate, db: Session = Depends(get_db)) -> LoginResponse:
     """사용자 회원가입"""
     try:
-        # 기존 사용자 확인
-        existing_user = db.query(User).filter(
-            (User.email == user_data.email) | (User.username == user_data.username)
-        ).first()
-
-        if existing_user:
-            if existing_user.email == user_data.email:
-                raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail="Email already registered"
-                )
-            else:
-                raise HTTPException(
-                    status_code=status.HTTP_400_BAD_REQUEST,
-                    detail="Username already taken"
-                )
-
-        # 새 사용자 생성
-        hashed_password = AuthService.get_password_hash(user_data.password)
-        new_user = User(
+        # 사용자 등록
+        user = auth_service.register_user(
+            db=db,
             username=user_data.username,
             email=user_data.email,
-            hashed_password=hashed_password,
-            role="user"
+            password=user_data.password
         )
 
-        db.add(new_user)
-        db.commit()
-        db.refresh(new_user)
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Email or username already exists"
+            )
 
-        # JWT 토큰 생성
-        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-        access_token = AuthService.create_access_token(
-            data={"sub": str(new_user.id), "username": new_user.username},
-            expires_delta=access_token_expires
-        )
-
-        # 세션 생성
-        session_expires = datetime.utcnow() + access_token_expires
-        AuthService.create_user_session(
+        # 자동 로그인
+        login_result = auth_service.login_user(
             db=db,
-            user_id=str(new_user.id),
-            session_token=access_token,
-            expires_at=session_expires
+            email=user_data.email,
+            password=user_data.password
         )
 
-        # 응답 데이터 구성
+        if not login_result:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Registration successful but auto-login failed"
+            )
+
+        user, access_token = login_result
+
+        # 응답 구성
         user_response = UserResponse(
-            id=new_user.id,
-            username=new_user.username,
-            email=new_user.email,
-            role=new_user.role,
-            is_active=new_user.is_active,
-            created_at=new_user.created_at
+            id=user.id,
+            username=user.username,
+            email=user.email,
+            role=user.role,
+            is_active=user.is_active,
+            created_at=user.created_at
         )
 
         token_response = Token(
@@ -96,22 +87,25 @@ async def signup(user_data: UserCreate, db: Session = Depends(get_db)):
             detail="Internal server error during signup"
         )
 
+
 @router.post("/login", response_model=LoginResponse)
-async def login(user_credentials: UserLogin, db: Session = Depends(get_db)):
+async def login(user_credentials: UserLogin, db: Session = Depends(get_db)) -> LoginResponse:
     """사용자 로그인"""
     try:
-        # 사용자 인증
-        user = AuthService.authenticate_user(
+        # 사용자 로그인
+        login_result = auth_service.login_user(
             db=db,
             email=user_credentials.email,
             password=user_credentials.password
         )
 
-        if not user:
+        if not login_result:
             raise HTTPException(
                 status_code=status.HTTP_401_UNAUTHORIZED,
                 detail="Incorrect email or password"
             )
+
+        user, access_token = login_result
 
         if not user.is_active:
             raise HTTPException(
@@ -119,23 +113,7 @@ async def login(user_credentials: UserLogin, db: Session = Depends(get_db)):
                 detail="User account is disabled"
             )
 
-        # JWT 토큰 생성
-        access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-        access_token = AuthService.create_access_token(
-            data={"sub": str(user.id), "username": user.username},
-            expires_delta=access_token_expires
-        )
-
-        # 세션 생성
-        session_expires = datetime.utcnow() + access_token_expires
-        AuthService.create_user_session(
-            db=db,
-            user_id=str(user.id),
-            session_token=access_token,
-            expires_at=session_expires
-        )
-
-        # 응답 데이터 구성
+        # 응답 구성
         user_response = UserResponse(
             id=user.id,
             username=user.username,
@@ -167,23 +145,33 @@ async def login(user_credentials: UserLogin, db: Session = Depends(get_db)):
             detail="Internal server error during login"
         )
 
+
 @router.post("/logout", response_model=APIResponse)
-async def logout(current_user: User = Depends(get_current_active_user), db: Session = Depends(get_db)):
+async def logout(
+    current_user: User = Depends(get_current_active_user),
+    db: Session = Depends(get_db)
+) -> APIResponse:
     """사용자 로그아웃"""
     try:
-        # 현재 활성 세션들을 모두 비활성화
-        db.query(UserSession).filter(
-            UserSession.user_id == current_user.id,
-            UserSession.is_active == True
-        ).update({"is_active": False})
+        # 현재 사용자의 모든 세션 무효화
+        success = auth_service._session_service.invalidate_all_user_sessions(
+            db=db,
+            user_id=str(current_user.id)
+        )
 
-        db.commit()
+        if not success:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail="Failed to logout"
+            )
 
         return APIResponse(
             success=True,
             message="Logged out successfully"
         )
 
+    except HTTPException:
+        raise
     except Exception as e:
         print(f"Logout error: {e}")
         raise HTTPException(
@@ -191,8 +179,11 @@ async def logout(current_user: User = Depends(get_current_active_user), db: Sess
             detail="Internal server error during logout"
         )
 
+
 @router.get("/me", response_model=UserResponse)
-async def get_current_user_info(current_user: User = Depends(get_current_active_user)):
+async def get_current_user_info(
+    current_user: User = Depends(get_current_active_user)
+) -> UserResponse:
     """현재 로그인한 사용자 정보 조회"""
     return UserResponse(
         id=current_user.id,
@@ -202,3 +193,12 @@ async def get_current_user_info(current_user: User = Depends(get_current_active_
         is_active=current_user.is_active,
         created_at=current_user.created_at
     )
+
+
+@router.get("/health")
+async def auth_health_check() -> Dict[str, str]:
+    """인증 서비스 헬스 체크"""
+    return {
+        "status": "healthy",
+        "service": "authentication"
+    }

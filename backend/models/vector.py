@@ -1,12 +1,23 @@
-from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
-from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
-from app.core.database import Base
-from app.models.user import GUID
-import uuid
+"""
+벡터 데이터베이스 모델 정의
+단일 책임: 벡터 컬렉션 관련 데이터베이스 모델만 담당
+"""
 
-# 벡터 컬렉션 테이블
+import uuid
+from typing import TYPE_CHECKING
+from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
+from sqlalchemy.orm import relationship, Mapped
+from sqlalchemy.sql import func
+
+from core.database import Base
+from models.types import GUID
+
+if TYPE_CHECKING:
+    from models.repository import Repository
+
+
 class VectorCollection(Base):
+    """벡터 컬렉션 모델"""
     __tablename__ = "vector_collections"
 
     id = Column(GUID(), primary_key=True, default=uuid.uuid4)
@@ -21,4 +32,7 @@ class VectorCollection(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
     # 관계 설정
-    repository = relationship("Repository", back_populates="vector_collections")
+    repository: Mapped["Repository"] = relationship("Repository", back_populates="vector_collections")
+
+    def __repr__(self) -> str:
+        return f"<VectorCollection(id={self.id}, name={self.name}, repository_id={self.repository_id}, status={self.status})>"

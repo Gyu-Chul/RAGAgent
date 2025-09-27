@@ -1,183 +1,175 @@
-from datetime import datetime, timedelta
+"""
+인증 서비스 - 리팩토링된 버전
+단일 책임: 사용자 인증 및 권한 관리 오케스트레이션
+"""
+
 from typing import Optional
-from jose import JWTError, jwt
-from passlib.context import CryptContext
 from sqlalchemy.orm import Session
 from fastapi import HTTPException, status, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-import uuid
-from uuid import UUID
 
-from app.models import User, UserSession
-from app.schemas import TokenData
-from app.config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
-from app.core.database import get_db
+from models import User
+from schemas import TokenData
+from core.database import get_db
+from services.password_service import default_password_service
+from services.token_service import default_token_service
+from services.user_service import UserService
+from services.session_service import SessionService
 
-# 패스워드 해싱 설정 (개발용 최적화)
-pwd_context = CryptContext(
-    schemes=["bcrypt"],
-    deprecated="auto",
-    bcrypt__rounds=4  # 기본 12에서 4로 감소 (개발용)
-)
 
 # HTTP Bearer 스키마
 security = HTTPBearer()
 
-class AuthService:
-    @staticmethod
-    def verify_password(plain_password: str, hashed_password: str) -> bool:
-        """패스워드 검증"""
-        return pwd_context.verify(plain_password, hashed_password)
 
-    @staticmethod
-    def get_password_hash(password: str) -> str:
-        """패스워드 해싱"""
-        return pwd_context.hash(password)
+class AuthenticationService:
+    """인증 서비스 - 인증 관련 오케스트레이션"""
 
-    @staticmethod
-    def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -> str:
-        """JWT 토큰 생성"""
-        to_encode = data.copy()
-        if expires_delta:
-            expire = datetime.utcnow() + expires_delta
-        else:
-            expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    def __init__(
+        self,
+        user_service: UserService,
+        session_service: SessionService
+    ) -> None:
+        self._user_service: UserService = user_service
+        self._session_service: SessionService = session_service
 
-        to_encode.update({"exp": expire})
-        encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-        return encoded_jwt
-
-    @staticmethod
-    def verify_token(token: str) -> Optional[TokenData]:
-        """JWT 토큰 검증"""
-        try:
-            payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-            user_id: str = payload.get("sub")
-            username: str = payload.get("username")
-
-            if user_id is None:
-                return None
-
-            token_data = TokenData(user_id=user_id, username=username)
-            return token_data
-        except JWTError:
+    def register_user(self, db: Session, username: str, email: str, password: str) -> Optional[User]:
+        """사용자 회원가입"""
+        # 중복 체크
+        if self._user_service.get_user_by_email(db, email):
             return None
 
-    @staticmethod
-    def authenticate_user(db: Session, email: str, password: str) -> Optional[User]:
-        """사용자 인증"""
-        user = db.query(User).filter(User.email == email).first()
+        if self._user_service.get_user_by_username(db, username):
+            return None
+
+        return self._user_service.create_user(db, username, email, password)
+
+    def login_user(self, db: Session, email: str, password: str) -> Optional[tuple[User, str]]:
+        """사용자 로그인"""
+        user = self._user_service.authenticate_user(db, email, password)
         if not user:
             return None
-        if not AuthService.verify_password(password, user.hashed_password):
+
+        # 액세스 토큰 생성
+        access_token = default_token_service.create_access_token(user.id, user.username)
+
+        # 세션 생성
+        self._session_service.create_session(db, user.id, access_token)
+
+        # 마지막 로그인 시간 업데이트
+        self._user_service.update_last_login(db, user.id)
+
+        return user, access_token
+
+    def logout_user(self, db: Session, token: str) -> bool:
+        """사용자 로그아웃"""
+        return self._session_service.invalidate_session(db, token)
+
+    def get_current_user_from_token(self, db: Session, token: str) -> Optional[User]:
+        """토큰으로부터 현재 사용자 조회"""
+        # 토큰 검증
+        token_data = default_token_service.verify_access_token(token)
+        if not token_data:
             return None
-        return user
 
-    @staticmethod
-    def create_user_session(db: Session, user_id: str, session_token: str, expires_at: datetime) -> UserSession:
-        """사용자 세션 생성"""
-        # user_id를 UUID 객체로 변환
-        if isinstance(user_id, str):
-            user_id = UUID(user_id)
+        # 세션 확인
+        session = self._session_service.get_session_by_token(db, token)
+        if not session:
+            return None
 
-        # 기존 활성 세션 비활성화
-        db.query(UserSession).filter(
-            UserSession.user_id == user_id,
-            UserSession.is_active == True
-        ).update({"is_active": False})
+        # 사용자 조회
+        return self._user_service.get_user_by_id(db, token_data.user_id)
 
-        # 새 세션 생성
-        session = UserSession(
-            user_id=user_id,
-            session_token=session_token,
-            expires_at=expires_at,
-            is_active=True
-        )
-        db.add(session)
-        db.commit()
-        db.refresh(session)
-        return session
 
-    @staticmethod
-    def get_active_session(db: Session, session_token: str) -> Optional[UserSession]:
-        """활성 세션 조회"""
-        session = db.query(UserSession).filter(
-            UserSession.session_token == session_token,
-            UserSession.is_active == True,
-            UserSession.expires_at > datetime.utcnow()
-        ).first()
+class AuthorizationService:
+    """권한 서비스 - 권한 확인 관련"""
 
-        if session:
-            # 마지막 활동 시간 업데이트
-            session.last_activity = datetime.utcnow()
-            db.commit()
+    def __init__(self, user_service: UserService) -> None:
+        self._user_service: UserService = user_service
 
-        return session
+    def is_admin(self, user: User) -> bool:
+        """관리자 권한 확인"""
+        return user.username == "admin"  # 임시 구현
 
-    @staticmethod
-    def invalidate_session(db: Session, session_token: str) -> bool:
-        """세션 무효화"""
-        session = db.query(UserSession).filter(
-            UserSession.session_token == session_token,
-            UserSession.is_active == True
-        ).first()
-
-        if session:
-            session.is_active = False
-            db.commit()
+    def can_access_resource(self, user: User, resource_id: str) -> bool:
+        """리소스 접근 권한 확인"""
+        # 관리자는 모든 리소스 접근 가능
+        if self.is_admin(user):
             return True
-        return False
 
-    @staticmethod
-    def cleanup_expired_sessions(db: Session):
-        """만료된 세션 정리"""
-        db.query(UserSession).filter(
-            UserSession.expires_at < datetime.utcnow()
-        ).update({"is_active": False})
-        db.commit()
+        # 일반 사용자 권한 로직
+        return True  # 임시로 모든 접근 허용
 
-# 의존성 주입을 위한 함수들
+
+# 서비스 인스턴스 생성 (의존성 주입용)
+user_service = UserService(default_password_service)
+session_service = SessionService()
+auth_service = AuthenticationService(user_service, session_service)
+authorization_service = AuthorizationService(user_service)
+
+
+# FastAPI 의존성 함수들
 async def get_current_user(
     credentials: HTTPAuthorizationCredentials = Depends(security),
     db: Session = Depends(get_db)
 ) -> User:
-    """현재 인증된 사용자 가져오기"""
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
-
+    """현재 사용자 조회 (FastAPI 의존성)"""
     token = credentials.credentials
-    token_data = AuthService.verify_token(token)
+    user = auth_service.get_current_user_from_token(db, token)
 
-    if token_data is None:
-        raise credentials_exception
-
-    # 세션 유효성 검사
-    session = AuthService.get_active_session(db, token)
-    if not session:
-        raise credentials_exception
-
-    # 사용자 조회
-    user_id = UUID(token_data.user_id) if isinstance(token_data.user_id, str) else token_data.user_id
-    user = db.query(User).filter(User.id == user_id).first()
-    if user is None:
-        raise credentials_exception
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid authentication credentials",
+            headers={"WWW-Authenticate": "Bearer"}
+        )
 
     return user
 
-async def get_current_active_user(current_user: User = Depends(get_current_user)) -> User:
-    """현재 활성 사용자 가져오기"""
+
+async def get_current_active_user(
+    current_user: User = Depends(get_current_user)
+) -> User:
+    """활성 사용자 조회 (FastAPI 의존성)"""
     if not current_user.is_active:
-        raise HTTPException(status_code=400, detail="Inactive user")
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Inactive user"
+        )
     return current_user
 
-async def get_admin_user(current_user: User = Depends(get_current_active_user)) -> User:
-    """관리자 권한 확인"""
-    if current_user.role != "admin":
+
+async def get_admin_user(
+    current_user: User = Depends(get_current_active_user)
+) -> User:
+    """관리자 사용자 조회 (FastAPI 의존성)"""
+    if not authorization_service.is_admin(current_user):
         raise HTTPException(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="Not enough permissions"
         )
     return current_user
+
+
+# 레거시 호환성을 위한 AuthService 클래스 (Deprecated)
+class AuthService:
+    """
+    레거시 호환성을 위한 AuthService 클래스
+    새 코드에서는 AuthenticationService와 AuthorizationService를 직접 사용하세요
+    """
+
+    @staticmethod
+    def verify_password(plain_password: str, hashed_password: str) -> bool:
+        """패스워드 검증 (Deprecated)"""
+        return default_password_service.verify_password(plain_password, hashed_password)
+
+    @staticmethod
+    def get_password_hash(password: str) -> str:
+        """패스워드 해싱 (Deprecated)"""
+        return default_password_service.create_password_hash(password)
+
+    @staticmethod
+    def create_access_token(data: dict, expires_delta=None) -> str:
+        """JWT 토큰 생성 (Deprecated)"""
+        user_id = data.get("sub", "")
+        username = data.get("username", "")
+        return default_token_service.create_access_token(user_id, username)

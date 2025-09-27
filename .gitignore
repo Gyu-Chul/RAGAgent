@@ -1,17 +1,22 @@
 *.pyc
 __pycache__/
-../.idea
 node_modules
 package-lock.json
 package.json
 
+# IDE and Editor files
+.idea/
+.vscode/
+.claude/
+
+# Virtual Environment
+.venv/
+env/
+venv/
+
+# Git Agent data
 git-agent/parsed_repository/
 git-agent/repository/
 
-
-.claude
-.venv
-.idea
-
-## Milvus Vector DB 데이터베이스의 실제 데이터
-milvus/volumes
+# Milvus Vector DB data
+milvus/volumes/

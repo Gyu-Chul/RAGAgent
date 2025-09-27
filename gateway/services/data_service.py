@@ -116,7 +116,7 @@ class DummyDataService:
                 "user_id": "1",
                 "username": "admin",
                 "role": "admin",
-                "email": "admin@ragagent.com",
+                "email": "admin@ragit.com",
                 "joined_at": datetime.now() - timedelta(days=30)
             }
         ]
@@ -125,7 +125,7 @@ class DummyDataService:
             {
                 "id": "1",
                 "username": "admin",
-                "email": "admin@ragagent.com",
+                "email": "admin@ragit.com",
                 "password": "admin123",
                 "role": "admin",
                 "created_at": datetime.now() - timedelta(days=30)

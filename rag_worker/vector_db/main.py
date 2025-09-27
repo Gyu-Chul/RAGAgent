@@ -1,10 +1,16 @@
+"""
+RAG Worker Vector Database Main Module
+단일 책임: 벡터 데이터베이스 메인 로직 처리
+"""
+
 import json
 import os
+from typing import List, Dict, Any
 import db_utils
 import config
 from chains import embedding_chain, search_chain, EmbeddingInput, SearchInput, format_docs
 
-def create_test_data_file():
+def create_test_data_file() -> None:
     """임베딩 테스트를 위한 샘플 JSON 파일을 생성합니다."""
     if not os.path.exists(config.TEST_DATA_PATH) or os.path.getsize(config.TEST_DATA_PATH) == 0:
         print(f"'{config.TEST_DATA_PATH}' 파일이 없거나 비어있어 새로 생성합니다.")

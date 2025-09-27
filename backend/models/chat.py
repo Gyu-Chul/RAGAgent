@@ -1,12 +1,24 @@
-from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
-from sqlalchemy.orm import relationship
-from sqlalchemy.sql import func
-from app.core.database import Base
-from app.models.user import GUID
-import uuid
+"""
+채팅 모델 정의
+단일 책임: 채팅룸 및 채팅 메시지 관련 데이터베이스 모델만 담당
+"""
 
-# 채팅룸 테이블
+import uuid
+from typing import List, Optional, TYPE_CHECKING
+from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
+from sqlalchemy.orm import relationship, Mapped
+from sqlalchemy.sql import func
+
+from core.database import Base
+from models.types import GUID
+
+if TYPE_CHECKING:
+    from models.repository import Repository
+    from models.user import User
+
+
 class ChatRoom(Base):
+    """채팅룸 모델"""
     __tablename__ = "chat_rooms"
 
     id = Column(GUID(), primary_key=True, default=uuid.uuid4)
@@ -19,11 +31,15 @@ class ChatRoom(Base):
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())
 
     # 관계 설정
-    repository = relationship("Repository", back_populates="chat_rooms")
-    messages = relationship("ChatMessage", back_populates="chat_room")
+    repository: Mapped["Repository"] = relationship("Repository", back_populates="chat_rooms")
+    messages: Mapped[List["ChatMessage"]] = relationship("ChatMessage", back_populates="chat_room", cascade="all, delete-orphan")
 
-# 채팅 메시지 테이블
+    def __repr__(self) -> str:
+        return f"<ChatRoom(id={self.id}, name={self.name}, repository_id={self.repository_id})>"
+
+
 class ChatMessage(Base):
+    """채팅 메시지 모델"""
     __tablename__ = "chat_messages"
 
     id = Column(GUID(), primary_key=True, default=uuid.uuid4)
@@ -35,4 +51,8 @@ class ChatMessage(Base):
     created_at = Column(DateTime(timezone=True), server_default=func.now())
 
     # 관계 설정
-    chat_room = relationship("ChatRoom", back_populates="messages")
+    chat_room: Mapped["ChatRoom"] = relationship("ChatRoom", back_populates="messages")
+    sender: Mapped[Optional["User"]] = relationship("User", foreign_keys=[sender_id])
+
+    def __repr__(self) -> str:
+        return f"<ChatMessage(id={self.id}, chat_room_id={self.chat_room_id}, sender_type={self.sender_type})>"

@@ -1,4 +1,4 @@
-# RAG-AGENT 프론트엔드
+# RAGIT 프론트엔드
 
 GitHub 저장소를 지능형 RAG 시스템으로 변환하는 웹 인터페이스
 
@@ -32,8 +32,8 @@ python main.py
 **중요**: Gateway 서버(`localhost:8080`)가 실행되어야 프론트엔드가 정상 작동합니다.
 
 ### 3. 데모 계정
-- **관리자**: `admin@ragagent.com` / `admin123`
-- **사용자**: `user@ragagent.com` / `user123`
+- **관리자**: `admin@ragit.com` / `admin123`
+- **사용자**: `user@ragit.com` / `user123`
 
 ## ✨ 주요 기능
 

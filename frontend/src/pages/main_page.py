@@ -69,7 +69,7 @@ class MainPage:
             ui.html('<h3 class="text-lg font-semibold mb-4">Quick Stats</h3>')
 
             user = self.auth_service.get_current_user()
-            user_email = user["email"] if user else "unknown@ragagent.com"
+            user_email = user["email"] if user else "unknown@ragit.com"
 
             stats = [
                 {"label": "Total Repositories", "value": "3", "emoji": "📁"},
@@ -91,7 +91,7 @@ class MainPage:
             ui.html('<h3 class="text-lg font-semibold mb-4">Recent Activity</h3>')
 
             user = self.auth_service.get_current_user()
-            user_email = user["email"] if user else "unknown@ragagent.com"
+            user_email = user["email"] if user else "unknown@ragit.com"
             try:
                 activities = self.api_service.get_user_recent_activity(user_email)
             except Exception as e:

@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.encoders import jsonable_encoder
+from typing import Dict, Any, List
 
 from config import CORS_ORIGINS
 from routers import auth
@@ -25,31 +26,31 @@ app.include_router(auth.router)
 data_service = DummyDataService()
 
 @app.get("/")
-async def root():
+async def root() -> Dict[str, str]:
     return {"message": "RAG Agent Gateway", "version": "1.0.0"}
 
 @app.get("/repositories")
-async def get_repositories():
+async def get_repositories() -> List[Dict[str, Any]]:
     repositories = data_service.get_repositories()
     return jsonable_encoder(repositories)
 
 @app.get("/repositories/{repository_id}/chat-rooms")
-async def get_chat_rooms(repository_id: str):
+async def get_chat_rooms(repository_id: str) -> List[Dict[str, Any]]:
     chat_rooms = data_service.get_chat_rooms(repository_id)
     return jsonable_encoder(chat_rooms)
 
 @app.get("/chat-rooms/{chat_room_id}/messages")
-async def get_messages(chat_room_id: str):
+async def get_messages(chat_room_id: str) -> List[Dict[str, Any]]:
     messages = data_service.get_messages(chat_room_id)
     return jsonable_encoder(messages)
 
 @app.get("/repositories/{repository_id}/vectordb/collections")
-async def get_vectordb_collections(repository_id: str):
+async def get_vectordb_collections(repository_id: str) -> List[Dict[str, Any]]:
     collections = data_service.get_vectordb_collections(repository_id)
     return jsonable_encoder(collections)
 
 @app.get("/repositories/{repository_id}/members")
-async def get_repository_members(repository_id: str):
+async def get_repository_members(repository_id: str) -> List[Dict[str, Any]]:
     members = data_service.get_repository_members(repository_id)
     return jsonable_encoder(members)
 

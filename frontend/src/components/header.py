@@ -7,7 +7,7 @@ class Header:
     def render(self):
         with ui.row().classes('rag-header w-full items-center justify-between'):
             with ui.row().classes('items-center gap-4'):
-                ui.button('🤖 RAG-AGENT', on_click=lambda: ui.navigate.to('/main')).style('color: white; background: transparent; border: none; font-size: 24px; font-weight: 700; padding: 8px; cursor: pointer;')
+                ui.button('🤖 RAGIT', on_click=lambda: ui.navigate.to('/main')).style('color: white; background: transparent; border: none; font-size: 24px; font-weight: 700; padding: 8px; cursor: pointer;')
 
             with ui.row().classes('items-center gap-4'):
                 user = self.auth_service.get_current_user()
