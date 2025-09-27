@@ -14,6 +14,6 @@ echo Installing dependencies...
 pip install -r requirements.txt
 
 echo Starting backend server on port 9000...
-python main.py
+uvicorn main:app --host 0.0.0.0 --port 9000 --reload
 
 pause
