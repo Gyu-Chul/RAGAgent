@@ -154,14 +154,11 @@ cp .env.example .env
 
 ### 4. 개발 서버 실행
 ```bash
-# 개별 서비스 실행
-uv run dev-backend     # 백엔드만
-uv run dev-frontend    # 프론트엔드만
-uv run dev-gateway     # 게이트웨이만
-uv run dev-rag-worker  # RAG 워커만
+# SDK CLI 사용 (권장)
+ragit start --mode dev
 
-# 또는 통합 실행
-python start.py
+# 또는 프로세스 매니저 직접 사용
+ragit-process start-all
 ```
 
 ## 🔧 개발 도구

@@ -84,8 +84,7 @@ line_length = 88
 # Main RAGIT CLI (SDK based)
 ragit = "ragit_sdk.cli:main"
 
-# Legacy compatibility (will be deprecated)
-ragit-legacy = "start:main"
+# Legacy compatibility is no longer needed as start.py/stop.py have been removed
 
 # Direct SDK access
 ragit-process = "ragit_sdk.process_manager:main"
