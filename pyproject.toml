@@ -43,6 +43,9 @@ dependencies = [
     "tzdata==2025.2",
     "vine==5.1.0",
     "wcwidth==0.2.13",
+
+    # SDK dependencies
+    "psutil>=5.9.0",
 ]
 requires-python = ">=3.11"
 readme = "README.md"
@@ -78,9 +81,18 @@ profile = "black"
 line_length = 88
 
 [project.scripts]
-start-all = "scripts.process_manager:start_all"
-stop-all = "scripts.process_manager:stop_all"
-backend = "scripts.process_manager:start_backend"
-frontend = "scripts.process_manager:start_frontend"
-gateway = "scripts.process_manager:start_gateway"
-rag-worker = "scripts.process_manager:start_rag_worker"
+# Main RAGIT CLI (SDK based)
+ragit = "ragit_sdk.cli:main"
+
+# Legacy compatibility (will be deprecated)
+ragit-legacy = "start:main"
+
+# Direct SDK access
+ragit-process = "ragit_sdk.process_manager:main"
+ragit-docker = "ragit_sdk.docker_manager:main"
+
+[project.urls]
+Homepage = "https://github.com/your-repo/RAGIT"
+Documentation = "https://github.com/your-repo/RAGIT/docs"
+Repository = "https://github.com/your-repo/RAGIT.git"
+Issues = "https://github.com/your-repo/RAGIT/issues"

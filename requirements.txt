@@ -1,0 +1,38 @@
+# Generated from pyproject.toml for pip compatibility
+# Backend dependencies
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+alembic==1.12.1
+pydantic==2.5.0
+python-multipart==0.0.6
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-decouple==3.8
+
+# Frontend dependencies
+nicegui==1.4.24
+requests>=2.31.0
+
+# Gateway dependencies
+httpx==0.25.2
+
+# Worker dependencies
+amqp==5.3.1
+billiard==4.2.1
+celery==5.5.3
+click==8.2.1
+click-didyoumean==0.3.1
+click-plugins==1.1.1.2
+click-repl==0.3.0
+colorama==0.4.6
+kombu==5.5.4
+packaging==25.0
+prompt-toolkit==3.0.52
+python-dateutil==2.9.0.post0
+redis==6.4.0
+six==1.17.0
+tzdata==2025.2
+vine==5.1.0
+wcwidth==0.2.13
