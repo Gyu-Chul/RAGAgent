@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir:*)",
+      "Bash(dir:*)",
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(pip uninstall:*)",
+      "Bash(taskkill:*)",
+      "Bash(git add:*)",
+      "Bash(git pull:*)",
+      "Bash(git push:*)",
+      "Bash(run.bat)",
+      "Bash(cmd:*)",
+      "Bash(curl:*)",
+      "Bash(tasklist)",
+      "Bash(findstr:*)",
+      "Bash(time curl:*)",
+      "Bash(git checkout:*)",
+      "Bash(rm:*)",
+      "Bash(git commit:*)",
+      "Bash(git log:*)",
+      "Bash(git reset:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
