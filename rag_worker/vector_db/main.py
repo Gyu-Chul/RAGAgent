@@ -2,7 +2,7 @@ import json
 import os
 import db_utils
 import config
-from chains import embedding_chain, search_chain, EmbeddingInput, SearchInput, format_docs
+from chains import embedding_chain, search_chain, EmbeddingInput, SearchInput
 
 def create_test_data_file():
     """임베딩 테스트를 위한 샘플 JSON 파일을 생성합니다."""
@@ -98,22 +98,17 @@ def main_menu():
         elif choice == '5':
             c_name = input(f"검색할 컬렉션 이름 (기본값: {config.DEFAULT_MODEL_KEY}_collection): ") or f"{config.DEFAULT_MODEL_KEY}_collection"
             query = input("검색어를 입력하세요: ")
-            
-            # 👇 검색 모드 선택 UI 추가
-            print("--- 검색 모드 선택 ---")
-            print("1. 하이브리드 검색 (기본값)")
-            print("2. 벡터 검색")
-            print("3. BM25 검색")
-            mode_choice = input("선택: ")
-            
-            mode_map = {"1": "hybrid", "2": "vector", "3": "bm25"}
-            search_mode = mode_map.get(mode_choice, "hybrid")
 
             if query:
-                inp = SearchInput(query=query, collection_name=c_name, search_mode=search_mode)
-                docs = search_chain.invoke(inp)
-                print("\n🔍 검색 결과:")
-                print(format_docs(docs))
+                inp = SearchInput(query=query, collection_name=c_name)
+                
+                results = search_chain.invoke(inp)  # 바로 JSON 구조로 저장
+                
+                print("\n🔍 검색 결과 (JSON):")
+                if not results:
+                    print("검색 결과가 없습니다.")
+                else:
+                    print(json.dumps(results, indent=2, ensure_ascii=False))
             else:
                 print("⚠️ 검색어가 입력되지 않았습니다.")
 
