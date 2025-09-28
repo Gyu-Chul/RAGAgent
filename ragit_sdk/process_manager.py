@@ -469,15 +469,215 @@ class SystemOrchestrator:
         self.logger.info(f"   Gateway:   http://localhost:{self.config.gateway_port}")
 
     def monitor_services(self) -> None:
-        """서비스 모니터링 모드"""
+        """서비스 모니터링 모드 - 날짜별 로그 파일 실시간 모니터링"""
         self.logger.info("👀 Starting service monitoring (Ctrl+C to stop)")
+        self.logger.info("📋 Real-time log monitoring and health check...")
+
+        import threading
+        import socket
+        import time
+        from pathlib import Path
+        from datetime import datetime
+
+        stop_monitoring = threading.Event()
+        log_base_dir = Path("logs")
+        today = datetime.now().strftime("%Y-%m-%d")
+        today_log_dir = log_base_dir / today
+
+        def find_latest_log_file(service_name: str) -> Optional[Path]:
+            """서비스의 최신 로그 파일 찾기"""
+            if not today_log_dir.exists():
+                return None
+
+            # 오늘 날짜의 해당 서비스 로그 파일들 중 가장 최신 것 찾기
+            pattern = f"{service_name}_*.log"
+            log_files = list(today_log_dir.glob(pattern))
+
+            if not log_files:
+                return None
+
+            # 파일 수정 시간 기준으로 정렬하여 가장 최신 파일 반환
+            return max(log_files, key=lambda f: f.stat().st_mtime)
+
+        def tail_log_file(service_name: str, log_file: Path) -> None:
+            """로그 파일을 실시간으로 tail"""
+            if not log_file.exists():
+                self.logger.warning(f"Log file not found: {log_file}")
+                return
+
+            try:
+                # 파일 끝으로 이동
+                with open(log_file, 'r', encoding='utf-8') as f:
+                    f.seek(0, 2)  # 파일 끝으로 이동
+
+                    while not stop_monitoring.is_set():
+                        line = f.readline()
+                        if line:
+                            # 로그 라인에서 타임스탬프와 서비스명이 이미 포함되어 있으므로 그대로 출력
+                            print(line.strip())
+                        else:
+                            time.sleep(0.1)
+
+            except Exception as e:
+                self.logger.error(f"Error tailing {service_name} log: {e}")
+
+        # 로그 파일 tailing 스레드들
+        log_threads = []
+        service_names = ['backend', 'frontend', 'gateway', 'rag_worker']
+
+        # 각 서비스별 최신 로그 파일 찾아서 모니터링 시작
+        for service_name in service_names:
+            if self.controller.is_service_running(service_name):
+                log_file = find_latest_log_file(service_name)
+                if log_file:
+                    self.logger.info(f"📄 Monitoring {service_name} log: {log_file}")
+                    thread = threading.Thread(
+                        target=tail_log_file,
+                        args=(service_name, log_file),
+                        daemon=True
+                    )
+                    thread.start()
+                    log_threads.append((service_name, thread))
+                else:
+                    self.logger.warning(f"⚠️  No log file found for {service_name}")
+            else:
+                self.logger.warning(f"⛔ Service {service_name} is not running")
+
+        def check_service_health(service_name: str) -> dict:
+            """서비스 헬스체크"""
+            result = {
+                'name': service_name,
+                'running': self.controller.is_service_running(service_name),
+                'port_open': False,
+                'response_time': None,
+                'error': None
+            }
+
+            if service_name == 'rag_worker':
+                # rag_worker는 포트 기반 체크가 아님
+                return result
+
+            port_map = {
+                'backend': self.config.backend_port,
+                'frontend': self.config.frontend_port,
+                'gateway': self.config.gateway_port
+            }
+
+            port = port_map.get(service_name)
+            if port and result['running']:
+                try:
+                    start_time = time.time()
+                    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                        sock.settimeout(3)
+                        result_code = sock.connect_ex(('localhost', port))
+                        result['port_open'] = (result_code == 0)
+                        result['response_time'] = round((time.time() - start_time) * 1000, 2)
+                except Exception as e:
+                    result['error'] = str(e)
+
+            return result
+
+        def show_detailed_status() -> None:
+            """상세 상태 표시"""
+            self.logger.info("=" * 80)
+            self.logger.info("📊 Detailed Service Status:")
+
+            services = ['backend', 'frontend', 'gateway', 'rag_worker']
+            health_results = []
+
+            for service_name in services:
+                health = check_service_health(service_name)
+                health_results.append(health)
+
+                status_icon = "✅" if health['running'] else "❌"
+                status_text = "RUNNING" if health['running'] else "STOPPED"
+
+                if service_name == 'rag_worker':
+                    self.logger.info(f"   {status_icon} {service_name.upper():<12} {status_text}")
+                else:
+                    port = getattr(self.config, f"{service_name}_port", "N/A")
+                    port_status = "🟢" if health['port_open'] else "🔴" if health['running'] else "⚫"
+                    response_info = f" ({health['response_time']}ms)" if health['response_time'] else ""
+
+                    self.logger.info(
+                        f"   {status_icon} {service_name.upper():<12} {status_text:<8} "
+                        f"Port:{port} {port_status}{response_info}"
+                    )
+
+                    if health['error']:
+                        self.logger.warning(f"      ⚠️  Connection error: {health['error']}")
+
+            # 전체 시스템 상태 요약
+            running_count = sum(1 for h in health_results if h['running'])
+            total_count = len(services)
+
+            if running_count == total_count:
+                system_status = "🟢 All Systems Operational"
+            elif running_count > 0:
+                system_status = f"🟡 Partial System ({running_count}/{total_count} services running)"
+            else:
+                system_status = "🔴 System Down"
+
+            self.logger.info(f"\n   🔧 System Status: {system_status}")
+            self.logger.info(f"   📈 Uptime Check: {time.strftime('%Y-%m-%d %H:%M:%S')}")
+            self.logger.info("=" * 80)
+
+        # 초기 상태 표시
+        show_detailed_status()
+
+        # 상태 체크 스레드
+        def periodic_health_check() -> None:
+            """주기적 헬스체크"""
+            check_interval = 30  # 30초마다 체크
+            last_check = time.time()
+
+            while not stop_monitoring.is_set():
+                current_time = time.time()
+
+                if current_time - last_check >= check_interval:
+                    print("\n" + "="*80)
+                    print("📊 Health Check Update:")
+
+                    for service_name in ['backend', 'frontend', 'gateway', 'rag_worker']:
+                        health = check_service_health(service_name)
+                        status_icon = "✅" if health['running'] else "❌"
+                        status_text = "RUNNING" if health['running'] else "STOPPED"
+
+                        if service_name == 'rag_worker':
+                            print(f"   {status_icon} {service_name.upper():<12} {status_text}")
+                        else:
+                            port = getattr(self.config, f"{service_name}_port", "N/A")
+                            port_status = "🟢" if health['port_open'] else "🔴" if health['running'] else "⚫"
+                            response_info = f" ({health['response_time']}ms)" if health['response_time'] else ""
+                            print(f"   {status_icon} {service_name.upper():<12} {status_text:<8} Port:{port} {port_status}{response_info}")
+
+                    print("="*80 + "\n")
+                    last_check = current_time
+
+                time.sleep(5)
+
+        # 헬스체크 스레드 시작
+        health_thread = threading.Thread(target=periodic_health_check, daemon=True)
+        health_thread.start()
+
+        self.logger.info("📈 Real-time log streaming started...")
+        self.logger.info("💡 Health checks every 30 seconds, logs are streamed in real-time")
 
         try:
+            # 메인 루프 - 로그 모니터링이 스레드에서 실행되므로 단순히 대기
             while True:
-                self.show_status()
-                time.sleep(10)
+                time.sleep(1)
+
         except KeyboardInterrupt:
-            self.logger.info("Monitoring stopped")
+            print("\n🛑 Stopping monitoring...")
+            stop_monitoring.set()
+
+            # 모든 스레드가 종료될 때까지 잠시 대기
+            for service_name, thread in log_threads:
+                thread.join(timeout=1)
+
+            health_thread.join(timeout=1)
+            print("✅ Monitoring stopped - Services remain running")
 
 
 class SignalHandler:

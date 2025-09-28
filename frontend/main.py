@@ -2,8 +2,47 @@
 RAGIT Frontend Main Application
 """
 
+import logging
+from pathlib import Path
 from typing import Any
 from nicegui import ui, app
+
+# 프론트엔드 로깅 설정
+def setup_logging() -> None:
+    """프론트엔드 프로세스 자체 로그 캡처를 위한 설정"""
+    from datetime import datetime
+
+    # 현재 날짜로 디렉토리 생성
+    today = datetime.now().strftime("%Y-%m-%d")
+    log_dir = Path("logs") / today
+    log_dir.mkdir(parents=True, exist_ok=True)
+
+    # 로그 파일 경로
+    log_file = log_dir / f"frontend_{datetime.now().strftime('%H-%M-%S')}.log"
+
+    # NiceGUI와 uvicorn 자체 로그를 파일로 리다이렉트
+    file_handler = logging.FileHandler(log_file, encoding='utf-8')
+    file_handler.setLevel(logging.INFO)
+
+    # 기본 포맷 (프로세스 자체 로그 유지)
+    formatter = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
+    file_handler.setFormatter(formatter)
+
+    # 루트 로거에 파일 핸들러 추가 (모든 로그를 파일로)
+    root_logger = logging.getLogger()
+    root_logger.setLevel(logging.INFO)
+    root_logger.addHandler(file_handler)
+
+    # NiceGUI 로거에 파일 핸들러 추가
+    nicegui_logger = logging.getLogger("nicegui")
+    nicegui_logger.addHandler(file_handler)
+
+    # uvicorn 로거에 파일 핸들러 추가 (NiceGUI가 uvicorn 사용)
+    uvicorn_logger = logging.getLogger("uvicorn")
+    uvicorn_logger.addHandler(file_handler)
+
+# 로깅 초기화
+setup_logging()
 from src.services.auth_service import AuthService
 from src.services.navigation_service import NavigationService
 from src.pages.auth_page import AuthPage
