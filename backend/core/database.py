@@ -4,7 +4,14 @@ from sqlalchemy.orm import sessionmaker
 from ..config import DATABASE_URL
 
 # SQLAlchemy 엔진 생성
-engine = create_engine(DATABASE_URL)
+engine = create_engine(
+    DATABASE_URL,
+    connect_args={
+        "client_encoding": "utf8",
+        "application_name": "ragit_backend"
+    },
+    echo=False
+)
 
 # 세션 로컬 클래스 생성
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
@@ -30,14 +37,18 @@ def init_db():
     """데이터베이스를 초기화합니다."""
     print("데이터베이스 초기화 중...")
 
-    # UUID 확장 모듈 활성화
-    with engine.connect() as conn:
-        try:
-            conn.execute(text("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";"))
-            conn.commit()
-            print("UUID 확장 모듈 활성화 완료")
-        except Exception as e:
-            print(f"UUID 확장 모듈 활성화 중 오류: {e}")
+    try:
+        # UUID 확장 모듈 활성화 (선택적)
+        with engine.connect() as conn:
+            try:
+                conn.execute(text("CREATE EXTENSION IF NOT EXISTS \"uuid-ossp\";"))
+                conn.commit()
+                print("UUID 확장 모듈 활성화 완료")
+            except Exception as e:
+                print(f"UUID 확장 모듈 활성화 중 오류: {e}")
 
-    create_tables()
-    print("데이터베이스 초기화 완료!")
+        create_tables()
+        print("데이터베이스 초기화 완료!")
+    except Exception as e:
+        print(f"데이터베이스 초기화 중 오류 발생: {e}")
+        print("데이터베이스 없이 계속 진행합니다...")

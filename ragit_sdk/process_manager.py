@@ -118,32 +118,138 @@ class ServiceController:
 
     def stop_service(self, service_name: str) -> bool:
         """개별 서비스 종료"""
-        if service_name not in self.processes:
-            self.logger.warning(f"{service_name} is not running")
-            return True
-
-        process = self.processes[service_name]
         log_service_stop(service_name)
 
-        try:
-            # 정상 종료 시도
-            process.terminate()
-
-            # 5초 대기
+        # 메모리상의 프로세스가 있으면 그것을 종료
+        if service_name in self.processes:
+            process = self.processes[service_name]
             try:
-                process.wait(timeout=5)
-                self.logger.info(f"✅ {service_name} terminated gracefully")
-            except subprocess.TimeoutExpired:
-                # 강제 종료
-                process.kill()
-                process.wait()
-                self.logger.warning(f"⚠️ {service_name} force killed")
+                # 정상 종료 시도
+                process.terminate()
 
-            del self.processes[service_name]
+                # 5초 대기
+                try:
+                    process.wait(timeout=5)
+                    self.logger.info(f"✅ {service_name} terminated gracefully")
+                except subprocess.TimeoutExpired:
+                    # 강제 종료
+                    process.kill()
+                    process.wait()
+                    self.logger.warning(f"⚠️ {service_name} force killed")
+
+                del self.processes[service_name]
+                return True
+
+            except Exception as e:
+                log_service_error("controller", f"Error stopping {service_name}: {e}")
+                return False
+
+        # 메모리에 없으면 포트 기반으로 프로세스 찾아서 종료
+        return self._stop_service_by_port(service_name)
+
+    def _stop_service_by_port(self, service_name: str) -> bool:
+        """포트 기반으로 서비스 프로세스 찾아서 종료"""
+        port_map = {
+            'backend': self.config.backend_port,
+            'frontend': self.config.frontend_port,
+            'gateway': self.config.gateway_port,
+            'rag_worker': None
+        }
+
+        port = port_map.get(service_name)
+        if port is None:
+            # rag_worker의 경우 celery 프로세스를 찾아서 종료
+            if service_name == 'rag_worker':
+                return self._stop_celery_processes()
             return True
 
+        try:
+            import psutil
+
+            # 포트를 사용하는 프로세스 찾기
+            for proc in psutil.process_iter(['pid', 'name']):
+                try:
+                    connections = proc.connections(kind='inet')
+                    for conn in connections:
+                        if (conn.laddr.port == port and
+                            conn.status == psutil.CONN_LISTEN):
+                            proc.terminate()
+                            try:
+                                proc.wait(timeout=5)
+                                self.logger.info(f"✅ {service_name} terminated gracefully")
+                            except psutil.TimeoutExpired:
+                                proc.kill()
+                                self.logger.warning(f"⚠️ {service_name} force killed")
+                            return True
+                except (psutil.NoSuchProcess, psutil.AccessDenied, psutil.ZombieProcess):
+                    continue
+
+            self.logger.warning(f"{service_name} process not found on port {port}")
+            return True
+
+        except ImportError:
+            # psutil이 없으면 netstat으로 PID 찾기
+            return self._stop_service_by_netstat(service_name, port)
+
+    def _stop_celery_processes(self) -> bool:
+        """Celery 프로세스 종료"""
+        try:
+            import psutil
+
+            for proc in psutil.process_iter(['pid', 'name', 'cmdline']):
+                try:
+                    cmdline_list = proc.info['cmdline']
+                    if cmdline_list is None:
+                        continue
+                    cmdline = ' '.join(cmdline_list)
+                    if 'celery' in cmdline and 'rag_worker' in cmdline:
+                        proc.terminate()
+                        try:
+                            proc.wait(timeout=5)
+                            self.logger.info(f"✅ rag_worker terminated gracefully")
+                        except psutil.TimeoutExpired:
+                            proc.kill()
+                            self.logger.warning(f"⚠️ rag_worker force killed")
+                        return True
+                except (psutil.NoSuchProcess, psutil.AccessDenied, TypeError):
+                    continue
+
+            return True
+        except ImportError:
+            self.logger.warning("psutil not available, cannot stop rag_worker")
+            return True
+
+    def _stop_service_by_netstat(self, service_name: str, port: int) -> bool:
+        """netstat을 사용해서 프로세스 종료 (Windows)"""
+        try:
+            import subprocess
+            import os
+
+            # netstat으로 포트 사용 프로세스 찾기
+            result = subprocess.run(
+                ['netstat', '-ano'],
+                capture_output=True,
+                text=True,
+                shell=True
+            )
+
+            for line in result.stdout.splitlines():
+                if f':{port}' in line and 'LISTENING' in line:
+                    parts = line.split()
+                    if len(parts) >= 5:
+                        pid = parts[-1]
+                        try:
+                            # 프로세스 종료
+                            subprocess.run(['taskkill', '/PID', pid, '/F'],
+                                         shell=True, capture_output=True)
+                            self.logger.info(f"✅ {service_name} (PID: {pid}) terminated")
+                            return True
+                        except Exception as e:
+                            self.logger.error(f"Failed to kill PID {pid}: {e}")
+
+            return True
         except Exception as e:
-            log_service_error("controller", f"Error stopping {service_name}: {e}")
+            self.logger.error(f"Error stopping {service_name} by netstat: {e}")
             return False
 
     def restart_service(self, service_name: str) -> bool:
@@ -156,8 +262,87 @@ class ServiceController:
 
     def is_service_running(self, service_name: str) -> bool:
         """서비스 실행 상태 확인"""
-        return (service_name in self.processes and
-                self.processes[service_name].poll() is None)
+        # 먼저 메모리상의 프로세스 확인
+        if (service_name in self.processes and
+                self.processes[service_name].poll() is None):
+            return True
+
+        # 메모리에 없으면 포트 기반으로 확인
+        import socket
+
+        port_map = {
+            'backend': self.config.backend_port,
+            'frontend': self.config.frontend_port,
+            'gateway': self.config.gateway_port,
+            'rag_worker': None  # rag_worker는 포트를 사용하지 않음
+        }
+
+        port = port_map.get(service_name)
+        if port is None:
+            # rag_worker의 경우 celery 프로세스 확인
+            if service_name == 'rag_worker':
+                return self._is_celery_running()
+            return False
+
+        try:
+            with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
+                sock.settimeout(1)
+                result = sock.connect_ex(('localhost', port))
+                return result == 0
+        except Exception:
+            return False
+
+    def _is_celery_running(self) -> bool:
+        """Celery 프로세스 실행 상태 확인"""
+        try:
+            import psutil
+
+            for proc in psutil.process_iter(['pid', 'name', 'cmdline']):
+                try:
+                    cmdline_list = proc.info['cmdline']
+                    if cmdline_list is None:
+                        continue
+                    cmdline = ' '.join(cmdline_list)
+                    if ('celery' in cmdline and 'rag_worker' in cmdline and
+                        'worker' in cmdline):
+                        return True
+                except (psutil.NoSuchProcess, psutil.AccessDenied, TypeError):
+                    continue
+
+            return False
+        except ImportError:
+            # psutil이 없으면 tasklist로 확인 (Windows)
+            return self._is_celery_running_by_tasklist()
+
+    def _is_celery_running_by_tasklist(self) -> bool:
+        """tasklist를 사용해서 celery 프로세스 확인 (Windows)"""
+        try:
+            import subprocess
+
+            result = subprocess.run(
+                ['tasklist', '/FI', 'IMAGENAME eq python.exe', '/FO', 'CSV'],
+                capture_output=True,
+                text=True,
+                shell=True
+            )
+
+            # python.exe 프로세스들 중에서 celery와 rag_worker가 포함된 것 찾기
+            if 'python.exe' in result.stdout:
+                # 좀 더 정확한 확인을 위해 wmic 사용
+                wmic_result = subprocess.run(
+                    ['wmic', 'process', 'where', 'name="python.exe"', 'get', 'CommandLine', '/format:csv'],
+                    capture_output=True,
+                    text=True,
+                    shell=True
+                )
+
+                for line in wmic_result.stdout.splitlines():
+                    if 'celery' in line and 'rag_worker' in line and 'worker' in line:
+                        return True
+
+            return False
+        except Exception:
+            return False
 
     def get_service_pid(self, service_name: str) -> Optional[int]:
         """서비스 PID 반환"""

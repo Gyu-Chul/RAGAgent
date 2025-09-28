@@ -5,7 +5,7 @@ RAGIT SDK - RAG with Gateway-Backend Architecture Software Development Kit
 """
 
 __version__ = "0.1.0"
-__author__ = "RAGIT Team"
+__author__ = "GyuChul Team"
 
 from .cli import main
 from .config import RagitConfig

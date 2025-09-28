@@ -56,25 +56,25 @@ class RagitConfig:
         # 서비스 실행 명령어
         self.service_commands: Dict[str, Dict[str, Any]] = {
             "backend": {
-                "cmd": ["python", "-m", "uvicorn", "backend.main:app",
+                "cmd": ["uv", "run", "python", "-m", "uvicorn", "backend.main:app",
                        "--host", "0.0.0.0", "--port", str(self.backend_port)],
                 "cwd": self.work_dir,
                 "env": self._get_backend_env()
             },
             "frontend": {
-                "cmd": ["python", "-m", "frontend.main"],
+                "cmd": ["uv", "run", "python", "-m", "frontend.main"],
                 "cwd": self.work_dir,
                 "env": self._get_frontend_env()
             },
             "gateway": {
-                "cmd": ["python", "-m", "gateway.main"],
+                "cmd": ["uv", "run", "python", "-m", "gateway.main"],
                 "cwd": self.work_dir,
                 "env": self._get_gateway_env()
             },
             "rag_worker": {
-                "cmd": ["python", "-m", "celery", "-A", "rag_worker.celery_app", "worker",
+                "cmd": ["uv", "run", "python", "-m", "celery", "-A", "rag_worker.celery_app", "worker",
                        "--loglevel=info", "--pool=solo"] if os.name == 'nt'
-                       else ["python", "-m", "celery", "-A", "rag_worker.celery_app", "worker",
+                       else ["uv", "run", "python", "-m", "celery", "-A", "rag_worker.celery_app", "worker",
                             "--loglevel=info"],
                 "cwd": self.work_dir,
                 "env": self._get_rag_worker_env()
@@ -109,11 +109,19 @@ class RagitConfig:
     def _get_frontend_env(self) -> Dict[str, str]:
         """Frontend 서비스 환경변수"""
         env = self._get_base_env()
+        frontend_path = str(self.work_dir / "frontend")
+        current_pythonpath = env.get("PYTHONPATH", "")
+        if current_pythonpath:
+            pythonpath = f"{frontend_path};{current_pythonpath}"
+        else:
+            pythonpath = frontend_path
+
         env.update({
             "SERVICE_NAME": "frontend",
             "PORT": str(self.frontend_port),
             "GATEWAY_URL": f"http://localhost:{self.gateway_port}",
-            "BACKEND_URL": f"http://localhost:{self.backend_port}"
+            "BACKEND_URL": f"http://localhost:{self.backend_port}",
+            "PYTHONPATH": pythonpath
         })
         return env
 

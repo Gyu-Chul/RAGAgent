@@ -1,6 +1,5 @@
 """
 RAGIT Frontend Main Application
-단일 책임: 애플리케이션 라우팅 및 초기화만 담당
 """
 
 from typing import Any
