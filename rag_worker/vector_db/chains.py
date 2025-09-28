@@ -121,73 +121,187 @@ class SearchInput(BaseModel):
     model_key: str = Field(default=config.DEFAULT_MODEL_KEY)
     top_k: int = 3
 
-def get_all_docs_from_collection(collection_name: str) -> List[str]:
-    """Milvus 컬렉션에서 모든 'text' 필드 문서를 가져옵니다. (BM25 인덱싱용)"""
-    if not client.has_collection(collection_name):
-        return []
-    # Milvus는 모든 데이터를 한 번에 가져오는 직접적인 방법이 제한적이므로
-    # 여기서는 ID를 기반으로 반복 조회하는 방식을 사용합니다.
-    # 대규모 데이터셋에서는 이 부분을 최적화해야 합니다.
-    try:
-        # 컬렉션의 엔티티 수를 먼저 확인
-        count = client.get_collection_stats(collection_name).get("row_count", 0)
-        # 모든 ID를 조회하여 데이터를 가져옴
-        results = client.query(
-            collection_name=collection_name,
-            filter="",
-            output_fields=["text"],
-            limit=int(count) if count > 0 else 10000 # count가 0일 경우 대비
-        )
-        return [res["text"] for res in results]
-    except Exception as e:
-        print(f"컬렉션 문서 조회 중 오류: {e}")
-        return []
+def reciprocal_rank_fusion(results: List[List[Document]], k: int = 60) -> List[Document]:
+    """Reciprocal Rank Fusion (RRF) 알고리즘을 사용하여 여러 검색 결과를 조합합니다."""
+    fused_scores = {}
+    for docs in results:
+        for rank, doc in enumerate(docs):
+            doc_content = doc.page_content # Document 객체의 내용을 키로 사용
+            if doc_content not in fused_scores:
+                fused_scores[doc_content] = {"score": 0, "doc": doc}
+            fused_scores[doc_content]["score"] += 1 / (rank + k)
+
+    reranked_results = sorted(fused_scores.values(), key=lambda x: x["score"], reverse=True)
+    return [item["doc"] for item in reranked_results]
+
 
 def _search_process(input_data: SearchInput) -> List[Document]:
-    print(f"\n▶️ 네이티브 검색 시작: [Mode: {input_data.search_mode}]")
+    print(f"\n▶️ 하이브리드 검색 시작 (수동 방식): [Mode: {input_data.search_mode}]")
     
+    collection_name = input_data.collection_name
+    query = input_data.query
+    top_k = input_data.top_k
+    
+    # --- 1. 밀집/희소 벡터 생성을 위한 모델 준비 ---
     model_config = config.EMBEDDING_MODELS[input_data.model_key]
-    embeddings = HuggingFaceEmbeddings(
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    
+    dense_embedder = HuggingFaceEmbeddings(
         model_name=model_config["model_name"],
-        model_kwargs=model_config["kwargs"],
+        model_kwargs={'device': device, 'trust_remote_code': True},
         encode_kwargs={"normalize_embeddings": True}
     )
-    
-    vector_store = Milvus(
-        embedding_function=embeddings,
-        collection_name=input_data.collection_name,
-        connection_args={"uri": config.MILVUS_URI},
-        vector_field="dense_vector",
-        sparse_vector_field="sparse_vector",
-        text_field="text",
-        primary_field="pk"
-    )
-    
-    # --- 👇 search_type을 이용해 네이티브 검색 모드 제어 ---
-    search_type_map = {
-        "hybrid": "hybrid",
-        "vector": "similarity",
-        "bm25": "sparse"
-    }
-    stype = search_type_map.get(input_data.search_mode, "hybrid")
-    
-    retriever = vector_store.as_retriever(
-        search_type=stype,
-        search_kwargs={"k": input_data.top_k}
-    )
-    
-    return retriever.invoke(input_data.query)
 
-def format_docs(docs: List[Any]) -> str:
-    """검색 결과를 사람이 보기 좋은 형태로 포맷팅"""
+    # --- 2. 검색 모드에 따른 분기 처리 ---
+    
+    # 2-1. 밀집 벡터 검색 (Dense Search)
+    if input_data.search_mode in ["dense", "hybrid"]:
+        print("  - 밀집 벡터로 의미 검색 실행...")
+        query_dense_vector = dense_embedder.embed_query(query)
+        
+        dense_search_params = {"metric_type": "COSINE", "params": {"ef": 128}}
+        dense_results = client.search(
+            collection_name=collection_name,
+            data=[query_dense_vector],
+            anns_field="dense", # 스키마 필드명
+            limit=top_k,
+            search_params=dense_search_params,
+            output_fields=["*"] # 모든 메타데이터 포함
+        )
+    
+    # 2-2. 희소 벡터 검색 (Sparse Search)
+    if input_data.search_mode in ["sparse", "hybrid"]:
+        print("  - 희소 벡터로 키워드 검색 실행...")
+        # 쿼리를 희소 벡터로 변환 (임베딩 시와 동일한 로직 필요)
+        # 이 부분은 실제 서비스에서는 전체 코퍼스로 만든 BM25 모델을 재사용해야 합니다.
+        # 여기서는 임시로 간단하게 구현합니다.
+        temp_corpus = [query] # 임시 코퍼스
+        tokenized_query = [doc.split(" ") for doc in temp_corpus]
+        bm25 = BM25Okapi(tokenized_query)
+        query_sparse_vector = {i: score for i, score in enumerate(bm25.get_scores(tokenized_query[0])) if score > 0}
+
+        sparse_search_params = {"metric_type": "IP"}
+        sparse_results = client.search(
+            collection_name=collection_name,
+            data=[query_sparse_vector],
+            anns_field="sparse", # 스키마 필드명
+            limit=top_k,
+            search_params=sparse_search_params,
+            output_fields=["*"]
+        )
+
+    # --- 3. 검색 결과 조합 및 반환 ---
+    final_docs = []
+    
+    if input_data.search_mode == "dense":
+        print("✅ 밀집 벡터 검색 결과 반환")
+        # Pymilvus 결과를 LangChain Document로 변환
+        hits = dense_results[0]
+        final_docs = [Document(page_content=hit['entity'].get('text', ''), metadata={k:v for k,v in hit['entity'].items() if k != 'text'}) for hit in hits]
+
+    elif input_data.search_mode == "sparse":
+        print("✅ 희소 벡터 검색 결과 반환")
+        hits = sparse_results[0]
+        final_docs = [Document(page_content=hit['entity'].get('text', ''), metadata={k:v for k,v in hit['entity'].items() if k != 'text'}) for hit in hits]
+    
+    elif input_data.search_mode == "hybrid":
+        print("✅ 하이브리드 검색 결과 조합 (RRF)...")
+        dense_hits = [Document(page_content=hit['entity'].get('text', ''), metadata={k:v for k,v in hit['entity'].items() if k != 'text'}) for hit in dense_results[0]]
+        sparse_hits = [Document(page_content=hit['entity'].get('text', ''), metadata={k:v for k,v in hit['entity'].items() if k != 'text'}) for hit in sparse_results[0]]
+        
+        # RRF 알고리즘으로 두 결과 랭킹 조합
+        final_docs = reciprocal_rank_fusion([dense_hits, sparse_hits])
+        final_docs = final_docs[:top_k] # 최종 top_k 개수만큼 자르기
+
+    return final_docs
+
+def format_docs(docs: List[Document]) -> str:
+    # ... (기존 format_docs 함수는 그대로 사용 가능) ...
+    # metadata도 함께 보여주도록 개선하면 좋습니다.
     if not docs:
         return "검색 결과가 없습니다."
     
     formatted_list = []
-    for i, doc in enumerate(docs):
-        formatted_list.append(
-            f"  [{i+1}] 내용: {doc.page_content[:200]}..."
-        )
+    # for i, doc in enumerate(docs):
+    #     # file_path 메타데이터가 있으면 함께 출력
+    #     file_path = doc.metadata.get('file_path', 'N/A')
+    #     formatted_list.append(
+    #         f"  [{i+1}] 경로: {file_path}\n      내용: {doc.page_content[:200].replace(chr(10), ' ')}..."
+    #     )
     return "\n".join(formatted_list)
 
-search_chain = RunnableLambda(_search_process)
+search_chain = RunnableLambda(_search_process) | RunnableLambda(format_docs)
+
+
+
+
+# def get_all_docs_from_collection(collection_name: str) -> List[str]:
+#     """Milvus 컬렉션에서 모든 'text' 필드 문서를 가져옵니다. (BM25 인덱싱용)"""
+#     if not client.has_collection(collection_name):
+#         return []
+#     # Milvus는 모든 데이터를 한 번에 가져오는 직접적인 방법이 제한적이므로
+#     # 여기서는 ID를 기반으로 반복 조회하는 방식을 사용합니다.
+#     # 대규모 데이터셋에서는 이 부분을 최적화해야 합니다.
+#     try:
+#         # 컬렉션의 엔티티 수를 먼저 확인
+#         count = client.get_collection_stats(collection_name).get("row_count", 0)
+#         # 모든 ID를 조회하여 데이터를 가져옴
+#         results = client.query(
+#             collection_name=collection_name,
+#             filter="",
+#             output_fields=["text"],
+#             limit=int(count) if count > 0 else 10000 # count가 0일 경우 대비
+#         )
+#         return [res["text"] for res in results]
+#     except Exception as e:
+#         print(f"컬렉션 문서 조회 중 오류: {e}")
+#         return []
+
+# def _search_process(input_data: SearchInput) -> List[Document]:
+#     print(f"\n▶️ 네이티브 검색 시작: [Mode: {input_data.search_mode}]")
+    
+#     model_config = config.EMBEDDING_MODELS[input_data.model_key]
+#     embeddings = HuggingFaceEmbeddings(
+#         model_name=model_config["model_name"],
+#         model_kwargs=model_config["kwargs"],
+#         encode_kwargs={"normalize_embeddings": True}
+#     )
+    
+#     vector_store = Milvus(
+#         embedding_function=embeddings,
+#         collection_name=input_data.collection_name,
+#         connection_args={"uri": config.MILVUS_URI},
+#         vector_field="dense_vector",
+#         sparse_vector_field="sparse_vector",
+#         text_field="text",
+#         primary_field="pk"
+#     )
+    
+#     # --- 👇 search_type을 이용해 네이티브 검색 모드 제어 ---
+#     search_type_map = {
+#         "hybrid": "hybrid",
+#         "vector": "similarity",
+#         "bm25": "sparse"
+#     }
+#     stype = search_type_map.get(input_data.search_mode, "hybrid")
+    
+#     retriever = vector_store.as_retriever(
+#         search_type=stype,
+#         search_kwargs={"k": input_data.top_k}
+#     )
+    
+#     return retriever.invoke(input_data.query)
+
+# def format_docs(docs: List[Any]) -> str:
+#     """검색 결과를 사람이 보기 좋은 형태로 포맷팅"""
+#     if not docs:
+#         return "검색 결과가 없습니다."
+    
+#     formatted_list = []
+#     for i, doc in enumerate(docs):
+#         formatted_list.append(
+#             f"  [{i+1}] 내용: {doc.page_content[:200]}..."
+#         )
+#     return "\n".join(formatted_list)
+
+# search_chain = RunnableLambda(_search_process)
