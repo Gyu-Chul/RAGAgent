@@ -72,9 +72,9 @@ class RagitConfig:
                 "env": self._get_gateway_env()
             },
             "rag_worker": {
-                "cmd": ["python", "-m", "celery", "worker", "-A", "rag_worker.celery_app",
+                "cmd": ["python", "-m", "celery", "-A", "rag_worker.celery_app", "worker",
                        "--loglevel=info", "--pool=solo"] if os.name == 'nt'
-                       else ["python", "-m", "celery", "worker", "-A", "rag_worker.celery_app",
+                       else ["python", "-m", "celery", "-A", "rag_worker.celery_app", "worker",
                             "--loglevel=info"],
                 "cwd": self.work_dir,
                 "env": self._get_rag_worker_env()

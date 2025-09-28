@@ -1,6 +1,9 @@
 import httpx
+import os
 from typing import Dict, Any
-from config import BACKEND_URL
+
+# 환경변수에서 직접 읽기
+BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8001")
 
 class BackendProxyService:
     def __init__(self):

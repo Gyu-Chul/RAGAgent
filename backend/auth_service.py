@@ -8,10 +8,10 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import uuid
 from uuid import UUID
 
-from models import User, UserSession
-from schemas import TokenData
-from config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
-from database import get_db
+from .models import User, UserSession
+from .schemas import TokenData
+from .config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
+from .database import get_db
 
 # 패스워드 해싱 설정 (개발용 최적화)
 pwd_context = CryptContext(

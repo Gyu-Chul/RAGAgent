@@ -9,12 +9,12 @@ from sqlalchemy import Column, Integer, String, DateTime, Text, ForeignKey
 from sqlalchemy.orm import relationship, Mapped
 from sqlalchemy.sql import func
 
-from core.database import Base
-from models.types import GUID
+from ..core.database import Base
+from .types import GUID
 
 if TYPE_CHECKING:
-    from models.repository import Repository
-    from models.user import User
+    from .repository import Repository
+    from .user import User
 
 
 class ChatRoom(Base):

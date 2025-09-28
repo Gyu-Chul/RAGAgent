@@ -9,13 +9,13 @@ from sqlalchemy import Column, Integer, String, DateTime, Text, Boolean, Foreign
 from sqlalchemy.orm import relationship, Mapped
 from sqlalchemy.sql import func
 
-from core.database import Base
-from models.types import GUID
+from ..core.database import Base
+from .types import GUID
 
 if TYPE_CHECKING:
-    from models.user import User
-    from models.chat import ChatRoom
-    from models.vector import VectorCollection
+    from .user import User
+    from .chat import ChatRoom
+    from .vector import VectorCollection
 
 class Repository(Base):
     """저장소 모델"""

@@ -8,13 +8,13 @@ from sqlalchemy.orm import Session
 from fastapi import HTTPException, status, Depends
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 
-from models import User
-from schemas import TokenData
-from core.database import get_db
-from services.password_service import default_password_service
-from services.token_service import default_token_service
-from services.user_service import UserService
-from services.session_service import SessionService
+from ..models import User
+from ..schemas import TokenData
+from ..core.database import get_db
+from .password_service import default_password_service
+from .token_service import default_token_service
+from .user_service import UserService
+from .session_service import SessionService
 
 
 # HTTP Bearer 스키마

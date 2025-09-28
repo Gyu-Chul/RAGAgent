@@ -7,17 +7,17 @@ from typing import Dict, Any
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 
-from core.database import get_db
-from models import User
-from schemas import (
+from ..core.database import get_db
+from ..models import User
+from ..schemas import (
     UserCreate, UserLogin, UserResponse, LoginResponse,
     Token, APIResponse
 )
-from services.auth_service import (
+from ..services.auth_service import (
     auth_service,
     get_current_active_user
 )
-from config import ACCESS_TOKEN_EXPIRE_MINUTES
+from ..config import ACCESS_TOKEN_EXPIRE_MINUTES
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
 

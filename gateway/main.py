@@ -3,9 +3,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.encoders import jsonable_encoder
 from typing import Dict, Any, List
 
-from config import CORS_ORIGINS
-from routers import auth
-from services.data_service import DummyDataService
+import os
+from typing import List
+
+# 환경변수에서 직접 읽기
+CORS_ORIGINS: List[str] = eval(os.getenv("CORS_ORIGINS", '["http://localhost:8000"]'))
+from .routers import auth
+from .services.data_service import DummyDataService
 
 # Gateway App
 app = FastAPI(title="RAG Agent Gateway", version="1.0.0")

@@ -9,12 +9,12 @@ from sqlalchemy import Column, String, DateTime, Boolean, ForeignKey
 from sqlalchemy.orm import relationship, Mapped
 from sqlalchemy.sql import func
 
-from core.database import Base
-from models.types import GUID
+from ..core.database import Base
+from .types import GUID
 
 if TYPE_CHECKING:
-    from models.repository import Repository, RepositoryMember
-    from models.session import UserSession
+    from .repository import Repository, RepositoryMember
+    from .session import UserSession
 
 
 class User(Base):

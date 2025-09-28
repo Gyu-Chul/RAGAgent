@@ -7,8 +7,8 @@ from datetime import datetime, timedelta
 from typing import Optional, Dict, Any, Protocol
 from jose import JWTError, jwt
 
-from config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
-from schemas import TokenData
+from ..config import SECRET_KEY, ALGORITHM, ACCESS_TOKEN_EXPIRE_MINUTES
+from ..schemas import TokenData
 
 
 class TokenProviderInterface(Protocol):

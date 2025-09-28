@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from config import CORS_ORIGINS
-from core.database import init_db
-from routers import auth
+from .config import CORS_ORIGINS
+from .core.database import init_db
+from .routers import auth
 
 # FastAPI 앱 생성
 app = FastAPI(

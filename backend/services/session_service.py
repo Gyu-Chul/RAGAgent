@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session
 from datetime import datetime, timedelta
 import uuid
 
-from models import UserSession
+from ..models import UserSession
 
 
 class SessionService:

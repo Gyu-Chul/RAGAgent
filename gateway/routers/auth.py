@@ -5,9 +5,9 @@ Gateway 인증 라우터
 
 from typing import Dict, Any
 from fastapi import APIRouter, HTTPException, status
-from schemas import LoginRequest, SignupRequest
-from services.proxy_service import BackendProxyService
-from services.data_service import DummyDataService
+from ..schemas import LoginRequest, SignupRequest
+from ..services.proxy_service import BackendProxyService
+from ..services.data_service import DummyDataService
 
 router = APIRouter(prefix="/auth", tags=["authentication"])
 proxy_service = BackendProxyService()

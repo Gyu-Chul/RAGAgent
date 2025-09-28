@@ -9,9 +9,9 @@ from sqlalchemy.exc import IntegrityError
 import uuid
 from datetime import datetime
 
-from models import User, UserSession
-from services.password_service import PasswordService
-from core.database import get_db
+from ..models import User, UserSession
+from .password_service import PasswordService
+from ..core.database import get_db
 
 
 class UserService:
