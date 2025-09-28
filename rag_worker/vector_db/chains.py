@@ -40,55 +40,72 @@ def _embedding_process(input_data: EmbeddingInput) -> dict:
     if not texts_to_embed:
         return {"error": "JSON 파일에서 유효한 문서를 찾을 수 없습니다."}
 
-    # --- 2. 밀집 벡터 생성 (LangChain 사용) ---
-    print(f"{len(texts_to_embed)}개 문서에 대한 밀집 벡터 생성 중...")
-    model_config = config.EMBEDDING_MODELS.get(input_data.model_key)
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    print(f"\n사용 디바이스 : {device}")
-    dense_embedder = HuggingFaceEmbeddings(
-        model_name=model_config["model_name"],
-        model_kwargs={'device': device, 'trust_remote_code': True},
-        encode_kwargs={"normalize_embeddings": True}
-    )
-    dense_vectors = dense_embedder.embed_documents(texts_to_embed)
 
-    # --- 3. 희소 벡터 생성 (rank_bm25 직접 사용) ---
-    print("희소 벡터 생성 중...")
+
+    # --- 2. 희소 벡터 생성 (rank_bm25 직접 사용) ---
+    print("희소 벡터 생성 시작")
+
     tokenized_corpus = [doc.split(" ") for doc in texts_to_embed]  # 개별 단어 기반을 위해 분리
     bm25 = BM25Okapi(tokenized_corpus)
-    # 각 문서 자체를 쿼리로 사용하여 토큰별 가중치를 얻어 희소 벡터를 구성합니다.
+
     sparse_vectors = []
     for doc_tokens in tokenized_corpus:
         doc_scores = bm25.get_scores(doc_tokens)
         sparse_vec = {i: score for i, score in enumerate(doc_scores) if score > 0}
         sparse_vectors.append(sparse_vec)
     
-    ### Vector 생성은 이미 끝
-    ### 그것을 Milvus에 넣는 작업
+    print("✅ 모든 희소 벡터 생성 완료")
 
 
-    # --- 4. Milvus 삽입을 위한 데이터 패킷 조립 ---
-    print("Milvus 삽입용 데이터 패킷 조립 중...")
-    data_to_insert = []
-    for i in range(len(texts_to_embed)):
-        row = metadata_list[i].copy()       # 벡터화 되지 않는 나머지 메타데이터 리스트 삽입
-        row["text"] = texts_to_embed[i]     # code 스키마 'text'
-        row["dense"] = dense_vectors[i]     # dense vector 스키마 필드명 'dense'
-        row["sparse"] = sparse_vectors[i]   # sparse vector 스키마 필드명 'sparse'
-        data_to_insert.append(row)
 
-    # --- 5. PyMilvus Client로 직접 데이터 삽입 ---
-    try:
-        print(f"PyMilvus 클라이언트로 데이터 {len(data_to_insert)}개 삽입 시도...")
-        res = client.insert(
-            collection_name=input_data.collection_name,
-            data=data_to_insert
-        )
-        print(f"✅ 데이터 삽입 성공! Inserted Count: {res['insert_count']}")
+    # --- 3. 밀집 벡터 생성 (LangChain 사용) ---
+    print(f"{len(texts_to_embed)}개 밀집 벡터 생성 시작")
+    model_config = config.EMBEDDING_MODELS.get(input_data.model_key)
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"\n사용 디바이스 : {device}")
 
-    except Exception as e:
-        print(f"❌ 데이터 삽입 중 심각한 오류 발생: {e}")
-        return {"error": f"데이터 삽입 오류: {e}"}
+    dense_embedder = HuggingFaceEmbeddings(
+        model_name=model_config["model_name"],
+        model_kwargs={'device': device, 'trust_remote_code': True},
+        encode_kwargs={"normalize_embeddings": True}
+    )
+    
+    ## HuggingFaceEmbeddings 모델이 GPU 최적화 포함해서 벡터화 진행
+    dense_vectors = dense_embedder.embed_documents(texts_to_embed)
+    
+    ### Vector 생성은 종료
+    ### 그것을 Milvus에 넣는 작업 - Memory Management & Stable Data Transfer를 위한 배치 사이즈 조절
+
+    # GPU 메모리에 맞춰 배치 사이즈 조절
+    # VRAM ~8GB : 256     //  VRAM ~12GB : 512
+    # VRAM ~16GB : 1024   //  VRAM 24GB~ : 2048 ~
+    batch_size = 256
+    inserted_count = 0
+
+    for i in range(0, len(texts_to_embed), batch_size):
+        batch_end = min(i + batch_size, len(texts_to_embed))
+        print(f"  - 배치 처리 중: {i+1} ~ {batch_end} / {len(texts_to_embed)}")
+
+        # 현재 배치에 해당하는 데이터 조립
+        data_to_insert = []
+        for j in range(i, batch_end):
+            row = metadata_list[j].copy()
+            row["text"] = texts_to_embed[j]
+            row["dense"] = dense_vectors[j] 
+            row["sparse"] = sparse_vectors[j]
+            data_to_insert.append(row)
+
+        # 배치 단위로 데이터 삽입
+        try:
+            res = client.insert(
+                collection_name=input_data.collection_name,
+                data=data_to_insert
+            )
+            inserted_count += res['insert_count']
+            print(f"  ✅ 배치 삽입 성공! (총 {inserted_count}개 삽입)")
+        except Exception as e:
+            print(f"❌ 배치 삽입 중 오류 발생: {e}")
+            return {"error": f"배치 {i} 삽입 중 오류: {e}"}
 
     elapsed = time.time() - start_time
     return {"success": True, "message": f"🎉 {len(texts_to_embed)}개 문서 임베딩 및 삽입 완료! (⏱️ {elapsed:.2f}초 소요)"}
