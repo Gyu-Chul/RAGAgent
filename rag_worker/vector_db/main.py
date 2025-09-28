@@ -9,9 +9,36 @@ def create_test_data_file():
     if not os.path.exists(config.TEST_DATA_PATH) or os.path.getsize(config.TEST_DATA_PATH) == 0:
         print(f"'{config.TEST_DATA_PATH}' 파일이 없거나 비어있어 새로 생성합니다.")
         sample_data = [
-            {"type": "function", "name": "calculate_sum", "code": "def calculate_sum(a, b): return a + b"},
-            {"type": "class", "name": "MyCalculator", "code": "class MyCalculator: def add(self, a, b): return a + b"},
-            {"type": "function", "name": "calculate_product", "code": "def calculate_product(a, b): return a * b"}
+            {
+                "type": "module",
+                "name": "",
+                "start_line": 1,
+                "end_line": 3,
+                "code": "from nicegui import ui\nfrom controller import DownloadState, run_download\nimport os",
+                "file_path": "/home/gyuho/RAGAgent/Demo_version(old)/git-agent/repository/youtube_mp3_downloader/app.py",
+                "_source_file": "app.json"
+            },
+            {
+                "type": "script",
+                "name": "",
+                "start_line": 5,
+                "end_line": 5,
+                "code": "state = DownloadState()",
+                "file_path": "/home/gyuho/RAGAgent/Demo_version(old)/git-agent/repository/youtube_mp3_downloader/app.py",
+                "_source_file": "app.json"
+            },
+            {
+                "type": "script",
+                "name": "",
+                "start_line": 7,
+                "end_line": 10,
+                "code": "ui.label(\"🎵 YouTube to MP3 Downloader\").classes('text-2xl font-bold text-center mt-4')\n"
+                        "input_url = ui.input(\"YouTube URL\").classes('w-full')\n"
+                        "status_label = ui.label()\n"
+                        "progress = ui.linear_progress().classes('w-full')",
+                "file_path": "/home/gyuho/RAGAgent/Demo_version(old)/git-agent/repository/youtube_mp3_downloader/app.py",
+                "_source_file": "app.json"
+            }
         ]
         with open(config.TEST_DATA_PATH, "w", encoding="utf-8") as f:
             json.dump(sample_data, f, indent=2)
@@ -28,6 +55,7 @@ def main_menu():
         print("3. 컬렉션 삭제")
         print("4. 문서 임베딩 (LangChain)")
         print("5. 벡터 검색 (LangChain)")
+        print("6. 컬렉션 데이터 확인")
         print("0. 종료")
         print("================================")
         
@@ -44,7 +72,6 @@ def main_menu():
 
             collection_name = input(f"생성할 컬렉션 이름 (기본값: {model_key}_collection): ") or f"{model_key}_collection"
             
-            # 선택된 모델의 dim 값을 직접 전달
             db_utils.create_milvus_collection(collection_name, dim=model_conf["dim"])
         
         elif choice == '2':
@@ -89,6 +116,11 @@ def main_menu():
                 print(format_docs(docs))
             else:
                 print("⚠️ 검색어가 입력되지 않았습니다.")
+
+        elif choice == '6':
+            collection_name = input("데이터를 확인할 컬렉션 이름을 입력하세요: ")
+            db_utils.verify_collection_data(collection_name)
+
         elif choice == '0':
             print("프로그램을 종료합니다.")
             break

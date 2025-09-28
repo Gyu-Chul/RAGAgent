@@ -1,14 +1,13 @@
 import time, json, os, torch
-from typing import List, Dict, Any, Literal
+from typing import List, Any, Literal
 
 from langchain_core.documents import Document
-from langchain_community.vectorstores import Milvus
+from langchain_milvus import Milvus
 from langchain_core.runnables import RunnableLambda
-from pydantic import BaseModel, Field
 from langchain_huggingface import HuggingFaceEmbeddings
-from langchain_community.retrievers import BM25Retriever
-from langchain.retrievers import EnsembleRetriever
-from langchain_milvus import BM25BuiltInFunction
+from rank_bm25 import BM25Okapi
+from pydantic import BaseModel, Field
+
 import config
 from db_utils import client # MilvusClient 직접 사용을 위해 import
 
@@ -20,50 +19,79 @@ class EmbeddingInput(BaseModel):
     collection_name: str = Field(description="저장할 Milvus 컬렉션 이름")
     model_key: str = Field(default=config.DEFAULT_MODEL_KEY, description="config.py에 정의된 모델 키")
 
-def _embedding_process(input_data: EmbeddingInput) -> Dict[str, Any]:
-    print(f"\n▶️ 네이티브 임베딩 시작: [Collection: {input_data.collection_name}]")
+def _embedding_process(input_data: EmbeddingInput) -> dict:
+    print(f"\n▶️ 임베딩 시작 : [Collection: {input_data.collection_name}]")
     start_time = time.time()
 
-    model_config = config.EMBEDDING_MODELS.get(input_data.model_key)
-    if not model_config: return {"error": f"없는 모델 키: {input_data.model_key}"}
-
+    # --- 1. 데이터 로딩 및 준비 ---
     if not os.path.exists(input_data.json_path):
         return {"error": f"파일을 찾을 수 없음: {input_data.json_path}"}
     with open(input_data.json_path, "r", encoding="utf-8") as f:
         items = json.load(f)
 
-    # --- 👇 데이터를 LangChain Document 객체로 변환 ---
-    docs = [Document(page_content=json.dumps(item, ensure_ascii=False)) for item in items]
-    
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    model_kwargs = model_config["kwargs"]
-    model_kwargs['device'] = device
-    
-    embeddings = HuggingFaceEmbeddings(
-        model_name=model_config["model_name"],
-        model_kwargs=model_kwargs,
-        encode_kwargs={"normalize_embeddings": True} # COSINE 유사도를 위해 정규화
-    )
+    texts_to_embed = []
+    metadata_list = []
+    for item in items:
+        page_content = item.get("code")
+        if page_content and page_content.strip():   # code 영역이 비어있지 않는지 확인
+            texts_to_embed.append(page_content)
+            metadata_list.append({k: v for k, v in item.items() if k != "code"})
 
-    print(f"임베딩 및 데이터 삽입 중... (밀집/희소 벡터 동시 생성)")
-    
-    # --- 👇 from_documents와 BM25BuiltInFunction 사용 ---
-    Milvus.from_documents(
-        documents=docs,
-        embedding=embeddings,
-        collection_name=input_data.collection_name,
-        connection_args={"uri": config.MILVUS_URI},
-        # 희소 벡터 자동 생성을 위한 설정
-        builtin_function=BM25BuiltInFunction(), 
-        # 스키마의 필드 이름과 매핑
-        vector_field="dense_vector",
-        sparse_vector_field="sparse_vector",
-        text_field="text",
-        primary_field="pk"
+    if not texts_to_embed:
+        return {"error": "JSON 파일에서 유효한 문서를 찾을 수 없습니다."}
+
+    # --- 2. 밀집 벡터 생성 (LangChain 사용) ---
+    print(f"{len(texts_to_embed)}개 문서에 대한 밀집 벡터 생성 중...")
+    model_config = config.EMBEDDING_MODELS.get(input_data.model_key)
+    device = "cuda" if torch.cuda.is_available() else "cpu"
+    print(f"\n사용 디바이스 : {device}")
+    dense_embedder = HuggingFaceEmbeddings(
+        model_name=model_config["model_name"],
+        model_kwargs={'device': device, 'trust_remote_code': True},
+        encode_kwargs={"normalize_embeddings": True}
     )
+    dense_vectors = dense_embedder.embed_documents(texts_to_embed)
+
+    # --- 3. 희소 벡터 생성 (rank_bm25 직접 사용) ---
+    print("희소 벡터 생성 중...")
+    tokenized_corpus = [doc.split(" ") for doc in texts_to_embed]  # 개별 단어 기반을 위해 분리
+    bm25 = BM25Okapi(tokenized_corpus)
+    # 각 문서 자체를 쿼리로 사용하여 토큰별 가중치를 얻어 희소 벡터를 구성합니다.
+    sparse_vectors = []
+    for doc_tokens in tokenized_corpus:
+        doc_scores = bm25.get_scores(doc_tokens)
+        sparse_vec = {i: score for i, score in enumerate(doc_scores) if score > 0}
+        sparse_vectors.append(sparse_vec)
     
+    ### Vector 생성은 이미 끝
+    ### 그것을 Milvus에 넣는 작업
+
+
+    # --- 4. Milvus 삽입을 위한 데이터 패킷 조립 ---
+    print("Milvus 삽입용 데이터 패킷 조립 중...")
+    data_to_insert = []
+    for i in range(len(texts_to_embed)):
+        row = metadata_list[i].copy()       # 벡터화 되지 않는 나머지 메타데이터 리스트 삽입
+        row["text"] = texts_to_embed[i]     # code 스키마 'text'
+        row["dense"] = dense_vectors[i]     # dense vector 스키마 필드명 'dense'
+        row["sparse"] = sparse_vectors[i]   # sparse vector 스키마 필드명 'sparse'
+        data_to_insert.append(row)
+
+    # --- 5. PyMilvus Client로 직접 데이터 삽입 ---
+    try:
+        print(f"PyMilvus 클라이언트로 데이터 {len(data_to_insert)}개 삽입 시도...")
+        res = client.insert(
+            collection_name=input_data.collection_name,
+            data=data_to_insert
+        )
+        print(f"✅ 데이터 삽입 성공! Inserted Count: {res['insert_count']}")
+
+    except Exception as e:
+        print(f"❌ 데이터 삽입 중 심각한 오류 발생: {e}")
+        return {"error": f"데이터 삽입 오류: {e}"}
+
     elapsed = time.time() - start_time
-    return {"success": True, "message": f"🎉 {len(docs)}개 문서 임베딩 완료! (⏱️ {elapsed:.2f}초 소요)"}
+    return {"success": True, "message": f"🎉 {len(texts_to_embed)}개 문서 임베딩 및 삽입 완료! (⏱️ {elapsed:.2f}초 소요)"}
 
 embedding_chain = RunnableLambda(_embedding_process)
 
