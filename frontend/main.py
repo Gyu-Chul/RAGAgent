@@ -80,7 +80,7 @@ def run_app():
     ui.run(
         title="RAGIT",
         favicon="🤖",
-        port=8003,
+        port=8000,
         show=False,
         reload=False
     )

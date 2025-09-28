@@ -1,19 +1,22 @@
 from typing import Optional, Dict, Any
 from datetime import datetime, timedelta
 import requests
+import os
 
 class AuthService:
     def __init__(self):
         self._current_user: Optional[Dict[str, Any]] = None
         self._session_token: Optional[str] = None
-        self.gateway_url = "http://localhost:8080"
+        self.gateway_url = os.getenv("GATEWAY_URL", "http://localhost:8080")
 
     def login(self, email: str, password: str) -> Dict[str, Any]:
         try:
-            response = requests.post(f"{self.gateway_url}/auth/login", json={
+            url = f"{self.gateway_url}/auth/login"
+            print(f"DEBUG: Login request to {url}")  # Debug logging
+            response = requests.post(url, json={
                 "email": email,
                 "password": password
-            }, timeout=5)
+            }, timeout=10)
 
             if response.status_code == 200:
                 data = response.json()

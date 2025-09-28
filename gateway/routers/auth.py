@@ -16,28 +16,48 @@ data_service = DummyDataService()
 @router.post("/login")
 async def login(login_request: LoginRequest):
     """로그인 요청을 백엔드로 프록시"""
-    try:
-        result = await proxy_service.login_user(
-            email=login_request.email,
-            password=login_request.password
+    print(f"DEBUG: Login attempt for {login_request.email}")  # Debug logging
+
+    # 임시: 더미 데이터만 사용 (백엔드 연결 문제 디버깅용)
+    user = data_service.authenticate_user(login_request.email, login_request.password)
+    if user:
+        print(f"DEBUG: Dummy auth successful for {login_request.email}")  # Debug logging
+        return {
+            "success": True,
+            "user": user,
+            "token": {"access_token": "dummy_token", "token_type": "bearer"},
+            "message": "Login successful (dummy mode)"
+        }
+    else:
+        print(f"DEBUG: Dummy auth failed for {login_request.email}")  # Debug logging
+        raise HTTPException(
+            status_code=status.HTTP_401_UNAUTHORIZED,
+            detail="Invalid credentials"
         )
-        return result
-    except Exception as e:
-        print(f"Login proxy error: {e}")
-        # 백엔드 연결 실패 시 더미 데이터로 fallback
-        user = data_service.authenticate_user(login_request.email, login_request.password)
-        if user:
-            return {
-                "success": True,
-                "user": user,
-                "token": {"access_token": "dummy_token", "token_type": "bearer"},
-                "message": "Login successful (dummy mode)"
-            }
-        else:
-            raise HTTPException(
-                status_code=status.HTTP_401_UNAUTHORIZED,
-                detail="Invalid credentials"
-            )
+
+    # 원래 코드 (주석 처리)
+    # try:
+    #     result = await proxy_service.login_user(
+    #         email=login_request.email,
+    #         password=login_request.password
+    #     )
+    #     return result
+    # except Exception as e:
+    #     print(f"Login proxy error: {e}")
+    #     # 백엔드 연결 실패 시 더미 데이터로 fallback
+    #     user = data_service.authenticate_user(login_request.email, login_request.password)
+    #     if user:
+    #         return {
+    #             "success": True,
+    #             "user": user,
+    #             "token": {"access_token": "dummy_token", "token_type": "bearer"},
+    #             "message": "Login successful (dummy mode)"
+    #         }
+    #     else:
+    #         raise HTTPException(
+    #             status_code=status.HTTP_401_UNAUTHORIZED,
+    #             detail="Invalid credentials"
+    #         )
 
 @router.post("/signup")
 async def signup(signup_request: SignupRequest):

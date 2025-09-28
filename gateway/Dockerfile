@@ -1,4 +1,4 @@
-# Backend Service Dockerfile
+# Gateway Service Dockerfile
 FROM python:3.11-slim as builder
 
 # Install system dependencies
@@ -26,7 +26,6 @@ FROM python:3.11-slim
 
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y \
-    postgresql-client \
     curl \
     && rm -rf /var/lib/apt/lists/*
 
@@ -39,8 +38,8 @@ WORKDIR /app
 # Copy virtual environment from builder
 COPY --from=builder /app/.venv /app/.venv
 
-# Copy only backend-related files
-COPY backend/ ./backend/
+# Copy only gateway-related files
+COPY gateway/ ./gateway/
 COPY pyproject.toml .
 COPY README.md .
 
@@ -54,12 +53,12 @@ USER app
 ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONPATH="/app"
 
-# Expose backend port
-EXPOSE 8001
+# Expose gateway port
+EXPOSE 8080
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8001/health || exit 1
+    CMD curl -f http://localhost:8080/ || exit 1
 
-# Run backend service
-CMD ["python", "-m", "uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8001"]
+# Run gateway service
+CMD ["python", "-m", "uvicorn", "gateway.main:app", "--host", "0.0.0.0", "--port", "8080"]

@@ -2,10 +2,11 @@ import requests
 from typing import List, Dict, Any, Optional
 from datetime import datetime
 import json
+import os
 
 class APIService:
-    def __init__(self, base_url: str = "http://localhost:8080"):
-        self.base_url = base_url
+    def __init__(self, base_url: str = None):
+        self.base_url = base_url or os.getenv("GATEWAY_URL", "http://localhost:8080")
         self.session = requests.Session()
         self.session.headers.update({
             "Content-Type": "application/json"
@@ -46,25 +47,34 @@ class APIService:
     def _make_request(self, method: str, endpoint: str, data: Optional[Dict] = None) -> Dict[str, Any]:
         """Make HTTP request to the gateway API"""
         url = f"{self.base_url}{endpoint}"
+        print(f"DEBUG: Making {method} request to {url}")  # Debug logging
         try:
+            timeout = 10  # 10 second timeout
             if method.upper() == "GET":
-                response = self.session.get(url)
+                response = self.session.get(url, timeout=timeout)
             elif method.upper() == "POST":
-                response = self.session.post(url, json=data)
+                response = self.session.post(url, json=data, timeout=timeout)
             elif method.upper() == "PUT":
-                response = self.session.put(url, json=data)
+                response = self.session.put(url, json=data, timeout=timeout)
             elif method.upper() == "DELETE":
-                response = self.session.delete(url)
+                response = self.session.delete(url, timeout=timeout)
             else:
                 raise ValueError(f"Unsupported HTTP method: {method}")
 
+            print(f"DEBUG: Response status: {response.status_code}")  # Debug logging
             response.raise_for_status()
             return response.json()
-        except requests.exceptions.ConnectionError:
-            raise Exception("Gateway server is not available. Please ensure the gateway is running on port 8080.")
+        except requests.exceptions.ConnectionError as e:
+            print(f"DEBUG: Connection error to {url}: {e}")  # Debug logging
+            raise Exception(f"Gateway server is not available at {url}. Connection error: {e}")
+        except requests.exceptions.Timeout as e:
+            print(f"DEBUG: Timeout error to {url}: {e}")  # Debug logging
+            raise Exception(f"Gateway server timeout at {url}")
         except requests.exceptions.HTTPError as e:
+            print(f"DEBUG: HTTP error: {e}")  # Debug logging
             raise Exception(f"API request failed: {e}")
         except Exception as e:
+            print(f"DEBUG: Unexpected error: {e}")  # Debug logging
             raise Exception(f"Unexpected error: {e}")
 
     def get_repositories(self) -> List[Dict[str, Any]]:

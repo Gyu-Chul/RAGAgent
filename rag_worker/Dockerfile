@@ -1,4 +1,4 @@
-# Backend Service Dockerfile
+# RAG Worker Service Dockerfile
 FROM python:3.11-slim as builder
 
 # Install system dependencies
@@ -24,12 +24,6 @@ RUN uv sync --no-dev
 # Production stage
 FROM python:3.11-slim
 
-# Install runtime dependencies
-RUN apt-get update && apt-get install -y \
-    postgresql-client \
-    curl \
-    && rm -rf /var/lib/apt/lists/*
-
 # Create app user
 RUN useradd --create-home --shell /bin/bash app
 
@@ -39,8 +33,8 @@ WORKDIR /app
 # Copy virtual environment from builder
 COPY --from=builder /app/.venv /app/.venv
 
-# Copy only backend-related files
-COPY backend/ ./backend/
+# Copy only rag_worker-related files
+COPY rag_worker/ ./rag_worker/
 COPY pyproject.toml .
 COPY README.md .
 
@@ -54,12 +48,9 @@ USER app
 ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONPATH="/app"
 
-# Expose backend port
-EXPOSE 8001
-
-# Health check
+# Health check for Celery worker
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8001/health || exit 1
+    CMD python -c "import celery; from rag_worker.celery_app import app; print('Worker running') if app.control.inspect().active() else exit(1)" || exit 1
 
-# Run backend service
-CMD ["python", "-m", "uvicorn", "backend.main:app", "--host", "0.0.0.0", "--port", "8001"]
+# Run RAG worker service
+CMD ["python", "-m", "celery", "-A", "rag_worker.celery_app", "worker", "--loglevel=info"]

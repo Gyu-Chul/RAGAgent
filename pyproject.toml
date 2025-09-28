@@ -3,7 +3,7 @@ name = "ragit"
 version = "0.1.0"
 description = "RAGIT - RAG with Gateway-Backend Architecture"
 authors = [
-    {name = "RAGIT Team"}
+    {name = "GyuChul Team"}
 ]
 dependencies = [
     # Backend dependencies

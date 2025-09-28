@@ -1,10 +1,19 @@
-# 개발용 Docker Compose - 하나의 컨테이너에 모든 서비스
+# Microservices Docker Compose - 각 서비스별 독립 컨테이너
 version: '3.8'
+
+networks:
+  ragit-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
 
 services:
   # Database
   postgres:
     image: postgres:15
+    container_name: ragit-postgres
     environment:
       POSTGRES_DB: ragit
       POSTGRES_USER: postgres
@@ -13,48 +22,136 @@ services:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    networks:
+      - ragit-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 
   # Redis for Celery
   redis:
     image: redis:7-alpine
+    container_name: ragit-redis
+    volumes:
+      - redis_data:/data
     ports:
       - "6380:6379"
+    networks:
+      - ragit-network
     healthcheck:
       test: ["CMD", "redis-cli", "ping"]
       interval: 10s
       timeout: 5s
       retries: 5
+    restart: unless-stopped
 
-  # RAGIT All-in-One (Development)
-  ragit:
-    build: .
-    env_file:
-      - .env.docker
+  # Backend Service
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    image: ragit-backend
+    container_name: ragit-backend
     environment:
       DATABASE_URL: postgresql://postgres:postgres@postgres:5432/ragit
       REDIS_URL: redis://redis:6379/0
       SECRET_KEY: ${SECRET_KEY:-your-secret-key-here}
       ALGORITHM: HS256
       ACCESS_TOKEN_EXPIRE_MINUTES: 1440
-      CORS_ORIGINS: '["http://localhost:8000"]'
     ports:
-      - "8000:8000"  # Frontend
-      - "8001:8001"  # Backend
-      - "8080:8080"  # Gateway
+      - "8001:8001"
+    networks:
+      - ragit-network
     depends_on:
       postgres:
         condition: service_healthy
       redis:
         condition: service_healthy
     volumes:
-      - ./data:/app/data
       - ./logs:/app/logs
     restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
-volumes:
-  postgres_data:
+  # Gateway Service
+  gateway:
+    build:
+      context: .
+      dockerfile: gateway/Dockerfile
+    image: ragit-gateway
+    container_name: ragit-gateway
+    environment:
+      BACKEND_URL: http://backend:8001
+      CORS_ORIGINS: '["http://localhost:8000", "http://localhost:3000"]'
+    ports:
+      - "8080:8080"
+    networks:
+      - ragit-network
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Frontend Service
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    image: ragit-frontend
+    container_name: ragit-frontend
+    environment:
+      GATEWAY_URL: http://gateway:8080
+      BACKEND_URL: http://backend:8001
+    ports:
+      - "8000:8000"
+    networks:
+      - ragit-network
+    depends_on:
+      gateway:
+        condition: service_healthy
+      backend:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # RAG Worker Service
+  rag-worker:
+    build:
+      context: .
+      dockerfile: rag_worker/Dockerfile
+    image: ragit-rag-worker
+    container_name: ragit-rag-worker
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/ragit
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/0
+      CELERY_RESULT_BACKEND: redis://redis:6379/0
+    networks:
+      - ragit-network
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    volumes:
+      - ./logs:/app/logs
+      - ./data:/app/data

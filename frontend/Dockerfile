@@ -1,4 +1,4 @@
-# Multi-stage build for RAGIT
+# Frontend Service Dockerfile
 FROM python:3.11-slim as builder
 
 # Install system dependencies
@@ -26,7 +26,7 @@ FROM python:3.11-slim
 
 # Install runtime dependencies
 RUN apt-get update && apt-get install -y \
-    postgresql-client \
+    curl \
     && rm -rf /var/lib/apt/lists/*
 
 # Create app user
@@ -38,8 +38,10 @@ WORKDIR /app
 # Copy virtual environment from builder
 COPY --from=builder /app/.venv /app/.venv
 
-# Copy application code
-COPY . .
+# Copy only frontend-related files
+COPY frontend/ ./frontend/
+COPY pyproject.toml .
+COPY README.md .
 
 # Change ownership to app user
 RUN chown -R app:app /app
@@ -49,14 +51,14 @@ USER app
 
 # Set environment variables
 ENV PATH="/app/.venv/bin:$PATH"
-ENV PYTHONPATH="/app"
+ENV PYTHONPATH="/app:/app/frontend"
 
-# Expose ports
-EXPOSE 8000 8001 8080
+# Expose frontend port
+EXPOSE 8000
 
 # Health check
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
-    CMD curl -f http://localhost:8001/health || exit 1
+    CMD curl -f http://localhost:8000/ || exit 1
 
-# Default command (use SDK CLI)
-CMD ["ragit", "start"]
+# Run frontend service
+CMD ["python", "-m", "frontend.main"]
