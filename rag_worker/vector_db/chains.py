@@ -197,6 +197,8 @@ def _search_process(input_data: SearchInput) -> List[Dict[str, Any]]:
         param={"metric_type": "IP"}
     )
 
+    filter = "TEXT_MATCH(type, 'script')"
+
     # --- 3. RRF 랭커를 사용하여 hybrid_search 실행 ---
     print("  - client.hybrid_search 로 RRF 조합 검색 실행...")
     res = client.hybrid_search(
@@ -206,6 +208,16 @@ def _search_process(input_data: SearchInput) -> List[Dict[str, Any]]:
         limit=top_k,
         output_fields=["*"]
     )
+
+    # result = client.search(
+    #     collection_name=collection_name,
+    #     anns_field="dense",
+    #     data=[query_dense_vector],
+    #     filter=filter,
+    #     search_params={"params": {"nprobe": 10}},
+    #     limit=top_k,
+    #     output_fields=["*"]
+    # )
 
     if not res or not res[0]:
         return []

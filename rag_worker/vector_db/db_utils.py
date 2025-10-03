@@ -21,6 +21,9 @@ def create_milvus_collection(collection_name: str, dim: int):
         print(f"⚠️ 컬렉션 '{collection_name}'은(는) 이미 존재합니다.")
         return
 
+    analyzer_params = {
+        "type": "english"
+    }
     # --- 1. 스키마 정의 ---
     fields = [
         FieldSchema(name="pk", dtype=DataType.INT64, is_primary=True, auto_id=True),
@@ -28,11 +31,23 @@ def create_milvus_collection(collection_name: str, dim: int):
         FieldSchema(name="dense", dtype=DataType.FLOAT_VECTOR, dim=dim),
         FieldSchema(name="sparse", dtype=DataType.SPARSE_FLOAT_VECTOR),
         FieldSchema(name="file_path", dtype=DataType.VARCHAR, max_length=4096),
-        FieldSchema(name="type", dtype=DataType.VARCHAR, max_length=256),
         FieldSchema(name="name", dtype=DataType.VARCHAR, max_length=1024),
         FieldSchema(name="start_line", dtype=DataType.INT64),
         FieldSchema(name="end_line", dtype=DataType.INT64),
-        FieldSchema(name="_source_file", dtype=DataType.VARCHAR, max_length=1024),
+        FieldSchema(name="type", 
+                    dtype=DataType.VARCHAR, 
+                    max_length=256,
+                    enable_analyzer=True,
+                    analyzer_params = analyzer_params,
+                    enable_match = True,
+                    ),
+        FieldSchema(name="_source_file", 
+                    dtype=DataType.VARCHAR, 
+                    max_length=1024,
+                    enable_analyzer=True, # Whether to enable text analysis for this field
+                    enable_match=True, # Whether to enable text match
+                    analyzer_params = {"type": "english"}
+                    ),
     ]
     schema = CollectionSchema(fields=fields, 
                               description="Optimized hybrid search collection",
@@ -83,7 +98,21 @@ def create_milvus_collection(collection_name: str, dim: int):
         collection_name=collection_name,
         index_params=index_params
     )
-    
+
+    # info = client.describe_collection(collection_name=collection_name)
+    # print(info)
+
+    # print("="*50)
+    # print("="*50)
+    # # 컬렉션에 생성된 모든 인덱스의 '이름'을 리스트로 가져옵니다.
+    # index_list = client.list_indexes(collection_name=collection_name)
+
+    # print(f"'{collection_name}' 컬렉션에 생성된 인덱스 목록:")
+    # for index_name in index_list:
+    #     print(f"- {index_name}")
+    # print("="*50)
+    # print("="*50)
+
     print(f"✅ 모든 인덱스 생성 완료. '{collection_name}' 컬렉션이 준비되었습니다.")
 
 def list_milvus_collections():
@@ -159,7 +188,7 @@ def verify_collection_data(collection_name: str, limit: int = 5):
         
         results = collection.query(
             expr="pk > 0",                  # 기본 출력식
-            output_fields=["*"],   # 출력하고 싶은 field 설정
+            output_fields=["*"],            # 출력하고 싶은 field 설정
             limit=limit                     # limit parameter를 활용해서 출력 개수 설정
         )
         
