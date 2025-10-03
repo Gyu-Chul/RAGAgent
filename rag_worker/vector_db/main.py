@@ -8,16 +8,43 @@ import os
 from typing import List, Dict, Any
 import db_utils
 import config
-from chains import embedding_chain, search_chain, EmbeddingInput, SearchInput, format_docs
+from chains import embedding_chain, search_chain, EmbeddingInput, SearchInput
 
 def create_test_data_file() -> None:
     """임베딩 테스트를 위한 샘플 JSON 파일을 생성합니다."""
     if not os.path.exists(config.TEST_DATA_PATH) or os.path.getsize(config.TEST_DATA_PATH) == 0:
         print(f"'{config.TEST_DATA_PATH}' 파일이 없거나 비어있어 새로 생성합니다.")
         sample_data = [
-            {"type": "function", "name": "calculate_sum", "code": "def calculate_sum(a, b): return a + b"},
-            {"type": "class", "name": "MyCalculator", "code": "class MyCalculator: def add(self, a, b): return a + b"},
-            {"type": "function", "name": "calculate_product", "code": "def calculate_product(a, b): return a * b"}
+            {
+                "type": "module",
+                "name": "",
+                "start_line": 1,
+                "end_line": 3,
+                "code": "from nicegui import ui\nfrom controller import DownloadState, run_download\nimport os",
+                "file_path": "/home/gyuho/RAGAgent/Demo_version(old)/git-agent/repository/youtube_mp3_downloader/app.py",
+                "_source_file": "app.json"
+            },
+            {
+                "type": "script",
+                "name": "",
+                "start_line": 5,
+                "end_line": 5,
+                "code": "state = DownloadState()",
+                "file_path": "/home/gyuho/RAGAgent/Demo_version(old)/git-agent/repository/youtube_mp3_downloader/app.py",
+                "_source_file": "app.json"
+            },
+            {
+                "type": "script",
+                "name": "",
+                "start_line": 7,
+                "end_line": 10,
+                "code": "ui.label(\"🎵 YouTube to MP3 Downloader\").classes('text-2xl font-bold text-center mt-4')\n"
+                        "input_url = ui.input(\"YouTube URL\").classes('w-full')\n"
+                        "status_label = ui.label()\n"
+                        "progress = ui.linear_progress().classes('w-full')",
+                "file_path": "/home/gyuho/RAGAgent/Demo_version(old)/git-agent/repository/youtube_mp3_downloader/app.py",
+                "_source_file": "app.json"
+            }
         ]
         with open(config.TEST_DATA_PATH, "w", encoding="utf-8") as f:
             json.dump(sample_data, f, indent=2)
@@ -34,6 +61,7 @@ def main_menu():
         print("3. 컬렉션 삭제")
         print("4. 문서 임베딩 (LangChain)")
         print("5. 벡터 검색 (LangChain)")
+        print("6. 컬렉션 데이터 확인")
         print("0. 종료")
         print("================================")
         
@@ -50,7 +78,6 @@ def main_menu():
 
             collection_name = input(f"생성할 컬렉션 이름 (기본값: {model_key}_collection): ") or f"{model_key}_collection"
             
-            # 선택된 모델의 dim 값을 직접 전달
             db_utils.create_milvus_collection(collection_name, dim=model_conf["dim"])
         
         elif choice == '2':
@@ -77,24 +104,24 @@ def main_menu():
         elif choice == '5':
             c_name = input(f"검색할 컬렉션 이름 (기본값: {config.DEFAULT_MODEL_KEY}_collection): ") or f"{config.DEFAULT_MODEL_KEY}_collection"
             query = input("검색어를 입력하세요: ")
-            
-            # 👇 검색 모드 선택 UI 추가
-            print("--- 검색 모드 선택 ---")
-            print("1. 하이브리드 검색 (기본값)")
-            print("2. 벡터 검색")
-            print("3. BM25 검색")
-            mode_choice = input("선택: ")
-            
-            mode_map = {"1": "hybrid", "2": "vector", "3": "bm25"}
-            search_mode = mode_map.get(mode_choice, "hybrid")
 
             if query:
-                inp = SearchInput(query=query, collection_name=c_name, search_mode=search_mode)
-                docs = search_chain.invoke(inp)
-                print("\n🔍 검색 결과:")
-                print(format_docs(docs))
+                inp = SearchInput(query=query, collection_name=c_name)
+                
+                results = search_chain.invoke(inp)  # 바로 JSON 구조로 저장
+                
+                print("\n🔍 검색 결과 (JSON):")
+                if not results:
+                    print("검색 결과가 없습니다.")
+                else:
+                    print(json.dumps(results, indent=2, ensure_ascii=False))
             else:
                 print("⚠️ 검색어가 입력되지 않았습니다.")
+
+        elif choice == '6':
+            collection_name = input("데이터를 확인할 컬렉션 이름을 입력하세요: ")
+            db_utils.verify_collection_data(collection_name)
+
         elif choice == '0':
             print("프로그램을 종료합니다.")
             break

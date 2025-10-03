@@ -1,17 +1,33 @@
 [
   {
-    "type": "function",
-    "name": "calculate_sum",
-    "code": "def calculate_sum(a, b): return a + b"
+    "main": {},
+    "_source_file": "GitAiData.json"
   },
   {
-    "type": "class",
-    "name": "MyCalculator",
-    "code": "class MyCalculator: def add(self, a, b): return a + b"
+    "type": "module",
+    "name": "",
+    "start_line": 1,
+    "end_line": 3,
+    "code": "from nicegui import ui\nfrom controller import DownloadState, run_download\nimport os",
+    "file_path": "/home/gyuho/RAGAgent/Demo_version(old)/git-agent/repository/youtube_mp3_downloader/app.py",
+    "_source_file": "app.json"
   },
   {
-    "type": "function",
-    "name": "calculate_product",
-    "code": "def calculate_product(a, b): return a * b"
+    "type": "script",
+    "name": "",
+    "start_line": 5,
+    "end_line": 5,
+    "code": "state = DownloadState()",
+    "file_path": "/home/gyuho/RAGAgent/Demo_version(old)/git-agent/repository/youtube_mp3_downloader/app.py",
+    "_source_file": "app.json"
+  },
+  {
+    "type": "script",
+    "name": "",
+    "start_line": 7,
+    "end_line": 10,
+    "code": "ui.label(\"🎵 YouTube to MP3 Downloader\").classes('text-2xl font-bold text-center mt-4')\ninput_url = ui.input(\"YouTube URL\").classes('w-full')\nstatus_label = ui.label()\nprogress = ui.linear_progress().classes('w-full')",
+    "file_path": "/home/gyuho/RAGAgent/Demo_version(old)/git-agent/repository/youtube_mp3_downloader/app.py",
+    "_source_file": "app.json"
   }
 ]
