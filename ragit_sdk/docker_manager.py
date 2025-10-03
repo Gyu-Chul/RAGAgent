@@ -32,14 +32,18 @@ class DockerManager:
                     capture_output=True,
                     text=True,
                     check=True,
-                    cwd=cwd or self.config.work_dir
+                    cwd=cwd or self.config.work_dir,
+                    encoding='utf-8',
+                    errors='replace'
                 )
                 return result.stdout.strip()
             else:
                 subprocess.run(
                     command,
                     check=True,
-                    cwd=cwd or self.config.work_dir
+                    cwd=cwd or self.config.work_dir,
+                    encoding='utf-8',
+                    errors='replace'
                 )
                 return ""
         except subprocess.CalledProcessError as e:
@@ -114,6 +118,92 @@ class DockerManager:
             return True
 
         self.logger.error("❌ Docker container start failed")
+        return False
+
+    def start_local_infrastructure(self) -> bool:
+        """로컬 인프라 컨테이너 시작 (PostgreSQL, Redis)"""
+        if not self._check_docker():
+            return False
+
+        compose_file = "docker-compose.local.yml"
+        self.logger.info("🐳 Starting local infrastructure (PostgreSQL, Redis)")
+
+        compose_cmd = self._get_compose_command()
+        command = compose_cmd + ["-f", compose_file, "up", "-d"]
+
+        if self._run_command(command, capture_output=False) is not None:
+            self.logger.info("✅ Local infrastructure started successfully")
+            self._wait_for_services_healthy(compose_file)
+            return True
+
+        self.logger.error("❌ Local infrastructure start failed")
+        return False
+
+    def stop_local_infrastructure(self) -> bool:
+        """로컬 인프라 컨테이너 중지"""
+        if not self._check_docker():
+            return False
+
+        compose_file = "docker-compose.local.yml"
+        self.logger.info("🛑 Stopping local infrastructure")
+
+        compose_cmd = self._get_compose_command()
+        command = compose_cmd + ["-f", compose_file, "down"]
+
+        if self._run_command(command, capture_output=False) is not None:
+            self.logger.info("✅ Local infrastructure stopped successfully")
+            return True
+
+        self.logger.error("❌ Local infrastructure stop failed")
+        return False
+
+    def _wait_for_services_healthy(self, compose_file: str, timeout: int = 30) -> bool:
+        """서비스가 healthy 상태가 될 때까지 대기"""
+        import time
+
+        self.logger.info("⏳ Waiting for services to be healthy...")
+        start_time = time.time()
+
+        while time.time() - start_time < timeout:
+            try:
+                # docker ps를 사용하여 직접 컨테이너 상태 확인
+                ps_command = ["docker", "ps", "--filter", "name=ragit-", "--format", "{{.Names}}\t{{.Status}}"]
+                output = self._run_command(ps_command)
+
+                if output:
+                    lines = output.strip().split('\n')
+                    containers = {}
+
+                    for line in lines:
+                        if '\t' in line:
+                            name, status = line.split('\t', 1)
+                            containers[name] = status
+
+                    # PostgreSQL과 Redis 컨테이너가 모두 실행 중인지 확인
+                    postgres_running = any('postgres' in name and 'Up' in status
+                                          for name, status in containers.items())
+                    redis_running = any('redis' in name and 'Up' in status
+                                       for name, status in containers.items())
+
+                    if postgres_running and redis_running:
+                        # 추가로 헬스체크 완료 확인 (healthy 상태)
+                        all_healthy = True
+                        for name, status in containers.items():
+                            if 'health' in status.lower():
+                                if 'healthy' not in status.lower():
+                                    all_healthy = False
+                                    break
+
+                        if all_healthy:
+                            self.logger.info("✅ All services are healthy")
+                            return True
+
+            except Exception as e:
+                self.logger.debug(f"Health check error (will retry): {e}")
+
+            time.sleep(2)
+
+        self.logger.warning("⚠️  Timeout waiting for services to be healthy")
         return False
 
     def stop(self, mode: str = "dev") -> bool:

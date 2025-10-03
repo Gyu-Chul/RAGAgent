@@ -391,7 +391,18 @@ class SystemOrchestrator:
         """모든 서비스 시작"""
         self.logger.info("🚀 Starting RAGIT system...")
 
-        # 시작 순서: backend -> gateway -> rag_worker -> frontend
+        # 1. Docker 인프라 시작 (PostgreSQL, Redis)
+        from .docker_manager import DockerManager
+        docker_manager = DockerManager(self.config)
+
+        if not docker_manager.start_local_infrastructure():
+            self.logger.error("Failed to start Docker infrastructure")
+            return False
+
+        # 인프라가 준비될 때까지 잠시 대기
+        time.sleep(3)
+
+        # 2. 서비스 시작 순서: backend -> gateway -> rag_worker -> frontend
         start_order = ['backend', 'gateway', 'rag_worker', 'frontend']
 
         for service_name in start_order:
@@ -408,7 +419,7 @@ class SystemOrchestrator:
         """모든 서비스 종료"""
         self.logger.info("🛑 Stopping all services...")
 
-        # 종료 순서: frontend -> rag_worker -> gateway -> backend
+        # 1. 서비스 종료 순서: frontend -> rag_worker -> gateway -> backend
         stop_order = ['frontend', 'rag_worker', 'gateway', 'backend']
 
         success = True
@@ -417,6 +428,14 @@ class SystemOrchestrator:
                 if not self.controller.stop_service(service_name):
                     success = False
                 time.sleep(1)
+
+        # 2. Docker 인프라 종료 (PostgreSQL, Redis)
+        from .docker_manager import DockerManager
+        docker_manager = DockerManager(self.config)
+
+        if not docker_manager.stop_local_infrastructure():
+            self.logger.warning("⚠️  Failed to stop Docker infrastructure")
+            success = False
 
         if success:
             self.logger.info("✅ All services stopped successfully!")
@@ -443,6 +462,27 @@ class SystemOrchestrator:
         """현재 실행 중인 서비스 상태 표시"""
         self.logger.info("📊 Service Status:")
 
+        # 1. Docker 인프라 상태 확인
+        from .docker_manager import DockerManager
+        docker_manager = DockerManager(self.config)
+
+        self.logger.info("\n🐳 Docker Infrastructure:")
+        docker_status = self._check_docker_infrastructure_status(docker_manager)
+
+        for container_name, status in docker_status.items():
+            if status['running']:
+                status_info = f"✅ {container_name.upper():<12} RUNNING"
+                if status.get('port'):
+                    status_info += f" (port: {status['port']})"
+                if status.get('health'):
+                    status_info += f" [{status['health']}]"
+                self.logger.info(status_info)
+            else:
+                self.logger.info(f"❌ {container_name.upper():<12} STOPPED")
+
+        # 2. RAGIT 서비스 상태 확인
+        self.logger.info("\n🚀 RAGIT Services:")
+
         for service_name in self.config.get_all_services():
             if self.controller.is_service_running(service_name):
                 port = self.controller._get_service_port(service_name)
@@ -460,6 +500,58 @@ class SystemOrchestrator:
                 self.logger.info(status_info)
             else:
                 self.logger.info(f"❌ {service_name.upper():<12} STOPPED")
+
+    def _check_docker_infrastructure_status(self, docker_manager: Any) -> Dict[str, Dict[str, Any]]:
+        """Docker 인프라 상태 확인"""
+        import subprocess
+
+        status = {
+            'postgresql': {'running': False, 'port': 5432, 'health': None},
+            'redis': {'running': False, 'port': 6379, 'health': None}
+        }
+
+        try:
+            # docker ps로 컨테이너 상태 확인
+            ps_command = ["docker", "ps", "--filter", "name=ragit-", "--format", "{{.Names}}\t{{.Status}}"]
+            result = subprocess.run(
+                ps_command,
+                capture_output=True,
+                text=True,
+                encoding='utf-8',
+                errors='replace'
+            )
+
+            if result.returncode == 0 and result.stdout:
+                lines = result.stdout.strip().split('\n')
+
+                for line in lines:
+                    if '\t' in line:
+                        name, container_status = line.split('\t', 1)
+
+                        # PostgreSQL 확인
+                        if 'postgres' in name.lower():
+                            status['postgresql']['running'] = 'Up' in container_status
+                            if 'healthy' in container_status.lower():
+                                status['postgresql']['health'] = 'healthy'
+                            elif 'unhealthy' in container_status.lower():
+                                status['postgresql']['health'] = 'unhealthy'
+                            elif 'health' in container_status.lower():
+                                status['postgresql']['health'] = 'starting'
+
+                        # Redis 확인
+                        if 'redis' in name.lower():
+                            status['redis']['running'] = 'Up' in container_status
+                            if 'healthy' in container_status.lower():
+                                status['redis']['health'] = 'healthy'
+                            elif 'unhealthy' in container_status.lower():
+                                status['redis']['health'] = 'unhealthy'
+                            elif 'health' in container_status.lower():
+                                status['redis']['health'] = 'starting'
+
+        except Exception as e:
+            self.logger.debug(f"Error checking Docker infrastructure: {e}")
+
+        return status
 
     def show_service_info(self) -> None:
         """서비스 접속 정보 표시"""

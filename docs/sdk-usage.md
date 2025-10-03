@@ -19,8 +19,8 @@ RAGIT을 개발하기 위해 필요한 환경을 설정합니다.
 ### 시스템 요구사항
 
 - **Python**: 3.11+
-- **PostgreSQL**: 15+
-- **Redis**: 7+
+- **Docker**: 최신 버전 (PostgreSQL과 Redis 실행용)
+- **Docker Compose**: v2.0+
 - **Node.js**: 18+ (일부 도구 사용 시)
 - **Git**: 최신 버전
 
@@ -31,56 +31,34 @@ RAGIT을 개발하기 위해 필요한 환경을 설정합니다.
 python3 --version
 
 # UV 패키지 매니저 설치 (권장)
+# MacOS
 curl -LsSf https://astral.sh/uv/install.sh | sh
+
+# 윈도우
+powershell -c "irm https://astral.sh/uv/install.ps1 | iex"   
 
 # 또는 pip 사용
 python3 -m pip install --upgrade pip
 ```
 
-### 2. 데이터베이스 설치
+### 2. Docker 설치
 
-#### PostgreSQL 설치
-
-```bash
-# Ubuntu/Debian
-sudo apt update
-sudo apt install postgresql postgresql-contrib
-
-# macOS
-brew install postgresql
-brew services start postgresql
-
-# Windows - PostgreSQL 다운로드
-# https://postgresql.org/download/windows/
-```
-
-#### Redis 설치
+RAGIT은 PostgreSQL과 Redis를 Docker 컨테이너로 실행합니다.
 
 ```bash
-# Ubuntu/Debian
-sudo apt install redis-server
-sudo systemctl start redis
+# Docker 설치 확인
+docker --version
+docker compose version
 
-# macOS
-brew install redis
-brew services start redis
+# Docker가 실행 중인지 확인
+docker ps
 
-# Windows - Redis 다운로드
-# https://github.com/tporadowski/redis/releases
+# Docker 설치가 필요한 경우:
+# - Windows/Mac: Docker Desktop 설치 (https://www.docker.com/products/docker-desktop)
+# - Linux: Docker Engine 설치 (https://docs.docker.com/engine/install/)
 ```
 
-### 3. 데이터베이스 설정
-
-```bash
-# PostgreSQL 데이터베이스 생성
-sudo -u postgres createdb ragit
-
-# 사용자 생성 (선택사항)
-sudo -u postgres createuser --interactive --pwprompt ragit_user
-
-# 접속 테스트
-psql -h localhost -U postgres -d ragit
-```
+> **참고**: PostgreSQL과 Redis를 별도로 설치할 필요가 없습니다. `ragit start` 명령어가 자동으로 Docker 컨테이너를 실행합니다.
 
 ## 🚀 로컬 설치 및 실행
 
@@ -105,35 +83,39 @@ pip install -e .
 
 ### 2. 환경 설정
 
-`.env` 파일을 생성하여 로컬 개발 환경을 설정합니다:
+RAGIT은 `.env.local` 파일을 사용하여 로컬 개발 환경을 설정합니다 (이미 생성되어 있음):
 
 ```bash
-# .env 파일 생성
-cat > .env << EOF
-# Database Configuration
-DATABASE_URL=postgresql://postgres:password@localhost:5432/ragit
+# .env.local 파일 내용 확인
+cat .env.local
 
-# Redis Configuration
+# 필요시 수정
+# Local Development 환경 설정 파일
+SECRET_KEY=your-secret-key-for-local-development
+ENVIRONMENT=development
+DEBUG=true
+
+# Database (로컬 Docker)
+DATABASE_URL=postgresql://postgres:postgres@localhost:5432/ragit
+POSTGRES_DB=ragit
+POSTGRES_USER=postgres
+POSTGRES_PASSWORD=postgres
+
+# Redis (로컬 Docker)
 REDIS_URL=redis://localhost:6379/0
 
-# JWT Configuration
-SECRET_KEY=your-development-secret-key
-ALGORITHM=HS256
+# API 설정
+CORS_ORIGINS=["http://localhost:8000", "http://localhost:8001", "http://localhost:8080"]
 ACCESS_TOKEN_EXPIRE_MINUTES=1440
+ALGORITHM=HS256
 
-# Service Ports
+# 서비스 포트
 FRONTEND_PORT=8000
 BACKEND_PORT=8001
 GATEWAY_PORT=8080
-
-# Development Settings
-LOG_LEVEL=DEBUG
-RAGIT_ENV=development
-
-# CORS Configuration
-CORS_ORIGINS=["http://localhost:8000", "http://localhost:3000"]
-EOF
 ```
+
+> **참고**: PostgreSQL과 Redis는 Docker 컨테이너로 실행되므로, DATABASE_URL과 REDIS_URL은 localhost로 설정되어 있습니다.
 
 ### 3. RAGIT SDK 설치 확인
 
@@ -166,16 +148,23 @@ ragit config
 ### 로컬 서비스 관리
 
 ```bash
-# 모든 서비스 시작 (개발 모드)
+# 🚀 모든 서비스 시작 (Docker 인프라 포함)
+# - PostgreSQL, Redis 컨테이너 자동 시작
+# - Backend, Gateway, RAG Worker, Frontend 순차 시작
+ragit start --mode all
+
+# 개발 모드로 시작 (더 상세한 로그)
 ragit start --mode dev
 
-# 개별 서비스 시작
+# 개별 서비스 시작 (Docker 인프라는 수동 시작 필요)
 ragit-process start-backend
 ragit-process start-frontend
 ragit-process start-gateway
 ragit-process start-rag-worker
 
-# 서비스 중지
+# 🛑 서비스 중지 (Docker 인프라 포함)
+# - 모든 서비스 종료
+# - PostgreSQL, Redis 컨테이너 자동 중지
 ragit stop
 
 # 서비스 재시작
@@ -202,24 +191,37 @@ ragit-process restart-frontend
 ragit config --check-ports
 ```
 
-### Docker 개발 지원
+### Docker 인프라 관리
 
-개발 중에도 Docker를 활용할 수 있습니다:
+RAGIT은 PostgreSQL과 Redis를 Docker로 자동 관리합니다:
 
 ```bash
-# 개발용 Docker 환경 빌드
+# ✅ 자동 관리 (권장)
+# ragit start 시 자동으로 Docker 인프라 시작
+ragit start
+
+# ragit stop 시 자동으로 Docker 인프라 중지
+ragit stop
+
+# 🔧 수동 관리 (고급 사용자)
+# PostgreSQL, Redis만 별도로 시작
+docker compose -f docker-compose.local.yml up -d
+
+# PostgreSQL, Redis 중지
+docker compose -f docker-compose.local.yml down
+
+# 컨테이너 상태 확인
+docker ps | grep ragit
+
+# 컨테이너 로그 확인
+docker logs ragit-postgres
+docker logs ragit-redis
+
+# 전체 Docker 시스템 관리 (모든 서비스 컨테이너화)
 ragit docker build --mode dev
-
-# 개발 컨테이너 시작
 ragit docker start --mode dev
-
-# 로그 확인
 ragit docker logs --service backend
-
-# 컨테이너와 로컬 개발 혼합 사용
-# (예: 데이터베이스는 Docker, 백엔드는 로컬)
-docker-compose up -d postgres redis
-ragit-process start-backend
+ragit docker stop --mode dev
 ```
 
 ## 🔄 개발 워크플로우
@@ -227,7 +229,7 @@ ragit-process start-backend
 ### 일반적인 개발 프로세스
 
 ```bash
-# 1. 개발 환경 시작
+# 1. 개발 환경 시작 (Docker 인프라 + 모든 서비스)
 ragit start --mode dev
 
 # 2. 코드 수정 작업
@@ -243,9 +245,14 @@ ragit monitor
 # 5. 테스트 실행 (섹션 참조)
 pytest tests/
 
-# 6. 개발 완료 후 정리
+# 6. 개발 완료 후 정리 (서비스 + Docker 인프라 모두 종료)
 ragit stop
 ```
+
+> **자동화 포인트**: `ragit start`는 다음을 순차적으로 실행합니다:
+> 1. Docker Compose로 PostgreSQL, Redis 컨테이너 시작
+> 2. 컨테이너 헬스체크 완료 대기
+> 3. Backend → Gateway → RAG Worker → Frontend 순서로 서비스 시작
 
 ### 브랜치 기반 개발
 
@@ -348,18 +355,20 @@ uv sync --check
 
 ```
 RAGIT/
-├── backend/          # FastAPI 백엔드
-├── frontend/         # NiceGUI 프론트엔드
-├── gateway/          # API 게이트웨이
-├── rag_worker/       # Celery 워커
-├── ragit_sdk/        # SDK 및 CLI
-├── docs/             # 문서
-├── tests/            # 테스트
-├── logs/             # 로그 파일
-├── data/             # 데이터 파일
-├── docker-compose.yml
+├── backend/                    # FastAPI 백엔드
+├── frontend/                   # NiceGUI 프론트엔드
+├── gateway/                    # API 게이트웨이
+├── rag_worker/                 # Celery 워커
+├── ragit_sdk/                  # SDK 및 CLI
+├── docs/                       # 문서
+├── tests/                      # 테스트
+├── logs/                       # 로그 파일
+├── data/                       # 데이터 파일
+├── docker-compose.yml          # 전체 시스템 Docker Compose
+├── docker-compose.local.yml    # 로컬 개발용 (PostgreSQL, Redis만)
 ├── pyproject.toml
-└── .env              # 환경 설정
+├── .env                        # Docker 환경 설정
+└── .env.local                  # 로컬 개발 환경 설정
 ```
 
 ### SDK 아키텍처
@@ -378,11 +387,14 @@ ragit_sdk/
 
 ### 개발 시 주의사항
 
-1. **포트 충돌**: 개발 시 8000-8080 포트 사용 확인
-2. **데이터베이스**: PostgreSQL과 Redis 서비스 실행 상태 확인
-3. **환경 변수**: `.env` 파일의 설정값 확인
+1. **Docker 실행**: Docker Desktop/Engine이 실행 중이어야 함
+2. **포트 충돌**:
+   - 5432 (PostgreSQL), 6379 (Redis) - Docker 컨테이너
+   - 8000 (Frontend), 8001 (Backend), 8080 (Gateway) - 로컬 프로세스
+3. **환경 변수**: `.env.local` 파일의 설정값 확인
 4. **로그 레벨**: 개발 시 `DEBUG` 레벨 사용 권장
 5. **의존성 관리**: `uv sync` 또는 `pip install -e .` 정기 실행
+6. **컨테이너 정리**: 개발 완료 후 `ragit stop`으로 Docker 리소스 정리
 
 ### 성능 최적화
 
