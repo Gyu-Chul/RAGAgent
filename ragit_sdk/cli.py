@@ -200,6 +200,24 @@ def ps(ctx) -> None:
 
 @cli.command()
 @click.pass_context
+def infra(ctx) -> None:
+    """Start local infrastructure only (PostgreSQL, Redis)"""
+    config = ctx.obj['config']
+    manager = DockerManager(config)
+
+    click.echo("Starting local infrastructure (PostgreSQL, Redis)...")
+
+    if manager.start_local_infrastructure():
+        click.echo("Local infrastructure started successfully!")
+        click.echo("PostgreSQL: localhost:5432")
+        click.echo("Redis: localhost:6379")
+    else:
+        click.echo("Failed to start local infrastructure.")
+        sys.exit(1)
+
+
+@cli.command()
+@click.pass_context
 def config(ctx) -> None:
     """Display RAGIT configuration info"""
     config = ctx.obj['config']

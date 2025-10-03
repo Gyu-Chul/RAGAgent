@@ -34,14 +34,28 @@ class AuthenticationService:
 
     def register_user(self, db: Session, username: str, email: str, password: str) -> Optional[User]:
         """사용자 회원가입"""
+        print(f"DEBUG: Registering user - username={username}, email={email}")
+
         # 중복 체크
-        if self._user_service.get_user_by_email(db, email):
+        existing_email = self._user_service.get_user_by_email(db, email)
+        if existing_email:
+            print(f"DEBUG: Email already exists: {email}")
             return None
 
-        if self._user_service.get_user_by_username(db, username):
+        existing_username = self._user_service.get_user_by_username(db, username)
+        if existing_username:
+            print(f"DEBUG: Username already exists: {username}")
             return None
 
-        return self._user_service.create_user(db, username, email, password)
+        print(f"DEBUG: Creating new user - username={username}, email={email}")
+        result = self._user_service.create_user(db, username, email, password)
+
+        if result:
+            print(f"DEBUG: User created successfully - id={result.id}")
+        else:
+            print(f"DEBUG: User creation failed")
+
+        return result
 
     def login_user(self, db: Session, email: str, password: str) -> Optional[tuple[User, str]]:
         """사용자 로그인"""
