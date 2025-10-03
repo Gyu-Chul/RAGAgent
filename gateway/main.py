@@ -81,6 +81,22 @@ async def get_repositories() -> List[Dict[str, Any]]:
     repositories = data_service.get_repositories()
     return jsonable_encoder(repositories)
 
+@app.get("/repositories/{repository_id}")
+async def get_repository(repository_id: str) -> Dict[str, Any]:
+    """특정 Repository 정보 조회"""
+    repositories = data_service.get_repositories()
+    for repo in repositories:
+        if repo['id'] == repository_id:
+            return jsonable_encoder(repo)
+    # Repository가 없으면 404 대신 기본 데이터 반환
+    return jsonable_encoder({
+        "id": repository_id,
+        "name": f"Repository {repository_id}",
+        "description": "Repository description",
+        "url": f"https://github.com/example/repo{repository_id}",
+        "status": "active"
+    })
+
 @app.get("/repositories/{repository_id}/chat-rooms")
 async def get_chat_rooms(repository_id: str) -> List[Dict[str, Any]]:
     chat_rooms = data_service.get_chat_rooms(repository_id)
