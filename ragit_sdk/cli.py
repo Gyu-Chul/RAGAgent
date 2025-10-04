@@ -201,16 +201,17 @@ def ps(ctx) -> None:
 @cli.command()
 @click.pass_context
 def infra(ctx) -> None:
-    """Start local infrastructure only (PostgreSQL, Redis)"""
+    """Start local infrastructure only (PostgreSQL, Redis, Milvus)"""
     config = ctx.obj['config']
     manager = DockerManager(config)
 
-    click.echo("Starting local infrastructure (PostgreSQL, Redis)...")
+    click.echo("Starting local infrastructure (PostgreSQL, Redis, Milvus)...")
 
     if manager.start_local_infrastructure():
         click.echo("Local infrastructure started successfully!")
         click.echo("PostgreSQL: localhost:5432")
         click.echo("Redis: localhost:6379")
+        click.echo("Milvus: localhost:19530")
     else:
         click.echo("Failed to start local infrastructure.")
         sys.exit(1)
@@ -231,6 +232,56 @@ def config(ctx) -> None:
     click.echo(f"  - Frontend: {config.frontend_port}")
     click.echo(f"  - Backend: {config.backend_port}")
     click.echo(f"  - Gateway: {config.gateway_port}")
+
+
+@cli.group()
+def test() -> None:
+    """Test commands for RAGIT services"""
+    pass
+
+
+@test.command()
+def worker() -> None:
+    """Run full Git Worker test suite"""
+    click.echo("Running Git Worker test suite...")
+    click.echo("Make sure Redis and Celery Worker are running!")
+    click.echo("")
+
+    import subprocess
+    try:
+        subprocess.run([sys.executable, "-m", "ragit_sdk.test_git_worker"], check=True)
+    except subprocess.CalledProcessError:
+        click.echo("Test failed!")
+        sys.exit(1)
+
+
+@test.command()
+def search() -> None:
+    """Run search functionality test"""
+    click.echo("Running search test...")
+    click.echo("Make sure Redis and Celery Worker are running!")
+    click.echo("")
+
+    import subprocess
+    try:
+        subprocess.run([sys.executable, "-m", "ragit_sdk.test_search_only"], check=True)
+    except subprocess.CalledProcessError:
+        click.echo("Test failed!")
+        sys.exit(1)
+
+
+@test.command()
+def milvus() -> None:
+    """Check Milvus database data"""
+    click.echo("Checking Milvus data...")
+    click.echo("")
+
+    import subprocess
+    try:
+        subprocess.run([sys.executable, "-m", "ragit_sdk.check_milvus"], check=True)
+    except subprocess.CalledProcessError:
+        click.echo("Check failed!")
+        sys.exit(1)
 
 
 def main() -> None:

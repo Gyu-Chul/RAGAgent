@@ -29,17 +29,22 @@ class VectorDBService:
     컬렉션 관리, 임베딩, 검색 기능을 통합하여 제공합니다.
     """
 
-    def __init__(self, batch_size: int = 256) -> None:
+    def __init__(self, batch_size: int = 256, embedding_batch_size: int = 4) -> None:
         """
         VectorDBService 초기화
 
         Args:
-            batch_size: 임베딩 시 배치 크기
+            batch_size: Milvus 삽입 배치 크기
+            embedding_batch_size: 임베딩 생성 배치 크기 (메모리 부족 시 줄이기)
         """
         self.collection_manager: CollectionManager = CollectionManager()
-        self.embedding_service: EmbeddingService = EmbeddingService(batch_size=batch_size)
+        self.embedding_service: EmbeddingService = EmbeddingService(
+            batch_size=batch_size, embedding_batch_size=embedding_batch_size
+        )
         self.search_service: SearchService = SearchService()
-        self.repository_embedder: RepositoryEmbedder = RepositoryEmbedder()
+        self.repository_embedder: RepositoryEmbedder = RepositoryEmbedder(
+            embedding_batch_size=embedding_batch_size
+        )
 
         logger.info("✅ VectorDBService initialized")
 

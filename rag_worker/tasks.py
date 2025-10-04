@@ -16,7 +16,8 @@ from .vector_db.config import DEFAULT_MODEL_KEY
 # 서비스 인스턴스 생성
 git_service = GitService()
 parser_service = RepositoryParserService()
-vector_db_service = VectorDBService()
+# embedding_batch_size=4: 메모리 누적 방지, 배치마다 메모리 해제
+vector_db_service = VectorDBService(embedding_batch_size=4)
 
 
 @app.task

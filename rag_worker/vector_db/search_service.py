@@ -63,6 +63,30 @@ class SearchService:
         """SearchService 초기화"""
         self.client = MilvusConnectionManager.get_client()
 
+    def _load_collection(self, collection_name: str) -> None:
+        """
+        컬렉션 로드
+
+        Args:
+            collection_name: 컬렉션 이름
+
+        Raises:
+            SearchError: 컬렉션 로드 실패 시
+        """
+        try:
+            from pymilvus import Collection, connections
+
+            # PyMilvus 연결 확인
+            MilvusConnectionManager.ensure_connection()
+
+            # 컬렉션 로드
+            collection = Collection(collection_name)
+            collection.load()
+            logger.info(f"✅ Collection '{collection_name}' loaded successfully")
+
+        except Exception as e:
+            raise SearchError(f"Failed to load collection: {e}") from e
+
     def search(self, input_data: SearchInput) -> SearchResult:
         """
         하이브리드 검색 수행 (밀집 + 희소 벡터)
@@ -79,6 +103,9 @@ class SearchService:
             logger.info(
                 f"▶️ Starting hybrid search in collection: {input_data['collection_name']}"
             )
+
+            # 0. 컬렉션 로드
+            self._load_collection(input_data["collection_name"])
 
             # 1. 밀집 쿼리 벡터 생성
             logger.info("Generating dense query vector...")

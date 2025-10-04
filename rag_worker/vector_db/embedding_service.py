@@ -107,7 +107,17 @@ class DenseEmbedder:
         Returns:
             밀집 벡터 리스트
         """
-        return self.embedder.embed_documents(texts)
+        import gc
+        import torch
+
+        result = self.embedder.embed_documents(texts)
+
+        # 메모리 정리
+        if torch.cuda.is_available():
+            torch.cuda.empty_cache()
+        gc.collect()
+
+        return result
 
 
 class SparseEmbedder:
@@ -147,15 +157,17 @@ class SparseEmbedder:
 class EmbeddingService:
     """임베딩 처리 통합 서비스 클래스"""
 
-    def __init__(self, batch_size: int = 256) -> None:
+    def __init__(self, batch_size: int = 256, embedding_batch_size: int = 12) -> None:
         """
         EmbeddingService 초기화
 
         Args:
-            batch_size: 배치 크기 (GPU 메모리에 따라 조정)
+            batch_size: Milvus 삽입 배치 크기
+            embedding_batch_size: 임베딩 생성 배치 크기 (메모리 절약)
         """
         self.client = MilvusConnectionManager.get_client()
         self.batch_size: int = batch_size
+        self.embedding_batch_size: int = embedding_batch_size
 
     def process_embedding(self, input_data: EmbeddingInput) -> EmbeddingResult:
         """
@@ -170,8 +182,31 @@ class EmbeddingService:
         start_time: float = time.time()
 
         try:
+            # 0. 컬렉션 존재 확인 및 생성
+            from .collection_manager import CollectionManager
+            from .config import EMBEDDING_MODELS
+
+            collection_manager = CollectionManager()
+            collection_name = input_data["collection_name"]
+
+            if not collection_manager.exists(collection_name):
+                logger.info(f"Collection '{collection_name}' not found. Creating...")
+                model_config = EMBEDDING_MODELS.get(input_data["model_key"])
+                dim = model_config["dim"]
+
+                result = collection_manager.create_collection(
+                    collection_name=collection_name,
+                    dim=dim,
+                    description=f"Auto-created for embedding task"
+                )
+
+                if not result["success"]:
+                    raise EmbeddingError(f"Failed to create collection: {result['error']}")
+
+                logger.info(f"✅ Collection '{collection_name}' created successfully")
+
             # 1. 데이터 로딩
-            logger.info(f"▶️ Starting embedding process for collection: {input_data['collection_name']}")
+            logger.info(f"▶️ Starting embedding process for collection: {collection_name}")
             texts, metadata_list = self._load_data(input_data["json_path"])
 
             if not texts:
@@ -187,10 +222,25 @@ class EmbeddingService:
             BM25ModelCache.set(input_data["collection_name"], sparse_embedder.bm25)
             logger.info("✅ Sparse vectors generated and BM25 model cached")
 
-            # 3. 밀집 벡터 생성
-            logger.info(f"Generating dense vectors ({len(texts)} documents)...")
+            # 3. 밀집 벡터 생성 (배치로 나눠서 처리)
+            logger.info(f"Generating dense vectors ({len(texts)} documents) in batches of {self.embedding_batch_size}...")
             dense_embedder = DenseEmbedder(input_data["model_key"])
-            dense_vectors = dense_embedder.embed_documents(texts)
+
+            dense_vectors: List[List[float]] = []
+            for batch_idx, i in enumerate(range(0, len(texts), self.embedding_batch_size), 1):
+                batch_end = min(i + self.embedding_batch_size, len(texts))
+                batch_texts = texts[i:batch_end]
+
+                logger.info(f"  - Embedding batch {batch_idx}/{(len(texts)-1)//self.embedding_batch_size + 1}: {i+1}~{batch_end}/{len(texts)}")
+                batch_vectors = dense_embedder.embed_documents(batch_texts)
+                dense_vectors.extend(batch_vectors)
+
+                # 배치마다 메모리 정리
+                del batch_vectors
+                del batch_texts
+                import gc
+                gc.collect()
+
             logger.info("✅ Dense vectors generated")
 
             # 4. Milvus에 배치 삽입
@@ -305,6 +355,14 @@ class EmbeddingService:
                 row["text"] = texts[j]
                 row["dense"] = dense_vectors[j]
                 row["sparse"] = sparse_vectors[j]
+
+                # _source_file 필드 추가 (file_path에서 파일명만 추출)
+                if "file_path" in row:
+                    import os
+                    row["_source_file"] = os.path.basename(row["file_path"])
+                else:
+                    row["_source_file"] = "unknown"
+
                 data_to_insert.append(row)
 
             # 배치 삽입

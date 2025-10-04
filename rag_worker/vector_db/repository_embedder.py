@@ -17,12 +17,15 @@ logger = logging.getLogger(__name__)
 class RepositoryEmbedder:
     """파싱된 레포지토리 전체를 임베딩하는 클래스"""
 
-    def __init__(self, base_parsed_path: str = "parsed_repository") -> None:
+    def __init__(
+        self, base_parsed_path: str = "parsed_repository", embedding_batch_size: int = 4
+    ) -> None:
         """
         RepositoryEmbedder 초기화
 
         Args:
             base_parsed_path: 파싱된 레포지토리 기본 경로
+            embedding_batch_size: 임베딩 배치 크기 (메모리 부족 시 줄이기)
         """
         # 프로젝트 루트 찾기
         if Path(base_parsed_path).is_absolute():
@@ -37,7 +40,9 @@ class RepositoryEmbedder:
             else:
                 self.base_path = Path(base_parsed_path).resolve()
 
-        self.embedding_service: EmbeddingService = EmbeddingService()
+        self.embedding_service: EmbeddingService = EmbeddingService(
+            embedding_batch_size=embedding_batch_size
+        )
 
     def get_parsed_repo_path(self, repo_name: str) -> Path:
         """

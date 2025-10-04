@@ -121,12 +121,12 @@ class DockerManager:
         return False
 
     def start_local_infrastructure(self) -> bool:
-        """로컬 인프라 컨테이너 시작 (PostgreSQL, Redis)"""
+        """로컬 인프라 컨테이너 시작 (PostgreSQL, Redis, Milvus)"""
         if not self._check_docker():
             return False
 
         compose_file = "docker-compose.local.yml"
-        self.logger.info("🐳 Starting local infrastructure (PostgreSQL, Redis)")
+        self.logger.info("🐳 Starting local infrastructure (PostgreSQL, Redis, Milvus)")
 
         compose_cmd = self._get_compose_command()
         command = compose_cmd + ["-f", compose_file, "up", "-d"]
