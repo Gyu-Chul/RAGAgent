@@ -21,4 +21,4 @@ CORS_ORIGINS = [
 
 # 서버 설정
 HOST = "0.0.0.0"
-PORT = 9000
+PORT = 9090

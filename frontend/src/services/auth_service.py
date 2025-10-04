@@ -9,6 +9,10 @@ class AuthService:
         self._session_token: Optional[str] = None
         self.gateway_url = os.getenv("GATEWAY_URL", "http://localhost:8080")
 
+    def get_token(self) -> Optional[str]:
+        """현재 세션 토큰 반환"""
+        return self._session_token
+
     def login(self, email: str, password: str) -> Dict[str, Any]:
         try:
             url = f"{self.gateway_url}/auth/login"

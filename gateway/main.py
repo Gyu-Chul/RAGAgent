@@ -3,9 +3,10 @@ import os
 from pathlib import Path
 from typing import Dict, Any, List
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.encoders import jsonable_encoder
+import httpx
 
 # 게이트웨이 로깅 설정
 def setup_logging() -> None:
@@ -46,6 +47,8 @@ setup_logging()
 
 # 환경변수에서 직접 읽기
 CORS_ORIGINS: List[str] = eval(os.getenv("CORS_ORIGINS", '["http://localhost:8000"]'))
+BACKEND_URL: str = os.getenv("BACKEND_URL", "http://localhost:8001")
+
 from .routers import auth
 from .services.data_service import DummyDataService
 
@@ -116,6 +119,74 @@ async def get_vectordb_collections(repository_id: str) -> List[Dict[str, Any]]:
 async def get_repository_members(repository_id: str) -> List[Dict[str, Any]]:
     members = data_service.get_repository_members(repository_id)
     return jsonable_encoder(members)
+
+
+# 백엔드로 프록시하는 catch-all 라우트
+@app.api_route("/api/{path:path}", methods=["GET", "POST", "PUT", "DELETE", "PATCH"])
+async def proxy_to_backend(request: Request, path: str):
+    """모든 /api/* 요청을 백엔드로 프록시"""
+    # 백엔드 URL 생성
+    url = f"{BACKEND_URL}/api/{path}"
+
+    # 쿼리 파라미터 추가
+    if request.url.query:
+        url = f"{url}?{request.url.query}"
+
+    # 요청 헤더 복사
+    headers = dict(request.headers)
+    headers.pop("host", None)  # Host 헤더 제거
+
+    # 요청 본문 읽기
+    body = await request.body()
+
+    logging.info(f"Proxying {request.method} request to {url}")
+    logging.info(f"Request body: {body.decode('utf-8') if body else 'empty'}")
+
+    # httpx로 백엔드에 요청 (리다이렉트 비활성화)
+    async with httpx.AsyncClient(follow_redirects=False) as client:
+        try:
+            response = await client.request(
+                method=request.method,
+                url=url,
+                headers=headers,
+                content=body,
+                timeout=30.0
+            )
+
+            logging.info(f"Backend response status: {response.status_code}")
+
+            # 307 리다이렉트 처리: 헤더를 유지하면서 리다이렉트 URL로 재요청
+            if response.status_code in (307, 308):
+                redirect_url = response.headers.get("location")
+                if redirect_url:
+                    logging.info(f"Following redirect to {redirect_url}")
+                    # 상대 URL을 절대 URL로 변환
+                    if redirect_url.startswith("/"):
+                        redirect_url = f"{BACKEND_URL}{redirect_url}"
+
+                    response = await client.request(
+                        method=request.method,
+                        url=redirect_url,
+                        headers=headers,
+                        content=body,
+                        timeout=30.0
+                    )
+                    logging.info(f"Redirect response status: {response.status_code}")
+
+            if response.status_code >= 400:
+                logging.error(f"Backend error response: {response.text}")
+
+            # 응답 반환
+            return Response(
+                content=response.content,
+                status_code=response.status_code,
+                headers=dict(response.headers)
+            )
+
+        except Exception as e:
+            logging.error(f"Error proxying to backend: {str(e)}", exc_info=True)
+            raise
+
 
 if __name__ == "__main__":
     import uvicorn

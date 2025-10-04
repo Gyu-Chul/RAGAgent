@@ -1,13 +1,17 @@
 from nicegui import ui
 from src.components.header import Header
-from src.data.dummy_data import DummyDataService
+from src.services.api_service import APIService
 
 class VectorDBPage:
     def __init__(self, repo_id: str, auth_service):
         self.repo_id = repo_id
         self.auth_service = auth_service
-        self.data_service = DummyDataService()
-        self.repository = self.data_service.get_repository(repo_id)
+        self.api_service = APIService(auth_service=auth_service)
+        try:
+            self.repository = self.api_service.get_repository(repo_id)
+        except Exception as e:
+            ui.notify(f"Failed to load repository: {str(e)}", type='negative')
+            self.repository = None
         self.selected_collection = None
 
     def render(self):
@@ -27,7 +31,7 @@ class VectorDBPage:
             ui.button('Back to Repositories', on_click=lambda: ui.navigate.to('/repositories')).classes('rag-button-primary mt-4')
 
     def render_sidebar(self):
-        collections = self.data_service.get_vectordb_collections(self.repo_id)
+        collections = self.api_service.get_vectordb_collections(self.repo_id)
 
         with ui.column().classes('rag-sidebar w-80 p-6 gap-4'):
             with ui.row().classes('items-center gap-3 mb-4'):
@@ -91,7 +95,7 @@ class VectorDBPage:
                 ui.button('Create Collection', icon='add', on_click=self.show_create_collection_dialog).classes('rag-button-primary')
 
     def render_stats_overview(self):
-        collections = self.data_service.get_vectordb_collections(self.repo_id)
+        collections = self.api_service.get_vectordb_collections(self.repo_id)
         total_entities = sum(c["entity_count"] for c in collections)
 
         with ui.row().classes('gap-6'):
@@ -109,7 +113,7 @@ class VectorDBPage:
                     ui.html(f'<div class="text-sm opacity-90">{stat["title"]}</div>')
 
     def render_recent_collections(self):
-        collections = self.data_service.get_vectordb_collections(self.repo_id)
+        collections = self.api_service.get_vectordb_collections(self.repo_id)
 
         with ui.card().classes('rag-card'):
             ui.html('<h3 class="text-lg font-semibold mb-4">All Collections</h3>')

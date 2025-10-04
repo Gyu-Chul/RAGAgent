@@ -226,3 +226,109 @@ def search_vectors(
         검색 결과
     """
     return vector_db_service.search(query, collection_name, model_key, top_k, filter_expr)
+
+
+# Repository 처리 통합 작업
+@app.task
+def process_repository_pipeline(
+    repo_id: str,
+    git_url: str,
+    repo_name: str,
+    model_key: str = DEFAULT_MODEL_KEY
+) -> Dict[str, Any]:
+    """
+    Repository 전체 처리 파이프라인
+    1. Git clone
+    2. Python 파싱 및 청킹
+    3. Vector DB 임베딩
+
+    Args:
+        repo_id: Repository ID (UUID)
+        git_url: Git repository URL
+        repo_name: Repository 이름
+        model_key: 임베딩 모델 키
+
+    Returns:
+        처리 결과
+    """
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import sessionmaker
+    from backend.config import DATABASE_URL
+    from backend.services.repository_service import RepositoryService
+
+    # 데이터베이스 세션 생성
+    engine = create_engine(DATABASE_URL)
+    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    db = SessionLocal()
+
+    try:
+        # 1. 상태를 'syncing'으로 업데이트
+        RepositoryService.update_repository_status(db, repo_id, "syncing", "pending")
+
+        # 2. Git Clone
+        clone_result = git_service.clone_repository(git_url, repo_name)
+        if not clone_result.success:
+            RepositoryService.update_repository_status(db, repo_id, "error", "error")
+            return {
+                "success": False,
+                "error": f"Git clone failed: {clone_result.message}",
+                "step": "clone"
+            }
+
+        # 3. Python 파일 파싱 및 청킹
+        parse_result = parser_service.parse_repository(repo_name, save_json=True)
+        if not parse_result.success:
+            RepositoryService.update_repository_status(db, repo_id, "error", "error")
+            return {
+                "success": False,
+                "error": f"Parsing failed: {parse_result.message}",
+                "step": "parse"
+            }
+
+        # 파일 개수 업데이트
+        file_count = parse_result.total_files
+        RepositoryService.update_file_count(db, repo_id, file_count)
+
+        # 4. Vector DB 상태를 'syncing'으로 업데이트
+        RepositoryService.update_repository_status(db, repo_id, "syncing", "syncing")
+
+        # 5. Vector DB 임베딩
+        collection_name = f"repo_{repo_id.replace('-', '_')}"
+        embed_result = vector_db_service.embed_repository(repo_name, collection_name, model_key)
+
+        if not embed_result.success:
+            RepositoryService.update_repository_status(db, repo_id, "active", "error")
+            return {
+                "success": False,
+                "error": f"Embedding failed: {embed_result.message}",
+                "step": "embed",
+                "file_count": file_count
+            }
+
+        # 6. Collections count 증가
+        RepositoryService.increment_collections_count(db, repo_id)
+
+        # 7. 최종 상태를 'active'로 업데이트
+        RepositoryService.update_repository_status(db, repo_id, "active", "active")
+
+        return {
+            "success": True,
+            "repo_id": repo_id,
+            "repo_name": repo_name,
+            "file_count": file_count,
+            "total_chunks": parse_result.total_chunks,
+            "collection_name": collection_name,
+            "embedded_count": embed_result.success_count,
+            "message": "Repository processed successfully"
+        }
+
+    except Exception as e:
+        # 오류 발생 시 상태 업데이트
+        RepositoryService.update_repository_status(db, repo_id, "error", "error")
+        return {
+            "success": False,
+            "error": str(e),
+            "step": "unknown"
+        }
+    finally:
+        db.close()

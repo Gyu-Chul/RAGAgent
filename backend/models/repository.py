@@ -24,13 +24,14 @@ class Repository(Base):
     id = Column(GUID(), primary_key=True, default=uuid.uuid4)
     name = Column(String(100), nullable=False)
     description = Column(Text)
-    url = Column(String(255))
+    url = Column(String(255), nullable=False)
     owner_id = Column(GUID(), ForeignKey("users.id"), nullable=False)
     stars = Column(Integer, default=0)
     language = Column(String(50))
-    status = Column(String(20), default="active")  # active, syncing, error
-    vectordb_status = Column(String(20), default="pending")  # pending, healthy, syncing, error
+    status = Column(String(20), default="pending")  # pending, syncing, active, error
+    vectordb_status = Column(String(20), default="pending")  # pending, syncing, active, error
     collections_count = Column(Integer, default=0)
+    file_count = Column(Integer, default=0)  # 파싱된 파일 개수
     is_public = Column(Boolean, default=False)
     created_at = Column(DateTime(timezone=True), server_default=func.now())
     updated_at = Column(DateTime(timezone=True), onupdate=func.now())

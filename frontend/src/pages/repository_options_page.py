@@ -1,13 +1,17 @@
 from nicegui import ui
 from src.components.header import Header
-from src.data.dummy_data import DummyDataService
+from src.services.api_service import APIService
 
 class RepositoryOptionsPage:
     def __init__(self, repo_id: str, auth_service):
         self.repo_id = repo_id
         self.auth_service = auth_service
-        self.data_service = DummyDataService()
-        self.repository = self.data_service.get_repository(repo_id)
+        self.api_service = APIService(auth_service=auth_service)
+        try:
+            self.repository = self.api_service.get_repository(repo_id)
+        except Exception as e:
+            ui.notify(f"Failed to load repository: {str(e)}", type='negative')
+            self.repository = None
 
     def render(self):
         if not self.repository:
@@ -66,12 +70,11 @@ class RepositoryOptionsPage:
                         ui.html(f'<h1 class="text-2xl font-bold">{repo["name"]}</h1>')
                         self.render_status_badge(repo["status"])
 
-                    ui.html(f'<p class="text-gray-600">{repo["description"]}</p>')
+                    ui.html(f'<p class="text-gray-600">{repo.get("description", "")}</p>')
 
                     with ui.row().classes('items-center gap-4 text-sm text-gray-500 mt-2'):
-                        ui.html(f'<span>⭐ {repo["stars"]}</span>')
-                        ui.html(f'<span>👥 {repo["members_count"]} members</span>')
-                        ui.html(f'<span>💾 {repo["collections_count"]} collections</span>')
+                        ui.html(f'<span>📄 {repo.get("file_count", 0)} files</span>')
+                        ui.html(f'<span>🗄️ {repo.get("collections_count", 0)} collections</span>')
 
                 with ui.column().classes('gap-2'):
                     ui.button('Open Chat', icon='chat', on_click=lambda: ui.navigate.to(f'/chat/{repo["id"]}')).classes('rag-button-primary')
@@ -83,7 +86,11 @@ class RepositoryOptionsPage:
                 ui.html('<h3 class="text-lg font-semibold">Member Management</h3>')
                 ui.button('Add Member', icon='person_add', on_click=self.show_add_member_dialog).classes('rag-button-primary')
 
-            members = self.data_service.get_repository_members(self.repo_id)
+            try:
+                members = self.api_service.get_repository_members(self.repo_id)
+            except Exception as e:
+                ui.notify(f"Failed to load members: {str(e)}", type='negative')
+                members = []
 
             with ui.column().classes('gap-3'):
                 for member in members:
@@ -92,13 +99,15 @@ class RepositoryOptionsPage:
                             with ui.row().classes('items-center gap-3 flex-1'):
                                 ui.html('<div class="w-8 h-8 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-sm">👤</div>')
                                 with ui.column().classes('flex-1'):
-                                    ui.label(member["username"]).classes('font-medium')
-                                    ui.label(member["email"]).classes('text-sm text-gray-500')
-                                    ui.label(f'Joined {member["joined_at"].strftime("%b %d, %Y")}').classes('text-xs text-gray-400')
+                                    ui.label(member.get("username", "Unknown")).classes('font-medium')
+                                    ui.label(member.get("email", "")).classes('text-sm text-gray-500')
+                                    joined_at = member.get("joined_at")
+                                    if joined_at:
+                                        ui.label(f'Joined {joined_at.strftime("%b %d, %Y")}').classes('text-xs text-gray-400')
 
                             with ui.row().classes('items-center gap-3'):
                                 role_options = ['admin', 'member', 'viewer']
-                                ui.select(role_options, value=member["role"], on_change=lambda e, m=member: self.update_member_role(m, e.value)).classes('min-w-32')
+                                ui.select(role_options, value=member.get("role", "member"), on_change=lambda e, m=member: self.update_member_role(m, e.value)).classes('min-w-32')
                                 ui.button(icon='delete', on_click=lambda m=member: self.remove_member(m)).classes('bg-red-100 text-red-600 hover:bg-red-200')
 
     def render_sync_section(self):
@@ -136,7 +145,7 @@ class RepositoryOptionsPage:
                 ui.html('<h3 class="text-lg font-semibold">Vector Database Management</h3>')
                 ui.button('Manage Collections', icon='storage', on_click=lambda: ui.navigate.to(f'/admin/vectordb/{self.repo_id}')).classes('rag-button-primary')
 
-            collections = self.data_service.get_vectordb_collections(self.repo_id)
+            collections = self.api_service.get_vectordb_collections(self.repo_id)
 
             with ui.column().classes('gap-3'):
                 for collection in collections:
@@ -252,14 +261,36 @@ class RepositoryOptionsPage:
             ui.notify('Please enter an email address', color='red')
             return
 
-        ui.notify(f'Member {email} added with role {role}', color='green')
-        dialog.close()
+        try:
+            # 1. 이메일로 사용자 검색
+            user = self.api_service.search_user_by_email(email)
+
+            # 2. 사용자 ID로 멤버 추가
+            self.api_service.add_repository_member(self.repo_id, user["id"], role)
+            ui.notify(f'Member {email} added with role {role}', color='green')
+            dialog.close()
+            # 페이지 새로고침으로 멤버 목록 업데이트
+            ui.navigate.reload()
+        except Exception as e:
+            ui.notify(f'Failed to add member: {str(e)}', color='red')
 
     def update_member_role(self, member, new_role):
-        ui.notify(f'{member["username"]} role updated to {new_role}', color='green')
+        try:
+            self.api_service.update_member_role(self.repo_id, member["id"], new_role)
+            ui.notify(f'{member.get("username", "Member")} role updated to {new_role}', color='green')
+        except Exception as e:
+            ui.notify(f'Failed to update role: {str(e)}', color='red')
 
     def remove_member(self, member):
-        ui.notify(f'{member["username"]} removed from repository', color='green')
+        try:
+            success = self.api_service.remove_repository_member(self.repo_id, member["id"])
+            if success:
+                ui.notify(f'{member.get("username", "Member")} removed from repository', color='green')
+                ui.navigate.reload()
+            else:
+                ui.notify('Failed to remove member', color='red')
+        except Exception as e:
+            ui.notify(f'Failed to remove member: {str(e)}', color='red')
 
     def trigger_sync(self):
         ui.notify('Synchronization started...', color='blue')

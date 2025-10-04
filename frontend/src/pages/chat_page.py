@@ -2,13 +2,13 @@ from nicegui import ui
 import asyncio
 from datetime import datetime
 from src.components.header import Header
-from src.services.api_service import api_service
+from src.services.api_service import APIService
 
 class ChatPage:
     def __init__(self, repo_id: str, auth_service):
         self.repo_id = repo_id
         self.auth_service = auth_service
-        self.api_service = api_service
+        self.api_service = APIService(auth_service=auth_service)
         try:
             self.repository = self.api_service.get_repository(repo_id)
             # Auto-select first chat room
