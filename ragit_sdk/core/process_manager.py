@@ -14,8 +14,8 @@ from pathlib import Path
 from typing import Dict, List, Optional, Any
 import psutil
 
-from .config import RagitConfig
-from .logger import get_service_logger, log_service_start, log_service_stop, log_service_error, log_service_ready
+from ..config import RagitConfig
+from ..logger import get_service_logger, log_service_start, log_service_stop, log_service_error, log_service_ready
 
 
 class ProcessMonitor:

@@ -2,8 +2,9 @@
 RAG Worker Git Service 테스트 클라이언트
 
 사용법:
-1. Redis와 RAG Worker가 실행 중이어야 합니다
-2. python test_git_worker.py 실행
+1. Redis 서버 실행
+2. Celery Worker 실행: uv run python -m celery -A rag_worker.celery_app worker --loglevel=info --pool=solo
+3. python -m ragit_sdk.tests.test_git_worker 실행 또는 ragit test worker
 """
 
 import time
@@ -54,9 +55,9 @@ def test_git_clone() -> None:
     print("🧪 TEST 1: Git Clone")
     print("🔷" * 30)
 
-    # 테스트용 공개 레포지토리 (Python 프로젝트)
-    git_url = "https://github.com/psf/requests.git"
-    repo_name = "requests-test"
+    # 테스트용 공개 레포지토리 (매우 작은 Python 프로젝트)
+    git_url = "https://github.com/kennethreitz/tablib.git"
+    repo_name = "tablib-test"
 
     # Task 전송
     task = app.send_task(
@@ -76,7 +77,7 @@ def test_git_check_status() -> None:
     print("🧪 TEST 2: Git Check Status")
     print("🔷" * 30)
 
-    repo_name = "requests-test"
+    repo_name = "tablib-test"
 
     # Task 전송
     task = app.send_task(
@@ -95,7 +96,7 @@ def test_git_pull() -> None:
     print("🧪 TEST 3: Git Pull")
     print("🔷" * 30)
 
-    repo_name = "requests-test"
+    repo_name = "tablib-test"
 
     # Task 전송
     task = app.send_task(
@@ -114,7 +115,7 @@ def test_parse_repository() -> None:
     print("🧪 TEST 4: Parse Repository")
     print("🔷" * 30)
 
-    repo_name = "requests-test"
+    repo_name = "tablib-test"
 
     # Task 전송
     task = app.send_task(
@@ -128,13 +129,54 @@ def test_parse_repository() -> None:
     print_result("parse_repository", result)
 
 
+def test_embed_repository() -> None:
+    """Repository Embedding 테스트"""
+    print("\n" + "🔷" * 30)
+    print("🧪 TEST 5: Embed Repository")
+    print("🔷" * 30)
+
+    repo_name = "tablib-test"
+    collection_name = "tablib_collection"
+
+    # Task 전송
+    task = app.send_task(
+        'rag_worker.tasks.embed_repository',
+        args=[repo_name, collection_name]
+    )
+
+    # 결과 대기 (임베딩은 시간이 오래 걸림)
+    result = wait_for_result(task, timeout=600)  # 10분 타임아웃
+    print_result("embed_repository", result)
+
+
+def test_search_vectors() -> None:
+    """Vector Search 테스트"""
+    print("\n" + "🔷" * 30)
+    print("🧪 TEST 6: Search Vectors")
+    print("🔷" * 30)
+
+    collection_name = "tablib_collection"
+    query = "How to export data to JSON?"
+
+    # Task 전송
+    task = app.send_task(
+        'rag_worker.tasks.search_vectors',
+        args=[query, collection_name],
+        kwargs={'top_k': 3}
+    )
+
+    # 결과 대기
+    result = wait_for_result(task, timeout=60)
+    print_result("search_vectors", result)
+
+
 def test_git_delete() -> None:
     """Git Delete 테스트"""
     print("\n" + "🔷" * 30)
-    print("🧪 TEST 5: Git Delete")
+    print("🧪 TEST 7: Git Delete")
     print("🔷" * 30)
 
-    repo_name = "requests-test"
+    repo_name = "tablib-test"
 
     # Task 전송
     task = app.send_task(
@@ -147,8 +189,8 @@ def test_git_delete() -> None:
     print_result("git_delete", result)
 
 
-def test_existing_tasks() -> None:
-    """기존 태스크 테스트 (워커 연결 확인용)"""
+def test_worker_connection() -> None:
+    """워커 연결 확인 테스트"""
     print("\n" + "🔷" * 30)
     print("🧪 TEST 0: Worker Connection Check")
     print("🔷" * 30)
@@ -176,7 +218,7 @@ def main() -> None:
 
     try:
         # 0. Worker 연결 확인
-        test_existing_tasks()
+        test_worker_connection()
 
         print("\n⏸️  3초 후 Git 테스트 시작...")
         time.sleep(3)
@@ -201,7 +243,17 @@ def main() -> None:
 
         time.sleep(2)
 
-        # 5. Git Delete 테스트
+        # 5. Repository Embedding 테스트
+        test_embed_repository()
+
+        time.sleep(2)
+
+        # 6. Vector Search 테스트
+        test_search_vectors()
+
+        time.sleep(2)
+
+        # 7. Git Delete 테스트 (마지막에)
         test_git_delete()
 
         print("\n" + "=" * 60)
