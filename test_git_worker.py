@@ -128,10 +128,51 @@ def test_parse_repository() -> None:
     print_result("parse_repository", result)
 
 
+def test_embed_repository() -> None:
+    """Repository Embedding 테스트"""
+    print("\n" + "🔷" * 30)
+    print("🧪 TEST 5: Embed Repository")
+    print("🔷" * 30)
+
+    repo_name = "requests-test"
+    collection_name = "requests_collection"
+
+    # Task 전송
+    task = app.send_task(
+        'rag_worker.tasks.embed_repository',
+        args=[repo_name, collection_name]
+    )
+
+    # 결과 대기
+    result = wait_for_result(task, timeout=600)  # 10분 타임아웃
+    print_result("embed_repository", result)
+
+
+def test_search_vectors() -> None:
+    """Vector Search 테스트"""
+    print("\n" + "🔷" * 30)
+    print("🧪 TEST 6: Search Vectors")
+    print("🔷" * 30)
+
+    collection_name = "requests_collection"
+    query = "How to make HTTP GET request?"
+
+    # Task 전송
+    task = app.send_task(
+        'rag_worker.tasks.search_vectors',
+        args=[query, collection_name],
+        kwargs={'top_k': 3}
+    )
+
+    # 결과 대기
+    result = wait_for_result(task, timeout=60)
+    print_result("search_vectors", result)
+
+
 def test_git_delete() -> None:
     """Git Delete 테스트"""
     print("\n" + "🔷" * 30)
-    print("🧪 TEST 5: Git Delete")
+    print("🧪 TEST 7: Git Delete")
     print("🔷" * 30)
 
     repo_name = "requests-test"
@@ -201,7 +242,17 @@ def main() -> None:
 
         time.sleep(2)
 
-        # 5. Git Delete 테스트
+        # 5. Repository Embedding 테스트
+        test_embed_repository()
+
+        time.sleep(2)
+
+        # 6. Vector Search 테스트
+        test_search_vectors()
+
+        time.sleep(2)
+
+        # 7. Git Delete 테스트 (마지막에)
         test_git_delete()
 
         print("\n" + "=" * 60)

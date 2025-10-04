@@ -9,10 +9,14 @@ from .git_service import GitService
 from .git_service.types import CloneResult, StatusResult, PullResult, DeleteResult
 from .python_parser import RepositoryParserService
 from .python_parser.types import RepositoryParseResult
+from .vector_db import VectorDBService
+from .vector_db.types import EmbeddingResult, SearchResult
+from .vector_db.config import DEFAULT_MODEL_KEY
 
 # 서비스 인스턴스 생성
 git_service = GitService()
 parser_service = RepositoryParserService()
+vector_db_service = VectorDBService()
 
 
 @app.task
@@ -160,3 +164,64 @@ def parse_repository(repo_name: str, save_json: bool = True) -> RepositoryParseR
         레포지토리 파싱 결과
     """
     return parser_service.parse_repository(repo_name, save_json)
+
+
+# Vector DB 관련 작업
+@app.task
+def embed_documents(
+    json_path: str, collection_name: str, model_key: str = DEFAULT_MODEL_KEY
+) -> EmbeddingResult:
+    """
+    JSON 파일의 문서를 임베딩하여 Milvus 컬렉션에 저장
+
+    Args:
+        json_path: JSON 파일 경로
+        collection_name: 저장할 컬렉션 이름
+        model_key: 사용할 임베딩 모델 키 (기본값: DEFAULT_MODEL_KEY)
+
+    Returns:
+        임베딩 결과
+    """
+    return vector_db_service.embed_documents(json_path, collection_name, model_key)
+
+
+@app.task
+def embed_repository(
+    repo_name: str, collection_name: str, model_key: str = DEFAULT_MODEL_KEY
+) -> EmbeddingResult:
+    """
+    파싱된 레포지토리 전체를 임베딩하여 Milvus 컬렉션에 저장
+
+    Args:
+        repo_name: 레포지토리 이름 (parsed_repository/{repo_name}/ 의 모든 JSON 수집)
+        collection_name: 저장할 컬렉션 이름
+        model_key: 사용할 임베딩 모델 키 (기본값: DEFAULT_MODEL_KEY)
+
+    Returns:
+        임베딩 결과
+    """
+    return vector_db_service.embed_repository(repo_name, collection_name, model_key)
+
+
+@app.task
+def search_vectors(
+    query: str,
+    collection_name: str,
+    model_key: str = DEFAULT_MODEL_KEY,
+    top_k: int = 5,
+    filter_expr: Optional[str] = None,
+) -> SearchResult:
+    """
+    하이브리드 검색 수행 (밀집 + 희소 벡터)
+
+    Args:
+        query: 검색 쿼리
+        collection_name: 검색할 컬렉션 이름
+        model_key: 사용할 임베딩 모델 키 (기본값: DEFAULT_MODEL_KEY)
+        top_k: 반환할 결과 개수 (기본값: 5)
+        filter_expr: 필터 표현식 (선택)
+
+    Returns:
+        검색 결과
+    """
+    return vector_db_service.search(query, collection_name, model_key, top_k, filter_expr)
