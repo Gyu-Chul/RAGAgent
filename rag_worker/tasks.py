@@ -229,7 +229,7 @@ def search_vectors(
 
 
 # Repository 처리 통합 작업
-@app.task
+@app.task(name='rag_worker.tasks.process_repository_pipeline')
 def process_repository_pipeline(
     repo_id: str,
     git_url: str,
@@ -251,15 +251,49 @@ def process_repository_pipeline(
     Returns:
         처리 결과
     """
+    import os
+    import logging
+    from pathlib import Path
     from sqlalchemy import create_engine
     from sqlalchemy.orm import sessionmaker
-    from backend.config import DATABASE_URL
+
+    logger = logging.getLogger(__name__)
+
+    # ⚠️ IMPORTANT: backend 모듈을 import하기 전에 환경변수 설정 필수!
+    env_local_path = Path(__file__).parent.parent / '.env.local'
+    logger.info(f"🔍 Looking for .env.local at: {env_local_path}")
+    logger.info(f"📁 .env.local exists: {env_local_path.exists()}")
+
+    if env_local_path.exists():
+        # .env.local 파일을 직접 파싱 (환경변수 우선순위 문제 방지)
+        DATABASE_URL = None
+        with open(env_local_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith('DATABASE_URL='):
+                    DATABASE_URL = line.split('=', 1)[1]
+                    break
+
+        if DATABASE_URL:
+            # 환경변수로 강제 설정
+            os.environ['DATABASE_URL'] = DATABASE_URL
+            logger.info(f"✅ Set DATABASE_URL from .env.local: {DATABASE_URL}")
+        else:
+            DATABASE_URL = 'postgresql://postgres:postgres@localhost:5432/ragit'
+            os.environ['DATABASE_URL'] = DATABASE_URL
+            logger.warning(f"⚠️ DATABASE_URL not found in .env.local, using default: {DATABASE_URL}")
+    else:
+        DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@localhost:5432/ragit')
+        logger.info(f"⚠️ .env.local not found, using environment: {DATABASE_URL}")
+
+    # 이제 backend 모듈 import (환경변수가 이미 설정됨)
     from backend.services.repository_service import RepositoryService
 
     # 데이터베이스 세션 생성
     engine = create_engine(DATABASE_URL)
     SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
     db = SessionLocal()
+    logger.info(f"🔗 Database connection created successfully")
 
     try:
         # 1. 상태를 'syncing'으로 업데이트
@@ -267,26 +301,26 @@ def process_repository_pipeline(
 
         # 2. Git Clone
         clone_result = git_service.clone_repository(git_url, repo_name)
-        if not clone_result.success:
+        if not clone_result['success']:
             RepositoryService.update_repository_status(db, repo_id, "error", "error")
             return {
                 "success": False,
-                "error": f"Git clone failed: {clone_result.message}",
+                "error": f"Git clone failed: {clone_result['message']}",
                 "step": "clone"
             }
 
         # 3. Python 파일 파싱 및 청킹
         parse_result = parser_service.parse_repository(repo_name, save_json=True)
-        if not parse_result.success:
+        if not parse_result['success']:
             RepositoryService.update_repository_status(db, repo_id, "error", "error")
             return {
                 "success": False,
-                "error": f"Parsing failed: {parse_result.message}",
+                "error": f"Parsing failed: {parse_result['message']}",
                 "step": "parse"
             }
 
         # 파일 개수 업데이트
-        file_count = parse_result.total_files
+        file_count = parse_result['total_files']
         RepositoryService.update_file_count(db, repo_id, file_count)
 
         # 4. Vector DB 상태를 'syncing'으로 업데이트
@@ -296,11 +330,11 @@ def process_repository_pipeline(
         collection_name = f"repo_{repo_id.replace('-', '_')}"
         embed_result = vector_db_service.embed_repository(repo_name, collection_name, model_key)
 
-        if not embed_result.success:
+        if not embed_result['success']:
             RepositoryService.update_repository_status(db, repo_id, "active", "error")
             return {
                 "success": False,
-                "error": f"Embedding failed: {embed_result.message}",
+                "error": f"Embedding failed: {embed_result['message']}",
                 "step": "embed",
                 "file_count": file_count
             }
@@ -316,9 +350,9 @@ def process_repository_pipeline(
             "repo_id": repo_id,
             "repo_name": repo_name,
             "file_count": file_count,
-            "total_chunks": parse_result.total_chunks,
+            "total_chunks": parse_result['total_chunks'],
             "collection_name": collection_name,
-            "embedded_count": embed_result.success_count,
+            "embedded_count": embed_result['inserted_count'],
             "message": "Repository processed successfully"
         }
 

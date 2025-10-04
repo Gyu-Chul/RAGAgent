@@ -39,12 +39,26 @@ def create_repository(
         repository = RepositoryService.create_repository(db, repo_data, str(current_user.id))
 
         # Celery Task 비동기 트리거 - Repository 처리 파이프라인
-        from rag_worker.tasks import process_repository_pipeline
-        process_repository_pipeline.delay(
-            repo_id=str(repository.id),
-            git_url=repository.url,
-            repo_name=repository.name
-        )
+        try:
+            from rag_worker.celery_app import app as celery_app
+
+            # Redis 연결 확인
+            logger.info(f"Celery broker: {celery_app.conf.broker_url}")
+            logger.info(f"Triggering Celery task for repository: {repository.id}")
+
+            # Celery를 통해 task 전송 (기본 celery queue 사용)
+            task = celery_app.send_task(
+                'rag_worker.tasks.process_repository_pipeline',
+                kwargs={
+                    'repo_id': str(repository.id),
+                    'git_url': repository.url,
+                    'repo_name': repository.name
+                }
+            )
+            logger.info(f"✅ Celery task sent to default queue. Task ID: {task.id}")
+        except Exception as task_error:
+            logger.error(f"❌ Failed to trigger Celery task: {str(task_error)}", exc_info=True)
+            # Task 실패해도 repository는 생성되었으므로 계속 진행
 
         # owner 정보를 포함한 응답 생성
         repo_dict = {

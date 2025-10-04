@@ -6,6 +6,16 @@ import logging
 import os
 from pathlib import Path
 from celery import Celery
+from decouple import Config, RepositoryEnv
+
+# .env.local 파일이 있으면 우선 사용 (로컬 개발용)
+env_local_path = Path(__file__).parent.parent / '.env.local'
+if env_local_path.exists():
+    config = Config(RepositoryEnv(str(env_local_path)))
+    REDIS_URL = config('REDIS_URL', default='redis://localhost:6379/0')
+else:
+    # .env.local이 없으면 환경변수 또는 기본값 사용
+    REDIS_URL = os.getenv('REDIS_URL', 'redis://localhost:6379/0')
 
 # RAG Worker 로깅 설정
 def setup_logging() -> None:
@@ -53,16 +63,14 @@ app = Celery('rag_worker')
 
 # Celery 설정
 app.conf.update(
-    broker_url=os.getenv('REDIS_URL', 'redis://localhost:6379/0'),
-    result_backend=os.getenv('REDIS_URL', 'redis://localhost:6379/0'),
+    broker_url=REDIS_URL,
+    result_backend=REDIS_URL,
     task_serializer='json',
     accept_content=['json'],
     result_serializer='json',
     timezone='UTC',
     enable_utc=True,
-    task_routes={
-        'rag_worker.tasks.*': {'queue': 'rag_tasks'},
-    }
+    # 기본 celery queue 사용 (task_routes 제거)
 )
 
 # 태스크 모듈 자동 발견

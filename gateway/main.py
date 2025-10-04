@@ -7,6 +7,19 @@ from fastapi import FastAPI, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.encoders import jsonable_encoder
 import httpx
+from decouple import Config, RepositoryEnv
+
+# .env.local 파일이 있으면 우선 사용 (로컬 개발용)
+env_local_path = Path(__file__).parent.parent / '.env.local'
+if env_local_path.exists():
+    config = Config(RepositoryEnv(str(env_local_path)))
+    BACKEND_URL = config("BACKEND_URL", default="http://localhost:8001")
+    CORS_ORIGINS_STR = config("CORS_ORIGINS", default='["http://localhost:8000"]')
+    CORS_ORIGINS = eval(CORS_ORIGINS_STR)
+else:
+    # .env.local이 없으면 환경변수 또는 기본값 사용
+    BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8001")
+    CORS_ORIGINS = eval(os.getenv("CORS_ORIGINS", '["http://localhost:8000"]'))
 
 # 게이트웨이 로깅 설정
 def setup_logging() -> None:
@@ -44,10 +57,6 @@ def setup_logging() -> None:
 
 # 로깅 초기화
 setup_logging()
-
-# 환경변수에서 직접 읽기
-CORS_ORIGINS: List[str] = eval(os.getenv("CORS_ORIGINS", '["http://localhost:8000"]'))
-BACKEND_URL: str = os.getenv("BACKEND_URL", "http://localhost:8001")
 
 from .routers import auth
 from .services.data_service import DummyDataService
