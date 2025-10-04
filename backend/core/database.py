@@ -48,7 +48,63 @@ def init_db():
                 print(f"UUID 확장 모듈 활성화 중 오류: {e}")
 
         create_tables()
+        print("데이터베이스 테이블 생성 완료!")
+
+        # 기본 사용자 생성
+        _create_default_users()
+
         print("데이터베이스 초기화 완료!")
     except Exception as e:
         print(f"데이터베이스 초기화 중 오류 발생: {e}")
         print("데이터베이스 없이 계속 진행합니다...")
+
+
+def _create_default_users():
+    """기본 사용자(admin, user) 생성"""
+    from ..models import User
+    from ..services.password_service import default_password_service
+
+    db = SessionLocal()
+    try:
+        # Admin 계정 확인 및 생성
+        admin_user = db.query(User).filter(User.email == "admin@ragit.com").first()
+        if not admin_user:
+            print("기본 관리자 계정 생성 중...")
+            admin_password_hash = default_password_service.create_password_hash("admin123")
+            admin_user = User(
+                username="admin",
+                email="admin@ragit.com",
+                hashed_password=admin_password_hash,
+                role="admin",
+                is_active=True
+            )
+            db.add(admin_user)
+            print("✅ Admin 계정 생성 완료 (admin@ragit.com / admin123)")
+        else:
+            print("ℹ️  Admin 계정이 이미 존재합니다.")
+
+        # User 계정 확인 및 생성
+        normal_user = db.query(User).filter(User.email == "user@ragit.com").first()
+        if not normal_user:
+            print("기본 사용자 계정 생성 중...")
+            user_password_hash = default_password_service.create_password_hash("user123")
+            normal_user = User(
+                username="user",
+                email="user@ragit.com",
+                hashed_password=user_password_hash,
+                role="user",
+                is_active=True
+            )
+            db.add(normal_user)
+            print("✅ User 계정 생성 완료 (user@ragit.com / user123)")
+        else:
+            print("ℹ️  User 계정이 이미 존재합니다.")
+
+        db.commit()
+        print("기본 사용자 생성 완료!")
+
+    except Exception as e:
+        print(f"기본 사용자 생성 중 오류 발생: {e}")
+        db.rollback()
+    finally:
+        db.close()

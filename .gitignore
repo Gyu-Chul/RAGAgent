@@ -112,6 +112,12 @@ desktop.ini
 git-agent/parsed_repository/
 git-agent/repository/
 
+# RAG Worker data (디렉토리는 유지, 내부 파일만 제외)
+repository/*
+!repository/.gitkeep
+parsed_repository/*
+!parsed_repository/.gitkeep
+
 # Milvus Vector DB data
 milvus/volumes/
 

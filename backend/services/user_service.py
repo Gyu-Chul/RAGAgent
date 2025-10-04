@@ -23,8 +23,11 @@ class UserService:
     def create_user(self, db: Session, username: str, email: str, password: str) -> Optional[User]:
         """새 사용자 생성"""
         try:
+            print(f"DEBUG: Creating user - username={username}, email={email}")
+
             # 패스워드 해싱
             hashed_password = self._password_service.create_password_hash(password)
+            print(f"DEBUG: Password hashed successfully")
 
             # 사용자 생성
             user = User(
@@ -33,16 +36,26 @@ class UserService:
                 hashed_password=hashed_password,
                 is_active=True
             )
+            print(f"DEBUG: User object created")
 
             db.add(user)
+            print(f"DEBUG: User added to session")
+
             db.commit()
+            print(f"DEBUG: Database commit successful")
+
             db.refresh(user)
+            print(f"DEBUG: User refreshed - id={user.id}")
             return user
 
-        except IntegrityError:
+        except IntegrityError as e:
+            print(f"DEBUG: IntegrityError - {e}")
             db.rollback()
             return None
-        except Exception:
+        except Exception as e:
+            print(f"DEBUG: Unexpected error in create_user - {e}")
+            import traceback
+            print(f"Traceback: {traceback.format_exc()}")
             db.rollback()
             return None
 

@@ -3,7 +3,7 @@
 단일 책임: 패스워드 해싱 및 검증
 """
 
-from passlib.context import CryptContext
+import bcrypt
 from typing import Protocol
 
 
@@ -20,7 +20,7 @@ class PasswordHasherInterface(Protocol):
 
 
 class BcryptPasswordHasher:
-    """Bcrypt 기반 패스워드 해싱 구현"""
+    """Bcrypt 기반 패스워드 해싱 구현 (bcrypt 라이브러리 직접 사용)"""
 
     def __init__(self, rounds: int = 4) -> None:
         """
@@ -29,19 +29,22 @@ class BcryptPasswordHasher:
         Args:
             rounds: 해싱 라운드 수 (개발용은 4, 운영용은 12 권장)
         """
-        self._context: CryptContext = CryptContext(
-            schemes=["bcrypt"],
-            deprecated="auto",
-            bcrypt__rounds=rounds
-        )
+        self.rounds = rounds
 
     def hash_password(self, password: str) -> str:
         """패스워드 해싱"""
-        return self._context.hash(password)
+        # 문자열을 바이트로 변환 (72바이트로 제한)
+        password_bytes = password.encode('utf-8')[:72]
+        salt = bcrypt.gensalt(rounds=self.rounds)
+        hashed = bcrypt.hashpw(password_bytes, salt)
+        return hashed.decode('utf-8')
 
     def verify_password(self, plain_password: str, hashed_password: str) -> bool:
         """패스워드 검증"""
-        return self._context.verify(plain_password, hashed_password)
+        # 문자열을 바이트로 변환 (72바이트로 제한)
+        password_bytes = plain_password.encode('utf-8')[:72]
+        hashed_bytes = hashed_password.encode('utf-8')
+        return bcrypt.checkpw(password_bytes, hashed_bytes)
 
 
 class PasswordService:
@@ -58,12 +61,24 @@ class PasswordService:
         if len(password) < 6:
             raise ValueError("패스워드는 최소 6자 이상이어야 합니다")
 
+        # bcrypt는 72바이트 제한이 있으므로 미리 잘라냄
+        password_bytes = password.encode('utf-8')
+        print(f"DEBUG: Password byte length = {len(password_bytes)}")
+        if len(password_bytes) > 72:
+            print(f"DEBUG: Truncating password from {len(password_bytes)} to 72 bytes")
+            password = password_bytes[:72].decode('utf-8', errors='ignore')
+
         return self._hasher.hash_password(password)
 
     def verify_password(self, plain_password: str, hashed_password: str) -> bool:
         """패스워드 검증"""
         if not plain_password or not hashed_password:
             return False
+
+        # bcrypt는 72바이트 제한이 있으므로 미리 잘라냄
+        password_bytes = plain_password.encode('utf-8')
+        if len(password_bytes) > 72:
+            plain_password = password_bytes[:72].decode('utf-8', errors='ignore')
 
         return self._hasher.verify_password(plain_password, hashed_password)
 

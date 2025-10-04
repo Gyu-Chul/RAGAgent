@@ -84,14 +84,10 @@ class RepositorySettingsPage:
 
 
             # Content section
-            with ui.row().style('width: 100%; gap: 24px;'):
-                with ui.column().style('flex: 1; gap: 24px;'):
-                    self.render_repository_info()
-                    self.render_sync_status()
-
-                with ui.column().style('width: 320px; gap: 24px;'):
-                    self.render_quick_actions()
-                    self.render_members_preview()
+            with ui.column().style('width: 100%; gap: 24px;'):
+                self.render_repository_info()
+                self.render_sync_status()
+                self.render_quick_actions()
 
     def render_repository_info(self):
         repo = self.selected_repo
@@ -128,11 +124,6 @@ class RepositorySettingsPage:
                 ui.html('<span style="font-weight: 500; color: #374151;">Collections</span>')
                 ui.html(f'<span style="color: #6b7280;">{repo["collections_count"]} active</span>')
 
-            if self.auth_service.is_admin():
-                with ui.row().style('display: flex; gap: 8px; margin-top: 16px;'):
-                    ui.button('🔄 Sync Now', on_click=lambda: self.trigger_sync()).style('background-color: #3b82f6; color: white; padding: 8px 16px; border-radius: 6px; border: none;')
-                    ui.button('📄 View Logs', on_click=lambda: self.show_sync_logs()).style('background-color: #6b7280; color: white; padding: 8px 16px; border-radius: 6px; border: none;')
-
     def render_quick_actions(self):
         with ui.column().style('background-color: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px;'):
             ui.html('<h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Actions</h3>')
@@ -142,10 +133,7 @@ class RepositorySettingsPage:
 
             if self.auth_service.is_admin():
                 actions.extend([
-                    ("🗄️ Vector Database", lambda: ui.navigate.to(f'/admin/vectordb/{self.selected_repo["id"]}')),
                     ("👥 Manage Members", lambda: self.show_members_dialog()),
-                    ("📊 Analytics", lambda: ui.notify('Analytics feature coming soon', color='blue')),
-                    ("🔧 Settings", lambda: self.show_repository_settings()),
                     ("🗑️ Delete Repository", lambda: self.show_delete_repository_dialog())
                 ])
 
@@ -154,10 +142,7 @@ class RepositorySettingsPage:
 
     def render_members_preview(self):
         with ui.column().style('background-color: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px;'):
-            with ui.row().style('display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;'):
-                ui.html('<h3 style="font-size: 18px; font-weight: 600;">Members</h3>')
-                if self.auth_service.is_admin():
-                    ui.button('👥 Manage', on_click=self.show_members_dialog).style('background-color: #6b7280; color: white; padding: 4px 8px; border-radius: 4px; border: none; font-size: 12px;')
+            ui.html('<h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Members</h3>')
 
             try:
                 members = self.api_service.get_repository_members(self.selected_repo["id"])[:3]

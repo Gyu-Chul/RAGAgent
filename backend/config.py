@@ -3,13 +3,9 @@ from urllib.parse import quote_plus
 from decouple import config
 
 # 데이터베이스 설정
-# 한글 사용자명 URL 인코딩
-username = quote_plus("shinminchul")
-password = quote_plus("")
-
 DATABASE_URL = config(
     "DATABASE_URL",
-    default=f"postgresql://{username}:{password}@localhost:5432/postgres?client_encoding=utf8"
+    default="postgresql://postgres:postgres@localhost:5432/ragit"
 )
 
 # JWT 설정
