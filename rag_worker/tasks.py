@@ -12,7 +12,7 @@ from .python_parser.types import RepositoryParseResult
 from .vector_db import VectorDBService
 from .vector_db.types import EmbeddingResult, SearchResult
 from .vector_db.config import DEFAULT_MODEL_KEY
-from .ask_question import PromptGenerator
+from .ask_question import PromptGenerator, AskQuestion
 
 # 서비스 인스턴스 생성
 git_service = GitService()
@@ -20,6 +20,7 @@ parser_service = RepositoryParserService()
 # embedding_batch_size=4: 메모리 누적 방지, 배치마다 메모리 해제
 vector_db_service = VectorDBService(embedding_batch_size=4)
 prompt_service = PromptGenerator()
+call_service = AskQuestion()
 
 
 @app.task
@@ -247,3 +248,22 @@ def create_prompt(
     return prompt_service.create(docs, query)
 
 
+@app.task
+def call_llm(
+        prompt: str, 
+        use_stream: Optional[bool] = False, 
+        model: Optional[str] = "gpt-3.5-turbo", 
+        temperature: Optional[float] = 0.1, 
+        max_tokens: Optional[int] = 1024,
+) -> str:
+    """
+    검색 결과를 이용한 프롬프트 생성
+
+    Args:
+        SearchResult: 검색 결과
+        query: 검색 쿼리
+
+    Returns:
+        생성된 프롬프트
+    """
+    return call_service.ask_question(prompt=prompt, use_stream=use_stream, model=model, temperature=temperature, max_tokens=max_tokens)
