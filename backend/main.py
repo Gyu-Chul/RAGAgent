@@ -8,6 +8,7 @@ from .config import CORS_ORIGINS
 from .core.database import init_db
 from .routers import auth
 from .routers import repository
+from .routers import chat
 
 # 로그 설정
 def setup_logging() -> None:
@@ -65,6 +66,7 @@ app.add_middleware(
 # 라우터 등록
 app.include_router(auth.router)
 app.include_router(repository.router)
+app.include_router(chat.router)
 
 # 데이터베이스 초기화
 @app.on_event("startup")

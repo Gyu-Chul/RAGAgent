@@ -104,20 +104,8 @@ class ChatPage:
             with ui.card().classes('rag-card text-center max-w-md'):
                 ui.html('<div style="font-size: 96px; color: #60a5fa; margin-bottom: 16px;">💬</div>')
                 ui.html('<h3 class="text-xl font-semibold text-gray-800 mb-2">Welcome to RAG Chat</h3>')
-                ui.html(f'<p class="text-gray-600 mb-4">Start a conversation about the <strong>{self.repository["name"]}</strong> repository. Ask questions about the code, documentation, or issues.</p>')
-
-                with ui.column().classes('gap-2 mt-4'):
-                    sample_questions = [
-                        "How does the authentication system work?",
-                        "What are the main components of this project?",
-                        "Can you explain the deployment process?",
-                        "What dependencies does this project use?"
-                    ]
-
-                    ui.html('<h4 class="font-medium text-gray-700 mb-2">Try asking:</h4>')
-                    for question in sample_questions:
-                        with ui.card().classes('border border-gray-200 p-2 hover:bg-blue-50 cursor-pointer transition-colors text-left').on('click', lambda q=question: self.start_chat_with_question(q)):
-                            ui.html(f'<span class="text-sm text-gray-700">"{question}"</span>')
+                ui.html(f'<p class="text-gray-600 mb-4">사이드바에서 채팅방을 생성하여 <strong>{self.repository["name"]}</strong> 레포지토리에 대한 대화를 시작하세요.</p>')
+                ui.html('<p class="text-gray-500 text-sm mt-2">왼쪽 사이드바의 "➕ New Chat Room" 버튼을 클릭하여 새로운 채팅방을 만들 수 있습니다.</p>')
 
     def render_active_chat(self):
         room = self.selected_chat_room
@@ -160,7 +148,7 @@ class ChatPage:
                     self.render_message(message)
 
     def render_message(self, message):
-        is_user = message["sender"] == "user"
+        is_user = message["sender_type"] == "user"
 
         with ui.element('div').style('width: 100%; margin-bottom: 20px; display: flex; align-items: flex-start;'):
             if is_user:
@@ -168,7 +156,7 @@ class ChatPage:
                 ui.element('div').style('flex: 1; min-width: 0;')  # spacer
                 with ui.element('div').style('width: 600px; max-width: 600px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 16px 18px; border-radius: 18px 18px 4px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'):
                     ui.html(f'<div style="white-space: pre-wrap; line-height: 1.5; word-break: break-word;">{message["content"]}</div>')
-                    ui.html(f'<div style="font-size: 11px; opacity: 0.8; margin-top: 8px; text-align: right;">{message["timestamp"].strftime("%H:%M")}</div>')
+                    ui.html(f'<div style="font-size: 11px; opacity: 0.8; margin-top: 8px; text-align: right;">{message["created_at"].strftime("%H:%M")}</div>')
             else:
                 # AI message - left aligned with fixed width
                 with ui.element('div').style('width: 700px; max-width: 700px; background: white; border: 1px solid #e5e7eb; border-radius: 18px 18px 18px 4px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden;'):
@@ -179,7 +167,7 @@ class ChatPage:
                         ui.html('<div style="font-weight: 600; color: #374151;">RAGIT</div>')
                         ui.html('<div style="background: linear-gradient(90deg, #10b981 0%, #059669 100%); color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 500;">AI + RAG</div>')
                         ui.element().style('flex: 1;')
-                        ui.html(f'<div style="font-size: 11px; color: #6b7280;">{message["timestamp"].strftime("%H:%M")}</div>')
+                        ui.html(f'<div style="font-size: 11px; color: #6b7280;">{message["created_at"].strftime("%H:%M")}</div>')
 
                     # Message content
                     with ui.column().style('padding: 16px;'):
@@ -327,18 +315,6 @@ class ChatPage:
         with self.chat_area_container:
             self.render_chat_area()
 
-        ui.update()
-
-    def start_chat_with_question(self, question):
-        if not self.selected_chat_room:
-            try:
-                new_room = self.api_service.create_chat_room("General Discussion", self.repo_id)
-            except Exception as e:
-                ui.notify(f"Failed to create chat room: {str(e)}", type='negative')
-                return
-            self.selected_chat_room = new_room
-
-        self.message_input.value = question
         ui.update()
 
     def show_create_chat_dialog(self):

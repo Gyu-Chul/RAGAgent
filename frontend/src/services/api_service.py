@@ -126,7 +126,7 @@ class APIService:
     def get_chat_rooms(self, repo_id: str) -> List[Dict[str, Any]]:
         """Get chat rooms for a repository"""
         try:
-            data = self._make_request("GET", f"/repositories/{repo_id}/chat-rooms")
+            data = self._make_request("GET", f"/api/repositories/{repo_id}/chat-rooms")
             return self._convert_datetime_fields(data)
         except Exception:
             # API가 구현되지 않은 경우 더미 데이터 반환
@@ -134,17 +134,17 @@ class APIService:
 
     def get_messages(self, chat_room_id: str) -> List[Dict[str, Any]]:
         """Get messages for a chat room"""
-        messages = self._make_request("GET", f"/chat-rooms/{chat_room_id}/messages")
+        messages = self._make_request("GET", f"/api/repositories/chat-rooms/{chat_room_id}/messages")
         return self._convert_datetime_fields(messages)
 
-    def add_message(self, chat_room_id: str, sender: str, content: str) -> Dict[str, Any]:
+    def add_message(self, chat_room_id: str, sender_type: str, content: str) -> Dict[str, Any]:
         """Add a new message to a chat room"""
         data = {
             "chat_room_id": chat_room_id,
-            "sender": sender,
+            "sender_type": sender_type,
             "content": content
         }
-        response = self._make_request("POST", f"/chat-rooms/{chat_room_id}/messages", data)
+        response = self._make_request("POST", f"/api/repositories/chat-rooms/{chat_room_id}/messages", data)
         return self._convert_datetime_fields(response)
 
     def create_chat_room(self, name: str, repo_id: str) -> Dict[str, Any]:
@@ -153,7 +153,7 @@ class APIService:
             "name": name,
             "repository_id": repo_id
         }
-        room = self._make_request("POST", f"/repositories/{repo_id}/chat-rooms", data)
+        room = self._make_request("POST", f"/api/repositories/{repo_id}/chat-rooms", data)
         return self._convert_datetime_fields(room)
 
     def get_vectordb_collections(self, repo_id: str) -> List[Dict[str, Any]]:

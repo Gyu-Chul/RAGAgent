@@ -143,7 +143,27 @@ def get_repository(
             detail="Repository not found"
         )
 
-    return repository
+    # owner 정보를 포함한 응답 생성
+    repo_dict = {
+        "id": str(repository.id),
+        "name": repository.name,
+        "description": repository.description,
+        "url": repository.url,
+        "is_public": repository.is_public,
+        "owner_id": str(repository.owner_id),
+        "owner": repository.owner.username if repository.owner else "Unknown",
+        "stars": repository.stars or 0,
+        "language": repository.language,
+        "status": repository.status,
+        "vectordb_status": repository.vectordb_status,
+        "collections_count": repository.collections_count or 0,
+        "file_count": repository.file_count or 0,
+        "created_at": repository.created_at,
+        "updated_at": repository.updated_at,
+        "last_sync": repository.last_sync
+    }
+
+    return repo_dict
 
 
 @router.get("/{repo_id}/status")
@@ -188,15 +208,35 @@ def update_repository(
             status_code=status.HTTP_403_FORBIDDEN,
             detail="You don't have permission to update this repository"
         )
-    
+
     repository = RepositoryService.update_repository(db, repo_id, repo_data)
     if not repository:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Repository not found"
         )
-    
-    return repository
+
+    # owner 정보를 포함한 응답 생성
+    repo_dict = {
+        "id": str(repository.id),
+        "name": repository.name,
+        "description": repository.description,
+        "url": repository.url,
+        "is_public": repository.is_public,
+        "owner_id": str(repository.owner_id),
+        "owner": repository.owner.username if repository.owner else "Unknown",
+        "stars": repository.stars or 0,
+        "language": repository.language,
+        "status": repository.status,
+        "vectordb_status": repository.vectordb_status,
+        "collections_count": repository.collections_count or 0,
+        "file_count": repository.file_count or 0,
+        "created_at": repository.created_at,
+        "updated_at": repository.updated_at,
+        "last_sync": repository.last_sync
+    }
+
+    return repo_dict
 
 
 @router.delete("/{repo_id}", status_code=status.HTTP_204_NO_CONTENT)
