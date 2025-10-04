@@ -8,8 +8,8 @@ import click
 import sys
 from typing import Optional
 from .config import RagitConfig
-from .process_manager import ProcessManager
-from .docker_manager import DockerManager
+from .core.process_manager import ProcessManager
+from .core.docker_manager import DockerManager
 from .logger import setup_logger
 
 
@@ -249,7 +249,7 @@ def worker() -> None:
 
     import subprocess
     try:
-        subprocess.run([sys.executable, "-m", "ragit_sdk.test_git_worker"], check=True)
+        subprocess.run([sys.executable, "-m", "ragit_sdk.tests.test_git_worker"], check=True)
     except subprocess.CalledProcessError:
         click.echo("Test failed!")
         sys.exit(1)
@@ -264,7 +264,7 @@ def search() -> None:
 
     import subprocess
     try:
-        subprocess.run([sys.executable, "-m", "ragit_sdk.test_search_only"], check=True)
+        subprocess.run([sys.executable, "-m", "ragit_sdk.tests.test_search_only"], check=True)
     except subprocess.CalledProcessError:
         click.echo("Test failed!")
         sys.exit(1)
@@ -278,7 +278,7 @@ def milvus() -> None:
 
     import subprocess
     try:
-        subprocess.run([sys.executable, "-m", "ragit_sdk.check_milvus"], check=True)
+        subprocess.run([sys.executable, "-m", "ragit_sdk.tests.check_milvus"], check=True)
     except subprocess.CalledProcessError:
         click.echo("Check failed!")
         sys.exit(1)

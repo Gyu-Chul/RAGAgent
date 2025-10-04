@@ -4,7 +4,7 @@ RAG Worker 검색 기능만 테스트
 사용법:
 1. Redis 서버 실행 확인
 2. Celery Worker 실행 확인
-3. python -m ragit_sdk.test_search_only 실행
+3. python -m ragit_sdk.tests.test_search_only 실행 또는 ragit test search
 """
 
 from celery import Celery

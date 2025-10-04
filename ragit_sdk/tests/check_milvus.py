@@ -1,7 +1,7 @@
 """
 Milvus 데이터 확인 스크립트
 
-사용법: python -m ragit_sdk.check_milvus
+사용법: python -m ragit_sdk.tests.check_milvus 또는 ragit test milvus
 """
 
 from pymilvus import MilvusClient, Collection, connections

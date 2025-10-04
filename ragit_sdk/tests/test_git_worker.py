@@ -4,7 +4,7 @@ RAG Worker Git Service 테스트 클라이언트
 사용법:
 1. Redis 서버 실행
 2. Celery Worker 실행: uv run python -m celery -A rag_worker.celery_app worker --loglevel=info --pool=solo
-3. python -m ragit_sdk.test_git_worker 실행
+3. python -m ragit_sdk.tests.test_git_worker 실행 또는 ragit test worker
 """
 
 import time

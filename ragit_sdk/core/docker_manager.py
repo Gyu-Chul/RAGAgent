@@ -11,8 +11,8 @@ from typing import List, Optional, Dict, Any
 import json
 from pathlib import Path
 
-from .config import RagitConfig
-from .logger import get_service_logger
+from ..config import RagitConfig
+from ..logger import get_service_logger
 
 
 class DockerManager:
