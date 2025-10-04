@@ -181,9 +181,22 @@ class SearchService:
 
             device = "cuda" if torch.cuda.is_available() else "cpu"
 
+            if device == "cuda":
+                gpu_name = torch.cuda.get_device_name(0)
+                logger.info(f"🚀 Using GPU for query embedding: {gpu_name}")
+            else:
+                logger.info(f"⚠️ Using CPU for query embedding (GPU not available)")
+
+            # safetensors 강제 사용을 위한 환경 변수 설정
+            import os
+            os.environ["SAFETENSORS_FAST_GPU"] = "1"
+
             embedder = HuggingFaceEmbeddings(
                 model_name=model_config["model_name"],
-                model_kwargs={"device": device, "trust_remote_code": True},
+                model_kwargs={
+                    "device": device,
+                    "trust_remote_code": True
+                },
                 encode_kwargs={"normalize_embeddings": True},
             )
 
