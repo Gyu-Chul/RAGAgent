@@ -5,14 +5,18 @@ LLM API 관련 타입 정의
 from typing import TypedDict, Optional
 
 ### prompt
-class SearchResult(TypedDict):
-    """벡터 DB 검색 결과로 받는 단일 문서의 형식"""
-    
-    file_path: str
-    class_name: str
-    function_name: str
-    code: str
+class SearchResultItem(TypedDict):
+    """검색 결과 아이템"""
 
+    code: str
+    file_path: str
+    name: str
+    start_line: int
+    end_line: int
+    type: str
+    _source_file: str
+    score: Optional[float]
+    
 ### ask_question
 class LLMRequest(TypedDict):
     """ask_question 함수 input 타입"""

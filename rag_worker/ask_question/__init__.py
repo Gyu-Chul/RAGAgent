@@ -4,7 +4,7 @@ LLM API 패키지
 
 from .ask_question import AskQuestion
 from .prompt_generator import PromptGenerator
-from .types import SearchResult, LLMRequest, ChatMessage 
+from .types import SearchResultItem, LLMRequest, ChatMessage 
 from .exceptions import (
     LLMError,
     NoContextFoundError,
@@ -20,7 +20,7 @@ __all__ = [
     # Ask to LLM
     "AskQuestion",
     # Types
-    "SearchResult",
+    "SearchResultItem",
     "LLMRequest",
     "ChatMessage",
     # Exceptions

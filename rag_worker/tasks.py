@@ -3,7 +3,7 @@ RAG Worker 태스크 정의
 """
 
 import time
-from typing import Dict, Any, Union, Optional
+from typing import Dict, Any, Union, Optional, List
 from .celery_app import app
 from .git_service import GitService
 from .git_service.types import CloneResult, StatusResult, PullResult, DeleteResult
@@ -12,12 +12,14 @@ from .python_parser.types import RepositoryParseResult
 from .vector_db import VectorDBService
 from .vector_db.types import EmbeddingResult, SearchResult
 from .vector_db.config import DEFAULT_MODEL_KEY
+from .ask_question import PromptGenerator
 
 # 서비스 인스턴스 생성
 git_service = GitService()
 parser_service = RepositoryParserService()
 # embedding_batch_size=4: 메모리 누적 방지, 배치마다 메모리 해제
 vector_db_service = VectorDBService(embedding_batch_size=4)
+prompt_service = PromptGenerator()
 
 
 @app.task
@@ -226,3 +228,22 @@ def search_vectors(
         검색 결과
     """
     return vector_db_service.search(query, collection_name, model_key, top_k, filter_expr)
+
+@app.task
+def create_prompt(
+    docs: List[SearchResult],
+    query: str,
+) -> str:
+    """
+    검색 결과를 이용한 프롬프트 생성
+
+    Args:
+        SearchResult: 검색 결과
+        query: 검색 쿼리
+
+    Returns:
+        생성된 프롬프트
+    """
+    return prompt_service.create(docs, query)
+
+
