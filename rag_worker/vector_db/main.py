@@ -11,7 +11,7 @@ import db_utils
 import config
 from chains import embedding_chain, search_chain, EmbeddingInput, SearchInput
 from LLM_API.prompt import create_final_prompt
-from LLM_API.LLM import ask_question
+from LLM_API.ask_question import ask_question
 
 def create_test_data_file() -> None:
     """임베딩 테스트를 위한 샘플 JSON 파일을 생성합니다."""
