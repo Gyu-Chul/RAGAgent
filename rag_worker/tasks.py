@@ -7,9 +7,12 @@ from typing import Dict, Any, Union, Optional
 from .celery_app import app
 from .git_service import GitService
 from .git_service.types import CloneResult, StatusResult, PullResult, DeleteResult
+from .python_parser import RepositoryParserService
+from .python_parser.types import RepositoryParseResult
 
-# GitService 인스턴스 생성
+# 서비스 인스턴스 생성
 git_service = GitService()
+parser_service = RepositoryParserService()
 
 
 @app.task
@@ -141,3 +144,19 @@ def git_delete(repo_name: str) -> DeleteResult:
         삭제 결과
     """
     return git_service.delete_repository(repo_name)
+
+
+# Python 파싱 관련 작업
+@app.task
+def parse_repository(repo_name: str, save_json: bool = True) -> RepositoryParseResult:
+    """
+    레포지토리 내 모든 Python 파일을 파싱하여 청킹
+
+    Args:
+        repo_name: 레포지토리 이름
+        save_json: JSON 파일로 저장 여부 (기본값: True)
+
+    Returns:
+        레포지토리 파싱 결과
+    """
+    return parser_service.parse_repository(repo_name, save_json)

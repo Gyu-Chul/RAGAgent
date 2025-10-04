@@ -54,9 +54,9 @@ def test_git_clone() -> None:
     print("🧪 TEST 1: Git Clone")
     print("🔷" * 30)
 
-    # 테스트용 공개 레포지토리 (작은 레포지토리 사용)
-    git_url = "https://github.com/octocat/Hello-World.git"
-    repo_name = "hello-world-test"
+    # 테스트용 공개 레포지토리 (Python 프로젝트)
+    git_url = "https://github.com/psf/requests.git"
+    repo_name = "requests-test"
 
     # Task 전송
     task = app.send_task(
@@ -76,7 +76,7 @@ def test_git_check_status() -> None:
     print("🧪 TEST 2: Git Check Status")
     print("🔷" * 30)
 
-    repo_name = "hello-world-test"
+    repo_name = "requests-test"
 
     # Task 전송
     task = app.send_task(
@@ -95,7 +95,7 @@ def test_git_pull() -> None:
     print("🧪 TEST 3: Git Pull")
     print("🔷" * 30)
 
-    repo_name = "hello-world-test"
+    repo_name = "requests-test"
 
     # Task 전송
     task = app.send_task(
@@ -108,13 +108,33 @@ def test_git_pull() -> None:
     print_result("git_pull", result)
 
 
+def test_parse_repository() -> None:
+    """Repository Parse 테스트"""
+    print("\n" + "🔷" * 30)
+    print("🧪 TEST 4: Parse Repository")
+    print("🔷" * 30)
+
+    repo_name = "requests-test"
+
+    # Task 전송
+    task = app.send_task(
+        'rag_worker.tasks.parse_repository',
+        args=[repo_name],
+        kwargs={'save_json': True}
+    )
+
+    # 결과 대기
+    result = wait_for_result(task, timeout=120)
+    print_result("parse_repository", result)
+
+
 def test_git_delete() -> None:
     """Git Delete 테스트"""
     print("\n" + "🔷" * 30)
-    print("🧪 TEST 4: Git Delete")
+    print("🧪 TEST 5: Git Delete")
     print("🔷" * 30)
 
-    repo_name = "hello-world-test"
+    repo_name = "requests-test"
 
     # Task 전송
     task = app.send_task(
@@ -176,7 +196,12 @@ def main() -> None:
 
         time.sleep(2)
 
-        # 4. Git Delete 테스트
+        # 4. Repository Parse 테스트
+        test_parse_repository()
+
+        time.sleep(2)
+
+        # 5. Git Delete 테스트
         test_git_delete()
 
         print("\n" + "=" * 60)
