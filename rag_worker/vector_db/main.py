@@ -2,13 +2,16 @@
 RAG Worker Vector Database Main Module
 단일 책임: 벡터 데이터베이스 메인 로직 처리
 """
+import sys
+sys.path.append('..')
 
 import json
 import os
-from typing import List, Dict, Any
 import db_utils
 import config
 from chains import embedding_chain, search_chain, EmbeddingInput, SearchInput
+from LLM_API.prompt import create_final_prompt
+from LLM_API.LLM import ask_question
 
 def create_test_data_file() -> None:
     """임베딩 테스트를 위한 샘플 JSON 파일을 생성합니다."""
@@ -106,15 +109,25 @@ def main_menu():
             query = input("검색어를 입력하세요: ")
 
             if query:
-                inp = SearchInput(query=query, collection_name=c_name)
-                
-                results = search_chain.invoke(inp)  # 바로 JSON 구조로 저장
-                
-                print("\n🔍 검색 결과 (JSON):")
-                if not results:
-                    print("검색 결과가 없습니다.")
+                search_input = SearchInput(query=query, collection_name=c_name)
+                search_results = search_chain.invoke(search_input)
+
+                # 3. 검색 결과와 원본 질문으로 최종 프롬프트를 생성합니다.
+                if search_results:
+                    final_prompt = create_final_prompt(docs=search_results, query=search_input.query)
+                    if final_prompt:
+                        print(final_prompt) # 생성된 프롬프트 확인
+                        
+                        # LLM에 질문하고 답변 받기
+                        # ChatPromptValue 객체는 str()로 변환하여 질문 내용만 전달
+                        gpt_response = ask_question(str(final_prompt)) 
+                        
+                        print("\n\n✅ GPT 최종 답변:")
+                        print("---------------------------------")
+                        print(gpt_response)
+                        print("---------------------------------")
                 else:
-                    print(json.dumps(results, indent=2, ensure_ascii=False))
+                    print("검색된 내용이 없습니다.")
             else:
                 print("⚠️ 검색어가 입력되지 않았습니다.")
 
