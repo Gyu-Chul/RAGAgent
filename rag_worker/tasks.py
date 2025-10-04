@@ -366,3 +366,169 @@ def process_repository_pipeline(
         }
     finally:
         db.close()
+
+
+# Chat RAG 작업
+@app.task(name='rag_worker.tasks.chat_query')
+def chat_query(
+    chat_room_id: str,
+    repo_id: str,
+    user_message: str,
+    top_k: int = 5
+) -> Dict[str, Any]:
+    """
+    사용자 메시지에 대한 RAG 기반 응답 생성
+
+    Args:
+        chat_room_id: 채팅방 ID
+        repo_id: 레포지토리 ID
+        user_message: 사용자 메시지
+        top_k: 검색할 코드 조각 개수
+
+    Returns:
+        응답 결과
+    """
+    import os
+    import logging
+    import json
+    from pathlib import Path
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import sessionmaker
+
+    logger = logging.getLogger(__name__)
+
+    # DATABASE_URL 설정 (process_repository_pipeline과 동일한 로직)
+    env_local_path = Path(__file__).parent.parent / '.env.local'
+
+    if env_local_path.exists():
+        DATABASE_URL = None
+        with open(env_local_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith('DATABASE_URL='):
+                    DATABASE_URL = line.split('=', 1)[1]
+                    break
+
+        if DATABASE_URL:
+            os.environ['DATABASE_URL'] = DATABASE_URL
+            logger.info(f"✅ Set DATABASE_URL from .env.local")
+        else:
+            DATABASE_URL = 'postgresql://postgres:postgres@localhost:5432/ragit'
+            os.environ['DATABASE_URL'] = DATABASE_URL
+            logger.warning(f"⚠️ DATABASE_URL not found in .env.local, using default")
+    else:
+        DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@localhost:5432/ragit')
+        logger.info(f"⚠️ .env.local not found, using environment")
+
+    # backend 모듈 import
+    from backend.services.chat_service import ChatMessageService
+    from backend.schemas.chat import ChatMessageCreate
+
+    # 데이터베이스 세션 생성
+    engine = create_engine(DATABASE_URL)
+    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    db = SessionLocal()
+    logger.info(f"🔗 Database connection created successfully")
+
+    try:
+        # 1. Vector DB 검색
+        collection_name = f"repo_{repo_id.replace('-', '_')}"
+        logger.info(f"🔍 Searching vectors in collection: {collection_name}")
+        logger.info(f"📝 User query: {user_message}")
+
+        search_result = vector_db_service.search(
+            query=user_message,
+            collection_name=collection_name,
+            model_key=DEFAULT_MODEL_KEY,
+            top_k=top_k
+        )
+
+        if not search_result['success']:
+            logger.error(f"❌ Vector search failed: {search_result.get('error')}")
+            # 검색 실패시에도 기본 응답 생성
+            bot_response = "죄송합니다. 코드 검색 중 오류가 발생했습니다. 나중에 다시 시도해주세요."
+            sources = None
+        else:
+            logger.info(f"✅ Found {search_result['total_results']} relevant code snippets")
+
+            # 2. 검색 결과를 바탕으로 LLM 응답 생성 (현재는 하드코딩)
+            # TODO: 나중에 실제 LLM API 호출로 교체
+
+            retrieved_codes = search_result['results'][:top_k]
+
+            # 하드코딩된 응답 생성
+            if retrieved_codes:
+                code_summary = []
+                for i, code in enumerate(retrieved_codes, 1):
+                    code_summary.append(f"{i}. {code['name']} ({code['file_path']}:{code['start_line']}-{code['end_line']})")
+
+                bot_response = f"""안녕하세요! 질문해주신 내용과 관련된 코드를 찾았습니다.
+
+**검색된 코드 조각:**
+{chr(10).join(code_summary)}
+
+**분석 결과:**
+해당 레포지토리에서 관련된 코드를 {len(retrieved_codes)}개 발견했습니다. 위 코드들이 질문과 연관이 있을 것으로 보입니다.
+
+더 구체적인 질문이 있으시면 말씀해주세요!
+
+*참고: 현재는 코드 검색 기능만 활성화되어 있으며, 향후 LLM 기반 상세 분석이 추가될 예정입니다.*"""
+
+                # sources를 JSON 문자열로 저장
+                sources = json.dumps([
+                    f"{code['file_path']}:{code['start_line']}-{code['end_line']}"
+                    for code in retrieved_codes
+                ], ensure_ascii=False)
+            else:
+                bot_response = "질문하신 내용과 관련된 코드를 찾지 못했습니다. 다른 방식으로 질문해주시겠어요?"
+                sources = None
+
+        # 3. Bot 메시지를 DB에 저장
+        logger.info(f"💾 Saving bot response to database")
+
+        bot_message_data = ChatMessageCreate(
+            chat_room_id=chat_room_id,
+            sender_type="bot",
+            content=bot_response,
+            sources=sources
+        )
+
+        bot_message = ChatMessageService.create_message(
+            db=db,
+            message_data=bot_message_data,
+            user_id=None  # bot 메시지는 user_id가 None
+        )
+
+        logger.info(f"✅ Bot message saved with ID: {bot_message.id}")
+
+        return {
+            "success": True,
+            "chat_room_id": chat_room_id,
+            "bot_message_id": str(bot_message.id),
+            "retrieved_count": search_result.get('total_results', 0) if search_result['success'] else 0,
+            "message": "Chat query processed successfully"
+        }
+
+    except Exception as e:
+        logger.error(f"❌ Error processing chat query: {str(e)}", exc_info=True)
+
+        # 에러 발생 시에도 에러 메시지를 bot 응답으로 저장
+        try:
+            error_message_data = ChatMessageCreate(
+                chat_room_id=chat_room_id,
+                sender_type="bot",
+                content=f"죄송합니다. 응답 생성 중 오류가 발생했습니다: {str(e)}",
+                sources=None
+            )
+            ChatMessageService.create_message(db, error_message_data, None)
+        except:
+            pass
+
+        return {
+            "success": False,
+            "error": str(e),
+            "chat_room_id": chat_room_id
+        }
+
+    finally:
+        db.close()

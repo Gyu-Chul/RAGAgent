@@ -238,6 +238,33 @@ def create_message(
     user_id = str(current_user.id) if message_data.sender_type == "user" else None
     message = ChatMessageService.create_message(db, message_data, user_id)
 
+    # 사용자 메시지인 경우 RAG Worker에 쿼리 전송
+    if message_data.sender_type == "user":
+        import logging
+        logger = logging.getLogger(__name__)
+
+        try:
+            from rag_worker.celery_app import app as celery_app
+
+            logger.info(f"🤖 Triggering RAG chat query for message: {message.id}")
+
+            # Celery task 트리거
+            task = celery_app.send_task(
+                'rag_worker.tasks.chat_query',
+                kwargs={
+                    'chat_room_id': str(chat_room.id),
+                    'repo_id': str(chat_room.repository_id),
+                    'user_message': message.content,
+                    'top_k': 5
+                }
+            )
+
+            logger.info(f"✅ RAG task sent. Task ID: {task.id}")
+
+        except Exception as task_error:
+            logger.error(f"❌ Failed to trigger RAG task: {str(task_error)}", exc_info=True)
+            # Task 실패해도 메시지는 저장되었으므로 계속 진행
+
     # 응답 생성
     message_dict = {
         "id": str(message.id),
