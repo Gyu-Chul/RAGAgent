@@ -96,7 +96,7 @@ services:
 
   # Milvus Vector Database
   milvus:
-    image: milvusdb/milvus:v2.3.3
+    image: milvusdb/milvus:v2.4.15
     container_name: ragit-milvus
     environment:
       ETCD_ENDPOINTS: etcd:2379
@@ -220,6 +220,7 @@ services:
       CELERY_RESULT_BACKEND: redis://redis:6379/0
       MILVUS_HOST: milvus
       MILVUS_PORT: 19530
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
     networks:
       - ragit-network
     depends_on:
@@ -232,3 +233,5 @@ services:
     restart: unless-stopped
     volumes:
       - ./data:/app/data
+      - ./repository:/app/repository
+      - ./parsed_repository:/app/parsed_repository

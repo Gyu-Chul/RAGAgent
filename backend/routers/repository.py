@@ -40,7 +40,7 @@ def create_repository(
 
         # Celery Task 비동기 트리거 - Repository 처리 파이프라인
         try:
-            from rag_worker.celery_app import app as celery_app
+            from ..core.celery import celery_app
 
             # Redis 연결 확인
             logger.info(f"Celery broker: {celery_app.conf.broker_url}")

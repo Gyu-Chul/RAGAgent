@@ -1,120 +1,609 @@
-# RAGIT - RAG with Gateway-Backend Architecture
+# RAGIT - Retrieval-Augmented Generation with Intelligent Tracking
 
-RAGIT은 마이크로서비스 아키텍처 기반의 자체 호스팅 RAG (Retrieval-Augmented Generation) 시스템입니다.
+**RAGIT** is a self-hosted, production-ready RAG (Retrieval-Augmented Generation) system built with microservices architecture. It enables AI-powered code analysis, semantic search, and intelligent chat interactions with your codebase using vector embeddings and LLM integration.
 
-## 프로젝트 개요
+## 🚀 Overview
 
-RAGIT은 다음과 같은 핵심 특징을 가진 RAG 시스템입니다:
+RAGIT is designed to help developers understand and navigate large codebases through AI-powered semantic search and conversational interfaces. By combining vector databases with Large Language Models, RAGIT provides context-aware answers to questions about your code.
 
-- **마이크로서비스 아키텍처**: Gateway-Backend 패턴으로 확장 가능한 구조
-- **통합 SDK**: 모든 기능을 `ragit` 명령어로 통합 관리
-- **Docker 지원**: 개발/프로덕션 환경 분리 배포
-- **실시간 모니터링**: 서비스 상태 및 리소스 모니터링
+### Key Features
 
-## 프로젝트 구조
+- **🏗️ Microservices Architecture**: Scalable Gateway-Backend pattern with service isolation
+- **🔍 Semantic Code Search**: Vector-based code retrieval using Milvus
+- **💬 AI-Powered Chat**: LLM integration for natural language code queries
+- **📦 Fully Dockerized**: 9 containerized services for easy deployment
+- **⚡ Async Processing**: Celery-based background workers for heavy computations
+- **🎨 Modern Web UI**: Beautiful, responsive interface built with NiceGUI
+- **🔐 Authentication & Authorization**: Secure user management with JWT tokens
+- **📊 Real-time Updates**: WebSocket-like polling for chat synchronization
+
+---
+
+## 📋 Table of Contents
+
+- [Architecture](#-architecture)
+- [System Components](#-system-components)
+- [Docker Services](#-docker-services)
+- [Communication Flow](#-communication-flow)
+- [Project Structure](#-project-structure)
+- [Getting Started](#-getting-started)
+- [Port Configuration](#-port-configuration)
+- [Technology Stack](#-technology-stack)
+
+---
+
+## 🏛️ Architecture
+
+RAGIT follows a **microservices architecture** with clear separation of concerns. The system consists of 9 Docker containers working together to provide a seamless RAG experience.
+
+### High-Level Architecture Diagram
+
+```mermaid
+graph TB
+    User[👤 User Browser]
+
+    subgraph "Client Layer"
+        Frontend[🎨 Frontend<br/>NiceGUI<br/>Port 8000]
+    end
+
+    subgraph "Gateway Layer"
+        Gateway[🚪 Gateway<br/>FastAPI Proxy<br/>Port 8080]
+    end
+
+    subgraph "Application Layer"
+        Backend[⚙️ Backend<br/>FastAPI REST API<br/>Port 8001]
+        Worker[🔄 RAG Worker<br/>Celery<br/>Background Tasks]
+    end
+
+    subgraph "Data Layer"
+        Postgres[(🗄️ PostgreSQL<br/>Port 5432)]
+        Redis[(⚡ Redis<br/>Port 6380)]
+        Milvus[(🔍 Milvus<br/>Vector DB<br/>Port 19530)]
+    end
+
+    subgraph "Infrastructure Layer"
+        Etcd[(📦 etcd<br/>Port 2379)]
+        MinIO[(💾 MinIO<br/>Object Storage<br/>Port 9000)]
+    end
+
+    User -->|HTTP/WS| Frontend
+    Frontend -->|API Calls| Gateway
+    Gateway -->|Proxy| Backend
+    Backend -->|SQL| Postgres
+    Backend -->|Cache/Queue| Redis
+    Backend -->|Trigger Tasks| Worker
+    Worker -->|Vector Search| Milvus
+    Worker -->|Metadata| Postgres
+    Worker -->|Queue| Redis
+    Milvus -->|Coordination| Etcd
+    Milvus -->|Storage| MinIO
+
+    style Frontend fill:#61dafb,stroke:#000,stroke-width:2px,color:#000
+    style Gateway fill:#10b981,stroke:#000,stroke-width:2px,color:#000
+    style Backend fill:#3b82f6,stroke:#000,stroke-width:2px,color:#fff
+    style Worker fill:#8b5cf6,stroke:#000,stroke-width:2px,color:#fff
+    style Postgres fill:#336791,stroke:#000,stroke-width:2px,color:#fff
+    style Redis fill:#dc2626,stroke:#000,stroke-width:2px,color:#fff
+    style Milvus fill:#00a6fb,stroke:#000,stroke-width:2px,color:#fff
+```
+
+### Detailed Data Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Frontend
+    participant Gateway
+    participant Backend
+    participant Worker
+    participant Milvus
+    participant LLM
+
+    User->>Frontend: Ask question about code
+    Frontend->>Gateway: POST /api/chat/rooms/{id}/messages
+    Gateway->>Backend: Forward request
+    Backend->>Backend: Create message record
+    Backend->>Worker: Trigger RAG task (Celery)
+    Backend-->>Frontend: Return task_id
+
+    Worker->>Milvus: Search similar code vectors
+    Milvus-->>Worker: Return relevant code chunks
+    Worker->>LLM: Generate answer with context
+    LLM-->>Worker: Return AI response
+    Worker->>Backend: Update message with answer
+
+    loop Polling every 2s
+        Frontend->>Gateway: GET /api/chat/rooms/{id}/messages
+        Gateway->>Backend: Forward request
+        Backend-->>Frontend: Return messages (including AI response)
+    end
+
+    Frontend->>User: Display AI answer
+```
+
+---
+
+## 🧩 System Components
+
+### 1. **Frontend Service** (NiceGUI)
+- **Port**: 8000
+- **Purpose**: Web UI for user interaction
+- **Features**:
+  - Repository management interface
+  - Real-time chat interface
+  - User authentication pages
+  - Settings and configuration
+- **Tech**: Python, NiceGUI, Tailwind CSS
+
+### 2. **Gateway Service** (FastAPI)
+- **Port**: 8080
+- **Purpose**: API Gateway and reverse proxy
+- **Features**:
+  - Request routing and load balancing
+  - CORS handling
+  - Request/response transformation
+  - Middleware for logging and monitoring
+- **Tech**: FastAPI, Python
+
+### 3. **Backend Service** (FastAPI)
+- **Port**: 8001
+- **Purpose**: Core business logic and REST API
+- **Features**:
+  - User authentication & authorization (JWT)
+  - Repository CRUD operations
+  - Chat room management
+  - Message persistence
+  - Celery task orchestration
+- **Tech**: FastAPI, SQLAlchemy, PostgreSQL
+
+### 4. **RAG Worker** (Celery)
+- **Purpose**: Asynchronous background processing
+- **Features**:
+  - Code parsing and embedding generation
+  - Vector database operations
+  - LLM integration for answer generation
+  - Repository analysis and indexing
+- **Tech**: Celery, Python, OpenAI API
+- **Concurrency**: 2 workers
+
+### 5. **PostgreSQL**
+- **Port**: 5432
+- **Purpose**: Primary relational database
+- **Stores**:
+  - User accounts and sessions
+  - Repository metadata
+  - Chat rooms and messages
+  - File tracking information
+
+### 6. **Redis**
+- **Port**: 6380 (exposed), 6379 (internal)
+- **Purpose**: Cache and message broker
+- **Uses**:
+  - Celery task queue
+  - Celery result backend
+  - Session cache
+  - Real-time data cache
+
+### 7. **Milvus** (Vector Database)
+- **Ports**: 19530 (gRPC), 9091 (metrics)
+- **Version**: v2.4.15
+- **Purpose**: Vector storage and similarity search
+- **Features**:
+  - Code embedding storage
+  - Semantic code search
+  - High-performance vector indexing
+  - Scalable architecture
+
+### 8. **etcd**
+- **Port**: 2379
+- **Purpose**: Distributed configuration for Milvus
+- **Role**: Metadata storage and service coordination for Milvus
+
+### 9. **MinIO**
+- **Ports**: 9000 (API), 9001 (Console)
+- **Purpose**: Object storage backend for Milvus
+- **Role**: Stores vector data and logs for Milvus
+
+---
+
+## 🐳 Docker Services
+
+RAGIT runs **9 Docker containers** in a coordinated network:
+
+| Service | Container Name | Image | Exposed Ports | Internal Ports | Health Check |
+|---------|---------------|-------|---------------|----------------|--------------|
+| PostgreSQL | ragit-postgres | postgres:15 | 5432 | 5432 | ✅ pg_isready |
+| Redis | ragit-redis | redis:7-alpine | 6380 | 6379 | ✅ redis-cli ping |
+| etcd | ragit-etcd | quay.io/coreos/etcd:v3.5.5 | - | 2379 | ✅ endpoint health |
+| MinIO | ragit-minio | minio/minio:RELEASE.2023-03-20T20-16-18Z | 9000, 9001 | 9000, 9001 | ✅ health endpoint |
+| Milvus | ragit-milvus | milvusdb/milvus:v2.4.15 | 19530, 9091 | 19530, 9091 | ✅ /healthz |
+| Backend | ragit-backend | ragit-backend (custom) | 8001 | 8001 | ✅ /health |
+| Gateway | ragit-gateway | ragit-gateway (custom) | 8080 | 8080 | ✅ root endpoint |
+| Frontend | ragit-frontend | ragit-frontend (custom) | 8000 | 8000 | ✅ root endpoint |
+| RAG Worker | ragit-rag-worker | ragit-rag-worker (custom) | - | - | ⚙️ Celery inspect |
+
+### Service Dependencies
+
+```mermaid
+graph TD
+    A[etcd] --> D[Milvus]
+    B[MinIO] --> D
+    C[PostgreSQL] --> E[Backend]
+    F[Redis] --> E
+    F --> G[RAG Worker]
+    C --> G
+    D --> G
+    E --> H[Gateway]
+    E --> I[Frontend]
+    H --> I
+
+    style A fill:#f9f,stroke:#333
+    style B fill:#f9f,stroke:#333
+    style C fill:#9cf,stroke:#333
+    style D fill:#9f9,stroke:#333
+    style E fill:#fc9,stroke:#333
+    style F fill:#f99,stroke:#333
+    style G fill:#c9f,stroke:#333
+    style H fill:#9fc,stroke:#333
+    style I fill:#9ff,stroke:#333
+```
+
+---
+
+## 🔄 Communication Flow
+
+### Request/Response Flow
+
+1. **User Interaction**
+   - User accesses web UI at `http://localhost:8000`
+   - Frontend renders NiceGUI components
+
+2. **API Gateway Pattern**
+   - Frontend sends API requests to Gateway (`http://localhost:8080`)
+   - Gateway validates, transforms, and forwards to Backend (`http://localhost:8001`)
+
+3. **Business Logic Processing**
+   - Backend processes requests using FastAPI routers
+   - Authenticates users via JWT tokens
+   - Queries PostgreSQL for structured data
+
+4. **Asynchronous RAG Processing**
+   - Backend creates Celery tasks for RAG operations
+   - Tasks are queued in Redis
+   - RAG Worker picks up tasks from the queue
+   - Worker performs vector operations on Milvus
+   - Worker calls OpenAI API for LLM responses
+   - Results are stored back in PostgreSQL
+
+5. **Real-time Updates**
+   - Frontend polls Backend every 2 seconds
+   - Backend returns updated chat messages
+   - UI automatically displays new AI responses
+
+### Internal Service Communication
+
+```
+Frontend ←→ Gateway ←→ Backend
+                ↓
+            PostgreSQL
+                ↓
+            Celery Tasks (via Redis)
+                ↓
+            RAG Worker
+                ↓
+        ┌───────┴───────┐
+        ↓               ↓
+    Milvus          OpenAI API
+    (Vector DB)     (LLM)
+```
+
+---
+
+## 📁 Project Structure
 
 ```
 RAGIT/
-├── backend/                 # FastAPI 기반 REST API 서버
-│   ├── models/              # SQLAlchemy 데이터 모델
-│   ├── services/            # 비즈니스 로직 서비스
-│   ├── routers/             # API 라우터
-│   └── main.py              # FastAPI 애플리케이션
+├── backend/                     # FastAPI REST API Server
+│   ├── core/
+│   │   ├── database.py          # Database connection & ORM setup
+│   │   └── celery.py            # Celery integration
+│   ├── models/
+│   │   ├── user.py              # User & session models
+│   │   ├── repository.py        # Repository models
+│   │   ├── chat.py              # Chat & message models
+│   │   └── vector.py            # Vector metadata models
+│   ├── routers/
+│   │   ├── auth.py              # Authentication endpoints
+│   │   ├── repository.py        # Repository CRUD endpoints
+│   │   └── chat.py              # Chat & messaging endpoints
+│   ├── services/
+│   │   ├── auth_service.py      # JWT authentication logic
+│   │   ├── user_service.py      # User management
+│   │   ├── repository_service.py # Repository operations
+│   │   └── chat_service.py      # Chat operations
+│   ├── schemas/                 # Pydantic request/response models
+│   ├── Dockerfile               # Backend container image
+│   └── main.py                  # FastAPI application entry
 │
-├── frontend/                # NiceGUI 기반 웹 인터페이스
-│   ├── components/          # UI 컴포넌트
-│   ├── pages/               # 페이지 모듈
-│   ├── services/            # 프론트엔드 서비스
-│   └── main.py              # NiceGUI 애플리케이션
+├── frontend/                    # NiceGUI Web Interface
+│   ├── src/
+│   │   ├── components/
+│   │   │   └── header.py        # Reusable header component
+│   │   ├── pages/
+│   │   │   ├── auth_page.py     # Login/Register page
+│   │   │   ├── main_page.py     # Dashboard
+│   │   │   ├── chat_page.py     # Chat interface
+│   │   │   └── repository_settings_page.py
+│   │   ├── services/
+│   │   │   ├── api_service.py   # Backend API client
+│   │   │   └── auth_service.py  # Frontend auth handler
+│   │   └── utils/
+│   │       └── theme.py         # UI theme configuration
+│   ├── Dockerfile               # Frontend container image
+│   └── main.py                  # NiceGUI application entry
 │
-├── gateway/                 # API 게이트웨이 및 프록시
-│   ├── middleware/          # 미들웨어
-│   ├── config.py            # 게이트웨이 설정
-│   └── main.py              # 게이트웨이 서버
+├── gateway/                     # API Gateway Service
+│   ├── routers/
+│   │   └── auth.py              # Auth proxy routes
+│   ├── services/
+│   │   ├── proxy_service.py     # Request forwarding logic
+│   │   └── data_service.py      # Data transformation
+│   ├── config.py                # Gateway configuration
+│   ├── Dockerfile               # Gateway container image
+│   └── main.py                  # FastAPI gateway entry
 │
-├── rag_worker/              # Celery 기반 RAG 처리 워커
-│   ├── tasks/               # 백그라운드 작업
-│   ├── models/              # RAG 모델 관리
-│   └── main.py              # Celery 애플리케이션
+├── rag_worker/                  # Celery Background Worker
+│   ├── vector_db/
+│   │   ├── service.py           # Milvus connection & ops
+│   │   ├── embedding_service.py # Text → Vector conversion
+│   │   ├── search_service.py    # Semantic search
+│   │   └── repository_embedder.py # Code embedding pipeline
+│   ├── python_parser/
+│   │   ├── parser.py            # AST-based code parser
+│   │   ├── file_scanner.py      # Repository file scanner
+│   │   └── service.py           # Parsing orchestration
+│   ├── git_service/
+│   │   └── exceptions.py        # Git operation handlers
+│   ├── ask_question/
+│   │   └── types.py             # LLM integration types
+│   ├── tasks.py                 # Celery task definitions
+│   ├── celery_app.py            # Celery app configuration
+│   ├── Dockerfile               # Worker container image
+│   └── main.py                  # Worker entry point
 │
-├── ragit_sdk/               # 통합 관리 SDK
-│   ├── cli.py               # Click 기반 CLI 인터페이스
-│   ├── process_manager.py   # 로컬 프로세스 관리
-│   ├── docker_manager.py    # Docker 컨테이너 관리
-│   ├── config.py            # 설정 관리 시스템
-│   ├── logger.py            # 통합 로깅 시스템
-│   └── utils.py             # 유틸리티 함수
+├── ragit_sdk/                   # CLI Management Tool (Legacy)
+│   ├── core/
+│   │   ├── process_manager.py   # Local process management
+│   │   └── docker_manager.py    # Docker operations
+│   ├── cli.py                   # Click-based CLI
+│   ├── config.py                # Configuration management
+│   └── logger.py                # Logging utilities
 │
-├── docs/                    # 프로젝트 문서
-├── scripts/                 # 관리 스크립트 (레거시)
-├── milvus/                  # Milvus 벡터 데이터베이스 설정
-├── sample/                  # 샘플 데이터 및 예제
+├── milvus/                      # Milvus configuration
+│   └── embedEtcd.yaml           # etcd settings
 │
-├── docker-compose.yml       # 개발 환경 Docker 설정
-├── docker-compose.prod.yml  # 프로덕션 환경 Docker 설정
-├── Dockerfile               # Docker 이미지 빌드 설정
-├── pyproject.toml           # 프로젝트 설정 및 의존성
-├── install.sh               # 자동 설치 스크립트
-└── CLAUDE.md                # 개발 코딩 규칙
+├── docs/                        # Documentation
+│   ├── installation.md
+│   ├── sdk-usage.md
+│   └── README.md
+│
+├── data/                        # Runtime data (git ignored)
+├── repository/                  # Cloned repositories (git ignored)
+├── parsed_repository/           # Parsed code cache (git ignored)
+├── logs/                        # Application logs (git ignored)
+│
+├── docker-compose.yml           # Multi-container orchestration
+├── docker-compose.local.yml     # Local development setup
+├── pyproject.toml               # Python dependencies (uv)
+├── uv.lock                      # Locked dependencies
+├── .env                         # Environment variables
+├── .env.local                   # Local overrides
+├── .dockerignore                # Docker build exclusions
+├── .gitignore                   # Git exclusions
+├── CLAUDE.md                    # Coding standards
+└── README.md                    # This file
 ```
 
-## 아키텍처
+---
 
-RAGIT은 다음과 같은 마이크로서비스 아키텍처로 구성됩니다:
+## 🚀 Getting Started
 
-```
-사용자 → Frontend → Gateway → Backend → Database/Cache
-                              ↓
-                          RAG Worker → Vector DB
-```
+### Prerequisites
 
-### 핵심 컴포넌트
+- **Docker** & **Docker Compose** (v3.8+)
+- **Git**
+- **OpenAI API Key** (for LLM features)
 
-- **Frontend (NiceGUI)**: 사용자 인터페이스 및 웹 애플리케이션
-- **Gateway**: 요청 라우팅, 로드 밸런싱, 인증 처리
-- **Backend (FastAPI)**: 핵심 비즈니스 로직 및 REST API
-- **RAG Worker (Celery)**: 비동기 RAG 처리 및 벡터 검색
-- **PostgreSQL**: 구조화된 데이터 저장
-- **Redis**: 캐싱 및 메시지 큐
-- **Milvus**: 벡터 데이터베이스 (RAG 검색용)
+### Quick Start with Docker (Recommended)
 
-## 빠른 시작
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Gyu-Chul/RAGIT.git
+   cd RAGIT
+   ```
 
-### Docker 설치 (권장)
+2. **Set up environment variables**
+   ```bash
+   cp .env .env.local
+   # Edit .env.local and add your OpenAI API key
+   ```
 
-```bash
-# 저장소 클론
-git clone https://github.com/your-repo/RAGIT.git
-cd RAGIT
+3. **Start all services**
+   ```bash
+   docker-compose up -d
+   ```
 
-# 자동 설치
-chmod +x install.sh
-./install.sh
-```
+4. **Wait for services to be healthy** (approximately 60-90 seconds)
+   ```bash
+   docker-compose ps
+   ```
 
-### SDK 사용
+5. **Access the application**
+   - **Frontend UI**: http://localhost:8000
+   - **Backend API**: http://localhost:8001/docs
+   - **Gateway**: http://localhost:8080
 
-```bash
-# 의존성 설치
-uv sync
+### Local Development Setup (Optional)
 
-# 서비스 시작
-ragit start
+If you want to run services locally without Docker:
 
-# 상태 확인
-ragit status
-```
+1. **Install Python dependencies**
+   ```bash
+   # Install uv package manager
+   pip install uv
 
-### 접속 정보
+   # Install dependencies
+   uv sync
+   ```
 
-- **웹 인터페이스**: http://localhost:8000
-- **백엔드 API**: http://localhost:8001
-- **게이트웨이**: http://localhost:8080
+2. **Start infrastructure services**
+   ```bash
+   # Start only databases (PostgreSQL, Redis, Milvus, etc.)
+   docker-compose up -d postgres redis etcd minio milvus
+   ```
 
-## 문서
+3. **Run application services locally**
+   ```bash
+   # Terminal 1: Backend
+   cd backend
+   uvicorn main:app --reload --port 8001
 
-자세한 설치 및 사용 방법은 다음 문서를 참조하세요:
+   # Terminal 2: Frontend
+   cd frontend
+   python main.py
 
-- **[설치 가이드](docs/installation.md)** - 상세한 설치 및 설정 방법
-- **[SDK 사용 가이드](docs/sdk-usage.md)** - RAGIT SDK 완전 활용법
-- **[문서 목록](docs/README.md)** - 모든 문서 색인
+   # Terminal 3: Gateway
+   cd gateway
+   uvicorn main:app --reload --port 8080
+
+   # Terminal 4: RAG Worker
+   celery -A rag_worker.celery_app worker --loglevel=info --concurrency=2
+   ```
+
+---
+
+## 🔌 Port Configuration
+
+| Port | Service | Protocol | Purpose | Exposed Externally |
+|------|---------|----------|---------|-------------------|
+| 8000 | Frontend | HTTP | Web UI | ✅ Yes |
+| 8001 | Backend | HTTP | REST API | ✅ Yes |
+| 8080 | Gateway | HTTP | API Gateway | ✅ Yes |
+| 5432 | PostgreSQL | TCP | Database | ✅ Yes |
+| 6380 → 6379 | Redis | TCP | Cache/Queue | ✅ Yes (mapped) |
+| 19530 | Milvus | gRPC | Vector DB API | ✅ Yes |
+| 9091 | Milvus | HTTP | Metrics | ✅ Yes |
+| 9000 | MinIO | HTTP | Object Storage API | ✅ Yes |
+| 9001 | MinIO | HTTP | Web Console | ✅ Yes |
+| 2379 | etcd | HTTP | Distributed Config | ❌ Internal only |
+
+### Firewall Configuration
+
+For production deployment, expose only:
+- **8000** (Frontend)
+- Optionally **8080** (Gateway) if frontend is deployed separately
+
+All other ports should be restricted to internal network only.
+
+---
+
+## 🛠️ Technology Stack
+
+### Backend
+- **FastAPI** - Modern Python web framework
+- **SQLAlchemy** - ORM for PostgreSQL
+- **Pydantic** - Data validation
+- **JWT** - Authentication tokens
+- **Celery** - Distributed task queue
+
+### Frontend
+- **NiceGUI** - Python-based web UI framework
+- **Tailwind CSS** - Utility-first CSS
+
+### Infrastructure
+- **PostgreSQL 15** - Relational database
+- **Redis 7** - In-memory cache & message broker
+- **Milvus v2.4.15** - Vector database
+- **etcd v3.5.5** - Distributed configuration
+- **MinIO** - S3-compatible object storage
+
+### AI/ML
+- **OpenAI API** - LLM integration
+- **Python AST** - Code parsing
+- **Sentence Transformers** - Text embeddings (configurable)
+
+### DevOps
+- **Docker** - Containerization
+- **Docker Compose** - Multi-container orchestration
+- **uv** - Fast Python package manager
+
+---
+
+## 📚 Documentation
+
+- **[Installation Guide](docs/installation.md)** - Detailed setup instructions
+- **[SDK Usage](docs/sdk-usage.md)** - CLI tool documentation
+- **[API Documentation](http://localhost:8001/docs)** - Interactive API docs (Swagger UI)
+
+---
+
+## 🏗️ System Architecture Principles
+
+RAGIT is built following these architectural principles:
+
+1. **Single Responsibility Principle (SRP)**
+   - Each service has one clear responsibility
+   - Components are highly cohesive
+
+2. **Interface Segregation Principle (ISP)**
+   - Services expose minimal necessary interfaces
+   - Clear API contracts between services
+
+3. **Separation of Concerns**
+   - Presentation layer (Frontend) separated from business logic (Backend)
+   - Data access layer isolated in service classes
+
+4. **Scalability**
+   - Stateless services for horizontal scaling
+   - Async processing with Celery workers
+   - Distributed vector storage with Milvus
+
+5. **Type Safety**
+   - Full type annotations in Python code
+   - Pydantic schemas for API validation
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please follow the coding standards defined in [CLAUDE.md](CLAUDE.md).
+
+### Coding Standards
+- Single Responsibility Principle
+- Interface Segregation Principle
+- Complete type annotations required
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
+
+---
+
+## 🙏 Acknowledgments
+
+- **OpenAI** - LLM capabilities
+- **Milvus** - High-performance vector database
+- **FastAPI** - Modern Python web framework
+- **NiceGUI** - Pythonic web UI framework
+
+---
+
+## 📧 Contact
+
+For questions and support, please open an issue on GitHub.
+
+---
+
+**Built with ❤️ for developers who want to understand their code better.**

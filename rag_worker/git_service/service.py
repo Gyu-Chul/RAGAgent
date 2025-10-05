@@ -9,7 +9,6 @@ import stat
 import subprocess
 from pathlib import Path
 from typing import Dict, Any, Optional, List
-from .history_tracker import FunctionHistoryTracker
 
 from .exceptions import (
     RepositoryNotFoundError,
@@ -340,6 +339,7 @@ class GitService:
             return DeleteResult(success=False, repo_name=repo_name, message=None, error=str(e))
     
 
+<<<<<<< HEAD
     def _format_source_file(self, file_paths: List[str]) -> List[str]:
         """
         파일 경로 리스트의 확장자만 '.json'으로 변경 (경로 유지)
@@ -422,3 +422,5 @@ class GitService:
 #             print("--- Diff ---")
 #             print(change.highlighted_diff)
 #             print("="*60)
+=======
+>>>>>>> origin/main

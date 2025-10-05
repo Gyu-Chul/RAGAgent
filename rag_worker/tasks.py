@@ -261,13 +261,13 @@ def process_repository_pipeline(
 
     logger = logging.getLogger(__name__)
 
-    # ⚠️ IMPORTANT: backend 모듈을 import하기 전에 환경변수 설정 필수!
+    # DATABASE_URL 설정
     env_local_path = Path(__file__).parent.parent / '.env.local'
     logger.info(f"🔍 Looking for .env.local at: {env_local_path}")
     logger.info(f"📁 .env.local exists: {env_local_path.exists()}")
 
     if env_local_path.exists():
-        # .env.local 파일을 직접 파싱 (환경변수 우선순위 문제 방지)
+        # .env.local 파일을 직접 파싱
         DATABASE_URL = None
         with open(env_local_path, 'r', encoding='utf-8') as f:
             for line in f:
@@ -277,7 +277,6 @@ def process_repository_pipeline(
                     break
 
         if DATABASE_URL:
-            # 환경변수로 강제 설정
             os.environ['DATABASE_URL'] = DATABASE_URL
             logger.info(f"✅ Set DATABASE_URL from .env.local: {DATABASE_URL}")
         else:
@@ -288,8 +287,8 @@ def process_repository_pipeline(
         DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@localhost:5432/ragit')
         logger.info(f"⚠️ .env.local not found, using environment: {DATABASE_URL}")
 
-    # 이제 backend 모듈 import (환경변수가 이미 설정됨)
-    from backend.services.repository_service import RepositoryService
+    # DB helper import
+    from .db_helper import RepositoryDBHelper
 
     # 데이터베이스 세션 생성
     engine = create_engine(DATABASE_URL)
@@ -299,12 +298,12 @@ def process_repository_pipeline(
 
     try:
         # 1. 상태를 'syncing'으로 업데이트
-        RepositoryService.update_repository_status(db, repo_id, "syncing", "pending")
+        RepositoryDBHelper.update_repository_status(db, repo_id, "syncing", "pending")
 
         # 2. Git Clone
         clone_result = git_service.clone_repository(git_url, repo_name)
         if not clone_result['success']:
-            RepositoryService.update_repository_status(db, repo_id, "error", "error")
+            RepositoryDBHelper.update_repository_status(db, repo_id, "error", "error")
             return {
                 "success": False,
                 "error": f"Git clone failed: {clone_result['message']}",
@@ -314,7 +313,7 @@ def process_repository_pipeline(
         # 3. Python 파일 파싱 및 청킹
         parse_result = parser_service.parse_repository(repo_name, save_json=True)
         if not parse_result['success']:
-            RepositoryService.update_repository_status(db, repo_id, "error", "error")
+            RepositoryDBHelper.update_repository_status(db, repo_id, "error", "error")
             return {
                 "success": False,
                 "error": f"Parsing failed: {parse_result['message']}",
@@ -323,17 +322,17 @@ def process_repository_pipeline(
 
         # 파일 개수 업데이트
         file_count = parse_result['total_files']
-        RepositoryService.update_file_count(db, repo_id, file_count)
+        RepositoryDBHelper.update_file_count(db, repo_id, file_count)
 
         # 4. Vector DB 상태를 'syncing'으로 업데이트
-        RepositoryService.update_repository_status(db, repo_id, "syncing", "syncing")
+        RepositoryDBHelper.update_repository_status(db, repo_id, "syncing", "syncing")
 
         # 5. Vector DB 임베딩
         collection_name = f"repo_{repo_id.replace('-', '_')}"
         embed_result = vector_db_service.embed_repository(repo_name, collection_name, model_key)
 
         if not embed_result['success']:
-            RepositoryService.update_repository_status(db, repo_id, "active", "error")
+            RepositoryDBHelper.update_repository_status(db, repo_id, "active", "error")
             return {
                 "success": False,
                 "error": f"Embedding failed: {embed_result['message']}",
@@ -342,10 +341,10 @@ def process_repository_pipeline(
             }
 
         # 6. Collections count 증가
-        RepositoryService.increment_collections_count(db, repo_id)
+        RepositoryDBHelper.increment_collections_count(db, repo_id)
 
         # 7. 최종 상태를 'active'로 업데이트
-        RepositoryService.update_repository_status(db, repo_id, "active", "active")
+        RepositoryDBHelper.update_repository_status(db, repo_id, "active", "active")
 
         return {
             "success": True,
@@ -360,7 +359,7 @@ def process_repository_pipeline(
 
     except Exception as e:
         # 오류 발생 시 상태 업데이트
-        RepositoryService.update_repository_status(db, repo_id, "error", "error")
+        RepositoryDBHelper.update_repository_status(db, repo_id, "error", "error")
         return {
             "success": False,
             "error": str(e),
@@ -422,9 +421,8 @@ def chat_query(
         DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@localhost:5432/ragit')
         logger.info(f"⚠️ .env.local not found, using environment")
 
-    # backend 모듈 import
-    from backend.services.chat_service import ChatMessageService
-    from backend.schemas.chat import ChatMessageCreate
+    # DB helper import
+    from .db_helper import ChatMessageDBHelper
 
     # 데이터베이스 세션 생성
     engine = create_engine(DATABASE_URL)
@@ -453,34 +451,86 @@ def chat_query(
         else:
             logger.info(f"✅ Found {search_result['total_results']} relevant code snippets")
 
-            # 2. 검색 결과를 바탕으로 LLM 응답 생성 (현재는 하드코딩)
-            # TODO: 나중에 실제 LLM API 호출로 교체
-
+            # 2. 검색 결과를 바탕으로 LLM 응답 생성
             retrieved_codes = search_result['results'][:top_k]
 
-            # 하드코딩된 응답 생성
             if retrieved_codes:
-                code_summary = []
-                for i, code in enumerate(retrieved_codes, 1):
-                    code_summary.append(f"{i}. {code['name']} ({code['file_path']}:{code['start_line']}-{code['end_line']})")
+                try:
+                    # 디버깅: 검색 결과 확인
+                    logger.info(f"🔍 Retrieved codes sample:")
+                    for i, code in enumerate(retrieved_codes[:2], 1):
+                        logger.info(f"  [{i}] {code.get('name')} ({code.get('file_path')})")
+                        logger.info(f"      Code length: {len(code.get('code', ''))} chars")
+                        logger.info(f"      Has code: {'code' in code}")
+                        logger.info(f"      Code preview: {code.get('code', '')[:100]}")
 
-                bot_response = f"""안녕하세요! 질문해주신 내용과 관련된 코드를 찾았습니다.
+                    # 2-1. PromptGenerator로 프롬프트 생성
+                    logger.info(f"📝 Generating prompt from {len(retrieved_codes)} code snippets")
+                    prompt = prompt_service.create(docs=retrieved_codes, query=user_message)
 
-**검색된 코드 조각:**
+                    # 디버깅: 생성된 프롬프트 확인
+                    logger.info(f"📄 Generated prompt length: {len(prompt)} chars")
+                    logger.info(f"📄 Prompt preview (first 500 chars):\n{prompt[:500]}")
+
+                    # 2-2. AskQuestion으로 LLM 응답 받기
+                    logger.info(f"🤖 Calling LLM API...")
+                    bot_response = call_service.ask_question(
+                        prompt=prompt,
+                        use_stream=False,
+                        model="gpt-4o-mini",
+                        temperature=0.1,
+                        max_tokens=2048
+                    )
+                    logger.info(f"✅ LLM response received")
+                    logger.info(f"📝 Response preview: {bot_response[:200]}")
+
+                    # sources를 JSON 문자열로 저장
+                    sources = json.dumps([
+                        f"{code['file_path']}:{code['start_line']}-{code['end_line']}"
+                        for code in retrieved_codes
+                    ], ensure_ascii=False)
+
+                except Exception as llm_error:
+                    logger.error(f"❌ LLM API call failed: {str(llm_error)}")
+
+                    # API KEY 없음 여부 체크
+                    is_api_key_missing = "OPENAI_API_KEY" in str(llm_error)
+
+                    # LLM 호출 실패시 RAG 검색 결과 기반 응답 생성
+                    code_summary = []
+                    for i, code in enumerate(retrieved_codes, 1):
+                        file_info = code.get('file_path', 'Unknown')
+                        name_info = code.get('name', 'N/A')
+                        if name_info:
+                            code_summary.append(f"{i}. **{name_info}** (`{file_info}:{code.get('start_line', 0)}-{code.get('end_line', 0)}`)")
+                        else:
+                            code_summary.append(f"{i}. `{file_info}:{code.get('start_line', 0)}-{code.get('end_line', 0)}`")
+
+                    if is_api_key_missing:
+                        error_msg = "⚠️ **OPENAI_API_KEY가 설정되지 않아 AI 분석을 수행할 수 없습니다.**"
+                        instruction_msg = "환경 변수에 OPENAI_API_KEY를 설정하면 AI 기반 코드 분석 결과를 받을 수 있습니다."
+                    else:
+                        error_msg = "⚠️ **LLM 분석 중 오류가 발생했습니다.**"
+                        instruction_msg = f"오류 내용: {str(llm_error)[:100]}"
+
+                    bot_response = f"""질문해주신 내용과 관련된 코드를 찾았습니다.
+
+**🔍 RAG 검색 결과 ({len(retrieved_codes)}개 발견):**
+
 {chr(10).join(code_summary)}
 
-**분석 결과:**
-해당 레포지토리에서 관련된 코드를 {len(retrieved_codes)}개 발견했습니다. 위 코드들이 질문과 연관이 있을 것으로 보입니다.
+---
 
-더 구체적인 질문이 있으시면 말씀해주세요!
+{error_msg}
 
-*참고: 현재는 코드 검색 기능만 활성화되어 있으며, 향후 LLM 기반 상세 분석이 추가될 예정입니다.*"""
+{instruction_msg}
 
-                # sources를 JSON 문자열로 저장
-                sources = json.dumps([
-                    f"{code['file_path']}:{code['start_line']}-{code['end_line']}"
-                    for code in retrieved_codes
-                ], ensure_ascii=False)
+검색된 코드 조각들을 참고하시면 답변을 얻으실 수 있을 것입니다."""
+
+                    sources = json.dumps([
+                        f"{code['file_path']}:{code['start_line']}-{code['end_line']}"
+                        for code in retrieved_codes
+                    ], ensure_ascii=False)
             else:
                 bot_response = "질문하신 내용과 관련된 코드를 찾지 못했습니다. 다른 방식으로 질문해주시겠어요?"
                 sources = None
@@ -488,25 +538,19 @@ def chat_query(
         # 3. Bot 메시지를 DB에 저장
         logger.info(f"💾 Saving bot response to database")
 
-        bot_message_data = ChatMessageCreate(
+        bot_message = ChatMessageDBHelper.create_bot_message(
+            db=db,
             chat_room_id=chat_room_id,
-            sender_type="bot",
             content=bot_response,
             sources=sources
         )
 
-        bot_message = ChatMessageService.create_message(
-            db=db,
-            message_data=bot_message_data,
-            user_id=None  # bot 메시지는 user_id가 None
-        )
-
-        logger.info(f"✅ Bot message saved with ID: {bot_message.id}")
+        logger.info(f"✅ Bot message saved with ID: {bot_message['id']}")
 
         return {
             "success": True,
             "chat_room_id": chat_room_id,
-            "bot_message_id": str(bot_message.id),
+            "bot_message_id": bot_message['id'],
             "retrieved_count": search_result.get('total_results', 0) if search_result['success'] else 0,
             "message": "Chat query processed successfully"
         }
@@ -516,13 +560,12 @@ def chat_query(
 
         # 에러 발생 시에도 에러 메시지를 bot 응답으로 저장
         try:
-            error_message_data = ChatMessageCreate(
+            ChatMessageDBHelper.create_bot_message(
+                db=db,
                 chat_room_id=chat_room_id,
-                sender_type="bot",
                 content=f"죄송합니다. 응답 생성 중 오류가 발생했습니다: {str(e)}",
                 sources=None
             )
-            ChatMessageService.create_message(db, error_message_data, None)
         except:
             pass
 

@@ -244,7 +244,7 @@ def create_message(
         logger = logging.getLogger(__name__)
 
         try:
-            from rag_worker.celery_app import app as celery_app
+            from ..core.celery import celery_app
 
             logger.info(f"🤖 Triggering RAG chat query for message: {message.id}")
 
