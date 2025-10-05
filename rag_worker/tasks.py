@@ -13,6 +13,8 @@ from .vector_db import VectorDBService
 from .vector_db.types import EmbeddingResult, SearchResult
 from .vector_db.config import DEFAULT_MODEL_KEY
 from .ask_question import AskQuestion, PromptGenerator
+from .git_service.history_tracker import FunctionHistoryTracker
+from .git_service.types import CommitChange
 
 # 서비스 인스턴스 생성
 git_service = GitService()
@@ -484,9 +486,13 @@ def chat_query(
                     logger.info(f"✅ LLM response received")
                     logger.info(f"📝 Response preview: {bot_response[:200]}")
 
-                    # sources를 JSON 문자열로 저장
+                    # sources를 JSON 문자열로 저장 (노드 이름 포함)
                     sources = json.dumps([
-                        f"{code['file_path']}:{code['start_line']}-{code['end_line']}"
+                        {
+                            "path": f"{code['file_path']}:{code['start_line']}-{code['end_line']}",
+                            "name": code.get('name', 'unknown'),
+                            "type": code.get('type', 'function')
+                        }
                         for code in retrieved_codes
                     ], ensure_ascii=False)
 
@@ -528,7 +534,11 @@ def chat_query(
 검색된 코드 조각들을 참고하시면 답변을 얻으실 수 있을 것입니다."""
 
                     sources = json.dumps([
-                        f"{code['file_path']}:{code['start_line']}-{code['end_line']}"
+                        {
+                            "path": f"{code['file_path']}:{code['start_line']}-{code['end_line']}",
+                            "name": code.get('name', 'unknown'),
+                            "type": code.get('type', 'function')
+                        }
                         for code in retrieved_codes
                     ], ensure_ascii=False)
             else:
@@ -617,3 +627,124 @@ def call_llm(
         생성된 프롬프트
     """
     return call_service.ask_question(prompt=prompt, use_stream=use_stream, model=model, temperature=temperature, max_tokens=max_tokens)
+
+
+@app.task(name='rag_worker.tasks.get_code_history')
+def get_code_history(
+    repo_id: str,
+    file_path: str,
+    node_name: str,
+    node_type: str = "function"
+) -> Dict[str, Any]:
+    """
+    코드의 Git 히스토리를 추적
+
+    Args:
+        repo_id: 레포지토리 ID
+        file_path: 파일 경로 (예: src/utils/helper.py)
+        node_name: 추적할 함수/클래스 이름
+        node_type: 노드 타입 ('function' 또는 'class')
+
+    Returns:
+        히스토리 정보
+    """
+    import os
+    import logging
+    from pathlib import Path
+
+    logger = logging.getLogger(__name__)
+
+    try:
+        # Repository 경로 구성
+        # git_clone 태스크에서 사용하는 이름 규칙과 일치시키기
+        # git_service.clone_repository를 보면 repo_name이 저장소 이름임
+
+        # repository 디렉토리 내의 실제 폴더를 찾아야 함
+        repo_base_path = Path("repository")
+
+        # 실제 디렉토리 찾기 (여러 가능성 시도)
+        actual_repo_path = None
+
+        # 1. 직접적인 repo_id 기반 경로 시도
+        test_names = [
+            repo_id,  # 원본 repo_id
+            f"repo_{repo_id}",  # repo_ 접두사 포함
+            repo_id.replace('-', '_'),  # 하이픈을 언더스코어로
+            f"repo_{repo_id.replace('-', '_')}",  # 둘 다 적용
+        ]
+
+        for test_name in test_names:
+            test_path = repo_base_path / test_name
+            if test_path.exists() and test_path.is_dir():
+                actual_repo_path = test_path
+                break
+
+        # 2. repository 디렉토리 스캔
+        if not actual_repo_path and repo_base_path.exists():
+            for d in repo_base_path.iterdir():
+                if d.is_dir() and repo_id.replace('-', '_') in d.name:
+                    actual_repo_path = d
+                    break
+
+        # 3. 디버깅: repository 디렉토리의 모든 내용 로깅
+        if not actual_repo_path and repo_base_path.exists():
+            available_repos = [d.name for d in repo_base_path.iterdir() if d.is_dir()]
+            logger.info(f"📁 Available repositories: {available_repos}")
+            logger.warning(f"⚠️ Could not find repository for repo_id: {repo_id}")
+
+            # 첫 번째 찾은 디렉토리를 사용 (임시)
+            if available_repos:
+                actual_repo_path = repo_base_path / available_repos[0]
+                logger.info(f"📌 Using first available repository: {actual_repo_path}")
+
+        if not actual_repo_path:
+            actual_repo_path = repo_base_path / repo_id  # 기본값
+
+        logger.info(f"🔍 Looking for repository at: {actual_repo_path}")
+
+        if not actual_repo_path.exists():
+            return {
+                "success": False,
+                "error": f"Repository not found at {actual_repo_path}",
+                "history": []
+            }
+
+        # FunctionHistoryTracker 초기화
+        tracker = FunctionHistoryTracker(str(actual_repo_path))
+
+        # 히스토리 추적
+        logger.info(f"📖 Tracking history for {node_type} '{node_name}' in {file_path}")
+        history = tracker.trace_history(file_path, node_name, node_type)
+
+        # CommitChange 객체를 딕셔너리로 변환
+        history_dicts = []
+        for change in history:
+            history_dicts.append({
+                "commit_hash": change.commit_hash,
+                "commit_message": change.commit_message,
+                "author": change.author,
+                "date": change.date,
+                "code_before": change.code_before,
+                "code_after": change.code_after,
+                "highlighted_diff": change.highlighted_diff
+            })
+
+        logger.info(f"✅ Found {len(history_dicts)} changes for {node_name}")
+
+        return {
+            "success": True,
+            "repo_id": repo_id,
+            "file_path": file_path,
+            "node_name": node_name,
+            "node_type": node_type,
+            "history": history_dicts,
+            "total_changes": len(history_dicts)
+        }
+
+    except Exception as e:
+        logger.error(f"❌ Error tracking history: {str(e)}", exc_info=True)
+        return {
+            "success": False,
+            "error": str(e),
+            "history": []
+        }
