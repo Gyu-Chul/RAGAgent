@@ -55,15 +55,3 @@ class DeleteResult(TypedDict):
     repo_name: str
     message: Optional[str]
     error: Optional[str]
-
-
-class CommitChange:
-    """Trace History 결과 타입"""
-
-    commit_hash: str    # commit code
-    commit_message: str
-    author: str
-    date: str
-    code_before: Optional[str] = None
-    code_after: Optional[str] = None
-    highlighted_diff: str = ""

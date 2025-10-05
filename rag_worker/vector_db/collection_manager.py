@@ -224,7 +224,6 @@ class CollectionManager:
 
 
         # 스칼라 필드 인덱스
-
         index_params.add_index(field_name="file_path")
         index_params.add_index(field_name="type")
         index_params.add_index(field_name="name")
