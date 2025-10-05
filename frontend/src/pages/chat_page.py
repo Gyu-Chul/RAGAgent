@@ -121,6 +121,9 @@ class ChatPage:
             # Input area - fixed height
             self.render_input_area()
 
+        # 새로고침 후 로딩 상태 복원
+        self.restore_loading_state_if_needed()
+
     def render_chat_header(self):
         room = self.selected_chat_room
 
@@ -327,8 +330,12 @@ class ChatPage:
                             loadingMessages.forEach(msg => msg.remove());
                         ''')
 
-                        # 메시지 새로고침
-                        self.refresh_messages()
+                        # 채팅 영역 전체 다시 렌더링
+                        self.chat_area_container.clear()
+                        with self.chat_area_container:
+                            self.render_chat_area()
+
+                        ui.update()  # UI 강제 업데이트
                         return  # 폴링 종료
 
                 except Exception as e:
@@ -496,3 +503,17 @@ class ChatPage:
     def delete_room(self, room, dialog):
         ui.notify('Room deletion is not available in demo mode', color='blue')
         dialog.close()
+
+    def restore_loading_state_if_needed(self):
+        """새로고침 후 로딩 상태 복원 (마지막 메시지가 user이고 bot 응답 대기 중인 경우)"""
+        try:
+            messages = self.api_service.get_messages(self.selected_chat_room["id"])
+
+            # 메시지가 있고, 마지막 메시지가 user인 경우
+            if messages and messages[-1]["sender_type"] == "user":
+                # Bot 응답이 아직 없으므로 로딩 표시 + 폴링 시작
+                self.show_bot_loading()
+                self.start_polling_for_bot_response()
+
+        except Exception as e:
+            print(f"Failed to restore loading state: {e}")

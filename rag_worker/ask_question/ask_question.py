@@ -9,13 +9,18 @@ from .exceptions import UnsupportedModelError, LLMAPIError
 class AskQuestion:
     """입력받은 프롬프트를 LLM API를 통해 req/res 받는 클래스"""
 
-    load_dotenv()
-    api_key = os.getenv("OPENAI_API_KEY")
+    def __init__(self):
+        """AskQuestion 초기화 - API 키는 실제 호출 시 체크"""
+        load_dotenv()
+        self.api_key = os.getenv("OPENAI_API_KEY")
+        self.client = None
 
-    if not api_key:
-        raise ValueError("OPENAI_API_KEY 환경 변수를 찾을 수 없습니다. .env 파일을 확인하세요.")
-
-    client = openai.OpenAI(api_key=api_key)
+        if self.api_key:
+            try:
+                self.client = openai.OpenAI(api_key=self.api_key)
+            except Exception as e:
+                print(f"Warning: Failed to initialize OpenAI client: {e}")
+                self.client = None
 
     # 사용 가능한 모델 리스트
     MODELS: List[str] = ["gpt-3.5-turbo", 
@@ -24,11 +29,11 @@ class AskQuestion:
                          "gpt-4o-mini"]
 
     def ask_question(
-        self, 
-        prompt: str, 
-        use_stream: Optional[bool] = False, 
-        model: Optional[str] = "gpt-3.5-turbo", 
-        temperature: Optional[float] = 0.1, 
+        self,
+        prompt: str,
+        use_stream: Optional[bool] = False,
+        model: Optional[str] = "gpt-3.5-turbo",
+        temperature: Optional[float] = 0.1,
         max_tokens: Optional[int] = 1024,
     ) -> str:
         """
@@ -49,7 +54,11 @@ class AskQuestion:
             LLMAPIError: OpenAI API 호출 실패 시
 
         """
-        
+
+        # API 키 체크
+        if not self.api_key or not self.client:
+            raise LLMAPIError("OPENAI_API_KEY가 설정되지 않았습니다. 환경 변수를 확인해주세요.")
+
         if model not in self.MODELS:
             raise UnsupportedModelError(f"지원하지 않는 모델입니다: '{model}'. 지원 모델: {self.MODELS}")
         

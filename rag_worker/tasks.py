@@ -492,17 +492,40 @@ def chat_query(
 
                 except Exception as llm_error:
                     logger.error(f"❌ LLM API call failed: {str(llm_error)}")
-                    # LLM 호출 실패시 기본 응답 생성
+
+                    # API KEY 없음 여부 체크
+                    is_api_key_missing = "OPENAI_API_KEY" in str(llm_error)
+
+                    # LLM 호출 실패시 RAG 검색 결과 기반 응답 생성
                     code_summary = []
                     for i, code in enumerate(retrieved_codes, 1):
-                        code_summary.append(f"{i}. {code['name']} ({code['file_path']}:{code['start_line']}-{code['end_line']})")
+                        file_info = code.get('file_path', 'Unknown')
+                        name_info = code.get('name', 'N/A')
+                        if name_info:
+                            code_summary.append(f"{i}. **{name_info}** (`{file_info}:{code.get('start_line', 0)}-{code.get('end_line', 0)}`)")
+                        else:
+                            code_summary.append(f"{i}. `{file_info}:{code.get('start_line', 0)}-{code.get('end_line', 0)}`")
+
+                    if is_api_key_missing:
+                        error_msg = "⚠️ **OPENAI_API_KEY가 설정되지 않아 AI 분석을 수행할 수 없습니다.**"
+                        instruction_msg = "환경 변수에 OPENAI_API_KEY를 설정하면 AI 기반 코드 분석 결과를 받을 수 있습니다."
+                    else:
+                        error_msg = "⚠️ **LLM 분석 중 오류가 발생했습니다.**"
+                        instruction_msg = f"오류 내용: {str(llm_error)[:100]}"
 
                     bot_response = f"""질문해주신 내용과 관련된 코드를 찾았습니다.
 
-**검색된 코드 조각:**
+**🔍 RAG 검색 결과 ({len(retrieved_codes)}개 발견):**
+
 {chr(10).join(code_summary)}
 
-*참고: LLM 분석 중 오류가 발생하여 검색 결과만 제공합니다.*"""
+---
+
+{error_msg}
+
+{instruction_msg}
+
+검색된 코드 조각들을 참고하시면 답변을 얻으실 수 있을 것입니다."""
 
                     sources = json.dumps([
                         f"{code['file_path']}:{code['start_line']}-{code['end_line']}"
