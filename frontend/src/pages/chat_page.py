@@ -1,5 +1,4 @@
 from nicegui import ui
-import asyncio
 from datetime import datetime
 from src.components.header import Header
 from src.services.api_service import APIService
@@ -22,6 +21,8 @@ class ChatPage:
         self.messages_container = None
         self.chat_area_container = None
         self.sidebar_container = None
+        self.polling_timer = None
+        self.polling_attempts = 0
 
     def render(self):
         if not self.repository:
@@ -309,48 +310,55 @@ class ChatPage:
         ''')
 
     def start_polling_for_bot_response(self):
-        """Bot 응답을 주기적으로 폴링"""
-        async def poll():
-            max_attempts = 60  # 최대 60초 대기 (2초마다 폴링)
-            attempt = 0
+        """Bot 응답을 주기적으로 폴링 (ui.timer 사용)"""
+        self.polling_attempts = 0
 
-            while attempt < max_attempts:
-                await asyncio.sleep(2)  # 2초마다 확인
-                attempt += 1
+        def check_bot_response():
+            """타이머 콜백: Bot 응답 확인"""
+            self.polling_attempts += 1
 
-                try:
-                    # 새 메시지 확인
-                    messages = self.api_service.get_messages(self.selected_chat_room["id"])
+            try:
+                # 새 메시지 확인
+                messages = self.api_service.get_messages(self.selected_chat_room["id"])
 
-                    # 마지막 메시지가 bot 메시지인지 확인
-                    if messages and messages[-1]["sender_type"] == "bot":
-                        # 로딩 메시지 제거
-                        ui.run_javascript('''
-                            const loadingMessages = document.querySelectorAll('.bot-loading-message');
-                            loadingMessages.forEach(msg => msg.remove());
-                        ''')
+                # 마지막 메시지가 bot 메시지인지 확인
+                if messages and messages[-1]["sender_type"] == "bot":
+                    # 폴링 중지
+                    if self.polling_timer:
+                        self.polling_timer.active = False
+                        self.polling_timer = None
 
-                        # 채팅 영역 전체 다시 렌더링
-                        self.chat_area_container.clear()
-                        with self.chat_area_container:
-                            self.render_chat_area()
+                    # 로딩 메시지 제거
+                    ui.run_javascript('''
+                        const loadingMessages = document.querySelectorAll('.bot-loading-message');
+                        loadingMessages.forEach(msg => msg.remove());
+                    ''')
 
-                        ui.update()  # UI 강제 업데이트
-                        return  # 폴링 종료
+                    # 채팅 영역 전체 다시 렌더링
+                    self.chat_area_container.clear()
+                    with self.chat_area_container:
+                        self.render_chat_area()
 
-                except Exception as e:
-                    print(f"Polling error: {e}")
-                    continue
+                    return  # 폴링 종료
 
-            # 타임아웃
-            ui.run_javascript('''
-                const loadingMessages = document.querySelectorAll('.bot-loading-message');
-                loadingMessages.forEach(msg => msg.remove());
-            ''')
-            ui.notify("응답 생성 시간이 초과되었습니다. 잠시 후 새로고침해주세요.", type='warning')
+                # 최대 60초 (30회 * 2초) 후 타임아웃
+                if self.polling_attempts >= 30:
+                    if self.polling_timer:
+                        self.polling_timer.active = False
+                        self.polling_timer = None
 
-        # 비동기 폴링 시작
-        asyncio.create_task(poll())
+                    ui.run_javascript('''
+                        const loadingMessages = document.querySelectorAll('.bot-loading-message');
+                        loadingMessages.forEach(msg => msg.remove());
+                    ''')
+                    ui.notify("응답 생성 시간이 초과되었습니다. 잠시 후 새로고침해주세요.", type='warning')
+
+            except Exception as e:
+                print(f"Polling error: {e}")
+                # 에러 발생 시 계속 폴링
+
+        # 2초마다 실행되는 타이머 시작
+        self.polling_timer = ui.timer(2.0, check_bot_response)
 
     def refresh_messages(self):
         """메시지 목록 새로고침"""
@@ -512,8 +520,13 @@ class ChatPage:
             # 메시지가 있고, 마지막 메시지가 user인 경우
             if messages and messages[-1]["sender_type"] == "user":
                 # Bot 응답이 아직 없으므로 로딩 표시 + 폴링 시작
-                self.show_bot_loading()
-                self.start_polling_for_bot_response()
+                # 약간의 지연을 두고 실행 (UI 렌더링 완료 후)
+                ui.timer(0.1, lambda: self._restore_loading_delayed(), once=True)
 
         except Exception as e:
             print(f"Failed to restore loading state: {e}")
+
+    def _restore_loading_delayed(self):
+        """로딩 상태 복원 (지연 실행)"""
+        self.show_bot_loading()
+        self.start_polling_for_bot_response()
