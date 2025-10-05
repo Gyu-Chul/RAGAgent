@@ -1,5 +1,9 @@
-# Milvus 서버 연결 정보 (Standalone 기본값)
-MILVUS_URI = "http://localhost:19530"
+import os
+
+# Milvus 서버 연결 정보 (환경변수로부터 읽기, 기본값은 로컬)
+MILVUS_HOST: str = os.getenv("MILVUS_HOST", "localhost")
+MILVUS_PORT: str = os.getenv("MILVUS_PORT", "19530")
+MILVUS_URI: str = f"http://{MILVUS_HOST}:{MILVUS_PORT}"
 
 # --- 모델 설정 중앙 관리 ---
 EMBEDDING_MODELS = {

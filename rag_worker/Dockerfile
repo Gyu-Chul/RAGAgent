@@ -24,6 +24,11 @@ RUN uv sync --no-dev
 # Production stage
 FROM python:3.11-slim
 
+# Install runtime dependencies (git for cloning repositories)
+RUN apt-get update && apt-get install -y \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
 # Create app user
 RUN useradd --create-home --shell /bin/bash app
 
