@@ -261,13 +261,13 @@ def process_repository_pipeline(
 
     logger = logging.getLogger(__name__)
 
-    # ⚠️ IMPORTANT: backend 모듈을 import하기 전에 환경변수 설정 필수!
+    # DATABASE_URL 설정
     env_local_path = Path(__file__).parent.parent / '.env.local'
     logger.info(f"🔍 Looking for .env.local at: {env_local_path}")
     logger.info(f"📁 .env.local exists: {env_local_path.exists()}")
 
     if env_local_path.exists():
-        # .env.local 파일을 직접 파싱 (환경변수 우선순위 문제 방지)
+        # .env.local 파일을 직접 파싱
         DATABASE_URL = None
         with open(env_local_path, 'r', encoding='utf-8') as f:
             for line in f:
@@ -277,7 +277,6 @@ def process_repository_pipeline(
                     break
 
         if DATABASE_URL:
-            # 환경변수로 강제 설정
             os.environ['DATABASE_URL'] = DATABASE_URL
             logger.info(f"✅ Set DATABASE_URL from .env.local: {DATABASE_URL}")
         else:
@@ -288,8 +287,8 @@ def process_repository_pipeline(
         DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@localhost:5432/ragit')
         logger.info(f"⚠️ .env.local not found, using environment: {DATABASE_URL}")
 
-    # 이제 backend 모듈 import (환경변수가 이미 설정됨)
-    from backend.services.repository_service import RepositoryService
+    # DB helper import
+    from .db_helper import RepositoryDBHelper
 
     # 데이터베이스 세션 생성
     engine = create_engine(DATABASE_URL)
@@ -299,12 +298,12 @@ def process_repository_pipeline(
 
     try:
         # 1. 상태를 'syncing'으로 업데이트
-        RepositoryService.update_repository_status(db, repo_id, "syncing", "pending")
+        RepositoryDBHelper.update_repository_status(db, repo_id, "syncing", "pending")
 
         # 2. Git Clone
         clone_result = git_service.clone_repository(git_url, repo_name)
         if not clone_result['success']:
-            RepositoryService.update_repository_status(db, repo_id, "error", "error")
+            RepositoryDBHelper.update_repository_status(db, repo_id, "error", "error")
             return {
                 "success": False,
                 "error": f"Git clone failed: {clone_result['message']}",
@@ -314,7 +313,7 @@ def process_repository_pipeline(
         # 3. Python 파일 파싱 및 청킹
         parse_result = parser_service.parse_repository(repo_name, save_json=True)
         if not parse_result['success']:
-            RepositoryService.update_repository_status(db, repo_id, "error", "error")
+            RepositoryDBHelper.update_repository_status(db, repo_id, "error", "error")
             return {
                 "success": False,
                 "error": f"Parsing failed: {parse_result['message']}",
@@ -323,17 +322,17 @@ def process_repository_pipeline(
 
         # 파일 개수 업데이트
         file_count = parse_result['total_files']
-        RepositoryService.update_file_count(db, repo_id, file_count)
+        RepositoryDBHelper.update_file_count(db, repo_id, file_count)
 
         # 4. Vector DB 상태를 'syncing'으로 업데이트
-        RepositoryService.update_repository_status(db, repo_id, "syncing", "syncing")
+        RepositoryDBHelper.update_repository_status(db, repo_id, "syncing", "syncing")
 
         # 5. Vector DB 임베딩
         collection_name = f"repo_{repo_id.replace('-', '_')}"
         embed_result = vector_db_service.embed_repository(repo_name, collection_name, model_key)
 
         if not embed_result['success']:
-            RepositoryService.update_repository_status(db, repo_id, "active", "error")
+            RepositoryDBHelper.update_repository_status(db, repo_id, "active", "error")
             return {
                 "success": False,
                 "error": f"Embedding failed: {embed_result['message']}",
@@ -342,10 +341,10 @@ def process_repository_pipeline(
             }
 
         # 6. Collections count 증가
-        RepositoryService.increment_collections_count(db, repo_id)
+        RepositoryDBHelper.increment_collections_count(db, repo_id)
 
         # 7. 최종 상태를 'active'로 업데이트
-        RepositoryService.update_repository_status(db, repo_id, "active", "active")
+        RepositoryDBHelper.update_repository_status(db, repo_id, "active", "active")
 
         return {
             "success": True,
@@ -360,7 +359,7 @@ def process_repository_pipeline(
 
     except Exception as e:
         # 오류 발생 시 상태 업데이트
-        RepositoryService.update_repository_status(db, repo_id, "error", "error")
+        RepositoryDBHelper.update_repository_status(db, repo_id, "error", "error")
         return {
             "success": False,
             "error": str(e),
@@ -422,9 +421,8 @@ def chat_query(
         DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@localhost:5432/ragit')
         logger.info(f"⚠️ .env.local not found, using environment")
 
-    # backend 모듈 import
-    from backend.services.chat_service import ChatMessageService
-    from backend.schemas.chat import ChatMessageCreate
+    # DB helper import
+    from .db_helper import ChatMessageDBHelper
 
     # 데이터베이스 세션 생성
     engine = create_engine(DATABASE_URL)
@@ -488,25 +486,19 @@ def chat_query(
         # 3. Bot 메시지를 DB에 저장
         logger.info(f"💾 Saving bot response to database")
 
-        bot_message_data = ChatMessageCreate(
+        bot_message = ChatMessageDBHelper.create_bot_message(
+            db=db,
             chat_room_id=chat_room_id,
-            sender_type="bot",
             content=bot_response,
             sources=sources
         )
 
-        bot_message = ChatMessageService.create_message(
-            db=db,
-            message_data=bot_message_data,
-            user_id=None  # bot 메시지는 user_id가 None
-        )
-
-        logger.info(f"✅ Bot message saved with ID: {bot_message.id}")
+        logger.info(f"✅ Bot message saved with ID: {bot_message['id']}")
 
         return {
             "success": True,
             "chat_room_id": chat_room_id,
-            "bot_message_id": str(bot_message.id),
+            "bot_message_id": bot_message['id'],
             "retrieved_count": search_result.get('total_results', 0) if search_result['success'] else 0,
             "message": "Chat query processed successfully"
         }
@@ -516,13 +508,12 @@ def chat_query(
 
         # 에러 발생 시에도 에러 메시지를 bot 응답으로 저장
         try:
-            error_message_data = ChatMessageCreate(
+            ChatMessageDBHelper.create_bot_message(
+                db=db,
                 chat_room_id=chat_room_id,
-                sender_type="bot",
                 content=f"죄송합니다. 응답 생성 중 오류가 발생했습니다: {str(e)}",
                 sources=None
             )
-            ChatMessageService.create_message(db, error_message_data, None)
         except:
             pass
 

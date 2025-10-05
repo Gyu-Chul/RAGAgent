@@ -137,7 +137,7 @@ class CollectionManager:
                 FieldSchema(name="text", dtype=DataType.VARCHAR, max_length=65_535),
                 FieldSchema(name="dense", dtype=DataType.FLOAT_VECTOR, dim=dim),
                 FieldSchema(name="sparse", dtype=DataType.SPARSE_FLOAT_VECTOR),
-                FieldSchema(name="file_path", dtype=DataType.VARCHAR, max_length=4096),
+                FieldSchema(name="file_path", dtype=DataType.VARCHAR, max_length=1024),
                 FieldSchema(name="name", dtype=DataType.VARCHAR, max_length=1024),
                 FieldSchema(name="start_line", dtype=DataType.INT64),
                 FieldSchema(name="end_line", dtype=DataType.INT64),
@@ -214,6 +214,7 @@ class CollectionManager:
         )
 
         # Sparse 벡터 인덱스
+
         index_params.add_index(
             field_name="sparse",
             index_type="SPARSE_WAND",
@@ -221,7 +222,9 @@ class CollectionManager:
             params={"drop_ratio_build": 0.2},
         )
 
+
         # 스칼라 필드 인덱스
+
         index_params.add_index(field_name="file_path")
         index_params.add_index(field_name="type")
         index_params.add_index(field_name="name")
@@ -229,8 +232,12 @@ class CollectionManager:
         index_params.add_index(field_name="end_line")
         index_params.add_index(field_name="_source_file")
 
+
         # 인덱스 생성
+        
+
         self.client.create_index(collection_name=collection_name, index_params=index_params)
+
 
         logger.info(f"✅ Indexes created for collection: {collection_name}")
 

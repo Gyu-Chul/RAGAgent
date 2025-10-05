@@ -220,6 +220,7 @@ services:
       CELERY_RESULT_BACKEND: redis://redis:6379/0
       MILVUS_HOST: milvus
       MILVUS_PORT: 19530
+      OPENAI_API_KEY: ${OPENAI_API_KEY}
     networks:
       - ragit-network
     depends_on:
@@ -232,3 +233,5 @@ services:
     restart: unless-stopped
     volumes:
       - ./data:/app/data
+      - ./repository:/app/repository
+      - ./parsed_repository:/app/parsed_repository
