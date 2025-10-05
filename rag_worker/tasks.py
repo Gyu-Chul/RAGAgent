@@ -687,8 +687,8 @@ def update_repository_pipeline(
     1. Local vs Remote diff 찾기
     2. Git Pull 로 최신 코드 받기
     3. Vector DB에서 변경된 파일의 기존 데이터 삭제
-    4. (필수) 레포지토리 전체 재-파싱하여 JSON 파일 최신화
-    5. (최적화) 변경된 JSON 파일만 다시 임베딩
+    4. 레포지토리 전체 재-파싱하여 JSON 파일 최신화
+    5. 변경된 JSON 파일만 다시 임베딩
     
     Args:
         repo_id: Repository ID (UUID)
@@ -760,6 +760,7 @@ def update_repository_pipeline(
         # 5. 확보한 목록으로 Vector DB의 기존 엔티티 삭제
         deleted_count = 0
         if files_to_update:
+            num_files_to_delete = len(files_to_update)
             logger.info(f"[{repo_name}] Step 3: Deleting old entities...")
             delete_result = vector_db_service.delete_entities(
                 collection_name=collection_name, 
@@ -768,7 +769,7 @@ def update_repository_pipeline(
             if not delete_result.get('success'):
                 RepositoryService.update_repository_status(db, repo_id, "active", "error")
                 return {"success": False, "error": f"Failed to delete entities: {delete_result.get('error')}", "step": "delete_entities"}
-            deleted_count = delete_result.get('deleted_count', 0)
+            deleted_count = num_files_to_delete
             logger.info(f"[{repo_name}] Deleted {deleted_count} old entities.")
         else:
             logger.info(f"[{repo_name}] Step 3: No entities to delete, skipping.")

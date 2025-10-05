@@ -284,6 +284,7 @@ class GitService:
 
             # git pull 실행
             logger.info(f"Pulling repository: {repo_name}")
+            self.command_runner.run(["git", "checkout", "main"], cwd=repo_path)
             result = self.command_runner.run(["git", "pull"], cwd=repo_path)
 
             logger.info(f"Repository pulled successfully: {repo_name}")
@@ -339,7 +340,6 @@ class GitService:
             return DeleteResult(success=False, repo_name=repo_name, message=None, error=str(e))
     
 
-<<<<<<< HEAD
     def _format_source_file(self, file_paths: List[str]) -> List[str]:
         """
         파일 경로 리스트의 확장자만 '.json'으로 변경 (경로 유지)
@@ -422,5 +422,3 @@ class GitService:
 #             print("--- Diff ---")
 #             print(change.highlighted_diff)
 #             print("="*60)
-=======
->>>>>>> origin/main

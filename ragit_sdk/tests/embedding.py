@@ -26,10 +26,10 @@ def test_parse_and_embed() -> None:
     # ==================== INPUT ====================
 
     # 1. 로컬에 clone된 레포지토리의 이름(폴더명)
-    repo_name_to_process = "RAGIT"
+    repo_name_to_process = "Test_Repo"
 
     # 2. Vector DB에 생성/사용할 컬렉션의 이름
-    collection_name = "RAGIT_collection"
+    collection_name = "Test_Repo"
 
     # 3. 사용할 임베딩 모델의 키
     model_key = "sfr-code-400m" # 예시 모델 키

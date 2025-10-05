@@ -359,6 +359,7 @@ class CollectionManager:
         try:
             # 1. 컬렉션 존재 여부 확인
             self.validate_exists(collection_name)
+            self.client.load_collection(collection_name=collection_name)
 
             # 2. 삭제할 파일 목록이 비어있으면 작업을 수행하지 않고 성공 반환
             if not source_files:
@@ -375,7 +376,7 @@ class CollectionManager:
             # MilvusClient.delete는 삭제된 pk 리스트 또는 MutationResult 객체를 반환합니다.
             delete_result = self.client.delete(
                 collection_name=collection_name,
-                filter_expression=filter_expr,
+                filter=filter_expr,
             )
             
             # delete_result에서 삭제된 개수를 확인 (pymilvus 버전에 따라 다를 수 있음)
@@ -396,3 +397,8 @@ class CollectionManager:
                 "deleted_count": 0,
                 "error": str(e),
             }
+        finally:
+            # 작업이 끝나면 컬렉션을 메모리에서 해제하여 리소스를 절약
+            if self.exists(collection_name):
+                logger.info(f"[{collection_name}] Releasing collection from memory.")
+                self.client.release_collection(collection_name=collection_name)

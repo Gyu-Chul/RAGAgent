@@ -30,10 +30,10 @@ def test_update_pipeline() -> None:
     repo_id = "f47ac10b-58cc-4372-a567-0e02b2c3d479"
 
     # 2. 로컬에 clone된 레포지토리의 이름(폴더명)
-    repo_name_to_process = "RAGIT"
+    repo_name_to_process = "Test_Repo"
 
     # 3. Vector DB에 생성/사용할 컬렉션의 이름
-    collection_name = "RAGIT_collection"
+    collection_name = "Test_Repo"
 
     # 4. 사용할 임베딩 모델의 키
     model_key = "sfr-code-400m"
