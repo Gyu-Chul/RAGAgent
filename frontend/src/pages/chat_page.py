@@ -469,8 +469,23 @@ class ChatPage:
         except Exception as e:
             ui.notify(f"Failed to create chat room: {str(e)}", type='negative')
             return
+
         ui.notify(f'Chat room "{name}" created successfully!', color='green')
         dialog.close()
+
+        # 새로 생성된 채팅방 자동 선택 및 UI 업데이트
+        self.selected_chat_room = new_room
+
+        # Update the sidebar to show new room
+        self.sidebar_container.clear()
+        with self.sidebar_container:
+            self.render_sidebar()
+
+        # Update the chat area to show new room
+        self.chat_area_container.clear()
+        with self.chat_area_container:
+            self.render_chat_area()
+
         ui.update()
 
     def show_room_options(self, room, event):

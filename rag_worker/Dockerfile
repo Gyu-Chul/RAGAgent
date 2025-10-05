@@ -56,5 +56,5 @@ ENV PYTHONPATH="/app"
 HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
     CMD python -c "import celery; from rag_worker.celery_app import app; print('Worker running') if app.control.inspect().active() else exit(1)" || exit 1
 
-# Run RAG worker service with solo pool (prevents fork issues with PyMilvus gRPC)
-CMD ["python", "-m", "celery", "-A", "rag_worker.celery_app", "worker", "--loglevel=info", "--pool=solo"]
+# Run RAG worker service with 2 concurrent workers
+CMD ["python", "-m", "celery", "-A", "rag_worker.celery_app", "worker", "--loglevel=info", "--concurrency=2"]
