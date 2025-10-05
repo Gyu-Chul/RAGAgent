@@ -574,3 +574,160 @@ def call_llm(
         생성된 프롬프트
     """
     return call_service.ask_question(prompt=prompt, use_stream=use_stream, model=model, temperature=temperature, max_tokens=max_tokens)
+
+@app.task(name='rag_worker.tasks.run_git_diff')
+def run_git_diff(repo_name: str):
+    """
+    GitService의 diff_files 메서드를 테스트
+    """
+    return git_service.diff_files(repo_name)
+
+# repository 최신 동기화 통합 작업
+@app.task(name='rag_worker.tasks.update_repository_pipeline')
+def update_repository_pipeline(
+    repo_id: str,
+    repo_name: str,
+    collection_name: str,
+    save_json: bool = True,
+    model_key: str = DEFAULT_MODEL_KEY,
+) -> Dict[str, Any]:
+    """
+    Repository 업데이트 전체 처리 파이프라인
+    1. Git Pull
+    2. Python 파싱 및 청킹
+    3. commit 내역과 diff 찾기
+    4. 기존 Vector DB에서 diff file의 엔티티 삭제
+    5. Vector DB 임베딩
+
+    Args:
+        repo_id: Repository ID (UUID)
+        repo_name: Repository 이름
+        collection_name: Vector DB 컬렉션 이름
+        save_json: JSON 파일로 저장 여부
+        model_key: 임베딩 모델 키
+
+    Returns:
+        처리 결과
+    """
+    import os
+    import logging
+    from pathlib import Path
+    from sqlalchemy import create_engine
+    from sqlalchemy.orm import sessionmaker
+
+    logger = logging.getLogger(__name__)
+
+
+    env_local_path = Path(__file__).parent.parent / '.env.local'
+    if env_local_path.exists():
+        DATABASE_URL = None
+        with open(env_local_path, 'r', encoding='utf-8') as f:
+            for line in f:
+                line = line.strip()
+                if line.startswith('DATABASE_URL='):
+                    DATABASE_URL = line.split('=', 1)[1]
+                    break
+        if DATABASE_URL:
+            os.environ['DATABASE_URL'] = DATABASE_URL
+        else:
+            DATABASE_URL = 'postgresql://postgres:postgres@localhost:5432/ragit'
+            os.environ['DATABASE_URL'] = DATABASE_URL
+    else:
+        DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@localhost:5432/ragit')
+    
+    from backend.services.repository_service import RepositoryService
+
+    engine = create_engine(DATABASE_URL)
+    SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+    db = SessionLocal()
+    logger.info(f"🔗 [{repo_name}] Database connection created for update pipeline.")
+
+    try:
+        # 1. 상태를 'updating'으로 업데이트
+        logger.info(f"[{repo_name}] Setting status to 'updating'.")
+        RepositoryService.update_repository_status(db, repo_id, "updating", "pending")
+
+        # 2. Git Pull
+        pull_result = git_service.pull_repository(repo_name)
+        if not pull_result['success']:
+            RepositoryService.update_repository_status(db, repo_id, "error", "error")
+            return {
+                "success": False,
+                "error": f"Git pull failed: {pull_result.get('message') or pull_result.get('error')}",
+                "step": "pull"
+            }
+        logger.info(f"[{repo_name}] Git pull successful.")
+
+        # 3. 최신화된 소스 코드 전체 다시 파싱
+        parse_result = parser_service.parse_repository(repo_name, save_json)
+        if not parse_result['success']:
+            RepositoryService.update_repository_status(db, repo_id, "error", "error")
+            return {
+                "success": False,
+                "error": f"Parsing failed: {parse_result['message']}",
+                "step": "parse"
+            }
+        logger.info(f"[{repo_name}] Repository parsing successful.")
+        
+        # 파일 개수 업데이트
+        file_count = parse_result.get('total_files', 0)
+        RepositoryService.update_file_count(db, repo_id, file_count)
+
+        # 4. Vector DB 상태를 'updating'으로 업데이트
+        RepositoryService.update_repository_status(db, repo_id, "updating", "updating")
+
+        # 5. 현재 로컬과 원격의 diff 파일 리스트 찾기
+        diff_result = git_service.diff_file(repo_name) # repo_name 인자 필요 가정
+        if not diff_result['success']:
+            RepositoryService.update_repository_status(db, repo_id, "active", "error")
+            return {"success": False, "error": "Failed to get diff", "step": "diff"}
+        logger.info(f"[{repo_name}] Git diff successful.")
+
+        # 6. Vector DB에서 diff에 해당하는 엔티티 삭제
+        ################## 임시 함수
+        delete_result = vector_db_service.delete_entity(collection_name, diff_result['files_to_delete'])
+        if not delete_result['success']:
+            RepositoryService.update_repository_status(db, repo_id, "active", "error")
+            return {"success": False, "error": "Failed to delete entities", "step": "delete_entity"}
+        logger.info(f"[{repo_name}] Deleted entities from vector DB.")
+
+        # 7. 변경된 파일들 새로 임베딩
+        #(embed_documents가 결과를 반환한다고 가정)
+        json_path_list = diff_result.get('json_path_list', [])
+        total_embedded_count = 0
+        for json_path in json_path_list:
+            embed_result = vector_db_service.embed_documents(json_path, collection_name, model_key)
+            if not embed_result['success']:
+                RepositoryService.update_repository_status(db, repo_id, "active", "error")
+                return {"success": False, "error": f"Embedding failed for {json_path}", "step": "embed"}
+            total_embedded_count += embed_result.get('inserted_count', 0)
+        logger.info(f"[{repo_name}] Embedding of changed files successful.")
+        
+
+        # 8. 최종 상태를 'active'로 업데이트
+        RepositoryService.update_repository_status(db, repo_id, "active", "active")
+        logger.info(f"[{repo_name}] Update pipeline finished successfully.")
+
+        return {
+            "success": True,
+            "repo_id": repo_id,
+            "repo_name": repo_name,
+            "file_count": file_count,
+            "total_chunks": parse_result.get('total_chunks', 0),
+            "collection_name": collection_name,
+            # "embedded_count": total_embedded_count, # diff 로직 완성 후 사용
+            "message": "Repository updated successfully"
+        }
+
+    except Exception as e:
+        logger.error(f"[{repo_name}] An unexpected error occurred in update pipeline: {e}", exc_info=True)
+        # 오류 발생 시 상태 업데이트
+        RepositoryService.update_repository_status(db, repo_id, "error", "error")
+        return {
+            "success": False,
+            "error": str(e),
+            "step": "unknown"
+        }
+    finally:
+        db.close()
+        logger.info(f"[{repo_name}] Database connection closed for update pipeline.")

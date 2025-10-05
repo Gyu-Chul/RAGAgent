@@ -3,12 +3,12 @@ from typing import List, Optional
 
 import git
 from tree_sitter import Parser
-from tree_sitter_languages import get_language
+from tree_sitter_languages import get_parser
 import diff_match_patch as dmp_module
 
 from .types import CommitChange
 
-PYTHON_LANGUAGE = get_language('python')
+
 
 class GitHistoryManager:
     """Git 저장소와의 상호작용을 관리합니다."""
@@ -107,6 +107,8 @@ class DiffGenerator:
 class FunctionHistoryTracker:
     """함수의 변경 이력을 추적하는 메인 클래스입니다."""
     def __init__(self, repo_path: str):
+        PYTHON_LANGUAGE = get_parser('python')
+        
         self.git_manager = GitHistoryManager(repo_path)
         self.parser = CodeParser(PYTHON_LANGUAGE)
         self.diff_generator = DiffGenerator()

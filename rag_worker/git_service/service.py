@@ -338,7 +338,65 @@ class GitService:
         except (RepositoryNotFoundError, Exception) as e:
             logger.error(f"Delete repository error: {str(e)}")
             return DeleteResult(success=False, repo_name=repo_name, message=None, error=str(e))
+    
 
+    def _format_source_file(self, file_paths: List[str]) -> List[str]:
+        """
+        파일 경로 리스트를 '파일명.json' 형식의 리스트로 변환합니다.
+        예: ['test_dir/test.py'] -> ['test.json']
+        """
+        # pathlib의 stem을 사용하여 확장자를 제외한 파일명을 추출하고 .json을 붙입니다.
+        return [f"{Path(p).stem}.json" for p in file_paths]
+
+    def diff_files(self, repo_name: str) -> Dict[str, Any]:
+        """
+        로컬 저장소의 현재 상태와 'origin/main'을 비교하여 변경된 파일 목록을 포맷에 맞게 반환합니다.
+
+        Args:
+            repo_name: 레포지토리 이름
+
+        Returns:
+            diff 결과 (성공 여부, 포맷팅된 파일 목록, 메시지/에러)
+        """
+        try:
+            # 1. 레포지토리 경로 확인
+            self.repo_manager.validate_exists(repo_name)
+            repo_path = self.repo_manager.get_repo_path(repo_name)
+            logger.info(f"[{repo_name}] Starting diff check against origin/main.")
+
+            # 2. 원격 저장소의 최신 정보를 가져옴 (fetch)
+            logger.info(f"[{repo_name}] Fetching remote repository updates.")
+            self.command_runner.run(["git", "fetch"], cwd=repo_path)
+            
+            # 3. HEAD (현재 로컬)와 'origin/main'을 비교하여 변경된 파일 목록을 가져옴
+            logger.info(f"[{repo_name}] Comparing local HEAD with origin/main.")
+            diff_result = self.command_runner.run(
+                ["git", "diff", "--name-only", "HEAD", "origin/main"],
+                cwd=repo_path
+            )
+
+            # 4. 결과를 파싱하여 리스트로 변환
+            stdout = diff_result["stdout"]
+            raw_changed_files = stdout.strip().split('\n') if stdout.strip() else []
+            
+            # 5. 새로운 포맷팅 메서드를 호출하여 파일명 리스트를 변환
+            formatted_files = self._format_source_file(raw_changed_files)
+            
+            logger.info(f"[{repo_name}] Found and formatted {len(formatted_files)} changed files.")
+
+            return {
+                "success": True,
+                "files": formatted_files, # 포맷팅된 파일 리스트를 반환
+                "message": f"Found {len(formatted_files)} changed files between local and remote."
+            }
+
+        except (RepositoryNotFoundError, GitCommandError, GitTimeoutError) as e:
+            logger.error(f"Diff files error in {repo_name}: {str(e)}")
+            return {
+                "success": False,
+                "files": [],
+                "error": str(e)
+            }
 
 
 #################### history tracker 실행 예시
