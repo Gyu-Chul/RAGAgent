@@ -17,8 +17,10 @@ WORKDIR /app
 # Copy dependency files (gateway-specific)
 COPY gateway/pyproject.toml ./pyproject.toml
 
-# Install dependencies
-RUN uv sync --no-dev
+# Create requirements.txt from pyproject.toml and install dependencies
+RUN uv pip compile pyproject.toml -o requirements.txt && \
+    uv venv && \
+    uv pip install -r requirements.txt
 
 # Production stage
 FROM python:3.11-slim

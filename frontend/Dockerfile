@@ -17,8 +17,10 @@ WORKDIR /app
 # Copy dependency files (frontend-specific)
 COPY frontend/pyproject.toml ./pyproject.toml
 
-# Install dependencies
-RUN uv sync --no-dev
+# Create requirements.txt from pyproject.toml and install dependencies
+RUN uv pip compile pyproject.toml -o requirements.txt && \
+    uv venv && \
+    uv pip install -r requirements.txt
 
 # Production stage
 FROM python:3.11-slim

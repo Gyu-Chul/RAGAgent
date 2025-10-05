@@ -31,7 +31,3 @@ dependencies = [
     "sentence-transformers>=2.2.0",
 ]
 requires-python = ">=3.11"
-
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
