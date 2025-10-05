@@ -1,5 +1,4 @@
 from typing import List
-from langchain_core.prompts import ChatPromptTemplate
 
 from .types import SearchResultItem
 from .exceptions import NoContextFoundError, PromptCreationError
@@ -11,11 +10,6 @@ class PromptGenerator:
     LLM에 전달할 최종 프롬프트를 생성하는 클래스
     """
 
-    system_prompt_template = """
-    당신은 주어진 코드 컨텍스트를 바탕으로 질문에 답변하는 유용한 AI 어시스턴트입니다.
-    당신의 임무는 주어진 소스 코드 조각들을 분석하여 사용자의 질문에 포괄적이고 정확한 답변을 제공하는 것입니다.
-    만약 주어진 컨텍스트에서 답변을 찾을 수 없다면, 정보를 지어내지 말고 명확하게 답변을 찾을 수 없다고 말해주세요.
-    """
     human_prompt_template = """
     아래 코드 컨텍스트를 바탕으로 질문에 답변해 주세요.
 
@@ -25,10 +19,6 @@ class PromptGenerator:
 
     질문: {question}
     """
-    prompt_template = ChatPromptTemplate.from_messages([
-        ("system", system_prompt_template),
-        ("human", human_prompt_template),
-    ])
 
 
     def _format_docs(self, docs: List[SearchResultItem]) -> str:
@@ -85,10 +75,10 @@ class PromptGenerator:
         formatted_context = self._format_docs(docs)
 
         try:
-            final_prompt = self.prompt_template.invoke({
-                "context": formatted_context,
-                "question": query
-            })
+            final_prompt = self.human_prompt_template.format(
+                context=formatted_context,
+                question=query
+            )
             return str(final_prompt)
         except KeyError as e:
             raise PromptCreationError(f"프롬프트 템플릿 생성 실패: 필요한 키({e})가 없습니다.") from e

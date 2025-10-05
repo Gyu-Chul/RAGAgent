@@ -19,13 +19,14 @@ class AskCaller:
 
     def create(self, docs: List[SearchResultItem], query: str) -> str:
         """
-        단일 Python 파일을 청킹
+        user 질문 프롬프트 생성
 
         Args:
-            file_path: 파싱할 Python 파일 경로
+            List[SearchResultItem]: 벡터 검색 결과로 나온 데이터
+            query: 사용자 질문 str
 
         Returns:
-            파싱 결과
+            user_prompt
         """
         return self.PromptGenerator.create(docs=docs, query=query)
     
@@ -39,12 +40,16 @@ class AskCaller:
         max_tokens: Optional[int] = 1024,
     ) -> str:
         """
-        단일 Python 파일을 청킹
+        system prompt 연결 및 call API
 
         Args:
-            file_path: 파싱할 Python 파일 경로
+            prompt: user prompt
+            use_stream: 스트리밍 사용 여부
+            model: 원하는 gpt 모델
+            temperature: LLM 답변 창의성 조절
+            max_token: LLM 사용 토큰 제한
 
         Returns:
-            파싱 결과
+            LLM의 최종 답변
         """
         return self.AskQuestion.ask_question(prompt=prompt, use_stream=use_stream, model=model, temperature=temperature, max_tokens=max_tokens) 
