@@ -451,34 +451,63 @@ def chat_query(
         else:
             logger.info(f"✅ Found {search_result['total_results']} relevant code snippets")
 
-            # 2. 검색 결과를 바탕으로 LLM 응답 생성 (현재는 하드코딩)
-            # TODO: 나중에 실제 LLM API 호출로 교체
-
+            # 2. 검색 결과를 바탕으로 LLM 응답 생성
             retrieved_codes = search_result['results'][:top_k]
 
-            # 하드코딩된 응답 생성
             if retrieved_codes:
-                code_summary = []
-                for i, code in enumerate(retrieved_codes, 1):
-                    code_summary.append(f"{i}. {code['name']} ({code['file_path']}:{code['start_line']}-{code['end_line']})")
+                try:
+                    # 디버깅: 검색 결과 확인
+                    logger.info(f"🔍 Retrieved codes sample:")
+                    for i, code in enumerate(retrieved_codes[:2], 1):
+                        logger.info(f"  [{i}] {code.get('name')} ({code.get('file_path')})")
+                        logger.info(f"      Code length: {len(code.get('code', ''))} chars")
+                        logger.info(f"      Has code: {'code' in code}")
+                        logger.info(f"      Code preview: {code.get('code', '')[:100]}")
 
-                bot_response = f"""안녕하세요! 질문해주신 내용과 관련된 코드를 찾았습니다.
+                    # 2-1. PromptGenerator로 프롬프트 생성
+                    logger.info(f"📝 Generating prompt from {len(retrieved_codes)} code snippets")
+                    prompt = prompt_service.create(docs=retrieved_codes, query=user_message)
+
+                    # 디버깅: 생성된 프롬프트 확인
+                    logger.info(f"📄 Generated prompt length: {len(prompt)} chars")
+                    logger.info(f"📄 Prompt preview (first 500 chars):\n{prompt[:500]}")
+
+                    # 2-2. AskQuestion으로 LLM 응답 받기
+                    logger.info(f"🤖 Calling LLM API...")
+                    bot_response = call_service.ask_question(
+                        prompt=prompt,
+                        use_stream=False,
+                        model="gpt-4o-mini",
+                        temperature=0.1,
+                        max_tokens=2048
+                    )
+                    logger.info(f"✅ LLM response received")
+                    logger.info(f"📝 Response preview: {bot_response[:200]}")
+
+                    # sources를 JSON 문자열로 저장
+                    sources = json.dumps([
+                        f"{code['file_path']}:{code['start_line']}-{code['end_line']}"
+                        for code in retrieved_codes
+                    ], ensure_ascii=False)
+
+                except Exception as llm_error:
+                    logger.error(f"❌ LLM API call failed: {str(llm_error)}")
+                    # LLM 호출 실패시 기본 응답 생성
+                    code_summary = []
+                    for i, code in enumerate(retrieved_codes, 1):
+                        code_summary.append(f"{i}. {code['name']} ({code['file_path']}:{code['start_line']}-{code['end_line']})")
+
+                    bot_response = f"""질문해주신 내용과 관련된 코드를 찾았습니다.
 
 **검색된 코드 조각:**
 {chr(10).join(code_summary)}
 
-**분석 결과:**
-해당 레포지토리에서 관련된 코드를 {len(retrieved_codes)}개 발견했습니다. 위 코드들이 질문과 연관이 있을 것으로 보입니다.
+*참고: LLM 분석 중 오류가 발생하여 검색 결과만 제공합니다.*"""
 
-더 구체적인 질문이 있으시면 말씀해주세요!
-
-*참고: 현재는 코드 검색 기능만 활성화되어 있으며, 향후 LLM 기반 상세 분석이 추가될 예정입니다.*"""
-
-                # sources를 JSON 문자열로 저장
-                sources = json.dumps([
-                    f"{code['file_path']}:{code['start_line']}-{code['end_line']}"
-                    for code in retrieved_codes
-                ], ensure_ascii=False)
+                    sources = json.dumps([
+                        f"{code['file_path']}:{code['start_line']}-{code['end_line']}"
+                        for code in retrieved_codes
+                    ], ensure_ascii=False)
             else:
                 bot_response = "질문하신 내용과 관련된 코드를 찾지 못했습니다. 다른 방식으로 질문해주시겠어요?"
                 sources = None

@@ -44,13 +44,13 @@ class PromptGenerator:
             for i, doc in enumerate(docs):
                 source_info = (
                     f"출처 {i+1}:\n"
-                    f"- 파일: {doc.get('file_path', 'N/A')}",
-                    f"- 모듈 정의: {doc.get('type', 'unknown')} '{doc.get('name', 'N/A')}'",
+                    f"- 파일: {doc.get('file_path', 'N/A')}\n"
+                    f"- 모듈 정의: {doc.get('type', 'unknown')} '{doc.get('name', 'N/A')}'\n"
                     f"- 관련성 점수: {doc.get('score', 'unknown')}"
                 )
                 code_block = f"```python\n{doc.get('code', '')}\n```"
                 formatted_strings.append(f"{source_info}\n{code_block}")
-            
+
             return "\n\n".join(formatted_strings)
         
 
