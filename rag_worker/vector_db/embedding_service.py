@@ -83,18 +83,40 @@ class DenseEmbedder:
             raise ModelLoadError(f"Model config not found for key: {model_key}")
 
         try:
+            # 디버깅: 환경 확인
+            import sys
+            logger.info(f"🔍 Python executable: {sys.executable}")
+            logger.info(f"🔍 PyTorch version: {torch.__version__}")
+            logger.info(f"🔍 CUDA available: {torch.cuda.is_available()}")
+            logger.info(f"🔍 CUDA version: {torch.version.cuda if hasattr(torch.version, 'cuda') else 'N/A'}")
+
             device: str = "cuda" if torch.cuda.is_available() else "cpu"
-            logger.info(f"Loading dense embedding model on device: {device}")
+
+            if device == "cuda":
+                gpu_name = torch.cuda.get_device_name(0)
+                gpu_memory = torch.cuda.get_device_properties(0).total_memory / 1024**3  # GB
+                logger.info(f"🚀 Loading dense embedding model on GPU: {gpu_name} ({gpu_memory:.1f}GB)")
+            else:
+                logger.info(f"⚠️ Loading dense embedding model on CPU (GPU not available)")
+
+            # safetensors 강제 사용을 위한 환경 변수 설정
+            import os
+            os.environ["SAFETENSORS_FAST_GPU"] = "1"
 
             self.embedder: HuggingFaceEmbeddings = HuggingFaceEmbeddings(
                 model_name=self.model_config["model_name"],
-                model_kwargs={"device": device, "trust_remote_code": True},
+                model_kwargs={
+                    "device": device,
+                    "trust_remote_code": True
+                },
                 encode_kwargs={"normalize_embeddings": True},
             )
-            logger.info(f"✅ Dense embedding model loaded: {model_key}")
+            logger.info(f"✅ Dense embedding model loaded: {model_key} on {device.upper()}")
 
         except Exception as e:
+            import traceback
             logger.error(f"Failed to load dense embedding model: {e}")
+            logger.error(f"Full traceback: {traceback.format_exc()}")
             raise ModelLoadError(f"Failed to load model: {e}") from e
 
     def embed_documents(self, texts: List[str]) -> List[List[float]]:

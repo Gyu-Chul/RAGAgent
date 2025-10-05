@@ -202,6 +202,32 @@ async def get_current_user_info(
     return UserResponse(**user_data)
 
 
+@router.get("/users/search")
+async def search_user_by_email(
+    email: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_active_user)
+) -> UserResponse:
+    """이메일로 사용자 검색 (멤버 초대용)"""
+    user = db.query(User).filter(User.email == email).first()
+
+    if not user:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="User not found"
+        )
+
+    user_data = {
+        "id": str(user.id),
+        "username": user.username,
+        "email": user.email,
+        "role": user.role,
+        "is_active": user.is_active,
+        "created_at": user.created_at
+    }
+    return UserResponse(**user_data)
+
+
 @router.get("/health")
 async def auth_health_check() -> Dict[str, str]:
     """인증 서비스 헬스 체크"""

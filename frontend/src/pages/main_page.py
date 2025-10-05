@@ -1,11 +1,11 @@
 from nicegui import ui
 from src.components.header import Header
-from src.services.api_service import api_service
+from src.services.api_service import APIService
 
 class MainPage:
     def __init__(self, auth_service):
         self.auth_service = auth_service
-        self.api_service = api_service
+        self.api_service = APIService(auth_service=auth_service)
 
     def render(self):
         with ui.column().classes('w-full min-h-screen'):
@@ -17,7 +17,6 @@ class MainPage:
 
                 with ui.column().classes('w-80 gap-6'):
                     self.render_quick_stats()
-                    self.render_recent_activity()
 
 
     def render_repositories_section(self):
@@ -44,12 +43,11 @@ class MainPage:
                         ui.html(f'<h4 class="font-semibold">{repo["name"]}</h4>')
                         self.render_status_badge(repo["status"])
 
-                    ui.html(f'<p class="text-sm text-gray-600">{repo["description"]}</p>')
+                    ui.html(f'<p class="text-sm text-gray-600">{repo.get("description", "")}</p>')
 
                     with ui.row().classes('items-center gap-4 text-sm text-gray-500'):
-                        ui.html(f'<span>⭐ {repo["stars"]}</span>')
-                        ui.html(f'<span>👥 {repo["members_count"]} members</span>')
-                        ui.html(f'<span>🗄️ {repo["collections_count"]} collections</span>')
+                        ui.html(f'<span>📄 {repo.get("file_count", 0)} files</span>')
+                        ui.html(f'<span>🗄️ {repo.get("collections_count", 0)} collections</span>')
 
                 with ui.column().classes('gap-2'):
                     ui.button('💬 Chat', on_click=lambda repo_id=repo["id"]: ui.navigate.to(f'/chat/{repo_id}')).classes('rag-button-primary text-xs')
@@ -68,14 +66,26 @@ class MainPage:
         with ui.card().classes('rag-card'):
             ui.html('<h3 class="text-lg font-semibold mb-4">Quick Stats</h3>')
 
-            user = self.auth_service.get_current_user()
-            user_email = user["email"] if user else "unknown@ragit.com"
+            # 실제 데이터 가져오기
+            try:
+                repositories = self.api_service.get_repositories()
+                total_repos = len(repositories)
+
+                # 전체 파일 개수 계산
+                total_files = sum(repo.get("file_count", 0) for repo in repositories)
+
+                # 전체 컬렉션 개수 계산
+                total_collections = sum(repo.get("collections_count", 0) for repo in repositories)
+
+            except Exception as e:
+                total_repos = 0
+                total_files = 0
+                total_collections = 0
 
             stats = [
-                {"label": "Total Repositories", "value": "3", "emoji": "📁"},
-                {"label": "Active Chats", "value": str(self.api_service.get_user_active_chats_count(user_email)), "emoji": "💬"},
-                {"label": "Vector Collections", "value": "8", "emoji": "🗄️"},
-                {"label": "Total Embeddings", "value": "1.9K", "emoji": "🧠"}
+                {"label": "Total Repositories", "value": str(total_repos), "emoji": "📁"},
+                {"label": "Total Files", "value": str(total_files), "emoji": "📄"},
+                {"label": "Vector Collections", "value": str(total_collections), "emoji": "🗄️"}
             ]
 
             with ui.column().classes('gap-3'):
@@ -85,33 +95,6 @@ class MainPage:
                             ui.html(f'<span class="text-blue-600 text-lg">{stat["emoji"]}</span>')
                             ui.label(stat["label"]).classes('text-sm')
                         ui.label(stat["value"]).classes('font-semibold text-lg')
-
-    def render_recent_activity(self):
-        with ui.card().classes('rag-card'):
-            ui.html('<h3 class="text-lg font-semibold mb-4">Recent Activity</h3>')
-
-            user = self.auth_service.get_current_user()
-            user_email = user["email"] if user else "unknown@ragit.com"
-            try:
-                activities = self.api_service.get_user_recent_activity(user_email)
-            except Exception as e:
-                ui.notify(f"Failed to load recent activity: {str(e)}", type='negative')
-                activities = []
-
-            emojis = {
-                "chat": "💬",
-                "sync": "🔄",
-                "member": "👤",
-                "collection": "🗄️"
-            }
-
-            with ui.column().classes('gap-3'):
-                for activity in activities:
-                    with ui.row().classes('items-start gap-3 p-2'):
-                        ui.html(f'<span class="text-gray-500 mt-1">{emojis[activity["type"]]}</span>')
-                        with ui.column().classes('flex-1 gap-1'):
-                            ui.label(activity["message"]).classes('text-sm')
-                            ui.label(activity["time"]).classes('text-xs text-gray-500')
 
     def show_admin_menu(self):
         with ui.dialog() as dialog, ui.card():

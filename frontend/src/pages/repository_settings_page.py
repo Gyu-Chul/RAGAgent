@@ -1,11 +1,11 @@
 from nicegui import ui
 from src.components.header import Header
-from src.services.api_service import api_service
+from src.services.api_service import APIService
 
 class RepositorySettingsPage:
     def __init__(self, auth_service):
         self.auth_service = auth_service
-        self.api_service = api_service
+        self.api_service = APIService(auth_service=auth_service)
         self.repo_containers = {}  # UI 컨테이너들을 저장할 딕셔너리
         try:
             repositories = self.api_service.get_repositories()
@@ -50,9 +50,27 @@ class RepositorySettingsPage:
         container = ui.column().style(item_style).on('click', lambda r=repo: self.select_repository(r))
 
         with container:
-            ui.html(f'<div style="display: flex; align-items: center; gap: 8px; margin-bottom: 4px;"><span style="color: #2563eb; font-size: 18px;">📁</span><span style="font-weight: 600;">{repo["name"]}</span></div>')
-            ui.html(f'<div style="font-size: 14px; color: #6b7280; margin-bottom: 4px;">{repo["description"]}</div>')
-            ui.html(f'<div style="font-size: 12px; color: #9ca3af;">⭐ {repo["stars"]} • {repo["language"]}</div>')
+            # Repository name과 status badge
+            with ui.row().style('display: flex; align-items: center; gap: 8px; margin-bottom: 4px;'):
+                ui.html(f'<span style="color: #2563eb; font-size: 18px;">📁</span>')
+                ui.html(f'<span style="font-weight: 600;">{repo["name"]}</span>')
+                # Status badge
+                status = repo.get("status", "active")
+                status_colors = {
+                    'pending': 'background-color: #fef3c7; color: #92400e;',
+                    'syncing': 'background-color: #fef3c7; color: #92400e;',
+                    'active': 'background-color: #d1fae5; color: #065f46;',
+                    'error': 'background-color: #fee2e2; color: #991b1b;'
+                }
+                status_style = status_colors.get(status, 'background-color: #e5e7eb; color: #374151;')
+                ui.html(f'<span style="{status_style} padding: 2px 8px; border-radius: 9999px; font-size: 10px; font-weight: 600;">{status.upper()}</span>')
+
+            ui.html(f'<div style="font-size: 14px; color: #6b7280; margin-bottom: 4px;">{repo.get("description", "")}</div>')
+
+            # File count와 collections count 표시
+            file_count = repo.get("file_count", 0)
+            collections_count = repo.get("collections_count", 0)
+            ui.html(f'<div style="font-size: 12px; color: #9ca3af;">📄 {file_count} files • 🗄️ {collections_count} collections</div>')
 
         # Store reference for later updates
         self.repo_containers[repo["id"]] = container
@@ -94,13 +112,23 @@ class RepositorySettingsPage:
         with ui.column().style('background-color: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 20px;'):
             ui.html('<h3 style="font-size: 18px; font-weight: 600; margin-bottom: 16px;">Repository Information</h3>')
 
+            # owner 정보는 User 객체에서 가져와야 하므로 임시로 owner_id 표시
+            owner_display = repo.get("owner", "Unknown")
+
+            # created_at과 last_sync는 datetime 객체일 수도 있고 None일 수도 있음
+            created_at = repo.get("created_at")
+            last_sync = repo.get("last_sync")
+
+            created_display = created_at.strftime("%b %d, %Y") if created_at else "N/A"
+            last_sync_display = last_sync.strftime("%b %d, %Y at %H:%M") if last_sync else "Not synced yet"
+
             info_items = [
-                ("Owner", repo["owner"]),
-                ("URL", repo["url"]),
-                ("Language", repo["language"]),
-                ("Stars", f'{repo["stars"]:,}'),
-                ("Created", repo["created_at"].strftime("%b %d, %Y")),
-                ("Last Sync", repo["last_sync"].strftime("%b %d, %Y at %H:%M"))
+                ("Owner", owner_display),
+                ("URL", repo.get("url", "")),
+                ("File Count", f'{repo.get("file_count", 0):,}'),
+                ("Collections", f'{repo.get("collections_count", 0):,}'),
+                ("Created", created_display),
+                ("Last Sync", last_sync_display)
             ]
 
             for label, value in info_items:
@@ -217,8 +245,27 @@ class RepositorySettingsPage:
             ui.notify('Please enter a repository URL', color='red')
             return
 
-        ui.notify('Repository added successfully!', color='green')
-        dialog.close()
+        try:
+            # GitHub URL에서 repository name 추출
+            # 예: https://github.com/owner/repo -> repo
+            repo_name = url.rstrip('/').split('/')[-1]
+
+            # API 호출하여 repository 생성
+            self.api_service.create_repository(
+                name=repo_name,
+                url=url,
+                description=description or f"Repository: {repo_name}",
+                is_public=False
+            )
+
+            ui.notify(f'Repository "{repo_name}" added successfully! Processing will start shortly.', color='green')
+            dialog.close()
+
+            # 페이지 새로고침하여 새 repository 표시
+            ui.navigate.reload()
+
+        except Exception as e:
+            ui.notify(f'Failed to add repository: {str(e)}', color='red')
 
     def show_members_dialog(self):
         with ui.dialog() as dialog, ui.card().style('width: 600px;'):

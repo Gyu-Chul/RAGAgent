@@ -113,7 +113,7 @@ class SearchService:
                 input_data["query"], input_data["model_key"]
             )
 
-            # 2. 희소 쿼리 벡터 생성
+            # 2. 희소 쿼리 벡터 생성 (BM25 모델 자동 생성)
             logger.info("Generating sparse query vector (BM25)...")
             sparse_vector = self._generate_sparse_vector(
                 input_data["query"], input_data["collection_name"]
@@ -181,9 +181,22 @@ class SearchService:
 
             device = "cuda" if torch.cuda.is_available() else "cpu"
 
+            if device == "cuda":
+                gpu_name = torch.cuda.get_device_name(0)
+                logger.info(f"🚀 Using GPU for query embedding: {gpu_name}")
+            else:
+                logger.info(f"⚠️ Using CPU for query embedding (GPU not available)")
+
+            # safetensors 강제 사용을 위한 환경 변수 설정
+            import os
+            os.environ["SAFETENSORS_FAST_GPU"] = "1"
+
             embedder = HuggingFaceEmbeddings(
                 model_name=model_config["model_name"],
-                model_kwargs={"device": device, "trust_remote_code": True},
+                model_kwargs={
+                    "device": device,
+                    "trust_remote_code": True
+                },
                 encode_kwargs={"normalize_embeddings": True},
             )
 
@@ -208,8 +221,112 @@ class SearchService:
         Raises:
             ModelLoadError: BM25 모델을 찾을 수 없을 때
         """
-        sparse_embedder = SparseQueryEmbedder(collection_name)
-        return sparse_embedder.embed_query(query)
+        try:
+            sparse_embedder = SparseQueryEmbedder(collection_name)
+            return sparse_embedder.embed_query(query)
+        except ModelLoadError:
+            # BM25 모델이 없으면 자동으로 생성
+            logger.warning(f"⚠️ BM25 model not found for '{collection_name}'. Generating...")
+            self._build_bm25_model(collection_name)
+
+            # 재시도
+            sparse_embedder = SparseQueryEmbedder(collection_name)
+            return sparse_embedder.embed_query(query)
+
+    def _build_bm25_model(self, collection_name: str) -> None:
+        """
+        컬렉션의 데이터로부터 BM25 모델 생성 및 캐싱
+
+        Args:
+            collection_name: 컬렉션 이름
+
+        Raises:
+            SearchError: BM25 모델 생성 실패 시
+        """
+        from rank_bm25 import BM25Okapi
+
+        try:
+            logger.info(f"🔨 Building BM25 model for collection: {collection_name}")
+
+            # 컬렉션에서 모든 텍스트 가져오기
+            from pymilvus import Collection
+
+            collection = Collection(collection_name)
+
+            # 텍스트 필드 쿼리 (text 필드만 필요)
+            query_result = collection.query(
+                expr="pk >= 0",  # 모든 데이터
+                output_fields=["text"],
+                limit=16384  # Milvus 최대 limit
+            )
+
+            if not query_result:
+                raise SearchError(f"No documents found in collection '{collection_name}'")
+
+            # 텍스트 추출 및 토큰화
+            texts = [item["text"] for item in query_result if "text" in item]
+            tokenized_corpus = [text.split(" ") for text in texts]
+
+            logger.info(f"📚 Loaded {len(texts)} documents for BM25 model")
+
+            # BM25 모델 생성
+            bm25_model = BM25Okapi(tokenized_corpus)
+
+            # 캐시에 저장
+            BM25ModelCache.set(collection_name, bm25_model)
+
+            logger.info(f"✅ BM25 model built and cached for '{collection_name}'")
+
+        except Exception as e:
+            raise SearchError(f"Failed to build BM25 model: {e}") from e
+
+    def _execute_dense_search(
+        self,
+        collection_name: str,
+        dense_vector: List[float],
+        top_k: int,
+        filter_expr: Optional[str] = None,
+    ) -> List[SearchResultItem]:
+        """
+        밀집 벡터만 사용한 검색 (BM25 fallback)
+
+        Args:
+            collection_name: 컬렉션 이름
+            dense_vector: 밀집 쿼리 벡터
+            top_k: 결과 개수
+            filter_expr: 필터 표현식 (선택)
+
+        Returns:
+            검색 결과 리스트
+
+        Raises:
+            SearchError: 검색 실패 시
+        """
+        try:
+            # 검색 파라미터
+            search_params: Dict[str, Any] = {
+                "collection_name": collection_name,
+                "data": [dense_vector],
+                "anns_field": "dense",
+                "limit": top_k,
+                "output_fields": ["*"],
+                "search_params": {"metric_type": "COSINE", "params": {"ef": 128}},
+            }
+
+            # 필터 추가 (있을 경우)
+            if filter_expr:
+                search_params["filter"] = filter_expr
+
+            res = self.client.search(**search_params)
+
+            if not res or not res[0]:
+                return []
+
+            # 결과 포맷팅
+            return self._format_results(res[0])
+
+        except Exception as e:
+            raise SearchError(f"Dense search execution failed: {e}") from e
 
     def _execute_hybrid_search(
         self,

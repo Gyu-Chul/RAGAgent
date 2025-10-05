@@ -50,6 +50,9 @@ def init_db():
         create_tables()
         print("데이터베이스 테이블 생성 완료!")
 
+        # 마이그레이션: file_count 컬럼 추가
+        _add_missing_columns()
+
         # 기본 사용자 생성
         _create_default_users()
 
@@ -57,6 +60,24 @@ def init_db():
     except Exception as e:
         print(f"데이터베이스 초기화 중 오류 발생: {e}")
         print("데이터베이스 없이 계속 진행합니다...")
+
+
+def _add_missing_columns():
+    """누락된 컬럼 추가 (마이그레이션)"""
+    print("데이터베이스 스키마 마이그레이션 중...")
+
+    with engine.connect() as conn:
+        try:
+            # repositories 테이블에 file_count 컬럼 추가
+            conn.execute(text("""
+                ALTER TABLE repositories
+                ADD COLUMN IF NOT EXISTS file_count INTEGER DEFAULT 0;
+            """))
+            conn.commit()
+            print("✅ repositories.file_count 컬럼 추가 완료")
+        except Exception as e:
+            print(f"⚠️  컬럼 추가 중 오류 (무시 가능): {e}")
+            conn.rollback()
 
 
 def _create_default_users():

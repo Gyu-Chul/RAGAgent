@@ -45,6 +45,7 @@ def setup_logging() -> None:
 setup_logging()
 from src.services.auth_service import AuthService
 from src.services.navigation_service import NavigationService
+from src.services.api_service import init_api_service
 from src.pages.auth_page import AuthPage
 from src.pages.main_page import MainPage
 from src.pages.repository_settings_page import RepositorySettingsPage
@@ -56,6 +57,9 @@ from src.utils.theme import setup_theme
 # Global service instances to maintain state across pages
 auth_service = AuthService()
 nav_service = NavigationService()
+
+# Initialize API service with auth_service
+init_api_service(auth_service)
 
 @ui.page('/')
 def index() -> Any:

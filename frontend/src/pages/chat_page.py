@@ -2,13 +2,13 @@ from nicegui import ui
 import asyncio
 from datetime import datetime
 from src.components.header import Header
-from src.services.api_service import api_service
+from src.services.api_service import APIService
 
 class ChatPage:
     def __init__(self, repo_id: str, auth_service):
         self.repo_id = repo_id
         self.auth_service = auth_service
-        self.api_service = api_service
+        self.api_service = APIService(auth_service=auth_service)
         try:
             self.repository = self.api_service.get_repository(repo_id)
             # Auto-select first chat room
@@ -104,20 +104,8 @@ class ChatPage:
             with ui.card().classes('rag-card text-center max-w-md'):
                 ui.html('<div style="font-size: 96px; color: #60a5fa; margin-bottom: 16px;">💬</div>')
                 ui.html('<h3 class="text-xl font-semibold text-gray-800 mb-2">Welcome to RAG Chat</h3>')
-                ui.html(f'<p class="text-gray-600 mb-4">Start a conversation about the <strong>{self.repository["name"]}</strong> repository. Ask questions about the code, documentation, or issues.</p>')
-
-                with ui.column().classes('gap-2 mt-4'):
-                    sample_questions = [
-                        "How does the authentication system work?",
-                        "What are the main components of this project?",
-                        "Can you explain the deployment process?",
-                        "What dependencies does this project use?"
-                    ]
-
-                    ui.html('<h4 class="font-medium text-gray-700 mb-2">Try asking:</h4>')
-                    for question in sample_questions:
-                        with ui.card().classes('border border-gray-200 p-2 hover:bg-blue-50 cursor-pointer transition-colors text-left').on('click', lambda q=question: self.start_chat_with_question(q)):
-                            ui.html(f'<span class="text-sm text-gray-700">"{question}"</span>')
+                ui.html(f'<p class="text-gray-600 mb-4">사이드바에서 채팅방을 생성하여 <strong>{self.repository["name"]}</strong> 레포지토리에 대한 대화를 시작하세요.</p>')
+                ui.html('<p class="text-gray-500 text-sm mt-2">왼쪽 사이드바의 "➕ New Chat Room" 버튼을 클릭하여 새로운 채팅방을 만들 수 있습니다.</p>')
 
     def render_active_chat(self):
         room = self.selected_chat_room
@@ -160,7 +148,19 @@ class ChatPage:
                     self.render_message(message)
 
     def render_message(self, message):
-        is_user = message["sender"] == "user"
+        import json
+
+        is_user = message["sender_type"] == "user"
+
+        # Parse sources if it's a JSON string
+        sources = message.get("sources")
+        if sources and isinstance(sources, str):
+            try:
+                sources = json.loads(sources)
+            except:
+                sources = None
+        elif not sources:
+            sources = None
 
         with ui.element('div').style('width: 100%; margin-bottom: 20px; display: flex; align-items: flex-start;'):
             if is_user:
@@ -168,7 +168,7 @@ class ChatPage:
                 ui.element('div').style('flex: 1; min-width: 0;')  # spacer
                 with ui.element('div').style('width: 600px; max-width: 600px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 16px 18px; border-radius: 18px 18px 4px 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);'):
                     ui.html(f'<div style="white-space: pre-wrap; line-height: 1.5; word-break: break-word;">{message["content"]}</div>')
-                    ui.html(f'<div style="font-size: 11px; opacity: 0.8; margin-top: 8px; text-align: right;">{message["timestamp"].strftime("%H:%M")}</div>')
+                    ui.html(f'<div style="font-size: 11px; opacity: 0.8; margin-top: 8px; text-align: right;">{message["created_at"].strftime("%H:%M")}</div>')
             else:
                 # AI message - left aligned with fixed width
                 with ui.element('div').style('width: 700px; max-width: 700px; background: white; border: 1px solid #e5e7eb; border-radius: 18px 18px 18px 4px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden;'):
@@ -179,21 +179,21 @@ class ChatPage:
                         ui.html('<div style="font-weight: 600; color: #374151;">RAGIT</div>')
                         ui.html('<div style="background: linear-gradient(90deg, #10b981 0%, #059669 100%); color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 500;">AI + RAG</div>')
                         ui.element().style('flex: 1;')
-                        ui.html(f'<div style="font-size: 11px; color: #6b7280;">{message["timestamp"].strftime("%H:%M")}</div>')
+                        ui.html(f'<div style="font-size: 11px; color: #6b7280;">{message["created_at"].strftime("%H:%M")}</div>')
 
                     # Message content
                     with ui.column().style('padding: 16px;'):
                         ui.html(f'<div style="white-space: pre-wrap; line-height: 1.6; color: #374151;">{message["content"]}</div>')
 
                         # Sources section with enhanced RAG styling
-                        if message.get("sources"):
+                        if sources:
                             with ui.column().style('margin-top: 16px; padding: 12px; background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%); border-radius: 8px; border-left: 4px solid #0ea5e9;'):
                                 with ui.row().style('align-items: center; gap: 8px; margin-bottom: 8px;'):
                                     ui.html('<div style="width: 20px; height: 20px; background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 10px;">📚</div>')
                                     ui.html('<div style="font-weight: 600; color: #0f172a; font-size: 13px;">Retrieved from Repository</div>')
 
                                 with ui.column().style('gap: 6px;'):
-                                    for i, source in enumerate(message["sources"]):
+                                    for i, source in enumerate(sources):
                                         with ui.row().style('align-items: center; gap: 8px; padding: 6px 8px; background: rgba(255,255,255,0.7); border-radius: 6px; border: 1px solid rgba(14,165,233,0.2);'):
                                             ui.html(f'<div style="width: 16px; height: 16px; background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%); border-radius: 3px; display: flex; align-items: center; justify-content: center; color: white; font-size: 8px; font-weight: 600;">{i+1}</div>')
                                             ui.html(f'<div style="font-size: 12px; color: #1e40af; font-family: monospace;">{source}</div>')
@@ -247,26 +247,128 @@ class ChatPage:
         self.message_input.value = ""
 
         try:
-            result = self.api_service.add_message(
+            # 1. 사용자 메시지 전송
+            user_message = self.api_service.add_message(
                 self.selected_chat_room["id"],
                 "user",
                 message_content
             )
 
-            with self.messages_container:
-                self.render_message(result["user_message"])
-                self.render_message(result["bot_response"])
+            # 2. 사용자 메시지 렌더링
+            self.refresh_messages()
 
-            # Update UI and scroll to bottom
-            ui.update()
-            ui.run_javascript('''
-                const container = document.getElementById('messages-container');
-                if (container) {
-                    container.scrollTop = container.scrollHeight;
-                }
-            ''')
+            # 3. 로딩 메시지 표시
+            self.show_bot_loading()
+
+            # 4. 폴링 시작 (bot 응답 대기)
+            self.start_polling_for_bot_response()
+
         except Exception as e:
             ui.notify(f"Failed to send message: {str(e)}", type='negative')
+
+    def show_bot_loading(self):
+        """Bot 응답 로딩 상태 표시"""
+        with self.messages_container:
+            # 로딩 메시지를 표시할 컨테이너
+            with ui.element('div').style('width: 100%; margin-bottom: 20px; display: flex; align-items: flex-start;') as loading_container:
+                loading_container.classes('bot-loading-message')
+
+                with ui.element('div').style('width: 700px; max-width: 700px; background: white; border: 1px solid #e5e7eb; border-radius: 18px 18px 18px 4px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); overflow: hidden;'):
+                    # AI Header
+                    with ui.row().style('background: linear-gradient(90deg, #f8fafc 0%, #e2e8f0 100%); padding: 12px 16px; border-bottom: 1px solid #e5e7eb; align-items: center; gap: 8px;'):
+                        ui.html('<div style="width: 28px; height: 28px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 600;">🤖</div>')
+                        ui.html('<div style="font-weight: 600; color: #374151;">RAGIT</div>')
+                        ui.html('<div style="background: linear-gradient(90deg, #10b981 0%, #059669 100%); color: white; padding: 2px 8px; border-radius: 12px; font-size: 10px; font-weight: 500;">AI + RAG</div>')
+
+                    # 로딩 애니메이션
+                    with ui.column().style('padding: 16px;'):
+                        ui.html('''
+                            <div style="display: flex; align-items: center; gap: 8px;">
+                                <div style="width: 8px; height: 8px; background: #667eea; border-radius: 50%; animation: pulse 1.5s ease-in-out infinite;"></div>
+                                <div style="width: 8px; height: 8px; background: #667eea; border-radius: 50%; animation: pulse 1.5s ease-in-out 0.2s infinite;"></div>
+                                <div style="width: 8px; height: 8px; background: #667eea; border-radius: 50%; animation: pulse 1.5s ease-in-out 0.4s infinite;"></div>
+                                <span style="color: #6b7280; font-size: 14px; margin-left: 8px;">AI가 코드를 분석하고 응답을 생성하는 중...</span>
+                            </div>
+                            <style>
+                                @keyframes pulse {
+                                    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+                                    50% { opacity: 1; transform: scale(1.2); }
+                                }
+                            </style>
+                        ''')
+
+        # 스크롤을 최하단으로
+        ui.run_javascript('''
+            const container = document.getElementById('messages-container');
+            if (container) {
+                container.scrollTop = container.scrollHeight;
+            }
+        ''')
+
+    def start_polling_for_bot_response(self):
+        """Bot 응답을 주기적으로 폴링"""
+        async def poll():
+            max_attempts = 60  # 최대 60초 대기 (2초마다 폴링)
+            attempt = 0
+
+            while attempt < max_attempts:
+                await asyncio.sleep(2)  # 2초마다 확인
+                attempt += 1
+
+                try:
+                    # 새 메시지 확인
+                    messages = self.api_service.get_messages(self.selected_chat_room["id"])
+
+                    # 마지막 메시지가 bot 메시지인지 확인
+                    if messages and messages[-1]["sender_type"] == "bot":
+                        # 로딩 메시지 제거
+                        ui.run_javascript('''
+                            const loadingMessages = document.querySelectorAll('.bot-loading-message');
+                            loadingMessages.forEach(msg => msg.remove());
+                        ''')
+
+                        # 메시지 새로고침
+                        self.refresh_messages()
+                        return  # 폴링 종료
+
+                except Exception as e:
+                    print(f"Polling error: {e}")
+                    continue
+
+            # 타임아웃
+            ui.run_javascript('''
+                const loadingMessages = document.querySelectorAll('.bot-loading-message');
+                loadingMessages.forEach(msg => msg.remove());
+            ''')
+            ui.notify("응답 생성 시간이 초과되었습니다. 잠시 후 새로고침해주세요.", type='warning')
+
+        # 비동기 폴링 시작
+        asyncio.create_task(poll())
+
+    def refresh_messages(self):
+        """메시지 목록 새로고침"""
+        self.messages_container.clear()
+
+        with self.messages_container:
+            # Inner container for messages
+            with ui.element('div').style('max-width: 1200px; margin: 0 auto; width: 100%; min-height: 100%; display: flex; flex-direction: column;'):
+                try:
+                    messages = self.api_service.get_messages(self.selected_chat_room["id"])
+                except Exception as e:
+                    ui.notify(f"Failed to load messages: {str(e)}", type='negative')
+                    messages = []
+
+                # Render messages
+                for message in messages:
+                    self.render_message(message)
+
+        # 스크롤을 최하단으로
+        ui.run_javascript('''
+            const container = document.getElementById('messages-container');
+            if (container) {
+                container.scrollTop = container.scrollHeight;
+            }
+        ''')
 
 
     def handle_room_click(self, e, room_id):
@@ -327,18 +429,6 @@ class ChatPage:
         with self.chat_area_container:
             self.render_chat_area()
 
-        ui.update()
-
-    def start_chat_with_question(self, question):
-        if not self.selected_chat_room:
-            try:
-                new_room = self.api_service.create_chat_room("General Discussion", self.repo_id)
-            except Exception as e:
-                ui.notify(f"Failed to create chat room: {str(e)}", type='negative')
-                return
-            self.selected_chat_room = new_room
-
-        self.message_input.value = question
         ui.update()
 
     def show_create_chat_dialog(self):
