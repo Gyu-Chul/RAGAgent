@@ -342,11 +342,10 @@ class GitService:
 
     def _format_source_file(self, file_paths: List[str]) -> List[str]:
         """
-        파일 경로 리스트를 '파일명.json' 형식의 리스트로 변환합니다.
-        예: ['test_dir/test.py'] -> ['test.json']
+        파일 경로 리스트의 확장자만 '.json'으로 변경 (경로 유지)
+        예: ['src/api/utils.py'] -> ['src/api/utils.json']
         """
-        # pathlib의 stem을 사용하여 확장자를 제외한 파일명을 추출하고 .json을 붙입니다.
-        return [f"{Path(p).stem}.json" for p in file_paths]
+        return [str(Path(p).with_suffix(".json")) for p in file_paths]
 
     def diff_files(self, repo_name: str) -> Dict[str, Any]:
         """
