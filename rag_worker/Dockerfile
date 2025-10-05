@@ -42,6 +42,9 @@ COPY --from=builder --chown=app:app /app/.venv /app/.venv
 # Copy only rag_worker-related files
 COPY --chown=app:app rag_worker/ ./rag_worker/
 
+# Create logs directory with proper permissions
+RUN mkdir -p /app/logs && chown -R app:app /app/logs
+
 # Switch to app user
 USER app
 

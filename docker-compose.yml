@@ -146,8 +146,6 @@ services:
         condition: service_healthy
       redis:
         condition: service_healthy
-    volumes:
-      - ./logs:/app/logs
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
@@ -173,8 +171,6 @@ services:
     depends_on:
       backend:
         condition: service_healthy
-    volumes:
-      - ./logs:/app/logs
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8080/"]
@@ -202,8 +198,6 @@ services:
         condition: service_healthy
       backend:
         condition: service_healthy
-    volumes:
-      - ./logs:/app/logs
     restart: unless-stopped
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8000/"]
@@ -237,5 +231,4 @@ services:
         condition: service_healthy
     restart: unless-stopped
     volumes:
-      - ./logs:/app/logs
       - ./data:/app/data

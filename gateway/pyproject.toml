@@ -6,5 +6,6 @@ dependencies = [
     "fastapi>=0.109.1",
     "uvicorn[standard]==0.24.0",
     "httpx==0.25.2",
+    "python-decouple==3.8",
 ]
 requires-python = ">=3.11"

@@ -18,6 +18,7 @@ dependencies = [
     # Database
     "sqlalchemy==2.0.23",
     "psycopg2-binary==2.9.9",
+    "python-decouple==3.8",
 
     # Vector DB & RAG
     "pymilvus>=2.4.0",
