@@ -341,8 +341,8 @@ class ChatPage:
 
                     return  # 폴링 종료
 
-                # 최대 60초 (30회 * 2초) 후 타임아웃
-                if self.polling_attempts >= 30:
+                # 최대 180초 (90회 * 2초) 후 타임아웃 - 긴 응답 대응
+                if self.polling_attempts >= 90:
                     if self.polling_timer:
                         self.polling_timer.active = False
                         self.polling_timer = None
@@ -351,7 +351,7 @@ class ChatPage:
                         const loadingMessages = document.querySelectorAll('.bot-loading-message');
                         loadingMessages.forEach(msg => msg.remove());
                     ''')
-                    ui.notify("응답 생성 시간이 초과되었습니다. 잠시 후 새로고침해주세요.", type='warning')
+                    ui.notify("응답 생성 대기시간이 초과되었습니다 (3분). 잠시 후 새로고침해주세요.", type='warning')
 
             except Exception as e:
                 print(f"Polling error: {e}")
