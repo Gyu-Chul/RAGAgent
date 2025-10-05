@@ -14,9 +14,8 @@ ENV PATH="/root/.local/bin:$PATH"
 # Set working directory
 WORKDIR /app
 
-# Copy dependency files
-COPY pyproject.toml .
-COPY README.md .
+# Copy dependency files (frontend-specific)
+COPY frontend/pyproject.toml ./pyproject.toml
 
 # Install dependencies
 RUN uv sync --no-dev
@@ -36,15 +35,10 @@ RUN useradd --create-home --shell /bin/bash app
 WORKDIR /app
 
 # Copy virtual environment from builder
-COPY --from=builder /app/.venv /app/.venv
+COPY --from=builder --chown=app:app /app/.venv /app/.venv
 
 # Copy only frontend-related files
-COPY frontend/ ./frontend/
-COPY pyproject.toml .
-COPY README.md .
-
-# Change ownership to app user
-RUN chown -R app:app /app
+COPY --chown=app:app frontend/ ./frontend/
 
 # Switch to app user
 USER app

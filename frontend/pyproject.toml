@@ -1,0 +1,13 @@
+[project]
+name = "ragit-frontend"
+version = "0.1.0"
+description = "RAGIT Frontend Service"
+dependencies = [
+    "nicegui==1.4.24",
+    "requests>=2.31.0",
+]
+requires-python = ">=3.11"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

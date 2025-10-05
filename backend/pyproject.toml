@@ -1,0 +1,21 @@
+[project]
+name = "ragit-backend"
+version = "0.1.0"
+description = "RAGIT Backend Service"
+dependencies = [
+    "fastapi>=0.109.1",
+    "uvicorn[standard]==0.24.0",
+    "sqlalchemy==2.0.23",
+    "psycopg2-binary==2.9.9",
+    "pydantic[email]>=2.7.4",
+    "python-multipart>=0.0.7",
+    "python-jose[cryptography]==3.3.0",
+    "passlib[bcrypt]==1.7.4",
+    "celery==5.5.3",
+    "redis==6.4.0",
+]
+requires-python = ">=3.11"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

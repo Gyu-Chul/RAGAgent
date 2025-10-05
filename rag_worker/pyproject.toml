@@ -1,0 +1,37 @@
+[project]
+name = "ragit-rag-worker"
+version = "0.1.0"
+description = "RAGIT RAG Worker Service"
+dependencies = [
+    # Celery & Redis
+    "celery==5.5.3",
+    "redis==6.4.0",
+    "amqp==5.3.1",
+    "billiard==4.2.1",
+    "click==8.2.1",
+    "click-didyoumean==0.3.1",
+    "click-plugins==1.1.1.2",
+    "click-repl==0.3.0",
+    "kombu==5.5.4",
+    "vine==5.1.0",
+
+    # Database
+    "sqlalchemy==2.0.23",
+    "psycopg2-binary==2.9.9",
+
+    # Vector DB & RAG
+    "pymilvus>=2.4.0",
+    "langchain-milvus>=0.1.0",
+    "langchain-huggingface>=0.1.0",
+    "langchain-core>=0.3.0",
+    "rank-bm25>=0.2.2",
+
+    # ML/AI
+    "torch>=2.0.0",
+    "sentence-transformers>=2.2.0",
+]
+requires-python = ">=3.11"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
