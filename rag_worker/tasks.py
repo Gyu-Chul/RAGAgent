@@ -579,7 +579,7 @@ def chat_query(
         db.close()
 
 
-
+### ragit_sdk/tests/create_prompt.py
 @app.task
 def create_prompt(
     docs: List[SearchResult],
@@ -597,7 +597,7 @@ def create_prompt(
     """
     return prompt_service.create(docs, query)
 
-
+### ragit_sdk/tests/ask_question.py
 @app.task
 def call_llm(
         prompt: str, 
@@ -618,6 +618,9 @@ def call_llm(
     """
     return call_service.ask_question(prompt=prompt, use_stream=use_stream, model=model, temperature=temperature, max_tokens=max_tokens)
 
+
+
+### ragit_sdk/tests/diff_file.py
 @app.task(name='rag_worker.tasks.run_git_diff')
 def run_git_diff(repo_name: str):
     """
@@ -626,10 +629,11 @@ def run_git_diff(repo_name: str):
     return git_service.diff_files(repo_name)
 
 
+### ragit_sdk/tests/embedding.py
 @app.task(name='rag_worker.tasks.parse_and_embed_repository')
 def parse_and_embed_repository(repo_name: str, collection_name: str, model_key: str, save_json: bool = True):
     """
-    레포지토리를 파싱하고, 그 결과를 즉시 Vector DB에 임베딩하는 통합 Celery Task입니다.
+    레포지토리를 파싱하고, 그 결과를 즉시 Vector DB에 임베딩하는 통합 Test용 Celery Task
     """
     # --- 1단계: 코드 파싱 및 청킹 ---
     parse_result = parser_service.parse_repository(
@@ -673,7 +677,7 @@ def parse_and_embed_repository(repo_name: str, collection_name: str, model_key: 
     }
 
 
-# repository 최신 동기화 통합 작업
+# repository 최신 동기화 통합 작업 (update 기능)
 @app.task(name='rag_worker.tasks.update_repository_pipeline')
 def update_repository_pipeline(
     repo_id: str,

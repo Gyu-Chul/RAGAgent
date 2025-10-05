@@ -351,7 +351,7 @@ class CollectionManager:
 
         Args:
             collection_name: 컬렉션 이름
-            source_files: 삭제할 엔티티들의 원본 파일명 리스트 (예: ['Dockerfile.json', ...])
+            source_files: 삭제할 엔티티들의 원본 파일명 리스트
 
         Returns:
             삭제 결과 딕셔너리
