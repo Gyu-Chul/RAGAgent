@@ -1,7 +1,7 @@
 from nicegui import ui
 from datetime import datetime
-from src.components.header import Header
-from src.services.api_service import APIService
+from frontend.src.components.header import Header
+from frontend.src.services.api_service import APIService
 
 class ChatPage:
     def __init__(self, repo_id: str, auth_service):

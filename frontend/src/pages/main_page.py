@@ -1,6 +1,6 @@
 from nicegui import ui
-from src.components.header import Header
-from src.services.api_service import APIService
+from frontend.src.components.header import Header
+from frontend.src.services.api_service import APIService
 
 class MainPage:
     def __init__(self, auth_service):

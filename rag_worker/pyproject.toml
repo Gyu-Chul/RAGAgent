@@ -38,8 +38,12 @@ dependencies = [
 
     # Git History Tracking
     "GitPython>=3.1.0",
-    "tree-sitter>=0.20.0",
-    "tree-sitter-languages>=1.8.0",
+    "tree-sitter>=0.20.0,<0.21.0",
+    "tree-sitter-languages==1.8.0",
     "diff-match-patch>=20230430",
 ]
 requires-python = ">=3.11"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"

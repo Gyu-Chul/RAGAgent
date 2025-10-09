@@ -633,17 +633,21 @@ def call_llm(
 def get_code_history(
     repo_id: str,
     file_path: str,
-    node_name: str,
-    node_type: str = "function"
+    node_name: Optional[str] = None,
+    node_type: Optional[str] = None,
+    start_line: Optional[int] = None,
+    end_line: Optional[int] = None
 ) -> Dict[str, Any]:
     """
-    코드의 Git 히스토리를 추적
+    파일 또는 코드의 Git 히스토리를 추적
 
     Args:
         repo_id: 레포지토리 ID
         file_path: 파일 경로 (예: src/utils/helper.py)
-        node_name: 추적할 함수/클래스 이름
-        node_type: 노드 타입 ('function' 또는 'class')
+        node_name: 추적할 함수/클래스 이름 (None이면 전체 파일 추적)
+        node_type: 노드 타입 (None이면 전체 파일 추적)
+        start_line: 시작 라인 (module/script의 경우 사용)
+        end_line: 종료 라인 (module/script의 경우 사용)
 
     Returns:
         히스토리 정보
@@ -655,50 +659,59 @@ def get_code_history(
     logger = logging.getLogger(__name__)
 
     try:
+        # DATABASE_URL 설정
+        env_local_path = Path(__file__).parent.parent / '.env.local'
+
+        if env_local_path.exists():
+            DATABASE_URL = None
+            with open(env_local_path, 'r', encoding='utf-8') as f:
+                for line in f:
+                    line = line.strip()
+                    if line.startswith('DATABASE_URL='):
+                        DATABASE_URL = line.split('=', 1)[1]
+                        break
+
+            if DATABASE_URL:
+                os.environ['DATABASE_URL'] = DATABASE_URL
+                logger.info(f"✅ Set DATABASE_URL from .env.local")
+            else:
+                DATABASE_URL = 'postgresql://postgres:postgres@localhost:5432/ragit'
+                os.environ['DATABASE_URL'] = DATABASE_URL
+                logger.warning(f"⚠️ DATABASE_URL not found in .env.local, using default")
+        else:
+            DATABASE_URL = os.getenv('DATABASE_URL', 'postgresql://postgres:postgres@localhost:5432/ragit')
+            logger.info(f"⚠️ .env.local not found, using environment")
+
+        # DB에서 repo_name 조회
+        from sqlalchemy import create_engine, text
+        from sqlalchemy.orm import sessionmaker
+
+        engine = create_engine(DATABASE_URL)
+        SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+        db = SessionLocal()
+
+        try:
+            result = db.execute(
+                text("SELECT name FROM repositories WHERE id = :repo_id"),
+                {"repo_id": repo_id}
+            ).fetchone()
+
+            if result:
+                repo_name = result[0]
+                logger.info(f"✅ Found repo_name from DB: {repo_name}")
+            else:
+                logger.error(f"❌ Repository not found in DB for repo_id: {repo_id}")
+                return {
+                    "success": False,
+                    "error": f"Repository not found for repo_id: {repo_id}",
+                    "history": []
+                }
+        finally:
+            db.close()
+
         # Repository 경로 구성
-        # git_clone 태스크에서 사용하는 이름 규칙과 일치시키기
-        # git_service.clone_repository를 보면 repo_name이 저장소 이름임
-
-        # repository 디렉토리 내의 실제 폴더를 찾아야 함
         repo_base_path = Path("repository")
-
-        # 실제 디렉토리 찾기 (여러 가능성 시도)
-        actual_repo_path = None
-
-        # 1. 직접적인 repo_id 기반 경로 시도
-        test_names = [
-            repo_id,  # 원본 repo_id
-            f"repo_{repo_id}",  # repo_ 접두사 포함
-            repo_id.replace('-', '_'),  # 하이픈을 언더스코어로
-            f"repo_{repo_id.replace('-', '_')}",  # 둘 다 적용
-        ]
-
-        for test_name in test_names:
-            test_path = repo_base_path / test_name
-            if test_path.exists() and test_path.is_dir():
-                actual_repo_path = test_path
-                break
-
-        # 2. repository 디렉토리 스캔
-        if not actual_repo_path and repo_base_path.exists():
-            for d in repo_base_path.iterdir():
-                if d.is_dir() and repo_id.replace('-', '_') in d.name:
-                    actual_repo_path = d
-                    break
-
-        # 3. 디버깅: repository 디렉토리의 모든 내용 로깅
-        if not actual_repo_path and repo_base_path.exists():
-            available_repos = [d.name for d in repo_base_path.iterdir() if d.is_dir()]
-            logger.info(f"📁 Available repositories: {available_repos}")
-            logger.warning(f"⚠️ Could not find repository for repo_id: {repo_id}")
-
-            # 첫 번째 찾은 디렉토리를 사용 (임시)
-            if available_repos:
-                actual_repo_path = repo_base_path / available_repos[0]
-                logger.info(f"📌 Using first available repository: {actual_repo_path}")
-
-        if not actual_repo_path:
-            actual_repo_path = repo_base_path / repo_id  # 기본값
+        actual_repo_path = repo_base_path / repo_name
 
         logger.info(f"🔍 Looking for repository at: {actual_repo_path}")
 
@@ -713,8 +726,11 @@ def get_code_history(
         tracker = FunctionHistoryTracker(str(actual_repo_path))
 
         # 히스토리 추적
-        logger.info(f"📖 Tracking history for {node_type} '{node_name}' in {file_path}")
-        history = tracker.trace_history(file_path, node_name, node_type)
+        if node_name is None and node_type is None:
+            logger.info(f"📖 Tracking full file history for {file_path}")
+        else:
+            logger.info(f"📖 Tracking history for {node_type} '{node_name}' in {file_path} (lines {start_line}-{end_line})")
+        history = tracker.trace_history(file_path, node_name, node_type, start_line, end_line)
 
         # CommitChange 객체를 딕셔너리로 변환
         history_dicts = []

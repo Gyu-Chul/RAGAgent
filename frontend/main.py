@@ -43,16 +43,16 @@ def setup_logging() -> None:
 
 # 로깅 초기화
 setup_logging()
-from src.services.auth_service import AuthService
-from src.services.navigation_service import NavigationService
-from src.services.api_service import init_api_service
-from src.pages.auth_page import AuthPage
-from src.pages.main_page import MainPage
-from src.pages.repository_settings_page import RepositorySettingsPage
-from src.pages.account_settings_page import AccountSettingsPage
-from src.pages.vectordb_page import VectorDBPage
-from src.pages.chat_page import ChatPage
-from src.utils.theme import setup_theme
+from frontend.src.services.auth_service import AuthService
+from frontend.src.services.navigation_service import NavigationService
+from frontend.src.services.api_service import init_api_service
+from frontend.src.pages.auth_page import AuthPage
+from frontend.src.pages.main_page import MainPage
+from frontend.src.pages.repository_settings_page import RepositorySettingsPage
+from frontend.src.pages.account_settings_page import AccountSettingsPage
+from frontend.src.pages.vectordb_page import VectorDBPage
+from frontend.src.pages.chat_page import ChatPage
+from frontend.src.utils.theme import setup_theme
 
 # Global service instances to maintain state across pages
 auth_service = AuthService()
