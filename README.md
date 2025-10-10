@@ -545,65 +545,11 @@ All other ports should be restricted to internal network only.
 - **[SDK Usage](docs/sdk-usage.md)** - CLI tool documentation
 - **[API Documentation](http://localhost:8001/docs)** - Interactive API docs (Swagger UI)
 
----
-
-## 🏗️ System Architecture Principles
-
-RAGIT is built following these architectural principles:
-
-1. **Single Responsibility Principle (SRP)**
-   - Each service has one clear responsibility
-   - Components are highly cohesive
-
-2. **Interface Segregation Principle (ISP)**
-   - Services expose minimal necessary interfaces
-   - Clear API contracts between services
-
-3. **Separation of Concerns**
-   - Presentation layer (Frontend) separated from business logic (Backend)
-   - Data access layer isolated in service classes
-
-4. **Scalability**
-   - Stateless services for horizontal scaling
-   - Async processing with Celery workers
-   - Distributed vector storage with Milvus
-
-5. **Type Safety**
-   - Full type annotations in Python code
-   - Pydantic schemas for API validation
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Please follow the coding standards defined in [CLAUDE.md](CLAUDE.md).
-
-### Coding Standards
-- Single Responsibility Principle
-- Interface Segregation Principle
-- Complete type annotations required
-
----
 
 ## 📄 License
 
-This project is licensed under the MIT License.
+This project is licensed under the Apache 2.0 License.
 
----
-
-## 🙏 Acknowledgments
-
-- **OpenAI** - LLM capabilities
-- **Milvus** - High-performance vector database
-- **FastAPI** - Modern Python web framework
-- **NiceGUI** - Pythonic web UI framework
-
----
-
-## 📧 Contact
-
-For questions and support, please open an issue on GitHub.
-
----
-
-**Built with ❤️ for developers who want to understand their code better.**
