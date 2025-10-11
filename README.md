@@ -1,4 +1,4 @@
-# RAGIT
+# RAGIT - Retrieval-Augmented Generation with Intelligent Tracking
 
 **RAGIT** is a self-hosted, production-ready RAG (Retrieval-Augmented Generation) system built with microservices architecture. It enables AI-powered code analysis, semantic search, and intelligent chat interactions with your codebase using vector embeddings and LLM integration.
 
