@@ -25,7 +25,8 @@ RAGIT is designed to help developers understand and navigate large codebases thr
 - [System Components](#-system-components)
 - [Docker Services](#-docker-services)
 - [Communication Flow](#-communication-flow)
-- [Project Structure](#-project-ㅏ)
+- [Project Structure](#-project-structure)
+- [Video Tutorial](#-video-tutorial)
 - [Getting Started](#-getting-started)
 - [Port Configuration](#-port-configuration)
 - [Technology Stack](#-technology-stack)
@@ -403,6 +404,22 @@ RAGIT/
 ├── CLAUDE.md                    # Coding standards
 └── README.md                    # This file
 ```
+
+---
+
+## 📺 Video Tutorial
+
+For a complete demonstration of RAGIT v0.1.0, watch our video tutorial:
+
+[![RAGIT Demo Video](https://img.youtube.com/vi/VSBDDvj5_w4/0.jpg)](https://www.youtube.com/watch?v=VSBDDvj5_w4)
+
+🎥 **[Watch RAGIT v0.1.0 Demo on YouTube](https://www.youtube.com/watch?v=VSBDDvj5_w4)**
+
+This video covers:
+- Setting up RAGIT with Docker
+- Adding and indexing code repositories
+- Using the AI-powered chat interface
+- Semantic code search capabilities
 
 ---
 
