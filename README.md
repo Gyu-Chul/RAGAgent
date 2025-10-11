@@ -25,7 +25,7 @@ RAGIT is designed to help developers understand and navigate large codebases thr
 - [System Components](#-system-components)
 - [Docker Services](#-docker-services)
 - [Communication Flow](#-communication-flow)
-- [Project Structure](#-project-structure)
+- [Project Structure](#-project-ㅏ)
 - [Getting Started](#-getting-started)
 - [Port Configuration](#-port-configuration)
 - [Technology Stack](#-technology-stack)
@@ -416,16 +416,23 @@ RAGIT/
 
 ### Quick Start with Docker (Recommended)
 
+> **⚠️ Performance Warning**
+>
+> This RAG system runs on **CPU (not GPU)** by default. Embedding operations are **resource-intensive** and may consume significant CPU and memory during repository indexing and chat operations. For production use with large codebases, GPU acceleration is recommended.
+
 1. **Clone the repository**
    ```bash
    git clone https://github.com/Gyu-Chul/RAGIT.git
    cd RAGIT
    ```
 
-2. **Set up environment variables**
-   ```bash
-   cp .env .env.local
-   # Edit .env.local and add your OpenAI API key
+2. **Configure OpenAI API Key**
+
+   Open `docker-compose.yml` and update the `OPENAI_API_KEY` in the `rag-worker` service (line 210):
+   ```yaml
+   rag-worker:
+     environment:
+       OPENAI_API_KEY: sk-your-actual-openai-api-key-here  # Replace with your key
    ```
 
 3. **Start all services**
@@ -536,15 +543,6 @@ All other ports should be restricted to internal network only.
 - **Docker** - Containerization
 - **Docker Compose** - Multi-container orchestration
 - **uv** - Fast Python package manager
-
----
-
-## 📚 Documentation
-
-- **[Installation Guide](docs/installation.md)** - Detailed setup instructions
-- **[SDK Usage](docs/sdk-usage.md)** - CLI tool documentation
-- **[API Documentation](http://localhost:8001/docs)** - Interactive API docs (Swagger UI)
-
 
 ---
 
