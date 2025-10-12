@@ -30,6 +30,7 @@ class Repository(Base):
     language = Column(String(50))
     status = Column(String(20), default="pending")  # pending, syncing, active, error
     vectordb_status = Column(String(20), default="pending")  # pending, syncing, active, error
+    error_message = Column(Text, nullable=True)  # 에러 발생 시 상세 메시지
     collections_count = Column(Integer, default=0)
     file_count = Column(Integer, default=0)  # 파싱된 파일 개수
     is_public = Column(Boolean, default=False)

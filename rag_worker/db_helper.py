@@ -18,7 +18,8 @@ class RepositoryDBHelper:
         db: Session,
         repo_id: str,
         status: str,
-        vectordb_status: Optional[str] = None
+        vectordb_status: Optional[str] = None,
+        error_message: Optional[str] = None
     ) -> bool:
         """
         Repository 상태 업데이트
@@ -28,6 +29,7 @@ class RepositoryDBHelper:
             repo_id: Repository ID (UUID string)
             status: Repository status
             vectordb_status: VectorDB status (optional)
+            error_message: 에러 메시지 (optional)
 
         Returns:
             성공 여부
@@ -36,11 +38,28 @@ class RepositoryDBHelper:
             repo_uuid = uuid.UUID(repo_id)
             now = datetime.now()
 
-            if vectordb_status:
+            if vectordb_status and error_message:
                 query = text("""
                     UPDATE repositories
                     SET status = :status,
                         vectordb_status = :vectordb_status,
+                        error_message = :error_message,
+                        last_sync = :last_sync
+                    WHERE id = :repo_id
+                """)
+                db.execute(query, {
+                    "status": status,
+                    "vectordb_status": vectordb_status,
+                    "error_message": error_message,
+                    "last_sync": now,
+                    "repo_id": repo_uuid
+                })
+            elif vectordb_status:
+                query = text("""
+                    UPDATE repositories
+                    SET status = :status,
+                        vectordb_status = :vectordb_status,
+                        error_message = NULL,
                         last_sync = :last_sync
                     WHERE id = :repo_id
                 """)
@@ -50,10 +69,25 @@ class RepositoryDBHelper:
                     "last_sync": now,
                     "repo_id": repo_uuid
                 })
+            elif error_message:
+                query = text("""
+                    UPDATE repositories
+                    SET status = :status,
+                        error_message = :error_message,
+                        last_sync = :last_sync
+                    WHERE id = :repo_id
+                """)
+                db.execute(query, {
+                    "status": status,
+                    "error_message": error_message,
+                    "last_sync": now,
+                    "repo_id": repo_uuid
+                })
             else:
                 query = text("""
                     UPDATE repositories
                     SET status = :status,
+                        error_message = NULL,
                         last_sync = :last_sync
                     WHERE id = :repo_id
                 """)

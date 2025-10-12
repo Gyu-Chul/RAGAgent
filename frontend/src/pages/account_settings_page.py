@@ -1,5 +1,5 @@
 from nicegui import ui
-from src.components.header import Header
+from frontend.src.components.header import Header
 
 class AccountSettingsPage:
     def __init__(self, auth_service):

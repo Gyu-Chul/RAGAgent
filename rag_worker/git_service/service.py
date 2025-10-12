@@ -194,13 +194,19 @@ class GitService:
             )
 
         except (RepositoryAlreadyExistsError, GitCommandError, GitTimeoutError) as e:
-            logger.error(f"Clone repository error: {str(e)}")
+            error_msg = str(e)
+
+            # Git이 설치되지 않은 경우 더 명확한 메시지 제공
+            if "지정된 파일을 찾을 수 없습니다" in error_msg or "No such file or directory" in error_msg:
+                error_msg = "Git이 설치되어 있지 않거나 PATH에 등록되지 않았습니다. Git을 설치한 후 다시 시도해주세요."
+
+            logger.error(f"Clone repository error: {error_msg}")
             return CloneResult(
                 success=False,
                 repo_name=repo_name or "",
                 repo_path="",
-                message=None,
-                error=str(e),
+                message=error_msg,
+                error=error_msg,
             )
 
     def check_commit_status(self, repo_name: str) -> StatusResult:

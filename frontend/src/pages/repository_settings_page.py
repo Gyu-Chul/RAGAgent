@@ -1,15 +1,23 @@
 from nicegui import ui
-from src.components.header import Header
-from src.services.api_service import APIService
+from frontend.src.components.header import Header
+from frontend.src.services.api_service import APIService
 
 class RepositorySettingsPage:
-    def __init__(self, auth_service):
+    def __init__(self, auth_service, selected_repo_id: str = None):
         self.auth_service = auth_service
         self.api_service = APIService(auth_service=auth_service)
         self.repo_containers = {}  # UI 컨테이너들을 저장할 딕셔너리
         try:
             repositories = self.api_service.get_repositories()
-            self.selected_repo = repositories[0] if repositories else None
+
+            # URL 파라미터로 전달된 repo_id가 있으면 해당 repository 선택
+            if selected_repo_id:
+                self.selected_repo = next((repo for repo in repositories if str(repo["id"]) == selected_repo_id), None)
+                # 못 찾으면 첫 번째 선택
+                if not self.selected_repo:
+                    self.selected_repo = repositories[0] if repositories else None
+            else:
+                self.selected_repo = repositories[0] if repositories else None
         except Exception as e:
             ui.notify(f"Failed to load repositories: {str(e)}", type='negative')
             self.selected_repo = None
@@ -36,6 +44,11 @@ class RepositorySettingsPage:
                 repositories = []
 
             for repo in repositories:
+                # 디버깅: 에러 상태 레포지토리 로깅
+                if repo.get("status") == "error":
+                    print(f"[DEBUG] Error repository: {repo.get('name')}")
+                    print(f"[DEBUG] Error message: {repo.get('error_message')}")
+                    print(f"[DEBUG] Full repo data: {repo}")
                 self.render_repository_item(repo)
 
     def render_repository_item(self, repo):
@@ -64,6 +77,16 @@ class RepositorySettingsPage:
                 }
                 status_style = status_colors.get(status, 'background-color: #e5e7eb; color: #374151;')
                 ui.html(f'<span style="{status_style} padding: 2px 8px; border-radius: 9999px; font-size: 10px; font-weight: 600;">{status.upper()}</span>')
+
+            # 에러 메시지 표시 (에러 상태일 때만) - description 위에 표시
+            error_message = repo.get("error_message")
+            if status == 'error':
+                if error_message and error_message.strip():
+                    # 에러 메시지를 더 명확하게 표시 (더 크고 눈에 띄게)
+                    ui.html(f'<div style="font-size: 12px; color: #991b1b; background-color: #fee2e2; padding: 8px; border-radius: 6px; margin-bottom: 6px; border-left: 3px solid #dc2626; font-weight: 500;">⚠️ {error_message}</div>')
+                else:
+                    # 디버깅: error_message 값 확인
+                    ui.html(f'<div style="font-size: 12px; color: #991b1b; background-color: #fee2e2; padding: 8px; border-radius: 6px; margin-bottom: 6px; border-left: 3px solid #dc2626; font-weight: 500;">⚠️ Error (no message): {repr(error_message)}</div>')
 
             ui.html(f'<div style="font-size: 14px; color: #6b7280; margin-bottom: 4px;">{repo.get("description", "")}</div>')
 
@@ -251,21 +274,85 @@ class RepositorySettingsPage:
             repo_name = url.rstrip('/').split('/')[-1]
 
             # API 호출하여 repository 생성
-            self.api_service.create_repository(
+            created_repo = self.api_service.create_repository(
                 name=repo_name,
                 url=url,
                 description=description or f"Repository: {repo_name}",
                 is_public=False
             )
 
-            ui.notify(f'Repository "{repo_name}" added successfully! Processing will start shortly.', color='green')
+            ui.notify(f'Repository "{repo_name}" added successfully! Processing...', color='green')
             dialog.close()
 
-            # 페이지 새로고침하여 새 repository 표시
-            ui.navigate.reload()
+            # 상태 체크를 위한 타이머 시작 (reload 전에)
+            self.start_repository_status_check(created_repo['id'], repo_name)
 
         except Exception as e:
-            ui.notify(f'Failed to add repository: {str(e)}', color='red')
+            error_detail = str(e)
+            # 에러 메시지에서 실제 DB 에러나 상세 내용 추출
+            if 'detail' in error_detail:
+                try:
+                    import json
+                    error_data = json.loads(error_detail.split("'detail': ")[1].split("}")[0] + "}")
+                    error_detail = error_data
+                except:
+                    pass
+            ui.notify(f'Failed to add repository: {error_detail}', color='red', timeout=10000)
+
+    def start_repository_status_check(self, repo_id: str, repo_name: str):
+        """Repository 처리 상태를 주기적으로 확인"""
+        check_count = 0
+        max_checks = 60  # 최대 60번 확인 (약 1분)
+
+        def check_status():
+            nonlocal check_count
+            check_count += 1
+
+            try:
+                status_data = self.api_service.get_repository_status(repo_id)
+                current_status = status_data.get('status')
+                error_message = status_data.get('error_message')
+
+                # 에러 상태 확인
+                if current_status == 'error':
+                    # 타이머 중지
+                    if hasattr(self, 'status_timer'):
+                        self.status_timer.active = False
+                    # 에러 메시지가 있으면 함께 표시
+                    if error_message:
+                        ui.notify(f'❌ Failed to process repository "{repo_name}": {error_message}', color='negative', timeout=15000)
+                    else:
+                        ui.notify(f'❌ Failed to process repository "{repo_name}". Please check the repository URL and try again.', color='negative', timeout=10000)
+                    # 페이지 새로고침하여 에러 메시지를 사이드바에 표시
+                    ui.navigate.reload()
+                    return
+
+                # 완료 상태 확인
+                if current_status == 'active':
+                    # 타이머 중지
+                    if hasattr(self, 'status_timer'):
+                        self.status_timer.active = False
+                    ui.notify(f'✅ Repository "{repo_name}" processed successfully!', color='positive', timeout=5000)
+                    # 페이지 새로고침하여 업데이트된 상태 표시
+                    ui.navigate.reload()
+                    return
+
+                # 최대 확인 횟수 초과
+                if check_count >= max_checks:
+                    if hasattr(self, 'status_timer'):
+                        self.status_timer.active = False
+                    ui.notify(f'⏱️ Repository "{repo_name}" is still processing. Please check back later.', color='info', timeout=5000)
+                    return
+
+            except Exception as e:
+                print(f"Status check error: {e}")
+                # 에러 발생 시 타이머 중지
+                if check_count >= 5:  # 5번 실패하면 중지
+                    if hasattr(self, 'status_timer'):
+                        self.status_timer.active = False
+
+        # 1초마다 상태 확인 (더 빠른 응답)
+        self.status_timer = ui.timer(1.0, check_status)
 
     def show_members_dialog(self):
         with ui.dialog() as dialog, ui.card().style('width: 600px;'):

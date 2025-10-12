@@ -303,20 +303,22 @@ def process_repository_pipeline(
         # 2. Git Clone
         clone_result = git_service.clone_repository(git_url, repo_name)
         if not clone_result['success']:
-            RepositoryDBHelper.update_repository_status(db, repo_id, "error", "error")
+            error_msg = f"Git clone failed: {clone_result['message']}"
+            RepositoryDBHelper.update_repository_status(db, repo_id, "error", "error", error_msg)
             return {
                 "success": False,
-                "error": f"Git clone failed: {clone_result['message']}",
+                "error": error_msg,
                 "step": "clone"
             }
 
         # 3. Python 파일 파싱 및 청킹
         parse_result = parser_service.parse_repository(repo_name, save_json=True)
         if not parse_result['success']:
-            RepositoryDBHelper.update_repository_status(db, repo_id, "error", "error")
+            error_msg = f"Parsing failed: {parse_result['message']}"
+            RepositoryDBHelper.update_repository_status(db, repo_id, "error", "error", error_msg)
             return {
                 "success": False,
-                "error": f"Parsing failed: {parse_result['message']}",
+                "error": error_msg,
                 "step": "parse"
             }
 
@@ -332,10 +334,11 @@ def process_repository_pipeline(
         embed_result = vector_db_service.embed_repository(repo_name, collection_name, model_key)
 
         if not embed_result['success']:
-            RepositoryDBHelper.update_repository_status(db, repo_id, "active", "error")
+            error_msg = f"Embedding failed: {embed_result['message']}"
+            RepositoryDBHelper.update_repository_status(db, repo_id, "active", "error", error_msg)
             return {
                 "success": False,
-                "error": f"Embedding failed: {embed_result['message']}",
+                "error": error_msg,
                 "step": "embed",
                 "file_count": file_count
             }
@@ -359,10 +362,11 @@ def process_repository_pipeline(
 
     except Exception as e:
         # 오류 발생 시 상태 업데이트
-        RepositoryDBHelper.update_repository_status(db, repo_id, "error", "error")
+        error_msg = f"Unexpected error: {str(e)}"
+        RepositoryDBHelper.update_repository_status(db, repo_id, "error", "error", error_msg)
         return {
             "success": False,
-            "error": str(e),
+            "error": error_msg,
             "step": "unknown"
         }
     finally:

@@ -60,7 +60,7 @@ class AuthService:
         try:
             url = f"{self.gateway_url}/auth/signup"
             print(f"DEBUG: Signup request to {url}")
-            print(f"DEBUG: Username={username}, Email={email}, Password={'*' * len(password)}")
+            print(f"DEBUG: Username={username}, Email={email}, Password={'*' * len(password) if password else '0'}")
 
             response = requests.post(url, json={
                 "email": email,
@@ -74,13 +74,10 @@ class AuthService:
             if response.status_code == 200:
                 data = response.json()
                 if data.get("success"):
-                    self._current_user = data["user"]
-                    self._session_token = data["token"]["access_token"]
                     print(f"DEBUG: Signup successful for {email}")
                     return {
                         "success": True,
-                        "user": self._current_user,
-                        "token": self._session_token
+                        "message": data.get("message", "Account created successfully")
                     }
                 else:
                     print(f"DEBUG: Signup failed - {data.get('message', 'Unknown error')}")

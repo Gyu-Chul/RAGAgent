@@ -44,6 +44,7 @@ dependencies = [
     "vine==5.1.0",
     "wcwidth==0.2.13",
 
+
     # Vector DB & RAG dependencies
     "pymilvus>=2.4.0",
     "langchain-milvus>=0.1.0",
@@ -52,6 +53,7 @@ dependencies = [
     "rank-bm25>=0.2.2",
     "torch>=2.0.0",
     "sentence-transformers>=2.2.0",
+    "openai>=1.0.0",
 
     # SDK dependencies
     "psutil>=5.9.0",

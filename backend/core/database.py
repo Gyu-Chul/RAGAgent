@@ -76,7 +76,19 @@ def _add_missing_columns():
             conn.commit()
             print("✅ repositories.file_count 컬럼 추가 완료")
         except Exception as e:
-            print(f"⚠️  컬럼 추가 중 오류 (무시 가능): {e}")
+            print(f"⚠️  file_count 컬럼 추가 중 오류 (무시 가능): {e}")
+            conn.rollback()
+
+        try:
+            # repositories 테이블에 error_message 컬럼 추가
+            conn.execute(text("""
+                ALTER TABLE repositories
+                ADD COLUMN IF NOT EXISTS error_message TEXT;
+            """))
+            conn.commit()
+            print("✅ repositories.error_message 컬럼 추가 완료")
+        except Exception as e:
+            print(f"⚠️  error_message 컬럼 추가 중 오류 (무시 가능): {e}")
             conn.rollback()
 
 

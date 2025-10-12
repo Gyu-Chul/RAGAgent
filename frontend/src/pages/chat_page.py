@@ -1,7 +1,7 @@
 from nicegui import ui
 from datetime import datetime
-from src.components.header import Header
-from src.services.api_service import APIService
+from frontend.src.components.header import Header
+from frontend.src.services.api_service import APIService
 
 class ChatPage:
     def __init__(self, repo_id: str, auth_service):
@@ -65,7 +65,7 @@ class ChatPage:
                     ui.html('<h2 class="text-xl font-bold">Chat Rooms</h2>')
 
                 with ui.element('div').style('width: 100%;'):
-                    ui.button('➕ New Chat Room', on_click=self.show_create_chat_dialog).classes('rag-button-primary').style('width: 100%;')
+                    ui.button('➕ Add Chat', on_click=self.show_create_chat_dialog).classes('rag-button-primary').style('width: 100%;')
 
             # Chat rooms list
             with ui.element('div').style('flex: 1; overflow-y: auto; padding: 12px;'):
@@ -91,7 +91,7 @@ class ChatPage:
 
             # Options button (fixed position on right) - separate click handler
             with ui.element('div').style('flex-shrink: 0;'):
-                ui.button('⋮', on_click=lambda rid=room_id: self.handle_options_click_only(rid)).style('color: #6b7280; padding: 4px 8px; background: transparent; border: none; font-size: 18px; cursor: pointer; border-radius: 6px; min-width: 32px;').props('flat dense')
+                ui.button('✕', on_click=lambda rid=room_id: self.handle_options_click_only(rid)).style('color: #6b7280; padding: 4px 8px; background: transparent; border: none; font-size: 18px; cursor: pointer; border-radius: 6px; min-width: 32px;').props('flat dense')
 
     def render_chat_area(self):
         with ui.element('div').style('flex: 1; display: flex; flex-direction: column; overflow: hidden;'):
@@ -106,7 +106,7 @@ class ChatPage:
                 ui.html('<div style="font-size: 96px; color: #60a5fa; margin-bottom: 16px;">💬</div>')
                 ui.html('<h3 class="text-xl font-semibold text-gray-800 mb-2">Welcome to RAG Chat</h3>')
                 ui.html(f'<p class="text-gray-600 mb-4">사이드바에서 채팅방을 생성하여 <strong>{self.repository["name"]}</strong> 레포지토리에 대한 대화를 시작하세요.</p>')
-                ui.html('<p class="text-gray-500 text-sm mt-2">왼쪽 사이드바의 "➕ New Chat Room" 버튼을 클릭하여 새로운 채팅방을 만들 수 있습니다.</p>')
+                ui.html('<p class="text-gray-500 text-sm mt-2">왼쪽 사이드바의 "➕ Add Chat" 버튼을 클릭하여 새로운 채팅방을 만들 수 있습니다.</p>')
 
     def render_active_chat(self):
         room = self.selected_chat_room

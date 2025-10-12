@@ -55,12 +55,7 @@ class PasswordService:
 
     def create_password_hash(self, password: str) -> str:
         """새 패스워드 해시 생성"""
-        if not password:
-            raise ValueError("패스워드는 비어있을 수 없습니다")
-
-        if len(password) < 6:
-            raise ValueError("패스워드는 최소 6자 이상이어야 합니다")
-
+        # 패스워드 길이 제한 제거 - 공백도 허용
         # bcrypt는 72바이트 제한이 있으므로 미리 잘라냄
         password_bytes = password.encode('utf-8')
         print(f"DEBUG: Password byte length = {len(password_bytes)}")

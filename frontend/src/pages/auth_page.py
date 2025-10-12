@@ -68,13 +68,13 @@ class AuthPage:
             ui.notify(result['message'], color='red')
 
     def handle_signup(self, username: str, email: str, password: str, name: str):
-        if not all([username, email, password, name]):
+        if not all([username, email, name]):
             ui.notify('Please fill in all fields', color='red')
             return
 
         result = self.auth_service.signup(username, email, password, name)
         if result['success']:
-            ui.notify('Account created successfully!', color='green')
-            ui.navigate.to('/main')
+            ui.notify('Account created successfully! Please login.', color='green')
+            ui.navigate.to('/login')
         else:
             ui.notify(result['message'], color='red')

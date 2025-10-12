@@ -38,6 +38,7 @@ class RepositoryResponse(RepositoryBase):
     language: Optional[str] = None
     status: str
     vectordb_status: str
+    error_message: Optional[str] = None  # 에러 발생 시 상세 메시지
     collections_count: int = 0
     file_count: int = 0
     created_at: datetime

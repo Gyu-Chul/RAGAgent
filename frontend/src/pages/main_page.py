@@ -1,6 +1,6 @@
 from nicegui import ui
-from src.components.header import Header
-from src.services.api_service import APIService
+from frontend.src.components.header import Header
+from frontend.src.services.api_service import APIService
 
 class MainPage:
     def __init__(self, auth_service):
@@ -52,7 +52,7 @@ class MainPage:
                 with ui.column().classes('gap-2'):
                     ui.button('💬 Chat', on_click=lambda repo_id=repo["id"]: ui.navigate.to(f'/chat/{repo_id}')).classes('rag-button-primary text-xs')
                     if self.auth_service.is_admin():
-                        ui.button('⚙️ Manage', on_click=lambda: ui.navigate.to('/repositories')).classes('rag-button-secondary text-xs')
+                        ui.button('⚙️ Manage', on_click=lambda repo_id=repo["id"]: ui.navigate.to(f'/repositories?repo_id={repo_id}')).classes('rag-button-secondary text-xs')
 
     def render_status_badge(self, status):
         colors = {

@@ -8,7 +8,7 @@ RAGIT SDK - RAG with Gateway-Backend Architecture Software Development Kit
 - tests/: 테스트 및 검증 스크립트
 """
 
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 __author__ = "GyuChul Team"
 
 from .cli import main

@@ -22,8 +22,8 @@ from ..config import ACCESS_TOKEN_EXPIRE_MINUTES
 router = APIRouter(prefix="/auth", tags=["authentication"])
 
 
-@router.post("/signup", response_model=LoginResponse)
-async def signup(user_data: UserCreate, db: Session = Depends(get_db)) -> LoginResponse:
+@router.post("/signup", response_model=APIResponse)
+async def signup(user_data: UserCreate, db: Session = Depends(get_db)) -> APIResponse:
     """사용자 회원가입"""
     try:
         # 사용자 등록
@@ -40,43 +40,9 @@ async def signup(user_data: UserCreate, db: Session = Depends(get_db)) -> LoginR
                 detail="Email or username already exists"
             )
 
-        # 자동 로그인
-        login_result = auth_service.login_user(
-            db=db,
-            email=user_data.email,
-            password=user_data.password
-        )
-
-        if not login_result:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail="Registration successful but auto-login failed"
-            )
-
-        user, access_token = login_result
-
-        # 응답 구성 - UUID를 명시적으로 문자열로 변환
-        user_data = {
-            "id": str(user.id),
-            "username": user.username,
-            "email": user.email,
-            "role": user.role,
-            "is_active": user.is_active,
-            "created_at": user.created_at
-        }
-        user_response = UserResponse(**user_data)
-
-        token_response = Token(
-            access_token=access_token,
-            token_type="bearer",
-            expires_in=ACCESS_TOKEN_EXPIRE_MINUTES * 60
-        )
-
-        return LoginResponse(
+        return APIResponse(
             success=True,
-            user=user_response,
-            token=token_response,
-            message="User created successfully"
+            message="User created successfully. Please login."
         )
 
     except HTTPException:
